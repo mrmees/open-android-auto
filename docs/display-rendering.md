@@ -1,10 +1,10 @@
 # AA Display Rendering Pipeline
 
-Technical reference for how OpenAuto Prodigy renders Android Auto video on a non-standard display with an optional sidebar. Covers all 4 sidebar positions (left, right, top, bottom).
+Technical reference for how an AA head unit renders Android Auto video on a non-standard display with an optional sidebar. Covers all 4 sidebar positions (left, right, top, bottom). Examples use a 1024x600 display as reference.
 
 ## The Problem
 
-Android Auto only supports fixed video resolutions: 800x480 (480p), 1280x720 (720p), 1920x1080 (1080p). Our target display is 1024x600 — none of these are a native fit. When a sidebar is enabled, the available video area shrinks further. The rendering pipeline must:
+Android Auto only supports fixed video resolutions: 800x480 (480p), 1280x720 (720p), 1920x1080 (1080p). A 1024x600 display (common for car touchscreens) doesn't match any of these natively. When a sidebar is enabled, the available video area shrinks further. The rendering pipeline must:
 
 1. Tell the phone to render its UI into an appropriately-sized sub-region (margins)
 2. Display the received video frames correctly on the physical display (QML crop/fit)
@@ -21,7 +21,7 @@ The phone still sends full-resolution video frames (e.g., 1280x720), but the act
 
 ### Where margins are set
 
-`VideoService::fillFeatures()` in `src/core/aa/VideoService.cpp` computes margins via the `calcMargins` lambda and sets them on each `VideoConfig` entry (primary resolution + 480p fallback).
+In your AA implementation, margins are typically computed during service discovery setup and set on each `VideoConfig` entry (primary resolution + 480p fallback) before sending the `ServiceDiscoveryResponse`.
 
 ## Margin Calculation
 
@@ -96,11 +96,11 @@ Small 51px total horizontal margin (~26px per side). AA UI nearly fills the fram
 
 ## Content-Space Touch Mapping
 
-**Critical concept:** We send touch coordinates in **content space** — the sub-region the phone actually uses for its UI — NOT full-frame (1280x720) space. The `touch_screen_config` field in `ServiceDiscoveryResponse` is set to match the content dimensions so the phone maps our coordinates correctly.
+**Critical concept:** The head unit sends touch coordinates in **content space** — the sub-region the phone actually uses for its UI — NOT full-frame (1280x720) space. The `touch_screen_config` field in `ServiceDiscoveryResponse` is set to match the content dimensions so the phone maps coordinates correctly.
 
 ### touch_screen_config
 
-Set in `ServiceFactory.cpp`. Computed identically to the margin calculation:
+Set during service factory initialization. Computed identically to the margin calculation:
 
 ```
 touchW = 1280, touchH = 720
@@ -117,46 +117,41 @@ This tells the phone: "touch coordinates range from 0 to `touchW` x 0 to `touchH
 
 ### Why content-space, not frame-space
 
-If we sent coordinates in full 1280x720 space, we'd need to compute `cropAAOffsetX/Y` and add it to every coordinate. Instead, by setting `touch_screen_config` to the content dimensions, the phone handles the offset mapping internally. Our `mapX`/`mapY` simply map from 0 to `visibleAAWidth`/`visibleAAHeight`.
+If coordinates were sent in full 1280x720 space, you'd need to compute `cropAAOffsetX/Y` and add it to every coordinate. Instead, by setting `touch_screen_config` to the content dimensions, the phone handles the offset mapping internally. The head unit's touch mapping simply maps from 0 to `visibleAAWidth`/`visibleAAHeight`.
 
-## QML Display Modes
+## Display Modes
 
-The `VideoOutput` in `AndroidAutoMenu.qml` uses two fill modes:
+Two video fill modes are relevant:
 
-### No Sidebar: `PreserveAspectFit`
+### No Sidebar: Aspect Fit
 
 Video frame (1280x720) scaled to fit entirely within the display (1024x600), preserving aspect ratio. Small letterbox bars at top/bottom since 720p is slightly wider than the display.
 
-### With Sidebar: `PreserveAspectCrop`
+### With Sidebar: Aspect Crop
 
 Video frame scaled to fill the available area, with overflow cropped. This crops away the phone's black margin bars, leaving only the actual AA UI content visible.
 
-### QML Layout
+### Layout Concept
 
-`AndroidAutoMenu.qml` uses absolute positioning (not RowLayout) to support all 4 sidebar positions:
+The video area and sidebar are positioned absolutely to support all 4 sidebar positions:
 
 ```
-Item {
-    anchors.fill: parent
-
-    Item {
-        id: videoArea
+Container {
+    VideoArea {
         x: (position == "left" && showSidebar) ? sidebarWidth : 0
         y: (position == "top" && showSidebar) ? sidebarWidth : 0
-        width: parent.width - (isVertical && showSidebar ? sidebarWidth : 0)
-        height: parent.height - (isHorizontal && showSidebar ? sidebarWidth : 0)
+        width: containerWidth - (isVertical && showSidebar ? sidebarWidth : 0)
+        height: containerHeight - (isHorizontal && showSidebar ? sidebarWidth : 0)
     }
 
     Sidebar {
         x: based on position (right edge, left edge, or 0 for top/bottom)
         y: based on position (bottom edge, top edge, or videoArea.y for left/right)
-        width: isVertical ? sidebarWidth : parent.width
+        width: isVertical ? sidebarWidth : containerWidth
         height: isVertical ? videoArea.height : sidebarWidth
     }
 }
 ```
-
-**Source:** `qml/applications/android_auto/AndroidAutoMenu.qml`
 
 ## Crop Modes: X-Crop vs Y-Crop
 
@@ -204,9 +199,9 @@ Video is aspect-fit into full display. Typically produces small letterbox bars. 
 
 ## Sidebar Touch Zones
 
-When sidebar is active, `EvdevTouchReader` defines exclusion zones in evdev coordinate space. Touches in the sidebar region are consumed locally (not forwarded to AA). The sidebar has two functional zones: **volume** (continuous drag) and **home** (tap).
+When a sidebar is active, the head unit's touch handler defines exclusion zones in the touch coordinate space. Touches in the sidebar region are consumed locally (not forwarded to AA). The sidebar has two functional zones: **volume** (continuous drag) and **home** (tap).
 
-**Important:** During AA, `EVIOCGRAB` routes all touch exclusively through the evdev reader. QML `MouseArea` elements receive no events. All sidebar interaction is handled by evdev hit-zone detection in C++.
+**Important:** On Linux with evdev, `EVIOCGRAB` routes all touch exclusively through the evdev reader during AA. UI framework touch handlers receive no events. All sidebar interaction must be handled by hit-zone detection in the touch reader.
 
 ### Vertical Sidebar (left/right)
 
@@ -254,38 +249,36 @@ On each `SYN_REPORT`, for every active dirty slot:
 
 ## Debug Touch Overlay
 
-`AndroidAutoMenu.qml` includes a debug overlay that draws green crosshairs at each active touch point. Controlled by `TouchHandler.debugOverlay` (defaults to **false**).
+A debug overlay that draws crosshairs at each active touch point is useful for validating touch mapping. The overlay should map content-space coordinates back to screen position accounting for sidebar margins and crop mode.
 
-The overlay maps content-space coordinates back to screen position using `TouchHandler.contentWidth` and `TouchHandler.contentHeight` (set by EvdevTouchReader after `computeLetterbox()`). This accounts for sidebar margins and crop mode.
-
-**Note:** The phone also draws its own touch indicators (if "Show taps" is enabled in Developer Options). These are drawn in full-frame space and may appear misaligned with actual content — that's a phone-side rendering issue, not ours.
+**Note:** The phone also draws its own touch indicators (if "Show taps" is enabled in Developer Options). These are drawn in full-frame space and may appear misaligned with actual content — that's a phone-side rendering artifact.
 
 ## Gotchas
 
 - **Margins are locked at session start.** The phone negotiates video config once during `ServiceDiscoveryResponse`. Changing sidebar settings requires restarting the app.
 
-- **EVIOCGRAB blocks all QML touch input.** During AA, sidebar interaction is purely C++ evdev hit-zone detection. QML sidebar controls are visual only on Pi.
+- **EVIOCGRAB blocks all UI framework touch input.** During AA on Linux, sidebar interaction is purely evdev hit-zone detection. UI framework sidebar controls are visual only.
 
-- **PreserveAspectCrop must match crop touch mapping.** If QML uses crop but touch mapping uses fit-mode math (or vice versa), touches will land at wrong positions. The `sidebarEnabled_` flag in `computeLetterbox()` gates which branch executes.
+- **Aspect crop must match crop touch mapping.** If the display uses crop but touch mapping uses fit-mode math (or vice versa), touches will land at wrong positions. The sidebar-enabled flag in the letterbox computation gates which branch executes.
 
-- **Touch coordinates are content-space, not frame-space.** `mapX()`/`mapY()` return values in `[0, visibleAAWidth]`/`[0, visibleAAHeight]`, NOT `[0, 1280]`/`[0, 720]`. The `cropAAOffsetX/Y` values are computed but NOT added to mapped coordinates — the phone handles offset mapping because `touch_screen_config` is set to content dimensions.
+- **Touch coordinates are content-space, not frame-space.** Touch mapping returns values in `[0, visibleAAWidth]`/`[0, visibleAAHeight]`, NOT `[0, 1280]`/`[0, 720]`. The `cropAAOffsetX/Y` values are computed but NOT added to mapped coordinates — the phone handles offset mapping because `touch_screen_config` is set to content dimensions.
 
-- **Sidebar position affects video origin in evdev space.** A left sidebar shifts the video area rightward; a top sidebar shifts it downward. `computeLetterbox()` accounts for this via `effectiveDisplayX0`/`effectiveDisplayY0`.
+- **Sidebar position affects video origin in touch space.** A left sidebar shifts the video area rightward; a top sidebar shifts it downward. The letterbox computation accounts for this via effective display origin offsets.
 
-- **The 480p fallback gets its own margin calculation.** `VideoService::fillFeatures()` calls `calcMargins()` separately for each resolution config.
+- **The 480p fallback gets its own margin calculation.** Margins must be computed separately for each resolution config in the service discovery response.
 
-- **Phone's `config_index` in `AVChannelSetupRequest` may not match our config list indices.** The phone consistently sends `config_index=3` even though we only advertise 2 configs. We always respond with `add_configs(0)` regardless.
+- **Phone's `config_index` in `AVChannelSetupRequest` may not match advertised config list indices.** The phone may send a `config_index` value higher than expected even with fewer advertised configs. Responding with `add_configs(0)` works regardless.
 
-- **Horizontal sidebar touch zones must match QML visual layout.** The home button in horizontal layout is a small icon (~56px) at the right end. If the evdev home zone is too wide (e.g., 25% of screen), volume drags near the right side trigger home instead. Current zones: volume extends to ~100px from right edge, home is rightmost ~80px.
+- **Horizontal sidebar touch zones must match visual layout.** The home button in horizontal layout is a small icon (~56px) at the right end. If the home zone is too wide (e.g., 25% of screen), volume drags near the right side trigger home instead. Recommended zones: volume extends to ~100px from right edge, home is rightmost ~80px.
 
-## Source Files
+## Implementation Components
 
-| File | Role |
-|------|------|
-| `src/core/aa/VideoService.cpp` | Margin calculation, `ServiceDiscoveryResponse` video config |
-| `src/core/aa/ServiceFactory.cpp` | `touch_screen_config` dimensions (content-space) |
-| `src/core/aa/EvdevTouchReader.cpp` | Touch mapping (fit/X-crop/Y-crop), sidebar hit zones, evdev I/O |
-| `src/core/aa/EvdevTouchReader.hpp` | Field definitions, coordinate space constants |
-| `src/core/aa/TouchHandler.hpp` | Touch → AA protobuf bridge, content dimensions, debug overlay |
-| `qml/applications/android_auto/AndroidAutoMenu.qml` | QML layout, `VideoOutput` fill mode, debug overlay |
-| `qml/applications/android_auto/Sidebar.qml` | Sidebar visual layout (vertical + horizontal variants) |
+Any AA head unit implementing this pipeline needs these components:
+
+| Component | Role |
+|-----------|------|
+| Video service config | Margin calculation, `ServiceDiscoveryResponse` video config |
+| Service factory | `touch_screen_config` dimensions (content-space) |
+| Touch reader | Touch mapping (fit/X-crop/Y-crop), sidebar hit zones, input I/O |
+| Touch handler | Touch-to-AA protobuf bridge, content dimensions, debug overlay |
+| Video display layout | Video area + sidebar positioning, fill mode selection |

@@ -2,7 +2,7 @@
 
 > **Sources:** Sony XAV-AX100 firmware (GAL Protocol, debug symbols) + Android Auto APK v16.1 (phone-side, decompiled)
 > **Date:** 2026-02-23
-> **Purpose:** Definitive protocol reference for OpenAuto Prodigy, cross-referencing both sides of the AA connection
+> **Purpose:** Definitive AA protocol reference, cross-referencing both sides of the AA connection
 
 This document combines findings from two complementary analyses:
 
@@ -539,7 +539,7 @@ VP9, AV1, and H.265 are newer additions. The Sony firmware only supports H.264 B
 
 ---
 
-## Implementation Priority for OpenAuto Prodigy
+## Implementation Priority for AA Head Units
 
 Based on the cross-referenced data, prioritized by impact:
 
@@ -592,15 +592,13 @@ Based on the cross-referenced data, prioritized by impact:
 - AA config (SDK template): `spsdk_fs/etc/accessory/androidauto_config.xml`
 - Static library: `spsdk_fs/lib/static/libspandroidauto.a` (346KB)
 
-### Android Auto APK
-- Decompiled source: `firmware/android-auto-apk/decompiled/sources/`
+### Android Auto APK (v16.1, decompiled)
 - Control channel: `defpackage/qmy.java`
 - Base handler: `defpackage/qoh.java`
 - Service types: `defpackage/qlf.java`
 - All enums: `defpackage/v*.java`, `defpackage/w*.java`, `defpackage/x*.java`
 
 ### Analysis Documents
-- Sony firmware analysis: `openauto-pro-community/docs/sony-xav-firmware-analysis.md`
-- APK decompilation: `openauto-pro-community/docs/android-auto-apk-decompilation.md`
-- This cross-reference: `openauto-pro-community/docs/android-auto-protocol-cross-reference.md`
-- Protocol quick reference (skill): `reference/android-auto-protocol.md`
+- Sony firmware analysis: see `headunit-firmware/` directory in this repo
+- APK decompilation: see `analysis/` directory in this repo (if included)
+- Protocol reference: `docs/protocol-reference.md`

@@ -9,7 +9,7 @@ AA uses fixed, enumerated resolutions — no custom dimensions. During service d
 | Enum Value | Dimensions | Notes |
 |-----------|-----------|-------|
 | `_480p` | 800×480 | Smallest, good for low-power devices |
-| `_720p` | 1280×720 | **Default for OpenAuto Prodigy** |
+| `_720p` | 1280×720 | Common default for AA head units |
 | `_1080p` | 1920×1080 | High quality, more decode overhead |
 | `_1440p` | 2560×1440 | Newer protocol versions |
 | `_4K` | 3840×2160 | Newer protocol versions |
@@ -18,7 +18,7 @@ AA uses fixed, enumerated resolutions — no custom dimensions. During service d
 | `_1440p_p` | 1440×2560 | Portrait mode |
 | `_4K_p` | 2160×3840 | Portrait mode |
 
-Portrait resolutions were added around Android 8+ (late 2022). Our aasdk protobuf may need updating to include enum values 4-9 for full support.
+Portrait resolutions were added around Android 8+ (late 2022). Older AA protocol libraries (e.g., aasdk) may need updating to include enum values 4-9 for full support.
 
 ### VideoConfig Fields
 
@@ -106,20 +106,9 @@ Scaled to display: 480×800
 - `VideoFocusIndication` can pause/resume video but cannot change resolution or margins.
 - Changing margin config requires an AA reconnect or app restart.
 
-## Implementation in OpenAuto Prodigy
+## Implementation Notes
 
-Margins are set in `VideoService::fillFeatures()` (`src/core/aa/VideoService.cpp`). The sidebar config is read from YAML:
-
-```yaml
-video:
-  resolution: "720p"
-  sidebar:
-    enabled: true
-    width: 150
-    position: "right"
-```
-
-When `sidebar.enabled` is true, margins are calculated from the formula above. When false, margins are 0 (standard fullscreen behavior).
+In a typical AA head unit implementation, margins are computed during service discovery and included in each `VideoConfig` entry sent in the `ServiceDiscoveryResponse`. If the head unit has a sidebar or other chrome that reduces the available video area, margins are calculated from the formula above. When the video area matches the full display, margins are 0 (standard fullscreen behavior).
 
 ## Touch Coordinate Impact
 
@@ -132,6 +121,5 @@ With margins, the AA content occupies a sub-region of the video frame. Touch map
 ## References
 
 - [Crankshaft issue #403](https://github.com/opencardev/crankshaft/issues/403) — Emil Borconi's margin/overscan technique
-- `libs/aasdk/aasdk_proto/VideoConfigData.proto` — VideoConfig protobuf definition
-- `libs/aasdk/aasdk_proto/VideoResolutionEnum.proto` — Resolution enum values
-- `src/core/aa/VideoService.cpp` — Where margins are configured
+- `VideoConfigData.proto` — VideoConfig protobuf definition (in aasdk or equivalent AA library)
+- `VideoResolutionEnum.proto` — Resolution enum values

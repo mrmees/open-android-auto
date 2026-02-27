@@ -5,7 +5,7 @@
 ## Setup
 - Phone: Samsung Galaxy (Android, targetSdkVersion=36)
 - AA App: `com.google.android.projection.gearhead`
-- Head Unit: OpenAuto Prodigy on Raspberry Pi 4
+- Head Unit: Custom Linux-based AA head unit on Raspberry Pi 4
 - Debug: Force debug logging ON, X-Ray application mode, via AA Developer Settings
 
 ## AA Developer Settings (Hidden Menu)
@@ -197,7 +197,7 @@ PROJECTION_MODE_STARTED
 ## Key Discoveries
 
 ### Protocol Version 1.7
-Our HU advertises v1.1, phone negotiates to v1.7. This means the phone supports features beyond what we request. Unknown what v1.2-1.7 add, but "48Khz TTS guidance" is mentioned as requiring GAL 1.5+.
+The test HU advertised v1.1, phone negotiates to v1.7. This means the phone supports features beyond what the HU requests. Unknown what v1.2-1.7 add, but "48Khz TTS guidance" is mentioned as requiring GAL 1.5+.
 
 ### CarInfoInternal (Phone's View of Our HU)
 ```
@@ -483,13 +483,13 @@ This HUIG (Head Unit Integration Guide) versioning may correlate with GAL protoc
 
 ### Actionable Findings
 
-1. **Bump version to 1.7**: Modify aasdk `Version.hpp` from `AASDK_MINOR = 1` to `AASDK_MINOR = 7`. The phone already negotiates 1.7 — we just need to request it. This should unlock 48kHz TTS and potentially other features. Low risk since the phone already supports fallback.
+1. **Bump version to 1.7**: In your AA protocol library, change the advertised minor version from 1 to 7. The phone already negotiates 1.7 — the HU just needs to request it. This should unlock 48kHz TTS and potentially other features. Low risk since the phone already supports fallback.
 
 2. **Advertise palette version 2**: Would enable Material You theming from the phone — AA colors adapt to user's wallpaper. Needs investigation into what the HU must implement.
 
-3. **Add VOICE audio channel**: The "Unsupported stream type: 1" warning suggests we should advertise a separate voice audio stream (for Google Assistant output). Currently only MEDIA, SPEECH (TTS/nav), and SYSTEM channels exist.
+3. **Add VOICE audio channel**: The "Unsupported stream type: 1" warning suggests the HU should advertise a separate voice audio stream (for Google Assistant output). Currently only MEDIA, SPEECH (TTS/nav), and SYSTEM channels exist.
 
-4. **Report CarDisplayUiFeatures**: Setting `hasClock=true`, `hasBatteryLevel=true`, `hasPhoneSignal=true` would let AA use our native status bar for phone state display, reducing AA's own chrome overhead.
+4. **Report CarDisplayUiFeatures**: Setting `hasClock=true`, `hasBatteryLevel=true`, `hasPhoneSignal=true` would let AA use the HU's native status bar for phone state display, reducing AA's own chrome overhead.
 
 5. **Upgrade hostapd to WPA3**: Phone supports WPA3 (`WIRELESS_WIFI_MD_WPA3_SECURITY_SUPPORTED`). Easy security upgrade.
 
@@ -508,7 +508,7 @@ This HUIG (Head Unit Integration Guide) versioning may correlate with GAL protoc
 # 1. Clear logcat buffer
 adb logcat -c
 
-# 2. Disconnect/reconnect AA (toggle BT or restart Prodigy on Pi)
+# 2. Disconnect/reconnect AA (toggle BT or restart HU app)
 
 # 3. Wait for projection to start (watch Pi log: "Video focus gained")
 

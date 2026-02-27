@@ -288,10 +288,9 @@ Our approach (legacy SDP + ProfileManager1 routing) is more robust across all An
 
 ## Files Reference
 
-Working test scripts (on Pi at `/tmp/`):
+Reference test scripts:
 - `sdp_clean.c` / `sdp_clean` — SDP record manager (C)
 - `aa-combined.py` — Profile manager + RFCOMM handshake (Python)
 - `bt-agent.py` — Pairing agent (Python)
 
-Production implementation target:
-- `openauto-prodigy/libs/open-androidauto/src/Bluetooth/BluetoothDiscoveryService.cpp`
+These demonstrate the concepts needed for a production Bluetooth discovery service implementation.
