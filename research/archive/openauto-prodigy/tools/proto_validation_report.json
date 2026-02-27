@@ -1,0 +1,3138 @@
+{
+  "summary": {
+    "date": "2026-02-25",
+    "total": 204,
+    "verified": 133,
+    "partial": 10,
+    "unmatched": 61,
+    "error": 0
+  },
+  "results": [
+    {
+      "message": "AVChannel",
+      "file": "AVChannelData.proto",
+      "status": "verified",
+      "apk_class": "vys",
+      "match_source": "manual",
+      "match_score": 1.0,
+      "comparison": {
+        "status": "verified",
+        "mismatches": [],
+        "matched_count": 8,
+        "our_field_count": 8,
+        "apk_field_count": 8,
+        "our_only": [],
+        "apk_only": []
+      }
+    },
+    {
+      "message": "AVChannelMediaConfig",
+      "file": "AVChannelMediaConfigMessage.proto",
+      "status": "verified",
+      "apk_class": "vyo",
+      "match_source": "manual",
+      "match_score": 1.0,
+      "comparison": {
+        "status": "verified",
+        "mismatches": [],
+        "matched_count": 13,
+        "our_field_count": 13,
+        "apk_field_count": 13,
+        "our_only": [],
+        "apk_only": []
+      }
+    },
+    {
+      "message": "AVChannelMediaStats",
+      "file": "AVChannelMediaStatsMessage.proto",
+      "status": "verified",
+      "apk_class": "vyu",
+      "match_source": "manual",
+      "match_score": 1.0,
+      "comparison": {
+        "status": "verified",
+        "mismatches": [],
+        "matched_count": 15,
+        "our_field_count": 15,
+        "apk_field_count": 15,
+        "our_only": [],
+        "apk_only": []
+      }
+    },
+    {
+      "message": "AVChannelMessage",
+      "file": "AVChannelMessageIdsEnum.proto",
+      "status": "unmatched",
+      "apk_class": null,
+      "match_source": null,
+      "match_score": 0,
+      "comparison": null
+    },
+    {
+      "message": "AVChannelSetupRequest",
+      "file": "AVChannelSetupRequestMessage.proto",
+      "status": "verified",
+      "apk_class": "wcc",
+      "match_source": "manual",
+      "match_score": 1.0,
+      "comparison": {
+        "status": "verified",
+        "mismatches": [],
+        "matched_count": 1,
+        "our_field_count": 1,
+        "apk_field_count": 1,
+        "our_only": [],
+        "apk_only": []
+      }
+    },
+    {
+      "message": "AVChannelSetupResponse",
+      "file": "AVChannelSetupResponseMessage.proto",
+      "status": "verified",
+      "apk_class": "vxb",
+      "match_source": "manual",
+      "match_score": 1.0,
+      "comparison": {
+        "status": "verified",
+        "mismatches": [],
+        "matched_count": 3,
+        "our_field_count": 3,
+        "apk_field_count": 3,
+        "our_only": [],
+        "apk_only": []
+      }
+    },
+    {
+      "message": "AVChannelSetupStatus",
+      "file": "AVChannelSetupStatusEnum.proto",
+      "status": "unmatched",
+      "apk_class": null,
+      "match_source": null,
+      "match_score": 0,
+      "comparison": null
+    },
+    {
+      "message": "AVChannelStartIndication",
+      "file": "AVChannelStartIndicationMessage.proto",
+      "status": "verified",
+      "apk_class": "wce",
+      "match_source": "manual",
+      "match_score": 1.0,
+      "comparison": {
+        "status": "verified",
+        "mismatches": [],
+        "matched_count": 4,
+        "our_field_count": 4,
+        "apk_field_count": 4,
+        "our_only": [],
+        "apk_only": []
+      }
+    },
+    {
+      "message": "AVChannelStopIndication",
+      "file": "AVChannelStopIndicationMessage.proto",
+      "status": "unmatched",
+      "apk_class": null,
+      "match_source": null,
+      "match_score": 0,
+      "comparison": null
+    },
+    {
+      "message": "AVInputChannel",
+      "file": "AVInputChannelData.proto",
+      "status": "verified",
+      "apk_class": "vyt",
+      "match_source": "manual",
+      "match_score": 1.0,
+      "comparison": {
+        "status": "verified",
+        "mismatches": [],
+        "matched_count": 2,
+        "our_field_count": 2,
+        "apk_field_count": 2,
+        "our_only": [],
+        "apk_only": []
+      }
+    },
+    {
+      "message": "AVInputOpenRequest",
+      "file": "AVInputOpenRequestMessage.proto",
+      "status": "verified",
+      "apk_class": "vyx",
+      "match_source": "manual",
+      "match_score": 1.0,
+      "comparison": {
+        "status": "verified",
+        "mismatches": [],
+        "matched_count": 4,
+        "our_field_count": 4,
+        "apk_field_count": 4,
+        "our_only": [],
+        "apk_only": []
+      }
+    },
+    {
+      "message": "AVInputOpenResponse",
+      "file": "AVInputOpenResponseMessage.proto",
+      "status": "verified",
+      "apk_class": "vyy",
+      "match_source": "manual",
+      "match_score": 1.0,
+      "comparison": {
+        "status": "verified",
+        "mismatches": [],
+        "matched_count": 2,
+        "our_field_count": 2,
+        "apk_field_count": 2,
+        "our_only": [],
+        "apk_only": []
+      }
+    },
+    {
+      "message": "AVMediaAckIndication",
+      "file": "AVMediaAckIndicationMessage.proto",
+      "status": "verified",
+      "apk_class": "vvk",
+      "match_source": "manual",
+      "match_score": 1.0,
+      "comparison": {
+        "status": "verified",
+        "mismatches": [],
+        "matched_count": 3,
+        "our_field_count": 3,
+        "apk_field_count": 3,
+        "our_only": [],
+        "apk_only": []
+      }
+    },
+    {
+      "message": "AVStreamType",
+      "file": "AVStreamTypeEnum.proto",
+      "status": "unmatched",
+      "apk_class": null,
+      "match_source": null,
+      "match_score": 0,
+      "comparison": null
+    },
+    {
+      "message": "AbsoluteInputEvent",
+      "file": "AbsoluteInputEventData.proto",
+      "status": "verified",
+      "apk_class": "wci",
+      "match_source": "manual",
+      "match_score": 1.0,
+      "comparison": {
+        "status": "verified",
+        "mismatches": [],
+        "matched_count": 3,
+        "our_field_count": 3,
+        "apk_field_count": 3,
+        "our_only": [],
+        "apk_only": []
+      }
+    },
+    {
+      "message": "AbsoluteInputEvents",
+      "file": "AbsoluteInputEventsData.proto",
+      "status": "verified",
+      "apk_class": "wcj",
+      "match_source": "manual",
+      "match_score": 1.0,
+      "comparison": {
+        "status": "verified",
+        "mismatches": [],
+        "matched_count": 3,
+        "our_field_count": 3,
+        "apk_field_count": 3,
+        "our_only": [],
+        "apk_only": []
+      }
+    },
+    {
+      "message": "Accel",
+      "file": "AccelData.proto",
+      "status": "verified",
+      "apk_class": "vvj",
+      "match_source": "manual",
+      "match_score": 1.0,
+      "comparison": {
+        "status": "verified",
+        "mismatches": [],
+        "matched_count": 3,
+        "our_field_count": 3,
+        "apk_field_count": 3,
+        "our_only": [],
+        "apk_only": []
+      }
+    },
+    {
+      "message": "AdditionalVideoConfig",
+      "file": "AdditionalVideoConfigData.proto",
+      "status": "verified",
+      "apk_class": "wcm",
+      "match_source": "manual",
+      "match_score": 1.0,
+      "comparison": {
+        "status": "verified",
+        "mismatches": [],
+        "matched_count": 7,
+        "our_field_count": 7,
+        "apk_field_count": 7,
+        "our_only": [],
+        "apk_only": []
+      }
+    },
+    {
+      "message": "AssistantFeatureFlags",
+      "file": "FeatureFlagsData.proto",
+      "status": "verified",
+      "apk_class": "nlq",
+      "match_source": "manual",
+      "match_score": 1.0,
+      "comparison": {
+        "status": "verified",
+        "mismatches": [],
+        "matched_count": 13,
+        "our_field_count": 13,
+        "apk_field_count": 13,
+        "our_only": [],
+        "apk_only": []
+      }
+    },
+    {
+      "message": "AudioConfig",
+      "file": "AudioConfigData.proto",
+      "status": "verified",
+      "apk_class": "vvp",
+      "match_source": "manual",
+      "match_score": 1.0,
+      "comparison": {
+        "status": "verified",
+        "mismatches": [],
+        "matched_count": 3,
+        "our_field_count": 3,
+        "apk_field_count": 3,
+        "our_only": [],
+        "apk_only": []
+      }
+    },
+    {
+      "message": "AudioFocusChannel",
+      "file": "AudioFocusChannelData.proto",
+      "status": "verified",
+      "apk_class": "vyr",
+      "match_source": "manual",
+      "match_score": 1.0,
+      "comparison": {
+        "status": "verified",
+        "mismatches": [],
+        "matched_count": 0,
+        "our_field_count": 0,
+        "apk_field_count": 0,
+        "our_only": [],
+        "apk_only": []
+      }
+    },
+    {
+      "message": "AudioFocusRequest",
+      "file": "AudioFocusRequestMessage.proto",
+      "status": "verified",
+      "apk_class": "vvr",
+      "match_source": "manual",
+      "match_score": 1.0,
+      "comparison": {
+        "status": "verified",
+        "mismatches": [],
+        "matched_count": 1,
+        "our_field_count": 1,
+        "apk_field_count": 1,
+        "our_only": [],
+        "apk_only": []
+      }
+    },
+    {
+      "message": "AudioFocusResponse",
+      "file": "AudioFocusResponseMessage.proto",
+      "status": "verified",
+      "apk_class": "vvq",
+      "match_source": "manual",
+      "match_score": 1.0,
+      "comparison": {
+        "status": "verified",
+        "mismatches": [],
+        "matched_count": 2,
+        "our_field_count": 2,
+        "apk_field_count": 2,
+        "our_only": [],
+        "apk_only": []
+      }
+    },
+    {
+      "message": "AudioFocusState",
+      "file": "AudioFocusStateEnum.proto",
+      "status": "unmatched",
+      "apk_class": null,
+      "match_source": null,
+      "match_score": 0,
+      "comparison": null
+    },
+    {
+      "message": "AudioFocusType",
+      "file": "AudioFocusTypeEnum.proto",
+      "status": "unmatched",
+      "apk_class": null,
+      "match_source": null,
+      "match_score": 0,
+      "comparison": null
+    },
+    {
+      "message": "AudioType",
+      "file": "AudioTypeEnum.proto",
+      "status": "unmatched",
+      "apk_class": null,
+      "match_source": null,
+      "match_score": 0,
+      "comparison": null
+    },
+    {
+      "message": "AuthCompleteIndication",
+      "file": "AuthCompleteIndicationMessage.proto",
+      "status": "verified",
+      "apk_class": "vvv",
+      "match_source": "manual",
+      "match_score": 1.0,
+      "comparison": {
+        "status": "verified",
+        "mismatches": [],
+        "matched_count": 1,
+        "our_field_count": 1,
+        "apk_field_count": 1,
+        "our_only": [],
+        "apk_only": []
+      }
+    },
+    {
+      "message": "BindingRequest",
+      "file": "BindingRequestMessage.proto",
+      "status": "verified",
+      "apk_class": "wcg",
+      "match_source": "auto",
+      "match_score": 1.0,
+      "comparison": {
+        "status": "verified",
+        "mismatches": [],
+        "matched_count": 1,
+        "our_field_count": 1,
+        "apk_field_count": 1,
+        "our_only": [],
+        "apk_only": []
+      }
+    },
+    {
+      "message": "BindingResponse",
+      "file": "BindingResponseMessage.proto",
+      "status": "verified",
+      "apk_class": "vwb",
+      "match_source": "manual",
+      "match_score": 1.0,
+      "comparison": {
+        "status": "verified",
+        "mismatches": [],
+        "matched_count": 2,
+        "our_field_count": 2,
+        "apk_field_count": 2,
+        "our_only": [],
+        "apk_only": []
+      }
+    },
+    {
+      "message": "BluetoothChannel",
+      "file": "BluetoothChannelData.proto",
+      "status": "verified",
+      "apk_class": "vwc",
+      "match_source": "manual",
+      "match_score": 1.0,
+      "comparison": {
+        "status": "verified",
+        "mismatches": [],
+        "matched_count": 2,
+        "our_field_count": 2,
+        "apk_field_count": 2,
+        "our_only": [],
+        "apk_only": []
+      }
+    },
+    {
+      "message": "BluetoothChannelConfig",
+      "file": "BluetoothChannelConfigData.proto",
+      "status": "verified",
+      "apk_class": "vwc",
+      "match_source": "manual",
+      "match_score": 1.0,
+      "comparison": {
+        "status": "verified",
+        "mismatches": [],
+        "matched_count": 2,
+        "our_field_count": 2,
+        "apk_field_count": 2,
+        "our_only": [],
+        "apk_only": []
+      }
+    },
+    {
+      "message": "BluetoothChannelMessage",
+      "file": "BluetoothChannelMessageIdsEnum.proto",
+      "status": "unmatched",
+      "apk_class": null,
+      "match_source": null,
+      "match_score": 0,
+      "comparison": null
+    },
+    {
+      "message": "BluetoothPairingMethod",
+      "file": "BluetoothPairingMethodEnum.proto",
+      "status": "unmatched",
+      "apk_class": null,
+      "match_source": null,
+      "match_score": 0,
+      "comparison": null
+    },
+    {
+      "message": "BluetoothPairingRequest",
+      "file": "BluetoothPairingRequestMessage.proto",
+      "status": "verified",
+      "apk_class": "kay",
+      "match_source": "manual",
+      "match_score": 1.0,
+      "comparison": {
+        "status": "verified",
+        "mismatches": [],
+        "matched_count": 3,
+        "our_field_count": 3,
+        "apk_field_count": 3,
+        "our_only": [],
+        "apk_only": []
+      }
+    },
+    {
+      "message": "BluetoothPairingResponse",
+      "file": "BluetoothPairingResponseMessage.proto",
+      "status": "verified",
+      "apk_class": "xgq",
+      "match_source": "manual",
+      "match_score": 1.0,
+      "comparison": {
+        "status": "verified",
+        "mismatches": [],
+        "matched_count": 3,
+        "our_field_count": 3,
+        "apk_field_count": 3,
+        "our_only": [],
+        "apk_only": []
+      }
+    },
+    {
+      "message": "BluetoothPairingStatus",
+      "file": "BluetoothPairingStatusEnum.proto",
+      "status": "unmatched",
+      "apk_class": null,
+      "match_source": null,
+      "match_score": 0,
+      "comparison": null
+    },
+    {
+      "message": "ButtonCode",
+      "file": "ButtonCodeEnum.proto",
+      "status": "unmatched",
+      "apk_class": null,
+      "match_source": null,
+      "match_score": 0,
+      "comparison": null
+    },
+    {
+      "message": "ButtonEvent",
+      "file": "ButtonEventData.proto",
+      "status": "verified",
+      "apk_class": "vyi",
+      "match_source": "manual",
+      "match_score": 1.0,
+      "comparison": {
+        "status": "verified",
+        "mismatches": [],
+        "matched_count": 4,
+        "our_field_count": 4,
+        "apk_field_count": 4,
+        "our_only": [],
+        "apk_only": []
+      }
+    },
+    {
+      "message": "ButtonEvents",
+      "file": "ButtonEventsData.proto",
+      "status": "verified",
+      "apk_class": "vyj",
+      "match_source": "manual",
+      "match_score": 1.0,
+      "comparison": {
+        "status": "verified",
+        "mismatches": [],
+        "matched_count": 1,
+        "our_field_count": 1,
+        "apk_field_count": 1,
+        "our_only": [],
+        "apk_only": []
+      }
+    },
+    {
+      "message": "CallAvailabilityStatus",
+      "file": "CallAvailabilityMessage.proto",
+      "status": "verified",
+      "apk_class": "vwh",
+      "match_source": "manual",
+      "match_score": 1.0,
+      "comparison": {
+        "status": "verified",
+        "mismatches": [],
+        "matched_count": 1,
+        "our_field_count": 1,
+        "apk_field_count": 1,
+        "our_only": [],
+        "apk_only": []
+      }
+    },
+    {
+      "message": "CapabilityEntry",
+      "file": "PhoneCapabilitiesData.proto",
+      "status": "unmatched",
+      "apk_class": null,
+      "match_source": null,
+      "match_score": 0,
+      "comparison": null
+    },
+    {
+      "message": "CapabilityFlag",
+      "file": "PhoneCapabilitiesData.proto",
+      "status": "unmatched",
+      "apk_class": null,
+      "match_source": null,
+      "match_score": 0,
+      "comparison": null
+    },
+    {
+      "message": "CapabilityPair",
+      "file": "PhoneCapabilitiesData.proto",
+      "status": "unmatched",
+      "apk_class": null,
+      "match_source": null,
+      "match_score": 0,
+      "comparison": null
+    },
+    {
+      "message": "ChannelDescriptor",
+      "file": "ChannelDescriptorData.proto",
+      "status": "verified",
+      "apk_class": "wbw",
+      "match_source": "manual",
+      "match_score": 1.0,
+      "comparison": {
+        "status": "verified",
+        "mismatches": [],
+        "matched_count": 17,
+        "our_field_count": 17,
+        "apk_field_count": 17,
+        "our_only": [],
+        "apk_only": []
+      }
+    },
+    {
+      "message": "ChannelErrorCode",
+      "file": "ChannelErrorCodeEnum.proto",
+      "status": "unmatched",
+      "apk_class": null,
+      "match_source": null,
+      "match_score": 0,
+      "comparison": null
+    },
+    {
+      "message": "ChannelOpenRequest",
+      "file": "ChannelOpenRequestMessage.proto",
+      "status": "verified",
+      "apk_class": "vwx",
+      "match_source": "manual",
+      "match_score": 1.0,
+      "comparison": {
+        "status": "verified",
+        "mismatches": [],
+        "matched_count": 2,
+        "our_field_count": 2,
+        "apk_field_count": 2,
+        "our_only": [],
+        "apk_only": []
+      }
+    },
+    {
+      "message": "ChannelOpenResponse",
+      "file": "ChannelOpenResponseMessage.proto",
+      "status": "verified",
+      "apk_class": "vwy",
+      "match_source": "manual",
+      "match_score": 1.0,
+      "comparison": {
+        "status": "verified",
+        "mismatches": [],
+        "matched_count": 1,
+        "our_field_count": 1,
+        "apk_field_count": 1,
+        "our_only": [],
+        "apk_only": []
+      }
+    },
+    {
+      "message": "ChannelType",
+      "file": "ChannelTypeEnum.proto",
+      "status": "unmatched",
+      "apk_class": null,
+      "match_source": null,
+      "match_score": 0,
+      "comparison": null
+    },
+    {
+      "message": "ChargingStationDetails",
+      "file": "NavigationStepMessage.proto",
+      "status": "verified",
+      "apk_class": "vwz",
+      "match_source": "manual",
+      "match_score": 1.0,
+      "comparison": {
+        "status": "verified",
+        "mismatches": [],
+        "matched_count": 3,
+        "our_field_count": 3,
+        "apk_field_count": 3,
+        "our_only": [],
+        "apk_only": []
+      }
+    },
+    {
+      "message": "Compass",
+      "file": "CompassData.proto",
+      "status": "verified",
+      "apk_class": "vxa",
+      "match_source": "manual",
+      "match_score": 1.0,
+      "comparison": {
+        "status": "verified",
+        "mismatches": [],
+        "matched_count": 3,
+        "our_field_count": 3,
+        "apk_field_count": 3,
+        "our_only": [],
+        "apk_only": []
+      }
+    },
+    {
+      "message": "ConnectionConfiguration",
+      "file": "ConnectionConfigurationData.proto",
+      "status": "verified",
+      "apk_class": "aajk",
+      "match_source": "manual",
+      "match_score": 1.0,
+      "comparison": {
+        "status": "verified",
+        "mismatches": [],
+        "matched_count": 6,
+        "our_field_count": 6,
+        "apk_field_count": 6,
+        "our_only": [],
+        "apk_only": []
+      }
+    },
+    {
+      "message": "ConnectionFeatureFlags",
+      "file": "ConnectionConfigurationData.proto",
+      "status": "verified",
+      "apk_class": "aaja",
+      "match_source": "manual",
+      "match_score": 1.0,
+      "comparison": {
+        "status": "verified",
+        "mismatches": [],
+        "matched_count": 1,
+        "our_field_count": 1,
+        "apk_field_count": 1,
+        "our_only": [],
+        "apk_only": []
+      }
+    },
+    {
+      "message": "ConnectionReservedConfig",
+      "file": "ConnectionConfigurationData.proto",
+      "status": "verified",
+      "apk_class": "aaji",
+      "match_source": "manual",
+      "match_score": 1.0,
+      "comparison": {
+        "status": "verified",
+        "mismatches": [],
+        "matched_count": 0,
+        "our_field_count": 0,
+        "apk_field_count": 0,
+        "our_only": [],
+        "apk_only": []
+      }
+    },
+    {
+      "message": "ConnectionSecurityConfig",
+      "file": "ConnectionConfigurationData.proto",
+      "status": "verified",
+      "apk_class": "aajj",
+      "match_source": "manual",
+      "match_score": 1.0,
+      "comparison": {
+        "status": "verified",
+        "mismatches": [],
+        "matched_count": 1,
+        "our_field_count": 1,
+        "apk_field_count": 1,
+        "our_only": [],
+        "apk_only": []
+      }
+    },
+    {
+      "message": "ConnectionState",
+      "file": "ConnectionStateEnum.proto",
+      "status": "unmatched",
+      "apk_class": null,
+      "match_source": null,
+      "match_score": 0,
+      "comparison": null
+    },
+    {
+      "message": "ConnectionTransportConfig",
+      "file": "ConnectionConfigurationData.proto",
+      "status": "verified",
+      "apk_class": "aajh",
+      "match_source": "manual",
+      "match_score": 1.0,
+      "comparison": {
+        "status": "verified",
+        "mismatches": [],
+        "matched_count": 2,
+        "our_field_count": 2,
+        "apk_field_count": 2,
+        "our_only": [],
+        "apk_only": []
+      }
+    },
+    {
+      "message": "ConnectionTuningConfig",
+      "file": "ConnectionConfigurationData.proto",
+      "status": "verified",
+      "apk_class": "aajg",
+      "match_source": "manual",
+      "match_score": 1.0,
+      "comparison": {
+        "status": "verified",
+        "mismatches": [],
+        "matched_count": 5,
+        "our_field_count": 5,
+        "apk_field_count": 5,
+        "our_only": [],
+        "apk_only": []
+      }
+    },
+    {
+      "message": "ControlMessage",
+      "file": "ControlMessageIdsEnum.proto",
+      "status": "unmatched",
+      "apk_class": null,
+      "match_source": null,
+      "match_score": 0,
+      "comparison": null
+    },
+    {
+      "message": "DeviceInfo",
+      "file": "PhoneCapabilitiesData.proto",
+      "status": "verified",
+      "apk_class": "vve",
+      "match_source": "manual",
+      "match_score": 1.0,
+      "comparison": {
+        "status": "verified",
+        "mismatches": [],
+        "matched_count": 9,
+        "our_field_count": 9,
+        "apk_field_count": 9,
+        "our_only": [],
+        "apk_only": []
+      }
+    },
+    {
+      "message": "Diagnostics",
+      "file": "DiagnosticsData.proto",
+      "status": "verified",
+      "apk_class": "vxf",
+      "match_source": "manual",
+      "match_score": 1.0,
+      "comparison": {
+        "status": "verified",
+        "mismatches": [],
+        "matched_count": 1,
+        "our_field_count": 1,
+        "apk_field_count": 1,
+        "our_only": [],
+        "apk_only": []
+      }
+    },
+    {
+      "message": "DisconnectReason",
+      "file": "DisconnectReasonEnum.proto",
+      "status": "unmatched",
+      "apk_class": null,
+      "match_source": null,
+      "match_score": 0,
+      "comparison": null
+    },
+    {
+      "message": "DisplayType",
+      "file": "DisplayTypeEnum.proto",
+      "status": "unmatched",
+      "apk_class": null,
+      "match_source": null,
+      "match_score": 0,
+      "comparison": null
+    },
+    {
+      "message": "DistanceLabel",
+      "file": "NavigationDistanceDisplayData.proto",
+      "status": "verified",
+      "apk_class": "xnc",
+      "match_source": "manual",
+      "match_score": 1.0,
+      "comparison": {
+        "status": "verified",
+        "mismatches": [],
+        "matched_count": 4,
+        "our_field_count": 4,
+        "apk_field_count": 4,
+        "our_only": [],
+        "apk_only": []
+      }
+    },
+    {
+      "message": "Door",
+      "file": "DoorData.proto",
+      "status": "verified",
+      "apk_class": "vxh",
+      "match_source": "manual",
+      "match_score": 1.0,
+      "comparison": {
+        "status": "verified",
+        "mismatches": [],
+        "matched_count": 3,
+        "our_field_count": 3,
+        "apk_field_count": 3,
+        "our_only": [],
+        "apk_only": []
+      }
+    },
+    {
+      "message": "DriverPosition",
+      "file": "DriverPositionEnum.proto",
+      "status": "unmatched",
+      "apk_class": null,
+      "match_source": null,
+      "match_score": 0,
+      "comparison": null
+    },
+    {
+      "message": "DrivingStatus",
+      "file": "DrivingStatusEnum.proto",
+      "status": "verified",
+      "apk_class": "vxj",
+      "match_source": "manual",
+      "match_score": 1.0,
+      "comparison": {
+        "status": "verified",
+        "mismatches": [],
+        "matched_count": 1,
+        "our_field_count": 1,
+        "apk_field_count": 1,
+        "our_only": [],
+        "apk_only": []
+      }
+    },
+    {
+      "message": "EVConnectorType",
+      "file": "EVConnectorTypeEnum.proto",
+      "status": "unmatched",
+      "apk_class": null,
+      "match_source": null,
+      "match_score": 0,
+      "comparison": null
+    },
+    {
+      "message": "Environment",
+      "file": "EnvironmentData.proto",
+      "status": "verified",
+      "apk_class": "vxk",
+      "match_source": "manual",
+      "match_score": 1.0,
+      "comparison": {
+        "status": "verified",
+        "mismatches": [],
+        "matched_count": 3,
+        "our_field_count": 3,
+        "apk_field_count": 3,
+        "our_only": [],
+        "apk_only": []
+      }
+    },
+    {
+      "message": "FuelLevel",
+      "file": "FuelLevelData.proto",
+      "status": "verified",
+      "apk_class": "vxn",
+      "match_source": "manual",
+      "match_score": 1.0,
+      "comparison": {
+        "status": "verified",
+        "mismatches": [],
+        "matched_count": 3,
+        "our_field_count": 3,
+        "apk_field_count": 3,
+        "our_only": [],
+        "apk_only": []
+      }
+    },
+    {
+      "message": "FuelType",
+      "file": "FuelTypeEnum.proto",
+      "status": "unmatched",
+      "apk_class": null,
+      "match_source": null,
+      "match_score": 0,
+      "comparison": null
+    },
+    {
+      "message": "GPSLocation",
+      "file": "GPSLocationData.proto",
+      "status": "verified",
+      "apk_class": "vyl",
+      "match_source": "manual",
+      "match_score": 1.0,
+      "comparison": {
+        "status": "verified",
+        "mismatches": [],
+        "matched_count": 6,
+        "our_field_count": 6,
+        "apk_field_count": 6,
+        "our_only": [],
+        "apk_only": []
+      }
+    },
+    {
+      "message": "Gear",
+      "file": "GearEnum.proto",
+      "status": "verified",
+      "apk_class": "vxp",
+      "match_source": "manual",
+      "match_score": 1.0,
+      "comparison": {
+        "status": "verified",
+        "mismatches": [],
+        "matched_count": 1,
+        "our_field_count": 1,
+        "apk_field_count": 1,
+        "our_only": [],
+        "apk_only": []
+      }
+    },
+    {
+      "message": "Gyro",
+      "file": "GyroData.proto",
+      "status": "verified",
+      "apk_class": "vxt",
+      "match_source": "manual",
+      "match_score": 1.0,
+      "comparison": {
+        "status": "verified",
+        "mismatches": [],
+        "matched_count": 3,
+        "our_field_count": 3,
+        "apk_field_count": 3,
+        "our_only": [],
+        "apk_only": []
+      }
+    },
+    {
+      "message": "HVAC",
+      "file": "HVACData.proto",
+      "status": "verified",
+      "apk_class": "vxv",
+      "match_source": "manual",
+      "match_score": 1.0,
+      "comparison": {
+        "status": "verified",
+        "mismatches": [],
+        "matched_count": 2,
+        "our_field_count": 2,
+        "apk_field_count": 2,
+        "our_only": [],
+        "apk_only": []
+      }
+    },
+    {
+      "message": "HapticFeedbackType",
+      "file": "HapticFeedbackTypeEnum.proto",
+      "status": "unmatched",
+      "apk_class": null,
+      "match_source": null,
+      "match_score": 0,
+      "comparison": null
+    },
+    {
+      "message": "HeadUnitInfo",
+      "file": "HeadUnitInfoData.proto",
+      "status": "verified",
+      "apk_class": "aacd",
+      "match_source": "manual",
+      "match_score": 1.0,
+      "comparison": {
+        "status": "verified",
+        "mismatches": [],
+        "matched_count": 8,
+        "our_field_count": 8,
+        "apk_field_count": 8,
+        "our_only": [],
+        "apk_only": []
+      }
+    },
+    {
+      "message": "HeadlightStatus",
+      "file": "HeadlightStatusEnum.proto",
+      "status": "unmatched",
+      "apk_class": null,
+      "match_source": null,
+      "match_score": 0,
+      "comparison": null
+    },
+    {
+      "message": "IndicatorStatus",
+      "file": "IndicatorStatusEnum.proto",
+      "status": "unmatched",
+      "apk_class": null,
+      "match_source": null,
+      "match_score": 0,
+      "comparison": null
+    },
+    {
+      "message": "InputChannel",
+      "file": "InputChannelData.proto",
+      "status": "verified",
+      "apk_class": "vya",
+      "match_source": "manual",
+      "match_score": 1.0,
+      "comparison": {
+        "status": "verified",
+        "mismatches": [],
+        "matched_count": 5,
+        "our_field_count": 5,
+        "apk_field_count": 5,
+        "our_only": [],
+        "apk_only": []
+      }
+    },
+    {
+      "message": "InputChannelConfig",
+      "file": "InputChannelConfigData.proto",
+      "status": "verified",
+      "apk_class": "vya",
+      "match_source": "manual",
+      "match_score": 1.0,
+      "comparison": {
+        "status": "verified",
+        "mismatches": [],
+        "matched_count": 5,
+        "our_field_count": 5,
+        "apk_field_count": 5,
+        "our_only": [],
+        "apk_only": []
+      }
+    },
+    {
+      "message": "InputChannelMessage",
+      "file": "InputChannelMessageIdsEnum.proto",
+      "status": "unmatched",
+      "apk_class": null,
+      "match_source": null,
+      "match_score": 0,
+      "comparison": null
+    },
+    {
+      "message": "InputEventIndication",
+      "file": "InputEventIndicationMessage.proto",
+      "status": "verified",
+      "apk_class": "vxx",
+      "match_source": "manual",
+      "match_score": 1.0,
+      "comparison": {
+        "status": "verified",
+        "mismatches": [],
+        "matched_count": 6,
+        "our_field_count": 6,
+        "apk_field_count": 6,
+        "our_only": [],
+        "apk_only": []
+      }
+    },
+    {
+      "message": "KeyEvent",
+      "file": "KeyEventData.proto",
+      "status": "verified",
+      "apk_class": "vyi",
+      "match_source": "manual",
+      "match_score": 1.0,
+      "comparison": {
+        "status": "verified",
+        "mismatches": [],
+        "matched_count": 4,
+        "our_field_count": 4,
+        "apk_field_count": 4,
+        "our_only": [],
+        "apk_only": []
+      }
+    },
+    {
+      "message": "LaneShape",
+      "file": "LaneShapeEnum.proto",
+      "status": "unmatched",
+      "apk_class": null,
+      "match_source": null,
+      "match_score": 0,
+      "comparison": null
+    },
+    {
+      "message": "Light",
+      "file": "LightData.proto",
+      "status": "verified",
+      "apk_class": "vyk",
+      "match_source": "manual",
+      "match_score": 1.0,
+      "comparison": {
+        "status": "verified",
+        "mismatches": [],
+        "matched_count": 3,
+        "our_field_count": 3,
+        "apk_field_count": 3,
+        "our_only": [],
+        "apk_only": []
+      }
+    },
+    {
+      "message": "ManeuverType",
+      "file": "ManeuverTypeEnum.proto",
+      "status": "unmatched",
+      "apk_class": null,
+      "match_source": null,
+      "match_score": 0,
+      "comparison": null
+    },
+    {
+      "message": "MediaCodec",
+      "file": "MediaCodecEnum.proto",
+      "status": "unmatched",
+      "apk_class": null,
+      "match_source": null,
+      "match_score": 0,
+      "comparison": null
+    },
+    {
+      "message": "MediaCodecType",
+      "file": "MediaCodecTypeEnum.proto",
+      "status": "unmatched",
+      "apk_class": null,
+      "match_source": null,
+      "match_score": 0,
+      "comparison": null
+    },
+    {
+      "message": "MediaInfoChannel",
+      "file": "MediaChannelData.proto",
+      "status": "verified",
+      "apk_class": "vym",
+      "match_source": "manual",
+      "match_score": 1.0,
+      "comparison": {
+        "status": "verified",
+        "mismatches": [],
+        "matched_count": 0,
+        "our_field_count": 0,
+        "apk_field_count": 0,
+        "our_only": [],
+        "apk_only": []
+      }
+    },
+    {
+      "message": "MediaPlaybackMetadata",
+      "file": "MediaPlaybackMetadataMessage.proto",
+      "status": "verified",
+      "apk_class": "nmi",
+      "match_source": "manual",
+      "match_score": 1.0,
+      "comparison": {
+        "status": "verified",
+        "mismatches": [],
+        "matched_count": 6,
+        "our_field_count": 6,
+        "apk_field_count": 6,
+        "our_only": [],
+        "apk_only": []
+      }
+    },
+    {
+      "message": "MediaPlaybackStatus",
+      "file": "MediaPlaybackStatusMessage.proto",
+      "status": "verified",
+      "apk_class": "ahdz",
+      "match_source": "manual",
+      "match_score": 1.0,
+      "comparison": {
+        "status": "verified",
+        "mismatches": [],
+        "matched_count": 22,
+        "our_field_count": 22,
+        "apk_field_count": 22,
+        "our_only": [],
+        "apk_only": []
+      }
+    },
+    {
+      "message": "NavigationChannel",
+      "file": "NavigationChannelData.proto",
+      "status": "verified",
+      "apk_class": "vzr",
+      "match_source": "manual",
+      "match_score": 1.0,
+      "comparison": {
+        "status": "verified",
+        "mismatches": [],
+        "matched_count": 3,
+        "our_field_count": 3,
+        "apk_field_count": 3,
+        "our_only": [],
+        "apk_only": []
+      }
+    },
+    {
+      "message": "NavigationChannelConfig",
+      "file": "NavigationChannelConfigData.proto",
+      "status": "verified",
+      "apk_class": "vzr",
+      "match_source": "manual",
+      "match_score": 1.0,
+      "comparison": {
+        "status": "verified",
+        "mismatches": [],
+        "matched_count": 3,
+        "our_field_count": 3,
+        "apk_field_count": 3,
+        "our_only": [],
+        "apk_only": []
+      }
+    },
+    {
+      "message": "NavigationDestination",
+      "file": "NavigationStepMessage.proto",
+      "status": "verified",
+      "apk_class": "vze",
+      "match_source": "manual",
+      "match_score": 1.0,
+      "comparison": {
+        "status": "verified",
+        "mismatches": [],
+        "matched_count": 2,
+        "our_field_count": 2,
+        "apk_field_count": 2,
+        "our_only": [],
+        "apk_only": []
+      }
+    },
+    {
+      "message": "NavigationDistance",
+      "file": "NavigationDistanceMessage.proto",
+      "status": "verified",
+      "apk_class": "xnb",
+      "match_source": "manual",
+      "match_score": 1.0,
+      "comparison": {
+        "status": "verified",
+        "mismatches": [],
+        "matched_count": 4,
+        "our_field_count": 4,
+        "apk_field_count": 4,
+        "our_only": [],
+        "apk_only": []
+      }
+    },
+    {
+      "message": "NavigationDistanceDisplay",
+      "file": "NavigationDistanceDisplayData.proto",
+      "status": "partial",
+      "apk_class": "xnd",
+      "match_source": "manual",
+      "match_score": 1.0,
+      "comparison": {
+        "status": "partial",
+        "mismatches": [
+          {
+            "field": 4,
+            "issue": "type mismatch",
+            "our_value": "sfixed32",
+            "apk_value": "unknown(-1)"
+          },
+          {
+            "field": 4,
+            "issue": "cardinality mismatch",
+            "our_value": "optional",
+            "apk_value": "map"
+          }
+        ],
+        "matched_count": 3,
+        "our_field_count": 4,
+        "apk_field_count": 4,
+        "our_only": [],
+        "apk_only": []
+      }
+    },
+    {
+      "message": "NavigationDistanceEntry",
+      "file": "NavigationDistanceMessage.proto",
+      "status": "partial",
+      "apk_class": "xnf",
+      "match_source": "manual",
+      "match_score": 1.0,
+      "comparison": {
+        "status": "partial",
+        "mismatches": [
+          {
+            "field": 3,
+            "issue": "type mismatch",
+            "our_value": "uint64",
+            "apk_value": "int32"
+          }
+        ],
+        "matched_count": 2,
+        "our_field_count": 3,
+        "apk_field_count": 3,
+        "our_only": [],
+        "apk_only": []
+      }
+    },
+    {
+      "message": "NavigationDistanceInfo",
+      "file": "NavigationDistanceMessage.proto",
+      "status": "verified",
+      "apk_class": "xng",
+      "match_source": "manual",
+      "match_score": 1.0,
+      "comparison": {
+        "status": "verified",
+        "mismatches": [],
+        "matched_count": 3,
+        "our_field_count": 3,
+        "apk_field_count": 3,
+        "our_only": [],
+        "apk_only": []
+      }
+    },
+    {
+      "message": "NavigationDistanceOneof",
+      "file": "NavigationDistanceMessage.proto",
+      "status": "verified",
+      "apk_class": "xne",
+      "match_source": "manual",
+      "match_score": 1.0,
+      "comparison": {
+        "status": "verified",
+        "mismatches": [],
+        "matched_count": 1,
+        "our_field_count": 1,
+        "apk_field_count": 1,
+        "our_only": [],
+        "apk_only": []
+      }
+    },
+    {
+      "message": "NavigationDistanceValue",
+      "file": "NavigationDistanceDisplayData.proto",
+      "status": "verified",
+      "apk_class": "xmw",
+      "match_source": "manual",
+      "match_score": 1.0,
+      "comparison": {
+        "status": "verified",
+        "mismatches": [],
+        "matched_count": 3,
+        "our_field_count": 3,
+        "apk_field_count": 3,
+        "our_only": [],
+        "apk_only": []
+      }
+    },
+    {
+      "message": "NavigationFocusRequest",
+      "file": "NavigationFocusRequestMessage.proto",
+      "status": "verified",
+      "apk_class": "vza",
+      "match_source": "manual",
+      "match_score": 1.0,
+      "comparison": {
+        "status": "verified",
+        "mismatches": [],
+        "matched_count": 1,
+        "our_field_count": 1,
+        "apk_field_count": 1,
+        "our_only": [],
+        "apk_only": []
+      }
+    },
+    {
+      "message": "NavigationFocusResponse",
+      "file": "NavigationFocusResponseMessage.proto",
+      "status": "verified",
+      "apk_class": "vyz",
+      "match_source": "manual",
+      "match_score": 1.0,
+      "comparison": {
+        "status": "verified",
+        "mismatches": [],
+        "matched_count": 1,
+        "our_field_count": 1,
+        "apk_field_count": 1,
+        "our_only": [],
+        "apk_only": []
+      }
+    },
+    {
+      "message": "NavigationImageDimensions",
+      "file": "NavigationChannelConfigData.proto",
+      "status": "verified",
+      "apk_class": "vzq",
+      "match_source": "manual",
+      "match_score": 1.0,
+      "comparison": {
+        "status": "verified",
+        "mismatches": [],
+        "matched_count": 3,
+        "our_field_count": 3,
+        "apk_field_count": 3,
+        "our_only": [],
+        "apk_only": []
+      }
+    },
+    {
+      "message": "NavigationImageOptions",
+      "file": "NavigationImageOptionsData.proto",
+      "status": "verified",
+      "apk_class": "vzq",
+      "match_source": "manual",
+      "match_score": 1.0,
+      "comparison": {
+        "status": "verified",
+        "mismatches": [],
+        "matched_count": 3,
+        "our_field_count": 3,
+        "apk_field_count": 3,
+        "our_only": [],
+        "apk_only": []
+      }
+    },
+    {
+      "message": "NavigationLane",
+      "file": "NavigationStepMessage.proto",
+      "status": "verified",
+      "apk_class": "vzj",
+      "match_source": "manual",
+      "match_score": 1.0,
+      "comparison": {
+        "status": "verified",
+        "mismatches": [],
+        "matched_count": 1,
+        "our_field_count": 1,
+        "apk_field_count": 1,
+        "our_only": [],
+        "apk_only": []
+      }
+    },
+    {
+      "message": "NavigationLaneDirection",
+      "file": "NavigationStepMessage.proto",
+      "status": "verified",
+      "apk_class": "vzi",
+      "match_source": "manual",
+      "match_score": 1.0,
+      "comparison": {
+        "status": "verified",
+        "mismatches": [],
+        "matched_count": 2,
+        "our_field_count": 2,
+        "apk_field_count": 2,
+        "our_only": [],
+        "apk_only": []
+      }
+    },
+    {
+      "message": "NavigationManeuver",
+      "file": "NavigationStepMessage.proto",
+      "status": "verified",
+      "apk_class": "vzk",
+      "match_source": "manual",
+      "match_score": 1.0,
+      "comparison": {
+        "status": "verified",
+        "mismatches": [],
+        "matched_count": 3,
+        "our_field_count": 3,
+        "apk_field_count": 3,
+        "our_only": [],
+        "apk_only": []
+      }
+    },
+    {
+      "message": "NavigationNotification",
+      "file": "NavigationStepMessage.proto",
+      "status": "verified",
+      "apk_class": "vzo",
+      "match_source": "manual",
+      "match_score": 1.0,
+      "comparison": {
+        "status": "verified",
+        "mismatches": [],
+        "matched_count": 2,
+        "our_field_count": 2,
+        "apk_field_count": 2,
+        "our_only": [],
+        "apk_only": []
+      }
+    },
+    {
+      "message": "NavigationRoadInfo",
+      "file": "NavigationStepMessage.proto",
+      "status": "verified",
+      "apk_class": "vzc",
+      "match_source": "manual",
+      "match_score": 1.0,
+      "comparison": {
+        "status": "verified",
+        "mismatches": [],
+        "matched_count": 1,
+        "our_field_count": 1,
+        "apk_field_count": 1,
+        "our_only": [],
+        "apk_only": []
+      }
+    },
+    {
+      "message": "NavigationState",
+      "file": "NavigationStateMessage.proto",
+      "status": "verified",
+      "apk_class": "vzp",
+      "match_source": "manual",
+      "match_score": 1.0,
+      "comparison": {
+        "status": "verified",
+        "mismatches": [],
+        "matched_count": 1,
+        "our_field_count": 1,
+        "apk_field_count": 1,
+        "our_only": [],
+        "apk_only": []
+      }
+    },
+    {
+      "message": "NavigationStep",
+      "file": "NavigationStepMessage.proto",
+      "status": "verified",
+      "apk_class": "vzu",
+      "match_source": "manual",
+      "match_score": 1.0,
+      "comparison": {
+        "status": "verified",
+        "mismatches": [],
+        "matched_count": 4,
+        "our_field_count": 4,
+        "apk_field_count": 4,
+        "our_only": [],
+        "apk_only": []
+      }
+    },
+    {
+      "message": "NavigationText",
+      "file": "NavigationStepMessage.proto",
+      "status": "verified",
+      "apk_class": "vzn",
+      "match_source": "manual",
+      "match_score": 1.0,
+      "comparison": {
+        "status": "verified",
+        "mismatches": [],
+        "matched_count": 1,
+        "our_field_count": 1,
+        "apk_field_count": 1,
+        "our_only": [],
+        "apk_only": []
+      }
+    },
+    {
+      "message": "NavigationTurnEvent",
+      "file": "NavigationTurnEventMessage.proto",
+      "status": "partial",
+      "apk_class": "vzm",
+      "match_source": "manual",
+      "match_score": 1.0,
+      "comparison": {
+        "status": "partial",
+        "mismatches": [
+          {
+            "field": 1,
+            "issue": "type mismatch",
+            "our_value": "bytes",
+            "apk_value": "string"
+          },
+          {
+            "field": 2,
+            "issue": "type mismatch",
+            "our_value": "string",
+            "apk_value": "enum"
+          },
+          {
+            "field": 4,
+            "issue": "type mismatch",
+            "our_value": "Enum (\u2192enum)",
+            "apk_value": "bytes"
+          }
+        ],
+        "matched_count": 3,
+        "our_field_count": 6,
+        "apk_field_count": 6,
+        "our_only": [],
+        "apk_only": []
+      }
+    },
+    {
+      "message": "NavigationType",
+      "file": "NavigationTypeEnum.proto",
+      "status": "unmatched",
+      "apk_class": null,
+      "match_source": null,
+      "match_score": 0,
+      "comparison": null
+    },
+    {
+      "message": "NightMode",
+      "file": "NightModeData.proto",
+      "status": "verified",
+      "apk_class": "vzw",
+      "match_source": "manual",
+      "match_score": 1.0,
+      "comparison": {
+        "status": "verified",
+        "mismatches": [],
+        "matched_count": 1,
+        "our_field_count": 1,
+        "apk_field_count": 1,
+        "our_only": [],
+        "apk_only": []
+      }
+    },
+    {
+      "message": "NotificationChannel",
+      "file": "NotificationChannelData.proto",
+      "status": "verified",
+      "apk_class": "wah",
+      "match_source": "manual",
+      "match_score": 1.0,
+      "comparison": {
+        "status": "verified",
+        "mismatches": [],
+        "matched_count": 0,
+        "our_field_count": 0,
+        "apk_field_count": 0,
+        "our_only": [],
+        "apk_only": []
+      }
+    },
+    {
+      "message": "NotificationType",
+      "file": "NotificationTypeEnum.proto",
+      "status": "unmatched",
+      "apk_class": null,
+      "match_source": null,
+      "match_score": 0,
+      "comparison": null
+    },
+    {
+      "message": "Odometer",
+      "file": "OdometerData.proto",
+      "status": "verified",
+      "apk_class": "vzx",
+      "match_source": "manual",
+      "match_score": 1.0,
+      "comparison": {
+        "status": "verified",
+        "mismatches": [],
+        "matched_count": 2,
+        "our_field_count": 2,
+        "apk_field_count": 2,
+        "our_only": [],
+        "apk_only": []
+      }
+    },
+    {
+      "message": "ParkingBrake",
+      "file": "ParkingBrakeData.proto",
+      "status": "verified",
+      "apk_class": "wab",
+      "match_source": "manual",
+      "match_score": 1.0,
+      "comparison": {
+        "status": "verified",
+        "mismatches": [],
+        "matched_count": 1,
+        "our_field_count": 1,
+        "apk_field_count": 1,
+        "our_only": [],
+        "apk_only": []
+      }
+    },
+    {
+      "message": "Passenger",
+      "file": "PassengerData.proto",
+      "status": "verified",
+      "apk_class": "wac",
+      "match_source": "manual",
+      "match_score": 1.0,
+      "comparison": {
+        "status": "verified",
+        "mismatches": [],
+        "matched_count": 1,
+        "our_field_count": 1,
+        "apk_field_count": 1,
+        "our_only": [],
+        "apk_only": []
+      }
+    },
+    {
+      "message": "PhoneCall",
+      "file": "PhoneStatusMessage.proto",
+      "status": "verified",
+      "apk_class": "wad",
+      "match_source": "manual",
+      "match_score": 1.0,
+      "comparison": {
+        "status": "verified",
+        "mismatches": [],
+        "matched_count": 6,
+        "our_field_count": 6,
+        "apk_field_count": 6,
+        "our_only": [],
+        "apk_only": []
+      }
+    },
+    {
+      "message": "PhoneCallState",
+      "file": "PhoneCallStateEnum.proto",
+      "status": "unmatched",
+      "apk_class": null,
+      "match_source": null,
+      "match_score": 0,
+      "comparison": null
+    },
+    {
+      "message": "PhoneCapabilities",
+      "file": "PhoneCapabilitiesData.proto",
+      "status": "unmatched",
+      "apk_class": null,
+      "match_source": null,
+      "match_score": 0,
+      "comparison": null
+    },
+    {
+      "message": "PhoneConnectionConfig",
+      "file": "PhoneCapabilitiesData.proto",
+      "status": "verified",
+      "apk_class": "wdm",
+      "match_source": "manual",
+      "match_score": 1.0,
+      "comparison": {
+        "status": "verified",
+        "mismatches": [],
+        "matched_count": 5,
+        "our_field_count": 5,
+        "apk_field_count": 5,
+        "our_only": [],
+        "apk_only": []
+      }
+    },
+    {
+      "message": "PhoneStatusChannel",
+      "file": "PhoneStatusChannelData.proto",
+      "status": "verified",
+      "apk_class": "vyr",
+      "match_source": "manual",
+      "match_score": 1.0,
+      "comparison": {
+        "status": "verified",
+        "mismatches": [],
+        "matched_count": 0,
+        "our_field_count": 0,
+        "apk_field_count": 0,
+        "our_only": [],
+        "apk_only": []
+      }
+    },
+    {
+      "message": "PhoneStatusUpdate",
+      "file": "PhoneStatusMessage.proto",
+      "status": "verified",
+      "apk_class": "waf",
+      "match_source": "manual",
+      "match_score": 1.0,
+      "comparison": {
+        "status": "verified",
+        "mismatches": [],
+        "matched_count": 2,
+        "our_field_count": 2,
+        "apk_field_count": 2,
+        "our_only": [],
+        "apk_only": []
+      }
+    },
+    {
+      "message": "PingConfigEntry",
+      "file": "PhoneCapabilitiesData.proto",
+      "status": "unmatched",
+      "apk_class": null,
+      "match_source": null,
+      "match_score": 0,
+      "comparison": null
+    },
+    {
+      "message": "PingConfigPair",
+      "file": "PhoneCapabilitiesData.proto",
+      "status": "unmatched",
+      "apk_class": null,
+      "match_source": null,
+      "match_score": 0,
+      "comparison": null
+    },
+    {
+      "message": "PingConfiguration",
+      "file": "PingConfigurationData.proto",
+      "status": "verified",
+      "apk_class": "zyd",
+      "match_source": "manual",
+      "match_score": 1.0,
+      "comparison": {
+        "status": "verified",
+        "mismatches": [],
+        "matched_count": 2,
+        "our_field_count": 2,
+        "apk_field_count": 2,
+        "our_only": [],
+        "apk_only": []
+      }
+    },
+    {
+      "message": "PingRequest",
+      "file": "PingRequestMessage.proto",
+      "status": "verified",
+      "apk_class": "wdo",
+      "match_source": "manual",
+      "match_score": 1.0,
+      "comparison": {
+        "status": "verified",
+        "mismatches": [],
+        "matched_count": 1,
+        "our_field_count": 1,
+        "apk_field_count": 1,
+        "our_only": [],
+        "apk_only": []
+      }
+    },
+    {
+      "message": "PingResponse",
+      "file": "PingResponseMessage.proto",
+      "status": "verified",
+      "apk_class": "wdp",
+      "match_source": "manual",
+      "match_score": 1.0,
+      "comparison": {
+        "status": "verified",
+        "mismatches": [],
+        "matched_count": 1,
+        "our_field_count": 1,
+        "apk_field_count": 1,
+        "our_only": [],
+        "apk_only": []
+      }
+    },
+    {
+      "message": "RPM",
+      "file": "RPMData.proto",
+      "status": "verified",
+      "apk_class": "wbn",
+      "match_source": "manual",
+      "match_score": 1.0,
+      "comparison": {
+        "status": "verified",
+        "mismatches": [],
+        "matched_count": 1,
+        "our_field_count": 1,
+        "apk_field_count": 1,
+        "our_only": [],
+        "apk_only": []
+      }
+    },
+    {
+      "message": "RadioBand",
+      "file": "RadioChannelData.proto",
+      "status": "verified",
+      "apk_class": "wbe",
+      "match_source": "manual",
+      "match_score": 1.0,
+      "comparison": {
+        "status": "verified",
+        "mismatches": [],
+        "matched_count": 2,
+        "our_field_count": 2,
+        "apk_field_count": 2,
+        "our_only": [],
+        "apk_only": []
+      }
+    },
+    {
+      "message": "RadioChannel",
+      "file": "RadioChannelData.proto",
+      "status": "verified",
+      "apk_class": "way",
+      "match_source": "manual",
+      "match_score": 1.0,
+      "comparison": {
+        "status": "verified",
+        "mismatches": [],
+        "matched_count": 1,
+        "our_field_count": 1,
+        "apk_field_count": 1,
+        "our_only": [],
+        "apk_only": []
+      }
+    },
+    {
+      "message": "RadioStation",
+      "file": "RadioChannelData.proto",
+      "status": "partial",
+      "apk_class": "wax",
+      "match_source": "manual",
+      "match_score": 1.0,
+      "comparison": {
+        "status": "partial",
+        "mismatches": [
+          {
+            "field": 2,
+            "issue": "type mismatch",
+            "our_value": "bytes",
+            "apk_value": "enum"
+          },
+          {
+            "field": 4,
+            "issue": "type mismatch",
+            "our_value": "bytes",
+            "apk_value": "int32"
+          },
+          {
+            "field": 4,
+            "issue": "cardinality mismatch",
+            "our_value": "optional",
+            "apk_value": "repeated"
+          }
+        ],
+        "matched_count": 12,
+        "our_field_count": 14,
+        "apk_field_count": 14,
+        "our_only": [],
+        "apk_only": []
+      }
+    },
+    {
+      "message": "RelativeInputEvent",
+      "file": "RelativeInputEventData.proto",
+      "status": "verified",
+      "apk_class": "wbl",
+      "match_source": "manual",
+      "match_score": 1.0,
+      "comparison": {
+        "status": "verified",
+        "mismatches": [],
+        "matched_count": 2,
+        "our_field_count": 2,
+        "apk_field_count": 2,
+        "our_only": [],
+        "apk_only": []
+      }
+    },
+    {
+      "message": "RelativeInputEvents",
+      "file": "RelativeInputEventsData.proto",
+      "status": "verified",
+      "apk_class": "wbm",
+      "match_source": "manual",
+      "match_score": 1.0,
+      "comparison": {
+        "status": "verified",
+        "mismatches": [],
+        "matched_count": 1,
+        "our_field_count": 1,
+        "apk_field_count": 1,
+        "our_only": [],
+        "apk_only": []
+      }
+    },
+    {
+      "message": "ResizeActionType",
+      "file": "AdditionalVideoConfigData.proto",
+      "status": "unmatched",
+      "apk_class": null,
+      "match_source": null,
+      "match_score": 0,
+      "comparison": null
+    },
+    {
+      "message": "Sensor",
+      "file": "SensorData.proto",
+      "status": "verified",
+      "apk_class": "wbt",
+      "match_source": "manual",
+      "match_score": 1.0,
+      "comparison": {
+        "status": "verified",
+        "mismatches": [],
+        "matched_count": 1,
+        "our_field_count": 1,
+        "apk_field_count": 1,
+        "our_only": [],
+        "apk_only": []
+      }
+    },
+    {
+      "message": "SensorChannel",
+      "file": "SensorChannelData.proto",
+      "status": "verified",
+      "apk_class": "wbu",
+      "match_source": "manual",
+      "match_score": 1.0,
+      "comparison": {
+        "status": "verified",
+        "mismatches": [],
+        "matched_count": 4,
+        "our_field_count": 4,
+        "apk_field_count": 4,
+        "our_only": [],
+        "apk_only": []
+      }
+    },
+    {
+      "message": "SensorChannelConfig",
+      "file": "SensorChannelConfigData.proto",
+      "status": "verified",
+      "apk_class": "wbu",
+      "match_source": "manual",
+      "match_score": 1.0,
+      "comparison": {
+        "status": "verified",
+        "mismatches": [],
+        "matched_count": 4,
+        "our_field_count": 4,
+        "apk_field_count": 4,
+        "our_only": [],
+        "apk_only": []
+      }
+    },
+    {
+      "message": "SensorChannelMessage",
+      "file": "SensorChannelMessageIdsEnum.proto",
+      "status": "unmatched",
+      "apk_class": null,
+      "match_source": null,
+      "match_score": 0,
+      "comparison": null
+    },
+    {
+      "message": "SensorEventIndication",
+      "file": "SensorEventIndicationMessage.proto",
+      "status": "verified",
+      "apk_class": "wbo",
+      "match_source": "manual",
+      "match_score": 1.0,
+      "comparison": {
+        "status": "verified",
+        "mismatches": [],
+        "matched_count": 26,
+        "our_field_count": 26,
+        "apk_field_count": 26,
+        "our_only": [],
+        "apk_only": []
+      }
+    },
+    {
+      "message": "SensorStartRequestMessage",
+      "file": "SensorStartRequestMessage.proto",
+      "status": "verified",
+      "apk_class": "war",
+      "match_source": "manual",
+      "match_score": 1.0,
+      "comparison": {
+        "status": "verified",
+        "mismatches": [],
+        "matched_count": 2,
+        "our_field_count": 2,
+        "apk_field_count": 2,
+        "our_only": [],
+        "apk_only": []
+      }
+    },
+    {
+      "message": "SensorStartResponseMessage",
+      "file": "SensorStartResponseMessage.proto",
+      "status": "verified",
+      "apk_class": "wbs",
+      "match_source": "manual",
+      "match_score": 1.0,
+      "comparison": {
+        "status": "verified",
+        "mismatches": [],
+        "matched_count": 1,
+        "our_field_count": 1,
+        "apk_field_count": 1,
+        "our_only": [],
+        "apk_only": []
+      }
+    },
+    {
+      "message": "SensorType",
+      "file": "SensorTypeEnum.proto",
+      "status": "unmatched",
+      "apk_class": null,
+      "match_source": null,
+      "match_score": 0,
+      "comparison": null
+    },
+    {
+      "message": "SensorTypeEntry",
+      "file": "SensorChannelConfigData.proto",
+      "status": "unmatched",
+      "apk_class": null,
+      "match_source": null,
+      "match_score": 0,
+      "comparison": null
+    },
+    {
+      "message": "ServiceDiscoveryRequest",
+      "file": "ServiceDiscoveryRequestMessage.proto",
+      "status": "verified",
+      "apk_class": "wbx",
+      "match_source": "manual",
+      "match_score": 1.0,
+      "comparison": {
+        "status": "verified",
+        "mismatches": [],
+        "matched_count": 6,
+        "our_field_count": 6,
+        "apk_field_count": 6,
+        "our_only": [],
+        "apk_only": []
+      }
+    },
+    {
+      "message": "ServiceDiscoveryResponse",
+      "file": "ServiceDiscoveryResponseMessage.proto",
+      "status": "verified",
+      "apk_class": "wby",
+      "match_source": "manual",
+      "match_score": 1.0,
+      "comparison": {
+        "status": "verified",
+        "mismatches": [],
+        "matched_count": 15,
+        "our_field_count": 15,
+        "apk_field_count": 15,
+        "our_only": [],
+        "apk_only": []
+      }
+    },
+    {
+      "message": "SessionError",
+      "file": "SessionErrorEnum.proto",
+      "status": "unmatched",
+      "apk_class": null,
+      "match_source": null,
+      "match_score": 0,
+      "comparison": null
+    },
+    {
+      "message": "SessionInfo",
+      "file": "SessionInfoData.proto",
+      "status": "verified",
+      "apk_class": "vvf",
+      "match_source": "manual",
+      "match_score": 1.0,
+      "comparison": {
+        "status": "verified",
+        "mismatches": [],
+        "matched_count": 4,
+        "our_field_count": 4,
+        "apk_field_count": 4,
+        "our_only": [],
+        "apk_only": []
+      }
+    },
+    {
+      "message": "ShutdownReason",
+      "file": "ShutdownReasonEnum.proto",
+      "status": "unmatched",
+      "apk_class": null,
+      "match_source": null,
+      "match_score": 0,
+      "comparison": null
+    },
+    {
+      "message": "ShutdownRequest",
+      "file": "ShutdownRequestMessage.proto",
+      "status": "verified",
+      "apk_class": "vwf",
+      "match_source": "manual",
+      "match_score": 1.0,
+      "comparison": {
+        "status": "verified",
+        "mismatches": [],
+        "matched_count": 1,
+        "our_field_count": 1,
+        "apk_field_count": 1,
+        "our_only": [],
+        "apk_only": []
+      }
+    },
+    {
+      "message": "ShutdownResponse",
+      "file": "ShutdownResponseMessage.proto",
+      "status": "verified",
+      "apk_class": "vwg",
+      "match_source": "manual",
+      "match_score": 1.0,
+      "comparison": {
+        "status": "verified",
+        "mismatches": [],
+        "matched_count": 0,
+        "our_field_count": 0,
+        "apk_field_count": 0,
+        "our_only": [],
+        "apk_only": []
+      }
+    },
+    {
+      "message": "Speed",
+      "file": "SpeedData.proto",
+      "status": "verified",
+      "apk_class": "wcd",
+      "match_source": "manual",
+      "match_score": 1.0,
+      "comparison": {
+        "status": "verified",
+        "mismatches": [],
+        "matched_count": 3,
+        "our_field_count": 3,
+        "apk_field_count": 3,
+        "our_only": [],
+        "apk_only": []
+      }
+    },
+    {
+      "message": "StatsEntry",
+      "file": "AVChannelMediaStatsMessage.proto",
+      "status": "verified",
+      "apk_class": "vvo",
+      "match_source": "manual",
+      "match_score": 1.0,
+      "comparison": {
+        "status": "verified",
+        "mismatches": [],
+        "matched_count": 4,
+        "our_field_count": 4,
+        "apk_field_count": 4,
+        "our_only": [],
+        "apk_only": []
+      }
+    },
+    {
+      "message": "Status",
+      "file": "StatusEnum.proto",
+      "status": "unmatched",
+      "apk_class": null,
+      "match_source": null,
+      "match_score": 0,
+      "comparison": null
+    },
+    {
+      "message": "SteeringWheel",
+      "file": "SteeringWheelData.proto",
+      "status": "verified",
+      "apk_class": "vxe",
+      "match_source": "manual",
+      "match_score": 1.0,
+      "comparison": {
+        "status": "verified",
+        "mismatches": [],
+        "matched_count": 2,
+        "our_field_count": 2,
+        "apk_field_count": 2,
+        "our_only": [],
+        "apk_only": []
+      }
+    },
+    {
+      "message": "TirePressure",
+      "file": "TirePressureData.proto",
+      "status": "verified",
+      "apk_class": "wcg",
+      "match_source": "manual",
+      "match_score": 1.0,
+      "comparison": {
+        "status": "verified",
+        "mismatches": [],
+        "matched_count": 1,
+        "our_field_count": 1,
+        "apk_field_count": 1,
+        "our_only": [],
+        "apk_only": []
+      }
+    },
+    {
+      "message": "TouchAction",
+      "file": "TouchActionEnum.proto",
+      "status": "unmatched",
+      "apk_class": null,
+      "match_source": null,
+      "match_score": 0,
+      "comparison": null
+    },
+    {
+      "message": "TouchConfig",
+      "file": "TouchConfigData.proto",
+      "status": "verified",
+      "apk_class": "vxn",
+      "match_source": "manual",
+      "match_score": 0.8,
+      "comparison": {
+        "status": "verified",
+        "mismatches": [],
+        "matched_count": 3,
+        "our_field_count": 3,
+        "apk_field_count": 3,
+        "our_only": [],
+        "apk_only": []
+      }
+    },
+    {
+      "message": "TouchCoordinate",
+      "file": "TouchCoordinateData.proto",
+      "status": "verified",
+      "apk_class": "wci",
+      "match_source": "manual",
+      "match_score": 1.0,
+      "comparison": {
+        "status": "verified",
+        "mismatches": [],
+        "matched_count": 3,
+        "our_field_count": 3,
+        "apk_field_count": 3,
+        "our_only": [],
+        "apk_only": []
+      }
+    },
+    {
+      "message": "TouchEvent",
+      "file": "TouchEventData.proto",
+      "status": "verified",
+      "apk_class": "wcj",
+      "match_source": "manual",
+      "match_score": 1.0,
+      "comparison": {
+        "status": "verified",
+        "mismatches": [],
+        "matched_count": 3,
+        "our_field_count": 3,
+        "apk_field_count": 3,
+        "our_only": [],
+        "apk_only": []
+      }
+    },
+    {
+      "message": "TouchLocation",
+      "file": "TouchLocationData.proto",
+      "status": "verified",
+      "apk_class": "wci",
+      "match_source": "manual",
+      "match_score": 1.0,
+      "comparison": {
+        "status": "verified",
+        "mismatches": [],
+        "matched_count": 3,
+        "our_field_count": 3,
+        "apk_field_count": 3,
+        "our_only": [],
+        "apk_only": []
+      }
+    },
+    {
+      "message": "TouchPadConfig",
+      "file": "TouchPadConfigData.proto",
+      "status": "verified",
+      "apk_class": "vxy",
+      "match_source": "manual",
+      "match_score": 1.0,
+      "comparison": {
+        "status": "verified",
+        "mismatches": [],
+        "matched_count": 8,
+        "our_field_count": 8,
+        "apk_field_count": 8,
+        "our_only": [],
+        "apk_only": []
+      }
+    },
+    {
+      "message": "TouchScreenConfig",
+      "file": "TouchScreenConfigData.proto",
+      "status": "verified",
+      "apk_class": "vxz",
+      "match_source": "manual",
+      "match_score": 1.0,
+      "comparison": {
+        "status": "verified",
+        "mismatches": [],
+        "matched_count": 3,
+        "our_field_count": 3,
+        "apk_field_count": 3,
+        "our_only": [],
+        "apk_only": []
+      }
+    },
+    {
+      "message": "TurnSide",
+      "file": "TurnSideEnum.proto",
+      "status": "unmatched",
+      "apk_class": null,
+      "match_source": null,
+      "match_score": 0,
+      "comparison": null
+    },
+    {
+      "message": "UIElement",
+      "file": "AdditionalVideoConfigData.proto",
+      "status": "unmatched",
+      "apk_class": null,
+      "match_source": null,
+      "match_score": 0,
+      "comparison": null
+    },
+    {
+      "message": "UITheme",
+      "file": "AdditionalVideoConfigData.proto",
+      "status": "unmatched",
+      "apk_class": null,
+      "match_source": null,
+      "match_score": 0,
+      "comparison": null
+    },
+    {
+      "message": "VendorExtensionChannel",
+      "file": "VendorExtensionChannelData.proto",
+      "status": "verified",
+      "apk_class": "wcv",
+      "match_source": "manual",
+      "match_score": 1.0,
+      "comparison": {
+        "status": "verified",
+        "mismatches": [],
+        "matched_count": 3,
+        "our_field_count": 3,
+        "apk_field_count": 3,
+        "our_only": [],
+        "apk_only": []
+      }
+    },
+    {
+      "message": "VersionFeatureFlags",
+      "file": "FeatureFlagsData.proto",
+      "status": "verified",
+      "apk_class": "wdq",
+      "match_source": "manual",
+      "match_score": 1.0,
+      "comparison": {
+        "status": "verified",
+        "mismatches": [],
+        "matched_count": 2,
+        "our_field_count": 2,
+        "apk_field_count": 2,
+        "our_only": [],
+        "apk_only": []
+      }
+    },
+    {
+      "message": "VersionResponseStatus",
+      "file": "VersionResponseStatusEnum.proto",
+      "status": "unmatched",
+      "apk_class": null,
+      "match_source": null,
+      "match_score": 0,
+      "comparison": null
+    },
+    {
+      "message": "VideoConfig",
+      "file": "VideoConfigData.proto",
+      "status": "verified",
+      "apk_class": "wcz",
+      "match_source": "manual",
+      "match_score": 1.0,
+      "comparison": {
+        "status": "verified",
+        "mismatches": [],
+        "matched_count": 11,
+        "our_field_count": 11,
+        "apk_field_count": 11,
+        "our_only": [],
+        "apk_only": []
+      }
+    },
+    {
+      "message": "VideoFPS",
+      "file": "VideoFPSEnum.proto",
+      "status": "unmatched",
+      "apk_class": null,
+      "match_source": null,
+      "match_score": 0,
+      "comparison": null
+    },
+    {
+      "message": "VideoFocusIndication",
+      "file": "VideoFocusIndicationMessage.proto",
+      "status": "verified",
+      "apk_class": "wdb",
+      "match_source": "manual",
+      "match_score": 1.0,
+      "comparison": {
+        "status": "verified",
+        "mismatches": [],
+        "matched_count": 2,
+        "our_field_count": 2,
+        "apk_field_count": 2,
+        "our_only": [],
+        "apk_only": []
+      }
+    },
+    {
+      "message": "VideoFocusMode",
+      "file": "VideoFocusModeEnum.proto",
+      "status": "unmatched",
+      "apk_class": null,
+      "match_source": null,
+      "match_score": 0,
+      "comparison": null
+    },
+    {
+      "message": "VideoFocusReason",
+      "file": "VideoFocusReasonEnum.proto",
+      "status": "unmatched",
+      "apk_class": null,
+      "match_source": null,
+      "match_score": 0,
+      "comparison": null
+    },
+    {
+      "message": "VideoFocusRequest",
+      "file": "VideoFocusRequestMessage.proto",
+      "status": "verified",
+      "apk_class": "wdd",
+      "match_source": "manual",
+      "match_score": 1.0,
+      "comparison": {
+        "status": "verified",
+        "mismatches": [],
+        "matched_count": 2,
+        "our_field_count": 2,
+        "apk_field_count": 2,
+        "our_only": [],
+        "apk_only": []
+      }
+    },
+    {
+      "message": "VideoInsets",
+      "file": "AdditionalVideoConfigData.proto",
+      "status": "verified",
+      "apk_class": "vyb",
+      "match_source": "manual",
+      "match_score": 1.0,
+      "comparison": {
+        "status": "verified",
+        "mismatches": [],
+        "matched_count": 4,
+        "our_field_count": 4,
+        "apk_field_count": 4,
+        "our_only": [],
+        "apk_only": []
+      }
+    },
+    {
+      "message": "VideoMarginConfig",
+      "file": "AdditionalVideoConfigData.proto",
+      "status": "unmatched",
+      "apk_class": null,
+      "match_source": null,
+      "match_score": 0,
+      "comparison": null
+    },
+    {
+      "message": "VideoResizeAction",
+      "file": "AdditionalVideoConfigData.proto",
+      "status": "unmatched",
+      "apk_class": null,
+      "match_source": null,
+      "match_score": 0,
+      "comparison": null
+    },
+    {
+      "message": "VideoResolution",
+      "file": "VideoResolutionEnum.proto",
+      "status": "unmatched",
+      "apk_class": null,
+      "match_source": null,
+      "match_score": 0,
+      "comparison": null
+    },
+    {
+      "message": "VideoResolutionRange",
+      "file": "AdditionalVideoConfigData.proto",
+      "status": "unmatched",
+      "apk_class": null,
+      "match_source": null,
+      "match_score": 0,
+      "comparison": null
+    },
+    {
+      "message": "VoiceSessionRequest",
+      "file": "VoiceSessionRequestMessage.proto",
+      "status": "verified",
+      "apk_class": "wde",
+      "match_source": "manual",
+      "match_score": 1.0,
+      "comparison": {
+        "status": "verified",
+        "mismatches": [],
+        "matched_count": 1,
+        "our_field_count": 1,
+        "apk_field_count": 1,
+        "our_only": [],
+        "apk_only": []
+      }
+    },
+    {
+      "message": "WiFiProjectionChannel",
+      "file": "WiFiProjectionChannelData.proto",
+      "status": "verified",
+      "apk_class": "wdh",
+      "match_source": "manual",
+      "match_score": 1.0,
+      "comparison": {
+        "status": "verified",
+        "mismatches": [],
+        "matched_count": 1,
+        "our_field_count": 1,
+        "apk_field_count": 1,
+        "our_only": [],
+        "apk_only": []
+      }
+    },
+    {
+      "message": "WifiChannel",
+      "file": "WifiChannelData.proto",
+      "status": "verified",
+      "apk_class": "wdh",
+      "match_source": "manual",
+      "match_score": 1.0,
+      "comparison": {
+        "status": "verified",
+        "mismatches": [],
+        "matched_count": 1,
+        "our_field_count": 1,
+        "apk_field_count": 1,
+        "our_only": [],
+        "apk_only": []
+      }
+    },
+    {
+      "message": "WifiChannelMessage",
+      "file": "WifiChannelMessageIdsEnum.proto",
+      "status": "unmatched",
+      "apk_class": null,
+      "match_source": null,
+      "match_score": 0,
+      "comparison": null
+    },
+    {
+      "message": "WifiConnectStatus",
+      "file": "WifiConnectStatusMessage.proto",
+      "status": "partial",
+      "apk_class": "wdj",
+      "match_source": "manual",
+      "match_score": 1.0,
+      "comparison": {
+        "status": "partial",
+        "mismatches": [
+          {
+            "field": 2,
+            "issue": "type mismatch",
+            "our_value": "sint32",
+            "apk_value": "string"
+          }
+        ],
+        "matched_count": 1,
+        "our_field_count": 2,
+        "apk_field_count": 2,
+        "our_only": [],
+        "apk_only": []
+      }
+    },
+    {
+      "message": "WifiConnectionRejection",
+      "file": "WifiConnectionRejectionMessage.proto",
+      "status": "verified",
+      "apk_class": "wdk",
+      "match_source": "manual",
+      "match_score": 1.0,
+      "comparison": {
+        "status": "verified",
+        "mismatches": [],
+        "matched_count": 1,
+        "our_field_count": 1,
+        "apk_field_count": 1,
+        "our_only": [],
+        "apk_only": []
+      }
+    },
+    {
+      "message": "WifiDirectConfig",
+      "file": "WifiDirectConfigData.proto",
+      "status": "verified",
+      "apk_class": "wbb",
+      "match_source": "manual",
+      "match_score": 1.0,
+      "comparison": {
+        "status": "verified",
+        "mismatches": [],
+        "matched_count": 6,
+        "our_field_count": 6,
+        "apk_field_count": 6,
+        "our_only": [],
+        "apk_only": []
+      }
+    },
+    {
+      "message": "WifiInfoRequest",
+      "file": "WifiInfoRequestMessage.proto",
+      "status": "verified",
+      "apk_class": "wdl",
+      "match_source": "manual",
+      "match_score": 1.0,
+      "comparison": {
+        "status": "verified",
+        "mismatches": [],
+        "matched_count": 0,
+        "our_field_count": 0,
+        "apk_field_count": 0,
+        "our_only": [],
+        "apk_only": []
+      }
+    },
+    {
+      "message": "WifiInfoResponse",
+      "file": "WifiInfoResponseMessage.proto",
+      "status": "verified",
+      "apk_class": "wdm",
+      "match_source": "manual",
+      "match_score": 1.0,
+      "comparison": {
+        "status": "verified",
+        "mismatches": [],
+        "matched_count": 5,
+        "our_field_count": 5,
+        "apk_field_count": 5,
+        "our_only": [],
+        "apk_only": []
+      }
+    },
+    {
+      "message": "WifiNetworkInfo",
+      "file": "WifiSetupInfoMessage.proto",
+      "status": "partial",
+      "apk_class": "wdi",
+      "match_source": "manual",
+      "match_score": 1.0,
+      "comparison": {
+        "status": "partial",
+        "mismatches": [
+          {
+            "field": 5,
+            "issue": "extra field in our proto (not in APK)",
+            "our_value": "extra",
+            "apk_value": null
+          },
+          {
+            "field": 6,
+            "issue": "missing field (exists in APK)",
+            "our_value": null,
+            "apk_value": "int32"
+          }
+        ],
+        "matched_count": 4,
+        "our_field_count": 5,
+        "apk_field_count": 5,
+        "our_only": [
+          5
+        ],
+        "apk_only": [
+          6
+        ]
+      }
+    },
+    {
+      "message": "WifiPingRequest",
+      "file": "WifiPingMessage.proto",
+      "status": "partial",
+      "apk_class": "wdo",
+      "match_source": "manual",
+      "match_score": 1.0,
+      "comparison": {
+        "status": "partial",
+        "mismatches": [
+          {
+            "field": 1,
+            "issue": "type mismatch",
+            "our_value": "int32",
+            "apk_value": "int64"
+          },
+          {
+            "field": 2,
+            "issue": "extra field in our proto (not in APK)",
+            "our_value": "timestamp_ns",
+            "apk_value": null
+          }
+        ],
+        "matched_count": 0,
+        "our_field_count": 2,
+        "apk_field_count": 1,
+        "our_only": [
+          2
+        ],
+        "apk_only": []
+      }
+    },
+    {
+      "message": "WifiPingResponse",
+      "file": "WifiPingMessage.proto",
+      "status": "verified",
+      "apk_class": "wdp",
+      "match_source": "manual",
+      "match_score": 1.0,
+      "comparison": {
+        "status": "verified",
+        "mismatches": [],
+        "matched_count": 1,
+        "our_field_count": 1,
+        "apk_field_count": 1,
+        "our_only": [],
+        "apk_only": []
+      }
+    },
+    {
+      "message": "WifiSecurityRequest",
+      "file": "WifiSecurityRequestMessage.proto",
+      "status": "unmatched",
+      "apk_class": null,
+      "match_source": null,
+      "match_score": 0,
+      "comparison": null
+    },
+    {
+      "message": "WifiSecurityResponse",
+      "file": "WifiSecurityResponseMessage.proto",
+      "status": "verified",
+      "apk_class": "wan",
+      "match_source": "manual",
+      "match_score": 1.0,
+      "comparison": {
+        "status": "verified",
+        "mismatches": [],
+        "matched_count": 13,
+        "our_field_count": 13,
+        "apk_field_count": 13,
+        "our_only": [],
+        "apk_only": []
+      }
+    },
+    {
+      "message": "WifiSetupInfo",
+      "file": "WifiSetupInfoMessage.proto",
+      "status": "partial",
+      "apk_class": "wds",
+      "match_source": "manual",
+      "match_score": 1.0,
+      "comparison": {
+        "status": "partial",
+        "mismatches": [
+          {
+            "field": 1,
+            "issue": "missing field (exists in APK)",
+            "our_value": null,
+            "apk_value": "int32"
+          },
+          {
+            "field": 3,
+            "issue": "type mismatch",
+            "our_value": "int32",
+            "apk_value": "bytes"
+          },
+          {
+            "field": 6,
+            "issue": "extra field in our proto (not in APK)",
+            "our_value": "network_info",
+            "apk_value": null
+          }
+        ],
+        "matched_count": 3,
+        "our_field_count": 5,
+        "apk_field_count": 5,
+        "our_only": [
+          6
+        ],
+        "apk_only": [
+          1
+        ]
+      }
+    },
+    {
+      "message": "WifiSetupMessage",
+      "file": "WifiSetupMessageEnum.proto",
+      "status": "unmatched",
+      "apk_class": null,
+      "match_source": null,
+      "match_score": 0,
+      "comparison": null
+    },
+    {
+      "message": "WifiStartRequest",
+      "file": "WifiStartRequestMessage.proto",
+      "status": "unmatched",
+      "apk_class": null,
+      "match_source": null,
+      "match_score": 0,
+      "comparison": null
+    },
+    {
+      "message": "WifiStartResponse",
+      "file": "WifiStartResponseMessage.proto",
+      "status": "partial",
+      "apk_class": "wdu",
+      "match_source": "manual",
+      "match_score": 1.0,
+      "comparison": {
+        "status": "partial",
+        "mismatches": [
+          {
+            "field": 1,
+            "issue": "type mismatch",
+            "our_value": "int32",
+            "apk_value": "string"
+          },
+          {
+            "field": 2,
+            "issue": "type mismatch",
+            "our_value": "string",
+            "apk_value": "int32"
+          }
+        ],
+        "matched_count": 1,
+        "our_field_count": 3,
+        "apk_field_count": 3,
+        "our_only": [],
+        "apk_only": []
+      }
+    },
+    {
+      "message": "WifiVersionRequest",
+      "file": "WifiVersionRequestMessage.proto",
+      "status": "partial",
+      "apk_class": "wdv",
+      "match_source": "manual",
+      "match_score": 1.0,
+      "comparison": {
+        "status": "partial",
+        "mismatches": [
+          {
+            "field": 4,
+            "issue": "type mismatch",
+            "our_value": "bytes",
+            "apk_value": "int32"
+          },
+          {
+            "field": 4,
+            "issue": "cardinality mismatch",
+            "our_value": "optional",
+            "apk_value": "repeated"
+          }
+        ],
+        "matched_count": 5,
+        "our_field_count": 6,
+        "apk_field_count": 6,
+        "our_only": [],
+        "apk_only": []
+      }
+    },
+    {
+      "message": "WifiVersionResponse",
+      "file": "WifiVersionResponseMessage.proto",
+      "status": "verified",
+      "apk_class": "wdw",
+      "match_source": "manual",
+      "match_score": 1.0,
+      "comparison": {
+        "status": "verified",
+        "mismatches": [],
+        "matched_count": 7,
+        "our_field_count": 7,
+        "apk_field_count": 7,
+        "our_only": [],
+        "apk_only": []
+      }
+    },
+    {
+      "message": "WifiVersionStatus",
+      "file": "WifiVersionStatusEnum.proto",
+      "status": "unmatched",
+      "apk_class": null,
+      "match_source": null,
+      "match_score": 0,
+      "comparison": null
+    }
+  ]
+}

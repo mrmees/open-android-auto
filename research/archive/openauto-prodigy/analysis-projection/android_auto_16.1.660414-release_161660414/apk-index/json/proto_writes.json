@@ -1,0 +1,2382 @@
+[
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/GhApplication.java",
+    "line": 234,
+    "op": "=",
+    "target": "BugreportRequester.e",
+    "value": "new com.google.android.apps.auto.components.bugreport.BugreportRequester(applicationContext, this.a)"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/GhApplication.java",
+    "line": 273,
+    "op": "=",
+    "target": "BugreportRequester.e",
+    "value": "new com.google.android.apps.auto.components.bugreport.BugreportRequester(applicationContext, this.a)"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/GhApplication.java",
+    "line": 322,
+    "op": "=",
+    "target": "BugreportRequester.e",
+    "value": "new com.google.android.apps.auto.components.bugreport.BugreportRequester(applicationContext, this.a)"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/system/GhLifecycleService.java",
+    "line": 226,
+    "op": "=",
+    "target": "a.d",
+    "value": "a.d(pmqVar)"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/system/GhLifecycleService.java",
+    "line": 55,
+    "op": "=",
+    "target": "a2.d",
+    "value": "null"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/system/GhLifecycleService.java",
+    "line": 56,
+    "op": "=",
+    "target": "a2.e",
+    "value": "null"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/frx/SetupActivity.java",
+    "line": 181,
+    "op": "=",
+    "target": "attributes.layoutInDisplayCutoutMode",
+    "value": "2"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/AndroidAutoActivity.java",
+    "line": 157,
+    "op": "=",
+    "target": "attributes.width",
+    "value": "getResources().getDimensionPixelSize(com.google.android.projection.gearhead.R.dimen.companion_rating_prompt_dialog_width)"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/GhApplication.java",
+    "line": 350,
+    "op": "=",
+    "target": "bpu.a",
+    "value": "i2"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/GhApplication.java",
+    "line": 360,
+    "op": "=",
+    "target": "brr.a",
+    "value": "true"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/system/GhLifecycleService.java",
+    "line": 83,
+    "op": "=",
+    "target": "c.f",
+    "value": "3"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/HwrView.java",
+    "line": 108,
+    "op": "=",
+    "target": "cloudRecognizerSettings.clientName",
+    "value": "\"Gearhead\""
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/HwrView.java",
+    "line": 109,
+    "op": "=",
+    "target": "cloudRecognizerSettings.clientVersion",
+    "value": "1"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/HwrView.java",
+    "line": 111,
+    "op": "=",
+    "target": "cloudRecognizerSettings.deviceName",
+    "value": "android.os.Build.DEVICE"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/HwrView.java",
+    "line": 110,
+    "op": "=",
+    "target": "cloudRecognizerSettings.deviceVersion",
+    "value": "android.os.Build.VERSION.SDK_INT"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/system/GhLifecycleService.java",
+    "line": 120,
+    "op": "=",
+    "target": "configuration.densityDpi",
+    "value": "intValue"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/service/GearheadService.java",
+    "line": 52,
+    "op": "=",
+    "target": "dmeVar.g",
+    "value": "a"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/service/GearheadService.java",
+    "line": 49,
+    "op": "=",
+    "target": "dmeVar.i",
+    "value": "1"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/service/GearheadService.java",
+    "line": 48,
+    "op": "=",
+    "target": "dmeVar.r",
+    "value": "\"service\""
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/service/GearheadService.java",
+    "line": 51,
+    "op": "=",
+    "target": "dmeVar.t",
+    "value": "getColor(com.google.android.projection.gearhead.R.color.gearhead_sdk_light_blue_800)"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/service/GearheadService.java",
+    "line": 46,
+    "op": "=",
+    "target": "dmeVar.u",
+    "value": "1"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/GhApplication.java",
+    "line": 39,
+    "op": "=",
+    "target": "fwwVar.a",
+    "value": "new defpackage.iqi(this)"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/system/RecoveryLifecycleService.java",
+    "line": 25,
+    "op": "=",
+    "target": "h.s",
+    "value": "defpackage.wii.h(java.lang.Integer.valueOf(reason))"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/GhApplication.java",
+    "line": 341,
+    "op": "=",
+    "target": "jwj.b",
+    "value": "new defpackage.jwi()"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/GhApplication.java",
+    "line": 311,
+    "op": "=",
+    "target": "kds.b",
+    "value": "new defpackage.uqd(ozaVar22, 12)"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/system/GhLifecycleService.java",
+    "line": 121,
+    "op": "=",
+    "target": "kfb.c",
+    "value": "new defpackage.kfb(new defpackage.kfc(context.createConfigurationContext(configuration)))"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 46,
+    "op": "=",
+    "target": "layoutParams.columnSpec",
+    "value": "android.widget.GridLayout.spec(i2, vscVar.c)"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 43,
+    "op": "=",
+    "target": "layoutParams.height",
+    "value": "vscVar.f"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 47,
+    "op": "=",
+    "target": "layoutParams.rowSpec",
+    "value": "android.widget.GridLayout.spec(i)"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/sdk/CarAppLayout.java",
+    "line": 77,
+    "op": "=",
+    "target": "layoutParams.weight",
+    "value": "0.0f"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 44,
+    "op": "=",
+    "target": "layoutParams.width",
+    "value": "vscVar.g"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/sdk/CarAppLayout.java",
+    "line": 76,
+    "op": "=",
+    "target": "layoutParams.width",
+    "value": "getResources().getDimensionPixelSize(com.google.android.projection.gearhead.R.dimen.gearhead_sdk_app_layout_search_box_small_width)"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 636,
+    "op": "=",
+    "target": "lnzVar.c",
+    "value": "false"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 647,
+    "op": "=",
+    "target": "lnzVar.d",
+    "value": "(int) java.lang.Math.signum(x)"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 621,
+    "op": "=",
+    "target": "lnzVar.g",
+    "value": "motionEvent.getX()"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 622,
+    "op": "=",
+    "target": "lnzVar.h",
+    "value": "motionEvent.getY()"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 618,
+    "op": "=",
+    "target": "lnzVar.i",
+    "value": "true"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 642,
+    "op": "=",
+    "target": "lnzVar.i",
+    "value": "false"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 620,
+    "op": "=",
+    "target": "lnzVar.j",
+    "value": "false"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 646,
+    "op": "=",
+    "target": "lnzVar.j",
+    "value": "true"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 619,
+    "op": "=",
+    "target": "lnzVar.k",
+    "value": "false"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 629,
+    "op": "=",
+    "target": "lnzVar.k",
+    "value": "true"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/AddAssistantShortcutActivity.java",
+    "line": 107,
+    "op": "|=",
+    "target": "lqmVar.b",
+    "value": "1"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/AddAssistantShortcutActivity.java",
+    "line": 108,
+    "op": "=",
+    "target": "lqmVar.c",
+    "value": "trim2"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/AddAssistantShortcutActivity.java",
+    "line": 162,
+    "op": "|=",
+    "target": "lqmVar3.b",
+    "value": "1"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/AddAssistantShortcutActivity.java",
+    "line": 163,
+    "op": "=",
+    "target": "lqmVar3.c",
+    "value": "trim2"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/LauncherAppSettingsActivity.java",
+    "line": 65,
+    "op": "|=",
+    "target": "lqoVar.b",
+    "value": "1"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/LauncherAppSettingsActivity.java",
+    "line": 66,
+    "op": "=",
+    "target": "lqoVar.c",
+    "value": "uri"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/LauncherAppSettingsActivity.java",
+    "line": 56,
+    "op": "|=",
+    "target": "lqqVar2.b",
+    "value": "4"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/LauncherAppSettingsActivity.java",
+    "line": 57,
+    "op": "=",
+    "target": "lqqVar2.f",
+    "value": "uuid"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/AddAssistantShortcutActivity.java",
+    "line": 92,
+    "op": "|=",
+    "target": "lqqVar3.b",
+    "value": "4"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/LauncherAppSettingsActivity.java",
+    "line": 74,
+    "op": "=",
+    "target": "lqqVar3.c",
+    "value": "3"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/LauncherAppSettingsActivity.java",
+    "line": 73,
+    "op": "=",
+    "target": "lqqVar3.d",
+    "value": "lqoVar2"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/AddAssistantShortcutActivity.java",
+    "line": 93,
+    "op": "=",
+    "target": "lqqVar3.f",
+    "value": "uuid"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/AddAssistantShortcutActivity.java",
+    "line": 99,
+    "op": "|=",
+    "target": "lqqVar4.b",
+    "value": "1"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/AddAssistantShortcutActivity.java",
+    "line": 100,
+    "op": "=",
+    "target": "lqqVar4.e",
+    "value": "trim"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/AddAssistantShortcutActivity.java",
+    "line": 116,
+    "op": "=",
+    "target": "lqqVar5.c",
+    "value": "4"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/AddAssistantShortcutActivity.java",
+    "line": 115,
+    "op": "=",
+    "target": "lqqVar5.d",
+    "value": "lqmVar2"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/AddAssistantShortcutActivity.java",
+    "line": 147,
+    "op": "|=",
+    "target": "lqqVar7.b",
+    "value": "4"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/AddAssistantShortcutActivity.java",
+    "line": 148,
+    "op": "=",
+    "target": "lqqVar7.f",
+    "value": "str"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/AddAssistantShortcutActivity.java",
+    "line": 154,
+    "op": "|=",
+    "target": "lqqVar8.b",
+    "value": "1"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/AddAssistantShortcutActivity.java",
+    "line": 155,
+    "op": "=",
+    "target": "lqqVar8.e",
+    "value": "trim"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/AddAssistantShortcutActivity.java",
+    "line": 171,
+    "op": "=",
+    "target": "lqqVar9.c",
+    "value": "4"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/AddAssistantShortcutActivity.java",
+    "line": 170,
+    "op": "=",
+    "target": "lqqVar9.d",
+    "value": "lqmVar4"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/AddAssistantShortcutActivity.java",
+    "line": 185,
+    "op": "=",
+    "target": "lquVar.a",
+    "value": "textView.getText().toString()"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/system/GhLifecycleService.java",
+    "line": 162,
+    "op": "=",
+    "target": "mnsVar2.c",
+    "value": "null"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/system/GhLifecycleService.java",
+    "line": 187,
+    "op": "=",
+    "target": "mnsVar2.c",
+    "value": "mnrVar.k()"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/system/GhLifecycleService.java",
+    "line": 211,
+    "op": "=",
+    "target": "mnsVar2.e",
+    "value": "true"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/system/GhLifecycleService.java",
+    "line": 209,
+    "op": "=",
+    "target": "mnsVar2.f",
+    "value": "i3"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/system/GhLifecycleService.java",
+    "line": 77,
+    "op": "=",
+    "target": "mnuVar.d",
+    "value": "null"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/system/GhLifecycleService.java",
+    "line": 197,
+    "op": "=",
+    "target": "mnuVar.d",
+    "value": "new defpackage.mnt(mnuVar, pmqVar2)"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/system/GhLifecycleService.java",
+    "line": 73,
+    "op": "=",
+    "target": "mnuVar.e",
+    "value": "null"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/system/GhLifecycleService.java",
+    "line": 191,
+    "op": "=",
+    "target": "mnuVar.e",
+    "value": "new defpackage.mnt(mnuVar, pmqVar2)"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/GhApplication.java",
+    "line": 141,
+    "op": "=",
+    "target": "pch.b",
+    "value": "b2"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/GhApplication.java",
+    "line": 199,
+    "op": "=",
+    "target": "qfi.a",
+    "value": "contains"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 426,
+    "op": "=",
+    "target": "rectF.left",
+    "value": "((((f4 - rotaryKeyboardLayout.D) + (((r6 + 32) * (255 - rotaryKeyboardLayout.l)) / 255.0f)) - (rotaryKeyboardLayout.C * i4)) - (rotaryKeyboardLayout.L - r5)) + (rotaryKeyboardLayout.M * i2)"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 430,
+    "op": "=",
+    "target": "rectF.left",
+    "value": "(((f4 - rotaryKeyboardLayout.D) + (((255 - rotaryKeyboardLayout.l) * 32) / 255.0f)) - (rotaryKeyboardLayout.B * i4)) - rotaryKeyboardLayout.L"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 435,
+    "op": "=",
+    "target": "rectF.right",
+    "value": "f4 + rotaryKeyboardLayout.D + (((i10 - 64) * (255 - rotaryKeyboardLayout.l)) / f2) + (rotaryKeyboardLayout.C * i4) + (rotaryKeyboardLayout.L - i10)"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 437,
+    "op": "=",
+    "target": "rectF.right",
+    "value": "f4 + rotaryKeyboardLayout.D + (((255 - rotaryKeyboardLayout.l) * (-64)) / f2) + (rotaryKeyboardLayout.B * i4) + rotaryKeyboardLayout.L"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/GhApplication.java",
+    "line": 115,
+    "op": "=",
+    "target": "rqc.a",
+    "value": "getContentResolver()"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/GhApplication.java",
+    "line": 164,
+    "op": "=",
+    "target": "rqlVar.a",
+    "value": "pilVar"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/GhApplication.java",
+    "line": 163,
+    "op": "=",
+    "target": "rqlVar.b",
+    "value": "this"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/GhApplication.java",
+    "line": 165,
+    "op": "=",
+    "target": "rqlVar.c",
+    "value": "qdmVar.b"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 110,
+    "op": "=",
+    "target": "this.A",
+    "value": "java.lang.Math.round((java.lang.Math.min(i2 - (dimensionPixelSize8 + dimensionPixelSize8), context3.getResources().getDimensionPixelSize(com.google.android.projection.gearhead.R.dimen.apps_max_content_width)) / context2.getResources().getDisplayMetrics().density) / 100.0f)"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 68,
+    "op": "=",
+    "target": "this.B",
+    "value": "dimensionPixelSize2"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 70,
+    "op": "=",
+    "target": "this.C",
+    "value": "dimensionPixelSize3"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 72,
+    "op": "=",
+    "target": "this.D",
+    "value": "b ? (dimensionPixelSize + dimensionPixelSize4) - (dimensionPixelSize3 / 2) : (dimensionPixelSize + dimensionPixelSize4) - (dimensionPixelSize2 / 2)"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/Material3CarPreferenceButton.java",
+    "line": 10,
+    "op": "=",
+    "target": "this.E",
+    "value": "com.google.android.projection.gearhead.R.layout.material3_preference_list_button"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/Material3FeatureAnnouncePreference.java",
+    "line": 13,
+    "op": "=",
+    "target": "this.E",
+    "value": "com.google.android.projection.gearhead.R.layout.feature_announce_preference"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 64,
+    "op": "=",
+    "target": "this.E",
+    "value": "dimensionPixelSize"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 65,
+    "op": "=",
+    "target": "this.F",
+    "value": "obtainStyledAttributes.getDimensionPixelSize(6, resources.getDimensionPixelSize(com.google.android.projection.gearhead.R.dimen.keyGroupCircleRadius))"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 66,
+    "op": "=",
+    "target": "this.G",
+    "value": "resources.getDimensionPixelSize(com.google.android.projection.gearhead.R.dimen.image_button_radius)"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 74,
+    "op": "=",
+    "target": "this.H",
+    "value": "dimensionPixelSize5"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 95,
+    "op": "=",
+    "target": "this.I",
+    "value": "dimensionPixelSize6"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 103,
+    "op": "=",
+    "target": "this.J",
+    "value": "dimensionPixelSize5 - dimensionPixelSize6"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 104,
+    "op": "=",
+    "target": "this.K",
+    "value": "dimensionPixelSize7 - dimensionPixelSize6"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 75,
+    "op": "=",
+    "target": "this.L",
+    "value": "obtainStyledAttributes.getDimensionPixelSize(7, resources.getDimensionPixelSize(com.google.android.projection.gearhead.R.dimen.keyGroupSpacing))"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 76,
+    "op": "=",
+    "target": "this.M",
+    "value": "resources.getDimensionPixelSize(com.google.android.projection.gearhead.R.dimen.additionalKeySpacingGm3)"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 114,
+    "op": "=",
+    "target": "this.N",
+    "value": "android.view.animation.AnimationUtils.loadAnimation(getContext(), com.google.android.projection.gearhead.R.anim.click_enlarge)"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 115,
+    "op": "=",
+    "target": "this.O",
+    "value": "android.view.animation.AnimationUtils.loadAnimation(getContext(), com.google.android.projection.gearhead.R.anim.click_shrink)"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 116,
+    "op": "=",
+    "target": "this.P",
+    "value": "android.view.animation.AnimationUtils.loadAnimation(getContext(), com.google.android.projection.gearhead.R.anim.click_enlarge)"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 117,
+    "op": "=",
+    "target": "this.Q",
+    "value": "android.view.animation.AnimationUtils.loadAnimation(getContext(), com.google.android.projection.gearhead.R.anim.click_shrink)"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 133,
+    "op": "=",
+    "target": "this.R",
+    "value": "egmVar"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 111,
+    "op": "=",
+    "target": "this.S",
+    "value": "new android.graphics.Paint()"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 121,
+    "op": "=",
+    "target": "this.T",
+    "value": "new defpackage.vsn(this, java.lang.Float.class)"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 134,
+    "op": "=",
+    "target": "this.U",
+    "value": "new defpackage.vko(this, 18)"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 539,
+    "op": "=",
+    "target": "this.V",
+    "value": "z"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 538,
+    "op": "=",
+    "target": "this.W",
+    "value": "uptimeMillis"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/GhApplication.java",
+    "line": 144,
+    "op": "=",
+    "target": "this.a",
+    "value": "ipyVar"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/ParallaxHeader.java",
+    "line": 10,
+    "op": "=",
+    "target": "this.a",
+    "value": "-1"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/feedback/FeedbackListActivity.java",
+    "line": 15,
+    "op": "=",
+    "target": "this.a",
+    "value": "voiVar"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/SettingsActivity.java",
+    "line": 10,
+    "op": "=",
+    "target": "this.a",
+    "value": "new defpackage.et(this)"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/SettingsSearchProvider.java",
+    "line": 40,
+    "op": "=",
+    "target": "this.a",
+    "value": "getContext()"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/HwrView.java",
+    "line": 49,
+    "op": "=",
+    "target": "this.a",
+    "value": "new com.google.android.libraries.handwriting.base.StrokeList()"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/HwrView.java",
+    "line": 261,
+    "op": "=",
+    "target": "this.a",
+    "value": "new com.google.android.libraries.handwriting.base.StrokeList()"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/HwrView.java",
+    "line": 271,
+    "op": "=",
+    "target": "this.a",
+    "value": "new com.google.android.libraries.handwriting.base.StrokeList()"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/rail/ui/ImageButtonWithAlphaFade.java",
+    "line": 15,
+    "op": "=",
+    "target": "this.a",
+    "value": "new float[3]"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/rail/ui/SlidableLinearLayout.java",
+    "line": 56,
+    "op": "=",
+    "target": "this.a",
+    "value": "childAt"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/rail/ui/SlidableLinearLayout.java",
+    "line": 76,
+    "op": "=",
+    "target": "this.a",
+    "value": "childAt2"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/rail/ui/SlidableLinearLayout.java",
+    "line": 88,
+    "op": "=",
+    "target": "this.a",
+    "value": "null"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/service/GearheadService.java",
+    "line": 55,
+    "op": "=",
+    "target": "this.a",
+    "value": "true"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/service/GearheadService.java",
+    "line": 65,
+    "op": "=",
+    "target": "this.a",
+    "value": "false"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/sdk/demand/Template.java",
+    "line": 11,
+    "op": "=",
+    "target": "this.a",
+    "value": "parcel.readInt()"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/sdk/demand/TemplateArgument.java",
+    "line": 12,
+    "op": "=",
+    "target": "this.a",
+    "value": "parcel.readString()"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/ParallaxHeader.java",
+    "line": 11,
+    "op": "=",
+    "target": "this.b",
+    "value": "new defpackage.vnw(this)"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/feedback/FeedbackEditorActivity.java",
+    "line": 29,
+    "op": "=",
+    "target": "this.b",
+    "value": "b"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/Material3CarPreferenceButton.java",
+    "line": 11,
+    "op": "=",
+    "target": "this.b",
+    "value": "context.getTheme().obtainStyledAttributes(attributeSet, defpackage.vna.a, i, i2).getString(0)"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/HwrView.java",
+    "line": 105,
+    "op": "=",
+    "target": "this.b",
+    "value": "handwritingRecognizer"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 22,
+    "op": "=",
+    "target": "this.b",
+    "value": "defpackage.jwf.a().b()"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 80,
+    "op": "=",
+    "target": "this.b",
+    "value": "paint"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/rail/ui/ImageButtonWithAlphaFade.java",
+    "line": 17,
+    "op": "=",
+    "target": "this.b",
+    "value": "fArr"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/rail/ui/SlidableLinearLayout.java",
+    "line": 49,
+    "op": "=",
+    "target": "this.b",
+    "value": "false"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/rail/ui/SlidableLinearLayout.java",
+    "line": 75,
+    "op": "=",
+    "target": "this.b",
+    "value": "true"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/sdk/CarAppLayout.java",
+    "line": 34,
+    "op": "=",
+    "target": "this.b",
+    "value": "imageView"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/sdk/KeyboardSearchLayout.java",
+    "line": 20,
+    "op": "=",
+    "target": "this.b",
+    "value": "vtiVar"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/sdk/demand/Template.java",
+    "line": 12,
+    "op": "=",
+    "target": "this.b",
+    "value": "parcel.readInt()"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/sdk/demand/TemplateArgument.java",
+    "line": 13,
+    "op": "=",
+    "target": "this.b",
+    "value": "parcel.readInt()"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/GhCrashHandler.java",
+    "line": 19,
+    "op": "=",
+    "target": "this.c",
+    "value": "context"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/DeveloperHeadUnitNetworkService.java",
+    "line": 110,
+    "op": "=",
+    "target": "this.c",
+    "value": "null"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/Material3VersionPreference.java",
+    "line": 38,
+    "op": "=",
+    "target": "this.c",
+    "value": "i"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/frx/SetupFsm.java",
+    "line": 370,
+    "op": "=",
+    "target": "this.c",
+    "value": "d"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/frx/SetupFsm.java",
+    "line": 621,
+    "op": "=",
+    "target": "this.c",
+    "value": "vncVar"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/HwrView.java",
+    "line": 70,
+    "op": "=",
+    "target": "this.c",
+    "value": "gestureRecognizer"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 352,
+    "op": "=",
+    "target": "this.c",
+    "value": "vsdVar"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 88,
+    "op": "=",
+    "target": "this.c",
+    "value": "paint2"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/rail/ui/ImageButtonWithAlphaFade.java",
+    "line": 19,
+    "op": "=",
+    "target": "this.c",
+    "value": "fArr2"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/rail/ui/SlidableLinearLayout.java",
+    "line": 12,
+    "op": "=",
+    "target": "this.c",
+    "value": "new defpackage.vtb(this, longPressTimeout, longPressTimeout)"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/sdk/CarAppLayout.java",
+    "line": 62,
+    "op": "=",
+    "target": "this.c",
+    "value": "findViewById2"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/sdk/KeyboardSearchLayout.java",
+    "line": 18,
+    "op": "=",
+    "target": "this.c",
+    "value": "(com.google.android.apps.auto.sdk.ui.PagedListView) findViewById(com.google.android.projection.gearhead.R.id.list_view)"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/sdk/demand/Template.java",
+    "line": 14,
+    "op": "=",
+    "target": "this.c",
+    "value": "readBundle"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/sdk/demand/TemplateArgument.java",
+    "line": 14,
+    "op": "=",
+    "target": "this.c",
+    "value": "parcel.readInt()"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/GhCrashHandler.java",
+    "line": 21,
+    "op": "=",
+    "target": "this.d",
+    "value": "ipyVar"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/DeveloperHeadUnitNetworkService.java",
+    "line": 85,
+    "op": "=",
+    "target": "this.d",
+    "value": "p"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/feedback/FeedbackEditorActivity.java",
+    "line": 23,
+    "op": "=",
+    "target": "this.d",
+    "value": "findViewById"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/Material3VersionPreference.java",
+    "line": 25,
+    "op": "=",
+    "target": "this.d",
+    "value": "defpackage.jek.j().c()"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/HwrView.java",
+    "line": 51,
+    "op": "=",
+    "target": "this.d",
+    "value": "new android.os.Handler()"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/HwrView.java",
+    "line": 263,
+    "op": "=",
+    "target": "this.d",
+    "value": "new android.os.Handler()"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/HwrView.java",
+    "line": 273,
+    "op": "=",
+    "target": "this.d",
+    "value": "new android.os.Handler()"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 59,
+    "op": "=",
+    "target": "this.d",
+    "value": "view"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 94,
+    "op": "=",
+    "target": "this.d",
+    "value": "null"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 135,
+    "op": "=",
+    "target": "this.d",
+    "value": "new android.graphics.Paint()"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/rail/ui/ImageButtonWithAlphaFade.java",
+    "line": 21,
+    "op": "=",
+    "target": "this.d",
+    "value": "obtainStyledAttributes.getInt(3, 300)"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/sdk/CarAppLayout.java",
+    "line": 59,
+    "op": "=",
+    "target": "this.d",
+    "value": "carRestrictedEditText"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/sdk/demand/TemplateArgument.java",
+    "line": 15,
+    "op": "=",
+    "target": "this.d",
+    "value": "parcel.readBundle()"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/GhCrashHandler.java",
+    "line": 22,
+    "op": "=",
+    "target": "this.e",
+    "value": "kbrVar"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/feedback/FeedbackEditorActivity.java",
+    "line": 37,
+    "op": "=",
+    "target": "this.e",
+    "value": "checkBox"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/EngineerSettingsActivity.java",
+    "line": 12,
+    "op": "=",
+    "target": "this.e",
+    "value": "new defpackage.vop(this)"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/Material3VersionPreference.java",
+    "line": 26,
+    "op": "=",
+    "target": "this.e",
+    "value": "android.widget.Toast.makeText(this.j, \"\", 0)"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 61,
+    "op": "=",
+    "target": "this.e",
+    "value": "view"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 93,
+    "op": "=",
+    "target": "this.e",
+    "value": "null"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 136,
+    "op": "=",
+    "target": "this.e",
+    "value": "new android.graphics.Paint()"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/rail/ui/ImageButtonWithAlphaFade.java",
+    "line": 22,
+    "op": "=",
+    "target": "this.e",
+    "value": "obtainStyledAttributes.getFloat(0, 0.7f)"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/sdk/CarAppLayout.java",
+    "line": 32,
+    "op": "=",
+    "target": "this.e",
+    "value": "new defpackage.wdx(getContext(), android.os.Looper.myLooper(), new defpackage.vtc(this))"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/service/CarSystemUiControllerService.java",
+    "line": 52,
+    "op": "=",
+    "target": "this.e",
+    "value": "null"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/GhCrashHandler.java",
+    "line": 28,
+    "op": "=",
+    "target": "this.f",
+    "value": "java.lang.Thread.getDefaultUncaughtExceptionHandler()"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/EngineerSettingsActivity.java",
+    "line": 28,
+    "op": "=",
+    "target": "this.f",
+    "value": "p"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 125,
+    "op": "=",
+    "target": "this.f",
+    "value": "ofInt"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/rail/ui/ImageButtonWithAlphaFade.java",
+    "line": 23,
+    "op": "=",
+    "target": "this.f",
+    "value": "obtainStyledAttributes.getFloat(1, 1.0f)"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/sdk/CarAppLayout.java",
+    "line": 185,
+    "op": "=",
+    "target": "this.f",
+    "value": "true"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/GhCrashHandler.java",
+    "line": 27,
+    "op": "=",
+    "target": "this.g",
+    "value": "defpackage.xcp.aX(unlVar)"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/Material3ManageCarsFragment.java",
+    "line": 144,
+    "op": "=",
+    "target": "this.g",
+    "value": "null"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/Material3ManageCarsFragment.java",
+    "line": 154,
+    "op": "=",
+    "target": "this.g",
+    "value": "new defpackage.ijk(getActivity())"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/Material3VersionPreference.java",
+    "line": 16,
+    "op": "=",
+    "target": "this.g",
+    "value": "false"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/Material3VersionPreference.java",
+    "line": 32,
+    "op": "=",
+    "target": "this.g",
+    "value": "true"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/Material3VersionPreference.java",
+    "line": 70,
+    "op": "=",
+    "target": "this.g",
+    "value": "false"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/Material3VersionPreference.java",
+    "line": 76,
+    "op": "=",
+    "target": "this.g",
+    "value": "false"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/Material3VersionPreference.java",
+    "line": 82,
+    "op": "=",
+    "target": "this.g",
+    "value": "false"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/HwrView.java",
+    "line": 67,
+    "op": "=",
+    "target": "this.g",
+    "value": "defpackage.vmz.a.b"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 129,
+    "op": "=",
+    "target": "this.g",
+    "value": "ofFloat"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/rail/ui/ImageButtonWithAlphaFade.java",
+    "line": 36,
+    "op": "=",
+    "target": "this.g",
+    "value": "false"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/rail/ui/ImageButtonWithAlphaFade.java",
+    "line": 41,
+    "op": "=",
+    "target": "this.g",
+    "value": "z"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/sdk/CarAppLayout.java",
+    "line": 25,
+    "op": "=",
+    "target": "this.g",
+    "value": "true"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/GhCrashHandler.java",
+    "line": 26,
+    "op": "=",
+    "target": "this.h",
+    "value": "stgVar"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/devsettings/DeveloperSettingsActivity.java",
+    "line": 36,
+    "op": "=",
+    "target": "this.h",
+    "value": "new java.util.concurrent.atomic.AtomicBoolean()"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/Material3ManageCarsFragment.java",
+    "line": 86,
+    "op": "=",
+    "target": "this.h",
+    "value": "(com.google.android.material.materialswitch.MaterialSwitch) inflate.findViewById(com.google.android.projection.gearhead.R.id.add_new_cars_switch)"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/Material3VersionPreference.java",
+    "line": 17,
+    "op": "=",
+    "target": "this.h",
+    "value": "defpackage.xcp.aX(new defpackage.uqd(this, 14))"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/Material3VersionPreference.java",
+    "line": 71,
+    "op": "=",
+    "target": "this.h",
+    "value": "defpackage.xcp.aX(new defpackage.uqd(this, 14))"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/Material3VersionPreference.java",
+    "line": 77,
+    "op": "=",
+    "target": "this.h",
+    "value": "defpackage.xcp.aX(new defpackage.uqd(this, 14))"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/Material3VersionPreference.java",
+    "line": 83,
+    "op": "=",
+    "target": "this.h",
+    "value": "defpackage.xcp.aX(new defpackage.uqd(this, 14))"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/HwrView.java",
+    "line": 58,
+    "op": "=",
+    "target": "this.h",
+    "value": "false"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/HwrView.java",
+    "line": 125,
+    "op": "=",
+    "target": "this.h",
+    "value": "true"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 58,
+    "op": "=",
+    "target": "this.h",
+    "value": "b"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/sdk/CarAppLayout.java",
+    "line": 38,
+    "op": "=",
+    "target": "this.h",
+    "value": "viewGroup"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/system/GhLifecycleService.java",
+    "line": 14,
+    "op": "=",
+    "target": "this.h",
+    "value": "true"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/system/GhLifecycleService.java",
+    "line": 43,
+    "op": "=",
+    "target": "this.h",
+    "value": "false"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/devsettings/DeveloperSettingsActivity.java",
+    "line": 92,
+    "op": "=",
+    "target": "this.i",
+    "value": "p"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/Material3ManageCarsFragment.java",
+    "line": 87,
+    "op": "=",
+    "target": "this.i",
+    "value": "(android.widget.TextView) inflate.findViewById(com.google.android.projection.gearhead.R.id.add_new_cars_description)"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/HwrView.java",
+    "line": 59,
+    "op": "=",
+    "target": "this.i",
+    "value": "false"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 506,
+    "op": "=",
+    "target": "this.i",
+    "value": "vslVar"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/sdk/CarAppLayout.java",
+    "line": 49,
+    "op": "=",
+    "target": "this.i",
+    "value": "findViewById"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/system/GhLifecycleService.java",
+    "line": 20,
+    "op": "=",
+    "target": "this.i",
+    "value": "true"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/system/GhLifecycleService.java",
+    "line": 50,
+    "op": "=",
+    "target": "this.i",
+    "value": "false"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/system/RecoveryLifecycleService.java",
+    "line": 55,
+    "op": "=",
+    "target": "this.i",
+    "value": "bundle.getInt(\"connection_type\")"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/devsettings/DeveloperSettingsActivity.java",
+    "line": 39,
+    "op": "=",
+    "target": "this.j",
+    "value": "new defpackage.vog(this)"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/Material3ManageCarsFragment.java",
+    "line": 163,
+    "op": "=",
+    "target": "this.j",
+    "value": "t(this.g.f())"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 59,
+    "op": "=",
+    "target": "this.j",
+    "value": "0"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 507,
+    "op": "=",
+    "target": "this.j",
+    "value": "vslVar.g"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 591,
+    "op": "=",
+    "target": "this.j",
+    "value": "i2"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/sdk/CarAppLayout.java",
+    "line": 50,
+    "op": "=",
+    "target": "this.j",
+    "value": "findViewById(com.google.android.projection.gearhead.R.id.car_search_box_contents)"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/system/RecoveryLifecycleService.java",
+    "line": 56,
+    "op": "=",
+    "target": "this.j",
+    "value": "bundle.getInt(\"car_process_pid\")"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/devsettings/DeveloperSettingsActivity.java",
+    "line": 38,
+    "op": "=",
+    "target": "this.k",
+    "value": "newSingleThreadExecutor"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/Material3ManageCarsFragment.java",
+    "line": 100,
+    "op": "=",
+    "target": "this.k",
+    "value": "defpackage.pmy.p(activity, new defpackage.jov(this, 7), new defpackage.jou(this, 5), null, 0)"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/HwrView.java",
+    "line": 52,
+    "op": "=",
+    "target": "this.k",
+    "value": "new defpackage.vko(this, 16)"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/HwrView.java",
+    "line": 264,
+    "op": "=",
+    "target": "this.k",
+    "value": "new defpackage.vko(this, 16)"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/HwrView.java",
+    "line": 274,
+    "op": "=",
+    "target": "this.k",
+    "value": "new defpackage.vko(this, 16)"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/sdk/CarAppLayout.java",
+    "line": 52,
+    "op": "=",
+    "target": "this.k",
+    "value": "imageView2"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/sdk/CarDrawerLayout.java",
+    "line": 11,
+    "op": "=",
+    "target": "this.k",
+    "value": "new java.util.HashSet()"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/system/RecoveryLifecycleService.java",
+    "line": 57,
+    "op": "=",
+    "target": "this.k",
+    "value": "bundle.getLong(\"creation_millis\")"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/HwrView.java",
+    "line": 53,
+    "op": "=",
+    "target": "this.l",
+    "value": "new defpackage.vko(this, 17)"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/HwrView.java",
+    "line": 265,
+    "op": "=",
+    "target": "this.l",
+    "value": "new defpackage.vko(this, 17)"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/HwrView.java",
+    "line": 275,
+    "op": "=",
+    "target": "this.l",
+    "value": "new defpackage.vko(this, 17)"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 26,
+    "op": "=",
+    "target": "this.l",
+    "value": "context"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 112,
+    "op": "=",
+    "target": "this.l",
+    "value": "255"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/sdk/CarAppLayout.java",
+    "line": 55,
+    "op": "=",
+    "target": "this.l",
+    "value": "imageView3"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/sdk/CarDrawerLayout.java",
+    "line": 13,
+    "op": "=",
+    "target": "this.l",
+    "value": "new defpackage.kgj((android.animation.TimeInterpolator) new defpackage.lny(fArr, 0.25f, 0.5f))"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/frx/SetupActivity.java",
+    "line": 122,
+    "op": "=",
+    "target": "this.m",
+    "value": "false"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 23,
+    "op": "=",
+    "target": "this.m",
+    "value": "new defpackage.vqf(this, 13, null)"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 113,
+    "op": "=",
+    "target": "this.m",
+    "value": "1.0f"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/sdk/CarAppLayout.java",
+    "line": 67,
+    "op": "=",
+    "target": "this.m",
+    "value": "(android.widget.FrameLayout) findViewById(com.google.android.projection.gearhead.R.id.car_search_box_end_view)"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/sdk/CarDrawerLayout.java",
+    "line": 14,
+    "op": "=",
+    "target": "this.m",
+    "value": "new defpackage.kgj((android.animation.TimeInterpolator) new defpackage.lny(fArr, 0.625f, 0.125f))"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/AndroidAutoActivity.java",
+    "line": 145,
+    "op": "=",
+    "target": "this.n",
+    "value": "p"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/AddAssistantShortcutActivity.java",
+    "line": 192,
+    "op": "=",
+    "target": "this.n",
+    "value": "editText"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/Material3ManageCarsFragment.java",
+    "line": 102,
+    "op": "=",
+    "target": "this.n",
+    "value": "viewSwitcher"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 24,
+    "op": "=",
+    "target": "this.n",
+    "value": "new defpackage.ixv(this, 10)"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 602,
+    "op": "=",
+    "target": "this.n",
+    "value": "(android.widget.ImageButton) findViewById(com.google.android.projection.gearhead.R.id.keyboard_btn)"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/sdk/CarAppLayout.java",
+    "line": 69,
+    "op": "=",
+    "target": "this.n",
+    "value": "imageView4"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/AndroidAutoActivity.java",
+    "line": 95,
+    "op": "=",
+    "target": "this.o",
+    "value": "vnuVar"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/AddAssistantShortcutActivity.java",
+    "line": 60,
+    "op": "=",
+    "target": "this.o",
+    "value": "(android.widget.EditText) findViewById(com.google.android.projection.gearhead.R.id.query)"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/LauncherAppSettingsActivity.java",
+    "line": 115,
+    "op": "=",
+    "target": "this.o",
+    "value": "(android.support.v7.widget.RecyclerView) findViewById(com.google.android.projection.gearhead.R.id.settingsRecyclerView)"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/Material3ManageCarsFragment.java",
+    "line": 112,
+    "op": "=",
+    "target": "this.o",
+    "value": "viewSwitcher2"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/Material3VersionPreference.java",
+    "line": 24,
+    "op": "=",
+    "target": "this.o",
+    "value": "this"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 590,
+    "op": "=",
+    "target": "this.o",
+    "value": "ofFloat"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/sdk/CarAppLayout.java",
+    "line": 74,
+    "op": "=",
+    "target": "this.o",
+    "value": "findViewById3"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/AndroidAutoActivity.java",
+    "line": 92,
+    "op": "=",
+    "target": "this.p",
+    "value": "recyclerView"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/devsettings/AppQualityTesterActivity.java",
+    "line": 52,
+    "op": "=",
+    "target": "this.p",
+    "value": "wqsVar"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/AddAssistantShortcutActivity.java",
+    "line": 212,
+    "op": "=",
+    "target": "this.p",
+    "value": "lqqVar"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/LauncherAppSettingsActivity.java",
+    "line": 124,
+    "op": "=",
+    "target": "this.p",
+    "value": "linearLayoutManager"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/Material3ManageCarsFragment.java",
+    "line": 103,
+    "op": "=",
+    "target": "this.p",
+    "value": "(android.support.v7.widget.RecyclerView) viewSwitcher.findViewById(com.google.android.projection.gearhead.R.id.recycler_view)"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/frx/SetupActivity.java",
+    "line": 60,
+    "op": "=",
+    "target": "this.p",
+    "value": "fsmController"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/HwrView.java",
+    "line": 77,
+    "op": "=",
+    "target": "this.p",
+    "value": "null"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/HwrView.java",
+    "line": 202,
+    "op": "=",
+    "target": "this.p",
+    "value": "new com.google.android.libraries.handwriting.base.Stroke()"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/HwrView.java",
+    "line": 230,
+    "op": "=",
+    "target": "this.p",
+    "value": "null"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 511,
+    "op": "=",
+    "target": "this.p",
+    "value": "true"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/sdk/CarAppLayout.java",
+    "line": 71,
+    "op": "=",
+    "target": "this.p",
+    "value": "lnxVar"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/LauncherAppSettingsActivity.java",
+    "line": 120,
+    "op": "=",
+    "target": "this.q",
+    "value": "vovVar"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/Material3ManageCarsFragment.java",
+    "line": 113,
+    "op": "=",
+    "target": "this.q",
+    "value": "(android.support.v7.widget.RecyclerView) viewSwitcher2.findViewById(com.google.android.projection.gearhead.R.id.recycler_view)"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/frx/SetupActivity.java",
+    "line": 114,
+    "op": "=",
+    "target": "this.q",
+    "value": "qybVar"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/frx/SetupActivity.java",
+    "line": 184,
+    "op": "=",
+    "target": "this.q",
+    "value": "a().f(\"fragment_main\")"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/frx/SetupActivity.java",
+    "line": 219,
+    "op": "=",
+    "target": "this.q",
+    "value": "this.r"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/HwrView.java",
+    "line": 78,
+    "op": "=",
+    "target": "this.q",
+    "value": "0"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 715,
+    "op": "=",
+    "target": "this.q",
+    "value": "z"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/sdk/CarAppLayout.java",
+    "line": 31,
+    "op": "=",
+    "target": "this.q",
+    "value": "new android.os.Handler()"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/devsettings/AppQualityTesterActivity.java",
+    "line": 34,
+    "op": "=",
+    "target": "this.r",
+    "value": "defpackage.wwu.a"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/AddAssistantShortcutActivity.java",
+    "line": 187,
+    "op": "=",
+    "target": "this.r",
+    "value": "(com.google.android.material.button.MaterialButton) findViewById(com.google.android.projection.gearhead.R.id.test)"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/LauncherAppSettingsActivity.java",
+    "line": 116,
+    "op": "=",
+    "target": "this.r",
+    "value": "new defpackage.voq(this)"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/Material3ManageCarsFragment.java",
+    "line": 109,
+    "op": "=",
+    "target": "this.r",
+    "value": "vozVar"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/frx/SetupActivity.java",
+    "line": 111,
+    "op": "=",
+    "target": "this.r",
+    "value": "qybVar"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/frx/SetupActivity.java",
+    "line": 220,
+    "op": "=",
+    "target": "this.r",
+    "value": "null"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/HwrView.java",
+    "line": 227,
+    "op": "=",
+    "target": "this.r",
+    "value": "valueOf"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/devsettings/AppQualityTesterActivity.java",
+    "line": 36,
+    "op": "=",
+    "target": "this.s",
+    "value": "voaVar"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/AddAssistantShortcutActivity.java",
+    "line": 189,
+    "op": "=",
+    "target": "this.s",
+    "value": "findViewById"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/LauncherAppSettingsActivity.java",
+    "line": 127,
+    "op": "=",
+    "target": "this.s",
+    "value": "new defpackage.jov(this, 5)"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/Material3ManageCarsFragment.java",
+    "line": 119,
+    "op": "=",
+    "target": "this.s",
+    "value": "vozVar2"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/frx/SetupActivity.java",
+    "line": 153,
+    "op": "=",
+    "target": "this.s",
+    "value": "new com.google.android.gms.carsetup.fsm.impl.ActivityResult(i2, intent)"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/frx/SetupActivity.java",
+    "line": 228,
+    "op": "=",
+    "target": "this.s",
+    "value": "null"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/HwrView.java",
+    "line": 61,
+    "op": "=",
+    "target": "this.s",
+    "value": "paint"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 544,
+    "op": "=",
+    "target": "this.s",
+    "value": "true"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 562,
+    "op": "=",
+    "target": "this.s",
+    "value": "false"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/devsettings/AppQualityTesterActivity.java",
+    "line": 39,
+    "op": "=",
+    "target": "this.t",
+    "value": "(android.widget.Spinner) findViewById(com.google.android.projection.gearhead.R.id.component_name_spinner)"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/LauncherAppSettingsActivity.java",
+    "line": 130,
+    "op": "=",
+    "target": "this.t",
+    "value": "pofVar"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/Material3ManageCarsFragment.java",
+    "line": 95,
+    "op": "=",
+    "target": "this.t",
+    "value": "veaVar.b()"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/frx/SetupActivity.java",
+    "line": 194,
+    "op": "=",
+    "target": "this.t",
+    "value": "true"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/frx/SetupActivity.java",
+    "line": 217,
+    "op": "=",
+    "target": "this.t",
+    "value": "false"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/HwrView.java",
+    "line": 50,
+    "op": "=",
+    "target": "this.t",
+    "value": "new android.graphics.Path()"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/HwrView.java",
+    "line": 262,
+    "op": "=",
+    "target": "this.t",
+    "value": "new android.graphics.Path()"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/HwrView.java",
+    "line": 272,
+    "op": "=",
+    "target": "this.t",
+    "value": "new android.graphics.Path()"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 546,
+    "op": "=",
+    "target": "this.t",
+    "value": "true"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 566,
+    "op": "=",
+    "target": "this.t",
+    "value": "false"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/devsettings/AppQualityTesterActivity.java",
+    "line": 40,
+    "op": "=",
+    "target": "this.u",
+    "value": "(android.widget.Button) findViewById(com.google.android.projection.gearhead.R.id.start_test_button)"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/Material3ManageCarsFragment.java",
+    "line": 162,
+    "op": "=",
+    "target": "this.u",
+    "value": "t(this.g.e())"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/HwrView.java",
+    "line": 246,
+    "op": "=",
+    "target": "this.u",
+    "value": "min"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 60,
+    "op": "=",
+    "target": "this.u",
+    "value": "new android.os.Handler()"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/devsettings/AppQualityTesterActivity.java",
+    "line": 41,
+    "op": "=",
+    "target": "this.v",
+    "value": "(android.widget.TextView) findViewById(com.google.android.projection.gearhead.R.id.component_name_text_view)"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/Material3ManageCarsFragment.java",
+    "line": 96,
+    "op": "=",
+    "target": "this.v",
+    "value": "new defpackage.accb(this, null)"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/HwrView.java",
+    "line": 247,
+    "op": "=",
+    "target": "this.v",
+    "value": "java.lang.Math.abs((int) ((abs - (this.e * min)) / 2.0f))"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/devsettings/AppQualityTesterActivity.java",
+    "line": 42,
+    "op": "=",
+    "target": "this.w",
+    "value": "(android.widget.TextView) findViewById(com.google.android.projection.gearhead.R.id.package_indicator_text_view)"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/HwrView.java",
+    "line": 248,
+    "op": "=",
+    "target": "this.w",
+    "value": "java.lang.Math.abs((int) ((abs2 - (this.f * this.u)) / 2.0f))"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/HwrView.java",
+    "line": 65,
+    "op": "=",
+    "target": "this.x",
+    "value": "defpackage.nlk.a(context, com.google.android.projection.gearhead.R.attr.gearheadDialerHandwritingDialpadBackground)"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/HwrView.java",
+    "line": 142,
+    "op": "=",
+    "target": "this.y",
+    "value": "1.0f - (this.q * 0.05f)"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/HwrView.java",
+    "line": 66,
+    "op": "=",
+    "target": "this.z",
+    "value": "new defpackage.vrm(defpackage.nlk.a(context, com.google.android.projection.gearhead.R.attr.gearheadDialerHandwritingDialpadStroke), this.x)"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 98,
+    "op": "=",
+    "target": "this.z",
+    "value": "paint3"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/AddAssistantShortcutActivity.java",
+    "line": 41,
+    "op": "=",
+    "target": "tiVar.a",
+    "value": "com.google.android.projection.gearhead.R.style.ThemeOverlay_Gearhead_M3_Settings"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/LauncherAppSettingsActivity.java",
+    "line": 106,
+    "op": "=",
+    "target": "tiVar.a",
+    "value": "com.google.android.projection.gearhead.R.style.ThemeOverlay_Gearhead_M3_Settings"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/LegalInfoActivity.java",
+    "line": 11,
+    "op": "=",
+    "target": "tiVar.a",
+    "value": "com.google.android.projection.gearhead.R.style.ThemeOverlay_Gearhead_M3_Settings"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/Material3SettingsActivity.java",
+    "line": 14,
+    "op": "=",
+    "target": "tiVar.a",
+    "value": "com.google.android.projection.gearhead.R.style.ThemeOverlay_Gearhead_M3_Settings"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/GhApplication.java",
+    "line": 15,
+    "op": "=",
+    "target": "umpVar.b",
+    "value": "new defpackage.uis(android.os.SystemClock.elapsedRealtime(), android.os.SystemClock.uptimeMillis())"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/GhApplication.java",
+    "line": 104,
+    "op": "=",
+    "target": "umpVar.c",
+    "value": "new defpackage.uis(android.os.SystemClock.elapsedRealtime(), android.os.SystemClock.uptimeMillis())"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/GhApplication.java",
+    "line": 48,
+    "op": "=",
+    "target": "uucVar.a",
+    "value": "new defpackage.stk(13)"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/GhApplication.java",
+    "line": 49,
+    "op": "=",
+    "target": "uucVar.d",
+    "value": "new defpackage.uqd(defpackage.wgz.a, 7)"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/GhApplication.java",
+    "line": 47,
+    "op": "=",
+    "target": "uucVar.f",
+    "value": "this"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/GhApplication.java",
+    "line": 379,
+    "op": "=",
+    "target": "vmz.a",
+    "value": "vmzVar"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/GhApplication.java",
+    "line": 381,
+    "op": "=",
+    "target": "vmzVar.b",
+    "value": "(defpackage.vru) stgVar.a()"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/GhApplication.java",
+    "line": 382,
+    "op": "=",
+    "target": "vmzVar.c",
+    "value": "(defpackage.vng) stgVar2.a()"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/GhApplication.java",
+    "line": 383,
+    "op": "=",
+    "target": "vmzVar.d",
+    "value": "(defpackage.vuk) stgVar3.a()"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/GhApplication.java",
+    "line": 385,
+    "op": "=",
+    "target": "vmzVar.e",
+    "value": "(defpackage.vty) stgVar4.a()"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/GhApplication.java",
+    "line": 384,
+    "op": "=",
+    "target": "vmzVar.f",
+    "value": "new defpackage.vee()"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/frx/SetupFsm.java",
+    "line": 637,
+    "op": "=",
+    "target": "vncVar.b",
+    "value": "null"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/AndroidAutoActivity.java",
+    "line": 96,
+    "op": "=",
+    "target": "vnuVar.e",
+    "value": "this.q"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 268,
+    "op": "=",
+    "target": "vscVar.e",
+    "value": "drawable"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 132,
+    "op": "=",
+    "target": "vscVar.h",
+    "value": "insetDrawable"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 168,
+    "op": "=",
+    "target": "vscVar.h",
+    "value": "insetDrawable2"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 222,
+    "op": "=",
+    "target": "vscVar.h",
+    "value": "null"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 192,
+    "op": "=",
+    "target": "vscVar.m",
+    "value": "new android.content.res.ColorStateList(iArr, new int[]{i7, i7, (vscVar.b.length() == 1 && java.lang.Character.isLetter(vscVar.b.charAt(0))) ? this.i.e : this.i.f})"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 174,
+    "op": "=",
+    "target": "vscVar.n",
+    "value": "20"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 178,
+    "op": "=",
+    "target": "vscVar.n",
+    "value": "32"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 184,
+    "op": "=",
+    "target": "vscVar.o",
+    "value": "font2"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 187,
+    "op": "=",
+    "target": "vscVar.o",
+    "value": "font"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 203,
+    "op": "=",
+    "target": "vskVar.e",
+    "value": "drawable"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 365,
+    "op": "=",
+    "target": "vskVar.e",
+    "value": "drawable"
+  },
+  {
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/AndroidAutoActivity.java",
+    "line": 23,
+    "op": "=",
+    "target": "vswVar.c",
+    "value": "vnpVar"
+  }
+]

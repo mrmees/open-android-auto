@@ -1,0 +1,732 @@
+{
+  "AVChannel": {
+    "apk_class": "vys",
+    "note": "Verified via wire dump",
+    "score": 1.0
+  },
+  "AVChannelSetupRequest": {
+    "apk_class": "wcc",
+    "note": "Codex \u2014 traced via icg media setup msgId 32768. Single enum field",
+    "score": 1.0
+  },
+  "AVChannelSetupResponse": {
+    "apk_class": "vxb",
+    "note": "Codex verified \u2014 3 fields (enum + int32 + repeated int32), our proto missing field 1 enum",
+    "score": 1.0
+  },
+  "AVChannelStartIndication": {
+    "apk_class": "wce",
+    "note": "Codex \u2014 traced via ikz/icg media start flow. 4 fields (3 ints + nested vyo)",
+    "score": 1.0
+  },
+  "AVInputChannel": {
+    "apk_class": "vyt",
+    "note": "Verified via wire dump",
+    "score": 1.0
+  },
+  "AVInputOpenRequest": {
+    "apk_class": "vyx",
+    "note": "Codex verified \u2014 4 fields (3 bools + int32), our proto only has 2",
+    "score": 1.0
+  },
+  "AVInputOpenResponse": {
+    "apk_class": "vyy",
+    "note": "Codex \u2014 traced via ice mic channel. 2 scalars + bitmask",
+    "score": 1.0
+  },
+  "AVMediaAckIndication": {
+    "apk_class": "vvk",
+    "note": "Codex \u2014 traced via qnx/icg msgId 32773. Ack counters + repeated detail",
+    "score": 1.0
+  },
+  "AbsoluteInputEvent": {
+    "apk_class": "wci",
+    "note": "Codex \u2014 traced via vxx\u2192wcj\u2192wci input path. 3 ints (x/y/action)",
+    "score": 1.0
+  },
+  "AbsoluteInputEvents": {
+    "apk_class": "wcj",
+    "note": "Codex \u2014 traced via vxx input container. Repeated wci + metadata",
+    "score": 1.0
+  },
+  "Accel": {
+    "apk_class": "vvj",
+    "note": "Codex batch + manual verify \u2014 wbo field 19, 3 int32 (x/y/z)",
+    "score": 1.0
+  },
+  "AdditionalVideoConfig": {
+    "apk_class": "wcm",
+    "note": "Codex \u2014 complex with inset sub-messages (vyb) + enum + repeated",
+    "score": 1.0
+  },
+  "AssistantFeatureFlags": {
+    "apk_class": "nlq",
+    "note": "Codex \u2014 many boolean feature toggle fields",
+    "score": 1.0
+  },
+  "AudioConfig": {
+    "apk_class": "vvp",
+    "note": "Field-perfect match",
+    "score": 1.0
+  },
+  "AudioFocusChannel": {
+    "apk_class": "vyr",
+    "note": "Same class as PhoneStatusChannel \u2014 empty marker message",
+    "score": 1.0
+  },
+  "AudioFocusRequest": {
+    "apk_class": "vvr",
+    "note": "Codex \u2014 traced via ply control sender type 18. Single enum field",
+    "score": 1.0
+  },
+  "AudioFocusResponse": {
+    "apk_class": "vvq",
+    "note": "Codex \u2014 traced via qmy/hys control parser type 19. Enum + bool",
+    "score": 1.0
+  },
+  "AuthCompleteIndication": {
+    "apk_class": "vvv",
+    "note": "Codex \u2014 traced via qmy/hys control parser type 4. Single int/enum field",
+    "score": 1.0
+  },
+  "BindingResponse": {
+    "apk_class": "vwb",
+    "note": "Codex \u2014 traced via qly BT channel. Status enum + alreadyPaired bool",
+    "score": 1.0
+  },
+  "BluetoothChannel": {
+    "apk_class": "vwc",
+    "note": "Verified via wire dump",
+    "score": 1.0
+  },
+  "BluetoothChannelConfig": {
+    "apk_class": "vwc",
+    "note": "Same class as BluetoothChannel \u2014 channel descriptor type",
+    "score": 1.0
+  },
+  "BluetoothPairingRequest": {
+    "apk_class": "kay",
+    "note": "Codex verified \u2014 field 1 is string not bytes",
+    "score": 1.0
+  },
+  "BluetoothPairingResponse": {
+    "apk_class": "xgq",
+    "note": "Codex verified \u2014 bool + enum + repeated enum",
+    "score": 1.0
+  },
+  "ButtonEvent": {
+    "apk_class": "vyi",
+    "note": "Codex verified \u2014 4 fields (2 ints + 2 bools), our proto only has 2",
+    "score": 1.0
+  },
+  "ButtonEvents": {
+    "apk_class": "vyj",
+    "note": "Codex \u2014 traced via vxx.e input report. Repeated vyi",
+    "score": 1.0
+  },
+  "CallAvailabilityStatus": {
+    "apk_class": "vwh",
+    "note": "Codex \u2014 NOT poe (collision). 1 bool field",
+    "score": 1.0
+  },
+  "ChannelDescriptor": {
+    "apk_class": "wbw",
+    "note": "Verified via wire dump 2026-02-25",
+    "score": 1.0
+  },
+  "ChannelOpenRequest": {
+    "apk_class": "vwx",
+    "note": "Codex \u2014 traced via hye control channel. 2 ints + bitmask",
+    "score": 1.0
+  },
+  "ChannelOpenResponse": {
+    "apk_class": "vwy",
+    "note": "Codex \u2014 traced via hya/qmi channel control. Single enum status",
+    "score": 1.0
+  },
+  "ChargingStationDetails": {
+    "apk_class": "vwz",
+    "note": "Manual APK trace \u2014 EV charging station details",
+    "score": 1.0
+  },
+  "Compass": {
+    "apk_class": "vxa",
+    "note": "Codex batch + manual verify \u2014 wbo field 2, 3 int32 fields",
+    "score": 1.0
+  },
+  "ConnectionConfiguration": {
+    "apk_class": "aajk",
+    "note": "Manual APK trace 2026-02-25 \u2014 oneof structure, corrected from flat fields",
+    "score": 1.0
+  },
+  "ConnectionFeatureFlags": {
+    "apk_class": "aaja",
+    "note": "Manual APK trace \u2014 1 bool field (was incorrectly double protocol_version=60)",
+    "score": 1.0
+  },
+  "ConnectionReservedConfig": {
+    "apk_class": "aaji",
+    "note": "Defined in ConnectionConfigurationData.proto \u2014 empty message",
+    "score": 1.0
+  },
+  "ConnectionSecurityConfig": {
+    "apk_class": "aajj",
+    "note": "Manual APK trace \u2014 1 enum field",
+    "score": 1.0
+  },
+  "ConnectionTransportConfig": {
+    "apk_class": "aajh",
+    "note": "Defined in ConnectionConfigurationData.proto \u2014 2 sub-message fields",
+    "score": 1.0
+  },
+  "ConnectionTuningConfig": {
+    "apk_class": "aajg",
+    "note": "Manual APK trace \u2014 uint32 + oneof with 4 sub-messages",
+    "score": 1.0
+  },
+  "DeviceInfo": {
+    "apk_class": "vve",
+    "note": "Codex \u2014 strings c-j + enum/int type field k",
+    "score": 1.0
+  },
+  "Diagnostics": {
+    "apk_class": "vxf",
+    "note": "wbo Object[] field 9 \u2014 NOT xss (collision). Confirmed via wbo trace",
+    "score": 1.0
+  },
+  "DistanceLabel": {
+    "apk_class": "xnc",
+    "note": "Codex via xnb \u2014 3 strings + int32",
+    "score": 1.0
+  },
+  "Door": {
+    "apk_class": "vxh",
+    "note": "wbo Object[] field 16 \u2014 3 fields, confirmed via wbo trace",
+    "score": 1.0
+  },
+  "DrivingStatus": {
+    "apk_class": "vxj",
+    "note": "Codex batch + manual verify \u2014 wbo field 13, 1 int32 field",
+    "score": 1.0
+  },
+  "Environment": {
+    "apk_class": "vxk",
+    "note": "wbo Object[] field 11 \u2014 confirmed via wbo trace",
+    "score": 1.0
+  },
+  "FuelLevel": {
+    "apk_class": "vxn",
+    "note": "wbo Object[] field 6 \u2014 3 fields, despite vxn being collision class for others",
+    "score": 1.0
+  },
+  "GPSLocation": {
+    "apk_class": "vyl",
+    "note": "Codex batch + manual verify \u2014 wbo field 1, 7 core fields",
+    "score": 1.0
+  },
+  "Gear": {
+    "apk_class": "vxp",
+    "note": "Codex batch + manual verify \u2014 wbo field 8, 1 enum field",
+    "score": 1.0
+  },
+  "Gyro": {
+    "apk_class": "vxt",
+    "note": "Codex batch + manual verify \u2014 wbo field 20, 3 int32 (x/y/z)",
+    "score": 1.0
+  },
+  "HVAC": {
+    "apk_class": "vxv",
+    "note": "wbo Object[] field 12 \u2014 NOT vxn (collision). Confirmed via wbo trace",
+    "score": 1.0
+  },
+  "HeadUnitInfo": {
+    "apk_class": "aacd",
+    "note": "Codex verified \u2014 8 string fields, our proto only has 5",
+    "score": 1.0
+  },
+  "InputChannel": {
+    "apk_class": "vya",
+    "note": "Verified via wire dump",
+    "score": 1.0
+  },
+  "InputChannelConfig": {
+    "apk_class": "vya",
+    "note": "Same class as InputChannel \u2014 channel descriptor type",
+    "score": 1.0
+  },
+  "InputChannelDescriptor": {
+    "apk_class": "wbw",
+    "note": "Same class as ChannelDescriptor",
+    "score": 1.0
+  },
+  "InputEventIndication": {
+    "apk_class": "vxx",
+    "note": "Codex verified \u2014 6 fields (int64 + 5 sub-messages), field 2 unused",
+    "score": 1.0
+  },
+  "KeyEvent": {
+    "apk_class": "vyi",
+    "note": "Codex \u2014 same class as ButtonEvent (same concept). 4 fields",
+    "score": 1.0
+  },
+  "Light": {
+    "apk_class": "vyk",
+    "note": "wbo Object[] field 17 \u2014 3 fields, confirmed via wbo trace",
+    "score": 1.0
+  },
+  "MediaInfoChannel": {
+    "apk_class": "vym",
+    "note": "Codex via wby \u2014 empty marker message",
+    "score": 1.0
+  },
+  "MediaPlaybackMetadata": {
+    "apk_class": "nmi",
+    "note": "Codex verified \u2014 6 fields but types differ from our proto",
+    "score": 1.0
+  },
+  "MediaPlaybackStatus": {
+    "apk_class": "ahdz",
+    "note": "Codex verified \u2014 many int32/int64 fields with gaps at 10/19",
+    "score": 1.0
+  },
+  "NavigationChannel": {
+    "apk_class": "vzr",
+    "note": "Verified via wire dump",
+    "score": 1.0
+  },
+  "NavigationChannelConfig": {
+    "apk_class": "vzr",
+    "note": "Same class as NavigationChannel \u2014 channel descriptor type",
+    "score": 1.0
+  },
+  "NavigationDestination": {
+    "apk_class": "vze",
+    "note": "Manual APK trace \u2014 destination with optional charging station",
+    "score": 1.0
+  },
+  "NavigationDistance": {
+    "apk_class": "xnb",
+    "note": "Codex verified \u2014 4 fields with sub-messages, gaps at 4-7",
+    "score": 1.0
+  },
+  "NavigationDistanceDisplay": {
+    "apk_class": "xnd",
+    "note": "Codex via xnb \u2014 2 strings + int64 + repeated xnc",
+    "score": 1.0
+  },
+  "NavigationDistanceInfo": {
+    "apk_class": "xng",
+    "note": "Codex via xnb \u2014 3 fields + oneof",
+    "score": 1.0
+  },
+  "NavigationDistanceValue": {
+    "apk_class": "xmw",
+    "note": "Codex via xnb \u2014 int64 + 2 int32",
+    "score": 1.0
+  },
+  "NavigationFocusRequest": {
+    "apk_class": "vza",
+    "note": "Codex \u2014 traced via hvz control sender type 13. Single enum",
+    "score": 1.0
+  },
+  "NavigationFocusResponse": {
+    "apk_class": "vyz",
+    "note": "Codex \u2014 traced via qmy/hys control parser type 14. Single enum",
+    "score": 1.0
+  },
+  "NavigationImageDimensions": {
+    "apk_class": "vzq",
+    "note": "Same as NavigationImageOptions \u2014 vzr field 3 references vzq.class",
+    "score": 1.0
+  },
+  "NavigationImageOptions": {
+    "apk_class": "vzq",
+    "note": "Codex \u2014 traced via hkx nav service-discovery. Width/height/colorDepth",
+    "score": 1.0
+  },
+  "NavigationLane": {
+    "apk_class": "vzj",
+    "note": "Manual APK trace \u2014 lane guidance container",
+    "score": 1.0
+  },
+  "NavigationLaneDirection": {
+    "apk_class": "vzi",
+    "note": "Manual APK trace \u2014 lane direction + recommended flag",
+    "score": 1.0
+  },
+  "NavigationManeuver": {
+    "apk_class": "vzk",
+    "note": "Manual APK trace \u2014 maneuver type + roundabout params",
+    "score": 1.0
+  },
+  "NavigationNotification": {
+    "apk_class": "vzo",
+    "note": "Manual APK trace 2026-02-25 \u2014 NOT utj (collision). Outer nav step message",
+    "score": 1.0
+  },
+  "NavigationRoadInfo": {
+    "apk_class": "vzc",
+    "note": "Manual APK trace \u2014 road name segments",
+    "score": 1.0
+  },
+  "NavigationState": {
+    "apk_class": "vzp",
+    "note": "Codex \u2014 traced via hkx/ikr nav status msgId 32771. Single enum state",
+    "score": 1.0
+  },
+  "NavigationStep": {
+    "apk_class": "vzu",
+    "note": "Manual APK trace \u2014 inner step of NavigationNotification",
+    "score": 1.0
+  },
+  "NavigationText": {
+    "apk_class": "vzn",
+    "note": "Manual APK trace \u2014 instruction text",
+    "score": 1.0
+  },
+  "NightMode": {
+    "apk_class": "vzw",
+    "note": "wbo Object[] field 10 \u2014 NOT poe (collision). Confirmed via wbo trace",
+    "score": 1.0
+  },
+  "NotificationChannel": {
+    "apk_class": "wah",
+    "note": "Empty message, confirmed",
+    "score": 1.0
+  },
+  "Odometer": {
+    "apk_class": "vzx",
+    "note": "Codex batch + manual verify \u2014 wbo field 5, 2 int32 fields",
+    "score": 1.0
+  },
+  "ParkingBrake": {
+    "apk_class": "wab",
+    "note": "wbo Object[] field 7 \u2014 NOT poe (collision). Confirmed via wbo trace",
+    "score": 1.0
+  },
+  "Passenger": {
+    "apk_class": "wac",
+    "note": "wbo Object[] field 15 \u2014 NOT poe (collision). Confirmed via wbo trace",
+    "score": 1.0
+  },
+  "PhoneCall": {
+    "apk_class": "wad",
+    "note": "Manual APK trace 2026-02-25 \u2014 inner message of PhoneStatusUpdate",
+    "score": 1.0
+  },
+  "PhoneConnectionConfig": {
+    "apk_class": "wdm",
+    "note": "Codex \u2014 same structure as WifiInfoResponse (SSID/BSSID/pass/security/AP-type)",
+    "score": 1.0
+  },
+  "PhoneStatusChannel": {
+    "apk_class": "vyr",
+    "note": "Empty message, confirmed",
+    "score": 1.0
+  },
+  "PhoneStatusUpdate": {
+    "apk_class": "waf",
+    "note": "Manual APK trace 2026-02-25 \u2014 outer message, repeated PhoneCall + uint32",
+    "score": 1.0
+  },
+  "PingConfiguration": {
+    "apk_class": "zyd",
+    "note": "Manual APK trace \u2014 2 fields (int64 + uint32), corrected from 4 fields",
+    "score": 1.0
+  },
+  "PingRequest": {
+    "apk_class": "wdo",
+    "note": "Codex \u2014 corrected from zrz (collision). 1 int64 field",
+    "score": 1.0
+  },
+  "PingResponse": {
+    "apk_class": "wdp",
+    "note": "Codex \u2014 corrected from zrz (collision). 1 int64 field",
+    "score": 1.0
+  },
+  "RPM": {
+    "apk_class": "wbn",
+    "note": "Codex batch + manual verify \u2014 wbo field 4, 1 int32 field",
+    "score": 1.0
+  },
+  "RadioChannel": {
+    "apk_class": "way",
+    "note": "Same as RadioChannelConfig \u2014 channel descriptor type",
+    "score": 1.0
+  },
+  "RadioChannelConfig": {
+    "apk_class": "way",
+    "note": "Codex via wby \u2014 1 repeated wax field",
+    "score": 1.0
+  },
+  "RelativeInputEvent": {
+    "apk_class": "wbl",
+    "note": "Codex \u2014 traced via hzp relative input. 2 ints + bitmask",
+    "score": 1.0
+  },
+  "RelativeInputEvents": {
+    "apk_class": "wbm",
+    "note": "Codex \u2014 traced via vxx.g input report. Repeated wbl",
+    "score": 1.0
+  },
+  "Sensor": {
+    "apk_class": "wbt",
+    "note": "Codex batch + manual verify \u2014 1 enum field (SensorType)",
+    "score": 1.0
+  },
+  "SensorChannel": {
+    "apk_class": "wbu",
+    "note": "Verified via wire dump",
+    "score": 1.0
+  },
+  "SensorChannelConfig": {
+    "apk_class": "wbu",
+    "note": "Same class as SensorChannel \u2014 channel descriptor type",
+    "score": 1.0
+  },
+  "SensorEventIndication": {
+    "apk_class": "wbo",
+    "note": "Outer sensor container \u2014 26 fields confirmed via Object[] array trace",
+    "score": 1.0
+  },
+  "SensorStartRequest": {
+    "apk_class": "war",
+    "note": "Codex verified \u2014 2 fields (enum + int64), our proto only has enum",
+    "score": 1.0
+  },
+  "SensorStartRequestMessage": {
+    "apk_class": "war",
+    "note": "Same as SensorStartRequest \u2014 naming variant",
+    "score": 1.0
+  },
+  "SensorStartResponse": {
+    "apk_class": "wbs",
+    "note": "Codex batch + manual verify \u2014 1 enum field (Status)",
+    "score": 1.0
+  },
+  "SensorStartResponseMessage": {
+    "apk_class": "wbs",
+    "note": "Same as SensorStartResponse \u2014 naming variant",
+    "score": 1.0
+  },
+  "ServiceDiscoveryRequest": {
+    "apk_class": "wbx",
+    "note": "Corrected from aahi (wrong match) via manual APK trace 2026-02-25",
+    "score": 1.0
+  },
+  "ServiceDiscoveryResponse": {
+    "apk_class": "wby",
+    "note": "Top-level response",
+    "score": 1.0
+  },
+  "SessionInfo": {
+    "apk_class": "vvf",
+    "note": "Corrected from utj (collision match) \u2014 vvf has 4 strings, traced from wbx field 6",
+    "score": 1.0
+  },
+  "ShutdownRequest": {
+    "apk_class": "vwf",
+    "note": "Codex \u2014 traced via qmy/hys case 15 ByeBye. Single enum reason",
+    "score": 1.0
+  },
+  "ShutdownResponse": {
+    "apk_class": "vwg",
+    "note": "Codex \u2014 empty message",
+    "score": 1.0
+  },
+  "Speed": {
+    "apk_class": "wcd",
+    "note": "Codex batch + manual verify \u2014 wbo field 3, 3-4 fields",
+    "score": 1.0
+  },
+  "SteeringWheel": {
+    "apk_class": "vxe",
+    "note": "wbo Object[] field 14 \u2014 NOT vxn (collision). Confirmed via wbo trace",
+    "score": 1.0
+  },
+  "TirePressure": {
+    "apk_class": "wcg",
+    "note": "wbo Object[] field 18 \u2014 NOT vzy (collision). Confirmed via wbo trace",
+    "score": 1.0
+  },
+  "TouchConfig": {
+    "apk_class": "vxn",
+    "note": "2/3 fields match (missing bool)",
+    "score": 0.8
+  },
+  "TouchCoordinate": {
+    "apk_class": "wci",
+    "note": "Same class as AbsoluteInputEvent/TouchLocation \u2014 per-point coords",
+    "score": 1.0
+  },
+  "TouchEvent": {
+    "apk_class": "wcj",
+    "note": "Codex verified \u2014 3 fields (repeated wci + int32 + enum), no timestamp",
+    "score": 1.0
+  },
+  "TouchLocation": {
+    "apk_class": "wci",
+    "note": "Codex \u2014 same class as AbsoluteInputEvent. Per-point x/y/z coords",
+    "score": 1.0
+  },
+  "TouchPadConfig": {
+    "apk_class": "vxy",
+    "note": "Codex via wby \u2014 8 fields (5 ints + 3 bools)",
+    "score": 1.0
+  },
+  "TouchScreenConfig": {
+    "apk_class": "vxz",
+    "note": "Codex via wby \u2014 3 fields (2 ints + enum). NOT vxn",
+    "score": 1.0
+  },
+  "VendorExtensionChannel": {
+    "apk_class": "wcv",
+    "note": "Codex verified \u2014 string + repeated int + bytes, not 3 strings",
+    "score": 1.0
+  },
+  "VersionFeatureFlags": {
+    "apk_class": "wdq",
+    "note": "Codex \u2014 string + int fields",
+    "score": 1.0
+  },
+  "VideoConfig": {
+    "apk_class": "wcz",
+    "note": "11 fields match",
+    "score": 1.0
+  },
+  "VideoFocusIndication": {
+    "apk_class": "wdb",
+    "note": "Codex verified \u2014 2 fields (enum + bool), our proto has 3",
+    "score": 1.0
+  },
+  "VideoFocusRequest": {
+    "apk_class": "wdd",
+    "note": "Codex \u2014 traced via idp video endpoint. Focus mode + reason enums",
+    "score": 1.0
+  },
+  "VideoInsets": {
+    "apk_class": "vyb",
+    "note": "Codex \u2014 4 ints (top/bottom/left/right)",
+    "score": 1.0
+  },
+  "VoiceSessionRequest": {
+    "apk_class": "wde",
+    "note": "Codex \u2014 1 enum/int field",
+    "score": 1.0
+  },
+  "WiFiProjectionChannel": {
+    "apk_class": "wdh",
+    "note": "Same class as WifiChannel \u2014 channel descriptor type",
+    "score": 1.0
+  },
+  "WifiChannel": {
+    "apk_class": "wdh",
+    "note": "Verified via wire dump",
+    "score": 1.0
+  },
+  "WifiDirectConfig": {
+    "apk_class": "wbb",
+    "note": "Codex verified \u2014 6 fields (4 strings + sub-message + int64)",
+    "score": 1.0
+  },
+  "WifiInfoRequest": {
+    "apk_class": "wdl",
+    "note": "Codex \u2014 corrected from zui. Empty message (not 1-field string)",
+    "score": 1.0
+  },
+  "WifiInfoResponse": {
+    "apk_class": "wdm",
+    "note": "Codex \u2014 corrected from zui. 5 fields (3 strings + 2 enums)",
+    "score": 1.0
+  },
+  "WifiSecurityResponse": {
+    "apk_class": "wan",
+    "note": "Codex verified \u2014 13 fields! Much larger than our proto",
+    "score": 1.0
+  },
+  "AVChannelMediaConfig": {
+    "apk_class": "vyo",
+    "note": "Codex + DB agent \u2014 AV channel media config, msg 0x8014 outbound, nested in wce field 4",
+    "score": 1.0
+  },
+  "AVChannelMediaStats": {
+    "apk_class": "vyu",
+    "note": "Codex + DB agent \u2014 AV channel media stats, msg 0x8014 inbound, 15 fields with vvo sub-messages",
+    "score": 1.0
+  },
+  "StatsEntry": {
+    "apk_class": "vvo",
+    "note": "DB agent \u2014 sub-message of AVChannelMediaStats, 4 int64 (avg/min/max/count)",
+    "score": 1.0
+  },
+  "NavigationTurnEvent": {
+    "apk_class": "vzm",
+    "note": "Codex + DB agent \u2014 nav turn event, msg 0x8004 on nav channel, 6 fields",
+    "score": 1.0
+  },
+  "WifiVersionRequest": {
+    "apk_class": "wdv",
+    "note": "Codex + DB agent \u2014 BT WiFi version request, RFCOMM ordinal 3, 6 fields",
+    "score": 1.0
+  },
+  "WifiVersionResponse": {
+    "apk_class": "wdw",
+    "note": "Codex + DB agent \u2014 BT WiFi version response, RFCOMM ordinal 4, 7 fields",
+    "score": 1.0
+  },
+  "WifiStartResponse": {
+    "apk_class": "wdu",
+    "note": "DB agent \u2014 BT WiFi start response, RFCOMM ordinal 6, 3 fields",
+    "score": 1.0
+  },
+  "WifiConnectStatus": {
+    "apk_class": "wdj",
+    "note": "DB agent \u2014 BT WiFi connect status (deprecated), RFCOMM ordinal 5, 2 fields",
+    "score": 1.0
+  },
+  "WifiPingRequest": {
+    "apk_class": "wdo",
+    "note": "DB agent \u2014 BT WiFi ping request, RFCOMM ordinal 7. NOTE: also matched as PingRequest",
+    "score": 1.0
+  },
+  "WifiPingResponse": {
+    "apk_class": "wdp",
+    "note": "DB agent \u2014 BT WiFi ping response, RFCOMM ordinal 8. NOTE: also matched as PingResponse",
+    "score": 1.0
+  },
+  "WifiConnectionRejection": {
+    "apk_class": "wdk",
+    "note": "DB agent \u2014 BT WiFi connection rejection, RFCOMM ordinal 9, 1 field",
+    "score": 1.0
+  },
+  "WifiSetupInfo": {
+    "apk_class": "wds",
+    "note": "DB agent \u2014 BT WiFi setup info, RFCOMM ordinal 10, 5 fields with wdi + wdq sub-messages",
+    "score": 1.0
+  },
+  "WifiNetworkInfo": {
+    "apk_class": "wdi",
+    "note": "DB agent \u2014 sub-message of WifiSetupInfo, WiFi creds with SecurityMode enum",
+    "score": 1.0
+  },
+  "RadioStation": {
+    "apk_class": "wax",
+    "note": "Codex + DB agent \u2014 radio station entry, 14 fields with wbe sub-message",
+    "score": 1.0
+  },
+  "RadioBand": {
+    "apk_class": "wbe",
+    "note": "DB agent \u2014 sub-message of RadioStation, 2 int32 (lower/upper bound)",
+    "score": 1.0
+  },
+  "NavigationDistanceOneof": {
+    "apk_class": "xne",
+    "note": "Codex via xnb hierarchy \u2014 wrapper for repeated NavigationDistanceEntry",
+    "score": 1.0
+  },
+  "NavigationDistanceEntry": {
+    "apk_class": "xnf",
+    "note": "Codex via xnb hierarchy \u2014 display + value + metadata",
+    "score": 1.0
+  }
+}

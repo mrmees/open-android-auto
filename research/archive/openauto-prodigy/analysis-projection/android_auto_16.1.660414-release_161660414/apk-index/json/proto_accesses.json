@@ -1,0 +1,3972 @@
+[
+  {
+    "accessor": "clearFlags",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/frx/SetupActivity.java",
+    "line": 65
+  },
+  {
+    "accessor": "getAbsoluteGravity",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/ParallaxHeader.java",
+    "line": 58
+  },
+  {
+    "accessor": "getAbsolutePath",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/feedback/FeedbackListActivity.java",
+    "line": 11
+  },
+  {
+    "accessor": "getAction",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/GhApplication.java",
+    "line": 55
+  },
+  {
+    "accessor": "getAction",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/DeveloperHeadUnitNetworkService.java",
+    "line": 97
+  },
+  {
+    "accessor": "getAction",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/DeveloperHeadUnitNetworkService.java",
+    "line": 97
+  },
+  {
+    "accessor": "getAction",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/HwrView.java",
+    "line": 192
+  },
+  {
+    "accessor": "getAction",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 616
+  },
+  {
+    "accessor": "getAction",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/sdk/CarAppLayout.java",
+    "line": 176
+  },
+  {
+    "accessor": "getAction",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/sdk/CarDrawerLayout.java",
+    "line": 21
+  },
+  {
+    "accessor": "getActionMasked",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 608
+  },
+  {
+    "accessor": "getActionMasked",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/rail/ui/SlidableLinearLayout.java",
+    "line": 48
+  },
+  {
+    "accessor": "getActionMasked",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/rail/ui/SlidableLinearLayout.java",
+    "line": 65
+  },
+  {
+    "accessor": "getActionMasked",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/rail/ui/SlidableLinearLayout.java",
+    "line": 80
+  },
+  {
+    "accessor": "getActionMasked",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/rail/ui/SlidableLinearLayout.java",
+    "line": 80
+  },
+  {
+    "accessor": "getActionMasked",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/rail/ui/SlidableLinearLayout.java",
+    "line": 83
+  },
+  {
+    "accessor": "getActivity",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/Material3ManageCarsFragment.java",
+    "line": 32
+  },
+  {
+    "accessor": "getActivity",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/Material3ManageCarsFragment.java",
+    "line": 60
+  },
+  {
+    "accessor": "getActivity",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/Material3ManageCarsFragment.java",
+    "line": 90
+  },
+  {
+    "accessor": "getActivity",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/Material3ManageCarsFragment.java",
+    "line": 98
+  },
+  {
+    "accessor": "getActivity",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/Material3ManageCarsFragment.java",
+    "line": 121
+  },
+  {
+    "accessor": "getActivity",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/Material3ManageCarsFragment.java",
+    "line": 154
+  },
+  {
+    "accessor": "getApplicationContext",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/GhApplication.java",
+    "line": 111
+  },
+  {
+    "accessor": "getApplicationContext",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/GhApplication.java",
+    "line": 128
+  },
+  {
+    "accessor": "getApplicationContext",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/feedback/FeedbackEditorActivity.java",
+    "line": 33
+  },
+  {
+    "accessor": "getApplicationContext",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/feedback/FeedbackEditorActivity.java",
+    "line": 33
+  },
+  {
+    "accessor": "getApplicationContext",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/feedback/FeedbackEditorActivity.java",
+    "line": 33
+  },
+  {
+    "accessor": "getApplicationContext",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/feedback/FeedbackEditorActivity.java",
+    "line": 36
+  },
+  {
+    "accessor": "getApplicationContext",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/LauncherAppSettingsActivity.java",
+    "line": 122
+  },
+  {
+    "accessor": "getApplicationLabel",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/frx/SetupFsm.java",
+    "line": 411
+  },
+  {
+    "accessor": "getAsLong",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/GhCrashHandler.java",
+    "line": 282
+  },
+  {
+    "accessor": "getAttributes",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/AndroidAutoActivity.java",
+    "line": 156
+  },
+  {
+    "accessor": "getAttributes",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/frx/SetupActivity.java",
+    "line": 180
+  },
+  {
+    "accessor": "getAxisValue",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 609
+  },
+  {
+    "accessor": "getBackground",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/rail/ui/ImageButtonWithAlphaFade.java",
+    "line": 42
+  },
+  {
+    "accessor": "getBoolean",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/devsettings/DeveloperSettingsActivity.java",
+    "line": 71
+  },
+  {
+    "accessor": "getBoolean",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/devsettings/DeveloperSettingsActivity.java",
+    "line": 251
+  },
+  {
+    "accessor": "getBoolean",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/AddAssistantShortcutActivity.java",
+    "line": 46
+  },
+  {
+    "accessor": "getBoolean",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/frx/SetupFsm.java",
+    "line": 38
+  },
+  {
+    "accessor": "getBoolean",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/frx/SetupFsm.java",
+    "line": 679
+  },
+  {
+    "accessor": "getBoolean",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/system/GhLifecycleService.java",
+    "line": 274
+  },
+  {
+    "accessor": "getBooleanExtra",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/AndroidAutoActivity.java",
+    "line": 139
+  },
+  {
+    "accessor": "getBooleanExtra",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/AndroidAutoActivity.java",
+    "line": 149
+  },
+  {
+    "accessor": "getBooleanExtra",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/LegalInfoActivity.java",
+    "line": 22
+  },
+  {
+    "accessor": "getBooleanExtra",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/Material3ManageCarsFragment.java",
+    "line": 122
+  },
+  {
+    "accessor": "getBooleanExtra",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/Material3ManageCarsFragment.java",
+    "line": 125
+  },
+  {
+    "accessor": "getBooleanExtra",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/frx/SetupActivity.java",
+    "line": 171
+  },
+  {
+    "accessor": "getBundleExtra",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/AddAssistantShortcutActivity.java",
+    "line": 197
+  },
+  {
+    "accessor": "getByteArray",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/AddAssistantShortcutActivity.java",
+    "line": 198
+  },
+  {
+    "accessor": "getByteArray",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/system/GhLifecycleService.java",
+    "line": 245
+  },
+  {
+    "accessor": "getByteArrayExtra",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/LauncherAppSettingsActivity.java",
+    "line": 81
+  },
+  {
+    "accessor": "getCanonicalName",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/SettingsSearchProvider.java",
+    "line": 28
+  },
+  {
+    "accessor": "getChildAt",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/ParallaxHeader.java",
+    "line": 48
+  },
+  {
+    "accessor": "getChildAt",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 370
+  },
+  {
+    "accessor": "getChildAt",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/rail/ui/SlidableLinearLayout.java",
+    "line": 29
+  },
+  {
+    "accessor": "getChildAt",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/rail/ui/SlidableLinearLayout.java",
+    "line": 54
+  },
+  {
+    "accessor": "getChildAt",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/rail/ui/SlidableLinearLayout.java",
+    "line": 67
+  },
+  {
+    "accessor": "getChildAt",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/sdk/CarAppLayout.java",
+    "line": 139
+  },
+  {
+    "accessor": "getChildAt",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/sdk/CarDrawerLayout.java",
+    "line": 47
+  },
+  {
+    "accessor": "getChildCount",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/ParallaxHeader.java",
+    "line": 46
+  },
+  {
+    "accessor": "getChildCount",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 368
+  },
+  {
+    "accessor": "getChildCount",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/rail/ui/SlidableLinearLayout.java",
+    "line": 28
+  },
+  {
+    "accessor": "getChildCount",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/rail/ui/SlidableLinearLayout.java",
+    "line": 51
+  },
+  {
+    "accessor": "getChildCount",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/rail/ui/SlidableLinearLayout.java",
+    "line": 66
+  },
+  {
+    "accessor": "getChildCount",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/sdk/CarAppLayout.java",
+    "line": 136
+  },
+  {
+    "accessor": "getChildCount",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/sdk/CarDrawerLayout.java",
+    "line": 45
+  },
+  {
+    "accessor": "getClass",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/GhApplication.java",
+    "line": 149
+  },
+  {
+    "accessor": "getClass",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/GhApplication.java",
+    "line": 155
+  },
+  {
+    "accessor": "getClass",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/GhApplication.java",
+    "line": 338
+  },
+  {
+    "accessor": "getClass",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/GhCrashHandler.java",
+    "line": 16
+  },
+  {
+    "accessor": "getClass",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/GhCrashHandler.java",
+    "line": 20
+  },
+  {
+    "accessor": "getClass",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/GhCrashHandler.java",
+    "line": 119
+  },
+  {
+    "accessor": "getClass",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/GhCrashHandler.java",
+    "line": 255
+  },
+  {
+    "accessor": "getClass",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/AddAssistantShortcutActivity.java",
+    "line": 91
+  },
+  {
+    "accessor": "getClass",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/AddAssistantShortcutActivity.java",
+    "line": 98
+  },
+  {
+    "accessor": "getClass",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/AddAssistantShortcutActivity.java",
+    "line": 106
+  },
+  {
+    "accessor": "getClass",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/AddAssistantShortcutActivity.java",
+    "line": 114
+  },
+  {
+    "accessor": "getClass",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/AddAssistantShortcutActivity.java",
+    "line": 146
+  },
+  {
+    "accessor": "getClass",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/AddAssistantShortcutActivity.java",
+    "line": 153
+  },
+  {
+    "accessor": "getClass",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/AddAssistantShortcutActivity.java",
+    "line": 161
+  },
+  {
+    "accessor": "getClass",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/AddAssistantShortcutActivity.java",
+    "line": 169
+  },
+  {
+    "accessor": "getClass",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/LauncherAppSettingsActivity.java",
+    "line": 55
+  },
+  {
+    "accessor": "getClass",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/LauncherAppSettingsActivity.java",
+    "line": 64
+  },
+  {
+    "accessor": "getClass",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/LauncherAppSettingsActivity.java",
+    "line": 72
+  },
+  {
+    "accessor": "getClass",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/Material3ManageCarsFragment.java",
+    "line": 99
+  },
+  {
+    "accessor": "getClass",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/frx/SetupActivity.java",
+    "line": 97
+  },
+  {
+    "accessor": "getClass",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/frx/SetupActivity.java",
+    "line": 107
+  },
+  {
+    "accessor": "getClass",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 86
+  },
+  {
+    "accessor": "getClass",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 87
+  },
+  {
+    "accessor": "getClass",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 88
+  },
+  {
+    "accessor": "getClass",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 114
+  },
+  {
+    "accessor": "getClass",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 119
+  },
+  {
+    "accessor": "getClass",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 124
+  },
+  {
+    "accessor": "getClass",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 140
+  },
+  {
+    "accessor": "getClass",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 145
+  },
+  {
+    "accessor": "getClass",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 155
+  },
+  {
+    "accessor": "getClass",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 208
+  },
+  {
+    "accessor": "getClass",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 213
+  },
+  {
+    "accessor": "getClass",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 224
+  },
+  {
+    "accessor": "getClass",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 228
+  },
+  {
+    "accessor": "getClass",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 235
+  },
+  {
+    "accessor": "getClass",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 241
+  },
+  {
+    "accessor": "getClass",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 243
+  },
+  {
+    "accessor": "getClass",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 246
+  },
+  {
+    "accessor": "getClass",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 248
+  },
+  {
+    "accessor": "getClass",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 262
+  },
+  {
+    "accessor": "getClass",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/sdk/CheckboxWrapperView.java",
+    "line": 11
+  },
+  {
+    "accessor": "getClass",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/sdk/CheckboxWrapperView.java",
+    "line": 11
+  },
+  {
+    "accessor": "getClass",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/service/CarSystemUiControllerService.java",
+    "line": 16
+  },
+  {
+    "accessor": "getClass",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/system/GhLifecycleService.java",
+    "line": 70
+  },
+  {
+    "accessor": "getClass",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/system/GhLifecycleService.java",
+    "line": 75
+  },
+  {
+    "accessor": "getClass",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/system/GhLifecycleService.java",
+    "line": 128
+  },
+  {
+    "accessor": "getClass",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/system/GhLifecycleService.java",
+    "line": 167
+  },
+  {
+    "accessor": "getClass",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/system/GhLifecycleService.java",
+    "line": 230
+  },
+  {
+    "accessor": "getClass",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/system/GhLifecycleService.java",
+    "line": 235
+  },
+  {
+    "accessor": "getClass",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/system/GhLifecycleService.java",
+    "line": 283
+  },
+  {
+    "accessor": "getClass",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/system/RecoveryLifecycleService.java",
+    "line": 19
+  },
+  {
+    "accessor": "getClass",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/sdk/demand/Template.java",
+    "line": 16
+  },
+  {
+    "accessor": "getClassLoader",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/sdk/CheckboxWrapperView.java",
+    "line": 11
+  },
+  {
+    "accessor": "getClassLoader",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/sdk/CheckboxWrapperView.java",
+    "line": 11
+  },
+  {
+    "accessor": "getClassLoader",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/system/GhLifecycleService.java",
+    "line": 270
+  },
+  {
+    "accessor": "getClassLoader",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/system/RecoveryLifecycleService.java",
+    "line": 51
+  },
+  {
+    "accessor": "getClassLoader",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/sdk/demand/Template.java",
+    "line": 16
+  },
+  {
+    "accessor": "getClassName",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/GhCrashHandler.java",
+    "line": 108
+  },
+  {
+    "accessor": "getColor",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 77
+  },
+  {
+    "accessor": "getColor",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 77
+  },
+  {
+    "accessor": "getColor",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 100
+  },
+  {
+    "accessor": "getColor",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 100
+  },
+  {
+    "accessor": "getColor",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/sdk/CarAppLayout.java",
+    "line": 197
+  },
+  {
+    "accessor": "getColor",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/sdk/CarAppLayout.java",
+    "line": 198
+  },
+  {
+    "accessor": "getColor",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/sdk/CarAppLayout.java",
+    "line": 199
+  },
+  {
+    "accessor": "getColor",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/service/GearheadService.java",
+    "line": 51
+  },
+  {
+    "accessor": "getConfiguration",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/system/GhLifecycleService.java",
+    "line": 119
+  },
+  {
+    "accessor": "getConstructor",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/frx/SetupActivity.java",
+    "line": 32
+  },
+  {
+    "accessor": "getContentResolver",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/GhApplication.java",
+    "line": 115
+  },
+  {
+    "accessor": "getContentView",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/sdk/SdkEntry.java",
+    "line": 30
+  },
+  {
+    "accessor": "getContentView2",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/sdk/SdkEntry.java",
+    "line": 34
+  },
+  {
+    "accessor": "getContext",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/SettingsSearchProvider.java",
+    "line": 40
+  },
+  {
+    "accessor": "getContext",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 106
+  },
+  {
+    "accessor": "getContext",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 107
+  },
+  {
+    "accessor": "getContext",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 114
+  },
+  {
+    "accessor": "getContext",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 115
+  },
+  {
+    "accessor": "getContext",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 116
+  },
+  {
+    "accessor": "getContext",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 117
+  },
+  {
+    "accessor": "getContext",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 278
+  },
+  {
+    "accessor": "getContext",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 320
+  },
+  {
+    "accessor": "getContext",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 325
+  },
+  {
+    "accessor": "getContext",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 358
+  },
+  {
+    "accessor": "getContext",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 362
+  },
+  {
+    "accessor": "getContext",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 362
+  },
+  {
+    "accessor": "getContext",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 362
+  },
+  {
+    "accessor": "getContext",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 362
+  },
+  {
+    "accessor": "getContext",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 362
+  },
+  {
+    "accessor": "getContext",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 362
+  },
+  {
+    "accessor": "getContext",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 362
+  },
+  {
+    "accessor": "getContext",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 362
+  },
+  {
+    "accessor": "getContext",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/sdk/CarAppLayout.java",
+    "line": 32
+  },
+  {
+    "accessor": "getContext",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/sdk/CarAppLayout.java",
+    "line": 197
+  },
+  {
+    "accessor": "getContext",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/sdk/CarAppLayout.java",
+    "line": 198
+  },
+  {
+    "accessor": "getContext",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/sdk/CarAppLayout.java",
+    "line": 199
+  },
+  {
+    "accessor": "getContext",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/sdk/KeyboardSearchLayout.java",
+    "line": 11
+  },
+  {
+    "accessor": "getContext",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/sdk/KeyboardSearchLayout.java",
+    "line": 41
+  },
+  {
+    "accessor": "getData",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/feedback/FeedbackEditorActivity.java",
+    "line": 28
+  },
+  {
+    "accessor": "getData",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/LauncherAppSettingsActivity.java",
+    "line": 39
+  },
+  {
+    "accessor": "getDefaultUncaughtExceptionHandler",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/GhCrashHandler.java",
+    "line": 28
+  },
+  {
+    "accessor": "getDimensionPixelSize",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/AndroidAutoActivity.java",
+    "line": 157
+  },
+  {
+    "accessor": "getDimensionPixelSize",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/Material3ManageCarsFragment.java",
+    "line": 42
+  },
+  {
+    "accessor": "getDimensionPixelSize",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 30
+  },
+  {
+    "accessor": "getDimensionPixelSize",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 31
+  },
+  {
+    "accessor": "getDimensionPixelSize",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 122
+  },
+  {
+    "accessor": "getDimensionPixelSize",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 127
+  },
+  {
+    "accessor": "getDimensionPixelSize",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 153
+  },
+  {
+    "accessor": "getDimensionPixelSize",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 158
+  },
+  {
+    "accessor": "getDimensionPixelSize",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 63
+  },
+  {
+    "accessor": "getDimensionPixelSize",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 63
+  },
+  {
+    "accessor": "getDimensionPixelSize",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 65
+  },
+  {
+    "accessor": "getDimensionPixelSize",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 65
+  },
+  {
+    "accessor": "getDimensionPixelSize",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 66
+  },
+  {
+    "accessor": "getDimensionPixelSize",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 67
+  },
+  {
+    "accessor": "getDimensionPixelSize",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 67
+  },
+  {
+    "accessor": "getDimensionPixelSize",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 67
+  },
+  {
+    "accessor": "getDimensionPixelSize",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 69
+  },
+  {
+    "accessor": "getDimensionPixelSize",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 71
+  },
+  {
+    "accessor": "getDimensionPixelSize",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 71
+  },
+  {
+    "accessor": "getDimensionPixelSize",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 73
+  },
+  {
+    "accessor": "getDimensionPixelSize",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 73
+  },
+  {
+    "accessor": "getDimensionPixelSize",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 73
+  },
+  {
+    "accessor": "getDimensionPixelSize",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 75
+  },
+  {
+    "accessor": "getDimensionPixelSize",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 75
+  },
+  {
+    "accessor": "getDimensionPixelSize",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 76
+  },
+  {
+    "accessor": "getDimensionPixelSize",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 94
+  },
+  {
+    "accessor": "getDimensionPixelSize",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 94
+  },
+  {
+    "accessor": "getDimensionPixelSize",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 102
+  },
+  {
+    "accessor": "getDimensionPixelSize",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 102
+  },
+  {
+    "accessor": "getDimensionPixelSize",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 109
+  },
+  {
+    "accessor": "getDimensionPixelSize",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 110
+  },
+  {
+    "accessor": "getDimensionPixelSize",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/sdk/CarAppLayout.java",
+    "line": 76
+  },
+  {
+    "accessor": "getDimensionPixelSize",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/sdk/CarAppLayout.java",
+    "line": 78
+  },
+  {
+    "accessor": "getDisplayMetrics",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 108
+  },
+  {
+    "accessor": "getDisplayMetrics",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 110
+  },
+  {
+    "accessor": "getDrawable",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/AddAssistantShortcutActivity.java",
+    "line": 51
+  },
+  {
+    "accessor": "getDrawable",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/AddAssistantShortcutActivity.java",
+    "line": 52
+  },
+  {
+    "accessor": "getDrawable",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 108
+  },
+  {
+    "accessor": "getDrawable",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 112
+  },
+  {
+    "accessor": "getDrawable",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 113
+  },
+  {
+    "accessor": "getDrawable",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 118
+  },
+  {
+    "accessor": "getDrawable",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 123
+  },
+  {
+    "accessor": "getDrawable",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 138
+  },
+  {
+    "accessor": "getDrawable",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 139
+  },
+  {
+    "accessor": "getDrawable",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 144
+  },
+  {
+    "accessor": "getDrawable",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 154
+  },
+  {
+    "accessor": "getDrawable",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 200
+  },
+  {
+    "accessor": "getDrawable",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 200
+  },
+  {
+    "accessor": "getDrawable",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 200
+  },
+  {
+    "accessor": "getDrawable",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 200
+  },
+  {
+    "accessor": "getDrawable",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 200
+  },
+  {
+    "accessor": "getDrawable",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 200
+  },
+  {
+    "accessor": "getDrawable",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 207
+  },
+  {
+    "accessor": "getDrawable",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 212
+  },
+  {
+    "accessor": "getDrawable",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 223
+  },
+  {
+    "accessor": "getDrawable",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 227
+  },
+  {
+    "accessor": "getDrawable",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 234
+  },
+  {
+    "accessor": "getDrawable",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 240
+  },
+  {
+    "accessor": "getDrawable",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 245
+  },
+  {
+    "accessor": "getDrawable",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 254
+  },
+  {
+    "accessor": "getDrawable",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 256
+  },
+  {
+    "accessor": "getDrawable",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 258
+  },
+  {
+    "accessor": "getDrawable",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 260
+  },
+  {
+    "accessor": "getDrawable",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 132
+  },
+  {
+    "accessor": "getDrawable",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 327
+  },
+  {
+    "accessor": "getDrawable",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 332
+  },
+  {
+    "accessor": "getDrawable",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 339
+  },
+  {
+    "accessor": "getDrawable",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 344
+  },
+  {
+    "accessor": "getDrawable",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 360
+  },
+  {
+    "accessor": "getDrawable",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 360
+  },
+  {
+    "accessor": "getDrawable",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 360
+  },
+  {
+    "accessor": "getDrawable",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 360
+  },
+  {
+    "accessor": "getDrawable",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 360
+  },
+  {
+    "accessor": "getDrawable",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 360
+  },
+  {
+    "accessor": "getDrawable",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 362
+  },
+  {
+    "accessor": "getDrawable",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 362
+  },
+  {
+    "accessor": "getDrawable",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 362
+  },
+  {
+    "accessor": "getDrawable",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 362
+  },
+  {
+    "accessor": "getEpochSecond",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/GhCrashHandler.java",
+    "line": 140
+  },
+  {
+    "accessor": "getExternalFilesDir",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/devsettings/DeveloperSettingsActivity.java",
+    "line": 106
+  },
+  {
+    "accessor": "getExternalFilesDir",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/devsettings/DeveloperSettingsActivity.java",
+    "line": 137
+  },
+  {
+    "accessor": "getFileName",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/GhCrashHandler.java",
+    "line": 109
+  },
+  {
+    "accessor": "getFilesDir",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/GhCrashHandler.java",
+    "line": 137
+  },
+  {
+    "accessor": "getFloat",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/rail/ui/ImageButtonWithAlphaFade.java",
+    "line": 22
+  },
+  {
+    "accessor": "getFloat",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/rail/ui/ImageButtonWithAlphaFade.java",
+    "line": 23
+  },
+  {
+    "accessor": "getFont",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 183
+  },
+  {
+    "accessor": "getFont",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 186
+  },
+  {
+    "accessor": "getFragmentContainerId",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/sdk/SdkEntry.java",
+    "line": 38
+  },
+  {
+    "accessor": "getHeight",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 222
+  },
+  {
+    "accessor": "getHeight",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 230
+  },
+  {
+    "accessor": "getHeight",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 235
+  },
+  {
+    "accessor": "getHeight",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 400
+  },
+  {
+    "accessor": "getHeight",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 418
+  },
+  {
+    "accessor": "getHeight",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/rail/ui/SlidableLinearLayout.java",
+    "line": 22
+  },
+  {
+    "accessor": "getHistoricalProcessExitReasons",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/system/RecoveryLifecycleService.java",
+    "line": 20
+  },
+  {
+    "accessor": "getId",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 68
+  },
+  {
+    "accessor": "getId",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 89
+  },
+  {
+    "accessor": "getInputStream",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/DeveloperHeadUnitNetworkService.java",
+    "line": 36
+  },
+  {
+    "accessor": "getInt",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/GhCrashHandler.java",
+    "line": 195
+  },
+  {
+    "accessor": "getInt",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/rail/ui/ImageButtonWithAlphaFade.java",
+    "line": 21
+  },
+  {
+    "accessor": "getInt",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/system/GhLifecycleService.java",
+    "line": 275
+  },
+  {
+    "accessor": "getInt",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/system/RecoveryLifecycleService.java",
+    "line": 55
+  },
+  {
+    "accessor": "getInt",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/system/RecoveryLifecycleService.java",
+    "line": 56
+  },
+  {
+    "accessor": "getIntExtra",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/frx/SetupFsm.java",
+    "line": 300
+  },
+  {
+    "accessor": "getIntExtra",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/frx/SetupFsm.java",
+    "line": 305
+  },
+  {
+    "accessor": "getInteger",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 147
+  },
+  {
+    "accessor": "getInteger",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 172
+  },
+  {
+    "accessor": "getInteger",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 173
+  },
+  {
+    "accessor": "getInteger",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 182
+  },
+  {
+    "accessor": "getInteger",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 198
+  },
+  {
+    "accessor": "getInteger",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 205
+  },
+  {
+    "accessor": "getInteger",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 219
+  },
+  {
+    "accessor": "getInteger",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 238
+  },
+  {
+    "accessor": "getInteger",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 253
+  },
+  {
+    "accessor": "getInteger",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 255
+  },
+  {
+    "accessor": "getInteger",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 255
+  },
+  {
+    "accessor": "getInteger",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 257
+  },
+  {
+    "accessor": "getInteger",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 259
+  },
+  {
+    "accessor": "getInteger",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 278
+  },
+  {
+    "accessor": "getInteger",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 356
+  },
+  {
+    "accessor": "getInteger",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 362
+  },
+  {
+    "accessor": "getInteger",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 362
+  },
+  {
+    "accessor": "getInteger",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 362
+  },
+  {
+    "accessor": "getInteger",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 362
+  },
+  {
+    "accessor": "getInteger",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/rail/ui/ImageButtonWithAlphaFade.java",
+    "line": 24
+  },
+  {
+    "accessor": "getInteger",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/rail/ui/ImageButtonWithAlphaFade.java",
+    "line": 30
+  },
+  {
+    "accessor": "getIntent",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/AndroidAutoActivity.java",
+    "line": 138
+  },
+  {
+    "accessor": "getIntent",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/AndroidAutoActivity.java",
+    "line": 147
+  },
+  {
+    "accessor": "getIntent",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/AndroidAutoActivity.java",
+    "line": 160
+  },
+  {
+    "accessor": "getIntent",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/RequestManifestPermissionsActivity.java",
+    "line": 8
+  },
+  {
+    "accessor": "getIntent",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/feedback/FeedbackEditorActivity.java",
+    "line": 28
+  },
+  {
+    "accessor": "getIntent",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/AddAssistantShortcutActivity.java",
+    "line": 195
+  },
+  {
+    "accessor": "getIntent",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/LegalInfoActivity.java",
+    "line": 8
+  },
+  {
+    "accessor": "getIntent",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/LegalInfoActivity.java",
+    "line": 17
+  },
+  {
+    "accessor": "getIntent",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/LegalInfoActivity.java",
+    "line": 21
+  },
+  {
+    "accessor": "getIntent",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/Material3ManageCarsFragment.java",
+    "line": 121
+  },
+  {
+    "accessor": "getIntent",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/Material3SettingsActivity.java",
+    "line": 26
+  },
+  {
+    "accessor": "getIntent",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/SettingsActivity.java",
+    "line": 63
+  },
+  {
+    "accessor": "getIntent",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/frx/SetupActivity.java",
+    "line": 167
+  },
+  {
+    "accessor": "getIntent",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/frx/SetupActivity.java",
+    "line": 170
+  },
+  {
+    "accessor": "getIntrinsicHeight",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 213
+  },
+  {
+    "accessor": "getIntrinsicWidth",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 212
+  },
+  {
+    "accessor": "getItemId",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/AndroidAutoActivity.java",
+    "line": 123
+  },
+  {
+    "accessor": "getItemId",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/AddAssistantShortcutActivity.java",
+    "line": 235
+  },
+  {
+    "accessor": "getItemId",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/LauncherAppSettingsActivity.java",
+    "line": 136
+  },
+  {
+    "accessor": "getItemId",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/LegalInfoActivity.java",
+    "line": 30
+  },
+  {
+    "accessor": "getItemId",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/Material3ManageCarsFragment.java",
+    "line": 133
+  },
+  {
+    "accessor": "getItemId",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/Material3SettingsActivity.java",
+    "line": 48
+  },
+  {
+    "accessor": "getItemId",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/SettingsActivity.java",
+    "line": 63
+  },
+  {
+    "accessor": "getKey",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/devsettings/DeveloperSettingsActivity.java",
+    "line": 75
+  },
+  {
+    "accessor": "getKey",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/devsettings/DeveloperSettingsActivity.java",
+    "line": 105
+  },
+  {
+    "accessor": "getKey",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/devsettings/DeveloperSettingsActivity.java",
+    "line": 124
+  },
+  {
+    "accessor": "getKey",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/devsettings/DeveloperSettingsActivity.java",
+    "line": 177
+  },
+  {
+    "accessor": "getKey",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/devsettings/DeveloperSettingsActivity.java",
+    "line": 185
+  },
+  {
+    "accessor": "getKey",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/devsettings/DeveloperSettingsActivity.java",
+    "line": 193
+  },
+  {
+    "accessor": "getKey",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/devsettings/DeveloperSettingsActivity.java",
+    "line": 201
+  },
+  {
+    "accessor": "getKey",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/devsettings/DeveloperSettingsActivity.java",
+    "line": 209
+  },
+  {
+    "accessor": "getKey",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/devsettings/DeveloperSettingsActivity.java",
+    "line": 217
+  },
+  {
+    "accessor": "getKey",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/devsettings/DeveloperSettingsActivity.java",
+    "line": 219
+  },
+  {
+    "accessor": "getKey",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/EngineerSettingsActivity.java",
+    "line": 42
+  },
+  {
+    "accessor": "getKeyCode",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 678
+  },
+  {
+    "accessor": "getKeyCode",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 690
+  },
+  {
+    "accessor": "getKeyCode",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 706
+  },
+  {
+    "accessor": "getKeyCode",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/sdk/CarAppLayout.java",
+    "line": 164
+  },
+  {
+    "accessor": "getKeyCode",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/sdk/CarAppLayout.java",
+    "line": 170
+  },
+  {
+    "accessor": "getKeyCode",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/sdk/CarAppLayout.java",
+    "line": 179
+  },
+  {
+    "accessor": "getKeyboardSearchView",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/sdk/SdkEntry.java",
+    "line": 42
+  },
+  {
+    "accessor": "getLayoutDirection",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/ParallaxHeader.java",
+    "line": 58
+  },
+  {
+    "accessor": "getLayoutParams",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/ParallaxHeader.java",
+    "line": 51
+  },
+  {
+    "accessor": "getLayoutParams",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/sdk/CarAppLayout.java",
+    "line": 75
+  },
+  {
+    "accessor": "getLayoutTransition",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/sdk/CarAppLayout.java",
+    "line": 39
+  },
+  {
+    "accessor": "getLayoutTransition",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/sdk/CarAppLayout.java",
+    "line": 43
+  },
+  {
+    "accessor": "getLayoutTransition",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/sdk/CarAppLayout.java",
+    "line": 44
+  },
+  {
+    "accessor": "getLayoutTransition",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/sdk/CarAppLayout.java",
+    "line": 45
+  },
+  {
+    "accessor": "getLayoutTransition",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/sdk/CarAppLayout.java",
+    "line": 46
+  },
+  {
+    "accessor": "getLayoutTransition",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/sdk/CarAppLayout.java",
+    "line": 47
+  },
+  {
+    "accessor": "getLineNumber",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/GhCrashHandler.java",
+    "line": 110
+  },
+  {
+    "accessor": "getListView",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/devsettings/DeveloperSettingsActivity.java",
+    "line": 220
+  },
+  {
+    "accessor": "getListView",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/EngineerSettingsActivity.java",
+    "line": 19
+  },
+  {
+    "accessor": "getLocationOnScreen",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/rail/ui/SlidableLinearLayout.java",
+    "line": 20
+  },
+  {
+    "accessor": "getLong",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/system/RecoveryLifecycleService.java",
+    "line": 57
+  },
+  {
+    "accessor": "getLongPressTimeout",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 547
+  },
+  {
+    "accessor": "getLongPressTimeout",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/rail/ui/SlidableLinearLayout.java",
+    "line": 11
+  },
+  {
+    "accessor": "getMainLooper",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/GhCrashHandler.java",
+    "line": 188
+  },
+  {
+    "accessor": "getMainLooper",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/devsettings/AppQualityTesterActivity.java",
+    "line": 6
+  },
+  {
+    "accessor": "getMeasuredHeight",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/ParallaxHeader.java",
+    "line": 53
+  },
+  {
+    "accessor": "getMeasuredWidth",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/ParallaxHeader.java",
+    "line": 52
+  },
+  {
+    "accessor": "getMenuInflater",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/AndroidAutoActivity.java",
+    "line": 105
+  },
+  {
+    "accessor": "getMenuInflater",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/SettingsActivity.java",
+    "line": 21
+  },
+  {
+    "accessor": "getMessage",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/DeveloperHeadUnitNetworkService.java",
+    "line": 52
+  },
+  {
+    "accessor": "getMethodName",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/GhCrashHandler.java",
+    "line": 111
+  },
+  {
+    "accessor": "getName",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/GhCrashHandler.java",
+    "line": 248
+  },
+  {
+    "accessor": "getName",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/Material3SettingsActivity.java",
+    "line": 5
+  },
+  {
+    "accessor": "getName",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/Material3SettingsActivity.java",
+    "line": 6
+  },
+  {
+    "accessor": "getNewHttpClient",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/HwrView.java",
+    "line": 112
+  },
+  {
+    "accessor": "getOutputStream",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/DeveloperHeadUnitNetworkService.java",
+    "line": 37
+  },
+  {
+    "accessor": "getPackageInfo",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/frx/SetupFsm.java",
+    "line": 411
+  },
+  {
+    "accessor": "getPackageManager",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/GhApplication.java",
+    "line": 97
+  },
+  {
+    "accessor": "getPackageManager",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/GhApplication.java",
+    "line": 319
+  },
+  {
+    "accessor": "getPackageManager",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/GhCrashHandler.java",
+    "line": 273
+  },
+  {
+    "accessor": "getPackageManager",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/RequestManifestPermissionsActivity.java",
+    "line": 49
+  },
+  {
+    "accessor": "getPackageManager",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/devsettings/AppQualityTesterActivity.java",
+    "line": 48
+  },
+  {
+    "accessor": "getPackageManager",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/frx/SetupFsm.java",
+    "line": 95
+  },
+  {
+    "accessor": "getPackageManager",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/frx/SetupFsm.java",
+    "line": 371
+  },
+  {
+    "accessor": "getPackageManager",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/frx/SetupFsm.java",
+    "line": 410
+  },
+  {
+    "accessor": "getPackageName",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/RequestManifestPermissionsActivity.java",
+    "line": 46
+  },
+  {
+    "accessor": "getPackageName",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/SettingsSearchProvider.java",
+    "line": 27
+  },
+  {
+    "accessor": "getPackageName",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/system/RecoveryLifecycleService.java",
+    "line": 20
+  },
+  {
+    "accessor": "getParcelable",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/system/GhLifecycleService.java",
+    "line": 277
+  },
+  {
+    "accessor": "getParent",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/ParallaxHeader.java",
+    "line": 17
+  },
+  {
+    "accessor": "getParent",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/ParallaxHeader.java",
+    "line": 26
+  },
+  {
+    "accessor": "getParent",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/sdk/CarAppLayout.java",
+    "line": 81
+  },
+  {
+    "accessor": "getPath",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/feedback/FeedbackEditorActivity.java",
+    "line": 28
+  },
+  {
+    "accessor": "getPreferenceScreen",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/devsettings/DeveloperSettingsActivity.java",
+    "line": 71
+  },
+  {
+    "accessor": "getPreferenceScreen",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/devsettings/DeveloperSettingsActivity.java",
+    "line": 100
+  },
+  {
+    "accessor": "getPreferenceScreen",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/EngineerSettingsActivity.java",
+    "line": 35
+  },
+  {
+    "accessor": "getProcessName",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/GhApplication.java",
+    "line": 121
+  },
+  {
+    "accessor": "getProcessName",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/GhApplication.java",
+    "line": 126
+  },
+  {
+    "accessor": "getProcessName",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/GhApplication.java",
+    "line": 135
+  },
+  {
+    "accessor": "getQuantityString",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/feedback/FeedbackEditorActivity.java",
+    "line": 33
+  },
+  {
+    "accessor": "getQuantityString",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/feedback/FeedbackEditorActivity.java",
+    "line": 33
+  },
+  {
+    "accessor": "getQuantityString",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/Material3VersionPreference.java",
+    "line": 48
+  },
+  {
+    "accessor": "getRawX",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/rail/ui/SlidableLinearLayout.java",
+    "line": 22
+  },
+  {
+    "accessor": "getRawY",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/rail/ui/SlidableLinearLayout.java",
+    "line": 22
+  },
+  {
+    "accessor": "getReason",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/system/RecoveryLifecycleService.java",
+    "line": 21
+  },
+  {
+    "accessor": "getRepeatCount",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 666
+  },
+  {
+    "accessor": "getResources",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/AndroidAutoActivity.java",
+    "line": 157
+  },
+  {
+    "accessor": "getResources",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/feedback/FeedbackEditorActivity.java",
+    "line": 33
+  },
+  {
+    "accessor": "getResources",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/feedback/FeedbackEditorActivity.java",
+    "line": 33
+  },
+  {
+    "accessor": "getResources",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/AddAssistantShortcutActivity.java",
+    "line": 53
+  },
+  {
+    "accessor": "getResources",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/AddAssistantShortcutActivity.java",
+    "line": 184
+  },
+  {
+    "accessor": "getResources",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/Material3ManageCarsFragment.java",
+    "line": 42
+  },
+  {
+    "accessor": "getResources",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/Material3VersionPreference.java",
+    "line": 48
+  },
+  {
+    "accessor": "getResources",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 30
+  },
+  {
+    "accessor": "getResources",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 31
+  },
+  {
+    "accessor": "getResources",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 122
+  },
+  {
+    "accessor": "getResources",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 127
+  },
+  {
+    "accessor": "getResources",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 147
+  },
+  {
+    "accessor": "getResources",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 153
+  },
+  {
+    "accessor": "getResources",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 158
+  },
+  {
+    "accessor": "getResources",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 171
+  },
+  {
+    "accessor": "getResources",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 196
+  },
+  {
+    "accessor": "getResources",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 62
+  },
+  {
+    "accessor": "getResources",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 108
+  },
+  {
+    "accessor": "getResources",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 109
+  },
+  {
+    "accessor": "getResources",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 110
+  },
+  {
+    "accessor": "getResources",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 110
+  },
+  {
+    "accessor": "getResources",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 278
+  },
+  {
+    "accessor": "getResources",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 320
+  },
+  {
+    "accessor": "getResources",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 358
+  },
+  {
+    "accessor": "getResources",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 362
+  },
+  {
+    "accessor": "getResources",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 362
+  },
+  {
+    "accessor": "getResources",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 362
+  },
+  {
+    "accessor": "getResources",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 362
+  },
+  {
+    "accessor": "getResources",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/sdk/CarAppLayout.java",
+    "line": 76
+  },
+  {
+    "accessor": "getResources",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/sdk/CarAppLayout.java",
+    "line": 78
+  },
+  {
+    "accessor": "getResources",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/system/GhLifecycleService.java",
+    "line": 119
+  },
+  {
+    "accessor": "getRunningAppProcesses",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/GhApplication.java",
+    "line": 130
+  },
+  {
+    "accessor": "getSharedPreferences",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/GhCrashHandler.java",
+    "line": 193
+  },
+  {
+    "accessor": "getSharedPreferences",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/devsettings/DeveloperSettingsActivity.java",
+    "line": 71
+  },
+  {
+    "accessor": "getSharedPreferences",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/devsettings/DeveloperSettingsActivity.java",
+    "line": 100
+  },
+  {
+    "accessor": "getSharedPreferences",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/AddAssistantShortcutActivity.java",
+    "line": 46
+  },
+  {
+    "accessor": "getSharedPreferences",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/EngineerSettingsActivity.java",
+    "line": 35
+  },
+  {
+    "accessor": "getSimpleName",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/GhCrashHandler.java",
+    "line": 119
+  },
+  {
+    "accessor": "getStackTrace",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/GhCrashHandler.java",
+    "line": 105
+  },
+  {
+    "accessor": "getStackTraceString",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/GhCrashHandler.java",
+    "line": 120
+  },
+  {
+    "accessor": "getString",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/GhCrashHandler.java",
+    "line": 42
+  },
+  {
+    "accessor": "getString",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/DeveloperHeadUnitNetworkService.java",
+    "line": 79
+  },
+  {
+    "accessor": "getString",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/DeveloperHeadUnitNetworkService.java",
+    "line": 80
+  },
+  {
+    "accessor": "getString",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/DeveloperHeadUnitNetworkService.java",
+    "line": 82
+  },
+  {
+    "accessor": "getString",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/devsettings/DeveloperSettingsActivity.java",
+    "line": 239
+  },
+  {
+    "accessor": "getString",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/feedback/FeedbackEditorActivity.java",
+    "line": 33
+  },
+  {
+    "accessor": "getString",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/AddAssistantShortcutActivity.java",
+    "line": 54
+  },
+  {
+    "accessor": "getString",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/Material3CarPreferenceButton.java",
+    "line": 11
+  },
+  {
+    "accessor": "getString",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/Material3FeatureAnnouncePreference.java",
+    "line": 25
+  },
+  {
+    "accessor": "getString",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/Material3ManageCarsFragment.java",
+    "line": 88
+  },
+  {
+    "accessor": "getString",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/Material3ManageCarsFragment.java",
+    "line": 91
+  },
+  {
+    "accessor": "getString",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/Material3ManageCarsFragment.java",
+    "line": 93
+  },
+  {
+    "accessor": "getString",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/Material3ManageCarsFragment.java",
+    "line": 94
+  },
+  {
+    "accessor": "getString",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/Material3VersionPreference.java",
+    "line": 33
+  },
+  {
+    "accessor": "getString",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/Material3VersionPreference.java",
+    "line": 62
+  },
+  {
+    "accessor": "getString",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/SettingsSearchProvider.java",
+    "line": 21
+  },
+  {
+    "accessor": "getString",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/SettingsSearchProvider.java",
+    "line": 22
+  },
+  {
+    "accessor": "getString",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/SettingsSearchProvider.java",
+    "line": 23
+  },
+  {
+    "accessor": "getString",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/SettingsSearchProvider.java",
+    "line": 24
+  },
+  {
+    "accessor": "getString",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/frx/SetupFsm.java",
+    "line": 416
+  },
+  {
+    "accessor": "getString",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/frx/SetupFsm.java",
+    "line": 417
+  },
+  {
+    "accessor": "getString",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/frx/SetupFsm.java",
+    "line": 419
+  },
+  {
+    "accessor": "getString",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/frx/SetupFsm.java",
+    "line": 420
+  },
+  {
+    "accessor": "getString",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/frx/SetupFsm.java",
+    "line": 436
+  },
+  {
+    "accessor": "getString",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/frx/SetupFsm.java",
+    "line": 437
+  },
+  {
+    "accessor": "getString",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/frx/SetupFsm.java",
+    "line": 707
+  },
+  {
+    "accessor": "getString",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/frx/SetupFsm.java",
+    "line": 708
+  },
+  {
+    "accessor": "getString",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 78
+  },
+  {
+    "accessor": "getString",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/service/GearheadService.java",
+    "line": 50
+  },
+  {
+    "accessor": "getStringExtra",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/RequestManifestPermissionsActivity.java",
+    "line": 8
+  },
+  {
+    "accessor": "getStringExtra",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/LegalInfoActivity.java",
+    "line": 8
+  },
+  {
+    "accessor": "getStringExtra",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/LegalInfoActivity.java",
+    "line": 17
+  },
+  {
+    "accessor": "getStringExtra",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/Material3SettingsActivity.java",
+    "line": 26
+  },
+  {
+    "accessor": "getStringExtra",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/SettingsActivity.java",
+    "line": 63
+  },
+  {
+    "accessor": "getSystemService",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/GhApplication.java",
+    "line": 130
+  },
+  {
+    "accessor": "getSystemService",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/GhCrashHandler.java",
+    "line": 178
+  },
+  {
+    "accessor": "getSystemService",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/GhCrashHandler.java",
+    "line": 238
+  },
+  {
+    "accessor": "getSystemService",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/GhCrashHandler.java",
+    "line": 241
+  },
+  {
+    "accessor": "getSystemService",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/RequestNotificationAccessActivity.java",
+    "line": 25
+  },
+  {
+    "accessor": "getSystemService",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/sdk/CarAppLayout.java",
+    "line": 30
+  },
+  {
+    "accessor": "getSystemService",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/system/RecoveryLifecycleService.java",
+    "line": 18
+  },
+  {
+    "accessor": "getText",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/AddAssistantShortcutActivity.java",
+    "line": 53
+  },
+  {
+    "accessor": "getText",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/AddAssistantShortcutActivity.java",
+    "line": 66
+  },
+  {
+    "accessor": "getText",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/AddAssistantShortcutActivity.java",
+    "line": 67
+  },
+  {
+    "accessor": "getText",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/AddAssistantShortcutActivity.java",
+    "line": 185
+  },
+  {
+    "accessor": "getText",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/sdk/SdkEntry.java",
+    "line": 46
+  },
+  {
+    "accessor": "getTheme",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/AddAssistantShortcutActivity.java",
+    "line": 38
+  },
+  {
+    "accessor": "getTheme",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/LauncherAppSettingsActivity.java",
+    "line": 104
+  },
+  {
+    "accessor": "getTheme",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/LegalInfoActivity.java",
+    "line": 9
+  },
+  {
+    "accessor": "getTheme",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/Material3CarPreferenceButton.java",
+    "line": 11
+  },
+  {
+    "accessor": "getTheme",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/Material3SettingsActivity.java",
+    "line": 12
+  },
+  {
+    "accessor": "getTimeFormat",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/feedback/FeedbackEditorActivity.java",
+    "line": 44
+  },
+  {
+    "accessor": "getValue",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/devsettings/DeveloperSettingsActivity.java",
+    "line": 77
+  },
+  {
+    "accessor": "getVisibility",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/ParallaxHeader.java",
+    "line": 49
+  },
+  {
+    "accessor": "getWidth",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 223
+  },
+  {
+    "accessor": "getWidth",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 229
+  },
+  {
+    "accessor": "getWidth",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 235
+  },
+  {
+    "accessor": "getWidth",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 399
+  },
+  {
+    "accessor": "getWidth",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 418
+  },
+  {
+    "accessor": "getWidth",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/rail/ui/SlidableLinearLayout.java",
+    "line": 22
+  },
+  {
+    "accessor": "getWindow",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/AndroidAutoActivity.java",
+    "line": 156
+  },
+  {
+    "accessor": "getWindow",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/AndroidAutoActivity.java",
+    "line": 158
+  },
+  {
+    "accessor": "getWindow",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/LauncherAppSettingsActivity.java",
+    "line": 113
+  },
+  {
+    "accessor": "getWindow",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/LegalInfoActivity.java",
+    "line": 16
+  },
+  {
+    "accessor": "getWindow",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/Material3SettingsActivity.java",
+    "line": 21
+  },
+  {
+    "accessor": "getWindow",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/frx/SetupActivity.java",
+    "line": 65
+  },
+  {
+    "accessor": "getWindow",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/frx/SetupActivity.java",
+    "line": 178
+  },
+  {
+    "accessor": "getWindow",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/frx/SetupActivity.java",
+    "line": 180
+  },
+  {
+    "accessor": "getWindow",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/frx/SetupActivity.java",
+    "line": 182
+  },
+  {
+    "accessor": "getX",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/HwrView.java",
+    "line": 212
+  },
+  {
+    "accessor": "getX",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 621
+  },
+  {
+    "accessor": "getX",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 639
+  },
+  {
+    "accessor": "getY",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/HwrView.java",
+    "line": 213
+  },
+  {
+    "accessor": "getY",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 622
+  },
+  {
+    "accessor": "getY",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 640
+  },
+  {
+    "accessor": "hasExtra",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/frx/SetupFsm.java",
+    "line": 299
+  },
+  {
+    "accessor": "hasFocus",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 67
+  },
+  {
+    "accessor": "hasFocus",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 89
+  },
+  {
+    "accessor": "hasFocus",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/rail/ui/ImageButtonWithAlphaFade.java",
+    "line": 53
+  },
+  {
+    "accessor": "hasFocus",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/sdk/CarAppLayout.java",
+    "line": 164
+  },
+  {
+    "accessor": "hasNext",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/GhApplication.java",
+    "line": 170
+  },
+  {
+    "accessor": "hasNext",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/GhCrashHandler.java",
+    "line": 259
+  },
+  {
+    "accessor": "hasNext",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/AndroidAutoActivity.java",
+    "line": 13
+  },
+  {
+    "accessor": "hasNext",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/devsettings/DeveloperSettingsActivity.java",
+    "line": 73
+  },
+  {
+    "accessor": "hasNext",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 100
+  },
+  {
+    "accessor": "hasNext",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/sdk/CarDrawerLayout.java",
+    "line": 42
+  },
+  {
+    "accessor": "setAction",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/DeveloperHeadUnitNetworkService.java",
+    "line": 74
+  },
+  {
+    "accessor": "setAction",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/Material3VersionPreference.java",
+    "line": 58
+  },
+  {
+    "accessor": "setAction",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/frx/SetupFsm.java",
+    "line": 344
+  },
+  {
+    "accessor": "setAdapter",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/devsettings/AppQualityTesterActivity.java",
+    "line": 58
+  },
+  {
+    "accessor": "setAdapter",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/feedback/FeedbackListActivity.java",
+    "line": 16
+  },
+  {
+    "accessor": "setAlignmentMode",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 25
+  },
+  {
+    "accessor": "setAlpha",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 308
+  },
+  {
+    "accessor": "setAlpha",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 326
+  },
+  {
+    "accessor": "setAlpha",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 175
+  },
+  {
+    "accessor": "setAlpha",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 234
+  },
+  {
+    "accessor": "setAlpha",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 239
+  },
+  {
+    "accessor": "setAlpha",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 337
+  },
+  {
+    "accessor": "setAlpha",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/sdk/CarDrawerLayout.java",
+    "line": 47
+  },
+  {
+    "accessor": "setAnimationListener",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 513
+  },
+  {
+    "accessor": "setAntiAlias",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 81
+  },
+  {
+    "accessor": "setAntiAlias",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 89
+  },
+  {
+    "accessor": "setAntiAlias",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 101
+  },
+  {
+    "accessor": "setArguments",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/frx/SetupActivity.java",
+    "line": 101
+  },
+  {
+    "accessor": "setAttributes",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/AndroidAutoActivity.java",
+    "line": 158
+  },
+  {
+    "accessor": "setAttributes",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/frx/SetupActivity.java",
+    "line": 182
+  },
+  {
+    "accessor": "setAutoCancel",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 594
+  },
+  {
+    "accessor": "setAutoLightDarkMode",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/sdk/SdkEntry.java",
+    "line": 106
+  },
+  {
+    "accessor": "setBackground",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 57
+  },
+  {
+    "accessor": "setBackground",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/sdk/SdkEntry.java",
+    "line": 110
+  },
+  {
+    "accessor": "setBackgroundColor",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/HwrView.java",
+    "line": 137
+  },
+  {
+    "accessor": "setBackgroundColor",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/HwrView.java",
+    "line": 143
+  },
+  {
+    "accessor": "setBackgroundColor",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/sdk/CarAppLayout.java",
+    "line": 200
+  },
+  {
+    "accessor": "setBackgroundColor",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/sdk/CarAppLayout.java",
+    "line": 201
+  },
+  {
+    "accessor": "setBackgroundResource",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/sdk/SdkEntry.java",
+    "line": 114
+  },
+  {
+    "accessor": "setBackspaceGestureEnabled",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/HwrView.java",
+    "line": 71
+  },
+  {
+    "accessor": "setBounds",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 216
+  },
+  {
+    "accessor": "setCarMenuBinder",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/sdk/SdkEntry.java",
+    "line": 118
+  },
+  {
+    "accessor": "setChecked",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/feedback/FeedbackEditorActivity.java",
+    "line": 39
+  },
+  {
+    "accessor": "setClassLoader",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/system/GhLifecycleService.java",
+    "line": 270
+  },
+  {
+    "accessor": "setClassLoader",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/system/RecoveryLifecycleService.java",
+    "line": 51
+  },
+  {
+    "accessor": "setClassLoader",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/sdk/demand/Template.java",
+    "line": 16
+  },
+  {
+    "accessor": "setClickable",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 370
+  },
+  {
+    "accessor": "setClipToPadding",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/EngineerSettingsActivity.java",
+    "line": 19
+  },
+  {
+    "accessor": "setColor",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/HwrView.java",
+    "line": 170
+  },
+  {
+    "accessor": "setColor",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 116
+  },
+  {
+    "accessor": "setColor",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 121
+  },
+  {
+    "accessor": "setColor",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 126
+  },
+  {
+    "accessor": "setColor",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 142
+  },
+  {
+    "accessor": "setColor",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 151
+  },
+  {
+    "accessor": "setColor",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 157
+  },
+  {
+    "accessor": "setColor",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 85
+  },
+  {
+    "accessor": "setColor",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 93
+  },
+  {
+    "accessor": "setColor",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 100
+  },
+  {
+    "accessor": "setColorFilter",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 203
+  },
+  {
+    "accessor": "setColorFilter",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 210
+  },
+  {
+    "accessor": "setColorFilter",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 211
+  },
+  {
+    "accessor": "setColorFilter",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 215
+  },
+  {
+    "accessor": "setColorFilter",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 216
+  },
+  {
+    "accessor": "setColorFilter",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 226
+  },
+  {
+    "accessor": "setColorFilter",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 230
+  },
+  {
+    "accessor": "setColorFilter",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 236
+  },
+  {
+    "accessor": "setColorFilter",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 244
+  },
+  {
+    "accessor": "setColorFilter",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 249
+  },
+  {
+    "accessor": "setColorFilter",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 263
+  },
+  {
+    "accessor": "setColorFilter",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 199
+  },
+  {
+    "accessor": "setColorFilter",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 201
+  },
+  {
+    "accessor": "setColorFilter",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 330
+  },
+  {
+    "accessor": "setColorFilter",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 331
+  },
+  {
+    "accessor": "setColorFilter",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 335
+  },
+  {
+    "accessor": "setColorFilter",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 336
+  },
+  {
+    "accessor": "setColorFilter",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 338
+  },
+  {
+    "accessor": "setColorFilter",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 342
+  },
+  {
+    "accessor": "setColorFilter",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 343
+  },
+  {
+    "accessor": "setColorFilter",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 347
+  },
+  {
+    "accessor": "setColorFilter",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 348
+  },
+  {
+    "accessor": "setColorFilter",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/sdk/CarAppLayout.java",
+    "line": 202
+  },
+  {
+    "accessor": "setColumnCount",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 278
+  },
+  {
+    "accessor": "setComponent",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/GhCrashHandler.java",
+    "line": 103
+  },
+  {
+    "accessor": "setComponent",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/devsettings/DeveloperSettingsActivity.java",
+    "line": 188
+  },
+  {
+    "accessor": "setComponent",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/devsettings/DeveloperSettingsActivity.java",
+    "line": 196
+  },
+  {
+    "accessor": "setComponent",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/devsettings/DeveloperSettingsActivity.java",
+    "line": 204
+  },
+  {
+    "accessor": "setComponent",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/devsettings/DeveloperSettingsActivity.java",
+    "line": 212
+  },
+  {
+    "accessor": "setComponent",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/frx/SetupFsm.java",
+    "line": 270
+  },
+  {
+    "accessor": "setComponentEnabledSetting",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/GhApplication.java",
+    "line": 319
+  },
+  {
+    "accessor": "setComponentEnabledSetting",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/GhCrashHandler.java",
+    "line": 273
+  },
+  {
+    "accessor": "setContentDescription",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/Material3FeatureAnnouncePreference.java",
+    "line": 25
+  },
+  {
+    "accessor": "setContentView",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/AndroidAutoActivity.java",
+    "line": 65
+  },
+  {
+    "accessor": "setContentView",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/devsettings/AppQualityTesterActivity.java",
+    "line": 31
+  },
+  {
+    "accessor": "setContentView",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/feedback/FeedbackEditorActivity.java",
+    "line": 18
+  },
+  {
+    "accessor": "setContentView",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/feedback/FeedbackListActivity.java",
+    "line": 10
+  },
+  {
+    "accessor": "setContentView",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/AddAssistantShortcutActivity.java",
+    "line": 43
+  },
+  {
+    "accessor": "setContentView",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/LauncherAppSettingsActivity.java",
+    "line": 108
+  },
+  {
+    "accessor": "setContentView",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/LegalInfoActivity.java",
+    "line": 13
+  },
+  {
+    "accessor": "setContentView",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/Material3SettingsActivity.java",
+    "line": 16
+  },
+  {
+    "accessor": "setContentView",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/SettingsActivity.java",
+    "line": 95
+  },
+  {
+    "accessor": "setContentView",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/SettingsActivity.java",
+    "line": 100
+  },
+  {
+    "accessor": "setContentView",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/frx/SetupActivity.java",
+    "line": 177
+  },
+  {
+    "accessor": "setDarkMode",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/sdk/SdkEntry.java",
+    "line": 122
+  },
+  {
+    "accessor": "setData",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/RequestManifestPermissionsActivity.java",
+    "line": 48
+  },
+  {
+    "accessor": "setData",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/devsettings/DeveloperSettingsActivity.java",
+    "line": 225
+  },
+  {
+    "accessor": "setDefaultUncaughtExceptionHandler",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/GhCrashHandler.java",
+    "line": 37
+  },
+  {
+    "accessor": "setDefaultValue",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/devsettings/DeveloperSettingsActivity.java",
+    "line": 66
+  },
+  {
+    "accessor": "setDefaultValue",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/devsettings/DeveloperSettingsActivity.java",
+    "line": 78
+  },
+  {
+    "accessor": "setDisplayedChild",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/Material3ManageCarsFragment.java",
+    "line": 43
+  },
+  {
+    "accessor": "setDropDownViewResource",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/devsettings/AppQualityTesterActivity.java",
+    "line": 57
+  },
+  {
+    "accessor": "setDuration",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 126
+  },
+  {
+    "accessor": "setDuration",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 130
+  },
+  {
+    "accessor": "setDuration",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 592
+  },
+  {
+    "accessor": "setDuration",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/rail/ui/ImageButtonWithAlphaFade.java",
+    "line": 42
+  },
+  {
+    "accessor": "setEmptyView",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/feedback/FeedbackListActivity.java",
+    "line": 13
+  },
+  {
+    "accessor": "setEnabled",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/devsettings/DeveloperSettingsActivity.java",
+    "line": 76
+  },
+  {
+    "accessor": "setEnabled",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/AddAssistantShortcutActivity.java",
+    "line": 23
+  },
+  {
+    "accessor": "setEnabled",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/AddAssistantShortcutActivity.java",
+    "line": 26
+  },
+  {
+    "accessor": "setEnabled",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 307
+  },
+  {
+    "accessor": "setEnabled",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 325
+  },
+  {
+    "accessor": "setEnabled",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 366
+  },
+  {
+    "accessor": "setEnabled",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 367
+  },
+  {
+    "accessor": "setEnabled",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 714
+  },
+  {
+    "accessor": "setEntryValues",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/devsettings/DeveloperSettingsActivity.java",
+    "line": 65
+  },
+  {
+    "accessor": "setFlags",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/service/GearheadService.java",
+    "line": 39
+  },
+  {
+    "accessor": "setFocusable",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 293
+  },
+  {
+    "accessor": "setFocusable",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 306
+  },
+  {
+    "accessor": "setFocusable",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 316
+  },
+  {
+    "accessor": "setFocusable",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 324
+  },
+  {
+    "accessor": "setFocusable",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 334
+  },
+  {
+    "accessor": "setGravity",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 45
+  },
+  {
+    "accessor": "setGravity",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 292
+  },
+  {
+    "accessor": "setHideClock",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/sdk/SdkEntry.java",
+    "line": 126
+  },
+  {
+    "accessor": "setHintTextColor",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/sdk/CarAppLayout.java",
+    "line": 205
+  },
+  {
+    "accessor": "setId",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 41
+  },
+  {
+    "accessor": "setImageDrawable",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/AddAssistantShortcutActivity.java",
+    "line": 52
+  },
+  {
+    "accessor": "setImageDrawable",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/AddAssistantShortcutActivity.java",
+    "line": 186
+  },
+  {
+    "accessor": "setImageDrawable",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 315
+  },
+  {
+    "accessor": "setImageDrawable",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/sdk/CarAppLayout.java",
+    "line": 35
+  },
+  {
+    "accessor": "setImageDrawable",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/sdk/CarAppLayout.java",
+    "line": 53
+  },
+  {
+    "accessor": "setImageDrawable",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/sdk/CarAppLayout.java",
+    "line": 56
+  },
+  {
+    "accessor": "setImageDrawable",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/sdk/CarAppLayout.java",
+    "line": 72
+  },
+  {
+    "accessor": "setImageResource",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/AndroidAutoActivity.java",
+    "line": 33
+  },
+  {
+    "accessor": "setImageResource",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/AndroidAutoActivity.java",
+    "line": 37
+  },
+  {
+    "accessor": "setImageResource",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/Material3FeatureAnnouncePreference.java",
+    "line": 24
+  },
+  {
+    "accessor": "setImageURI",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/feedback/FeedbackEditorActivity.java",
+    "line": 47
+  },
+  {
+    "accessor": "setIntent",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/AndroidAutoActivity.java",
+    "line": 118
+  },
+  {
+    "accessor": "setIntent",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/RequestManifestPermissionsActivity.java",
+    "line": 31
+  },
+  {
+    "accessor": "setInterpolator",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 127
+  },
+  {
+    "accessor": "setInterpolator",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 131
+  },
+  {
+    "accessor": "setInterpolator",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 593
+  },
+  {
+    "accessor": "setInterpolator",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/sdk/CarAppLayout.java",
+    "line": 43
+  },
+  {
+    "accessor": "setInterpolator",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/sdk/CarAppLayout.java",
+    "line": 44
+  },
+  {
+    "accessor": "setInterpolator",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/sdk/CarAppLayout.java",
+    "line": 45
+  },
+  {
+    "accessor": "setInterpolator",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/sdk/CarAppLayout.java",
+    "line": 46
+  },
+  {
+    "accessor": "setInterpolator",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/sdk/CarAppLayout.java",
+    "line": 47
+  },
+  {
+    "accessor": "setLayerInset",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 36
+  },
+  {
+    "accessor": "setLayoutParams",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/feedback/FeedbackEditorActivity.java",
+    "line": 35
+  },
+  {
+    "accessor": "setLayoutParams",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/feedback/FeedbackEditorActivity.java",
+    "line": 40
+  },
+  {
+    "accessor": "setLayoutParams",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 52
+  },
+  {
+    "accessor": "setLayoutParams",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/sdk/CarAppLayout.java",
+    "line": 80
+  },
+  {
+    "accessor": "setLightMode",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/sdk/SdkEntry.java",
+    "line": 130
+  },
+  {
+    "accessor": "setMarginEnd",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/sdk/CarAppLayout.java",
+    "line": 79
+  },
+  {
+    "accessor": "setMarginStart",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/sdk/CarAppLayout.java",
+    "line": 78
+  },
+  {
+    "accessor": "setMargins",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 51
+  },
+  {
+    "accessor": "setMaxLines",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/Material3VersionPreference.java",
+    "line": 23
+  },
+  {
+    "accessor": "setMenuButtonBitmap",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/sdk/SdkEntry.java",
+    "line": 134
+  },
+  {
+    "accessor": "setMicButtonColor",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/sdk/SdkEntry.java",
+    "line": 138
+  },
+  {
+    "accessor": "setMinimumHeight",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/Material3ManageCarsFragment.java",
+    "line": 42
+  },
+  {
+    "accessor": "setOnClickListener",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/AndroidAutoActivity.java",
+    "line": 35
+  },
+  {
+    "accessor": "setOnClickListener",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/AndroidAutoActivity.java",
+    "line": 39
+  },
+  {
+    "accessor": "setOnClickListener",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/AndroidAutoActivity.java",
+    "line": 41
+  },
+  {
+    "accessor": "setOnClickListener",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/AndroidAutoActivity.java",
+    "line": 152
+  },
+  {
+    "accessor": "setOnClickListener",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/AndroidAutoActivity.java",
+    "line": 153
+  },
+  {
+    "accessor": "setOnClickListener",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/devsettings/AppQualityTesterActivity.java",
+    "line": 62
+  },
+  {
+    "accessor": "setOnClickListener",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/devsettings/AppQualityTesterActivity.java",
+    "line": 64
+  },
+  {
+    "accessor": "setOnClickListener",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/feedback/FeedbackEditorActivity.java",
+    "line": 21
+  },
+  {
+    "accessor": "setOnClickListener",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/feedback/FeedbackEditorActivity.java",
+    "line": 24
+  },
+  {
+    "accessor": "setOnClickListener",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/feedback/FeedbackEditorActivity.java",
+    "line": 48
+  },
+  {
+    "accessor": "setOnClickListener",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/feedback/FeedbackListActivity.java",
+    "line": 17
+  },
+  {
+    "accessor": "setOnClickListener",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/AddAssistantShortcutActivity.java",
+    "line": 24
+  },
+  {
+    "accessor": "setOnClickListener",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/AddAssistantShortcutActivity.java",
+    "line": 27
+  },
+  {
+    "accessor": "setOnClickListener",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/AddAssistantShortcutActivity.java",
+    "line": 62
+  },
+  {
+    "accessor": "setOnClickListener",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/AddAssistantShortcutActivity.java",
+    "line": 190
+  },
+  {
+    "accessor": "setOnClickListener",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/Material3CarPreferenceButton.java",
+    "line": 19
+  },
+  {
+    "accessor": "setOnClickListener",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 53
+  },
+  {
+    "accessor": "setOnClickListener",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/sdk/CarAppLayout.java",
+    "line": 36
+  },
+  {
+    "accessor": "setOnClickListener",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/sdk/CarAppLayout.java",
+    "line": 60
+  },
+  {
+    "accessor": "setOnClickListener",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/sdk/CarAppLayout.java",
+    "line": 63
+  },
+  {
+    "accessor": "setOnClickListener",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/sdk/KeyboardSearchLayout.java",
+    "line": 22
+  },
+  {
+    "accessor": "setOnDismissListener",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/AndroidAutoActivity.java",
+    "line": 154
+  },
+  {
+    "accessor": "setOnEditorActionListener",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/sdk/CarAppLayout.java",
+    "line": 65
+  },
+  {
+    "accessor": "setOnFocusChangeListener",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/rail/ui/ImageButtonWithAlphaFade.java",
+    "line": 35
+  },
+  {
+    "accessor": "setOnItemSelectedListener",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/devsettings/AppQualityTesterActivity.java",
+    "line": 55
+  },
+  {
+    "accessor": "setOnKeyListener",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 54
+  },
+  {
+    "accessor": "setOnLongClickListener",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 55
+  },
+  {
+    "accessor": "setOnTouchListener",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/sdk/CarAppLayout.java",
+    "line": 64
+  },
+  {
+    "accessor": "setPackage",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/frx/SetupFsm.java",
+    "line": 342
+  },
+  {
+    "accessor": "setPressed",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 516
+  },
+  {
+    "accessor": "setPressed",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 517
+  },
+  {
+    "accessor": "setPressed",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 523
+  },
+  {
+    "accessor": "setPressed",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 524
+  },
+  {
+    "accessor": "setPressed",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/rail/ui/SlidableLinearLayout.java",
+    "line": 57
+  },
+  {
+    "accessor": "setPressed",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/rail/ui/SlidableLinearLayout.java",
+    "line": 71
+  },
+  {
+    "accessor": "setPressed",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/rail/ui/SlidableLinearLayout.java",
+    "line": 77
+  },
+  {
+    "accessor": "setPressed",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/rail/ui/SlidableLinearLayout.java",
+    "line": 87
+  },
+  {
+    "accessor": "setRestartedFromDayNightMode",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/sdk/SdkEntry.java",
+    "line": 143
+  },
+  {
+    "accessor": "setResult",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/AddAssistantShortcutActivity.java",
+    "line": 123
+  },
+  {
+    "accessor": "setResult",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/AddAssistantShortcutActivity.java",
+    "line": 177
+  },
+  {
+    "accessor": "setRowCount",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 277
+  },
+  {
+    "accessor": "setScrimColor",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/sdk/SdkEntry.java",
+    "line": 147
+  },
+  {
+    "accessor": "setSearchBoxColors",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/sdk/SdkEntry.java",
+    "line": 151
+  },
+  {
+    "accessor": "setSearchBoxEditListener",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/sdk/SdkEntry.java",
+    "line": 155
+  },
+  {
+    "accessor": "setSearchBoxEndView",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/sdk/SdkEntry.java",
+    "line": 159
+  },
+  {
+    "accessor": "setSearchManager",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/sdk/SdkEntry.java",
+    "line": 163
+  },
+  {
+    "accessor": "setSecondaryRecognizer",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/HwrView.java",
+    "line": 112
+  },
+  {
+    "accessor": "setSelected",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 348
+  },
+  {
+    "accessor": "setSelected",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/rail/ui/ImageButtonWithAlphaFade.java",
+    "line": 26
+  },
+  {
+    "accessor": "setSelected",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/rail/ui/ImageButtonWithAlphaFade.java",
+    "line": 28
+  },
+  {
+    "accessor": "setSelected",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/rail/ui/ImageButtonWithAlphaFade.java",
+    "line": 62
+  },
+  {
+    "accessor": "setSelected",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/rail/ui/ImageButtonWithAlphaFade.java",
+    "line": 63
+  },
+  {
+    "accessor": "setSelection",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/feedback/FeedbackEditorActivity.java",
+    "line": 55
+  },
+  {
+    "accessor": "setShape",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 33
+  },
+  {
+    "accessor": "setSpaceGestureEnabled",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/HwrView.java",
+    "line": 72
+  },
+  {
+    "accessor": "setStroke",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 34
+  },
+  {
+    "accessor": "setStroke",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 122
+  },
+  {
+    "accessor": "setStroke",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 127
+  },
+  {
+    "accessor": "setStroke",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 153
+  },
+  {
+    "accessor": "setStroke",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 158
+  },
+  {
+    "accessor": "setStrokeCap",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/HwrView.java",
+    "line": 64
+  },
+  {
+    "accessor": "setStrokeWidth",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/HwrView.java",
+    "line": 63
+  },
+  {
+    "accessor": "setStyle",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/HwrView.java",
+    "line": 62
+  },
+  {
+    "accessor": "setStyle",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 84
+  },
+  {
+    "accessor": "setStyle",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 92
+  },
+  {
+    "accessor": "setStyle",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 99
+  },
+  {
+    "accessor": "setTag",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 56
+  },
+  {
+    "accessor": "setText",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/AndroidAutoActivity.java",
+    "line": 34
+  },
+  {
+    "accessor": "setText",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/AndroidAutoActivity.java",
+    "line": 38
+  },
+  {
+    "accessor": "setText",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/AndroidAutoActivity.java",
+    "line": 42
+  },
+  {
+    "accessor": "setText",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/AndroidAutoActivity.java",
+    "line": 43
+  },
+  {
+    "accessor": "setText",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/devsettings/AppQualityTesterActivity.java",
+    "line": 24
+  },
+  {
+    "accessor": "setText",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/feedback/FeedbackEditorActivity.java",
+    "line": 33
+  },
+  {
+    "accessor": "setText",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/feedback/FeedbackEditorActivity.java",
+    "line": 38
+  },
+  {
+    "accessor": "setText",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/feedback/FeedbackEditorActivity.java",
+    "line": 44
+  },
+  {
+    "accessor": "setText",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/feedback/FeedbackEditorActivity.java",
+    "line": 54
+  },
+  {
+    "accessor": "setText",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/AddAssistantShortcutActivity.java",
+    "line": 217
+  },
+  {
+    "accessor": "setText",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/AddAssistantShortcutActivity.java",
+    "line": 218
+  },
+  {
+    "accessor": "setText",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/AddAssistantShortcutActivity.java",
+    "line": 219
+  },
+  {
+    "accessor": "setText",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/LegalInfoActivity.java",
+    "line": 18
+  },
+  {
+    "accessor": "setText",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/LegalInfoActivity.java",
+    "line": 19
+  },
+  {
+    "accessor": "setText",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/Material3CarPreferenceButton.java",
+    "line": 23
+  },
+  {
+    "accessor": "setText",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/Material3FeatureAnnouncePreference.java",
+    "line": 26
+  },
+  {
+    "accessor": "setText",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/Material3VersionPreference.java",
+    "line": 48
+  },
+  {
+    "accessor": "setText",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 290
+  },
+  {
+    "accessor": "setTextAlign",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 82
+  },
+  {
+    "accessor": "setTextAlign",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 90
+  },
+  {
+    "accessor": "setTextAppearance",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 291
+  },
+  {
+    "accessor": "setTextColor",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 297
+  },
+  {
+    "accessor": "setTextColor",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/sdk/CarAppLayout.java",
+    "line": 204
+  },
+  {
+    "accessor": "setTextSize",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/feedback/FeedbackEditorActivity.java",
+    "line": 34
+  },
+  {
+    "accessor": "setTextSize",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 300
+  },
+  {
+    "accessor": "setTextSize",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 86
+  },
+  {
+    "accessor": "setTextSize",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 96
+  },
+  {
+    "accessor": "setTextSize",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 264
+  },
+  {
+    "accessor": "setTheme",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/LauncherAppSettingsActivity.java",
+    "line": 103
+  },
+  {
+    "accessor": "setTheme",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/frx/SetupActivity.java",
+    "line": 168
+  },
+  {
+    "accessor": "setTheme",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/frx/SetupActivity.java",
+    "line": 172
+  },
+  {
+    "accessor": "setTheme",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/frx/SetupActivity.java",
+    "line": 174
+  },
+  {
+    "accessor": "setTintList",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 202
+  },
+  {
+    "accessor": "setTitle",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/sdk/SdkEntry.java",
+    "line": 167
+  },
+  {
+    "accessor": "setToNow",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/devsettings/DeveloperSettingsActivity.java",
+    "line": 136
+  },
+  {
+    "accessor": "setType",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/devsettings/DeveloperSettingsActivity.java",
+    "line": 162
+  },
+  {
+    "accessor": "setType",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/Material3VersionPreference.java",
+    "line": 60
+  },
+  {
+    "accessor": "setTypeface",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/ProjectionKeyboardLayout.java",
+    "line": 299
+  },
+  {
+    "accessor": "setTypeface",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 83
+  },
+  {
+    "accessor": "setTypeface",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 91
+  },
+  {
+    "accessor": "setTypeface",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/input/RotaryKeyboardLayout.java",
+    "line": 242
+  },
+  {
+    "accessor": "setView",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/AndroidAutoActivity.java",
+    "line": 151
+  },
+  {
+    "accessor": "setVisibility",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/devsettings/AppQualityTesterActivity.java",
+    "line": 21
+  },
+  {
+    "accessor": "setVisibility",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/devsettings/AppQualityTesterActivity.java",
+    "line": 23
+  },
+  {
+    "accessor": "setVisibility",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/feedback/FeedbackEditorActivity.java",
+    "line": 50
+  },
+  {
+    "accessor": "setVisibility",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/Material3CarPreferenceButton.java",
+    "line": 21
+  },
+  {
+    "accessor": "setVisibility",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/Material3CarPreferenceButton.java",
+    "line": 24
+  },
+  {
+    "accessor": "setVisibility",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/companion/settings/Material3FeatureAnnouncePreference.java",
+    "line": 17
+  },
+  {
+    "accessor": "setVisibility",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/sdk/CarAppLayout.java",
+    "line": 81
+  },
+  {
+    "accessor": "setVisibility",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/sdk/CarAppLayout.java",
+    "line": 82
+  },
+  {
+    "accessor": "setXRayMode",
+    "file": "analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/projection/gearhead/sdk/SdkEntry.java",
+    "line": 171
+  }
+]

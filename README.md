@@ -101,6 +101,8 @@ import "oaa/video/VideoConfigData.proto";
 - [Protocol Overview](docs/protocol-overview.md) -- high-level AA protocol architecture
 - [Channel Map](docs/channel-map.md) -- channel IDs, message types, and data flow directions
 - [Field Notes](docs/field-notes.md) -- hard-won implementation knowledge and gotchas
+- [Research Archive](research/README.md) -- reverse-engineering source material, tooling, and validation artifacts
+- [Research Provenance](research/provenance.md) -- exact source snapshot and import scope
 - [Contributing](CONTRIBUTING.md) -- how to add or improve definitions
 
 ## License
