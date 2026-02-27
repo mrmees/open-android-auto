@@ -1,6 +1,8 @@
-# Open Android Auto Protocol Buffers
+# Open Android Auto
 
-The most complete open-source collection of Android Auto protocol buffer definitions available. 164 `.proto` files organized into 13 categories covering the full AA protocol surface: session control, audio/video streaming, input, sensors, navigation, Bluetooth, WiFi projection, and more.
+The most complete open-source Android Auto protocol reference available. Protocol buffer definitions, protocol documentation, wireless Bluetooth setup guides, decompiled headunit firmware analysis, and APK analysis tools.
+
+**164 `.proto` files** organized into 13 categories covering the full AA protocol surface: session control, audio/video streaming, input, sensors, navigation, Bluetooth, WiFi projection, and more.
 
 ## Origins
 
@@ -98,12 +100,41 @@ import "oaa/video/VideoConfigData.proto";
 
 ## Documentation
 
-- [Protocol Overview](docs/protocol-overview.md) -- high-level AA protocol architecture
-- [Channel Map](docs/channel-map.md) -- channel IDs, message types, and data flow directions
-- [Field Notes](docs/field-notes.md) -- hard-won implementation knowledge and gotchas
-- [Research Archive](research/README.md) -- reverse-engineering source material, tooling, and validation artifacts
-- [Research Provenance](research/provenance.md) -- exact source snapshot and import scope
-- [Contributing](CONTRIBUTING.md) -- how to add or improve definitions
+### Protocol Reference
+
+- [Protocol Overview](docs/protocol-overview.md) — high-level AA protocol architecture
+- [Protocol Reference](docs/protocol-reference.md) — auto-generated message catalog (80 messages, 8 enums from APK v16.1)
+- [Protocol Cross-Reference](docs/protocol-cross-reference.md) — cross-referencing phone-side (APK) and head-unit-side (firmware) protocol implementations
+- [Channel Map](docs/channel-map.md) — channel IDs, message types, and data flow directions
+- [Field Notes](docs/field-notes.md) — hard-won implementation knowledge and gotchas
+
+### Implementation Guides
+
+- [Wireless Bluetooth Setup](docs/wireless-bluetooth-setup.md) — complete guide to Bluetooth-based wireless AA discovery (SDP, HFP, WiFi handoff)
+- [Video Resolution](docs/video-resolution.md) — AA video resolution negotiation and margin support
+- [Display Rendering](docs/display-rendering.md) — rendering AA video on non-standard displays with letterboxing and sidebars
+- [Phone-Side Debug](docs/phone-side-debug.md) — debugging AA from the phone's perspective
+- [Troubleshooting](docs/troubleshooting.md) — common failure modes and diagnostic workflows
+
+### Decompiled Headunit Firmware
+
+Protocol implementation details extracted from commercial AA head units:
+
+- [Alpine Halo9](docs/decompiled_headunit_firmware/alpine-halo9.md)
+- [Alpine ILX-W650BT](docs/decompiled_headunit_firmware/alpine-ilx-w650bt.md)
+- [Kenwood DNX](docs/decompiled_headunit_firmware/kenwood-dnx.md)
+- [Pioneer DMH](docs/decompiled_headunit_firmware/pioneer-dmh.md)
+- [Sony XAV](docs/decompiled_headunit_firmware/sony-xav.md)
+
+### Analysis Tools
+
+- [APK Analysis](analysis/README.md) — Python indexer scripts and pre-built SQLite database from Android Auto APK v16.1
+
+### Research & Contributing
+
+- [Research Archive](research/README.md) — reverse-engineering source material, tooling, and validation artifacts
+- [Research Provenance](research/provenance.md) — exact source snapshot and import scope
+- [Contributing](CONTRIBUTING.md) — how to add or improve definitions
 
 ## License
 
