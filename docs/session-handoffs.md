@@ -45,3 +45,28 @@ Next Steps:
 Verification:
 - `rg -n "Project Management Loop|Verification Baseline|Completion Rule" AGENTS.md` -> 3 matches.
 - `rg -n "^## (Now|Next|Later|Focus Guardrails)$|^Last Updated:" docs/roadmap-current.md` -> 5 matches.
+
+## 2026-02-27 - Lean Workflow Bootstrap Completed
+
+Date / Session: 2026-02-27 / codex-lean-workflow-setup
+
+What Changed:
+- Added workflow references to `README.md`.
+- Verified workflow file presence and cross-reference consistency.
+- Completed lean workflow bootstrap for this repository.
+
+Why:
+- Make workflow entry points discoverable and ensure the new governance files are internally consistent.
+
+Status:
+- Complete.
+
+Next Steps:
+1. Use `AGENTS.md` loop for subsequent behavior-changing work.
+2. Update `docs/roadmap-current.md` as priorities shift.
+3. Keep appending handoff entries for each meaningful session.
+
+Verification:
+- `ls AGENTS.md docs/roadmap-current.md docs/session-handoffs.md` -> files present.
+- `rg -n "roadmap-current|session-handoffs|AGENTS.md" AGENTS.md README.md docs/roadmap-current.md docs/session-handoffs.md` -> expected references found.
+- `git status --short` -> clean before this handoff append.
