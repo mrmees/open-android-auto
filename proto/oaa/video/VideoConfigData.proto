@@ -18,9 +18,9 @@
 
 syntax="proto3";
 
-import "VideoResolutionEnum.proto";
-import "VideoFPSEnum.proto";
-import "MediaCodecTypeEnum.proto";
+import "oaa/video/VideoResolutionEnum.proto";
+import "oaa/video/VideoFPSEnum.proto";
+import "oaa/av/MediaCodecTypeEnum.proto";
 
 package oaa.proto.data;
 

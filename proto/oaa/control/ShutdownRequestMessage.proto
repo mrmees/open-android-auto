@@ -18,7 +18,7 @@
 
 syntax="proto3";
 
-import "ShutdownReasonEnum.proto";
+import "oaa/control/ShutdownReasonEnum.proto";
 
 package oaa.proto.messages;
 

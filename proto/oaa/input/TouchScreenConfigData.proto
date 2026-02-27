@@ -1,3 +1,7 @@
+// Android Auto Protocol Buffer Definitions
+// https://github.com/mrmees/open-android-auto
+// SPDX-License-Identifier: GPL-3.0-or-later
+
 /*
  * TouchScreenConfig — touch screen capability descriptor (vxz.java, AA v16.1).
  *
@@ -7,7 +11,7 @@
 
 syntax="proto3";
 
-import "DisplayTypeEnum.proto";
+import "oaa/video/DisplayTypeEnum.proto";
 
 package oaa.proto.data;
 

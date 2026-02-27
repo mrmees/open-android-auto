@@ -1,7 +1,11 @@
+// Android Auto Protocol Buffer Definitions
+// https://github.com/mrmees/open-android-auto
+// SPDX-License-Identifier: GPL-3.0-or-later
+
 syntax = "proto3";
 
-import "ManeuverTypeEnum.proto";
-import "LaneShapeEnum.proto";
+import "oaa/navigation/ManeuverTypeEnum.proto";
+import "oaa/navigation/LaneShapeEnum.proto";
 
 package oaa.proto.messages;
 

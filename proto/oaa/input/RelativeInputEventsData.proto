@@ -18,7 +18,7 @@
 
 syntax="proto3";
 
-import "RelativeInputEventData.proto";
+import "oaa/input/RelativeInputEventData.proto";
 
 package oaa.proto.data;
 

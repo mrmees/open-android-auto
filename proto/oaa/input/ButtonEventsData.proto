@@ -18,7 +18,7 @@
 
 syntax="proto3";
 
-import "ButtonEventData.proto";
+import "oaa/input/ButtonEventData.proto";
 
 package oaa.proto.data;
 

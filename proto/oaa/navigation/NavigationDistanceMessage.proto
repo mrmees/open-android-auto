@@ -1,8 +1,12 @@
+// Android Auto Protocol Buffer Definitions
+// https://github.com/mrmees/open-android-auto
+// SPDX-License-Identifier: GPL-3.0-or-later
+
 syntax = "proto3";
 
 package oaa.proto.messages;
 
-import "NavigationDistanceDisplayData.proto";
+import "oaa/navigation/NavigationDistanceDisplayData.proto";
 
 // APK class: xnb — Navigation distance/ETA update (msgId 0x8007 on Nav channel)
 // Sent periodically by phone during active navigation

@@ -18,8 +18,8 @@
 
 syntax="proto3";
 
-import "NavigationImageOptionsData.proto";
-import "NavigationTypeEnum.proto";
+import "oaa/navigation/NavigationImageOptionsData.proto";
+import "oaa/navigation/NavigationTypeEnum.proto";
 
 package oaa.proto.data;
 

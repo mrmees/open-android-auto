@@ -18,7 +18,7 @@
 
 syntax="proto3";
 
-import "StatusEnum.proto";
+import "oaa/common/StatusEnum.proto";
 
 package oaa.proto.messages;
 

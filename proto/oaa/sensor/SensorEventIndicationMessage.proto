@@ -18,26 +18,26 @@
 
 syntax="proto3";
 
-import "GPSLocationData.proto";
-import "CompassData.proto";
-import "SpeedData.proto";
-import "RPMData.proto";
-import "OdometerData.proto";
-import "FuelLevelData.proto";
-import "ParkingBrakeData.proto";
-import "GearData.proto";
-import "DiagnosticsData.proto";
-import "NightModeData.proto";
-import "EnvironmentData.proto";
-import "HVACData.proto";
-import "DrivingStatusData.proto";
-import "SteeringWheelData.proto";
-import "PassengerData.proto";
-import "DoorData.proto";
-import "LightData.proto";
-import "TirePressureData.proto";
-import "AccelData.proto";
-import "GyroData.proto";
+import "oaa/sensor/GPSLocationData.proto";
+import "oaa/sensor/CompassData.proto";
+import "oaa/sensor/SpeedData.proto";
+import "oaa/sensor/RPMData.proto";
+import "oaa/sensor/OdometerData.proto";
+import "oaa/sensor/FuelLevelData.proto";
+import "oaa/sensor/ParkingBrakeData.proto";
+import "oaa/sensor/GearData.proto";
+import "oaa/common/DiagnosticsData.proto";
+import "oaa/sensor/NightModeData.proto";
+import "oaa/sensor/EnvironmentData.proto";
+import "oaa/sensor/HVACData.proto";
+import "oaa/sensor/DrivingStatusData.proto";
+import "oaa/sensor/SteeringWheelData.proto";
+import "oaa/sensor/PassengerData.proto";
+import "oaa/sensor/DoorData.proto";
+import "oaa/sensor/LightData.proto";
+import "oaa/sensor/TirePressureData.proto";
+import "oaa/sensor/AccelData.proto";
+import "oaa/sensor/GyroData.proto";
 
 package oaa.proto.messages;
 

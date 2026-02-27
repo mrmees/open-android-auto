@@ -18,12 +18,12 @@
 
 syntax="proto3";
 
-import "AVStreamTypeEnum.proto";
-import "AudioTypeEnum.proto";
-import "AudioConfigData.proto";
-import "VideoConfigData.proto";
-import "DisplayTypeEnum.proto";
-import "VideoFocusReasonEnum.proto";
+import "oaa/av/AVStreamTypeEnum.proto";
+import "oaa/audio/AudioTypeEnum.proto";
+import "oaa/audio/AudioConfigData.proto";
+import "oaa/video/VideoConfigData.proto";
+import "oaa/video/DisplayTypeEnum.proto";
+import "oaa/video/VideoFocusReasonEnum.proto";
 package oaa.proto.data;
 
 message AVChannel

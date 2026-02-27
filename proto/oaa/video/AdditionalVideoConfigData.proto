@@ -1,3 +1,7 @@
+// Android Auto Protocol Buffer Definitions
+// https://github.com/mrmees/open-android-auto
+// SPDX-License-Identifier: GPL-3.0-or-later
+
 /*
  * Discovered via APK analysis (wcm.java, AA v16.1)
  * Additional video configuration for AV channel setup.

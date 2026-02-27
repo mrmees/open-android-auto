@@ -18,9 +18,9 @@
 
 syntax="proto3";
 
-import "SensorData.proto";
-import "FuelTypeEnum.proto";
-import "EVConnectorTypeEnum.proto";
+import "oaa/sensor/SensorData.proto";
+import "oaa/sensor/FuelTypeEnum.proto";
+import "oaa/sensor/EVConnectorTypeEnum.proto";
 
 package oaa.proto.data;
 

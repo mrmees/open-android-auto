@@ -1,3 +1,7 @@
+// Android Auto Protocol Buffer Definitions
+// https://github.com/mrmees/open-android-auto
+// SPDX-License-Identifier: GPL-3.0-or-later
+
 /*
  * Discovered via APK analysis (xkh.java, AA v16.1)
  * Reasons the phone disconnects from the head unit.

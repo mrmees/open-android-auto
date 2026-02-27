@@ -1,3 +1,7 @@
+// Android Auto Protocol Buffer Definitions
+// https://github.com/mrmees/open-android-auto
+// SPDX-License-Identifier: GPL-3.0-or-later
+
 /*
  * SessionInfo — sub-message of ServiceDiscoveryRequest field 6.
  * Contains session tracking data for reconnection.

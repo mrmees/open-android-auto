@@ -1,3 +1,7 @@
+// Android Auto Protocol Buffer Definitions
+// https://github.com/mrmees/open-android-auto
+// SPDX-License-Identifier: GPL-3.0-or-later
+
 /*
  * Discovered via APK proto decoder (vzr.java / vzq.java, AA v16.1)
  * Navigation channel configuration with image dimension requirements.

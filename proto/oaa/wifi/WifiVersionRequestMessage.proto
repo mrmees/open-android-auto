@@ -1,3 +1,7 @@
+// Android Auto Protocol Buffer Definitions
+// https://github.com/mrmees/open-android-auto
+// SPDX-License-Identifier: GPL-3.0-or-later
+
 /*
  * WifiVersionRequest — BT WiFi version negotiation request.
  *
@@ -11,8 +15,8 @@
 
 syntax = "proto3";
 
-import "PhoneCapabilitiesData.proto";
-import "FeatureFlagsData.proto";
+import "oaa/control/PhoneCapabilitiesData.proto";
+import "oaa/common/FeatureFlagsData.proto";
 
 package oaa.proto.messages;
 

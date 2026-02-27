@@ -18,7 +18,7 @@
 
 syntax = "proto3";
 
-import "WifiDirectConfigData.proto";
+import "oaa/wifi/WifiDirectConfigData.proto";
 
 package oaa.proto.messages;
 

@@ -18,9 +18,9 @@
 
 syntax="proto3";
 
-import "ChannelDescriptorData.proto";
-import "DriverPositionEnum.proto";
-import "HeadUnitInfoData.proto";
+import "oaa/control/ChannelDescriptorData.proto";
+import "oaa/common/DriverPositionEnum.proto";
+import "oaa/control/HeadUnitInfoData.proto";
 
 package oaa.proto.messages;
 

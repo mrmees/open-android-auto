@@ -18,8 +18,8 @@
 
 syntax="proto3";
 
-import "AVStreamTypeEnum.proto";
-import "AudioConfigData.proto";
+import "oaa/av/AVStreamTypeEnum.proto";
+import "oaa/audio/AudioConfigData.proto";
 
 package oaa.proto.data;
 

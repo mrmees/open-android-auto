@@ -1,3 +1,7 @@
+// Android Auto Protocol Buffer Definitions
+// https://github.com/mrmees/open-android-auto
+// SPDX-License-Identifier: GPL-3.0-or-later
+
 /*
  * Discovered via APK analysis (xks.java, AA v16.1)
  * Notification categories the phone can send to the head unit.

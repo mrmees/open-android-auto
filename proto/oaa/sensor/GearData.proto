@@ -18,7 +18,7 @@
 
 syntax="proto3";
 
-import "GearEnum.proto";
+import "oaa/sensor/GearEnum.proto";
 
 package oaa.proto.data;
 

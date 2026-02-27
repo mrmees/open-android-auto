@@ -18,7 +18,7 @@
 
 syntax="proto3";
 
-import "AbsoluteInputEventData.proto";
+import "oaa/input/AbsoluteInputEventData.proto";
 
 package oaa.proto.data;
 

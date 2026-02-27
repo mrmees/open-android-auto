@@ -18,8 +18,8 @@
 
 syntax="proto3";
 
-import "HeadlightStatusEnum.proto";
-import "IndicatorStatusEnum.proto";
+import "oaa/sensor/HeadlightStatusEnum.proto";
+import "oaa/sensor/IndicatorStatusEnum.proto";
 
 package oaa.proto.data;
 

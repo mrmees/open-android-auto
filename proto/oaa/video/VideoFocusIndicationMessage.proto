@@ -18,7 +18,7 @@
 
 syntax="proto3";
 
-import "VideoFocusModeEnum.proto";
+import "oaa/video/VideoFocusModeEnum.proto";
 
 package oaa.proto.messages;
 

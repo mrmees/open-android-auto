@@ -18,7 +18,7 @@
 
 syntax="proto3";
 
-import "BluetoothPairingMethodEnum.proto";
+import "oaa/bluetooth/BluetoothPairingMethodEnum.proto";
 
 package oaa.proto.data;
 

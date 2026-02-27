@@ -18,7 +18,7 @@
 
 syntax="proto3";
 
-import "AudioFocusTypeEnum.proto";
+import "oaa/audio/AudioFocusTypeEnum.proto";
 
 package oaa.proto.messages;
 

@@ -1,6 +1,10 @@
+// Android Auto Protocol Buffer Definitions
+// https://github.com/mrmees/open-android-auto
+// SPDX-License-Identifier: GPL-3.0-or-later
+
 syntax = "proto3";
 
-import "PhoneCallStateEnum.proto";
+import "oaa/phone/PhoneCallStateEnum.proto";
 
 package oaa.proto.messages;
 

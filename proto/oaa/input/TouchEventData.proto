@@ -18,8 +18,8 @@
 
 syntax="proto3";
 
-import "TouchLocationData.proto";
-import "TouchActionEnum.proto";
+import "oaa/input/TouchLocationData.proto";
+import "oaa/input/TouchActionEnum.proto";
 
 package oaa.proto.data;
 

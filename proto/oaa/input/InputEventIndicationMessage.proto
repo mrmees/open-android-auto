@@ -18,10 +18,10 @@
 
 syntax="proto3";
 
-import "TouchEventData.proto";
-import "ButtonEventsData.proto";
-import "AbsoluteInputEventsData.proto";
-import "RelativeInputEventsData.proto";
+import "oaa/input/TouchEventData.proto";
+import "oaa/input/ButtonEventsData.proto";
+import "oaa/input/AbsoluteInputEventsData.proto";
+import "oaa/input/RelativeInputEventsData.proto";
 
 package oaa.proto.messages;
 

@@ -1,3 +1,7 @@
+// Android Auto Protocol Buffer Definitions
+// https://github.com/mrmees/open-android-auto
+// SPDX-License-Identifier: GPL-3.0-or-later
+
 /*
  * Updated via APK proto decoder (matched to ahdz, AA v16.1)
  * Media playback status update (msgId 0x8001 on Media channel)

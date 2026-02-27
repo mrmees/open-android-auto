@@ -18,8 +18,8 @@
 
 syntax="proto3";
 
-import "TouchConfigData.proto";
-import "HapticFeedbackTypeEnum.proto";
+import "oaa/input/TouchConfigData.proto";
+import "oaa/input/HapticFeedbackTypeEnum.proto";
 
 package oaa.proto.data;
 

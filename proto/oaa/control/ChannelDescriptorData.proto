@@ -26,18 +26,18 @@ syntax="proto3";
 
 option optimize_for=SPEED;
 
-import "SensorChannelData.proto";
-import "AVChannelData.proto";
-import "InputChannelData.proto";
-import "AVInputChannelData.proto";
-import "BluetoothChannelData.proto";
-import "NavigationChannelData.proto";
-import "RadioChannelData.proto";
-import "VendorExtensionChannelData.proto";
-import "MediaChannelData.proto";
-import "PhoneStatusChannelData.proto";
-import "NotificationChannelData.proto";
-import "WifiChannelData.proto";
+import "oaa/sensor/SensorChannelData.proto";
+import "oaa/av/AVChannelData.proto";
+import "oaa/input/InputChannelData.proto";
+import "oaa/av/AVInputChannelData.proto";
+import "oaa/bluetooth/BluetoothChannelData.proto";
+import "oaa/navigation/NavigationChannelData.proto";
+import "oaa/control/RadioChannelData.proto";
+import "oaa/control/VendorExtensionChannelData.proto";
+import "oaa/media/MediaChannelData.proto";
+import "oaa/phone/PhoneStatusChannelData.proto";
+import "oaa/notification/NotificationChannelData.proto";
+import "oaa/wifi/WifiChannelData.proto";
 
 package oaa.proto.data;
 

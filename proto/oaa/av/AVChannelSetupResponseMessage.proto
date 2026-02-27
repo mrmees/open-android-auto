@@ -18,7 +18,7 @@
 
 syntax="proto3";
 
-import "AVChannelSetupStatusEnum.proto";
+import "oaa/av/AVChannelSetupStatusEnum.proto";
 
 package oaa.proto.messages;
 
