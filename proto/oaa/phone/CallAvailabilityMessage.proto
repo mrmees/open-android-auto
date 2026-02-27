@@ -1,0 +1,6 @@
+syntax = "proto3";
+package oaa.proto.messages;
+
+message CallAvailabilityStatus {
+    optional bool call_available = 1;
+}
