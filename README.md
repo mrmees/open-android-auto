@@ -136,6 +136,12 @@ Protocol implementation details extracted from commercial AA head units:
 - [Research Provenance](research/provenance.md) — exact source snapshot and import scope
 - [Contributing](CONTRIBUTING.md) — how to add or improve definitions
 
+## Workflow
+
+- [AGENTS.md](AGENTS.md) — repository workflow loop and verification expectations
+- [Current Roadmap](docs/roadmap-current.md) — `Now / Next / Later` priorities
+- [Session Handoffs](docs/session-handoffs.md) — append-only continuity log between sessions
+
 ## License
 
 GPLv3. See [LICENSE](LICENSE).
