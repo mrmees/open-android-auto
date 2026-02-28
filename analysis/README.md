@@ -10,6 +10,14 @@ Python scripts used to extract and index protocol-relevant data from the Android
 
 See `tools/apk_indexer/README.md` for usage details.
 
+### tools/proto_stream_validator/
+
+Python validator for protobuf schema regression checks against recorded non-media
+AA captures. Compares decoded output against locked baselines and supports
+explicit bless updates (`--bless --reason ...`) for intentional schema changes.
+
+See `tools/proto_stream_validator/README.md` for capture format and commands.
+
 ### database/apk_index.db
 
 Pre-built SQLite database containing indexed data from Android Auto APK v16.1.660414-release. Key tables:

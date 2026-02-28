@@ -4,11 +4,11 @@ Contributions to expand and improve these protocol buffer definitions are welcom
 
 ## Adding New Messages
 
-1. Identify the correct category directory under `proto/oaa/`. See the [README](README.md) for category descriptions.
+1. Identify the correct category directory under `oaa/`. See the [README](README.md) for category descriptions.
 2. Create your `.proto` file with the appropriate naming convention (see below).
 3. Use the correct package namespace based on file type.
 4. Add inline comments documenting observed field values and behavior.
-5. Ensure the file compiles cleanly: `protoc --proto_path=proto --cpp_out=/tmp proto/oaa/<category>/YourFile.proto`
+5. Ensure the file compiles cleanly: `protoc --proto_path=. --cpp_out=/tmp oaa/<category>/YourFile.proto`
 
 ## File Naming
 
@@ -30,7 +30,7 @@ import "oaa/common/StatusEnum.proto";
 import "oaa/video/VideoConfigData.proto";
 ```
 
-Do not use relative paths. The proto root is the `proto/` directory.
+Do not use relative paths. The proto root is the repository root.
 
 ## Package Declarations
 
@@ -83,6 +83,28 @@ Use `optional` for fields where absence is meaningful (proto3 tracks presence fo
 2. Ensure all proto files compile without errors.
 3. Include context in your PR description: how were the new fields/messages discovered? Live capture, APK decompilation, binary analysis?
 4. One logical change per PR. Adding a new channel's messages is one PR; fixing field comments across multiple files is another.
+
+## Capture-Based Proto Validation
+
+When changing protobuf schemas that are used in stream decoding, run the
+non-media capture validator and include results in your PR:
+
+```bash
+PYTHONPATH=. python3 analysis/tools/proto_stream_validator/run.py \
+  --capture analysis/captures/non_media/<capture>.jsonl \
+  --baseline analysis/baselines/non_media/<capture>.normalized.json
+```
+
+If your schema change is intentional and changes decoded output, update the
+baseline explicitly with rationale:
+
+```bash
+PYTHONPATH=. python3 analysis/tools/proto_stream_validator/run.py \
+  --capture analysis/captures/non_media/<capture>.jsonl \
+  --baseline analysis/baselines/non_media/<capture>.normalized.json \
+  --bless \
+  --reason "intentional proto update for <message>"
+```
 
 ## License
 

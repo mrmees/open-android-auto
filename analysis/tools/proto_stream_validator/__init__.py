@@ -1,0 +1,1 @@
+"""Proto stream validator package."""
