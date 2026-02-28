@@ -8,7 +8,10 @@ import pytest
 
 from analysis.tools.proto_stream_validator import run  # type: ignore[attr-defined]
 
-_GOOGLE_PROTOBUF_AVAILABLE = importlib.util.find_spec("google.protobuf") is not None
+try:
+    _GOOGLE_PROTOBUF_AVAILABLE = importlib.util.find_spec("google.protobuf") is not None
+except ModuleNotFoundError:
+    _GOOGLE_PROTOBUF_AVAILABLE = False
 _FIXTURES_DIR = Path(__file__).resolve().parent / "fixtures"
 
 
