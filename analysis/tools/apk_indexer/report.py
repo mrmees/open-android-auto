@@ -68,6 +68,14 @@ def write_summary_report(
             "Top Call Targets",
             _top_rows([str(row["target"]) for row in signals.get("call_edges", [])]),
         ),
+        _render_section(
+            "Catalog Totals",
+            _top_rows([str(row["confidence"]) for row in signals.get("proto_catalog", [])]),
+        ),
+        _render_section(
+            "Unknown Queue Totals",
+            _top_rows([str(row["reason"]) for row in signals.get("proto_unknowns", [])]),
+        ),
     ]
 
     body = "# APK Index Summary\n\n" + "".join(sections)

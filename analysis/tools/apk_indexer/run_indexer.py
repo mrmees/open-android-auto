@@ -8,6 +8,7 @@ if __package__ in (None, ""):
     sys.path.append(str(Path(__file__).resolve().parents[3]))
 
 from analysis.tools.apk_indexer.config import IndexerConfig
+from analysis.tools.apk_indexer.catalog import build_catalog
 from analysis.tools.apk_indexer.extract import extract_signals
 from analysis.tools.apk_indexer.report import write_summary_report
 from analysis.tools.apk_indexer.relocate_source import relocate_source
@@ -22,6 +23,7 @@ def run_indexer(source_root: Path, analysis_root: Path, scope: str = "all") -> P
     source = base / "apk-source"
 
     signals = extract_signals(source, scope=scope)
+    signals.update(build_catalog(signals, apk_version=version_name))
 
     sqlite_dir = base / "apk-index" / "sqlite"
     json_dir = base / "apk-index" / "json"
