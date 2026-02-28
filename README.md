@@ -12,7 +12,7 @@ This repository is the protocol definition layer used by [OpenAuto Prodigy](http
 
 ## Directory Structure
 
-All proto files live under `proto/oaa/`:
+All proto files live under `oaa/`:
 
 | Category | Files | Description |
 |----------|------:|-------------|
@@ -34,36 +34,36 @@ All proto files live under `proto/oaa/`:
 
 ### Compile with protoc
 
-All commands assume you run from the repository root with `proto/` as the import path.
+All commands assume you run from the repository root (the directory containing `oaa/`).
 
 **C++:**
 
 ```bash
-protoc --proto_path=proto --cpp_out=generated/ \
-  proto/oaa/control/ServiceDiscoveryRequestMessage.proto \
-  proto/oaa/control/ServiceDiscoveryResponseMessage.proto
+protoc --proto_path=. --cpp_out=generated/ \
+  oaa/control/ServiceDiscoveryRequestMessage.proto \
+  oaa/control/ServiceDiscoveryResponseMessage.proto
 ```
 
 **Python:**
 
 ```bash
-protoc --proto_path=proto --python_out=generated/ \
-  proto/oaa/sensor/GPSLocationData.proto \
-  proto/oaa/sensor/SensorEventIndicationMessage.proto
+protoc --proto_path=. --python_out=generated/ \
+  oaa/sensor/GPSLocationData.proto \
+  oaa/sensor/SensorEventIndicationMessage.proto
 ```
 
 **Go:**
 
 ```bash
-protoc --proto_path=proto --go_out=generated/ --go_opt=paths=source_relative \
-  proto/oaa/video/VideoConfigData.proto \
-  proto/oaa/video/VideoResolutionEnum.proto
+protoc --proto_path=. --go_out=generated/ --go_opt=paths=source_relative \
+  oaa/video/VideoConfigData.proto \
+  oaa/video/VideoResolutionEnum.proto
 ```
 
 **Compile everything:**
 
 ```bash
-find proto -name '*.proto' | xargs protoc --proto_path=proto --cpp_out=generated/
+find oaa -name '*.proto' | xargs protoc --proto_path=. --cpp_out=generated/
 ```
 
 ### Use in a CMake project
@@ -71,7 +71,7 @@ find proto -name '*.proto' | xargs protoc --proto_path=proto --cpp_out=generated
 ```cmake
 find_package(Protobuf REQUIRED)
 
-file(GLOB_RECURSE PROTO_FILES "${CMAKE_CURRENT_SOURCE_DIR}/proto/oaa/*.proto")
+file(GLOB_RECURSE PROTO_FILES "${CMAKE_CURRENT_SOURCE_DIR}/oaa/*.proto")
 
 protobuf_generate_cpp(PROTO_SRCS PROTO_HDRS ${PROTO_FILES})
 add_library(aa_proto ${PROTO_SRCS} ${PROTO_HDRS})
