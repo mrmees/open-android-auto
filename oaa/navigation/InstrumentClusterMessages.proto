@@ -34,18 +34,18 @@ syntax = "proto3";
 package oaa.proto.messages;
 
 // Instrument cluster action type (APK: a.bu verifier, values 0-7)
-// Shares the same validator as PhoneInputAction — may represent
-// the same abstract "cluster action" concept.
-// Value names not recoverable from decompilation.
+// Names recovered from aa-proxy-rs (AOSP DHU source). D-pad style
+// navigation for instrument cluster displays (steering wheel controls).
+// Shared with PhoneStatusInput — same enum used for both channels.
 enum InstrumentClusterAction {
-    CLUSTER_ACTION_0 = 0;
-    CLUSTER_ACTION_1 = 1;
-    CLUSTER_ACTION_2 = 2;
-    CLUSTER_ACTION_3 = 3;
-    CLUSTER_ACTION_4 = 4;
-    CLUSTER_ACTION_5 = 5;
-    CLUSTER_ACTION_6 = 6;
-    CLUSTER_ACTION_7 = 7;
+    CLUSTER_ACTION_UNKNOWN = 0;
+    CLUSTER_ACTION_UP = 1;
+    CLUSTER_ACTION_DOWN = 2;
+    CLUSTER_ACTION_LEFT = 3;
+    CLUSTER_ACTION_RIGHT = 4;
+    CLUSTER_ACTION_ENTER = 5;
+    CLUSTER_ACTION_BACK = 6;
+    CLUSTER_ACTION_CALL = 7;
 }
 
 // 0x8001: InstrumentClusterStart (APK class: vzs — empty message)

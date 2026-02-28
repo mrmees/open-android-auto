@@ -31,17 +31,18 @@ syntax = "proto3";
 package oaa.proto.messages;
 
 // Input action type (APK: vyc.c, verifier a.bu, values 0-7)
-// Enum value names not recoverable from decompilation — inline in a.java.
-// Likely maps to phone-side user actions (accept, reject, DTMF, etc.)
+// Same d-pad navigation enum as InstrumentClusterAction (confirmed via
+// aa-proxy-rs: PhoneStatusInput embeds InstrumentClusterInput directly).
+// Used for navigating phone status UI on the instrument cluster display.
 enum PhoneInputAction {
-    PHONE_INPUT_ACTION_0 = 0;
-    PHONE_INPUT_ACTION_1 = 1;
-    PHONE_INPUT_ACTION_2 = 2;
-    PHONE_INPUT_ACTION_3 = 3;
-    PHONE_INPUT_ACTION_4 = 4;
-    PHONE_INPUT_ACTION_5 = 5;
-    PHONE_INPUT_ACTION_6 = 6;
-    PHONE_INPUT_ACTION_7 = 7;
+    PHONE_INPUT_UNKNOWN = 0;
+    PHONE_INPUT_UP = 1;
+    PHONE_INPUT_DOWN = 2;
+    PHONE_INPUT_LEFT = 3;
+    PHONE_INPUT_RIGHT = 4;
+    PHONE_INPUT_ENTER = 5;
+    PHONE_INPUT_BACK = 6;
+    PHONE_INPUT_CALL = 7;
 }
 
 // APK class: vyc — sub-message carrying the action type

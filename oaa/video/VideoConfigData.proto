@@ -40,6 +40,8 @@ message VideoConfig
     optional enums.MediaCodecType.Enum codec = 10;
 
     // Discovered via APK proto decoder (wcz.java → wcm sub-message)
-    // Purpose unknown — possibly additional video config params
+    // Likely a UiConfig sub-message (margins, content insets, theme).
+    // See oaa/av/UiConfigMessages.proto for the runtime UiConfig definition.
+    // Kept as bytes until wire capture confirms the sub-message structure.
     optional bytes additional_config = 11;
 }

@@ -23,8 +23,8 @@
  * via qbw.java (0→ACTION_PLAY, 1→ACTION_PAUSE, 2→ACTION_SKIP_TO_PREVIOUS,
  * 3→ACTION_SKIP_TO_NEXT, 4→ACTION_STOP).
  *
- * The handler (hxu.java) also references msgId 0x8003 (CAR_LOCAL_MEDIA_PLAYBACK_REQUEST)
- * as an HU→phone request message. Proto class and fields TBD.
+ * See also: CarLocalMediaPlaybackRequestMessage.proto (0x8003, vwr — HU→Phone
+ * transport action command, 1 field reusing CarLocalMediaPlaybackAction enum).
  */
 
 syntax = "proto3";

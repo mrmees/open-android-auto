@@ -1,0 +1,39 @@
+// Android Auto Protocol Buffer Definitions
+// https://github.com/mrmees/open-android-auto
+// SPDX-License-Identifier: GPL-3.0-or-later
+
+/*
+ * Car local media playback request (msgId 0x8003 on CAR_LOCAL_MEDIA channel)
+ * HU -> Phone command to perform a media transport action.
+ *
+ * APK class: vwr (AA v16.1) — 1 proto field
+ * GAL channel type 20 (CAR_LOCAL_MEDIA), handler: hxu.java
+ * SafeParcelable: CarLocalMediaPlaybackRequest (toString: "...{action=N}")
+ *
+ * Sent by HU via hkv.g() → hxu.k(0x8003, ...). The phone-side handler
+ * does NOT process incoming 0x8003 — it logs "Received unexpected car
+ * local media message CAR_LOCAL_MEDIA_PLAYBACK_REQUEST" and drops it.
+ * This confirms it's outbound-only (HU → Phone).
+ *
+ * Reuses CarLocalMediaPlaybackAction enum from CarLocalMediaPlaybackStatusMessage.
+ * The status message (0x8001) advertises available actions, and this request
+ * message lets the HU invoke one of them.
+ *
+ * Complete CAR_LOCAL_MEDIA channel:
+ *   0x8001 = CarLocalMediaPlaybackStatus    (Phone→HU, vws, 4 fields)
+ *   0x8002 = CarLocalMediaPlaybackMetadata  (Phone→HU, vwq, 5 fields)
+ *   0x8003 = CarLocalMediaPlaybackRequest   (HU→Phone, vwr, 1 field)
+ */
+
+syntax = "proto3";
+
+import "oaa/media/CarLocalMediaPlaybackStatusMessage.proto";
+
+package oaa.proto.messages;
+
+// APK class: vwr
+// 0x8003: CarLocalMediaPlaybackRequest (HU→Phone)
+// Command to perform a media transport action (play, pause, skip, stop).
+message CarLocalMediaPlaybackRequest {
+    optional CarLocalMediaPlaybackAction action = 1;
+}

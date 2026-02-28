@@ -48,9 +48,9 @@ message MediaPlaybackStatus {
     optional string source_app = 2;
     // Elapsed seconds in current track (resets to 0 on track change)
     optional int32 position_seconds = 3;
-    // Boolean flags — semantics unconfirmed, always false in capture.
-    // Likely candidates: shuffle_enabled, repeat_enabled, favorited
-    optional bool flag_4 = 4;
-    optional bool flag_5 = 5;
-    optional bool flag_6 = 6;
+    // Playback mode flags (confirmed via aa-proxy-rs protos and
+    // AIDL interface prz.java method g() — 3 trailing boolean params)
+    optional bool shuffle = 4;
+    optional bool repeat = 5;
+    optional bool repeat_one = 6;
 }
