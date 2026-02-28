@@ -22,3 +22,5 @@ def test_summary_report_contains_top_sections(tmp_path):
     assert "Top Enum Maps" in text
     assert "Top Switch Cases" in text
     assert "Top Call Targets" in text
+    assert "Catalog Totals" in text
+    assert "Unknown Queue Totals" in text
