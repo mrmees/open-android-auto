@@ -209,4 +209,50 @@ def write_sqlite(db_path: Path, signals: dict[str, list[dict[str, object]]]) -> 
                 for row in signals.get("class_references", [])
             ],
         )
+        conn.executemany(
+            "INSERT INTO proto_catalog(class_name, apk_version, confidence, field_count, "
+            "descriptor, source_file) VALUES (?, ?, ?, ?, ?, ?)",
+            [
+                (
+                    row["class_name"],
+                    row["apk_version"],
+                    row["confidence"],
+                    row["field_count"],
+                    row["descriptor"],
+                    row["source_file"],
+                )
+                for row in signals.get("proto_catalog", [])
+            ],
+        )
+        conn.executemany(
+            "INSERT INTO proto_evidence(class_name, evidence_source, evidence_detail, "
+            "source_file, line) VALUES (?, ?, ?, ?, ?)",
+            [
+                (
+                    row["class_name"],
+                    row["evidence_source"],
+                    row["evidence_detail"],
+                    row["source_file"],
+                    row["line"],
+                )
+                for row in signals.get("proto_evidence", [])
+            ],
+        )
+        conn.executemany(
+            "INSERT INTO proto_unknowns(class_name, reason, evidence_count, notes) "
+            "VALUES (?, ?, ?, ?)",
+            [
+                (
+                    row["class_name"],
+                    row["reason"],
+                    row["evidence_count"],
+                    row["notes"],
+                )
+                for row in signals.get("proto_unknowns", [])
+            ],
+        )
+        conn.executemany(
+            "INSERT INTO run_metadata(key, value) VALUES (?, ?)",
+            [(row["key"], row["value"]) for row in signals.get("run_metadata", [])],
+        )
     return db_path
