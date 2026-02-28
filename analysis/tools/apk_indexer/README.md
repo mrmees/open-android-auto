@@ -35,6 +35,26 @@ make -C analysis/tools/apk_indexer index \
   SCOPE=all
 ```
 
+Benchmark end-to-end wall-clock runtime:
+
+```bash
+python3 analysis/tools/apk_indexer/benchmark.py \
+  --source <decompiled-apk-root> \
+  --analysis-root analysis \
+  --scope all \
+  --runs 3
+```
+
+Or:
+
+```bash
+make -C analysis/tools/apk_indexer benchmark \
+  SOURCE=<decompiled-apk-root> \
+  ANALYSIS_ROOT=analysis \
+  SCOPE=all \
+  RUNS=3
+```
+
 ## Repo-Specific Example
 
 Current local decompile source:
@@ -151,3 +171,17 @@ Show CLI help:
 ```bash
 python3 analysis/tools/apk_indexer/run_indexer.py --help
 ```
+
+Benchmark CLI help:
+
+```bash
+python3 analysis/tools/apk_indexer/benchmark.py --help
+```
+
+Benchmark JSON output fields:
+- `runs`
+- `mean_seconds`
+- `p95_seconds`
+- `min_seconds`
+- `max_seconds`
+- `samples_seconds`
