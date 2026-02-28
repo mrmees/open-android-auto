@@ -1,0 +1,75 @@
+// Android Auto Protocol Buffer Definitions
+// https://github.com/mrmees/open-android-auto
+// SPDX-License-Identifier: GPL-3.0-or-later
+
+/*
+ * Connected Devices messages (Control channel, GAL type 1)
+ * Handler: vee.java (control channel message dispatcher)
+ *
+ * Manages multi-device scenarios where multiple phones are paired
+ * to the head unit. Allows the HU to query connected devices and
+ * request switching to a different phone.
+ *
+ * Message IDs (on control channel):
+ *   0x0014 = CarConnectedDevicesRequest    (HU->Phone, empty)
+ *   0x0015 = CarConnectedDevicesResponse   (Phone->HU)
+ *   0x0016 = UserSwitchRequest             (HU->Phone)
+ *   0x0019 = UserSwitchResponse            (Phone->HU)
+ *
+ * Source: aa-proxy-rs protos, confirmed against APK vee.java dispatch
+ *         (lines 480-492) and wire capture data.
+ *
+ * APK: AA v16.1
+ */
+
+syntax = "proto3";
+
+package oaa.proto.messages;
+
+// User switch result status codes
+// Negative values indicate errors (mapped from aa-proxy-rs).
+// Proto3 enums must start at 0, so these are offset.
+enum UserSwitchStatus {
+    USER_SWITCH_OK = 0;
+    USER_SWITCH_ERROR_NO_RFCOMM_CONNECTION = 1;
+    USER_SWITCH_ERROR_BT_CLOSED_BEFORE_START = 2;
+    USER_SWITCH_ERROR_BT_CLOSED_AFTER_START = 3;
+    USER_SWITCH_ERROR_INCOMPATIBLE_PROTOCOL_VERSION = 4;
+    USER_SWITCH_ERROR_PHONE_UNABLE_TO_CONNECT_WIFI = 5;
+    USER_SWITCH_ERROR_MULTIPLE_REQUEST = 6;
+    USER_SWITCH_ERROR_HU_INTERNAL = 7;
+    USER_SWITCH_ERROR_INVALID_REQUEST = 8;
+    USER_SWITCH_ERROR_REQUEST_TIMEOUT = 9;
+}
+
+// A connected phone/device entry.
+message ConnectedDevice {
+    optional string device_name = 1;
+    optional int32 device_id = 2;
+}
+
+// 0x0014: CarConnectedDevicesRequest (HU->Phone)
+// Empty request — HU asks phone to enumerate connected devices.
+message CarConnectedDevicesRequest {
+}
+
+// 0x0015: CarConnectedDevicesResponse (Phone->HU)
+// List of connected devices, with flags for unsolicited updates.
+message CarConnectedDevicesResponse {
+    repeated ConnectedDevice connected_devices = 1;
+    optional bool unsolicited = 2;
+    optional bool final_list = 3;
+}
+
+// 0x0016: UserSwitchRequest (HU->Phone)
+// Request to switch the active AA session to a different device.
+message UserSwitchRequest {
+    optional ConnectedDevice selected_device = 1;
+}
+
+// 0x0019: UserSwitchResponse (Phone->HU)
+// Result of a user switch attempt.
+message UserSwitchResponse {
+    optional UserSwitchStatus status = 1;
+    optional ConnectedDevice selected_device = 2;
+}

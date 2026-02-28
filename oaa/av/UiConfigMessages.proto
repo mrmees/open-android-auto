@@ -1,0 +1,76 @@
+// Android Auto Protocol Buffer Definitions
+// https://github.com/mrmees/open-android-auto
+// SPDX-License-Identifier: GPL-3.0-or-later
+
+/*
+ * UI Config messages (AV channels — Video/Audio)
+ * Flows on video channel alongside media data.
+ *
+ * Controls display margins, content insets, and theme (light/dark/auto)
+ * for the projected AA UI. Two pairs exist:
+ *
+ * Message IDs (on AV channel):
+ *   0x800A = UpdateUiConfigRequest        (HU->Phone)
+ *   0x800B = UpdateUiConfigReply          (Phone->HU)
+ *   0x8012 = UpdateHuUiConfigRequest      (HU->Phone, HU-initiated push)
+ *   0x8013 = UpdateHuUiConfigResponse     (Phone->HU)
+ *
+ * The regular pair (0x800A/B) may be phone-initiated config negotiation.
+ * The HU pair (0x8012/13) is for the head unit to proactively push
+ * UI config changes (e.g., day/night mode switch).
+ *
+ * Related: VideoConfigData.proto field 11 (additional_config) is likely
+ * a UiConfig sub-message in the service discovery video config.
+ *
+ * Source: aa-proxy-rs protos, confirmed against AVChannelMessageIdsEnum.
+ *
+ * APK: AA v16.1
+ */
+
+syntax = "proto3";
+
+package oaa.proto.messages;
+
+// UI theme mode
+enum UiTheme {
+    UI_THEME_AUTOMATIC = 0;
+    UI_THEME_LIGHT = 1;
+    UI_THEME_DARK = 2;
+}
+
+// Display area insets (pixels from edge)
+message Insets {
+    optional uint32 top = 1;
+    optional uint32 bottom = 2;
+    optional uint32 left = 3;
+    optional uint32 right = 4;
+}
+
+// UI configuration — margins, content area, theme
+message UiConfig {
+    optional Insets margins = 1;
+    optional Insets content_insets = 2;
+    optional Insets stable_content_insets = 3;
+    optional UiTheme ui_theme = 4;
+}
+
+// 0x800A: UpdateUiConfigRequest (HU->Phone)
+message UpdateUiConfigRequest {
+    optional UiConfig ui_config = 1;
+}
+
+// 0x800B: UpdateUiConfigReply (Phone->HU)
+message UpdateUiConfigReply {
+    optional UiConfig ui_config = 1;
+}
+
+// 0x8012: UpdateHuUiConfigRequest (HU->Phone)
+// HU proactively pushes UI config changes (e.g., day/night switch).
+message UpdateHuUiConfigRequest {
+    optional UiConfig ui_config = 1;
+}
+
+// 0x8013: UpdateHuUiConfigResponse (Phone->HU)
+message UpdateHuUiConfigResponse {
+    optional UiConfig ui_config = 1;
+}

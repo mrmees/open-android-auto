@@ -1,0 +1,29 @@
+// Android Auto Protocol Buffer Definitions
+// https://github.com/mrmees/open-android-auto
+// SPDX-License-Identifier: GPL-3.0-or-later
+
+/*
+ * Battery Status Notification (Control channel, GAL type 1)
+ * Handler: vee.java (control channel message dispatcher)
+ *
+ * Phone reports its battery status to the head unit.
+ * Confirmed via wire capture: 08 0d 10 b0 39 18 01 decodes to
+ * battery_level=13, time_remaining_s=7344, critical_battery=true.
+ *
+ * Message ID:
+ *   0x0017 = BatteryStatusNotification  (Phone->HU)
+ *
+ * APK: AA v16.1
+ */
+
+syntax = "proto3";
+
+package oaa.proto.messages;
+
+// 0x0017: BatteryStatusNotification (Phone->HU)
+// Periodic or event-driven battery status update.
+message BatteryStatusNotification {
+    optional uint32 battery_level = 1;
+    optional uint32 time_remaining_s = 2;
+    optional bool critical_battery = 3;
+}
