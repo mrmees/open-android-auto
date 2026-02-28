@@ -70,3 +70,31 @@ Verification:
 - `ls AGENTS.md docs/roadmap-current.md docs/session-handoffs.md` -> files present.
 - `rg -n "roadmap-current|session-handoffs|AGENTS.md" AGENTS.md README.md docs/roadmap-current.md docs/session-handoffs.md` -> expected references found.
 - `git status --short` -> clean before this handoff append.
+
+## 2026-02-28 - APK Protobuf Catalog Phase (Task Batch 1)
+
+Date / Session: 2026-02-28 / codex-apk-protobuf-catalog
+
+What Changed:
+- Added catalog pipeline primitives in `analysis/tools/apk_indexer`: confidence classifier, catalog derivation, benchmark harness, query pack, and report extensions.
+- Extended SQLite schema and writer outputs with `proto_catalog`, `proto_evidence`, `proto_unknowns`, and `run_metadata`.
+- Updated tests to enforce schema contract, catalog split behavior, run outputs, report sections, and benchmark metrics.
+- Updated `docs/roadmap-current.md` to reflect current 2-week catalog priorities.
+
+Why:
+- Execute the approved roadmap to produce an evidence-backed protobuf catalog workflow for canonical APK `v16.1`.
+
+Status:
+- In progress. Core pipeline and tests are implemented; canonical local source path for full real-data smoke run was not available in this environment.
+
+Next Steps:
+1. Run the indexer against the real canonical decompiled `v16.1` source when path is available.
+2. Start manual triage of unknown queue entries and promote high-confidence definitions.
+3. Align proto-path references with ongoing `proto/oaa -> oaa` reorganization after it lands in this branch.
+
+Verification:
+- `PYTHONPATH=. pytest analysis/tools/apk_indexer/tests -v` -> `24 passed`.
+- `test -d /home/matt/claude/personal/openautopro/firmware/android-auto-apk/decompiled && echo source_present || echo source_missing` -> `source_missing`.
+- Synthetic smoke run:
+  - `PYTHONPATH=. python3 analysis/tools/apk_indexer/run_indexer.py --source <tmp_fixture> --analysis-root <tmp_out> --scope all`
+  - Output verified: `apk_index.db`, `proto_catalog.json`, `proto_unknowns.json`, `reports/summary.md`.

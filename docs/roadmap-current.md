@@ -2,21 +2,21 @@
 
 ## Now
 
-- Keep protocol definitions consistent and compile-clean for all touched `.proto` files.
-- Improve reference docs where protocol behavior is ambiguous or easy to misread.
-- Maintain analysis tooling usability, especially APK indexing workflows and docs.
+- Finalize APK `v16.1` protobuf catalog contract in `analysis/tools/apk_indexer`.
+- Keep high-confidence catalog and unknown queue split enforceable via tests.
+- Maintain reproducible indexing workflow and query pack usability.
 
 ## Next
 
-- Add tighter validation guidance for cross-file proto consistency checks.
-- Expand protocol notes that connect live captures to field-level annotations.
-- Improve contributor guidance for submitting focused, verifiable proto changes.
+- Run manual triage on unknown queue entries to promote high-confidence definitions.
+- Improve evidence coverage for accepted catalog entries.
+- Establish canonical benchmark baseline for end-to-end indexing runtime.
 
 ## Later
 
-- Add optional language-generation examples beyond current quick-start snippets.
-- Add a protocol change log format for tracking notable semantic updates.
-- Explore lightweight automation for stale doc path/reference detection.
+- Add future-version compatibility hooks beyond canonical `v16.1`.
+- Add protocol change tracking for catalog-level semantic updates.
+- Expand automation around stale path/reference detection in docs.
 
 ## Focus Guardrails
 
@@ -24,4 +24,4 @@
 - Prioritize protocol definitions, protocol docs, and analysis tooling only.
 - Defer cross-repo product planning to the primary application repository.
 
-Last Updated: 2026-02-27 (lean workflow bootstrap)
+Last Updated: 2026-02-28 (apk protobuf catalog implementation in progress)
