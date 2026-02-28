@@ -164,3 +164,38 @@ Verification:
 - `PYTHONPATH=/tmp/protobuf_vendor:. pytest analysis/tools/proto_stream_validator/tests -v` -> `19 passed` (decode + golden included).
 - `PYTHONPATH=. python3 analysis/tools/proto_stream_validator/run.py --help` -> CLI help rendered successfully (exit 0).
 - `rg -n "proto_stream_validator|validate|--bless|non_media" analysis/README.md CONTRIBUTING.md docs/roadmap-current.md analysis/tools/proto_stream_validator/README.md` -> expected references present.
+
+## 2026-02-28 - Live Capture Baseline from Clean-Build Pairing
+
+Date / Session: 2026-02-28 / codex-live-capture-baseline
+
+What Changed:
+- Pulled live Pi capture into:
+  - `analysis/captures/non_media/2026-02-28-s25-cleanbuild.jsonl`
+- Added corresponding blessed baseline:
+  - `analysis/baselines/non_media/2026-02-28-s25-cleanbuild.normalized.json`
+- Hardened validator mapping/filtering for real capture behavior:
+  - message-name fallback resolution for dynamic channel tuples
+  - phase-1 exclusions for non-protobuf control frames (`VERSION_*`, `SSL_HANDSHAKE`)
+  - phase-1 exclusions for unresolved hex-labeled frames and high-volume `AV_MEDIA_ACK`
+- Updated tests for the new mapping/filter semantics in:
+  - `analysis/tools/proto_stream_validator/tests/test_message_map.py`
+
+Why:
+- The fresh clean-build AA stream includes dynamic channel-open tuples and non-protobuf handshake frames that caused the strict tuple-only resolver to fail before baseline generation.
+- Phase-1 validation needs deterministic non-media signal from recorded sessions, not transport/noise churn.
+
+Status:
+- Working in `feat/proto-stream-validator` worktree.
+- Live-capture bless succeeded and immediate validate passes for the same capture.
+
+Next Steps:
+1. Expand message-map coverage for additional known names/tuples as new captures are collected.
+2. Decide whether the new capture/baseline pair should be the canonical CI fixture or a local reference set.
+3. Mirror the same capture validation flow in `openauto-prodigy` developer docs once capture export workflow is finalized.
+
+Verification:
+- `/tmp/oaa-proto-validator-venv/bin/python -m pytest analysis/tools/proto_stream_validator/tests -v` -> `23 passed`.
+- `/tmp/oaa-proto-validator-venv/bin/python analysis/tools/proto_stream_validator/run.py --capture analysis/captures/non_media/2026-02-28-s25-cleanbuild.jsonl --baseline analysis/baselines/non_media/2026-02-28-s25-cleanbuild.normalized.json --repo-root . --bless --reason "refresh baseline after mapping/filtering update"` -> baseline updated (exit 0).
+- `/tmp/oaa-proto-validator-venv/bin/python analysis/tools/proto_stream_validator/run.py --capture analysis/captures/non_media/2026-02-28-s25-cleanbuild.jsonl --baseline analysis/baselines/non_media/2026-02-28-s25-cleanbuild.normalized.json --repo-root .` -> `validation passed: no baseline diffs` (exit 0).
+- `python3 - <<'PY' ... len(json.load(...)) ... PY` on `analysis/baselines/non_media/2026-02-28-s25-cleanbuild.normalized.json` -> `rows 516`.

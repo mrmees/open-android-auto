@@ -17,6 +17,11 @@ def test_resolve_known_sensor_tuple():
     assert fqcn == "oaa.proto.messages.SensorEventIndication"
 
 
+def test_resolve_uses_message_name_fallback_for_dynamic_channel():
+    fqcn = resolve_message_type("HU->Phone", 10, 0x0007, "CHANNEL_OPEN_REQUEST")
+    assert fqcn == "oaa.proto.messages.ChannelOpenRequest"
+
+
 def test_unmapped_tuple_raises_key_error():
     with pytest.raises(KeyError):
         resolve_message_type("Phone->HU", 99, 0x9999)
@@ -30,6 +35,45 @@ def test_phase1_filter_excludes_av_media_frames():
         message_id=0x0001,
         message_name="AV_MEDIA_INDICATION",
         payload_hex="00",
+    )
+
+    assert is_phase1_non_media(frame) is False
+
+
+def test_phase1_filter_excludes_version_and_ssl_control_frames():
+    frame = Frame(
+        ts_ms=1,
+        direction="HU->Phone",
+        channel_id=0,
+        message_id=0x0001,
+        message_name="VERSION_REQUEST",
+        payload_hex="00010007",
+    )
+
+    assert is_phase1_non_media(frame) is False
+
+
+def test_phase1_filter_excludes_unresolved_hex_named_frames():
+    frame = Frame(
+        ts_ms=1,
+        direction="Phone->HU",
+        channel_id=10,
+        message_id=0x8001,
+        message_name="0x8001",
+        payload_hex="00",
+    )
+
+    assert is_phase1_non_media(frame) is False
+
+
+def test_phase1_filter_excludes_av_media_ack_noise():
+    frame = Frame(
+        ts_ms=1,
+        direction="HU->Phone",
+        channel_id=4,
+        message_id=0x8004,
+        message_name="AV_MEDIA_ACK",
+        payload_hex="08001001",
     )
 
     assert is_phase1_non_media(frame) is False
