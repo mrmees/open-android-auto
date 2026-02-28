@@ -98,3 +98,26 @@ Verification:
 - Synthetic smoke run:
   - `PYTHONPATH=. python3 analysis/tools/apk_indexer/run_indexer.py --source <tmp_fixture> --analysis-root <tmp_out> --scope all`
   - Output verified: `apk_index.db`, `proto_catalog.json`, `proto_unknowns.json`, `reports/summary.md`.
+
+## 2026-02-28 - Lane Change Checkpoint (Obfuscation Chain Design)
+
+Date / Session: 2026-02-28 / codex-lane-change-checkpoint
+
+What Changed:
+- Added approved design doc for obfuscation-chain traversal and name recovery:
+  - `docs/plans/2026-02-28-obfuscation-chain-resolution-design.md`
+- Recorded checkpoint for pausing implementation and switching focus.
+
+Why:
+- Preserve exact restart context before changing lanes, so the obfuscation-chain effort can resume without rediscovery.
+
+Status:
+- Parked for later review and execution planning.
+
+Next Steps:
+1. Have Claude review `docs/plans/2026-02-28-obfuscation-chain-resolution-design.md`.
+2. After review, convert design into an implementation plan.
+3. Execute in an isolated worktree when this lane is resumed.
+
+Verification:
+- `git show --name-only --oneline bffc477` -> design doc commit exists and includes `docs/plans/2026-02-28-obfuscation-chain-resolution-design.md`.
