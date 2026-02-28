@@ -1,0 +1,24 @@
+[
+  {
+    "channel_id": 0,
+    "decoded": {
+      "timestamp": "1"
+    },
+    "direction": "Phone->HU",
+    "frame_index": 0,
+    "message_id": 11,
+    "message_name": "PING_REQUEST",
+    "message_type": "oaa.proto.messages.PingRequest"
+  },
+  {
+    "channel_id": 0,
+    "decoded": {
+      "timestamp": "1"
+    },
+    "direction": "HU->Phone",
+    "frame_index": 1,
+    "message_id": 12,
+    "message_name": "PING_RESPONSE",
+    "message_type": "oaa.proto.messages.PingResponse"
+  }
+]
