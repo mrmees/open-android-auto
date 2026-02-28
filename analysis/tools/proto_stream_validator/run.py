@@ -60,7 +60,12 @@ def _decode_frame(
         raise ValueError(f"frame {frame_index}: invalid payload_hex") from exc
 
     try:
-        message_type = resolve_message_type(frame.direction, frame.channel_id, frame.message_id)
+        message_type = resolve_message_type(
+            frame.direction,
+            frame.channel_id,
+            frame.message_id,
+            frame.message_name,
+        )
     except KeyError as exc:
         raise ValueError(f"frame {frame_index}: {exc}") from exc
 
