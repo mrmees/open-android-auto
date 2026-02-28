@@ -72,9 +72,39 @@ def _create_schema(conn: sqlite3.Connection) -> None:
             source_package TEXT NOT NULL,
             target_class TEXT NOT NULL
         );
+        CREATE TABLE IF NOT EXISTS proto_catalog (
+            class_name TEXT NOT NULL,
+            apk_version TEXT NOT NULL,
+            confidence TEXT NOT NULL,
+            field_count INTEGER NOT NULL,
+            descriptor TEXT NOT NULL,
+            source_file TEXT NOT NULL
+        );
+        CREATE TABLE IF NOT EXISTS proto_evidence (
+            class_name TEXT NOT NULL,
+            evidence_source TEXT NOT NULL,
+            evidence_detail TEXT NOT NULL,
+            source_file TEXT NOT NULL,
+            line INTEGER NOT NULL
+        );
+        CREATE TABLE IF NOT EXISTS proto_unknowns (
+            class_name TEXT NOT NULL,
+            reason TEXT NOT NULL,
+            evidence_count INTEGER NOT NULL,
+            notes TEXT NOT NULL
+        );
+        CREATE TABLE IF NOT EXISTS run_metadata (
+            key TEXT NOT NULL,
+            value TEXT NOT NULL
+        );
         CREATE INDEX IF NOT EXISTS idx_proto_classes_name ON proto_classes(class_name);
         CREATE INDEX IF NOT EXISTS idx_class_refs_target ON class_references(target_class);
         CREATE INDEX IF NOT EXISTS idx_class_refs_source ON class_references(source_package);
+        CREATE INDEX IF NOT EXISTS idx_proto_catalog_class ON proto_catalog(class_name);
+        CREATE INDEX IF NOT EXISTS idx_proto_catalog_confidence ON proto_catalog(confidence);
+        CREATE INDEX IF NOT EXISTS idx_proto_evidence_class ON proto_evidence(class_name);
+        CREATE INDEX IF NOT EXISTS idx_proto_unknowns_class ON proto_unknowns(class_name);
+        CREATE INDEX IF NOT EXISTS idx_run_metadata_key ON run_metadata(key);
         """
     )
 
@@ -92,6 +122,10 @@ def write_sqlite(db_path: Path, signals: dict[str, list[dict[str, object]]]) -> 
         conn.execute("DELETE FROM call_edges")
         conn.execute("DELETE FROM proto_classes")
         conn.execute("DELETE FROM class_references")
+        conn.execute("DELETE FROM proto_catalog")
+        conn.execute("DELETE FROM proto_evidence")
+        conn.execute("DELETE FROM proto_unknowns")
+        conn.execute("DELETE FROM run_metadata")
 
         conn.executemany(
             "INSERT INTO uuids(file, line, value) VALUES (?, ?, ?)",

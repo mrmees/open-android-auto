@@ -35,6 +35,10 @@ def test_sqlite_schema_created(tmp_path):
         assert "proto_writes" in tables
         assert "enum_maps" in tables
         assert "switch_maps" in tables
+        assert "proto_catalog" in tables
+        assert "proto_evidence" in tables
+        assert "proto_unknowns" in tables
+        assert "run_metadata" in tables
 
 
 def test_json_exports_created(tmp_path):
