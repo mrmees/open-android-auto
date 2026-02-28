@@ -616,10 +616,7 @@ Key Findings:
 - `nmi` (MediaPlaybackMetadata for channel 11) confirmed correct, `vyp` (7 fields) is for channel 20
 
 Next Steps:
-1. Investigate remaining GAL gap handlers: Radio (iaq, type 15), Phone (iae, type 13), Car Control (hxp, type 19), Buffered Media (ibh, type 21).
-2. Determine semantic meaning of MediaPlaybackStatus boolean flags 4-6 (need capture with shuffle/repeat active).
-3. Investigate CAR_LOCAL_MEDIA_PLAYBACK_REQUEST (msgId 0x8003 on channel 20) — HU→phone request proto, class TBD.
-4. Media Browser (~12 GAL messages), Notifications, Vehicle Data, Diagnostics/Verification, UI Config gaps.
+1. All GAL channel handler gaps are now closed — see completion handoff below.
 
 Completed since initial handoff:
 - Created `CarLocalMediaPlaybackStatus.proto` (vws, 4 fields + PlaybackState + CarLocalMediaPlaybackAction enums).
@@ -631,3 +628,44 @@ Verification:
 - `protoc --proto_path=. --cpp_out=/tmp oaa/media/CarLocalMediaPlaybackStatusMessage.proto` -> success (exit 0).
 - `protoc --proto_path=. --cpp_out=/tmp oaa/media/CarLocalMediaPlaybackMetadataMessage.proto` -> success (exit 0).
 - `rg -n "PlaybackState|source_app|vyq|false positive|ahdz" oaa/media/MediaPlaybackStatusMessage.proto` -> corrected structure present with provenance notes.
+
+## 2026-02-28 - GAL Channel Handler Coverage Complete
+
+Date / Session: 2026-02-28 / gal-gap-coverage-complete
+
+What Changed:
+- Closed ALL remaining GAL channel handler gaps (7 commits total this session):
+  1. `6acab46` - MediaPlaybackStatus correction + CAR_LOCAL_MEDIA protos (Status + Metadata)
+  2. `3e7cbc1` - Car Control (type 19, 4 msgs + 8 sub-msgs) + Buffered Media Sink stub (type 21)
+  3. `81549fd` - PhoneStatusInput (type 13, 3 fields)
+  4. `c04bfb1` - Radio (type 15, 9 msgs + 6 sub-msgs + 3 enums — largest gap)
+  5. `c996e1a` - Instrument Cluster (type 10, 3 msgs) + Vendor Extension docs (type 16) + Notification enum update
+  6. `0e794de` - Connected Devices + Battery Status (control channel) + UI Config (AV channel, 4 msgs)
+  7. `efb27a7` - Final gap cleanup: shuffle/repeat/repeat_one flags, CarLocalMediaPlaybackRequest, InstrumentClusterAction + PhoneInputAction enum name recovery
+
+- Resolved all "minor open items":
+  - MediaPlaybackStatus flags 4-6 = shuffle, repeat, repeat_one (confirmed via aa-proxy-rs + AIDL interface)
+  - CAR_LOCAL_MEDIA_PLAYBACK_REQUEST (0x8003) = 1-field proto with CarLocalMediaPlaybackAction enum
+  - InstrumentClusterAction + PhoneInputAction enum names recovered: UNKNOWN, UP, DOWN, LEFT, RIGHT, ENTER, BACK, CALL
+
+- Key investigation findings:
+  - Media Browser (type 12): Dead channel — no handler in v16.1, browsing is video-rendered
+  - Diagnostics/Verification: All covered — ping protos exist, GalVerification is PCTS certification-only
+  - Vendor Extension (type 16): Raw byte pipe, not protobuf — documented architecture only
+  - Notifications (type 14): No phone-side handler — "GenericNotification" names come from HU firmware
+
+Why:
+- Systematic closure of every GAL protocol gap identified from the DHU 2.1 cross-reference.
+- Every channel handler type (1-21) now has proto definitions or explicit documentation of why none is needed.
+
+Status:
+- Complete. All 13 GAL channel handler types are documented.
+
+Next Steps:
+1. Continue with APK indexer catalog triage and evidence promotion workflow.
+2. Wire-capture validation of new proto definitions against live AA sessions.
+3. VideoConfigData field 11 UiConfig sub-message confirmation via capture.
+
+Verification:
+- All proto files compile: `protoc --proto_path=. oaa/**/*.proto --descriptor_set_out=/dev/null` -> success.
+- `git log --oneline HEAD~7..HEAD` -> 7 commits covering all GAL gaps.

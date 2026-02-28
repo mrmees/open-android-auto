@@ -8,16 +8,19 @@
 
 ## Next
 
-- **GAL gap coverage** — investigate remaining channel handlers via APK decompilation:
-  - Radio (iaq.java, GAL type 15) — 25+ GAL messages, largest gap.
-  - Car Control (hxp.java, GAL type 19) — new channel, no proto definitions yet.
-  - Buffered Media Sink (ibh.java, GAL type 21) — new channel, no proto definitions yet.
-  - Phone Status (iae.java, GAL type 13) — partial coverage, needs handler trace.
-  - Media Browser (~12 GAL messages) — partial, via type 11 handler.
-  - Notifications, Vehicle Data, Diagnostics/Verification, UI Config — remaining gaps.
-- **Minor open items**:
-  - MediaPlaybackStatus boolean flags 4-6 semantics (capture with shuffle/repeat needed).
-  - CAR_LOCAL_MEDIA_PLAYBACK_REQUEST (msgId 0x8003, channel 20) — HU→phone, proto class TBD.
+- **GAL gap coverage — COMPLETE.** All 13 channel handler types now have proto definitions or documentation:
+  - Type 1: Control (existing + ConnectedDevices, BatteryStatus, UserSwitch)
+  - Type 6-8: Audio/Sensor/Input (existing)
+  - Type 10: Instrument Cluster (InstrumentClusterMessages.proto)
+  - Type 11: Media Playback Status (corrected MediaPlaybackStatusMessage.proto)
+  - Type 12: Media Browser — dead channel, no handler in v16.1
+  - Type 13: Phone Status (existing + PhoneStatusInputMessage.proto)
+  - Type 15: Radio (RadioMessages.proto — 9 messages, 6 sub-messages, 3 enums)
+  - Type 16: Vendor Extension (VendorExtensionChannel.proto — documentation, raw byte pipe)
+  - Type 19: Car Control (CarControlMessages.proto — 4 messages, 8 sub-messages, 3 enums)
+  - Type 20: CAR_LOCAL_MEDIA (Status + Metadata + Request protos)
+  - Type 21: Buffered Media Sink (BufferedMediaSinkMessage.proto — stub)
+  - AV channels: UiConfigMessages.proto (4 messages for theme/margins/insets)
 - Run manual triage on unknown queue entries to promote high-confidence definitions.
 - Improve evidence coverage for accepted catalog entries.
 - Establish canonical benchmark baseline for end-to-end indexing runtime.
@@ -28,6 +31,7 @@
 - Add future-version compatibility hooks beyond canonical `v16.1`.
 - Add protocol change tracking for catalog-level semantic updates.
 - Expand automation around stale path/reference detection in docs.
+- VideoConfigData field 11: confirm UiConfig sub-message structure via wire capture.
 
 ## Focus Guardrails
 
@@ -35,4 +39,4 @@
 - Prioritize protocol definitions, protocol docs, and analysis tooling only.
 - Defer cross-repo product planning to the primary application repository.
 
-Last Updated: 2026-02-28 (media playback proto corrections + GAL channel handler map)
+Last Updated: 2026-02-28 (GAL gap coverage complete — all channel handlers documented)
