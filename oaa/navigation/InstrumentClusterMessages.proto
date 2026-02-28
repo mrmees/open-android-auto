@@ -1,0 +1,71 @@
+// Android Auto Protocol Buffer Definitions
+// https://github.com/mrmees/open-android-auto
+// SPDX-License-Identifier: GPL-3.0-or-later
+
+/*
+ * Instrument Cluster messages (GAL channel type 10, NAVIGATION_STATUS)
+ * Handler: hzy.java, log tag: CAR.GAL.INST
+ * Service: hkx.java, log tag: CAR.INST
+ *
+ * This channel manages the instrument cluster display — a secondary
+ * navigation display (e.g., behind the steering wheel). The cluster
+ * configuration (dimensions, type, color depth) is negotiated during
+ * service discovery via NavigationChannel config (vzr/vzq), already
+ * defined in NavigationChannelData.proto.
+ *
+ * Message IDs:
+ *   0x8001 = InstrumentClusterStart   (Phone→HU, vzs — empty signal)
+ *   0x8002 = InstrumentClusterStop    (Phone→HU, vzt — empty signal)
+ *   0x8005 = InstrumentClusterInput   (HU→Phone, vzl — 4 fields)
+ *
+ * On 0x8001, the handler reads cached CarInstrumentClusterInfo
+ * (populated from service discovery vzr config) and passes it to
+ * listeners: min_interval, cluster_type, width, height, color_depth.
+ *
+ * Navigation state (0x8003) and turn events (0x8004) flow through
+ * the service class (hkx.java), not this handler — see
+ * NavigationStateMessage.proto and NavigationTurnEventMessage.proto.
+ *
+ * APK: AA v16.1
+ */
+
+syntax = "proto3";
+
+package oaa.proto.messages;
+
+// Instrument cluster action type (APK: a.bu verifier, values 0-7)
+// Shares the same validator as PhoneInputAction — may represent
+// the same abstract "cluster action" concept.
+// Value names not recoverable from decompilation.
+enum InstrumentClusterAction {
+    CLUSTER_ACTION_0 = 0;
+    CLUSTER_ACTION_1 = 1;
+    CLUSTER_ACTION_2 = 2;
+    CLUSTER_ACTION_3 = 3;
+    CLUSTER_ACTION_4 = 4;
+    CLUSTER_ACTION_5 = 5;
+    CLUSTER_ACTION_6 = 6;
+    CLUSTER_ACTION_7 = 7;
+}
+
+// 0x8001: InstrumentClusterStart (APK class: vzs — empty message)
+// Signal that the instrument cluster is ready. No payload — the actual
+// cluster info comes from service discovery config (vzr).
+message InstrumentClusterStart {
+}
+
+// 0x8002: InstrumentClusterStop (APK class: vzt — empty message)
+// Signal that the instrument cluster session ended.
+message InstrumentClusterStop {
+}
+
+// 0x8005: InstrumentClusterInput (APK class: vzl — HU→Phone)
+// User input from the instrument cluster (button presses, navigation).
+// NOTE: The Java API passes action_type as 1-based (1-8) but the proto
+// stores it as 0-based (0-7) — hzy.java does `vzl.f = i4 - 1`.
+message InstrumentClusterInput {
+    optional int32 input_source = 1;
+    optional int32 key_code = 2;
+    optional int32 key_action = 3;
+    optional InstrumentClusterAction action_type = 4;
+}

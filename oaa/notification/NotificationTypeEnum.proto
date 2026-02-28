@@ -43,5 +43,13 @@ message NotificationType
         NAV_SUGGESTION = 25;
         BATTERY_LOW = 26;
         NOW_ROUTINE = 27;
+        // Values 28-34 discovered in APK xks.java (AA v16.1)
+        VISUAL_PREVIEW_DISCOVERY = 28;
+        DEVELOPER = 29;
+        OPT_IN_ABOVE_ONGOING = 30;
+        OPT_IN_BELOW_ONGOING = 31;
+        VANAGON_DEPRECATION = 32;
+        VANAGON_DEPRECATION_2 = 33;
+        OS_DEPRECATION = 34;
     }
 }
