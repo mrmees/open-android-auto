@@ -1,0 +1,202 @@
+// Android Auto Protocol Buffer Definitions
+// https://github.com/mrmees/open-android-auto
+// SPDX-License-Identifier: GPL-3.0-or-later
+
+/*
+ * Radio channel messages (GAL channel type 15, RADIO)
+ * Handler: iaq.java, log tag: CAR.GAL.RADIO-EP
+ * Service: hlf.java, log tag: CAR.RADIO
+ *
+ * Provides broadcast radio control — AM/FM, HD Radio, DAB/DMB.
+ * Maps to Android's android.hardware.radio broadcast radio HAL concepts:
+ * program selectors with identifier types, station metadata, song info,
+ * and control operations (mute, tune, favorites).
+ *
+ * Message IDs:
+ *   0x801A = RadioProgramListNotification     (Phone→HU, wau)
+ *   0x801B = RadioProgramInfoNotification     (Phone→HU, wat)
+ *   0x801C = RadioMuteRequest                 (HU→Phone, wao)
+ *   0x801D = RadioMuteResponse                (Phone→HU, wap)
+ *   0x801E = RadioTuneRequest                 (HU→Phone, wbc)
+ *   0x801F = RadioTuneResponse                (Phone→HU, wbd)
+ *   0x8020 = RadioFavoriteListNotification    (Phone→HU, wal)
+ *   0x8021 = RadioFavoriteToggleRequest       (HU→Phone, waz)
+ *   0x8022 = RadioTuneDirectionRequest        (HU→Phone, wba)
+ *
+ * Callback interface (ptj): onProgramList, onProgramInfo, onMute,
+ *   onTune, onFavoriteList
+ * Manager interface (ptg): setMute, tuneToProgram, tuneDirection,
+ *   toggleFavorite, registerCallback
+ *
+ * Service discovery config: see oaa/control/RadioChannelData.proto
+ *
+ * APK: AA v16.1
+ */
+
+syntax = "proto3";
+
+package oaa.proto.messages;
+
+// ============================================================================
+// Enums
+// ============================================================================
+
+// Radio program identifier type (APK enum: waq — unobfuscated)
+enum RadioIdentifierType {
+    IDENTIFIER_TYPE_INVALID = 0;
+    IDENTIFIER_TYPE_AMFM_FREQUENCY = 1;
+    IDENTIFIER_TYPE_RDS_PI = 2;
+    IDENTIFIER_TYPE_HD_STATION_ID_EXT = 3;
+    IDENTIFIER_TYPE_HD_STATION_NAME = 4;
+    IDENTIFIER_TYPE_DAB_DMB_SID_EXT = 5;
+    IDENTIFIER_TYPE_DAB_ENSEMBLE = 6;
+    IDENTIFIER_TYPE_DAB_SCID = 7;
+    IDENTIFIER_TYPE_DAB_FREQUENCY = 8;
+    IDENTIFIER_TYPE_DAB_SID_EXT = 9;
+}
+
+// Tune response status (APK: a.by, values 1-4)
+enum RadioTuneStatus {
+    RADIO_TUNE_STATUS_UNKNOWN = 0;
+    RADIO_TUNE_STATUS_SUCCESS = 1;
+    RADIO_TUNE_STATUS_FAILURE = 2;
+    RADIO_TUNE_STATUS_TIMEOUT = 3;
+    RADIO_TUNE_STATUS_CANCELLED = 4;
+}
+
+// Tune direction for seek/step (APK: viz.M, values 1-2)
+enum RadioTuneDirection {
+    RADIO_TUNE_DIRECTION_UNKNOWN = 0;
+    RADIO_TUNE_DIRECTION_UP = 1;
+    RADIO_TUNE_DIRECTION_DOWN = 2;
+}
+
+// ============================================================================
+// Sub-messages
+// ============================================================================
+
+// APK class: war → SafeParcelable: RadioProgramIdentifier
+// Identifies a specific radio program/station.
+message RadioProgramIdentifier {
+    optional RadioIdentifierType type = 1;
+    optional int64 value = 2;  // Frequency in Hz for AM/FM, or station ID for HD/DAB
+}
+
+// APK class: wav → SafeParcelable: RadioProgramSelector
+// Selects a program via primary + optional secondary identifiers.
+message RadioProgramSelector {
+    optional RadioProgramIdentifier primary_identifier = 1;
+    repeated RadioProgramIdentifier secondary_identifiers = 2;
+}
+
+// APK class: wam — station icon or album art image data
+message RadioImage {
+    optional bytes image_data = 1;
+}
+
+// APK class: waw → SafeParcelable: RadioProgramType
+// Program type classification (RDS PTY / ITU).
+message RadioProgramType {
+    // Schema: 1 = RDS PTY, 2 = ITU (APK: viz.M)
+    optional int32 schema = 1;
+    optional int32 code = 2;
+}
+
+// APK class: wbb → SafeParcelable: RadioSongMetadata
+// Currently playing song information.
+message RadioSongMetadata {
+    optional string title = 1;
+    optional string artist = 2;
+    optional string album = 3;
+    optional string genre = 4;
+    optional RadioImage album_art = 5;
+    optional int64 duration_seconds = 6;
+}
+
+// APK class: wan → SafeParcelable: RadioMetadata
+// Full station metadata including HD Radio and DAB fields.
+message RadioMetadata {
+    optional string station_name = 1;
+    optional string station_name_short = 2;
+    optional string station_name_long = 3;
+    optional RadioProgramType program_type = 4;
+    optional RadioImage station_icon = 5;
+    optional RadioSongMetadata song_metadata = 6;
+    optional string message = 7;             // Station text message / RDS RadioText
+    optional string service_name = 8;        // DAB service name
+    optional int32 hd_sub_channels_available = 9;
+    optional bool hd_signal_acquired = 10;
+    optional bool hd_audio_acquired = 11;
+    optional string dab_component_name = 12;
+    optional bool dts_autostage_enriched = 13;
+}
+
+// APK class: was → SafeParcelable: RadioProgramInfo
+// A radio program entry — selector + metadata.
+message RadioProgramInfo {
+    optional RadioProgramSelector program_selector = 1;
+    optional RadioMetadata metadata = 2;
+}
+
+// ============================================================================
+// Top-level messages — Phone → HU (received by handler)
+// ============================================================================
+
+// 0x801A: RadioProgramListNotification (APK class: wau)
+// Full list of available radio programs.
+message RadioProgramListNotification {
+    repeated RadioProgramInfo programs = 1;
+}
+
+// 0x801B: RadioProgramInfoNotification (APK class: wat)
+// Current program info update (e.g., station changed, metadata updated).
+message RadioProgramInfoNotification {
+    optional RadioProgramInfo program_info = 1;
+    optional bool is_muted = 2;
+    optional bool has_audio_focus = 3;
+}
+
+// 0x801D: RadioMuteResponse (APK class: wap)
+// Response to mute request.
+message RadioMuteResponse {
+    optional bool is_muted = 1;
+}
+
+// 0x801F: RadioTuneResponse (APK class: wbd)
+// Response to tune request with status.
+message RadioTuneResponse {
+    optional RadioTuneStatus status = 1;
+}
+
+// 0x8020: RadioFavoriteListNotification (APK class: wal)
+// List of favorite/preset programs.
+message RadioFavoriteListNotification {
+    repeated RadioProgramInfo favorites = 1;
+}
+
+// ============================================================================
+// Top-level messages — HU → Phone (sent by service)
+// ============================================================================
+
+// 0x801C: RadioMuteRequest (APK class: wao)
+message RadioMuteRequest {
+    optional bool mute = 1;
+}
+
+// 0x801E: RadioTuneRequest (APK class: wbc)
+// Tune to a specific program by selector.
+message RadioTuneRequest {
+    optional RadioProgramSelector program_selector = 1;
+}
+
+// 0x8021: RadioFavoriteToggleRequest (APK class: waz)
+// Toggle current program as favorite.
+message RadioFavoriteToggleRequest {
+    optional bool is_favorite = 1;
+}
+
+// 0x8022: RadioTuneDirectionRequest (APK class: wba)
+// Seek up/down to next available station.
+message RadioTuneDirectionRequest {
+    optional RadioTuneDirection direction = 1;
+}
