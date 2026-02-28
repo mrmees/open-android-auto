@@ -8,6 +8,16 @@
 
 ## Next
 
+- **GAL gap coverage** — investigate remaining channel handlers via APK decompilation:
+  - Radio (iaq.java, GAL type 15) — 25+ GAL messages, largest gap.
+  - Car Control (hxp.java, GAL type 19) — new channel, no proto definitions yet.
+  - Buffered Media Sink (ibh.java, GAL type 21) — new channel, no proto definitions yet.
+  - Phone Status (iae.java, GAL type 13) — partial coverage, needs handler trace.
+  - Media Browser (~12 GAL messages) — partial, via type 11 handler.
+  - Notifications, Vehicle Data, Diagnostics/Verification, UI Config — remaining gaps.
+- **Minor open items**:
+  - MediaPlaybackStatus boolean flags 4-6 semantics (capture with shuffle/repeat needed).
+  - CAR_LOCAL_MEDIA_PLAYBACK_REQUEST (msgId 0x8003, channel 20) — HU→phone, proto class TBD.
 - Run manual triage on unknown queue entries to promote high-confidence definitions.
 - Improve evidence coverage for accepted catalog entries.
 - Establish canonical benchmark baseline for end-to-end indexing runtime.
@@ -25,4 +35,4 @@
 - Prioritize protocol definitions, protocol docs, and analysis tooling only.
 - Defer cross-repo product planning to the primary application repository.
 
-Last Updated: 2026-02-28 (apk protobuf catalog implementation + stream validator planning)
+Last Updated: 2026-02-28 (media playback proto corrections + GAL channel handler map)

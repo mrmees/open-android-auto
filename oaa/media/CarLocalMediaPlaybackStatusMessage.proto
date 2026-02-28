@@ -1,0 +1,56 @@
+// Android Auto Protocol Buffer Definitions
+// https://github.com/mrmees/open-android-auto
+// SPDX-License-Identifier: GPL-3.0-or-later
+
+/*
+ * Car local media playback status (msgId 0x8001 on CAR_LOCAL_MEDIA channel)
+ * Sent by phone during media playback via the GMS car API layer.
+ *
+ * APK class: vws (AA v16.1) — 4 proto fields
+ * GAL channel type 20 (CAR_LOCAL_MEDIA), handler: hxu.java
+ * Deserialized into CarLocalMediaPlaybackStatus SafeParcelable (unobfuscated).
+ *
+ * This is a SEPARATE channel from MEDIA_PLAYBACK_STATUS (GAL type 11, vyq).
+ * Both use msgId 0x8001 but on different logical channels with different protos:
+ *   - Type 11 (vyq): 6 fields — state, source, position, 3 booleans
+ *   - Type 20 (vws): 4 fields — state, source, position, packed repeated actions
+ *
+ * SafeParcelable toString confirms field names:
+ *   "CarLocalMediaPlaybackStatus{state=N, mediaSource='...', playbackPosition=N, actions=[...]}"
+ *
+ * Playback state enum (vvs.h) is shared with MediaPlaybackStatus (vyq).
+ * Actions enum (vwp) is unique to this channel — maps to PlaybackStateCompat.ACTION_* flags
+ * via qbw.java (0→ACTION_PLAY, 1→ACTION_PAUSE, 2→ACTION_SKIP_TO_PREVIOUS,
+ * 3→ACTION_SKIP_TO_NEXT, 4→ACTION_STOP).
+ *
+ * The handler (hxu.java) also references msgId 0x8003 (CAR_LOCAL_MEDIA_PLAYBACK_REQUEST)
+ * as an HU→phone request message. Proto class and fields TBD.
+ */
+
+syntax = "proto3";
+
+import "oaa/media/MediaPlaybackStatusMessage.proto";
+
+package oaa.proto.messages;
+
+// Available transport actions (APK enum: vwp, AA v16.1)
+// Mapped to Android PlaybackStateCompat.ACTION_* flags in qbw.java
+enum CarLocalMediaPlaybackAction {
+    CAR_LOCAL_MEDIA_PLAYBACK_PLAY = 0;       // ACTION_PLAY (4L)
+    CAR_LOCAL_MEDIA_PLAYBACK_PAUSE = 1;      // ACTION_PAUSE (2L)
+    CAR_LOCAL_MEDIA_PLAYBACK_PREVIOUS = 2;   // ACTION_SKIP_TO_PREVIOUS (16L)
+    CAR_LOCAL_MEDIA_PLAYBACK_NEXT = 3;       // ACTION_SKIP_TO_NEXT (32L)
+    CAR_LOCAL_MEDIA_PLAYBACK_STOP = 4;       // ACTION_STOP (1L)
+}
+
+// APK class: vws
+message CarLocalMediaPlaybackStatus {
+    // Current playback state (shared enum with MediaPlaybackStatus)
+    optional PlaybackState playback_state = 1;
+    // Source application name (e.g. "YouTube Music", "Spotify")
+    optional string media_source = 2;
+    // Elapsed seconds in current track
+    optional int32 playback_position = 3;
+    // Currently available transport actions
+    repeated CarLocalMediaPlaybackAction actions = 4 [packed = true];
+}

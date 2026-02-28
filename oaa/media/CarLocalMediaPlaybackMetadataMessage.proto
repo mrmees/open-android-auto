@@ -1,0 +1,47 @@
+// Android Auto Protocol Buffer Definitions
+// https://github.com/mrmees/open-android-auto
+// SPDX-License-Identifier: GPL-3.0-or-later
+
+/*
+ * Car local media playback metadata (msgId 0x8002 on CAR_LOCAL_MEDIA channel)
+ * Sent by phone when track changes — includes album art and duration.
+ *
+ * APK class: vwq (AA v16.1) — 5 proto fields
+ * GAL channel type 20 (CAR_LOCAL_MEDIA), handler: hxu.java
+ * Deserialized into CarLocalMediaPlaybackMetadata SafeParcelable (unobfuscated).
+ *
+ * SafeParcelable toString confirms field names:
+ *   "CarLocalMediaPlaybackMetadata{song='...', artist='...', album='...',
+ *    albumArt present=true, durationSeconds=N}"
+ *
+ * Conversion in qbw.java maps to Android MediaMetadataCompat:
+ *   field 1 → METADATA_KEY_TITLE (falls back to R.string.car_local_media_missing_song_name)
+ *   field 2 → METADATA_KEY_ARTIST (nullable)
+ *   field 3 → METADATA_KEY_ALBUM (nullable)
+ *   field 4 → METADATA_KEY_ALBUM_ART (decoded via BitmapFactory)
+ *   field 5 → METADATA_KEY_DURATION (seconds × 1000 → millis, -1 = no duration)
+ *
+ * NOTE: APK also contains vyp (7 fields) — a related but unused variant.
+ * The actual handler (hxu.java line 79) deserializes vwq, not vyp.
+ *
+ * See also: MediaPlaybackMetadata (nmi, msgId 0x8003 on MEDIA_PLAYBACK_STATUS
+ * channel type 11) — 6 fields with bool is_playing and album_art_url.
+ */
+
+syntax = "proto3";
+
+package oaa.proto.messages;
+
+// APK class: vwq
+message CarLocalMediaPlaybackMetadata {
+    // Track title (falls back to default "missing song name" string if empty)
+    optional string song = 1;
+    // Artist name
+    optional string artist = 2;
+    // Album name
+    optional string album = 3;
+    // Album art as image data (decoded via BitmapFactory on phone side)
+    optional bytes album_art = 4;
+    // Total track duration in seconds (-1 = no duration available)
+    optional int32 duration_seconds = 5;
+}

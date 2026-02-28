@@ -574,3 +574,60 @@ Verification:
 - `protoc --proto_path=. --cpp_out=/tmp oaa/sensor/SensorTypeEnum.proto oaa/sensor/SensorEventIndicationMessage.proto` -> success (exit 0).
 - `rg -n "TOLL_CARD.*22.*VERIFIED|sensor:22" oaa/sensor/SensorTypeEnum.proto docs/phone-side-debug.md` -> toll card verification present.
 - `rg -n "Kitchen Sink|Multi-Display|MediaBrowserService|Cluster vs TurnEvent" docs/phone-side-debug.md` -> new sections present.
+
+## 2026-02-28 - MediaPlaybackStatus Proto Correction + GAL Channel Handler Map
+
+Date / Session: 2026-02-28 / media-playback-status-deep-dive
+
+What Changed:
+- Corrected `oaa/media/MediaPlaybackStatusMessage.proto`:
+  - Previous version had 24 fields from false APK match (class `ahdz` = memory diagnostics, not media).
+  - Replaced with real 6-field structure from APK class `vyq` (AA v16.1).
+  - Field 2 changed from `int32 source_id` to `string source_app` (wire-verified: "YouTube Music").
+  - Added `PlaybackState` enum (0=UNKNOWN, 1=STOPPED, 2=PLAYING, 3=PAUSED, 4=ERROR).
+  - Fields 4-6 are booleans (always false in capture — likely shuffle/repeat/favorited).
+- Confirmed `MediaPlaybackMetadataMessage.proto` is correct (APK class `nmi`, 6 fields match).
+- Discovered two separate media playback channels:
+  - GAL type 11 (MEDIA_PLAYBACK_STATUS): handler `hzt.java`, uses `vyq` (6 fields) + `nmi` metadata.
+  - GAL type 20 (CAR_LOCAL_MEDIA): handler `hxu.java`, uses `vws` (4 fields with packed repeated enum actions) + `vyp` metadata (7 fields).
+- Decoded service discovery response mapping runtime channel IDs to GAL types.
+- Built complete GAL channel handler map (13 handlers, types 1-21).
+
+Why:
+- Prior proto decoder matched `ahdz` to MediaPlaybackStatus with 0.833 score — a false positive.
+  `ahdz` is a memory diagnostics proto (PSS, RSS, Swap, VMS telemetry), not media.
+- Wire capture (1993 messages) proved field 2 is string, not int32, and only 6 fields exist.
+- Runtime channel IDs don't match GAL type enums — channel 10 in capture = GAL type 11, not 10.
+
+Status:
+- Complete for MediaPlaybackStatus correction and channel handler mapping.
+
+Key Findings:
+- GAL Channel Handler Map (all `iag` subclasses in APK):
+  Type 1: hys (CONTROL), Type 6: ice (AUDIO_SOURCE), Type 7: iat (SENSOR_SOURCE),
+  Type 8: hzp (INPUT_SOURCE), Type 10: hzy (NAV_STATUS/Instrument Cluster),
+  Type 11: hzt (MEDIA_PLAYBACK_STATUS), Type 13: iae (PHONE_STATUS),
+  Type 15: iaq (RADIO), Type 16: iba/hlv (VENDOR_EXT), Type 17: ibc (WIFI),
+  Type 19: hxp (CAR_CONTROL), Type 20: hxu (CAR_LOCAL_MEDIA),
+  Type 21: ibh (BUFFERED_MEDIA_SINK)
+- PlaybackState enum: 1→STOPPED, 2→PLAYING, 3→PAUSED, 4→ERROR (maps to Android PlaybackStateCompat)
+- CAR_LOCAL_MEDIA actions enum (vwp): 0=PLAY, 1=PAUSE, 2=PREVIOUS, 3=NEXT, 4=STOP
+- Service discovery maps runtime channels at session time; channel 10 = media_info = GAL type 11
+- `nmi` (MediaPlaybackMetadata for channel 11) confirmed correct, `vyp` (7 fields) is for channel 20
+
+Next Steps:
+1. Investigate remaining GAL gap handlers: Radio (iaq, type 15), Phone (iae, type 13), Car Control (hxp, type 19), Buffered Media (ibh, type 21).
+2. Determine semantic meaning of MediaPlaybackStatus boolean flags 4-6 (need capture with shuffle/repeat active).
+3. Investigate CAR_LOCAL_MEDIA_PLAYBACK_REQUEST (msgId 0x8003 on channel 20) — HU→phone request proto, class TBD.
+4. Media Browser (~12 GAL messages), Notifications, Vehicle Data, Diagnostics/Verification, UI Config gaps.
+
+Completed since initial handoff:
+- Created `CarLocalMediaPlaybackStatus.proto` (vws, 4 fields + PlaybackState + CarLocalMediaPlaybackAction enums).
+- Created `CarLocalMediaPlaybackMetadata.proto` (vwq, 5 fields — song, artist, album, albumArt, durationSeconds).
+- Investigated `vyp` (7 fields) — found unused by handler; `hxu.java` actually deserializes `vwq` (5 fields).
+
+Verification:
+- `protoc --proto_path=. --cpp_out=/tmp oaa/media/MediaPlaybackStatusMessage.proto` -> success (exit 0).
+- `protoc --proto_path=. --cpp_out=/tmp oaa/media/CarLocalMediaPlaybackStatusMessage.proto` -> success (exit 0).
+- `protoc --proto_path=. --cpp_out=/tmp oaa/media/CarLocalMediaPlaybackMetadataMessage.proto` -> success (exit 0).
+- `rg -n "PlaybackState|source_app|vyq|false positive|ahdz" oaa/media/MediaPlaybackStatusMessage.proto` -> corrected structure present with provenance notes.
