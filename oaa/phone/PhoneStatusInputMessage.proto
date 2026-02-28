@@ -1,0 +1,60 @@
+// Android Auto Protocol Buffer Definitions
+// https://github.com/mrmees/open-android-auto
+// SPDX-License-Identifier: GPL-3.0-or-later
+
+/*
+ * Phone status input (msgId 0x8002 on Phone Status channel, GAL type 13)
+ * Received by HU from phone — user input/action from the phone side.
+ *
+ * APK class: wag (AA v16.1)
+ * Handler: iae.java, log tag: CAR.GAL.INST
+ * Service: hkz.java, log tag: CAR.INST
+ *
+ * Despite the handler log tag suggesting "Instrument Cluster", this is
+ * the GAL type 13 (PHONE_STATUS) channel. It relays phone call status
+ * to instrument cluster displays and receives user input back.
+ *
+ * Data flow in handler (iae.java):
+ *   wag.b (sub-message vyc) → vyc.c (enum, 0-7) → converted via a.bu()
+ *   wag.c (string) → passed as first arg
+ *   wag.d (string) → passed as second arg
+ *   → CarPhoneStatusEventListener.onInput(string, string, int)
+ *
+ * The callback name "onInput" suggests this represents user actions
+ * from the phone side (e.g., accept/reject call, DTMF input).
+ * The two strings likely correspond to phone number and display name.
+ * The enum likely represents the input/action type.
+ */
+
+syntax = "proto3";
+
+package oaa.proto.messages;
+
+// Input action type (APK: vyc.c, verifier a.bu, values 0-7)
+// Enum value names not recoverable from decompilation — inline in a.java.
+// Likely maps to phone-side user actions (accept, reject, DTMF, etc.)
+enum PhoneInputAction {
+    PHONE_INPUT_ACTION_0 = 0;
+    PHONE_INPUT_ACTION_1 = 1;
+    PHONE_INPUT_ACTION_2 = 2;
+    PHONE_INPUT_ACTION_3 = 3;
+    PHONE_INPUT_ACTION_4 = 4;
+    PHONE_INPUT_ACTION_5 = 5;
+    PHONE_INPUT_ACTION_6 = 6;
+    PHONE_INPUT_ACTION_7 = 7;
+}
+
+// APK class: vyc — sub-message carrying the action type
+message PhoneInputType {
+    optional PhoneInputAction action = 1;
+}
+
+// APK class: wag — phone-side input relayed to HU (0x8002)
+message PhoneStatusInput {
+    // Action type from the phone side
+    optional PhoneInputType input_type = 1;
+    // Likely phone number or caller identifier
+    optional string caller_id = 2;
+    // Likely display name or contact label
+    optional string display_name = 3;
+}

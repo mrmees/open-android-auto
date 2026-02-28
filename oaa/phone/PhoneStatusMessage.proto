@@ -8,9 +8,10 @@ import "oaa/phone/PhoneCallStateEnum.proto";
 
 package oaa.proto.messages;
 
-// Phone status update (msgId 0x8001 on Phone Status channel)
-// Sent by phone to report call state changes
+// Phone status update (msgId 0x8001 on Phone Status channel, GAL type 13)
+// Sent by HU to phone to report call state changes.
 // APK class: waf.java (AA v16.1)
+// See also: PhoneStatusInputMessage.proto (msgId 0x8002, wag — phone→HU input)
 message PhoneStatusUpdate {
     // Active calls (empty = no calls / idle)
     repeated PhoneCall calls = 1;
