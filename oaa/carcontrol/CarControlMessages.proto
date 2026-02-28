@@ -1,0 +1,217 @@
+// Android Auto Protocol Buffer Definitions
+// https://github.com/mrmees/open-android-auto
+// SPDX-License-Identifier: GPL-3.0-or-later
+
+/*
+ * Car Control channel messages (GAL channel type 19, CAR_CONTROL)
+ * Handler: hxp.java, log tag: CAR.GAL.CAR_CONTROL
+ *
+ * This channel provides VHAL (Vehicle HAL) property access — HVAC controls,
+ * seat temperature, defrost, toll card status, etc. The HU registers listeners
+ * for car properties and receives change events. It can also set property values.
+ *
+ * Message IDs (from vee.Y/vee.Z):
+ *   0x8001 = CAR_CONTROL_SET_CAR_PROPERTY_VALUE_REQUEST    (HU→Phone)
+ *   0x8002 = CAR_CONTROL_SET_CAR_PROPERTY_VALUE_RESPONSE   (Phone→HU, wcb)
+ *   0x8003 = CAR_CONTROL_REGISTER_CAR_PROPERTY_LISTENERS_REQUEST (HU→Phone)
+ *   0x8004 = CAR_CONTROL_REGISTER_CAR_PROPERTY_LISTENERS_RESPONSE (Phone→HU, wbk)
+ *   0x8005 = CAR_CONTROL_CAR_PROPERTY_CHANGE_EVENT         (Phone→HU, vwu)
+ *   0x8006 = CAR_CONTROL_CAR_ACTION_NOTIFICATION           (logged as unexpected)
+ *   0x8007 = CAR_CONTROL_CAR_CONTROL_GROUP_UPDATE           (Phone→HU, vwn)
+ *
+ * Unobfuscated SafeParcelable classes in com.google.android.gms.car.control.*
+ * provide canonical field names: CarProperty, CarAreaId, CarPropertyValue,
+ * CarPropertyControl, CarAction, CarControl, CarControlGroup.
+ *
+ * APK: AA v16.1
+ */
+
+syntax = "proto3";
+
+package oaa.proto.messages;
+
+// ============================================================================
+// Enums
+// ============================================================================
+
+// Status codes for property operations (APK enum: vyw)
+// Shared with general GAL status codes but includes car-specific values.
+enum CarControlStatus {
+    CAR_CONTROL_STATUS_SUCCESS = 0;
+    CAR_CONTROL_STATUS_CAR_PROPERTY_SET_REQUEST_FAILED = 1;       // APK: -26
+    CAR_CONTROL_STATUS_CAR_PROPERTY_LISTENER_REGISTRATION_FAILED = 2; // APK: -27
+}
+
+// Car property IDs — VHAL property identifiers (APK enum: vuz)
+// Values are Android VHAL property IDs (VehiclePropertyIds.java)
+enum CarPropertyId {
+    CAR_PROPERTY_UNKNOWN = 0;
+    // HVAC properties
+    HVAC_TEMPERATURE_SET = 1;           // VHAL: 358614275
+    HVAC_AUTO_ON = 2;                   // VHAL: 354419978
+    HVAC_DUAL_ON = 3;                   // VHAL: 354419977
+    HVAC_SEAT_TEMPERATURE = 4;          // VHAL: 356517131
+    HVAC_FAN_SPEED = 5;                 // VHAL: 356517120
+    HVAC_FAN_DIRECTION = 6;             // VHAL: 356517121
+    HVAC_FAN_DIRECTION_AVAILABLE = 7;   // VHAL: 356582673
+    HVAC_TEMPERATURE_DISPLAY_UNITS = 8; // VHAL: 289408270
+    HVAC_AC_ON = 9;                     // VHAL: 354419973
+    HVAC_MAX_AC_ON = 10;               // VHAL: 354419974
+    HVAC_DEFROSTER = 11;               // VHAL: 320865540
+    HVAC_MAX_DEFROST_ON = 12;          // VHAL: 354419975
+    HVAC_POWER_ON = 13;                // VHAL: 354419984
+    HVAC_AUTO_RECIRC_ON = 14;          // VHAL: 354419986
+    HVAC_RECIRC_ON = 15;               // VHAL: 354419976
+    HVAC_SEAT_VENTILATION = 16;        // VHAL: 356517139
+    HVAC_SIDE_MIRROR_HEAT = 17;        // VHAL: 339739916
+    HVAC_STEERING_WHEEL_HEAT = 18;     // VHAL: 289408269
+    // Toll
+    ELECTRONIC_TOLL_COLLECTION_CARD_STATUS = 19; // VHAL: 289410874
+    // HMG (Hyundai Motor Group) vendor extensions
+    HMG_HVAC_MTC_TEMPERATURE = 20;         // VHAL: 624984185
+    HMG_HVAC_TEMPERATURE_RANGE = 21;       // VHAL: 557940737
+    HMG_HVAC_TEMPERATURE_SET_CELSIUS = 22; // VHAL: 627081341
+    HMG_HVAC_TEMPERATURE_SET_FAHRENHEIT = 23; // VHAL: 627081339
+}
+
+// Metadata type for CarControl entries (APK enum: vuu)
+enum CarControlMetadataType {
+    METADATA_UNKNOWN = 0;
+    METADATA_COMPACT_UI = 1;
+}
+
+// ============================================================================
+// Sub-messages
+// ============================================================================
+
+// APK class: vuv → SafeParcelable: CarProperty
+message CarProperty {
+    // VHAL property ID (raw Android VehiclePropertyIds value)
+    optional int32 property_id = 1;
+    // Target area for this property
+    optional CarAreaId area_id = 2;
+}
+
+// APK class: vuw → SafeParcelable: CarAreaId
+// Area IDs are bitmasks — list elements are ORed together on the phone side.
+// area_type bit 0 set = global area (areaId=0).
+message CarAreaId {
+    optional int32 area_type = 1;
+    repeated int32 window_ids = 2 [packed = true];
+    repeated int32 seat_ids = 3 [packed = true];
+    repeated int32 mirror_ids = 4 [packed = true];
+    repeated int32 door_ids = 5 [packed = true];
+    repeated int32 wheel_ids = 6 [packed = true];
+}
+
+// APK class: vun → SafeParcelable: CarAction
+message CarAction {
+    optional int32 action_id = 1;
+}
+
+// APK class: vvd → SafeParcelable: CarPropertyValue
+// Oneof value — only one type populated at a time.
+message CarPropertyValue {
+    oneof value {
+        IntValues int_values = 1;       // vvb
+        FloatValues float_values = 2;   // vvc
+        // field 3: string or bytes value (unclear from decompilation)
+        bytes raw_value_3 = 3;
+        LongValues long_values = 4;     // vva
+        // fields 5-8: additional oneof cases, types not fully decoded
+        bytes raw_value_5 = 5;
+        bytes raw_value_6 = 6;
+        bytes raw_value_7 = 7;
+        bytes raw_value_8 = 8;
+    }
+}
+
+// APK class: vvb — repeated int32 values
+message IntValues {
+    repeated int32 values = 1 [packed = true];
+}
+
+// APK class: vvc — repeated float values
+message FloatValues {
+    repeated float values = 1 [packed = true];
+}
+
+// APK class: vva — repeated int64 values
+message LongValues {
+    repeated int64 values = 1 [packed = true];
+}
+
+// APK class: vuy → SafeParcelable: CarPropertyControl
+message CarPropertyControl {
+    optional CarProperty property = 1;
+    optional CarAction associated_action = 2;
+    optional CarProperty associated_property = 3;
+}
+
+// APK class: vwi → wraps CarAction for action-only controls
+message CarActionControl {
+    optional CarAction action = 1;
+}
+
+// APK class: vwl → SafeParcelable: CarControl
+// A single control entry — either a property, action, or nested group.
+message CarControl {
+    oneof control {
+        CarPropertyControl property_control = 1;  // vuy
+        CarActionControl action_control = 2;       // vwi
+        CarControlGroup control_group = 3;         // vwm (recursive)
+    }
+    optional bool enabled = 4;
+    repeated CarControlMetadataType metadata = 5 [packed = true];
+    optional int32 side_affinity = 6;
+}
+
+// APK class: vwm → SafeParcelable: CarControlGroup
+message CarControlGroup {
+    optional int32 group_type = 1;
+    repeated CarControl controls = 2;
+}
+
+// ============================================================================
+// Top-level messages (received by handler)
+// ============================================================================
+
+// 0x8002: SetCarPropertyValueResponse (APK class: wcb)
+// Phone responds to HU's set-property request with result.
+message SetCarPropertyValueResponse {
+    optional CarProperty car_property = 1;
+    optional int32 status = 2;          // vyw status code
+    optional string request_id = 3;     // UUID correlating to original request
+    optional int32 error_code = 4;      // CarPropertySetError.error
+}
+
+// 0x8004: RegisterCarPropertyListenersResponse (APK class: wbk)
+// Phone responds with current values for all registered properties.
+message RegisterCarPropertyListenersResponse {
+    repeated SetCarPropertyListenerResult results = 1;
+}
+
+// APK class: vwv — individual listener registration result
+message SetCarPropertyListenerResult {
+    optional CarProperty car_property = 1;
+    optional int32 status = 2;          // vyw status code
+}
+
+// 0x8005: CarPropertyChangeEvent (APK class: vwu)
+// Phone notifies HU that a car property value changed.
+message CarPropertyChangeEvent {
+    optional CarProperty car_property = 1;
+    optional CarPropertyValue property_value = 2;
+    optional int32 status = 3;
+}
+
+// 0x8007: CarControlGroupUpdate (APK class: vwn)
+// Phone sends updated control group layout to HU.
+message CarControlGroupUpdate {
+    optional CarControlGroup car_control_group = 1;
+}
+
+// NOTE: Messages 0x8001 (SetCarPropertyValueRequest) and 0x8003
+// (RegisterCarPropertyListenersRequest) are HU→Phone. Their proto
+// structures are TBD — the handler only receives, not sends, so the
+// request protos aren't deserialized in hxp.java.
