@@ -25,16 +25,16 @@ message SensorType
     enum Enum
     {
         NONE = 0;
-        LOCATION = 1;
+        LOCATION = 1;           // DHU 2.1: functionally verified (moves Maps position), silent in logcat
         COMPASS = 2;
-        CAR_SPEED = 3;
+        CAR_SPEED = 3;          // DHU 2.1: functionally verified (triggers nav recalculation), silent in logcat
         RPM = 4;
         ODOMETER = 5;
-        FUEL_LEVEL = 6;
+        FUEL_LEVEL = 6;         // DHU 2.1: sent successfully, no logcat output
         PARKING_BRAKE = 7;
-        GEAR = 8;
-        DIAGNOSTICS = 9;
-        NIGHT_DATA = 10;
+        GEAR = 8;               // DHU 2.1: no CLI command available (despite Google docs)
+        DIAGNOSTICS = 9;        // VERIFIED: phone logs "sensor event while no listener, sensor:9"
+        NIGHT_DATA = 10;        // VERIFIED: full pipeline traced via logcat (CAR.SENSOR → CAR.SYS → CAR.WM)
         ENVIRONMENT = 11;
         HVAC = 12;
         DRIVING_STATUS = 13;

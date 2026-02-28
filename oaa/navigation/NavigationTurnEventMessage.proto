@@ -12,6 +12,13 @@
  *
  * Contains turn icon, maneuver type, turn side, and distance.
  * Complements NavigationStep (0x8003) with richer turn detail.
+ *
+ * VERIFIED active via DHU 2.1 + logcat (2026-02-28):
+ * Phone-side class: com.google.android.apps.auto.sdk.nav.state.TurnEvent
+ * Fires at ~1Hz during active navigation (Google Maps).
+ * Phone logs: CSL.AbstractBundleable: Failed to instantiate TurnEvent
+ *   BadParcelableException on obfuscated class "lbg" — version mismatch
+ *   between DHU's car app library and phone's AA app, not a proto issue.
  */
 
 syntax = "proto3";
@@ -23,8 +30,8 @@ package oaa.proto.messages;
 
 message NavigationTurnEvent {
     optional string road_name = 1;                   // APK: b — descriptor says string (not bytes)
-    optional int32 maneuver_type = 2;                // APK: c — descriptor says enum (int32 wire)
-    optional int32 turn_direction = 3;               // APK: d (int, default=1) — validated by vyv.h/vee.Q()
+    optional oaa.proto.enums.ManeuverType.Enum maneuver_type = 2;   // APK: c — descriptor says enum (int32 wire)
+    optional oaa.proto.enums.TurnSide.Enum turn_direction = 3;      // APK: d (int, default=1) — validated by vyv.h/vee.Q()
     optional bytes turn_icon = 4;                    // APK: e — descriptor says bytes
     optional int32 distance_meters = 5;              // APK: f (int) — distance to turn
     optional int32 distance_unit = 6;                // APK: g (int) — distance display unit

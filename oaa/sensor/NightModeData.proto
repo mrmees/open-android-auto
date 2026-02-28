@@ -20,6 +20,11 @@ syntax="proto3";
 
 package oaa.proto.data;
 
+// VERIFIED via DHU 2.1 injection + logcat (2026-02-28).
+// Full pipeline: CAR.SENSOR.LITE (raw event) → CAR.SENSOR (getDayNightModeUserSetting)
+// → updateDayNightMode(source=SENSOR) → CAR.SYS (setting night mode) → CAR.WM (video config update).
+// Night mode also triggers generic "sensor event while no listener, sensor:10" path
+// in addition to the dedicated processing pipeline.
 message NightMode
 {
     optional bool is_night = 1;

@@ -526,11 +526,107 @@ CAR.GAL.SECURITY.LITE   — SSL handshake, certificate details
 CAR.AUDIO.*             — Audio config, stream setup, focus
 CAR.VIDEO               — Codec selection, encoder details
 CAR.SENSOR              — Sensor requests, unsupported sensors
+CAR.SENSOR.LITE         — Raw sensor event reception (thread 9031), "no listener" warnings
 CAR.SERVICE.LITE        — Connection lifecycle
-CAR.WM.*                — Display params, rendering config
+CAR.SYS                 — System-level mode changes (night mode application)
+CAR.WM                  — Display params, rendering config, video config updates
 GH.ConnLoggerV2         — Session events with timestamps
 GH.WIRELESS.SETUP       — BT/WiFi connection phases
 GH.Assistant.Controller — Assistant version, feature flags
 GH.ThemingManager       — Theme/palette negotiation
+GH.UserInterruptMgr     — Rate limiting for bad update bursts
+GH.StreamItemManager    — Stream item lifecycle
+CSL.AbstractBundleable  — Parcelable instantiation (TurnEvent failures)
 CAR.CLIENT              — CarModuleFeatures cache
+CAR.VALIDATOR           — Input validation
 ```
+
+---
+
+## DHU 2.1 Sensor Verification (2026-02-28)
+
+### Setup
+- DHU: Desktop Head Unit 2.1 on MINIMEES (Windows host)
+- Phone: Samsung Galaxy S25 Ultra via USB AOA
+- Logcat: Wireless ADB from claude-dev VM
+- Config: `default_sensors.ini` — all sensors enabled
+- Debug: Force debug logging ON in AA Developer Settings
+
+### Sensor Verification Results
+
+| Sensor | Type ID | DHU Command | Logcat Visibility | Functional |
+|--------|---------|-------------|-------------------|------------|
+| Night mode | 10 (NIGHT_DATA) | `night` / `day` | FULL pipeline traced | Yes |
+| Diagnostics | 9 (DIAGNOSTICS) | N/A | "no listener, sensor:9" warning | N/A |
+| Speed | 3 (CAR_SPEED) | `speed 30` | Silent — zero log entries | Yes (triggers nav recalc) |
+| Location | 1 (LOCATION) | `location 37.422 -122.084` | Silent — zero log entries | Yes (moves Maps position) |
+| Fuel | 6 (FUEL_LEVEL) | `fuel 75` | Silent — zero log entries | Sent OK |
+| Gear | 8 (GEAR) | N/A | N/A | No CLI command in DHU 2.1 |
+
+### Night Mode Processing Pipeline (Verified)
+```
+CAR.SENSOR.LITE (thread 9031): receives raw sensor event
+  → CAR.SENSOR (thread 9042): getDayNightModeUserSetting
+  → updateDayNightMode(source=SENSOR)
+  → CAR.SYS: setting night mode
+  → CAR.WM: Updating video configuration
+```
+
+Night mode also triggers the generic "sensor event while no listener, sensor:10" path,
+meaning both the dedicated pipeline and generic listener system fire for the same event.
+
+### "No Listener" Pattern
+When sensor data arrives but no app has registered a listener, `CAR.SENSOR.LITE` logs:
+```
+CAR.SENSOR.LITE: sensor event while no listener, sensor:<ID>
+```
+Rate-limited to 1 log per minute with a skip count. Observed for sensor:9 (DIAGNOSTICS)
+and sensor:10 (NIGHT_DATA). Speed/fuel/location never produce this warning — they are
+consumed silently at the protocol layer.
+
+### Sensor Visibility Hierarchy
+1. **Night mode (10)**: Full logcat pipeline — dedicated processing + generic listener path
+2. **Diagnostics (9)**: "No listener" warning only (rate-limited)
+3. **Speed/fuel/location (1,3,6)**: Completely silent — functional but invisible to logcat
+
+### NavigationTurnEvent During Active Navigation
+With Google Maps navigation active, phone emits `TurnEvent` at ~1Hz:
+```
+CSL.AbstractBundleable: Failed to instantiate TurnEvent
+  BadParcelableException: Parcelable protocol requires subclassing
+  from Parcelable on class lbg
+```
+This is a version mismatch between DHU's car app library and the phone's AA app.
+The events confirm our `NavigationTurnEventMessage.proto` (message ID 0x8004) maps
+to `com.google.android.apps.auto.sdk.nav.state.TurnEvent`. The obfuscated class `lbg`
+is the Parcelable implementation that the DHU can't deserialize.
+
+`GH.UserInterruptMgr: hit bad updates threshold` fires when TurnEvent failures
+exceed the rate limiter.
+
+### DHU 2.1 Available Commands
+```
+night, day, daynight, nightday    — Night mode toggle
+speed <mph>                       — Vehicle speed
+fuel <percent>                    — Fuel level
+range <miles>                     — Range remaining
+lowfuel                           — Low fuel warning
+location <lat> <lng>              — GPS position
+odometer <km>                     — Odometer reading
+accel <x> <y> <z>                 — Accelerometer
+compass <bearing> <pitch> <roll>  — Compass heading
+gyro <x> <y> <z>                  — Gyroscope
+tollcard <status>                 — Toll card state
+tap <x> <y>                       — Touch input
+dpad <direction>                  — D-pad input
+keycode <code>                    — Key event
+mic <open|close>                  — Microphone control
+focus <type>                      — Focus control
+restrict <level>                  — Driving restrictions
+sleep / wakeup                    — Display sleep
+screenshot                        — Capture screen
+quit / exit                       — Exit DHU
+```
+
+**NOT available in DHU 2.1** (despite some Google docs listing them):
+`gear`, `parking_brake`
