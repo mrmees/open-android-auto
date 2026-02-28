@@ -27,12 +27,12 @@ message SensorType
         NONE = 0;
         LOCATION = 1;           // DHU 2.1: functionally verified (moves Maps position), silent in logcat
         COMPASS = 2;
-        CAR_SPEED = 3;          // DHU 2.1: functionally verified (triggers nav recalculation), silent in logcat
+        CAR_SPEED = 3;          // DHU 2.1: sent successfully, silent in logcat (no visible effect confirmed)
         RPM = 4;
         ODOMETER = 5;
         FUEL_LEVEL = 6;         // DHU 2.1: sent successfully, no logcat output
         PARKING_BRAKE = 7;
-        GEAR = 8;               // DHU 2.1: no CLI command available (despite Google docs)
+        GEAR = 8;               // DHU 2.1: no CLI command exists (not a config issue — absent from binary)
         DIAGNOSTICS = 9;        // VERIFIED: phone logs "sensor event while no listener, sensor:9"
         NIGHT_DATA = 10;        // VERIFIED: full pipeline traced via logcat (CAR.SENSOR → CAR.SYS → CAR.WM)
         ENVIRONMENT = 11;
@@ -45,8 +45,8 @@ message SensorType
         TIRE = 18;
         ACCEL = 19;
         GYRO = 20;
-        GPS = 21;
-        TOLL_CARD = 22;
+        GPS = 21;               // DHU 2.1: no CLI command exists (not a config issue — absent from binary)
+        TOLL_CARD = 22;         // VERIFIED: phone logs "sensor event while no listener, sensor:22"
         VEHICLE_ENERGY_MODEL = 23;
         TRAILER = 24;
         RAW_VEHICLE_ENERGY_MODEL = 25;

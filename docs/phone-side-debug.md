@@ -628,5 +628,103 @@ screenshot                        — Capture screen
 quit / exit                       — Exit DHU
 ```
 
-**NOT available in DHU 2.1** (despite some Google docs listing them):
-`gear`, `parking_brake`
+**NOT available in DHU 2.1** (despite Google docs listing them):
+`gear`, `parking_brake`, `gps_satellite` — these commands are absent from the DHU 2.1
+binary regardless of INI config. Enabling `gear = true`, `parking_brake = true`,
+`gps_satellite = true` in `[sensors]` has no effect.
+
+---
+
+## Kitchen Sink Session (2026-02-28)
+
+### Setup
+- Config: `kitchen_sink.ini` — all inputs, all sensors, instrument cluster, playback status, 720p
+- Layered with: `cluster.ini` + `auxiliary_nav.ini` (multi-display)
+- Phone: Samsung Galaxy S25 Ultra via USB AOA to DHU 2.1 on MINIMEES
+- Active: Google Maps navigation + YouTube Music playback
+
+### Multi-Display + Cluster Findings
+
+The kitchen sink config with cluster and auxiliary nav produces four DHU windows:
+1. **Main display** (720p) — Full Coolwalk AA UI with Maps navigation
+2. **Media Playback Status** — Real-time media metadata
+3. **Instrument Cluster** — Structured navigation data (text, not rendered video)
+4. **TouchPad** — Relative pointing device for UI navigation + phone status
+
+**Instrument cluster data fields observed:**
+```
+maneuver: DEPART(-1 -1)
+step road name: Head southeast
+cue: Head southeast
+destination: Texas 76691
+step dist: 135m(disp: 450 ft), time to step: 54s
+```
+
+This confirms the cluster channel carries structured navigation metadata —
+maneuver enum, road name, cue text, destination, distance (meters + display units),
+and time-to-step. This data flows via the protocol directly, NOT through the
+TurnEvent Parcelable path that's failing.
+
+**Media playback status fields observed:**
+```
+State: PLAYING
+Source: YouTube Music
+Current Playback: 1m18s
+Shuffle: off / Repeat: off / Repeat One: off
+Song: No Bad Vibes
+Album: No Bad Vibes
+Artist: Jazzy & KILIMANJARO
+Playlist: (empty)
+```
+
+### New Log Tags from Kitchen Sink Session
+
+| Tag | Process | Purpose |
+|-----|---------|---------|
+| `GH.MediaActiveContrConn` | :projection | MediaBrowserService controller — playback state, metadata, queue changes |
+| `GH.MediaSIM` | :projection | Media Stream Item Manager — track change detection |
+| `GH.MediaPresAdapter` | :projection | Media notification worker — formats media for display |
+| `GH.MediaServiceConnLDP` | :projection | Media service connection — external vs MBS controller selection |
+| `GH.MediaAutoplayManager` | :projection | Autoplay preferences |
+| `GH.MediaPlaybackMonitor` | :projection | Metadata/album art change detection |
+| `GH.NDirector` | :projection | Navigation director |
+| `GH.MdPlayerCardStateLD` | :projection | Media player card state |
+| `GH.NotificationStore` | :projection | Notification entry management |
+| `GH.OngoingNotifLD` | :projection | Ongoing notification live data |
+| `GH.CellSignalLiveData` | :projection | Cell signal strength |
+| `GH.ParkedNativeAppCheck` | :projection | Native app availability check |
+
+### Media Playback Protocol Details
+
+Media flows through Android's `MediaBrowserService` framework:
+- Source: `com.google.android.apps.youtube.music/.mediabrowser.MusicBrowserService`
+- Queue size: 18 items
+- PlaybackState actions bitmask: `2600887` (play, pause, skip, seek, custom actions)
+- Custom actions: Like, Shuffle off, Repeat off, Dislike (with icon resource IDs)
+- Track changes detected in real-time with album art bitmap delivery
+- `isExternalMediaApp: false` — YouTube Music uses standard MBS, not external media API
+
+### Additional Sensor Verification
+
+| Sensor | ID | Command | Result |
+|--------|-----|---------|--------|
+| **Toll card** | **22** | `tollcard insert` | **NEW: "no listener, sensor:22" — TOLL_CARD enum verified** |
+| Odometer | 5 | `odometer 50000` | Sent OK, silent in logcat |
+| Speed | 3 | `speed 30`/`50`/`0` | Sent OK, silent in logcat, no visible screen effect |
+| Parking brake | 7 | N/A | Command absent from DHU 2.1 binary |
+| Gear | 8 | N/A | Command absent from DHU 2.1 binary |
+| GPS satellite | 21 | N/A | Command absent from DHU 2.1 binary |
+
+### Cluster vs TurnEvent: Two Paths for Navigation Data
+
+The instrument cluster displays structured nav data (maneuver, road name, distance)
+even though TurnEvent Parcelable deserialization fails at 1Hz. This means:
+
+1. **Cluster channel path** — Raw protobuf navigation messages flow over the AA
+   protocol and the DHU renders them directly. This works.
+2. **CarAppLibrary TurnEvent path** — Phone tries to instantiate `TurnEvent` as a
+   Parcelable for the car app library bridge. This fails due to version mismatch
+   (obfuscated class `lbg`).
+
+The navigation data reaches the HU through both paths, but only the direct
+protobuf channel path succeeds. This is the path our implementation should use.

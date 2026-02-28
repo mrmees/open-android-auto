@@ -539,3 +539,38 @@ Verification:
 - `test -f docs/plans/2026-02-28-proto-stream-validation-plan.md && echo impl_plan_present` -> `impl_plan_present`.
 - `rg -n "proto_stream_validator|validate|--bless|non_media|no-regression diff" docs/plans/2026-02-28-proto-stream-validation-design.md docs/plans/2026-02-28-proto-stream-validation-plan.md` -> expected capture/validator/baseline references present.
 - `rg -n "capture-based protobuf regression validation|Last Updated:" docs/roadmap-current.md` -> new `Next` lane and updated timestamp note present.
+
+## 2026-02-28 - Kitchen Sink DHU Session (Multi-Display + Full Sensor + Media)
+
+Date / Session: 2026-02-28 / dhu-kitchen-sink-session
+
+What Changed:
+- Created `kitchen_sink.ini` DHU config enabling all inputs, all sensors, instrument cluster, playback status at 720p.
+- Ran DHU 2.1 with kitchen_sink + cluster + auxiliary_nav configs for maximum protocol surface.
+- Updated `oaa/sensor/SensorTypeEnum.proto`: TOLL_CARD=22 verified, GPS=21 and GEAR=8 noted as absent from DHU 2.1 binary, speed correction (no visible effect confirmed).
+- Updated `oaa/sensor/SensorEventIndicationMessage.proto`: speed field comment corrected.
+- Added Kitchen Sink Session section to `docs/phone-side-debug.md` covering:
+  - Multi-display + cluster findings (4 DHU windows, structured nav metadata)
+  - Media playback protocol details (MediaBrowserService framework, queue, custom actions)
+  - 12 new log tags (GH.Media*, GH.NDirector, GH.NotificationStore, etc.)
+  - Additional sensor verification (TOLL_CARD=22 new, odometer silent, gear/parking_brake/gps_satellite absent)
+  - Cluster vs TurnEvent dual-path analysis for navigation data
+
+Why:
+- Kitchen sink config exercised maximum protocol surface: instrument cluster, media playback status, multi-display, touchpad input, and all available sensors.
+- Confirmed DHU 2.1 definitively lacks gear, parking_brake, and gps_satellite commands regardless of INI config.
+- Discovered that cluster navigation data flows via direct protobuf channel (working) independently from TurnEvent Parcelable path (broken).
+
+Status:
+- Complete for documentation updates.
+
+Next Steps:
+1. Test with DHU version > 2.1 if available — gear, parking_brake, gps_satellite may exist in newer builds.
+2. Capture wire-level cluster channel data via openauto-prodigy to map cluster protobuf messages to our proto definitions.
+3. Investigate media playback status protocol messages — the MediaBrowserService data visible in logcat must be serialized into AA protocol messages for the HU.
+4. Test auxiliary nav display with `auxiliary_nav.ini` to see if it produces a separate video stream or navigation-only widget data.
+
+Verification:
+- `protoc --proto_path=. --cpp_out=/tmp oaa/sensor/SensorTypeEnum.proto oaa/sensor/SensorEventIndicationMessage.proto` -> success (exit 0).
+- `rg -n "TOLL_CARD.*22.*VERIFIED|sensor:22" oaa/sensor/SensorTypeEnum.proto docs/phone-side-debug.md` -> toll card verification present.
+- `rg -n "Kitchen Sink|Multi-Display|MediaBrowserService|Cluster vs TurnEvent" docs/phone-side-debug.md` -> new sections present.

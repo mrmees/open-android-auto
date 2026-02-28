@@ -50,7 +50,7 @@ message SensorEventIndication
 {
     repeated data.GPSLocation gps_location = 1;     // LOCATION — functionally verified (DHU 2.1)
     repeated data.Compass compass = 2;               // COMPASS
-    repeated data.Speed speed = 3;                   // CAR_SPEED — functionally verified (DHU 2.1)
+    repeated data.Speed speed = 3;                   // CAR_SPEED — sent OK, silent in logcat (DHU 2.1)
     repeated data.RPM rpm = 4;                       // RPM
     repeated data.Odometer odometer = 5;             // ODOMETER
     repeated data.FuelLevel fuel_level = 6;           // FUEL_LEVEL — sent successfully (DHU 2.1)
