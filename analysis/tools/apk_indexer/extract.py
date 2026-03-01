@@ -519,13 +519,15 @@ def extract_signals(root: Path, scope: str = "all") -> dict[str, list[dict[str, 
         print(f"  Descriptor class: {descriptor_class}")
         # Match: new <class>(<instance>, "<descriptor>", new Object[]{...})
         # Also: new <class>(<instance>, "<descriptor>", null)
+        # Also: new <class>(<instance>, "<descriptor>", objArr)  [variable ref]
+        # Note: descriptor may contain escaped quotes (\"), so we use (?:[^"\\]|\\.)*
         if obf_dir == "defpackage":
             prefix = rf"defpackage\.{re.escape(descriptor_class)}"
         else:
             prefix = re.escape(descriptor_class)
         descriptor_re = re.compile(
-            rf'new\s+{prefix}\s*\([^,]+,\s*"([^"]*?)"\s*'
-            rf'(?:,\s*new\s+(?:java\.lang\.)?Object\[\]\s*\{{([^}}]*)\}}|,\s*null)\s*\)'
+            rf'new\s+{prefix}\s*\([^,]+,\s*"((?:[^"\\]|\\.)*)"\s*'
+            rf'(?:,\s*new\s+(?:java\.lang\.)?Object\[\]\s*\{{([^}}]*)\}}|,\s*(?:null|[a-zA-Z_]\w*))\s*\)'
         )
     else:
         print("  WARNING: Could not detect descriptor class")
