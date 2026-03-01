@@ -755,9 +755,9 @@ mappings:
   proto_file: oaa/input/InputBindingRequestMessage.proto
   proto_fqn: oaa.proto.messages.InputBindingRequest
   apk_classes:
-    '16.1': vyf
+    '16.1': wbl
     '16.2': null
-  confidence: triage_investigation
+  confidence: proto_comment
 - proto_message: RelativeInputEvents
   proto_file: oaa/input/RelativeInputEventsData.proto
   proto_fqn: oaa.proto.data.RelativeInputEvents
@@ -818,9 +818,9 @@ mappings:
   proto_file: oaa/media/MediaFocusRequestMessage.proto
   proto_fqn: oaa.proto.messages.MediaFocusRequest
   apk_classes:
-    '16.1': wao
+    '16.1': vws
     '16.2': null
-  confidence: triage_investigation
+  confidence: proto_comment
 - proto_message: MediaPlaybackCommand
   proto_file: oaa/media/MediaPlaybackCommandMessage.proto
   proto_fqn: oaa.proto.messages.MediaPlaybackCommand
