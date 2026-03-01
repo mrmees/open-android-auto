@@ -14,7 +14,9 @@ syntax="proto2";
 package oaa.proto.messages;
 
 // Deprecated in APK — kept for protocol completeness.
+// NOTE: state uses the same WifiVersionStatus sint32 wire encoding
+// with negative values. Cannot express as proto enum — see WifiVersionStatusEnum.proto.
 message WifiConnectStatus {
-    optional int32 state = 1;           // APK: b (int)
+    optional sint32 state = 1;          // APK: b (int, enum via wck.p/viz.au — WifiVersionStatus)
     optional string status_text = 2;    // APK: d (String) — descriptor says string
 }

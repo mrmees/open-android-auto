@@ -6,9 +6,18 @@ syntax="proto2";
 
 package oaa.proto.messages;
 
+// Navigation state values (APK class: vzp, field 1)
+// Mapped through a.bw() in the APK: 0->1, 1->2, 2->3, 3->4.
+// Used in ehb.java: checks for bw==2 (proto 1) and bw==4 (proto 3).
+enum NavigationStateType {
+    NAV_STATE_UNKNOWN = 0;
+    NAV_STATE_ACTIVE = 1;
+    NAV_STATE_INACTIVE = 2;
+    NAV_STATE_ENDED = 3;
+}
+
 // Navigation state notification (msgId 0x8003 on Nav channel)
 // Sent by phone when navigation starts/stops
 message NavigationState {
-    // 1 = navigation active, 2 = navigation ended
-    optional int32 state = 1;
+    optional NavigationStateType state = 1;
 }

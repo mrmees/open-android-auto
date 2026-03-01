@@ -1,0 +1,23 @@
+// Android Auto Protocol Buffer Definitions
+// https://github.com/mrmees/open-android-auto
+// SPDX-License-Identifier: GPL-3.0-or-later
+
+/*
+ * WifiAccessPointType — WiFi access point type.
+ *
+ * APK verifier: a.bJ() (AA v16.1) — accepts values 0, 1.
+ * Used in WifiInfoResponse field 5.
+ */
+
+syntax="proto2";
+
+package oaa.proto.enums;
+
+message WifiAccessPointType
+{
+    enum Enum
+    {
+        AP_TYPE_UNKNOWN = 0;
+        AP_TYPE_STATIC = 1;
+    }
+}

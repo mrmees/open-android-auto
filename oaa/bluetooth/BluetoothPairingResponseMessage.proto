@@ -1,18 +1,19 @@
+// Android Auto Protocol Buffer Definitions
+// https://github.com/mrmees/open-android-auto
 // SPDX-License-Identifier: GPL-3.0-or-later
-// Copyright (C) 2024-2026 Open Android Auto contributors
-// Based on works by: f1x.studio (aasdk), opencardev (crankshaft), aa-proxy (aa-proxy-rs)
+
 syntax="proto2";
 
 import "oaa/bluetooth/BluetoothPairingStatusEnum.proto";
 
 package oaa.proto.messages;
 
+// APK class: xgq — 3 fields
+// Field 3 is "repeated packed enum" per APK descriptor, sharing the same
+// enum verifier (wck.u) as field 2 (BluetoothPairingStatus).
 message BluetoothPairingResponse
 {
     optional bool already_paired = 1;
     optional enums.BluetoothPairingStatus.Enum status = 2;
-
-    // Discovered via APK proto decoder (xgq.java, AA v16.1)
-    // APK has this as an enum, not a string
-    optional int32 error_code = 3;
+    repeated enums.BluetoothPairingStatus.Enum error_codes = 3 [packed = true];
 }

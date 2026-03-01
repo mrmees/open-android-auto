@@ -4,6 +4,7 @@
 syntax="proto2";
 
 import "oaa/input/AbsoluteInputEventData.proto";
+import "oaa/input/TouchActionEnum.proto";
 
 package oaa.proto.data;
 
@@ -12,5 +13,5 @@ message AbsoluteInputEvents
 {
     repeated AbsoluteInputEvent absolute_input_events = 1;
     optional uint32 display_id = 2;
-    optional int32 action = 3;
+    optional enums.TouchAction.Enum action = 3;  // APK: e (enum via vyv.m/vee.P — TouchAction)
 }

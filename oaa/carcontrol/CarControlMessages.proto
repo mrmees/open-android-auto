@@ -74,6 +74,43 @@ enum CarPropertyId {
     HMG_HVAC_TEMPERATURE_SET_FAHRENHEIT = 23; // VHAL: 627081339
 }
 
+// Car action IDs — application launch actions (APK class: vun)
+// Values from GAL handler traces and UI integration code.
+enum CarActionId {
+    CAR_ACTION_UNKNOWN = 0;
+    CAR_ACTION_LAUNCH_HVAC = 3;
+    CAR_ACTION_LAUNCH_CAR_MEDIA = 4;
+    CAR_ACTION_LAUNCH_CONTROL_CENTER = 5;
+    CAR_ACTION_LAUNCH_CAR_ALERTS = 6;
+}
+
+// Area type for CarAreaId — determines which sub-list carries the area IDs
+// (APK class: vuw, field 1; hkp.java area type switch)
+enum CarAreaType {
+    CAR_AREA_GLOBAL = 0;
+    // 1 is unused/skipped in the APK
+    CAR_AREA_WINDOW = 2;
+    CAR_AREA_SEAT = 3;
+    CAR_AREA_MIRROR = 4;
+    CAR_AREA_WHEEL = 5;
+    CAR_AREA_DOOR = 6;
+}
+
+// Side affinity for controls — driver vs passenger side
+// (APK class: vwl, field 6; SafeParcelable: CarControl.sideAffinity)
+enum SideAffinity {
+    SIDE_NONE = 0;
+    SIDE_DRIVER = 1;
+    SIDE_PASSENGER = 2;
+}
+
+// Control group type (APK class: vwm, field 1)
+// Values mapped through viz.C() and a.bH() in the APK.
+enum CarControlGroupType {
+    CAR_CONTROL_GROUP_UNKNOWN = 0;
+    CAR_CONTROL_GROUP_PRIMARY = 1;
+}
+
 // Metadata type for CarControl entries (APK enum: vuu)
 enum CarControlMetadataType {
     METADATA_UNKNOWN = 0;
@@ -87,7 +124,7 @@ enum CarControlMetadataType {
 // APK class: vuv → SafeParcelable: CarProperty
 message CarProperty {
     // VHAL property ID (raw Android VehiclePropertyIds value)
-    optional int32 property_id = 1;
+    optional CarPropertyId property_id = 1;
     // Target area for this property
     optional CarAreaId area_id = 2;
 }
@@ -96,7 +133,7 @@ message CarProperty {
 // Area IDs are bitmasks — list elements are ORed together on the phone side.
 // area_type bit 0 set = global area (areaId=0).
 message CarAreaId {
-    optional int32 area_type = 1;
+    optional CarAreaType area_type = 1;
     repeated int32 window_ids = 2 [packed = true];
     repeated int32 seat_ids = 3 [packed = true];
     repeated int32 mirror_ids = 4 [packed = true];
@@ -106,7 +143,7 @@ message CarAreaId {
 
 // APK class: vun → SafeParcelable: CarAction
 message CarAction {
-    optional int32 action_id = 1;
+    optional CarActionId action_id = 1;
 }
 
 // APK class: vvd (proto3) → SafeParcelable: CarPropertyValue
@@ -170,12 +207,12 @@ message CarControl {
     }
     optional bool enabled = 4;
     repeated CarControlMetadataType metadata = 5 [packed = true];
-    optional int32 side_affinity = 6;
+    optional SideAffinity side_affinity = 6;
 }
 
 // APK class: vwm → SafeParcelable: CarControlGroup
 message CarControlGroup {
-    optional int32 group_type = 1;
+    optional CarControlGroupType group_type = 1;
     repeated CarControl controls = 2;
 }
 
@@ -187,7 +224,7 @@ message CarControlGroup {
 // Phone responds to HU's set-property request with result.
 message SetCarPropertyValueResponse {
     optional CarProperty car_property = 1;
-    optional int32 status = 2;          // vyw status code
+    optional CarControlStatus status = 2;
     optional string request_id = 3;     // UUID correlating to original request
     optional int32 error_code = 4;      // CarPropertySetError.error
 }
@@ -201,7 +238,7 @@ message RegisterCarPropertyListenersResponse {
 // APK class: vwv — individual listener registration result
 message SetCarPropertyListenerResult {
     optional CarProperty car_property = 1;
-    optional int32 status = 2;          // vyw status code
+    optional CarControlStatus status = 2;
 }
 
 // 0x8005: CarPropertyChangeEvent (APK class: vwu)

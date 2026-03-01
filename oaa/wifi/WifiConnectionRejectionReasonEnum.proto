@@ -1,0 +1,24 @@
+// Android Auto Protocol Buffer Definitions
+// https://github.com/mrmees/open-android-auto
+// SPDX-License-Identifier: GPL-3.0-or-later
+
+/*
+ * WifiConnectionRejectionReason — reason for WiFi connection rejection.
+ *
+ * APK verifier: a.bq() via wck.o (AA v16.1) — accepts values 0, 1, 2.
+ * Used in WifiConnectionRejection field 1.
+ */
+
+syntax="proto2";
+
+package oaa.proto.enums;
+
+message WifiConnectionRejectionReason
+{
+    enum Enum
+    {
+        REJECTION_REASON_UNKNOWN = 0;
+        REJECTION_REASON_NOT_ALLOWED = 1;
+        REJECTION_REASON_INVALID_SETUP_TOKEN = 2;
+    }
+}

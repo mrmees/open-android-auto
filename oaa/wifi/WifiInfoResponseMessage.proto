@@ -3,6 +3,9 @@
 // Based on works by: f1x.studio (aasdk), opencardev (crankshaft), aa-proxy (aa-proxy-rs)
 syntax="proto2";
 
+import "oaa/wifi/WifiSecurityModeEnum.proto";
+import "oaa/wifi/WifiAccessPointTypeEnum.proto";
+
 package oaa.proto.messages;
 
 // APK class: wdm — WiFi connection status response (phone sends as msgId=7)
@@ -10,6 +13,6 @@ message WifiInfoResponse {
     optional string ssid = 1;
     optional string bssid = 2;
     optional string passphrase = 3;
-    optional int32 security_mode = 4;   // enum in APK (SecurityMode)
-    optional int32 ap_type = 5;         // enum in APK (AccessPointType)
+    optional enums.WifiSecurityMode.Enum security_mode = 4;    // APK: wdr enum
+    optional enums.WifiAccessPointType.Enum ap_type = 5;       // APK: a.bJ verifier
 }

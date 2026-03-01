@@ -6,8 +6,16 @@ syntax="proto2";
 
 package oaa.proto.messages;
 
+// Voice session type (APK class: wde, field 1)
+// Value 0 is invalid (throws null in APK). Value 1 triggers voice
+// assistant start with microphone open.
+enum VoiceSessionType {
+    VOICE_SESSION_START = 1;
+    VOICE_SESSION_STOP = 2;
+}
+
 // APK class: wde — 1 field (enum at field 1)
 message VoiceSessionRequest
 {
-    optional int32 session_type = 1;
+    optional VoiceSessionType session_type = 1;
 }

@@ -1,0 +1,33 @@
+// Android Auto Protocol Buffer Definitions
+// https://github.com/mrmees/open-android-auto
+// SPDX-License-Identifier: GPL-3.0-or-later
+
+/*
+ * WifiSecurityMode — WiFi network security type.
+ *
+ * APK class: wdr.java (AA v16.1)
+ * Used in WifiInfoResponse field 4, WifiNetworkInfo field 4.
+ */
+
+syntax="proto2";
+
+package oaa.proto.enums;
+
+message WifiSecurityMode
+{
+    enum Enum
+    {
+        UNKNOWN_SECURITY_MODE = 0;
+        OPEN = 1;
+        WEP_64 = 2;
+        WEP_128 = 3;
+        WPA_PERSONAL = 4;
+        WPA2_PERSONAL = 8;
+        WPA_WPA2_PERSONAL = 12;
+        WPA_ENTERPRISE = 20;
+        WPA2_ENTERPRISE = 24;
+        WPA_WPA2_ENTERPRISE = 28;
+        WPA3_PERSONAL = 32;
+        WPA2_WPA3_PERSONAL = 40;
+    }
+}

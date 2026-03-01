@@ -43,14 +43,38 @@ message DeviceInfo
     optional int32 device_type = 9;
 }
 
+// WiFi security mode (APK enum: wdr)
+// Used for WiFi Direct connection between phone and HU.
+enum WifiSecurityMode {
+    WIFI_SECURITY_UNKNOWN = 0;
+    WIFI_SECURITY_OPEN = 1;
+    WIFI_SECURITY_WEP_64 = 2;
+    WIFI_SECURITY_WEP_128 = 3;
+    WIFI_SECURITY_WPA_PERSONAL = 4;
+    WIFI_SECURITY_WPA2_PERSONAL = 8;
+    WIFI_SECURITY_WPA_WPA2_PERSONAL = 12;
+    WIFI_SECURITY_WPA_ENTERPRISE = 20;
+    WIFI_SECURITY_WPA2_ENTERPRISE = 24;
+    WIFI_SECURITY_WPA_WPA2_ENTERPRISE = 28;
+    WIFI_SECURITY_WPA3_PERSONAL = 32;
+    WIFI_SECURITY_WPA2_WPA3_PERSONAL = 40;
+}
+
+// WiFi access point type (APK class: wdm, field 5)
+// Determines whether the AP is static or dynamically created.
+enum WifiAccessPointType {
+    WIFI_AP_STATIC = 0;
+    WIFI_AP_DYNAMIC = 1;
+}
+
 // APK class: wdm — phone connection config (WiFi info, same structure as WifiInfoResponse)
 message PhoneConnectionConfig
 {
     optional string ssid = 1;
     optional string bssid = 2;
     optional string passphrase = 3;
-    optional int32 security_mode = 4;
-    optional int32 ap_type = 5;
+    optional WifiSecurityMode security_mode = 4;
+    optional WifiAccessPointType ap_type = 5;
 }
 
 // APK class: aaft — paired ping configurations

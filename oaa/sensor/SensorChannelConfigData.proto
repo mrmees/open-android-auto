@@ -10,19 +10,23 @@
 
 syntax="proto2";
 
+import "oaa/sensor/SensorTypeEnum.proto";
+import "oaa/sensor/FuelTypeEnum.proto";
+import "oaa/sensor/EVConnectorTypeEnum.proto";
+
 package oaa.proto.data;
 
 // APK class: wbu — sensor channel config
 message SensorChannelConfig
 {
-    repeated SensorTypeEntry supported_sensors = 1;  // APK: wbt — sensor types we support
-    optional uint32 update_interval_ms = 2;          // Minimum update interval
-    repeated int32 fuel_types = 3;                   // FuelType enum values
-    repeated int32 ev_connector_types = 4;           // EVConnectorType enum values
+    repeated SensorTypeEntry supported_sensors = 1;          // APK: wbt — sensor types we support
+    optional uint32 update_interval_ms = 2;                  // Minimum update interval
+    repeated enums.FuelType.Enum fuel_types = 3;             // APK: vxo enum (repeated)
+    repeated enums.EVConnectorType.Enum ev_connector_types = 4; // APK: vxl enum (repeated)
 }
 
 // APK class: wbt — individual sensor type entry
 message SensorTypeEntry
 {
-    optional int32 sensor_type = 1;  // SensorType enum value
+    optional enums.SensorType.Enum sensor_type = 1;  // APK: wbv enum
 }

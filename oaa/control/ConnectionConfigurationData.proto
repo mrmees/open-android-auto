@@ -32,9 +32,17 @@ message ConnectionConfiguration {
     }
 }
 
+// Connection security mode for the AA protocol link (APK class: aajj)
+// Distinct from WiFi security — this controls the AA session encryption.
+// Values mapped through a.bC() in the APK.
+enum ConnectionSecurityMode {
+    CONNECTION_SECURITY_UNKNOWN = 0;
+    CONNECTION_SECURITY_ENCRYPTED = 1;
+}
+
 // APK class: aajj — 1 enum field
 message ConnectionSecurityConfig {
-    optional int32 security_mode = 1;   // enum type in APK, values TBD
+    optional ConnectionSecurityMode security_mode = 1;
 }
 
 // APK class: aajh — 2 sub-message fields (fields 2-3, no field 1)

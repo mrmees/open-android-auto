@@ -6,12 +6,13 @@ syntax="proto2";
 package oaa.proto.messages;
 
 import "oaa/av/AVChannelMediaConfigMessage.proto";
+import "oaa/av/AVChannelSessionTypeEnum.proto";
 
 // APK class: wce — AV channel start (4 fields)
 message AVChannelStartIndication
 {
     optional int32 session = 1;
     optional uint32 config = 2;
-    optional int32 unknown_3 = 3;
+    optional enums.AVChannelSessionType.Enum session_type = 3;  // APK: d (enum via vvs.n/a.bq)
     optional AVChannelMediaConfig media_config = 4;  // APK: vyo (AVChannelMediaConfig)
 }

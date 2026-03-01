@@ -1,11 +1,19 @@
+// Android Auto Protocol Buffer Definitions
+// https://github.com/mrmees/open-android-auto
 // SPDX-License-Identifier: GPL-3.0-or-later
-// Copyright (C) 2024-2026 Open Android Auto contributors
-// Based on works by: f1x.studio (aasdk), opencardev (crankshaft), aa-proxy (aa-proxy-rs)
+
 syntax="proto2";
 
 package oaa.proto.messages;
 
+// Navigation focus type (APK enum: vzb)
+// Used in both NavigationFocusRequest and NavigationFocusResponse.
+enum NavigationFocusType {
+    NAV_FOCUS_NATIVE = 1;
+    NAV_FOCUS_PROJECTED = 2;
+}
+
 message NavigationFocusRequest
 {
-    optional uint32 type = 1;
+    optional NavigationFocusType type = 1;
 }

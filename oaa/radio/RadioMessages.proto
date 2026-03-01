@@ -35,6 +35,8 @@
 
 syntax = "proto2";
 
+import "oaa/radio/RadioProgramTypeSchemaEnum.proto";
+
 package oaa.proto.messages;
 
 // ============================================================================
@@ -97,8 +99,7 @@ message RadioImage {
 // APK class: waw → SafeParcelable: RadioProgramType
 // Program type classification (RDS PTY / ITU).
 message RadioProgramType {
-    // Schema: 1 = RDS PTY, 2 = ITU (APK: viz.M)
-    optional int32 schema = 1;
+    optional enums.RadioProgramTypeSchema.Enum schema = 1;  // APK: viz.M (1=RDS_PTY, 2=ITU)
     optional uint32 code = 2;
 }
 

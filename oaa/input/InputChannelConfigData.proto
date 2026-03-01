@@ -15,6 +15,7 @@ syntax="proto2";
 
 import "oaa/input/TouchScreenConfigData.proto";
 import "oaa/input/TouchPadConfigData.proto";
+import "oaa/input/HapticFeedbackTypeEnum.proto";
 
 package oaa.proto.data;
 
@@ -24,6 +25,6 @@ message InputChannelConfig
     repeated int32 input_type = 1;                          // APK: packed int32 (input device types)
     repeated TouchScreenConfig touch_screen_configs = 2;    // APK: vxz.class (repeated message)
     repeated TouchPadConfig touchpad_configs = 3;           // APK: vxy.class (repeated message)
-    repeated int32 key_configs = 4;                         // APK: repeated enum (vvs.m verifier)
+    repeated enums.HapticFeedbackType.Enum key_configs = 4; // APK: repeated enum (vvs.m → vxm/HapticFeedback)
     optional uint32 capabilities = 5;                       // APK: singular uint32
 }
