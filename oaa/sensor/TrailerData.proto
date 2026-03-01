@@ -1,0 +1,19 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
+// Copyright (C) 2024-2026 Open Android Auto contributors
+// Based on works by: f1x.studio (aasdk), opencardev (crankshaft), aa-proxy (aa-proxy-rs)
+
+/*
+ * Trailer sensor data (sensor type 24 = TRAILER).
+ *
+ * Empty message — trailer presence may be indicated by message
+ * existence alone, or fields are TBD from wire captures.
+ *
+ * APK class: wcl (AA v16.1, proto2, 0 fields)
+ */
+syntax="proto2";
+
+package oaa.proto.data;
+
+message TrailerData
+{
+}

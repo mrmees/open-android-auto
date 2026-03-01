@@ -1,0 +1,30 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
+// Copyright (C) 2024-2026 Open Android Auto contributors
+// Based on works by: f1x.studio (aasdk), opencardev (crankshaft), aa-proxy (aa-proxy-rs)
+
+/*
+ * GPS satellite data (sensor type 21 = GPS).
+ *
+ * Carries satellite constellation information. Field 3 is a repeated
+ * sub-message for per-satellite data (sub-message type not resolved
+ * from APK — no sub_message_refs in DB).
+ *
+ * APK class: vxs (AA v16.1)
+ * Field numbers decoded from protobuf-lite RawMessageInfo descriptor.
+ */
+syntax="proto2";
+
+package oaa.proto.data;
+
+// Per-satellite information (sub-message type unresolved — placeholder)
+message GpsSatelliteInfo
+{
+    // Fields TBD from wire captures
+}
+
+message GpsSatelliteData
+{
+    required int32 satellite_count = 1;
+    optional int32 satellites_used = 2;
+    repeated GpsSatelliteInfo satellites = 3;
+}

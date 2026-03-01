@@ -1,0 +1,37 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
+// Copyright (C) 2024-2026 Open Android Auto contributors
+// Based on works by: f1x.studio (aasdk), opencardev (crankshaft), aa-proxy (aa-proxy-rs)
+
+/*
+ * UI config request message.
+ *
+ * Wraps UiConfigData, which carries two lists of config entries.
+ * Distinct from UpdateUiConfigRequest (0x800A in AV channel) — this
+ * is a separate config request path.
+ *
+ * APK class: wct (AA v16.1)
+ * Field numbers decoded from protobuf-lite RawMessageInfo descriptor.
+ * Sub-message: wco (UiConfigData).
+ */
+syntax="proto2";
+
+package oaa.proto.messages;
+
+// APK class: wcq — config entry with key and value
+message UiConfigEntry
+{
+    optional string key = 1;
+    // Field 2 is a oneof message (sub-type unresolved in APK)
+}
+
+// APK class: wco — config data with two lists of entries
+message UiConfigData
+{
+    repeated UiConfigEntry primary_configs = 1;    // APK: wcq
+    repeated UiConfigEntry secondary_configs = 2;  // APK: wcq
+}
+
+message UiConfigRequest
+{
+    optional UiConfigData config = 1;   // APK: wco
+}

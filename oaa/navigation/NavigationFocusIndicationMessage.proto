@@ -1,0 +1,22 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
+// Copyright (C) 2024-2026 Open Android Auto contributors
+// Based on works by: f1x.studio (aasdk), opencardev (crankshaft), aa-proxy (aa-proxy-rs)
+
+/*
+ * Navigation focus indication message.
+ *
+ * Indicates the current navigation focus state. The focus_type field
+ * is a wide-range enum validated by vee.V (values 0-10, 100-102).
+ * No named APK enum class found — likely a navigation status code.
+ *
+ * APK class: vxp (AA v16.1)
+ * Field numbers decoded from protobuf-lite RawMessageInfo descriptor.
+ */
+syntax="proto2";
+
+package oaa.proto.messages;
+
+message NavigationFocusIndication
+{
+    required int32 focus_type = 1;   // Wide-range enum (0-10, 100-102), validator: vee.V
+}

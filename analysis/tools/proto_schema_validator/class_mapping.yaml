@@ -1469,6 +1469,27 @@ mappings:
     '16.1': wcg
     '16.2': wbw
   confidence: proto_comment
+- proto_message: CarLocalMediaPlayback
+  proto_file: oaa/media/CarLocalMediaPlaybackEnum.proto
+  proto_fqn: oaa.proto.enums.CarLocalMediaPlayback
+  apk_classes:
+    '16.1': vwp
+    '16.2': null
+  confidence: triage_investigation
+- proto_message: UiConfigData
+  proto_file: oaa/video/UiConfigRequestMessage.proto
+  proto_fqn: oaa.proto.messages.UiConfigData
+  apk_classes:
+    '16.1': wco
+    '16.2': null
+  confidence: triage_investigation
+- proto_message: UiConfigEntry
+  proto_file: oaa/video/UiConfigRequestMessage.proto
+  proto_fqn: oaa.proto.messages.UiConfigEntry
+  apk_classes:
+    '16.1': wcq
+    '16.2': null
+  confidence: triage_investigation
 - proto_message: TollCardData
   proto_file: oaa/sensor/TollCardData.proto
   proto_fqn: oaa.proto.data.TollCardData

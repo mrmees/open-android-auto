@@ -1,0 +1,23 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
+// Copyright (C) 2024-2026 Open Android Auto contributors
+// Based on works by: f1x.studio (aasdk), opencardev (crankshaft), aa-proxy (aa-proxy-rs)
+
+/*
+ * Media playback command message.
+ *
+ * Single-field command for media playback control. The enum validator
+ * chain (vvs.b → vvn) accepts values 0/1/2, matching the
+ * ResizeActionType enum class. This is likely a shared 3-value
+ * proto enum with context-dependent semantics.
+ *
+ * APK class: vvm (AA v16.1)
+ * Field numbers decoded from protobuf-lite RawMessageInfo descriptor.
+ */
+syntax="proto2";
+
+package oaa.proto.messages;
+
+message MediaPlaybackCommand
+{
+    optional int32 command = 1;   // 3-value enum (0/1/2), validator: vvn
+}

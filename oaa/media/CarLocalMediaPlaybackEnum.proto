@@ -1,0 +1,27 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
+// Copyright (C) 2024-2026 Open Android Auto contributors
+// Based on works by: f1x.studio (aasdk), opencardev (crankshaft), aa-proxy (aa-proxy-rs)
+
+/*
+ * Car local media playback command enum.
+ *
+ * Controls for local media playback on the head unit.
+ *
+ * APK enum class: vwp (AA v16.1)
+ * Values decoded from enum constants in vwp.java.
+ */
+syntax="proto3";
+
+package oaa.proto.enums;
+
+message CarLocalMediaPlayback
+{
+    enum Enum
+    {
+        PLAY = 0;
+        PAUSE = 1;
+        PREVIOUS = 2;
+        NEXT = 3;
+        STOP = 4;
+    }
+}

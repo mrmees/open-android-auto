@@ -1,0 +1,20 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
+// Copyright (C) 2024-2026 Open Android Auto contributors
+// Based on works by: f1x.studio (aasdk), opencardev (crankshaft), aa-proxy (aa-proxy-rs)
+
+/*
+ * Vehicle energy model data (sensor type 23 = VEHICLE_ENERGY_MODEL).
+ *
+ * Empty message — structured energy model data. Fields may be added
+ * from wire captures. Distinct from RawVehicleEnergyModel (sensor 25)
+ * which carries an opaque bytes blob.
+ *
+ * APK class: vvg (AA v16.1, proto3, 0 fields)
+ */
+syntax="proto3";
+
+package oaa.proto.data;
+
+message VehicleEnergyModelData
+{
+}

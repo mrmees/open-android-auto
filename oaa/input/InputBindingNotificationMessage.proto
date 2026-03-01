@@ -1,0 +1,24 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
+// Copyright (C) 2024-2026 Open Android Auto contributors
+// Based on works by: f1x.studio (aasdk), opencardev (crankshaft), aa-proxy (aa-proxy-rs)
+
+/*
+ * Input binding notification message.
+ *
+ * Notifies of input binding changes. The feedback_type field uses
+ * the HapticFeedbackType enum (vxm).
+ *
+ * APK class: vxw (AA v16.1)
+ * Field numbers decoded from protobuf-lite RawMessageInfo descriptor.
+ * Enum verified as HapticFeedbackType (vxm) via verifier vvs.m (validator 12).
+ */
+syntax="proto2";
+
+import "oaa/input/HapticFeedbackTypeEnum.proto";
+
+package oaa.proto.messages;
+
+message InputBindingNotification
+{
+    optional enums.HapticFeedbackType.Enum feedback_type = 1;   // APK: vxm
+}

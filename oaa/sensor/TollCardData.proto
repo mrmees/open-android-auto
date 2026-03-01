@@ -1,0 +1,21 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
+// Copyright (C) 2024-2026 Open Android Auto contributors
+// Based on works by: f1x.studio (aasdk), opencardev (crankshaft), aa-proxy (aa-proxy-rs)
+
+/*
+ * Toll card sensor data (sensor type 22 = TOLL_CARD).
+ *
+ * Boolean indicating toll card presence/status.
+ * VERIFIED: phone logs "sensor event while no listener, sensor:22"
+ *
+ * APK class: wch (AA v16.1)
+ * Field numbers decoded from protobuf-lite RawMessageInfo descriptor.
+ */
+syntax="proto2";
+
+package oaa.proto.data;
+
+message TollCardData
+{
+    required bool toll_card_present = 1;
+}

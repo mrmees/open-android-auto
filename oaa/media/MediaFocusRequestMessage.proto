@@ -1,0 +1,27 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
+// Copyright (C) 2024-2026 Open Android Auto contributors
+// Based on works by: f1x.studio (aasdk), opencardev (crankshaft), aa-proxy (aa-proxy-rs)
+
+/*
+ * Media focus request message.
+ *
+ * Requests media focus with playback commands. Field 1 is a 5-value
+ * enum (validated by a.bA, values 1-5, no named APK enum class found).
+ * Field 4 carries car local media playback commands.
+ *
+ * APK class: vws (AA v16.1)
+ * Field numbers decoded from protobuf-lite RawMessageInfo descriptor.
+ */
+syntax="proto2";
+
+import "oaa/media/CarLocalMediaPlaybackEnum.proto";
+
+package oaa.proto.messages;
+
+message MediaFocusRequest
+{
+    optional int32 focus_type = 1;           // 5-value enum (1-5), no named APK class — via a.bA
+    optional string media_source = 2;
+    optional int32 media_type = 3;
+    repeated enums.CarLocalMediaPlayback.Enum playback_commands = 4;   // APK: vwp
+}
