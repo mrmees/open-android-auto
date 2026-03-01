@@ -19,26 +19,9 @@ from analysis.tools.proto_schema_validator.mapping import (
 from google.protobuf import descriptor_pool
 
 
-# Known issues that can't be fixed without splitting proto files or
-# are proto-lite encoding artifacts.  Downgrade these from ERROR to WARNING.
+# Known issues that are proto-lite encoding artifacts.
+# Downgrade these from ERROR to WARNING.
 _KNOWN_ISSUES = {
-    # Proto3 messages in proto2 files — can't have two syntaxes in one file.
-    # CarControlMessages.proto has both proto2 and proto3 messages.
-    ("CarAction", IssueKind.SYNTAX_MISMATCH),
-    ("CarAreaId", IssueKind.SYNTAX_MISMATCH),
-    ("CarProperty", IssueKind.SYNTAX_MISMATCH),
-    ("CarPropertyControl", IssueKind.SYNTAX_MISMATCH),
-    ("CarPropertyValue", IssueKind.SYNTAX_MISMATCH),
-    ("FloatValues", IssueKind.SYNTAX_MISMATCH),
-    ("IntValues", IssueKind.SYNTAX_MISMATCH),
-    ("LongValues", IssueKind.SYNTAX_MISMATCH),
-    # PhoneCapabilitiesData.proto — mixed syntax
-    ("CapabilityEntry", IssueKind.SYNTAX_MISMATCH),
-    ("CapabilityFlag", IssueKind.SYNTAX_MISMATCH),
-    ("CapabilityPair", IssueKind.SYNTAX_MISMATCH),
-    ("PingConfigPair", IssueKind.SYNTAX_MISMATCH),
-    # FeatureFlagsData.proto — mixed syntax
-    ("AssistantFeatureFlags", IssueKind.SYNTAX_MISMATCH),
     # Proto-lite MAP type encoded as group — message vs group mismatch
     ("NavigationDistanceDisplay", IssueKind.TYPE_MISMATCH),
     # Proto-lite closed enum wrappers — enums appear as message in DB

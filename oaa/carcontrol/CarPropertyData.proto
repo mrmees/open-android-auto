@@ -1,0 +1,126 @@
+// Android Auto Protocol Buffer Definitions
+// https://github.com/mrmees/open-android-auto
+// SPDX-License-Identifier: GPL-3.0-or-later
+
+/*
+ * Car property sub-messages — proto3 types used by Car Control channel.
+ * These are SafeParcelable classes in com.google.android.gms.car.control.*
+ * Split from CarControlMessages.proto because the APK compiles these as proto3.
+ */
+
+syntax = "proto3";
+
+package oaa.proto.messages;
+
+// Car property IDs — VHAL property identifiers (APK enum: vuz)
+// Values are Android VHAL property IDs (VehiclePropertyIds.java)
+enum CarPropertyId {
+    CAR_PROPERTY_UNKNOWN = 0;
+    // HVAC properties
+    HVAC_TEMPERATURE_SET = 1;           // VHAL: 358614275
+    HVAC_AUTO_ON = 2;                   // VHAL: 354419978
+    HVAC_DUAL_ON = 3;                   // VHAL: 354419977
+    HVAC_SEAT_TEMPERATURE = 4;          // VHAL: 356517131
+    HVAC_FAN_SPEED = 5;                 // VHAL: 356517120
+    HVAC_FAN_DIRECTION = 6;             // VHAL: 356517121
+    HVAC_FAN_DIRECTION_AVAILABLE = 7;   // VHAL: 356582673
+    HVAC_TEMPERATURE_DISPLAY_UNITS = 8; // VHAL: 289408270
+    HVAC_AC_ON = 9;                     // VHAL: 354419973
+    HVAC_MAX_AC_ON = 10;               // VHAL: 354419974
+    HVAC_DEFROSTER = 11;               // VHAL: 320865540
+    HVAC_MAX_DEFROST_ON = 12;          // VHAL: 354419975
+    HVAC_POWER_ON = 13;                // VHAL: 354419984
+    HVAC_AUTO_RECIRC_ON = 14;          // VHAL: 354419986
+    HVAC_RECIRC_ON = 15;               // VHAL: 354419976
+    HVAC_SEAT_VENTILATION = 16;        // VHAL: 356517139
+    HVAC_SIDE_MIRROR_HEAT = 17;        // VHAL: 339739916
+    HVAC_STEERING_WHEEL_HEAT = 18;     // VHAL: 289408269
+    // Toll
+    ELECTRONIC_TOLL_COLLECTION_CARD_STATUS = 19; // VHAL: 289410874
+    // HMG (Hyundai Motor Group) vendor extensions
+    HMG_HVAC_MTC_TEMPERATURE = 20;         // VHAL: 624984185
+    HMG_HVAC_TEMPERATURE_RANGE = 21;       // VHAL: 557940737
+    HMG_HVAC_TEMPERATURE_SET_CELSIUS = 22; // VHAL: 627081341
+    HMG_HVAC_TEMPERATURE_SET_FAHRENHEIT = 23; // VHAL: 627081339
+}
+
+// Car action IDs — application launch actions (APK class: vun)
+enum CarActionId {
+    CAR_ACTION_UNKNOWN = 0;
+    CAR_ACTION_LAUNCH_HVAC = 3;
+    CAR_ACTION_LAUNCH_CAR_MEDIA = 4;
+    CAR_ACTION_LAUNCH_CONTROL_CENTER = 5;
+    CAR_ACTION_LAUNCH_CAR_ALERTS = 6;
+}
+
+// Area type for CarAreaId (APK class: vuw, field 1)
+enum CarAreaType {
+    CAR_AREA_GLOBAL = 0;
+    CAR_AREA_WINDOW = 2;
+    CAR_AREA_SEAT = 3;
+    CAR_AREA_MIRROR = 4;
+    CAR_AREA_WHEEL = 5;
+    CAR_AREA_DOOR = 6;
+}
+
+// APK class: vuv → SafeParcelable: CarProperty
+message CarProperty {
+    CarPropertyId property_id = 1;
+    CarAreaId area_id = 2;
+}
+
+// APK class: vuw → SafeParcelable: CarAreaId
+// Area IDs are bitmasks — list elements are ORed together on the phone side.
+message CarAreaId {
+    CarAreaType area_type = 1;
+    repeated int32 window_ids = 2 [packed = true];
+    repeated int32 seat_ids = 3 [packed = true];
+    repeated int32 mirror_ids = 4 [packed = true];
+    repeated int32 door_ids = 5 [packed = true];
+    repeated int32 wheel_ids = 6 [packed = true];
+}
+
+// APK class: vun → SafeParcelable: CarAction
+message CarAction {
+    CarActionId action_id = 1;
+}
+
+// APK class: vvd (proto3) → SafeParcelable: CarPropertyValue
+message CarPropertyValue {
+    oneof value {
+        int32 int_value = 1;
+        float float_value = 2;
+        bool bool_value = 3;
+        int64 long_value = 4;
+        string string_value = 5;
+        CarPropertyValueMsg msg_value_6 = 6;
+        CarPropertyValueMsg msg_value_7 = 7;
+        CarPropertyValueMsg msg_value_8 = 8;
+    }
+}
+
+// Placeholder for CarPropertyValue oneof cases 6-8 (sub-message type unknown).
+message CarPropertyValueMsg {
+}
+
+// APK class: vvb (proto3) — repeated int32 values
+message IntValues {
+    repeated int32 values = 1 [packed = true];
+}
+
+// APK class: vvc (proto3) — repeated packed int64
+message FloatValues {
+    repeated int64 values = 1 [packed = true];
+}
+
+// APK class: vva (proto3) — repeated packed float
+message LongValues {
+    repeated float values = 1 [packed = true];
+}
+
+// APK class: vuy → SafeParcelable: CarPropertyControl
+message CarPropertyControl {
+    CarProperty property = 1;
+    CarAction associated_action = 2;
+    CarProperty associated_property = 3;
+}

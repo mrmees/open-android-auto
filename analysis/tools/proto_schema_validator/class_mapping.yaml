@@ -119,7 +119,7 @@ mappings:
     '16.2': null
   confidence: apk_protos_json
 - proto_message: CarAction
-  proto_file: oaa/carcontrol/CarControlMessages.proto
+  proto_file: oaa/carcontrol/CarPropertyData.proto
   proto_fqn: oaa.proto.messages.CarAction
   apk_classes:
     '16.1': vun
@@ -133,7 +133,7 @@ mappings:
     '16.2': null
   confidence: proto_comment
 - proto_message: CarAreaId
-  proto_file: oaa/carcontrol/CarControlMessages.proto
+  proto_file: oaa/carcontrol/CarPropertyData.proto
   proto_fqn: oaa.proto.messages.CarAreaId
   apk_classes:
     '16.1': vuw
@@ -154,42 +154,42 @@ mappings:
     '16.2': null
   confidence: proto_comment
 - proto_message: CarProperty
-  proto_file: oaa/carcontrol/CarControlMessages.proto
+  proto_file: oaa/carcontrol/CarPropertyData.proto
   proto_fqn: oaa.proto.messages.CarProperty
   apk_classes:
     '16.1': vuv
     '16.2': null
   confidence: proto_comment
 - proto_message: CarPropertyControl
-  proto_file: oaa/carcontrol/CarControlMessages.proto
+  proto_file: oaa/carcontrol/CarPropertyData.proto
   proto_fqn: oaa.proto.messages.CarPropertyControl
   apk_classes:
     '16.1': vuy
     '16.2': null
   confidence: proto_comment
 - proto_message: CarPropertyValue
-  proto_file: oaa/carcontrol/CarControlMessages.proto
+  proto_file: oaa/carcontrol/CarPropertyData.proto
   proto_fqn: oaa.proto.messages.CarPropertyValue
   apk_classes:
     '16.1': vvd
     '16.2': null
   confidence: proto_comment
 - proto_message: FloatValues
-  proto_file: oaa/carcontrol/CarControlMessages.proto
+  proto_file: oaa/carcontrol/CarPropertyData.proto
   proto_fqn: oaa.proto.messages.FloatValues
   apk_classes:
     '16.1': vvc
     '16.2': null
   confidence: proto_comment
 - proto_message: IntValues
-  proto_file: oaa/carcontrol/CarControlMessages.proto
+  proto_file: oaa/carcontrol/CarPropertyData.proto
   proto_fqn: oaa.proto.messages.IntValues
   apk_classes:
     '16.1': vvb
     '16.2': null
   confidence: proto_comment
 - proto_message: LongValues
-  proto_file: oaa/carcontrol/CarControlMessages.proto
+  proto_file: oaa/carcontrol/CarPropertyData.proto
   proto_fqn: oaa.proto.messages.LongValues
   apk_classes:
     '16.1': vva
@@ -217,7 +217,7 @@ mappings:
     '16.2': null
   confidence: proto_comment
 - proto_message: AssistantFeatureFlags
-  proto_file: oaa/common/FeatureFlagsData.proto
+  proto_file: oaa/common/AssistantFeatureFlagsData.proto
   proto_fqn: oaa.proto.data.AssistantFeatureFlags
   apk_classes:
     '16.1': nll
@@ -336,21 +336,21 @@ mappings:
     '16.2': null
   confidence: apk_protos_json
 - proto_message: CapabilityEntry
-  proto_file: oaa/control/PhoneCapabilitiesData.proto
+  proto_file: oaa/control/CapabilityData.proto
   proto_fqn: oaa.proto.data.CapabilityEntry
   apk_classes:
     '16.1': aagv
     '16.2': null
   confidence: proto_comment
 - proto_message: CapabilityFlag
-  proto_file: oaa/control/PhoneCapabilitiesData.proto
+  proto_file: oaa/control/CapabilityData.proto
   proto_fqn: oaa.proto.data.CapabilityFlag
   apk_classes:
     '16.1': aagh
     '16.2': null
   confidence: proto_comment
 - proto_message: CapabilityPair
-  proto_file: oaa/control/PhoneCapabilitiesData.proto
+  proto_file: oaa/control/CapabilityData.proto
   proto_fqn: oaa.proto.data.CapabilityPair
   apk_classes:
     '16.1': aags
@@ -371,7 +371,7 @@ mappings:
     '16.2': null
   confidence: proto_comment
 - proto_message: PingConfigPair
-  proto_file: oaa/control/PhoneCapabilitiesData.proto
+  proto_file: oaa/control/CapabilityData.proto
   proto_fqn: oaa.proto.data.PingConfigPair
   apk_classes:
     '16.1': aaft

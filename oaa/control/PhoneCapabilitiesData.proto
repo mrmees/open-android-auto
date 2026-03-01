@@ -6,9 +6,14 @@
  * Discovered via APK proto decoder (aagr.java, AA v16.1)
  * Sub-message of ServiceDiscoveryRequest field 2.
  * Describes phone capabilities, device info, and connection preferences.
+ *
+ * Proto3 capability types (CapabilityEntry, CapabilityFlag, CapabilityPair,
+ * PingConfigPair) split to CapabilityData.proto.
  */
 
 syntax="proto2";
+
+import "oaa/control/CapabilityData.proto";
 
 package oaa.proto.data;
 
@@ -20,13 +25,6 @@ message PhoneCapabilities
     optional CapabilityPair display_capabilities = 4;
     repeated CapabilityEntry capabilities = 5;
     optional string phone_identifier = 7;
-}
-
-// APK class: aagh — boolean flag + name
-message CapabilityFlag
-{
-    optional bool enabled = 1;
-    optional string name = 2;
 }
 
 // APK class: vve — phone device information (9 fields)
@@ -61,13 +59,12 @@ enum WifiSecurityMode {
 }
 
 // WiFi access point type (APK class: wdm, field 5)
-// Determines whether the AP is static or dynamically created.
 enum WifiAccessPointType {
     WIFI_AP_STATIC = 0;
     WIFI_AP_DYNAMIC = 1;
 }
 
-// APK class: wdm — phone connection config (WiFi info, same structure as WifiInfoResponse)
+// APK class: wdm — phone connection config (WiFi info)
 message PhoneConnectionConfig
 {
     optional string ssid = 1;
@@ -75,53 +72,4 @@ message PhoneConnectionConfig
     optional string passphrase = 3;
     optional WifiSecurityMode security_mode = 4;
     optional WifiAccessPointType ap_type = 5;
-}
-
-// APK class: aaft — paired ping configurations
-message PingConfigPair
-{
-    optional PingConfigEntry phone_to_hu = 1;
-    optional PingConfigEntry hu_to_phone = 2;
-}
-
-// Re-use existing PingConfiguration (zyd) structure
-message PingConfigEntry
-{
-    optional uint32 timeout_ms = 1;
-    optional uint32 interval_ms = 2;
-    optional uint32 high_latency_threshold_ms = 3;
-    optional uint32 tracked_ping_count = 4;
-}
-
-// APK class: aags — boolean pair
-message CapabilityPair
-{
-    optional bool value_a = 1;
-    optional bool value_b = 2;
-}
-
-// APK class: aagv — individual capability entry (10 fields)
-// Fields 4-7 are oneof (capability_value)
-message CapabilityEntry
-{
-    optional uint32 capability_id = 1;
-    optional string capability_name = 2;
-    optional CapabilityEnum capability_type = 3;
-    oneof capability_value {
-        CapabilityValueMsg value_msg_4 = 4;
-        CapabilityValueMsg value_msg_5 = 5;
-        CapabilityValueMsg value_msg_6 = 6;
-        CapabilityValueMsg value_msg_7 = 7;
-    }
-    optional bool enabled = 8;
-    optional string description = 9;
-    repeated CapabilityValueMsg sub_entries = 10;
-}
-
-// Placeholder for CapabilityEntry oneof values (sub-message type TBD)
-message CapabilityValueMsg {}
-
-// Placeholder enum for capability type (field 3 of aagv)
-enum CapabilityEnum {
-    CAPABILITY_UNKNOWN = 0;
 }

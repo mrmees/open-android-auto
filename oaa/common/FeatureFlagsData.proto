@@ -3,32 +3,14 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 
 /*
- * Discovered via APK proto decoder (nll.java / nlq.java, AA v16.1)
- * Feature flags from the Gearhead SDK — capabilities negotiation.
+ * Discovered via APK proto decoder (nlq.java, AA v16.1)
+ * Version feature flags — per-feature version tracking.
+ * AssistantFeatureFlags (proto3) split to AssistantFeatureFlagsData.proto.
  */
 
 syntax="proto2";
 
 package oaa.proto.data;
-
-// APK class: nll — Google Assistant feature flags (14 bool fields)
-message AssistantFeatureFlags
-{
-    optional bool assistant_available = 1;
-    optional bool voice_trigger = 2;
-    optional bool assistant_shortcuts = 3;
-    optional bool continued_conversation = 4;
-    optional bool device_assistant = 5;
-    optional bool assistant_on_lockscreen = 6;
-    optional bool smart_display = 7;
-    optional bool routine_suggestions = 8;
-    optional bool interpreter_mode = 9;
-    optional bool multi_modal = 10;
-    optional bool settings_support = 11;
-    optional bool field_12 = 12;
-    optional bool proactive_suggestions = 13;
-    optional bool field_14 = 14;
-}
 
 // APK class: wdq — version feature flag entry (2 fields)
 message VersionFeatureFlags
