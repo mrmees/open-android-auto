@@ -335,6 +335,13 @@ mappings:
     '16.1': vvv
     '16.2': null
   confidence: collision_resolved
+- proto_message: ByeByeResponse
+  proto_file: oaa/control/ByeByeResponseMessage.proto
+  proto_fqn: oaa.proto.messages.ByeByeResponse
+  apk_classes:
+    '16.1': vwg
+    '16.2': null
+  confidence: triage_investigation
 - proto_message: BindingRequest
   proto_file: oaa/control/BindingRequestMessage.proto
   proto_fqn: oaa.proto.messages.BindingRequest
@@ -510,6 +517,20 @@ mappings:
     '16.1': wdp
     '16.2': null
   confidence: collision_resolved
+- proto_message: GalPingRequest
+  proto_file: oaa/control/GalPingRequestMessage.proto
+  proto_fqn: oaa.proto.messages.GalPingRequest
+  apk_classes:
+    '16.1': waj
+    '16.2': null
+  confidence: triage_investigation
+- proto_message: GalPingResponse
+  proto_file: oaa/control/GalPingResponseMessage.proto
+  proto_fqn: oaa.proto.messages.GalPingResponse
+  apk_classes:
+    '16.1': wak
+    '16.2': null
+  confidence: triage_investigation
 - proto_message: RadioBand
   proto_file: oaa/control/RadioChannelData.proto
   proto_fqn: oaa.proto.data.RadioBand
@@ -643,6 +664,13 @@ mappings:
     '16.1': wbl
     '16.2': null
   confidence: collision_resolved
+- proto_message: InputBindingRequest
+  proto_file: oaa/input/InputBindingRequestMessage.proto
+  proto_fqn: oaa.proto.messages.InputBindingRequest
+  apk_classes:
+    '16.1': vyf
+    '16.2': null
+  confidence: triage_investigation
 - proto_message: RelativeInputEvents
   proto_file: oaa/input/RelativeInputEventsData.proto
   proto_fqn: oaa.proto.data.RelativeInputEvents
@@ -1245,6 +1273,48 @@ mappings:
     '16.1': wbs
     '16.2': null
   confidence: collision_resolved
+- proto_message: SensorRequest
+  proto_file: oaa/sensor/SensorRequestMessage.proto
+  proto_fqn: oaa.proto.messages.SensorRequest
+  apk_classes:
+    '16.1': wbr
+    '16.2': null
+  confidence: triage_investigation
+- proto_message: SensorError
+  proto_file: oaa/sensor/SensorErrorMessage.proto
+  proto_fqn: oaa.proto.messages.SensorError
+  apk_classes:
+    '16.1': wbp
+    '16.2': null
+  confidence: triage_investigation
+- proto_message: RawEvTripSettings
+  proto_file: oaa/sensor/RawEvTripSettingsData.proto
+  proto_fqn: oaa.proto.data.RawEvTripSettings
+  apk_classes:
+    '16.1': wbf
+    '16.2': null
+  confidence: triage_investigation
+- proto_message: RawVehicleEnergyModel
+  proto_file: oaa/sensor/RawVehicleEnergyModelData.proto
+  proto_fqn: oaa.proto.data.RawVehicleEnergyModel
+  apk_classes:
+    '16.1': wbh
+    '16.2': null
+  confidence: triage_investigation
+- proto_message: VehicleEnergyModelData
+  proto_file: oaa/sensor/VehicleEnergyModelData.proto
+  proto_fqn: oaa.proto.data.VehicleEnergyModelData
+  apk_classes:
+    '16.1': vvg
+    '16.2': null
+  confidence: triage_investigation
+- proto_message: TrailerData
+  proto_file: oaa/sensor/TrailerData.proto
+  proto_fqn: oaa.proto.data.TrailerData
+  apk_classes:
+    '16.1': wcl
+    '16.2': null
+  confidence: triage_investigation
 - proto_message: Speed
   proto_file: oaa/sensor/SpeedData.proto
   proto_fqn: oaa.proto.data.Speed
