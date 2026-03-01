@@ -182,16 +182,35 @@ def is_empty_apk_class(db_path: Path, class_name: str) -> bool:
 
 
 def get_apk_enum_values(db_path: Path, class_name: str) -> list[tuple[int, str]] | None:
-    """Query enum_maps for enum values of an APK class. Returns None if not an enum class."""
+    """Query enum values of an APK class from enum_maps or proto_enum_classes.
+
+    Falls back to proto_enum_classes (proto-lite enum declarations) when
+    enum_maps (switch-based extraction) has no data for this class.
+    Returns None if the class is not an enum.
+    """
+    import json as _json
+
     conn = sqlite3.connect(str(db_path))
     try:
         rows = conn.execute(
             "SELECT int_value, enum_name FROM enum_maps WHERE enum_class = ? ORDER BY int_value",
             (class_name,),
         ).fetchall()
+        if rows:
+            return [(r[0], r[1]) for r in rows]
+
+        # Fallback: check proto_enum_classes table
+        row = conn.execute(
+            'SELECT "values" FROM proto_enum_classes WHERE class_name = ?',
+            (class_name,),
+        ).fetchone()
     finally:
         conn.close()
-    return [(r[0], r[1]) for r in rows] if rows else None
+
+    if row:
+        values = _json.loads(row[0])
+        return [(v["int_value"], v["name"]) for v in values]
+    return None
 
 
 def get_all_apk_classes(db_path: Path) -> dict[str, str | None]:

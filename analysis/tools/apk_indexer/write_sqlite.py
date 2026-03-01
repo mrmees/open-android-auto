@@ -84,6 +84,12 @@ def _create_schema(conn: sqlite3.Connection) -> None:
             oneof_index INTEGER,
             enum_closed INTEGER NOT NULL DEFAULT 0
         );
+        CREATE TABLE IF NOT EXISTS proto_enum_classes (
+            file TEXT NOT NULL,
+            class_name TEXT NOT NULL,
+            value_count INTEGER NOT NULL,
+            "values" TEXT NOT NULL
+        );
         CREATE TABLE IF NOT EXISTS class_references (
             file TEXT NOT NULL,
             line INTEGER NOT NULL,
@@ -115,6 +121,7 @@ def _create_schema(conn: sqlite3.Connection) -> None:
             key TEXT NOT NULL,
             value TEXT NOT NULL
         );
+        CREATE INDEX IF NOT EXISTS idx_proto_enum_class ON proto_enum_classes(class_name);
         CREATE INDEX IF NOT EXISTS idx_proto_classes_name ON proto_classes(class_name);
         CREATE INDEX IF NOT EXISTS idx_proto_fields_class ON proto_fields(class_name);
         CREATE INDEX IF NOT EXISTS idx_proto_fields_type ON proto_fields(base_type);
@@ -141,6 +148,7 @@ def write_sqlite(db_path: Path, signals: dict[str, list[dict[str, object]]]) -> 
         conn.execute("DELETE FROM switch_maps")
         conn.execute("DELETE FROM call_edges")
         conn.execute("DELETE FROM proto_classes")
+        conn.execute("DELETE FROM proto_enum_classes")
         conn.execute("DELETE FROM proto_fields")
         conn.execute("DELETE FROM class_references")
         conn.execute("DELETE FROM proto_catalog")
@@ -223,6 +231,14 @@ def write_sqlite(db_path: Path, signals: dict[str, list[dict[str, object]]]) -> 
                     row.get("decoded_fields", "[]"),
                 )
                 for row in signals.get("proto_classes", [])
+            ],
+        )
+        conn.executemany(
+            "INSERT INTO proto_enum_classes(file, class_name, value_count, "
+            '"values") VALUES (?, ?, ?, ?)',
+            [
+                (row["file"], row["class_name"], row["value_count"], row["values"])
+                for row in signals.get("proto_enum_classes", [])
             ],
         )
         # Flatten decoded fields into proto_fields table

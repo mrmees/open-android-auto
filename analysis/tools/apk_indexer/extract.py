@@ -230,30 +230,40 @@ def _find_obfuscated_dir(root: Path) -> str | None:
     return None
 
 
-def _detect_proto_names(root: Path) -> tuple[str | None, str | None, str | None]:
-    """Auto-detect obfuscated proto-lite base class and descriptor class names.
+def _detect_proto_names(
+    root: Path,
+) -> tuple[str | None, str | None, str | None, str | None]:
+    """Auto-detect obfuscated proto-lite base class, descriptor class, and enum interface.
 
-    Returns (obfuscated_dir, base_class, descriptor_class).
+    Returns (obfuscated_dir, base_class, descriptor_class, enum_interface).
 
     Strategy:
     - Proto base class: the most-extended class in the obfuscated package (1900+ hits)
     - Descriptor class: the most-instantiated class via `new <class>(` (2000+ hits)
+    - Enum interface: the most-implemented interface on `enum` declarations (~133 hits)
     """
     obf_dir = _find_obfuscated_dir(root)
     if obf_dir is None:
-        return None, None, None
+        return None, None, None, None
 
     obf_path = root / "sources" / obf_dir
     extends_counts: Counter[str] = Counter()
     new_counts: Counter[str] = Counter()
+    enum_impl_counts: Counter[str] = Counter()
 
     # Build patterns based on package style
     if obf_dir == "defpackage":
         extends_pat = re.compile(r"\bextends\s+defpackage\.([a-z][a-z0-9]*)\b")
         new_pat = re.compile(r"\bnew\s+defpackage\.([a-z][a-z0-9]*)\s*\(")
+        enum_impl_pat = re.compile(
+            r"\benum\s+[A-Za-z_]\w*\s+implements\s+defpackage\.([a-z][a-z0-9]*)\b"
+        )
     else:
         extends_pat = re.compile(r"\bextends\s+([a-z][a-z0-9]*)\s")
         new_pat = re.compile(r"\bnew\s+([a-z][a-z0-9]*)\s*\(")
+        enum_impl_pat = re.compile(
+            r"\benum\s+[A-Za-z_]\w*\s+implements\s+([a-z][a-z0-9]*)\b"
+        )
 
     for java_file in obf_path.glob("*.java"):
         try:
@@ -264,6 +274,8 @@ def _detect_proto_names(root: Path) -> tuple[str | None, str | None, str | None]
             extends_counts[m.group(1)] += 1
         for m in new_pat.finditer(text):
             new_counts[m.group(1)] += 1
+        for m in enum_impl_pat.finditer(text):
+            enum_impl_counts[m.group(1)] += 1
 
     # Proto base: most extended, should be 1500+ (proto-lite GeneratedMessageLite)
     base_class = None
@@ -279,7 +291,14 @@ def _detect_proto_names(root: Path) -> tuple[str | None, str | None, str | None]
         if top_count > 500:
             descriptor_class = top_class
 
-    return obf_dir, base_class, descriptor_class
+    # Enum interface: most implemented on enum declarations (~100+)
+    enum_interface = None
+    if enum_impl_counts:
+        top_class, top_count = enum_impl_counts.most_common(1)[0]
+        if top_count > 50:  # proto enum interface should dominate
+            enum_interface = top_class
+
+    return obf_dir, base_class, descriptor_class, enum_interface
 
 
 def _in_scope(path: Path, root: Path, scope: str, obf_dir: str | None = None) -> bool:
@@ -451,6 +470,32 @@ def _extract_proto_class_from_text(
     }
 
 
+# Pattern for proto enum constant declarations: NAME(int_value) or NAME(int_value, ...)
+_ENUM_CONST_RE = re.compile(r"^\s+([A-Z][A-Z0-9_]*)\s*\(\s*(-?\d+)\b")
+
+
+def _extract_proto_enum_from_text(
+    path: Path, text: str, enum_interface_re: re.Pattern | None = None,
+) -> dict[str, object] | None:
+    """Extract metadata from proto-lite enum classes (implements EnumLite interface)."""
+    if enum_interface_re is None or not enum_interface_re.search(text):
+        return None
+
+    class_name = path.stem
+    values: list[dict[str, object]] = []
+    for line in text.splitlines():
+        m = _ENUM_CONST_RE.match(line)
+        if m:
+            values.append({"name": m.group(1), "int_value": int(m.group(2))})
+
+    return {
+        "file": str(path),
+        "class_name": class_name,
+        "value_count": len(values),
+        "values": json.dumps(values),
+    }
+
+
 def _extract_class_references_from_text(
     path: Path, text: str, root: Path, obf_dir: str | None = None,
 ) -> list[dict[str, object]]:
@@ -501,10 +546,11 @@ def extract_signals(root: Path, scope: str = "all") -> dict[str, list[dict[str, 
     enum_maps: list[dict[str, object]] = []
     switch_maps: list[dict[str, object]] = []
     proto_classes: list[dict[str, object]] = []
+    proto_enum_classes: list[dict[str, object]] = []
     class_references: list[dict[str, object]] = []
 
     # Auto-detect obfuscated proto class names for this APK version
-    obf_dir, base_class, descriptor_class = _detect_proto_names(root)
+    obf_dir, base_class, descriptor_class, enum_interface = _detect_proto_names(root)
     if base_class:
         print(f"  Proto-lite base class: {base_class} (in {obf_dir}/)")
         if obf_dir == "defpackage":
@@ -533,6 +579,20 @@ def extract_signals(root: Path, scope: str = "all") -> dict[str, list[dict[str, 
         print("  WARNING: Could not detect descriptor class")
         descriptor_re = None
 
+    if enum_interface:
+        print(f"  Proto enum interface: {enum_interface}")
+        if obf_dir == "defpackage":
+            enum_interface_re = re.compile(
+                rf"\benum\s+\w+\s+implements\s+defpackage\.{re.escape(enum_interface)}\b"
+            )
+        else:
+            enum_interface_re = re.compile(
+                rf"\benum\s+\w+\s+implements\s+{re.escape(enum_interface)}\b"
+            )
+    else:
+        print("  WARNING: Could not detect proto enum interface")
+        enum_interface_re = None
+
     for path in _iter_text_files(root, scope, obf_dir):
         try:
             text = path.read_text(errors="ignore")
@@ -547,6 +607,13 @@ def extract_signals(root: Path, scope: str = "all") -> dict[str, list[dict[str, 
         )
         if proto_meta is not None:
             proto_classes.append(proto_meta)
+
+        # Proto enum class metadata
+        enum_meta = _extract_proto_enum_from_text(
+            path, text, enum_interface_re=enum_interface_re,
+        )
+        if enum_meta is not None:
+            proto_enum_classes.append(enum_meta)
 
         # Cross-references from named files to obfuscated-package classes
         class_references.extend(
@@ -634,6 +701,9 @@ def extract_signals(root: Path, scope: str = "all") -> dict[str, list[dict[str, 
         ),
         "proto_classes": sorted(
             proto_classes, key=lambda row: (row["class_name"],)
+        ),
+        "proto_enum_classes": sorted(
+            proto_enum_classes, key=lambda row: (row["class_name"],)
         ),
         "class_references": sorted(
             class_references,
