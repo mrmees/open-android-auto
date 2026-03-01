@@ -1,0 +1,23 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
+// Copyright (C) 2024-2026 Open Android Auto contributors
+// Based on works by: f1x.studio (aasdk), opencardev (crankshaft), aa-proxy (aa-proxy-rs)
+
+/*
+ * Audio stream type message (msg ID 0x8022).
+ *
+ * Indicates the type of audio stream (media vs guidance/navigation).
+ *
+ * APK class: wba (AA v16.1)
+ * Field numbers decoded from protobuf-lite RawMessageInfo descriptor.
+ * Enum validated via viz.M — accepts values 1 and 2 only.
+ */
+syntax="proto2";
+
+import "oaa/audio/AudioStreamTypeEnum.proto";
+
+package oaa.proto.messages;
+
+message AudioStreamType
+{
+    optional enums.AudioStreamType.Enum stream_type = 1;
+}

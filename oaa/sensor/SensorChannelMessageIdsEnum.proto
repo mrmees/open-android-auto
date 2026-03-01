@@ -10,8 +10,9 @@ message SensorChannelMessage
     enum Enum
     {
         NONE = 0x0000;
-        SENSOR_START_REQUEST = 0x8001;
+        SENSOR_REQUEST = 0x8001;         // GAL-level sensor request (wbr)
         SENSOR_START_RESPONSE = 0x8002;
         SENSOR_EVENT_INDICATION = 0x8003;
+        SENSOR_ERROR = 0x8004;           // Sensor error notification (wbp)
     }
 }

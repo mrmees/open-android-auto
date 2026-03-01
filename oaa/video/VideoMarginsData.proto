@@ -1,0 +1,23 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
+// Copyright (C) 2024-2026 Open Android Auto contributors
+// Based on works by: f1x.studio (aasdk), opencardev (crankshaft), aa-proxy (aa-proxy-rs)
+
+/*
+ * Video margins data.
+ *
+ * Specifies margin/inset values for the video projection area.
+ * Used in video configuration to define safe display areas.
+ *
+ * APK class: xhv (AA v16.1)
+ * Field numbers decoded from protobuf-lite RawMessageInfo descriptor.
+ */
+syntax="proto2";
+
+package oaa.proto.data;
+
+message VideoMargins
+{
+    optional int32 top = 1;
+    optional int32 bottom = 2;
+    optional int32 side = 3;
+}

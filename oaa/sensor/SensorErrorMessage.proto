@@ -1,0 +1,26 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
+// Copyright (C) 2024-2026 Open Android Auto contributors
+// Based on works by: f1x.studio (aasdk), opencardev (crankshaft), aa-proxy (aa-proxy-rs)
+
+/*
+ * Sensor error message (msg ID 0x8004).
+ *
+ * Sent when a sensor request fails or a sensor becomes unavailable.
+ *
+ * APK class: wbp (AA v16.1)
+ * Field numbers decoded from protobuf-lite RawMessageInfo descriptor.
+ * Field 1 enum verified as SensorType (wbv) via verifier vyv.u (validator 20).
+ * Field 2 enum verified as SensorErrorStatus (wbq) via verifier vyv.t (validator 19).
+ */
+syntax="proto2";
+
+import "oaa/sensor/SensorTypeEnum.proto";
+import "oaa/sensor/SensorErrorStatusEnum.proto";
+
+package oaa.proto.messages;
+
+message SensorError
+{
+    required enums.SensorType.Enum sensor_type = 1;            // APK: wbv
+    required enums.SensorErrorStatus.Enum error_status = 2;    // APK: wbq
+}

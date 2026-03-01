@@ -1,0 +1,26 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
+// Copyright (C) 2024-2026 Open Android Auto contributors
+// Based on works by: f1x.studio (aasdk), opencardev (crankshaft), aa-proxy (aa-proxy-rs)
+
+/*
+ * GAL-level sensor request message (msg ID 0x8001).
+ *
+ * Sent by the head unit to request sensor data at a given refresh interval.
+ * Distinct from the aasdk-era SensorStartRequest — this is the GAL channel
+ * variant used by AA v16.x.
+ *
+ * APK class: wbr (AA v16.1)
+ * Field numbers decoded from protobuf-lite RawMessageInfo descriptor.
+ * Field 1 enum verified as SensorType (wbv) via verifier vyv.u.
+ */
+syntax="proto2";
+
+import "oaa/sensor/SensorTypeEnum.proto";
+
+package oaa.proto.messages;
+
+message SensorRequest
+{
+    required enums.SensorType.Enum sensor_type = 1;   // APK: wbv (SensorType enum)
+    required int64 refresh_interval = 2;               // Refresh interval in milliseconds
+}

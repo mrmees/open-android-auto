@@ -1,0 +1,21 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
+// Copyright (C) 2024-2026 Open Android Auto contributors
+// Based on works by: f1x.studio (aasdk), opencardev (crankshaft), aa-proxy (aa-proxy-rs)
+
+/*
+ * GAL ping response message (msg ID 0x000c = PING_RESPONSE).
+ *
+ * Echoes the timestamp from GalPingRequest for latency measurement.
+ *
+ * APK class: wak (AA v16.1)
+ * Field numbers decoded from protobuf-lite RawMessageInfo descriptor.
+ */
+syntax="proto2";
+
+package oaa.proto.messages;
+
+message GalPingResponse
+{
+    required int64 timestamp = 1;
+    optional bytes payload = 2;
+}

@@ -1,0 +1,23 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
+// Copyright (C) 2024-2026 Open Android Auto contributors
+// Based on works by: f1x.studio (aasdk), opencardev (crankshaft), aa-proxy (aa-proxy-rs)
+
+/*
+ * Video focus mode wrapper message.
+ *
+ * Wraps a VideoFocusMode enum value. Used in contexts where the
+ * focus mode is passed as a sub-message rather than a bare field.
+ *
+ * APK class: wcu (AA v16.1)
+ * Field numbers decoded from protobuf-lite RawMessageInfo descriptor.
+ */
+syntax="proto2";
+
+import "oaa/video/VideoFocusModeEnum.proto";
+
+package oaa.proto.messages;
+
+message VideoFocusMode
+{
+    optional enums.VideoFocusMode.Enum focus = 1;
+}

@@ -20,6 +20,13 @@ mappings:
     '16.1': wba
     '16.2': null
   confidence: triage_investigation
+- proto_message: AudioStreamTypeEnum
+  proto_file: oaa/audio/AudioStreamTypeEnum.proto
+  proto_fqn: oaa.proto.enums.AudioStreamType
+  apk_classes:
+    '16.1': null
+    '16.2': null
+  confidence: triage_investigation
 - proto_message: AudioFocusChannel
   proto_file: oaa/audio/AudioFocusChannelData.proto
   proto_fqn: oaa.proto.data.AudioFocusChannel
@@ -573,6 +580,13 @@ mappings:
     '16.1': wax
     '16.2': null
   confidence: proto_comment
+- proto_message: ControlChannelParams
+  proto_file: oaa/control/ControlChannelConfigData.proto
+  proto_fqn: oaa.proto.data.ControlChannelParams
+  apk_classes:
+    '16.1': wai
+    '16.2': null
+  confidence: triage_investigation
 - proto_message: ControlChannelConfig
   proto_file: oaa/control/ControlChannelConfigData.proto
   proto_fqn: oaa.proto.data.ControlChannelConfig
@@ -1392,6 +1406,13 @@ mappings:
     '16.1': wbr
     '16.2': null
   confidence: triage_investigation
+- proto_message: SensorErrorStatus
+  proto_file: oaa/sensor/SensorErrorStatusEnum.proto
+  proto_fqn: oaa.proto.enums.SensorErrorStatus
+  apk_classes:
+    '16.1': wbq
+    '16.2': null
+  confidence: triage_investigation
 - proto_message: SensorError
   proto_file: oaa/sensor/SensorErrorMessage.proto
   proto_fqn: oaa.proto.messages.SensorError
@@ -1547,7 +1568,7 @@ mappings:
     '16.2': wct
   confidence: proto_comment
 - proto_message: UpdateUiConfigRequest
-  proto_file: oaa/video/UpdateUiConfigRequestMessage.proto
+  proto_file: oaa/av/UiConfigMessages.proto
   proto_fqn: oaa.proto.messages.UpdateUiConfigRequest
   apk_classes:
     '16.1': wcs

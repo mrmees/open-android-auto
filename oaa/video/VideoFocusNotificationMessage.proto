@@ -1,0 +1,21 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
+// Copyright (C) 2024-2026 Open Android Auto contributors
+// Based on works by: f1x.studio (aasdk), opencardev (crankshaft), aa-proxy (aa-proxy-rs)
+
+/*
+ * Video focus notification message.
+ *
+ * Notification of video focus mode change. The focus_mode value
+ * corresponds to VideoFocusMode enum values.
+ *
+ * APK class: vye (AA v16.1)
+ * Field numbers decoded from protobuf-lite RawMessageInfo descriptor.
+ */
+syntax="proto2";
+
+package oaa.proto.messages;
+
+message VideoFocusNotification
+{
+    optional int32 focus_mode = 1;    // VideoFocusMode enum value
+}

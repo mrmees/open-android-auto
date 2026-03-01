@@ -1,0 +1,26 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
+// Copyright (C) 2024-2026 Open Android Auto contributors
+// Based on works by: f1x.studio (aasdk), opencardev (crankshaft), aa-proxy (aa-proxy-rs)
+
+/*
+ * Audio stream type enum.
+ *
+ * Two-value enum used in AudioStreamType messages (msg ID 0x8022).
+ * Values validated via viz.M() verifier — accepts exactly 1 and 2.
+ * Enum names are inferred (no APK enum class with named constants found).
+ *
+ * Verifier chain: wba → vyv.p (validator 15) → viz.N → viz.M
+ */
+syntax="proto3";
+
+package oaa.proto.enums;
+
+message AudioStreamType
+{
+    enum Enum
+    {
+        NONE = 0;
+        MEDIA = 1;       // Inferred — needs wire capture verification
+        GUIDANCE = 2;    // Inferred — needs wire capture verification
+    }
+}

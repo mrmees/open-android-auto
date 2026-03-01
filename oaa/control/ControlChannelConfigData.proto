@@ -1,0 +1,33 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
+// Copyright (C) 2024-2026 Open Android Auto contributors
+// Based on works by: f1x.studio (aasdk), opencardev (crankshaft), aa-proxy (aa-proxy-rs)
+
+/*
+ * Control channel configuration messages.
+ *
+ * Three-layer nesting: Wrapper (wcx) → Config (vxc) → Params (wai).
+ * The wrapper is the top-level message exchanged on the control channel.
+ * Config holds a reference to the actual parameters.
+ * Params contains 4 uint32 configuration values (purpose TBD from wire captures).
+ *
+ * APK classes: wcx, vxc, wai (AA v16.1)
+ * Field numbers decoded from protobuf-lite RawMessageInfo descriptors.
+ */
+syntax="proto2";
+
+package oaa.proto.data;
+
+// APK class: wai — configuration parameters (4x uint32)
+message ControlChannelParams
+{
+    optional uint32 param_1 = 1;
+    optional uint32 param_2 = 2;
+    optional uint32 param_3 = 3;
+    optional uint32 param_4 = 4;
+}
+
+// APK class: vxc — config container, wraps params
+message ControlChannelConfig
+{
+    optional ControlChannelParams params = 1;   // APK: wai
+}
