@@ -17,7 +17,6 @@ message HapticFeedbackType
 {
     enum Enum
     {
-        FEEDBACK_UNKNOWN = 0;
         FEEDBACK_SELECT = 1;
         FEEDBACK_FOCUS_CHANGE = 2;
         FEEDBACK_DRAG_SELECT = 3;

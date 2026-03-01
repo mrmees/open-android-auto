@@ -8,7 +8,7 @@
  * APK enum class: wbq (AA v16.1)
  * Values decoded from enum constants in wbq.java.
  */
-syntax="proto3";
+syntax="proto2";
 
 package oaa.proto.enums;
 
@@ -16,7 +16,6 @@ message SensorErrorStatus
 {
     enum Enum
     {
-        NONE = 0;
         SENSOR_OK = 1;
         SENSOR_ERROR_TRANSIENT = 2;
         SENSOR_ERROR_PERMANENT = 3;
