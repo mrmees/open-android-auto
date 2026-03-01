@@ -1,1 +1,10 @@
 .worktrees/
+__pycache__/
+
+# APK binaries and decompiled source (too large, regenerable)
+analysis/aa-*/
+analysis/android_auto_*/apk-source/
+analysis/*.apkm
+
+# Keep index databases, reports, and JSON exports
+!analysis/android_auto_*/apk-index/

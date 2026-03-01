@@ -1,0 +1,82 @@
+[
+  {
+    "file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/resources/classes2.dex",
+    "line": 420272,
+    "value": "0000111e-0000-1000-8000-00805f9b34fb"
+  },
+  {
+    "file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/qav.java",
+    "line": 77,
+    "value": "0000111e-0000-1000-8000-00805f9b34fb"
+  },
+  {
+    "file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/resources/classes.dex",
+    "line": 366465,
+    "value": "4de17a00-52cb-11e6-bdf4-0800200c9a66"
+  },
+  {
+    "file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/resources/classes2.dex",
+    "line": 420634,
+    "value": "4de17a00-52cb-11e6-bdf4-0800200c9a66"
+  },
+  {
+    "file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/ijz.java",
+    "line": 9,
+    "value": "4de17a00-52cb-11e6-bdf4-0800200c9a66"
+  },
+  {
+    "file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/nsl.java",
+    "line": 25,
+    "value": "4de17a00-52cb-11e6-bdf4-0800200c9a66"
+  },
+  {
+    "file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/pnq.java",
+    "line": 19,
+    "value": "4de17a00-52cb-11e6-bdf4-0800200c9a66"
+  },
+  {
+    "file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/resources/classes.dex",
+    "line": 366465,
+    "value": "669a0c20-0008-f4bd-e611-cb52007ae14d"
+  },
+  {
+    "file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/resources/classes2.dex",
+    "line": 420634,
+    "value": "669a0c20-0008-f4bd-e611-cb52007ae14d"
+  },
+  {
+    "file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/ijz.java",
+    "line": 12,
+    "value": "669a0c20-0008-f4bd-e611-cb52007ae14d"
+  },
+  {
+    "file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/nsl.java",
+    "line": 28,
+    "value": "669a0c20-0008-f4bd-e611-cb52007ae14d"
+  },
+  {
+    "file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/pnq.java",
+    "line": 20,
+    "value": "669a0c20-0008-f4bd-e611-cb52007ae14d"
+  },
+  {
+    "file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/resources/classes.dex",
+    "line": 369117,
+    "value": "95ed6082-b8e9-46e8-a73f-ff56f00f5d9d"
+  },
+  {
+    "file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/ewy.java",
+    "line": 246,
+    "value": "95ed6082-b8e9-46e8-a73f-ff56f00f5d9d"
+  },
+  {
+    "file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/ewy.java",
+    "line": 356,
+    "value": "95ed6082-b8e9-46e8-a73f-ff56f00f5d9d"
+  },
+  {
+    "file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/resources/res/raw/build_data.pb",
+    "line": 2,
+    "value": "fd856cd0-22ff-4552-af6d-4b5b0fce02c9"
+  }
+]
