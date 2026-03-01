@@ -486,7 +486,7 @@ mappings:
   proto_file: oaa/input/InputChannelData.proto
   proto_fqn: oaa.proto.data.InputChannel
   apk_classes:
-    '16.1': zpl
+    '16.1': vya
     '16.2': null
   confidence: apk_protos_json
 - proto_message: InputEventIndication

@@ -109,36 +109,43 @@ message CarAction {
     optional int32 action_id = 1;
 }
 
-// APK class: vvd → SafeParcelable: CarPropertyValue
-// Oneof value — only one type populated at a time.
+// APK class: vvd (proto3) → SafeParcelable: CarPropertyValue
+// Validated: 8 oneof fields — bare scalars 1-5, messages 6-8.
+// Fields 6-8 sub-message types are java.lang.Object in APK (SafeParcelable).
 message CarPropertyValue {
     oneof value {
-        IntValues int_values = 1;       // vvb
-        FloatValues float_values = 2;   // vvc
-        // field 3: string or bytes value (unclear from decompilation)
-        bytes raw_value_3 = 3;
-        LongValues long_values = 4;     // vva
-        // fields 5-8: additional oneof cases, types not fully decoded
-        bytes raw_value_5 = 5;
-        bytes raw_value_6 = 6;
-        bytes raw_value_7 = 7;
-        bytes raw_value_8 = 8;
+        int32 int_value = 1;
+        float float_value = 2;
+        bool bool_value = 3;
+        int64 long_value = 4;
+        string string_value = 5;
+        CarPropertyValueMsg msg_value_6 = 6;
+        CarPropertyValueMsg msg_value_7 = 7;
+        CarPropertyValueMsg msg_value_8 = 8;
     }
 }
 
-// APK class: vvb — repeated int32 values
+// Placeholder for CarPropertyValue oneof cases 6-8 (sub-message type unknown).
+// APK references java.lang.Object; actual structure TBD from wire captures.
+message CarPropertyValueMsg {
+}
+
+// APK class: vvb (proto3) — repeated int32 values
+// NOTE: Separate class, NOT part of CarPropertyValue oneof.
 message IntValues {
     repeated int32 values = 1 [packed = true];
 }
 
-// APK class: vvc — repeated float values
+// APK class: vvc (proto3) — repeated packed int64
+// NOTE: APK field is int64 despite the "Float" name in SafeParcelable.
 message FloatValues {
-    repeated float values = 1 [packed = true];
+    repeated int64 values = 1 [packed = true];
 }
 
-// APK class: vva — repeated int64 values
+// APK class: vva (proto3) — repeated packed float
+// NOTE: APK field is float despite the "Long" name in SafeParcelable.
 message LongValues {
-    repeated int64 values = 1 [packed = true];
+    repeated float values = 1 [packed = true];
 }
 
 // APK class: vuy → SafeParcelable: CarPropertyControl

@@ -1,18 +1,23 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 // Copyright (C) 2024-2026 Open Android Auto contributors
 // Based on works by: f1x.studio (aasdk), opencardev (crankshaft), aa-proxy (aa-proxy-rs)
-syntax="proto3";
+//
+// Validated against APK v16.1 class vya (proto2, 5 fields). 0E/1W.
+// Note: class_mapping.yaml had wrong class zpl (score=0.667); corrected to vya.
+// Remaining warning: field 1 int32 vs uint32 (same wire type).
+syntax="proto2";
 
 import "oaa/input/TouchConfigData.proto";
 import "oaa/input/HapticFeedbackTypeEnum.proto";
 
 package oaa.proto.data;
 
+// APK class: vya — input channel descriptor (service discovery)
 message InputChannel
 {
-    repeated uint32 supported_keycodes = 1;
+    repeated int32 supported_keycodes = 1 [packed = true];
     repeated TouchConfig touch_screen_config = 2;
     repeated TouchConfig touch_pad_config = 3;
-    repeated enums.HapticFeedbackType.Enum supported_haptic_feedback = 4; // APK: vxm.java
-    optional uint32 max_touchscreen_pointers = 5;  // APK: vya field 5, uint32
+    repeated enums.HapticFeedbackType.Enum supported_haptic_feedback = 4;
+    optional uint32 max_touchscreen_pointers = 5;
 }

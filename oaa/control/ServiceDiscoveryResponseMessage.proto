@@ -1,7 +1,9 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 // Copyright (C) 2024-2026 Open Android Auto contributors
 // Based on works by: f1x.studio (aasdk), opencardev (crankshaft), aa-proxy (aa-proxy-rs)
-syntax="proto3";
+//
+// Validated against APK v16.1 class wby (proto2, 15 fields). 0E/0W.
+syntax="proto2";
 
 import "oaa/control/ChannelDescriptorData.proto";
 import "oaa/common/DriverPositionEnum.proto";
@@ -16,18 +18,16 @@ message ServiceDiscoveryResponse
     optional string car_model = 3;
     optional string car_year = 4;
     optional string car_serial = 5;
-    optional enums.DriverPosition.Enum driver_position = 6;  // Was: bool left_hand_drive_vehicle
+    optional enums.DriverPosition.Enum driver_position = 6;
     optional string headunit_manufacturer = 7;
     optional string headunit_model = 8;
     optional string sw_build = 9;
     optional string sw_version = 10;
     optional bool can_play_native_media_during_vr = 11;
-    // Field 12 (hide_clock) not in APK v16.1 — removed.
-
-    // Modern fields
+    // Field 12 not in APK v16.1.
     optional int32 session_configuration = 13;
     optional string display_name = 14;
     optional bool probe_for_support = 15;
-    // Field 16 (connection_configuration) not in APK v16.1 — removed.
+    // Field 16 not in APK v16.1.
     optional data.HeadUnitInfo headunit_info = 17;
 }

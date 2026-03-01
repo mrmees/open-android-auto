@@ -4,13 +4,7 @@
 
 - **Mapped protos:** 171
 - **Validated (with APK class):** 171
-- **Layer 1 (Schema vs APK):** 220 errors, 580 warnings
-- **Layer 2 (Wire capture):** 0 errors, 1 warnings
-  - Frames decoded: 5772
-  - Frames failed: 0
-  - Frames unmapped: 186
-- **Layer 3 (Cross-version):** 92 findings
-  - Structural matches found: 92
+- **Layer 1 (Schema vs APK):** 207 errors, 535 warnings
 
 ## Layer 1: Schema vs APK Database
 
@@ -18,11 +12,11 @@
 
 | Issue Type | Count |
 |---|---|
-| modifier_mismatch | 470 |
-| syntax_mismatch | 118 |
-| type_mismatch | 110 |
+| modifier_mismatch | 432 |
+| syntax_mismatch | 112 |
+| type_mismatch | 98 |
 | missing_field | 96 |
-| extra_field | 6 |
+| extra_field | 4 |
 
 ### Per-Message Details
 
@@ -332,17 +326,6 @@
 - **[WARN]** `modifier_mismatch`: field 2 (associated_action): oneof: ours=True, APK=False
 - **[WARN]** `modifier_mismatch`: field 3 (associated_property): oneof: ours=True, APK=False
 
-#### CarPropertyValue (4E / 4W)
-
-- **[ERROR]** `type_mismatch`: field 1 (int_values): ours=message, APK=int32 (DIFFERENT wire type!)
-- **[ERROR]** `type_mismatch`: field 2 (float_values): ours=message, APK=float (DIFFERENT wire type!)
-- **[ERROR]** `type_mismatch`: field 3 (raw_value_3): ours=bytes, APK=bool (DIFFERENT wire type!)
-- **[ERROR]** `type_mismatch`: field 4 (long_values): ours=message, APK=int64 (DIFFERENT wire type!)
-- **[WARN]** `type_mismatch`: field 5 (raw_value_5): ours=bytes, APK=string (same wire type)
-- **[WARN]** `type_mismatch`: field 6 (raw_value_6): ours=bytes, APK=message (same wire type)
-- **[WARN]** `type_mismatch`: field 7 (raw_value_7): ours=bytes, APK=message (same wire type)
-- **[WARN]** `type_mismatch`: field 8 (raw_value_8): ours=bytes, APK=message (same wire type)
-
 #### ChannelDescriptor (1E / 22W)
 
 - **[ERROR]** `syntax_mismatch`: ours=proto3, APK=proto2
@@ -449,14 +432,6 @@
 - **[ERROR]** `syntax_mismatch`: ours=proto3, APK=proto2
 - **[WARN]** `modifier_mismatch`: field 1 (diagnostics): oneof: ours=True, APK=False
 
-#### DistanceLabel (1E / 4W)
-
-- **[ERROR]** `syntax_mismatch`: ours=proto3, APK=proto2
-- **[WARN]** `modifier_mismatch`: field 5 (label): oneof: ours=True, APK=False
-- **[WARN]** `modifier_mismatch`: field 6 (unit_text): oneof: ours=True, APK=False
-- **[WARN]** `modifier_mismatch`: field 7 (extra): oneof: ours=True, APK=False
-- **[WARN]** `modifier_mismatch`: field 8 (label_type): oneof: ours=True, APK=False
-
 #### Door (1E / 3W)
 
 - **[ERROR]** `syntax_mismatch`: ours=proto3, APK=proto2
@@ -486,10 +461,6 @@
 - **[WARN]** `modifier_mismatch`: field 2 (pressure): oneof: ours=True, APK=False
 - **[WARN]** `modifier_mismatch`: field 3 (rain): oneof: ours=True, APK=False
 - **[ERROR]** `missing_field`: field 4 in APK (int32) but missing from our schema
-
-#### FloatValues (1E / 0W)
-
-- **[ERROR]** `type_mismatch`: field 1 (values): ours=float, APK=int64 (DIFFERENT wire type!)
 
 #### FuelLevel (1E / 3W)
 
@@ -549,16 +520,6 @@
 - **[WARN]** `modifier_mismatch`: field 7 (head_unit_software_build): oneof: ours=True, APK=False
 - **[WARN]** `modifier_mismatch`: field 8 (head_unit_software_version): oneof: ours=True, APK=False
 
-#### InputChannel (2E / 5W)
-
-- **[ERROR]** `syntax_mismatch`: ours=proto3, APK=proto2
-- **[ERROR]** `type_mismatch`: field 1 (supported_keycodes): ours=uint32, APK=message (DIFFERENT wire type!)
-- **[WARN]** `modifier_mismatch`: field 1 (supported_keycodes): repeated: ours=True, APK=False; packed: ours=True, APK=False
-- **[WARN]** `modifier_mismatch`: field 2 (touch_screen_config): repeated: ours=True, APK=False
-- **[WARN]** `modifier_mismatch`: field 3 (touch_pad_config): repeated: ours=True, APK=False
-- **[WARN]** `extra_field`: field 4 (supported_haptic_feedback: enum) in our schema but not in APK DB
-- **[WARN]** `extra_field`: field 5 (max_touchscreen_pointers: uint32) in our schema but not in APK DB
-
 #### InputChannelConfig (1E / 3W)
 
 - **[ERROR]** `syntax_mismatch`: ours=proto3, APK=proto2
@@ -594,10 +555,6 @@
 - **[WARN]** `modifier_mismatch`: field 1 (headlight): oneof: ours=True, APK=False
 - **[WARN]** `modifier_mismatch`: field 2 (indicator): oneof: ours=True, APK=False
 - **[WARN]** `modifier_mismatch`: field 3 (hazard_light_on): oneof: ours=True, APK=False
-
-#### LongValues (1E / 0W)
-
-- **[ERROR]** `type_mismatch`: field 1 (values): ours=int64, APK=float (DIFFERENT wire type!)
 
 #### MediaPlaybackMetadata (0E / 6W)
 
@@ -649,12 +606,8 @@
 - **[WARN]** `modifier_mismatch`: field 3 (eta_seconds): oneof: ours=True, APK=False
 - **[WARN]** `modifier_mismatch`: field 8 (info): oneof: ours=True, APK=False
 
-#### NavigationDistanceDisplay (2E / 3W)
+#### NavigationDistanceDisplay (1E / 0W)
 
-- **[ERROR]** `syntax_mismatch`: ours=proto3, APK=proto2
-- **[WARN]** `modifier_mismatch`: field 1 (primary_text): oneof: ours=True, APK=False
-- **[WARN]** `modifier_mismatch`: field 2 (secondary_text): oneof: ours=True, APK=False
-- **[WARN]** `modifier_mismatch`: field 3 (update_timestamp): oneof: ours=True, APK=False
 - **[ERROR]** `type_mismatch`: field 4 (labels): ours=message, APK=group (DIFFERENT wire type!)
 
 #### NavigationDistanceEntry (1E / 3W)
@@ -672,13 +625,6 @@
 #### NavigationDistanceOneof (1E / 0W)
 
 - **[ERROR]** `syntax_mismatch`: ours=proto3, APK=proto2
-
-#### NavigationDistanceValue (1E / 3W)
-
-- **[ERROR]** `syntax_mismatch`: ours=proto3, APK=proto2
-- **[WARN]** `modifier_mismatch`: field 1 (raw_meters): oneof: ours=True, APK=False
-- **[WARN]** `modifier_mismatch`: field 2 (value): oneof: ours=True, APK=False
-- **[WARN]** `modifier_mismatch`: field 3 (unit): oneof: ours=True, APK=False
 
 #### NavigationFocusRequest (3E / 2W)
 
@@ -1029,24 +975,6 @@
 - **[WARN]** `modifier_mismatch`: field 5 (device_brand): oneof: ours=True, APK=False
 - **[WARN]** `modifier_mismatch`: field 6 (session_info): oneof: ours=True, APK=False
 
-#### ServiceDiscoveryResponse (1E / 14W)
-
-- **[ERROR]** `syntax_mismatch`: ours=proto3, APK=proto2
-- **[WARN]** `modifier_mismatch`: field 2 (head_unit_name): oneof: ours=True, APK=False
-- **[WARN]** `modifier_mismatch`: field 3 (car_model): oneof: ours=True, APK=False
-- **[WARN]** `modifier_mismatch`: field 4 (car_year): oneof: ours=True, APK=False
-- **[WARN]** `modifier_mismatch`: field 5 (car_serial): oneof: ours=True, APK=False
-- **[WARN]** `modifier_mismatch`: field 6 (driver_position): oneof: ours=True, APK=False
-- **[WARN]** `modifier_mismatch`: field 7 (headunit_manufacturer): oneof: ours=True, APK=False
-- **[WARN]** `modifier_mismatch`: field 8 (headunit_model): oneof: ours=True, APK=False
-- **[WARN]** `modifier_mismatch`: field 9 (sw_build): oneof: ours=True, APK=False
-- **[WARN]** `modifier_mismatch`: field 10 (sw_version): oneof: ours=True, APK=False
-- **[WARN]** `modifier_mismatch`: field 11 (can_play_native_media_during_vr): oneof: ours=True, APK=False
-- **[WARN]** `modifier_mismatch`: field 13 (session_configuration): oneof: ours=True, APK=False
-- **[WARN]** `modifier_mismatch`: field 14 (display_name): oneof: ours=True, APK=False
-- **[WARN]** `modifier_mismatch`: field 15 (probe_for_support): oneof: ours=True, APK=False
-- **[WARN]** `modifier_mismatch`: field 17 (headunit_info): oneof: ours=True, APK=False
-
 #### SessionInfo (1E / 4W)
 
 - **[ERROR]** `syntax_mismatch`: ours=proto3, APK=proto2
@@ -1152,22 +1080,6 @@
 - **[ERROR]** `syntax_mismatch`: ours=proto3, APK=proto2
 - **[WARN]** `modifier_mismatch`: field 1 (feature_name): oneof: ours=True, APK=False
 - **[WARN]** `modifier_mismatch`: field 2 (feature_version): oneof: ours=True, APK=False
-
-#### VideoConfig (1E / 12W)
-
-- **[ERROR]** `syntax_mismatch`: ours=proto3, APK=proto2
-- **[WARN]** `modifier_mismatch`: field 1 (video_resolution): oneof: ours=True, APK=False
-- **[WARN]** `modifier_mismatch`: field 2 (video_fps): oneof: ours=True, APK=False
-- **[WARN]** `modifier_mismatch`: field 3 (margin_width): oneof: ours=True, APK=False
-- **[WARN]** `modifier_mismatch`: field 4 (margin_height): oneof: ours=True, APK=False
-- **[WARN]** `modifier_mismatch`: field 5 (dpi): oneof: ours=True, APK=False
-- **[WARN]** `modifier_mismatch`: field 6 (additional_depth): oneof: ours=True, APK=False
-- **[WARN]** `modifier_mismatch`: field 7 (unknown_7): oneof: ours=True, APK=False
-- **[WARN]** `modifier_mismatch`: field 8 (unknown_8): oneof: ours=True, APK=False
-- **[WARN]** `modifier_mismatch`: field 9 (unknown_9): oneof: ours=True, APK=False
-- **[WARN]** `modifier_mismatch`: field 10 (codec): oneof: ours=True, APK=False
-- **[WARN]** `type_mismatch`: field 11 (additional_config): ours=bytes, APK=message (same wire type)
-- **[WARN]** `modifier_mismatch`: field 11 (additional_config): oneof: ours=True, APK=False
 
 #### VideoFocusIndication (1E / 2W)
 
@@ -1335,369 +1247,3 @@
 - **[WARN]** `modifier_mismatch`: field 5 (selected_wifi_channel_type): oneof: ours=True, APK=False
 - **[WARN]** `modifier_mismatch`: field 6 (session_info): oneof: ours=True, APK=False
 - **[WARN]** `modifier_mismatch`: field 7 (extra_data): oneof: ours=True, APK=False
-
-## Layer 2: Wire Capture Validation
-
-#### AVChannelStartIndication
-
-- **[INFO]** `field_never_seen`: field 3 (unknown_3) defined but never seen in wire data
-- **[INFO]** `field_never_seen`: field 4 (media_config) defined but never seen in wire data
-
-#### AVMediaAckIndication
-
-- **[INFO]** `field_never_seen`: field 3 (ack_timestamps) defined but never seen in wire data
-
-#### AudioFocusResponse
-
-- **[INFO]** `field_never_seen`: field 2 (granted) defined but never seen in wire data
-
-#### BindingResponse
-
-- **[INFO]** `field_never_seen`: field 2 (already_paired) defined but never seen in wire data
-
-#### BluetoothPairingRequest
-
-- **[INFO]** `field_never_seen`: field 3 (phone_name) defined but never seen in wire data
-
-#### BluetoothPairingResponse
-
-- **[INFO]** `field_never_seen`: field 3 (error_code) defined but never seen in wire data
-
-#### InputEventIndication
-
-- **[INFO]** `field_never_seen`: field 4 (button_event) defined but never seen in wire data
-- **[INFO]** `field_never_seen`: field 5 (absolute_input_event) defined but never seen in wire data
-- **[INFO]** `field_never_seen`: field 6 (relative_input_event) defined but never seen in wire data
-- **[INFO]** `field_never_seen`: field 7 (secondary_touch_event) defined but never seen in wire data
-
-#### PingRequest
-
-- **[WARN]** `unknown_wire_field`: unknown field 2 seen 163 times in wire data (not in our schema for oaa.proto.messages.PingRequest)
-
-#### SensorEventIndication
-
-- **[INFO]** `field_never_seen`: field 1 (gps_location) defined but never seen in wire data
-- **[INFO]** `field_never_seen`: field 2 (compass) defined but never seen in wire data
-- **[INFO]** `field_never_seen`: field 3 (speed) defined but never seen in wire data
-- **[INFO]** `field_never_seen`: field 4 (rpm) defined but never seen in wire data
-- **[INFO]** `field_never_seen`: field 5 (odometer) defined but never seen in wire data
-- **[INFO]** `field_never_seen`: field 6 (fuel_level) defined but never seen in wire data
-- **[INFO]** `field_never_seen`: field 8 (gear) defined but never seen in wire data
-- **[INFO]** `field_never_seen`: field 9 (diagnostics) defined but never seen in wire data
-- **[INFO]** `field_never_seen`: field 11 (enviorment) defined but never seen in wire data
-- **[INFO]** `field_never_seen`: field 12 (hvac) defined but never seen in wire data
-- **[INFO]** `field_never_seen`: field 14 (steering_wheel) defined but never seen in wire data
-- **[INFO]** `field_never_seen`: field 15 (passenger) defined but never seen in wire data
-- **[INFO]** `field_never_seen`: field 16 (door) defined but never seen in wire data
-- **[INFO]** `field_never_seen`: field 17 (light) defined but never seen in wire data
-- **[INFO]** `field_never_seen`: field 18 (tire_pressure) defined but never seen in wire data
-- **[INFO]** `field_never_seen`: field 19 (accel) defined but never seen in wire data
-- **[INFO]** `field_never_seen`: field 20 (gyro) defined but never seen in wire data
-- **[INFO]** `field_never_seen`: field 21 (toll_road) defined but never seen in wire data
-- **[INFO]** `field_never_seen`: field 22 (range_remaining) defined but never seen in wire data
-- **[INFO]** `field_never_seen`: field 23 (fuel_type_info) defined but never seen in wire data
-- **[INFO]** `field_never_seen`: field 24 (ev_battery_info) defined but never seen in wire data
-- **[INFO]** `field_never_seen`: field 25 (ev_charge_info) defined but never seen in wire data
-- **[INFO]** `field_never_seen`: field 26 (ev_charge_status) defined but never seen in wire data
-
-#### ServiceDiscoveryResponse
-
-- **[INFO]** `field_never_seen`: field 13 (session_configuration) defined but never seen in wire data
-- **[INFO]** `field_never_seen`: field 14 (display_name) defined but never seen in wire data
-- **[INFO]** `field_never_seen`: field 15 (probe_for_support) defined but never seen in wire data
-- **[INFO]** `field_never_seen`: field 17 (headunit_info) defined but never seen in wire data
-
-#### WifiSecurityResponse
-
-- **[INFO]** `field_never_seen`: field 3 (bssid) defined but never seen in wire data
-- **[INFO]** `field_never_seen`: field 6 (wifi_direct_config) defined but never seen in wire data
-- **[INFO]** `field_never_seen`: field 7 (ip_address) defined but never seen in wire data
-- **[INFO]** `field_never_seen`: field 8 (gateway) defined but never seen in wire data
-- **[INFO]** `field_never_seen`: field 9 (prefix_length) defined but never seen in wire data
-- **[INFO]** `field_never_seen`: field 10 (hidden_network) defined but never seen in wire data
-- **[INFO]** `field_never_seen`: field 11 (band_5ghz) defined but never seen in wire data
-- **[INFO]** `field_never_seen`: field 12 (unknown_12) defined but never seen in wire data
-- **[INFO]** `field_never_seen`: field 13 (unknown_13) defined but never seen in wire data
-
-## Layer 3: Cross-Version Drift
-
-#### aacd -> aabj
-
-- **[INFO]** `structural_match`: unique structural match: aacd (v1) -> aabj (v2) [8 fields, fingerprint 1a7610195d063da7] (proto: HeadUnitInfo)
-
-#### aagl -> aafr
-
-- **[INFO]** `structural_match`: unique structural match: aagl (v1) -> aafr (v2) [4 fields, fingerprint f7fdcb5d9450dea3] (proto: AVChannelSetupRequest)
-- **[INFO]** `structural_match`: unique structural match: aagl (v1) -> aafr (v2) [4 fields, fingerprint f7fdcb5d9450dea3] (proto: NavigationFocusRequest)
-- **[INFO]** `structural_match`: unique structural match: aagl (v1) -> aafr (v2) [4 fields, fingerprint f7fdcb5d9450dea3] (proto: NavigationFocusResponse)
-- **[INFO]** `structural_match`: unique structural match: aagl (v1) -> aafr (v2) [4 fields, fingerprint f7fdcb5d9450dea3] (proto: NavigationState)
-- **[INFO]** `structural_match`: unique structural match: aagl (v1) -> aafr (v2) [4 fields, fingerprint f7fdcb5d9450dea3] (proto: DrivingStatus)
-- **[INFO]** `structural_match`: unique structural match: aagl (v1) -> aafr (v2) [4 fields, fingerprint f7fdcb5d9450dea3] (proto: RPM)
-
-#### aagv -> aagb
-
-- **[INFO]** `structural_match`: unique structural match: aagv (v1) -> aagb (v2) [10 fields, fingerprint 72fd5120089b61a9] (proto: CapabilityEntry)
-
-#### aass -> aary
-
-- **[INFO]** `structural_match`: unique structural match: aass (v1) -> aary (v2) [4 fields, fingerprint 073578e6be8d0664] (proto: AudioFocusRequest)
-- **[INFO]** `structural_match`: unique structural match: aass (v1) -> aary (v2) [4 fields, fingerprint 073578e6be8d0664] (proto: AVInputChannel)
-- **[INFO]** `structural_match`: unique structural match: aass (v1) -> aary (v2) [4 fields, fingerprint 073578e6be8d0664] (proto: AuthCompleteIndication)
-- **[INFO]** `structural_match`: unique structural match: aass (v1) -> aary (v2) [4 fields, fingerprint 073578e6be8d0664] (proto: ChannelOpenResponse)
-- **[INFO]** `structural_match`: unique structural match: aass (v1) -> aary (v2) [4 fields, fingerprint 073578e6be8d0664] (proto: ShutdownRequest)
-- **[INFO]** `structural_match`: unique structural match: aass (v1) -> aary (v2) [4 fields, fingerprint 073578e6be8d0664] (proto: Gear)
-- **[INFO]** `structural_match`: unique structural match: aass (v1) -> aary (v2) [4 fields, fingerprint 073578e6be8d0664] (proto: Sensor)
-- **[INFO]** `structural_match`: unique structural match: aass (v1) -> aary (v2) [4 fields, fingerprint 073578e6be8d0664] (proto: SensorStartResponseMessage)
-
-#### ahdp -> ahcm
-
-- **[INFO]** `structural_match`: unique structural match: ahdp (v1) -> ahcm (v2) [3 fields, fingerprint 9aae0647e7a3553e] (proto: NavigationChannel)
-
-#### ahel -> ahdi
-
-- **[INFO]** `structural_match`: unique structural match: ahel (v1) -> ahdi (v2) [4 fields, fingerprint 6841c902bbe75916] (proto: BluetoothChannel)
-- **[INFO]** `structural_match`: unique structural match: ahel (v1) -> ahdi (v2) [4 fields, fingerprint 6841c902bbe75916] (proto: WifiChannel)
-
-#### kay -> kba
-
-- **[INFO]** `structural_match`: unique structural match: kay (v1) -> kba (v2) [3 fields, fingerprint 6662a4722050653f] (proto: BluetoothPairingRequest)
-
-#### nll -> nkw
-
-- **[INFO]** `structural_match`: unique structural match: nll (v1) -> nkw (v2) [14 fields, fingerprint d897352a70c19b95] (proto: AssistantFeatureFlags)
-
-#### nmi -> nlt
-
-- **[INFO]** `structural_match`: unique structural match: nmi (v1) -> nlt (v2) [6 fields, fingerprint 87901f2b9a4dd39a] (proto: MediaPlaybackMetadata)
-
-#### vuw -> vui
-
-- **[INFO]** `structural_match`: unique structural match: vuw (v1) -> vui (v2) [6 fields, fingerprint 423275fee64a58bd] (proto: CarAreaId)
-
-#### vvd -> vup
-
-- **[INFO]** `structural_match`: unique structural match: vvd (v1) -> vup (v2) [8 fields, fingerprint b830705bc52ed3a4] (proto: CarPropertyValue)
-
-#### vve -> vuq
-
-- **[INFO]** `structural_match`: unique structural match: vve (v1) -> vuq (v2) [9 fields, fingerprint 76b7b79c5bcc26c9] (proto: DeviceInfo)
-
-#### vvf -> vur
-
-- **[INFO]** `structural_match`: unique structural match: vvf (v1) -> vur (v2) [4 fields, fingerprint c581690020fa53b2] (proto: SessionInfo)
-
-#### vvk -> vuw
-
-- **[INFO]** `structural_match`: unique structural match: vvk (v1) -> vuw (v2) [3 fields, fingerprint 2199d8e64da58ed1] (proto: AVMediaAckIndication)
-
-#### vwl -> vvx
-
-- **[INFO]** `structural_match`: unique structural match: vwl (v1) -> vvx (v2) [6 fields, fingerprint 4ba9c8ee6501c745] (proto: CarControl)
-
-#### vwq -> vwc
-
-- **[INFO]** `structural_match`: unique structural match: vwq (v1) -> vwc (v2) [5 fields, fingerprint f0f70ab46c4c3fd0] (proto: CarLocalMediaPlaybackMetadata)
-
-#### vws -> vwe
-
-- **[INFO]** `structural_match`: unique structural match: vws (v1) -> vwe (v2) [4 fields, fingerprint cddcf812a0302ef2] (proto: CarLocalMediaPlaybackStatus)
-
-#### vxb -> vwn
-
-- **[INFO]** `structural_match`: unique structural match: vxb (v1) -> vwn (v2) [3 fields, fingerprint 547deaeef3eaca90] (proto: AVChannelSetupResponse)
-
-#### vxh -> vwt
-
-- **[INFO]** `structural_match`: unique structural match: vxh (v1) -> vwt (v2) [3 fields, fingerprint a39fce2c7502401d] (proto: Door)
-
-#### vxn -> vwz
-
-- **[INFO]** `structural_match`: unique structural match: vxn (v1) -> vwz (v2) [3 fields, fingerprint a14d4f1c3baea786] (proto: AVInputOpenResponse)
-- **[INFO]** `structural_match`: unique structural match: vxn (v1) -> vwz (v2) [3 fields, fingerprint a14d4f1c3baea786] (proto: ChannelOpenRequest)
-- **[INFO]** `structural_match`: unique structural match: vxn (v1) -> vwz (v2) [3 fields, fingerprint a14d4f1c3baea786] (proto: AbsoluteInputEvent)
-- **[INFO]** `structural_match`: unique structural match: vxn (v1) -> vwz (v2) [3 fields, fingerprint a14d4f1c3baea786] (proto: RelativeInputEvent)
-- **[INFO]** `structural_match`: unique structural match: vxn (v1) -> vwz (v2) [3 fields, fingerprint a14d4f1c3baea786] (proto: TouchConfig)
-- **[INFO]** `structural_match`: unique structural match: vxn (v1) -> vwz (v2) [3 fields, fingerprint a14d4f1c3baea786] (proto: FuelLevel)
-- **[INFO]** `structural_match`: unique structural match: vxn (v1) -> vwz (v2) [3 fields, fingerprint a14d4f1c3baea786] (proto: HVAC)
-- **[INFO]** `structural_match`: unique structural match: vxn (v1) -> vwz (v2) [3 fields, fingerprint a14d4f1c3baea786] (proto: Odometer)
-- **[INFO]** `structural_match`: unique structural match: vxn (v1) -> vwz (v2) [3 fields, fingerprint a14d4f1c3baea786] (proto: SteeringWheel)
-
-#### vxx -> vxj
-
-- **[INFO]** `structural_match`: unique structural match: vxx (v1) -> vxj (v2) [6 fields, fingerprint 09b0fd23e036ff88] (proto: InputEventIndication)
-
-#### vya -> vxm
-
-- **[INFO]** `structural_match`: unique structural match: vya (v1) -> vxm (v2) [5 fields, fingerprint cd7f975437afca2e] (proto: InputChannelConfig)
-
-#### vyi -> vxu
-
-- **[INFO]** `structural_match`: unique structural match: vyi (v1) -> vxu (v2) [4 fields, fingerprint 80f0723098bf4f08] (proto: ButtonEvent)
-- **[INFO]** `structural_match`: unique structural match: vyi (v1) -> vxu (v2) [4 fields, fingerprint 80f0723098bf4f08] (proto: KeyEvent)
-
-#### vyk -> vxw
-
-- **[INFO]** `structural_match`: unique structural match: vyk (v1) -> vxw (v2) [3 fields, fingerprint b2ba4117c5fc3a8e] (proto: Light)
-
-#### vyl -> vxx
-
-- **[INFO]** `structural_match`: unique structural match: vyl (v1) -> vxx (v2) [6 fields, fingerprint 3962235338e66b55] (proto: GPSLocation)
-
-#### vyo -> vya
-
-- **[INFO]** `structural_match`: unique structural match: vyo (v1) -> vya (v2) [13 fields, fingerprint cdbe977f967a7d83] (proto: AVChannelMediaConfig)
-
-#### vyq -> vyc
-
-- **[INFO]** `structural_match`: unique structural match: vyq (v1) -> vyc (v2) [6 fields, fingerprint 43b3a27fc41b9737] (proto: MediaPlaybackStatus)
-
-#### vys -> vye
-
-- **[INFO]** `structural_match`: unique structural match: vys (v1) -> vye (v2) [8 fields, fingerprint 2a81d61fcaf05270] (proto: AVChannel)
-
-#### vyu -> vyg
-
-- **[INFO]** `structural_match`: unique structural match: vyu (v1) -> vyg (v2) [15 fields, fingerprint 468c88a3e57e18eb] (proto: StatsEntry)
-
-#### vyx -> vyi
-
-- **[INFO]** `structural_match`: unique structural match: vyx (v1) -> vyi (v2) [4 fields, fingerprint 0dc68ac4e276ede9] (proto: AVInputOpenRequest)
-
-#### vzm -> vyy
-
-- **[INFO]** `structural_match`: unique structural match: vzm (v1) -> vyy (v2) [6 fields, fingerprint a3c1e3afed59e265] (proto: NavigationTurnEvent)
-
-#### vzr -> vzd
-
-- **[INFO]** `structural_match`: unique structural match: vzr (v1) -> vzd (v2) [3 fields, fingerprint 834f3b973044a0b3] (proto: NavigationChannelConfig)
-
-#### vzu -> vzg
-
-- **[INFO]** `structural_match`: unique structural match: vzu (v1) -> vzg (v2) [4 fields, fingerprint 4d223913190a27ef] (proto: NavigationStep)
-
-#### wad -> vzp
-
-- **[INFO]** `structural_match`: unique structural match: wad (v1) -> vzp (v2) [6 fields, fingerprint 5aff9e65409f2394] (proto: PhoneCall)
-
-#### waf -> vzr
-
-- **[INFO]** `structural_match`: unique structural match: waf (v1) -> vzr (v2) [2 fields, fingerprint 5905cd9d8bb58579] (proto: PhoneStatusUpdate)
-
-#### wag -> vzs
-
-- **[INFO]** `structural_match`: unique structural match: wag (v1) -> vzs (v2) [3 fields, fingerprint 4a5ff094277c605f] (proto: PhoneInputType)
-- **[INFO]** `structural_match`: unique structural match: wag (v1) -> vzs (v2) [3 fields, fingerprint 4a5ff094277c605f] (proto: PhoneStatusInput)
-
-#### wan -> waf
-
-- **[INFO]** `structural_match`: unique structural match: wan (v1) -> waf (v2) [13 fields, fingerprint 72bf0e4d3ec52418] (proto: RadioMetadata)
-- **[INFO]** `structural_match`: unique structural match: wan (v1) -> waf (v2) [13 fields, fingerprint 72bf0e4d3ec52418] (proto: WifiSecurityResponse)
-
-#### war -> waj
-
-- **[INFO]** `structural_match`: unique structural match: war (v1) -> waj (v2) [2 fields, fingerprint 8618ae06590362bb] (proto: RadioProgramIdentifier)
-- **[INFO]** `structural_match`: unique structural match: war (v1) -> waj (v2) [2 fields, fingerprint 8618ae06590362bb] (proto: SensorStartRequestMessage)
-
-#### waw -> wao
-
-- **[INFO]** `structural_match`: unique structural match: waw (v1) -> wao (v2) [2 fields, fingerprint 8d9edf747fb54a92] (proto: RadioProgramType)
-
-#### wbb -> was
-
-- **[INFO]** `structural_match`: unique structural match: wbb (v1) -> was (v2) [6 fields, fingerprint e13d72d02824690e] (proto: RadioSongMetadata)
-- **[INFO]** `structural_match`: unique structural match: wbb (v1) -> was (v2) [6 fields, fingerprint e13d72d02824690e] (proto: WifiDirectConfig)
-
-#### wbo -> wbe
-
-- **[INFO]** `structural_match`: unique structural match: wbo (v1) -> wbe (v2) [26 fields, fingerprint a058c50746cfc014] (proto: SensorEventIndication)
-
-#### wbu -> wbk
-
-- **[INFO]** `structural_match`: unique structural match: wbu (v1) -> wbk (v2) [4 fields, fingerprint baa60551f73fb8f4] (proto: SensorChannelConfig)
-
-#### wbw -> wbm
-
-- **[INFO]** `structural_match`: unique structural match: wbw (v1) -> wbm (v2) [17 fields, fingerprint 0c16bc34fce72d51] (proto: ChannelDescriptor)
-
-#### wbx -> wbn
-
-- **[INFO]** `structural_match`: unique structural match: wbx (v1) -> wbn (v2) [6 fields, fingerprint 19c080db936721a5] (proto: ServiceDiscoveryRequest)
-
-#### wby -> wbo
-
-- **[INFO]** `structural_match`: unique structural match: wby (v1) -> wbo (v2) [15 fields, fingerprint 1f32d898a344c3b5] (proto: ServiceDiscoveryResponse)
-
-#### wcd -> wbt
-
-- **[INFO]** `structural_match`: unique structural match: wcd (v1) -> wbt (v2) [3 fields, fingerprint 48ab4265868a7a77] (proto: Speed)
-
-#### wce -> wbu
-
-- **[INFO]** `structural_match`: unique structural match: wce (v1) -> wbu (v2) [4 fields, fingerprint 6456efa370f38339] (proto: AVChannelStartIndication)
-
-#### wcg -> wbw
-
-- **[INFO]** `structural_match`: unique structural match: wcg (v1) -> wbw (v2) [1 fields, fingerprint 86820bec6f46ec0b] (proto: BindingRequest)
-- **[INFO]** `structural_match`: unique structural match: wcg (v1) -> wbw (v2) [1 fields, fingerprint 86820bec6f46ec0b] (proto: TirePressure)
-
-#### wcj -> wbz
-
-- **[INFO]** `structural_match`: unique structural match: wcj (v1) -> wbz (v2) [3 fields, fingerprint ab62f50d7ca981c4] (proto: AbsoluteInputEvents)
-- **[INFO]** `structural_match`: unique structural match: wcj (v1) -> wbz (v2) [3 fields, fingerprint ab62f50d7ca981c4] (proto: TouchEvent)
-
-#### wcv -> wcl
-
-- **[INFO]** `structural_match`: unique structural match: wcv (v1) -> wcl (v2) [3 fields, fingerprint ba28e54fd7988f48] (proto: VendorExtensionChannel)
-
-#### wcz -> wcp
-
-- **[INFO]** `structural_match`: unique structural match: wcz (v1) -> wcp (v2) [11 fields, fingerprint 3ec6b4ab072e7476] (proto: VideoConfig)
-
-#### wdd -> wct
-
-- **[INFO]** `structural_match`: unique structural match: wdd (v1) -> wct (v2) [2 fields, fingerprint 6aa5eda11572da21] (proto: VideoFocusRequest)
-
-#### wdm -> wdc
-
-- **[INFO]** `structural_match`: unique structural match: wdm (v1) -> wdc (v2) [5 fields, fingerprint 88413f04d9a6ca85] (proto: PhoneConnectionConfig)
-- **[INFO]** `structural_match`: unique structural match: wdm (v1) -> wdc (v2) [5 fields, fingerprint 88413f04d9a6ca85] (proto: WifiInfoResponse)
-
-#### wds -> wdi
-
-- **[INFO]** `structural_match`: unique structural match: wds (v1) -> wdi (v2) [5 fields, fingerprint 52f939cd9602637e] (proto: WifiNetworkInfo)
-
-#### wdv -> wdl
-
-- **[INFO]** `structural_match`: unique structural match: wdv (v1) -> wdl (v2) [6 fields, fingerprint 0b818771aff48a34] (proto: WifiVersionRequest)
-
-#### wdw -> wdm
-
-- **[INFO]** `structural_match`: unique structural match: wdw (v1) -> wdm (v2) [7 fields, fingerprint 9d037012aaf9313a] (proto: WifiVersionResponse)
-
-#### xgq -> xgb
-
-- **[INFO]** `structural_match`: unique structural match: xgq (v1) -> xgb (v2) [3 fields, fingerprint 33e08c86ed764984] (proto: BluetoothPairingResponse)
-
-#### xmw -> xmg
-
-- **[INFO]** `structural_match`: unique structural match: xmw (v1) -> xmg (v2) [3 fields, fingerprint b8e7d8ccfbd62fad] (proto: NavigationDistanceValue)
-
-#### xnb -> xmm
-
-- **[INFO]** `structural_match`: unique structural match: xnb (v1) -> xmm (v2) [4 fields, fingerprint 6875839e5ddd8cdc] (proto: NavigationDistance)
-
-#### xnc -> xmn
-
-- **[INFO]** `structural_match`: unique structural match: xnc (v1) -> xmn (v2) [4 fields, fingerprint 642e28bcfbffb729] (proto: DistanceLabel)
-
-#### xnd -> xmo
-
-- **[INFO]** `structural_match`: unique structural match: xnd (v1) -> xmo (v2) [4 fields, fingerprint 400837e4ca597af3] (proto: NavigationDistanceDisplay)
-
-#### xnf -> xmq
-
-- **[INFO]** `structural_match`: unique structural match: xnf (v1) -> xmq (v2) [3 fields, fingerprint 329d6cb19e3db4df] (proto: NavigationDistanceEntry)
-
-#### xng -> xmr
-
-- **[INFO]** `structural_match`: unique structural match: xng (v1) -> xmr (v2) [3 fields, fingerprint 5518ba35907ef5af] (proto: NavigationDistanceInfo)

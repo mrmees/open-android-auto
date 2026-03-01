@@ -1,41 +1,37 @@
 // Android Auto Protocol Buffer Definitions
 // https://github.com/mrmees/open-android-auto
 // SPDX-License-Identifier: GPL-3.0-or-later
+//
+// Validated against APK v16.1 classes xnd/xmw/xnc (proto2).
+// Known: field 4 of xnd is MAP type_id=49 in proto-lite (reported as group).
+// We model it as repeated message, which is wire-compatible.
 
-/*
- * Discovered via APK proto decoder (xnd.java / xmw.java / xnc.java, AA v16.1)
- * Navigation distance display with formatted labels and unit info.
- */
-
-syntax="proto3";
+syntax="proto2";
 
 package oaa.proto.data;
 
 // APK class: xnd — single distance display (primary/secondary text + timestamp)
-// Field 4 is MAP type (code 49) in proto-lite with xnc as entry class.
-// xnc has fields at wire 5-8 (not standard map key=1/value=2), so this is
-// effectively a repeated message with map-like runtime dedup semantics.
 message NavigationDistanceDisplay
 {
-    optional string primary_text = 1;           // APK: required string
-    optional string secondary_text = 2;         // APK: optional string
-    optional int64 update_timestamp = 3;        // APK: optional int64
-    repeated DistanceLabel labels = 4;          // APK: MAP(xnc) — repeated with map semantics
+    required string primary_text = 1;
+    optional string secondary_text = 2;
+    optional int64 update_timestamp = 3;
+    repeated DistanceLabel labels = 4;  // APK: MAP type_id=49 (xnc entry class)
 }
 
 // APK class: xmw — distance value with unit info
 message NavigationDistanceValue
 {
-    optional int64 raw_meters = 1;              // APK: int64
-    optional fixed32 value = 2;                 // APK: fixed32
-    optional fixed32 unit = 3;                  // APK: fixed32
+    required int64 raw_meters = 1;
+    required fixed32 value = 2;
+    required fixed32 unit = 3;
 }
 
-// APK class: xnc — distance label (fields 5-8, likely part of a larger message)
+// APK class: xnc — distance label (fields 5-8, map entry with non-standard keys)
 message DistanceLabel
 {
-    optional string label = 5;                  // APK: required string
-    optional string unit_text = 6;              // APK: required string
-    optional string extra = 7;                  // APK: optional string
-    optional int32 label_type = 8;              // APK: required int32
+    required string label = 5;
+    required string unit_text = 6;
+    optional string extra = 7;
+    required int32 label_type = 8;
 }
