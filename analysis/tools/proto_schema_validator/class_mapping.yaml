@@ -461,6 +461,13 @@ mappings:
     '16.1': aagr
     '16.2': null
   confidence: jadx_message_dispatch
+- proto_message: CapabilityConnectionConfig
+  proto_file: oaa/control/PhoneCapabilitiesData.proto
+  proto_fqn: oaa.proto.data.CapabilityConnectionConfig
+  apk_classes:
+    '16.1': aahf
+    '16.2': null
+  confidence: triage_investigation
 - proto_message: InputModelEntry
   proto_file: oaa/control/PhoneCapabilitiesData.proto
   proto_fqn: oaa.proto.data.InputModelEntry
@@ -865,6 +872,13 @@ mappings:
   proto_fqn: oaa.proto.messages.NavigationDistance
   apk_classes:
     '16.1': vzg
+    '16.2': null
+  confidence: triage_investigation
+- proto_message: DestinationDistance
+  proto_file: oaa/navigation/NavigationTurnEventMessage.proto
+  proto_fqn: oaa.proto.messages.DestinationDistance
+  apk_classes:
+    '16.1': vzf
     '16.2': null
   confidence: triage_investigation
 - proto_message: NavigationNextTurnDistanceEvent

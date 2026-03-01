@@ -4,9 +4,9 @@
 
 | Category | Count |
 |---|---|
-| Already mapped | 189 |
-| WIRE_HIGH | 10 |
-| WIRE_MEDIUM | 50 |
+| Already mapped | 191 |
+| WIRE_HIGH | 9 |
+| WIRE_MEDIUM | 49 |
 | WIRE_LOW | 150 |
 | INTERNAL | 79 |
 | UTILITY | 448 |
@@ -35,12 +35,11 @@
 | Class | Cat | Conf | Syntax | Fields | Sub-refs | Signals |
 |---|---|---|---|---|---|---|
 | `aafu` | WIRE_HIGH | 0.85 | proto3 | 3 | 1 | BFS hop 1, hub_files=2, struct:has_sub_refs, struct:proto3 |
-| `aahf` | WIRE_HIGH | 0.85 | proto3 | 2 | 2 | BFS hop 1, hub_files=1, struct:has_sub_refs, struct:proto3 |
+| `aagf` | WIRE_HIGH | 0.85 | proto3 | 6 | 1 | BFS hop 1, hub_files=1, struct:has_sub_refs, struct:proto3 |
 | `aaij` | WIRE_HIGH | 0.85 | proto3 | 2 | 2 | BFS hop 1, hub_files=2, struct:has_sub_refs, struct:proto3 |
 | `aajs` | WIRE_HIGH | 0.85 | proto3 | 2 | 0 | BFS hop 1, hub_files=1, pkg=INTERNAL, struct:proto3 |
 | `aakc` | WIRE_HIGH | 0.85 | proto3 | 1 | 1 | BFS hop 1, hub_files=1, struct:has_sub_refs, struct:proto3 |
 | `aake` | WIRE_MEDIUM | 0.75 | proto3 | 2 | 1 | BFS hop 2, hub_files=3, pkg=INTERNAL, struct:has_sub_refs, struct:proto3 |
-| `aagf` | WIRE_MEDIUM | 0.70 | proto3 | 6 | 1 | BFS hop 2, hub_files=1, struct:has_sub_refs, struct:proto3 |
 | `aakb` | WIRE_MEDIUM | 0.70 | proto3 | 2 | 2 | BFS hop 2, hub_files=1, struct:has_sub_refs, struct:proto3 |
 | `aafz` | WIRE_MEDIUM | 0.65 | proto3 | 3 | 0 | hub_files=2, struct:proto3 |
 | `aagg` | WIRE_MEDIUM | 0.65 | proto3 | 4 | 0 | hub_files=2, struct:proto3 |
@@ -197,7 +196,6 @@
 
 | Class | Cat | Conf | Syntax | Fields | Sub-refs | Signals |
 |---|---|---|---|---|---|---|
-| `vzf` | WIRE_HIGH | 0.85 | proto2 | 3 | 1 | BFS hop 1, hub_files=1, struct:has_sub_refs, struct:proto2 |
 | `non` | WIRE_LOW | 0.40 | proto3 | 12 | 0 | hub_files=1, struct:proto3 |
 | `ujq` | WIRE_LOW | 0.40 | proto3 | 4 | 0 | hub_files=1, struct:proto3 |
 | `wbg` | WIRE_LOW | 0.40 | proto2 | 1 | 1 | hub_files=1, struct:has_sub_refs, struct:proto2 |
@@ -363,9 +361,9 @@
 
 | Class | Conf | Syntax | Fields | Signals |
 |---|---|---|---|---|
-| `zyn` | 0.70 | (empty) | 1 | hub_files=58, struct:empty_syntax, struct:has_sub_refs |
+| `zyn` | 0.70 | (empty) | 1 | hub_files=59, struct:empty_syntax, struct:has_sub_refs |
 | `zyq` | 0.70 | (empty) | 1 | hub_files=1, struct:empty_syntax, struct:has_sub_refs |
-| `zyt` | 0.70 | (empty) | 1 | hub_files=59, struct:empty_syntax |
+| `zyt` | 0.70 | (empty) | 1 | hub_files=60, struct:empty_syntax |
 | `Proxy` | 0.60 | proto2 | 0 | struct:proto2, struct:zero_fields |
 | `ProxyOptions` | 0.60 | proto2 | 0 | struct:proto2, struct:zero_fields |
 | `RequestContextConfigOptions` | 0.60 | proto2 | 0 | struct:proto2, struct:zero_fields |
