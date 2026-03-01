@@ -3,9 +3,11 @@
 // Based on works by: f1x.studio (aasdk), opencardev (crankshaft), aa-proxy (aa-proxy-rs)
 syntax="proto2";
 
+import "oaa/av/MediaCodecTypeEnum.proto";
+
 package oaa.proto.messages;
 
 message AVChannelSetupRequest
 {
-    optional int32 config_index = 1;
+    optional enums.MediaCodecType.Enum config_index = 1;
 }

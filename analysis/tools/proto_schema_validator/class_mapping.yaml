@@ -1151,7 +1151,7 @@ mappings:
   proto_file: oaa/wifi/WifiProjectionChannelData.proto
   proto_fqn: oaa.proto.data.WiFiProjectionChannel
   apk_classes:
-    '16.1': way
+    '16.1': wdh
     '16.2': null
   confidence: proto_comment
 - proto_message: WifiSecurityResponse

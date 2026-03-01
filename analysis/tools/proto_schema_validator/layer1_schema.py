@@ -30,6 +30,44 @@ _KNOWN_ISSUES = {
     ("WifiSecurityResponse", IssueKind.TYPE_MISMATCH),
 }
 
+# Warnings to suppress entirely — verified correct, not actionable.
+# Each entry: (proto_message, IssueKind, field_number_or_None) -> reason
+_SUPPRESSED: dict[tuple[str, IssueKind, int | None], str] = {
+    # int32 fields that ARE enums in APK but use negative values (-11 to 1),
+    # which proto3 enums can't represent. int32 is the correct type.
+    ("WifiConnectStatus", IssueKind.TYPE_MISMATCH, 1):
+        "WifiVersionStatus uses negative values; int32 is correct",
+    ("WifiStartResponse", IssueKind.TYPE_MISMATCH, 3):
+        "WifiVersionStatus uses negative values; int32 is correct",
+    ("WifiVersionResponse", IssueKind.TYPE_MISMATCH, 4):
+        "WifiVersionStatus uses negative values; int32 is correct",
+    # RadioStation.identifier_type shares a validator range (0-5) with
+    # RadioCodecType but no named enum exists; int32 is correct.
+    ("RadioStation", IssueKind.TYPE_MISMATCH, 2):
+        "shared validator range 0-5 with no named enum; int32 is correct",
+    # Intentional extension — pointer_id added for multi-touch support
+    ("TouchCoordinate", IssueKind.EXTRA_FIELD, 3):
+        "intentional extension for multi-touch tracking",
+    # APK class not in DB — indexer missed these standalone enum classes,
+    # but our definitions are verified correct against jadx source.
+    ("DriverPosition", IssueKind.MISSING_FIELD, None):
+        "enum class not indexed; values verified against vxi.java",
+    ("HapticFeedbackType", IssueKind.MISSING_FIELD, None):
+        "enum class not indexed; values verified against vxm.java",
+    # Extra enum values we intentionally define beyond what APK indexes
+    ("EVConnectorType", IssueKind.EXTRA_FIELD, 14):
+        "NACS added for newer vehicles; not in 16.1 APK",
+    ("WifiSetupMessage", IssueKind.EXTRA_FIELD, 0):
+        "NONE=0 default required by proto3; APK enum starts at 1",
+    # Proto-lite encoding artifacts (also in _KNOWN_ISSUES for ERROR downgrade)
+    ("NavigationDistanceDisplay", IssueKind.TYPE_MISMATCH, 4):
+        "proto-lite MAP encoded as group wire type",
+    ("WifiSecurityResponse", IssueKind.TYPE_MISMATCH, 4):
+        "proto-lite closed enum wrapper appears as message",
+    ("WifiSecurityResponse", IssueKind.TYPE_MISMATCH, 5):
+        "proto-lite closed enum wrapper appears as message",
+}
+
 
 def _same_wire_type(type_a: str, type_b: str) -> bool:
     """Check if two proto types share the same wire encoding."""
@@ -230,20 +268,32 @@ def validate_message(
     # Check if this APK class is actually an enum (exists in enum_maps)
     apk_enum_values = get_apk_enum_values(db_path, apk_class)
     if apk_enum_values is not None:
-        return validate_enum(pool, proto_fqn, proto_message, apk_class, db_path, apk_enum_values) + issues
+        enum_issues = validate_enum(pool, proto_fqn, proto_message, apk_class, db_path, apk_enum_values)
+        # Apply suppression to enum issues too
+        filtered_enum = []
+        for issue in enum_issues:
+            key = (issue.proto_message, issue.kind, issue.field_number)
+            key_any = (issue.proto_message, issue.kind, None)
+            if key in _SUPPRESSED or key_any in _SUPPRESSED:
+                continue
+            filtered_enum.append(issue)
+        return filtered_enum + issues
 
     apk_fields = get_apk_fields(db_path, apk_class)
     if not apk_fields:
         if is_empty_apk_class(db_path, apk_class):
             # Genuinely empty message in APK — nothing to compare
             return issues
-        issues.append(SchemaIssue(
+        no_fields_issue = SchemaIssue(
             proto_message=proto_message,
             kind=IssueKind.MISSING_FIELD,
             severity=Severity.WARNING,
             detail=f"APK class {apk_class} has no fields in DB "
                    f"(may be empty message or missing descriptor)",
-        ))
+        )
+        key = (proto_message, IssueKind.MISSING_FIELD, None)
+        if key not in _SUPPRESSED:
+            issues.append(no_fields_issue)
         return issues
 
     # Field comparison
@@ -264,7 +314,16 @@ def validate_message(
                 )
         downgraded.append(issue)
 
-    return downgraded
+    # Suppress verified-correct warnings
+    filtered = []
+    for issue in downgraded:
+        key = (issue.proto_message, issue.kind, issue.field_number)
+        key_any = (issue.proto_message, issue.kind, None)
+        if key in _SUPPRESSED or key_any in _SUPPRESSED:
+            continue
+        filtered.append(issue)
+
+    return filtered
 
 
 def run_layer1(
