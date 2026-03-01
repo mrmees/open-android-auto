@@ -23,3 +23,14 @@ message InputEventIndication
     // Second touch event — possibly for multi-display (cluster) input
     optional data.TouchEvent secondary_touch_event = 7;
 }
+
+// APK class: vvh (proto2) — single absolute input event coordinate
+message AbsInputEvent {
+    required uint32 axis = 1;    // APK: uint32 (type_id=11), required
+    required int32 value = 2;    // APK: int32 (type_id=4), required
+}
+
+// APK class: vvi (proto2) — collection of absolute input events
+message AbsoluteEvent {
+    repeated AbsInputEvent events = 1;   // APK: repeated message (type_id=27)
+}

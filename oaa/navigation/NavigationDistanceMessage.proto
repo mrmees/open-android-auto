@@ -11,9 +11,9 @@ import "oaa/navigation/NavigationDistanceDisplayData.proto";
 // APK class: xnb — Navigation distance/ETA update (msgId 0x8007 on Nav channel)
 // Sent periodically by phone during active navigation
 message NavigationDistance {
-    optional data.NavigationDistanceValue distance = 1;  // APK: xmw
-    optional string eta_text = 2;
-    optional int32 eta_seconds = 3;
+    required data.NavigationDistanceValue distance = 1;  // APK: xmw — required per descriptor
+    required string eta_text = 2;                        // APK: required
+    required int32 eta_seconds = 3;                      // APK: required
     optional NavigationDistanceInfo info = 8;             // APK: xng
 }
 

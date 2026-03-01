@@ -1,0 +1,37 @@
+// Android Auto Protocol Buffer Definitions
+// https://github.com/mrmees/open-android-auto
+// SPDX-License-Identifier: GPL-3.0-or-later
+
+/*
+ * PhoneCapabilities — proto3 top-level message from ServiceDiscoveryRequest field 2.
+ *
+ * APK class: aagr (AA v16.1)
+ * Describes phone capabilities, device info, and connection preferences.
+ *
+ * Proto3 per APK descriptor. Sub-messages DeviceInfo/PhoneConnectionConfig
+ * are proto2 (imported from PhoneCapabilitiesData.proto). Capability types
+ * are proto3 (imported from CapabilityData.proto).
+ */
+
+syntax="proto3";
+
+import "oaa/control/CapabilityData.proto";
+import "oaa/control/PhoneCapabilitiesData.proto";
+
+package oaa.proto.data;
+
+// APK enum for phone_identifier field (field 7, packed repeated)
+// Actual enum values TBD — APK uses type_id=44 (packed enum).
+enum PhoneIdentifierType {
+    PHONE_IDENTIFIER_UNKNOWN = 0;
+}
+
+message PhoneCapabilities
+{
+    CapabilityFlag feature_flags = 1;
+    DeviceInfo device_info = 2;
+    PhoneConnectionConfig connection_config = 3;
+    CapabilityPair display_capabilities = 4;
+    repeated CapabilityEntry capabilities = 5;
+    repeated PhoneIdentifierType phone_identifier = 7 [packed = true];
+}

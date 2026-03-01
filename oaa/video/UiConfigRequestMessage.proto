@@ -17,11 +17,16 @@ syntax="proto2";
 
 package oaa.proto.messages;
 
+// Placeholder for UiConfigEntry oneof value
+message UiConfigValue {}
+
 // APK class: wcq — config entry with key and value
 message UiConfigEntry
 {
     optional string key = 1;
-    // Field 2 is a oneof message (sub-type unresolved in APK)
+    oneof value {
+        UiConfigValue config_value = 2;  // APK: oneof message (type_id=60)
+    }
 }
 
 // APK class: wco — config data with two lists of entries

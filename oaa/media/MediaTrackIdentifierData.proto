@@ -1,0 +1,26 @@
+// Android Auto Protocol Buffer Definitions
+// https://github.com/mrmees/open-android-auto
+// SPDX-License-Identifier: GPL-3.0-or-later
+
+/*
+ * Media track identifier — proto3 message for identifying media tracks.
+ *
+ * APK class: xma (AA v16.1) — 3 fields (all message type)
+ * Previously expected in MediaPlaybackStatusMessage.proto (proto2),
+ * but xma is proto3 per APK descriptor.
+ */
+
+syntax="proto3";
+
+package oaa.proto.messages;
+
+// Placeholder sub-messages for the three message-type fields
+message MediaTrackField {}
+
+// APK class: xma — media track identifier (3 message fields)
+message MediaTrackIdentifier
+{
+    MediaTrackField track_id = 1;       // APK: message (type_id=9)
+    MediaTrackField track_source = 2;   // APK: message (type_id=9)
+    MediaTrackField track_metadata = 3; // APK: message (type_id=9)
+}

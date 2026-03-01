@@ -120,6 +120,61 @@ message LongValues {
     repeated float values = 1 [packed = true];
 }
 
+// APK class: vuo (proto3) → wraps CarAction in an entry wrapper
+message CarActionEntry {
+    CarAction action = 1;     // APK: message (sub_ref: vun)
+}
+
+// APK class: vum (proto3) → SafeParcelable: CarPropertyAreaConfig
+// Configures a property for a specific vehicle area, with min/max value bounds.
+message CarPropertyAreaConfig {
+    CarAreaId area_id = 1;            // APK: message (sub_ref: vuw)
+    CarPropertyValue min_value = 2;   // APK: message (sub_ref: vvd)
+    CarPropertyValue max_value = 3;   // APK: message (sub_ref: vvd)
+}
+
+// APK class: vux (proto3) → SafeParcelable: CarPropertyConfig
+// Describes a car property's type, access mode, and area configurations.
+message CarPropertyConfig {
+    CarPropertyId property_id = 1;                // APK: enum (type_id=12)
+    CarPropertyAccessMode access_mode = 2;        // APK: enum (type_id=12)
+    CarPropertyChangeMode change_mode = 3;        // APK: enum (type_id=12)
+    repeated CarPropertyAreaConfig area_configs = 4; // APK: repeated message
+    CarPropertyType property_type = 5;            // APK: enum (type_id=12)
+    repeated int32 config_array = 6 [packed = true]; // APK: repeated packed int32
+    repeated CarPropertyValue supported_values = 7;  // APK: repeated message
+}
+
+// Access mode for CarPropertyConfig field 2
+enum CarPropertyAccessMode {
+    CAR_PROPERTY_ACCESS_NONE = 0;
+    CAR_PROPERTY_ACCESS_READ = 1;
+    CAR_PROPERTY_ACCESS_WRITE = 2;
+    CAR_PROPERTY_ACCESS_READ_WRITE = 3;
+}
+
+// Change mode for CarPropertyConfig field 3
+enum CarPropertyChangeMode {
+    CAR_PROPERTY_CHANGE_STATIC = 0;
+    CAR_PROPERTY_CHANGE_ON_CHANGE = 1;
+    CAR_PROPERTY_CHANGE_CONTINUOUS = 2;
+}
+
+// Value type for CarPropertyConfig field 5
+enum CarPropertyType {
+    CAR_PROPERTY_TYPE_UNKNOWN = 0;
+    CAR_PROPERTY_TYPE_BOOLEAN = 1;
+    CAR_PROPERTY_TYPE_INT32 = 2;
+    CAR_PROPERTY_TYPE_INT64 = 3;
+    CAR_PROPERTY_TYPE_FLOAT = 4;
+    CAR_PROPERTY_TYPE_STRING = 5;
+    CAR_PROPERTY_TYPE_BYTES = 6;
+    CAR_PROPERTY_TYPE_INT32_VEC = 7;
+    CAR_PROPERTY_TYPE_INT64_VEC = 8;
+    CAR_PROPERTY_TYPE_FLOAT_VEC = 9;
+    CAR_PROPERTY_TYPE_MIXED = 10;
+}
+
 // APK class: vuy → SafeParcelable: CarPropertyControl
 message CarPropertyControl {
     CarProperty property = 1;

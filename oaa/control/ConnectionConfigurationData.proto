@@ -47,8 +47,8 @@ message ConnectionSecurityConfig {
 
 // APK class: aajh — 2 sub-message fields (fields 2-3, no field 1)
 message ConnectionTransportConfig {
-    optional TransportParamsA transport_params_a = 2;   // APK: aajt — sub-message, fields TBD
-    optional TransportParamsB transport_params_b = 3;   // APK: aakd — sub-message, fields TBD
+    optional TransportMetadata transport_metadata = 2;        // APK: aajt
+    optional TransportSecurityConfig transport_security = 3;  // APK: aakd
 }
 
 // APK class: aaja — single bool
@@ -76,15 +76,36 @@ message ConnectionTuningConfig {
 message ConnectionReservedConfig {
 }
 
-// APK class: aajt — sub-message of ConnectionTransportConfig
-// Placeholder — sub-message structure TBD from wire captures
-message TransportParamsA {
+// APK class: aajt (proto3) — transport metadata
+// Sub-message ref: aajs (TransportCapabilities)
+message TransportMetadata {
+    optional TransportCapabilities capabilities = 1;  // APK: message (aajs)
+    string transport_name = 2;                        // APK: string
 }
 
-// APK class: aakd — sub-message of ConnectionTransportConfig
-// Placeholder — sub-message structure TBD from wire captures
-message TransportParamsB {
+// APK class: aajs (proto3) — transport capability details
+message TransportCapabilities {
+    repeated TransportCapabilityEntry entries = 1;   // APK: repeated message
+    repeated string supported_protocols = 2;         // APK: repeated string
 }
+
+// Placeholder for TransportCapabilities sub-message entries
+message TransportCapabilityEntry {}
+
+// APK class: aakd (proto3) — transport security configuration
+// Sub-message ref: aakc (TransportSecurityEntry) at field 2
+message TransportSecurityConfig {
+    optional TransportSecurityEntry security_entry = 1;  // APK: message (aakc) at field 1
+}
+
+// APK class: aakc (proto3) — security entry
+// Sub-message ref: aakb
+message TransportSecurityEntry {
+    optional TransportSecurityDetail detail = 2;  // APK: message (aakb) at field 2
+}
+
+// APK class: aakb — placeholder for security detail structure
+message TransportSecurityDetail {}
 
 // APK class: aajf — sub-message of ConnectionTuningConfig oneof
 // Placeholder — sub-message structure TBD from wire captures

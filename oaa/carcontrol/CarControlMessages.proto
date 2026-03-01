@@ -130,7 +130,25 @@ message CarControlGroupUpdate {
     optional CarControlGroup car_control_group = 1;
 }
 
-// NOTE: Messages 0x8001 (SetCarPropertyValueRequest) and 0x8003
-// (RegisterCarPropertyListenersRequest) are HU→Phone. Their proto
-// structures are TBD — the handler only receives, not sends, so the
-// request protos aren't deserialized in hxp.java.
+// 0x8001: SetCarPropertyValueRequest (APK class: wca)
+// HU requests the phone to set a car property value.
+message SetCarPropertyValueRequest {
+    optional CarProperty car_property = 1;       // APK: message (sub_ref: vuv)
+    optional CarPropertyValue property_value = 2; // APK: message (sub_ref: vvd)
+    optional string request_id = 3;              // APK: string — UUID for correlating response
+}
+
+// 0x8006: CarActionNotification (APK class: vwj)
+// Notifies a car action event (e.g., launch HVAC app).
+message CarActionNotification {
+    optional CarAction action = 1;   // APK: message (sub_ref: vun)
+}
+
+// CarControlChannelDescriptor (APK class: vwo)
+// Describes the car control channel's available property configs, controls, and actions.
+// Sent during channel setup to inform the phone about HU capabilities.
+message CarControlChannelDescriptor {
+    repeated CarPropertyConfig property_configs = 1;    // APK: repeated message
+    repeated CarControlGroup control_groups = 2;        // APK: repeated message
+    repeated CarActionEntry action_entries = 3;         // APK: repeated message
+}

@@ -11,6 +11,18 @@ import "oaa/control/HeadUnitInfoData.proto";
 
 package oaa.proto.messages;
 
+// APK class: vyr (proto2, 0 fields) — feature flag placeholder
+message ServiceDiscoveryFeatureA {}
+
+// APK class: vym (proto2, 0 fields) — feature flag placeholder
+message ServiceDiscoveryFeatureB {}
+
+// APK class: vwt (proto2, 0 fields) — feature flag placeholder
+message ServiceDiscoveryFeatureC {}
+
+// APK class: vwd (proto2, 0 fields) — feature flag placeholder
+message ServiceDiscoveryFeatureD {}
+
 message ServiceDiscoveryResponse
 {
     repeated data.ChannelDescriptor channels = 1;

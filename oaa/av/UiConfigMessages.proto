@@ -23,11 +23,12 @@
  * a UiConfig sub-message in the service discovery video config.
  *
  * Source: aa-proxy-rs protos, confirmed against AVChannelMessageIdsEnum.
+ * Proto2 per APK class wcs (UpdateUiConfigRequest).
  *
  * APK: AA v16.1
  */
 
-syntax = "proto3";
+syntax = "proto2";
 
 package oaa.proto.messages;
 
@@ -54,7 +55,7 @@ message UiConfig {
     optional UiTheme ui_theme = 4;
 }
 
-// 0x800A: UpdateUiConfigRequest (HU->Phone)
+// 0x800A: UpdateUiConfigRequest (HU->Phone) — APK class: wcs
 message UpdateUiConfigRequest {
     optional UiConfig ui_config = 1;
 }

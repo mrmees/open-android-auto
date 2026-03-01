@@ -202,9 +202,9 @@ mappings:
     '16.1': vwm
     '16.2': null
   confidence: proto_comment
-- proto_message: CarControlGroupUpdateEvent
+- proto_message: CarControlGroupUpdate
   proto_file: oaa/carcontrol/CarControlMessages.proto
-  proto_fqn: oaa.proto.messages.CarControlGroupUpdateEvent
+  proto_fqn: oaa.proto.messages.CarControlGroupUpdate
   apk_classes:
     '16.1': vwn
     '16.2': null
@@ -244,27 +244,23 @@ mappings:
     '16.1': vuy
     '16.2': null
   confidence: proto_comment
-- proto_message: CarPropertyListenersResponse
+- proto_message: RegisterCarPropertyListenersResponse
   proto_file: oaa/carcontrol/CarControlMessages.proto
-  proto_fqn: oaa.proto.messages.CarPropertyListenersResponse
+  proto_fqn: oaa.proto.messages.RegisterCarPropertyListenersResponse
   apk_classes:
     '16.1': wbk
     '16.2': null
   confidence: jadx_message_dispatch
-- proto_message: CarPropertySetResponse
+- proto_message: SetCarPropertyValueResponse
   proto_file: oaa/carcontrol/CarControlMessages.proto
-  proto_fqn: oaa.proto.messages.CarPropertySetResponse
+  proto_fqn: oaa.proto.messages.SetCarPropertyValueResponse
   apk_classes:
     '16.1': wcb
     '16.2': null
   confidence: jadx_message_dispatch
-- proto_message: CarPropertySetStatus
-  proto_file: oaa/carcontrol/CarControlMessages.proto
-  proto_fqn: oaa.proto.messages.CarPropertySetStatus
-  apk_classes:
-    '16.1': vyw
-    '16.2': null
-  confidence: jadx_message_dispatch
+# NOTE: vyw is an enum class (STATUS_SUCCESS=0, STATUS_UNSOLICITED_MESSAGE=1),
+# not a proto message. Covered by CarControlStatus enum in CarControlMessages.proto.
+# Removed from validation — enum-only classes can't be validated as messages.
 - proto_message: CarPropertyValue
   proto_file: oaa/carcontrol/CarPropertyData.proto
   proto_fqn: oaa.proto.messages.CarPropertyValue
@@ -490,35 +486,35 @@ mappings:
     '16.2': wdc
   confidence: proto_comment
 - proto_message: PhoneCapabilities
-  proto_file: oaa/control/PhoneCapabilitiesData.proto
+  proto_file: oaa/control/PhoneCapabilitiesMessage.proto
   proto_fqn: oaa.proto.data.PhoneCapabilities
   apk_classes:
     '16.1': aagr
     '16.2': null
   confidence: jadx_message_dispatch
 - proto_message: CapabilityConnectionConfig
-  proto_file: oaa/control/PhoneCapabilitiesData.proto
+  proto_file: oaa/control/InputModelData.proto
   proto_fqn: oaa.proto.data.CapabilityConnectionConfig
   apk_classes:
     '16.1': aahf
     '16.2': null
   confidence: triage_investigation
 - proto_message: InputModelEntry
-  proto_file: oaa/control/PhoneCapabilitiesData.proto
+  proto_file: oaa/control/InputModelData.proto
   proto_fqn: oaa.proto.data.InputModelEntry
   apk_classes:
     '16.1': aafs
     '16.2': null
   confidence: triage_investigation
 - proto_message: InputModelDescriptor
-  proto_file: oaa/control/PhoneCapabilitiesData.proto
+  proto_file: oaa/control/InputModelData.proto
   proto_fqn: oaa.proto.data.InputModelDescriptor
   apk_classes:
     '16.1': aahd
     '16.2': null
   confidence: triage_investigation
 - proto_message: HandwritingInputModelConfig
-  proto_file: oaa/control/PhoneCapabilitiesData.proto
+  proto_file: oaa/control/InputModelData.proto
   proto_fqn: oaa.proto.data.HandwritingInputModelConfig
   apk_classes:
     '16.1': aahi
@@ -854,7 +850,7 @@ mappings:
     '16.2': vyc
   confidence: proto_comment
 - proto_message: MediaTrackIdentifier
-  proto_file: oaa/media/MediaPlaybackStatusMessage.proto
+  proto_file: oaa/media/MediaTrackIdentifierData.proto
   proto_fqn: oaa.proto.messages.MediaTrackIdentifier
   apk_classes:
     '16.1': xma
@@ -867,9 +863,9 @@ mappings:
     '16.1': xmu
     '16.2': null
   confidence: triage_investigation
-- proto_message: MediaStats
+- proto_message: AVChannelMediaStats
   proto_file: oaa/av/AVChannelMediaStatsMessage.proto
-  proto_fqn: oaa.proto.messages.MediaStats
+  proto_fqn: oaa.proto.messages.AVChannelMediaStats
   apk_classes:
     '16.1': vyu
     '16.2': null
@@ -1014,9 +1010,9 @@ mappings:
     '16.1': vzk
     '16.2': null
   confidence: proto_comment
-- proto_message: NavigationDistance
+- proto_message: NavigationTurnDistance
   proto_file: oaa/navigation/NavigationTurnEventMessage.proto
-  proto_fqn: oaa.proto.messages.NavigationDistance
+  proto_fqn: oaa.proto.messages.NavigationTurnDistance
   apk_classes:
     '16.1': vzg
     '16.2': null

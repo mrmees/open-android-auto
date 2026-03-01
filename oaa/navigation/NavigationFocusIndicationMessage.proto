@@ -5,12 +5,14 @@
 /*
  * Navigation focus indication message.
  *
- * Indicates the current navigation focus state. The focus_type field
- * is a wide-range enum validated by vee.V (values 0-10, 100-102).
- * No named APK enum class found — likely a navigation status code.
+ * Indicates the current navigation focus state. Field 1 carries an opaque
+ * bytes payload (possibly a serialized sub-message or encoded focus data).
  *
- * APK class: vxp (AA v16.1)
+ * APK class: wbg (AA v16.1) — 1 field (bytes)
  * Field numbers decoded from protobuf-lite RawMessageInfo descriptor.
+ *
+ * NOTE: Previously attributed to vxp (single enum field) — incorrect.
+ * The correct mapping is wbg per class_mapping.yaml.
  */
 syntax="proto2";
 
@@ -18,5 +20,5 @@ package oaa.proto.messages;
 
 message NavigationFocusIndication
 {
-    required int32 focus_type = 1;   // Wide-range enum (0-10, 100-102), validator: vee.V
+    required bytes focus_data = 1;   // APK: bytes (type_id=10)
 }

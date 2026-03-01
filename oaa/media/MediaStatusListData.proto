@@ -5,19 +5,22 @@
 /*
  * Media status list data.
  *
- * Single-field message carrying a focus type indicator. The enum
- * validator (vyv.c → vzb) maps to NavigationFocusType
- * (NAV_FOCUS_NATIVE=1, NAV_FOCUS_PROJECTED=2), suggesting this
- * filters media status by navigation focus context.
+ * Contains a repeated list of media status entries.
  *
- * APK class: vza (AA v16.1)
+ * APK class: vyd (AA v16.1) — 1 field (repeated message)
  * Field numbers decoded from protobuf-lite RawMessageInfo descriptor.
+ *
+ * NOTE: Previously mapped to vza (single enum field) — that was incorrect.
+ * The correct mapping is vyd per class_mapping.yaml.
  */
 syntax="proto2";
 
 package oaa.proto.data;
 
+// Placeholder — sub-message type for media status entries (TBD)
+message MediaStatusEntry {}
+
 message MediaStatusList
 {
-    optional int32 focus_type = 1;   // NavigationFocusType values (1=native, 2=projected), validator: vzb
+    repeated MediaStatusEntry entries = 1;   // APK: repeated message (type_id=27)
 }

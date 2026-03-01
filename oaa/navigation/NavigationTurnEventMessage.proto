@@ -25,6 +25,7 @@ syntax = "proto2";
 
 import "oaa/navigation/ManeuverTypeEnum.proto";
 import "oaa/navigation/TurnSideEnum.proto";
+import "oaa/navigation/NavigationDistanceDisplayData.proto";
 
 package oaa.proto.messages;
 
@@ -35,4 +36,47 @@ message NavigationTurnEvent {
     optional bytes turn_icon = 4;                    // APK: e — descriptor says bytes
     optional int32 distance_meters = 5;              // APK: f (int) — distance to turn
     optional int32 distance_unit = 6;                // APK: g (int) — distance display unit
+}
+
+// APK class: vzg — turn distance with display text and unit
+// Distinct from NavigationDistance (xnb) which is the full distance/ETA message.
+message NavigationTurnDistance {
+    optional int32 distance_value = 1;    // APK: int32
+    optional string display_text = 2;     // APK: string
+    optional int32 distance_unit = 3;     // APK: enum (int32 wire) — distance unit type
+}
+
+// APK class: vzf — destination distance with remaining time
+// Sub-message ref: vzg (NavigationTurnDistance)
+message DestinationDistance {
+    optional NavigationTurnDistance distance = 1;   // APK: message (vzg)
+    optional string destination_name = 2;           // APK: string
+    optional int64 eta_timestamp = 3;               // APK: int64
+}
+
+// APK class: vzv — remaining distance to destination
+// Sub-message ref: vzg (NavigationTurnDistance)
+message NavigationRemainingDistance {
+    optional NavigationTurnDistance distance = 1;   // APK: message (vzg)
+    optional int64 remaining_meters = 2;           // APK: int64
+}
+
+// APK class: vzn — simple string wrapper used in turn distance event
+message NavigationTurnLabel {
+    optional string label = 1;   // APK: string
+}
+
+// APK class: vzd — next turn distance event with remaining and step distances
+// Sub-message refs: vzv (NavigationRemainingDistance), vzn (NavigationTurnLabel)
+message NavigationNextTurnDistanceEvent {
+    optional NavigationRemainingDistance remaining_distance = 1;  // APK: message (vzv)
+    repeated NavigationTurnLabel turn_labels = 2;                // APK: repeated message (vzn)
+    optional NavigationStepDistance step_distance = 3;            // APK: message — forward ref
+}
+
+// APK class: xmv — step distance with raw distance value
+// Sub-message ref: xmw (NavigationDistanceValue, in NavigationDistanceDisplayData.proto)
+message NavigationStepDistance {
+    optional data.NavigationDistanceValue distance_value = 1;  // APK: message (xmw)
+    optional int64 distance_meters = 2;                        // APK: int64
 }

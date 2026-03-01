@@ -3,29 +3,15 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 
 /*
- * Discovered via APK proto decoder (aagr.java, AA v16.1)
- * Sub-message of ServiceDiscoveryRequest field 2.
- * Describes phone capabilities, device info, and connection preferences.
+ * Phone device info and connection config (proto2 sub-messages).
  *
- * Proto3 capability types (CapabilityEntry, CapabilityFlag, CapabilityPair,
- * PingConfigPair) split to CapabilityData.proto.
+ * PhoneCapabilities itself is proto3 — see PhoneCapabilitiesMessage.proto.
+ * These sub-messages remain proto2 per APK classes vve, wdm.
  */
 
 syntax="proto2";
 
-import "oaa/control/CapabilityData.proto";
-
 package oaa.proto.data;
-
-message PhoneCapabilities
-{
-    optional CapabilityFlag feature_flags = 1;
-    optional DeviceInfo device_info = 2;
-    optional PhoneConnectionConfig connection_config = 3;
-    optional CapabilityPair display_capabilities = 4;
-    repeated CapabilityEntry capabilities = 5;
-    optional string phone_identifier = 7;
-}
 
 // APK class: vve — phone device information (9 fields)
 message DeviceInfo

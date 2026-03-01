@@ -40,6 +40,16 @@ enum PlaybackState {
     PLAYBACK_STATE_ERROR = 4;
 }
 
+// APK class: xmu — media event ID wrapper (1 field at high field number)
+// Field 13 is a message sub-type; APK sub_ref is xmv but cross-domain
+// reference suggests shared obfuscated naming rather than actual dependency.
+message MediaEventIdWrapper {
+    optional MediaEventId event_id = 13;   // APK: message (type_id=9) at field 13
+}
+
+// Placeholder for MediaEventIdWrapper sub-message
+message MediaEventId {}
+
 // APK class: vyq
 message MediaPlaybackStatus {
     // Current playback state
