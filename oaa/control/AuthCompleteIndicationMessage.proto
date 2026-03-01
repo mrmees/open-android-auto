@@ -3,11 +3,9 @@
 // Based on works by: f1x.studio (aasdk), opencardev (crankshaft), aa-proxy (aa-proxy-rs)
 syntax="proto2";
 
-import "oaa/common/StatusEnum.proto";
-
 package oaa.proto.messages;
 
 message AuthCompleteIndication
 {
-    optional enums.Status.Enum status = 1;
+    optional int32 status = 1;
 }

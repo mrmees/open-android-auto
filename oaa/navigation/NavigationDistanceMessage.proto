@@ -21,7 +21,9 @@ message NavigationDistance {
 message NavigationDistanceInfo {
     optional data.NavigationDistanceDisplay display = 1;          // APK: xnd
     repeated data.NavigationDistanceDisplay alternate_display = 2; // APK: repeated xnd
-    optional NavigationDistanceOneof oneof_display = 4;           // APK: xne
+    oneof oneof_display_wrapper {
+        NavigationDistanceOneof oneof_display = 4;               // APK: xne (oneof)
+    }
 }
 
 // APK class: xne — wrapper for repeated distance entries
@@ -33,5 +35,5 @@ message NavigationDistanceOneof {
 message NavigationDistanceEntry {
     optional data.NavigationDistanceDisplay display = 1;  // APK: xnd
     optional int32 value = 2;
-    optional int32 metadata = 3;
+    repeated int32 metadata = 3 [packed = true];
 }

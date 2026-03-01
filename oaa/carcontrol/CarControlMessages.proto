@@ -81,7 +81,7 @@ message CarControl {
         CarControlGroup control_group = 3;         // vwm (recursive)
     }
     optional bool enabled = 4;
-    repeated CarControlMetadataType metadata = 5 [packed = true];
+    repeated CarControlMetadataType metadata = 5;
     optional SideAffinity side_affinity = 6;
 }
 

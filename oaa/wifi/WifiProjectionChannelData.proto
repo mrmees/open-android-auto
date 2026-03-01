@@ -20,5 +20,5 @@ package oaa.proto.data;
 // APK class: wdh — 1 field (string at field 1)
 message WiFiProjectionChannel
 {
-    optional string ssid = 1;
+    repeated string ssid = 1;
 }

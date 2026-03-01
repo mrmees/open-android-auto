@@ -52,5 +52,5 @@ message CarLocalMediaPlaybackStatus {
     // Elapsed seconds in current track
     optional int32 playback_position = 3;
     // Currently available transport actions
-    repeated CarLocalMediaPlaybackAction actions = 4 [packed = true];
+    repeated CarLocalMediaPlaybackAction actions = 4;
 }

@@ -112,11 +112,14 @@ def _descriptor_field_to_fielddef(fd) -> FieldDef:
     required = fd.is_required if hasattr(fd, "is_required") else False
     is_packed = fd.is_packed if hasattr(fd, "is_packed") else False
 
-    # Check for oneof
-    is_oneof = fd.containing_oneof is not None
+    # Check for oneof — filter out proto3 synthetic oneofs (prefix "_")
+    is_oneof = False
     oneof_index = None
-    if is_oneof:
-        oneof_index = fd.containing_oneof.index
+    if fd.containing_oneof is not None:
+        # Proto3 optional fields get a synthetic oneof named "_<field_name>"
+        if not fd.containing_oneof.name.startswith("_"):
+            is_oneof = True
+            oneof_index = fd.containing_oneof.index
 
     # Check for map (map fields are repeated message with map_entry option)
     is_map = False

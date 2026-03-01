@@ -28,7 +28,7 @@ message RadioChannel {
 // APK class: wax — individual radio station/tuner descriptor (14 fields)
 message RadioStation {
     optional int32 station_id = 1;                         // APK: b (int)
-    optional int32 identifier_type = 2;                    // APK: c (enum via vyv.r/a.bl, values 0-5)
+    optional int32 identifier_type = 2;                    // APK: c (enum via vyv.r/a.bl, values 0-5) — DB says enum, no suitable enum in proto2 scope
     repeated RadioBand bands = 3;                          // APK: d (repeated wbe)
     repeated int32 channel_list = 4;                       // APK: e — descriptor says repeated int32
     optional int32 tuner_type = 5;                         // APK: (int, from oneof group)

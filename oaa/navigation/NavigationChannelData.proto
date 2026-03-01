@@ -4,13 +4,12 @@
 syntax="proto2";
 
 import "oaa/navigation/NavigationImageOptionsData.proto";
-import "oaa/navigation/NavigationTypeEnum.proto";
 
 package oaa.proto.data;
 
 message NavigationChannel
 {
     optional int32 minimum_interval_ms = 1;
-    optional enums.NavigationType.Enum type = 2;  // APK: viz.M(), values 1=TURN_BY_TURN, 2=NEXT_TURN_IMAGE
+    optional int32 type = 2;  // APK: viz.M(), values 1=TURN_BY_TURN, 2=NEXT_TURN_IMAGE
     optional NavigationImageOptions image_options = 3;
 }

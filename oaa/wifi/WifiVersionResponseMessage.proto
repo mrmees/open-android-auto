@@ -25,7 +25,7 @@ message WifiVersionResponse {
     optional int32 major_version = 1;              // APK: b (int)
     optional int32 minor_version = 2;              // APK: c (int)
     optional string device_serial = 3;             // APK: e (String)
-    optional sint32 version_status = 4;            // APK: f (sint32, enum via wck.p/viz.au — WifiVersionStatus)
+    optional int32 version_status = 4;             // APK: f (enum via wck.p/viz.au — WifiVersionStatus)
     optional enums.WifiChannelType.Enum selected_wifi_channel_type = 5; // APK: g (enum via wck.r/a.bw)
     optional data.SessionInfo session_info = 6;    // APK: h (vvf)
     optional bytes extra_data = 7;                 // APK: i (zxq/ByteString)
