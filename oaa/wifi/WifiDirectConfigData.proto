@@ -18,6 +18,11 @@ message WifiDirectConfig
     optional string device_address = 2;  // WiFi Direct device MAC
     optional string ssid = 3;            // WiFi Direct SSID (if different from AP)
     optional string passphrase = 4;      // WiFi Direct passphrase
-    optional bytes  group_owner_info = 5; // Sub-message (APK class: wam)
+    optional GroupOwnerInfo group_owner_info = 5; // APK class: wam
     optional uint64 frequency = 6;       // Operating frequency in MHz
+}
+
+// APK class: wam — WiFi Direct group owner info
+// Placeholder — sub-message structure TBD from wire captures
+message GroupOwnerInfo {
 }

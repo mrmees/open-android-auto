@@ -8,6 +8,6 @@ package oaa.proto.data;
 message AbsoluteInputEvent
 {
     optional uint32 scan_code = 1;
-    optional int32 value = 2;
+    optional uint32 value = 2;
     optional uint32 pointer_id = 3;
 }

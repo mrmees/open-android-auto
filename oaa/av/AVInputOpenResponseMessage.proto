@@ -8,5 +8,5 @@ package oaa.proto.messages;
 message AVInputOpenResponse
 {
     optional int32 session = 1;
-    optional uint32 value = 2;
+    optional int32 value = 2;
 }

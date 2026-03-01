@@ -16,6 +16,6 @@ package oaa.proto.data;
 
 message PingConfiguration {
     optional int64 ping_interval_ns = 1;    // APK: long b — was uint32 timeout_ms
-    optional uint32 ping_timeout_ms = 2;    // APK: int c
+    optional int32 ping_timeout_ms = 2;    // APK: int c
     // fields 3-4 removed — do not exist in APK zyd.java
 }

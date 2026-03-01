@@ -39,8 +39,8 @@ message ConnectionSecurityConfig {
 
 // APK class: aajh — 2 sub-message fields (fields 2-3, no field 1)
 message ConnectionTransportConfig {
-    optional bytes transport_params_a = 2;   // APK: aajt — sub-message, fields TBD
-    optional bytes transport_params_b = 3;   // APK: aakd — sub-message, fields TBD
+    optional TransportParamsA transport_params_a = 2;   // APK: aajt — sub-message, fields TBD
+    optional TransportParamsB transport_params_b = 3;   // APK: aakd — sub-message, fields TBD
 }
 
 // APK class: aaja — single bool
@@ -53,10 +53,10 @@ message ConnectionTuningConfig {
     optional uint32 timeout_ms = 1;
 
     oneof tuning_params {
-        bytes tuning_a = 2;    // APK: aajf — sub-message, fields TBD
-        bytes tuning_b = 3;    // APK: aajb — sub-message, fields TBD
-        bytes tuning_c = 4;    // APK: aajd — sub-message, fields TBD
-        bytes tuning_d = 5;    // APK: aajc — sub-message, fields TBD
+        TuningParamsA tuning_a = 2;    // APK: aajf — sub-message, fields TBD
+        TuningParamsB tuning_b = 3;    // APK: aajb — sub-message, fields TBD
+        TuningParamsC tuning_c = 4;    // APK: aajd — sub-message, fields TBD
+        TuningParamsD tuning_d = 5;    // APK: aajc — sub-message, fields TBD
     }
 
     // Note: timeout_factor at field 60 was previously here, but APK descriptor
@@ -66,4 +66,34 @@ message ConnectionTuningConfig {
 
 // APK class: aaji — empty message
 message ConnectionReservedConfig {
+}
+
+// APK class: aajt — sub-message of ConnectionTransportConfig
+// Placeholder — sub-message structure TBD from wire captures
+message TransportParamsA {
+}
+
+// APK class: aakd — sub-message of ConnectionTransportConfig
+// Placeholder — sub-message structure TBD from wire captures
+message TransportParamsB {
+}
+
+// APK class: aajf — sub-message of ConnectionTuningConfig oneof
+// Placeholder — sub-message structure TBD from wire captures
+message TuningParamsA {
+}
+
+// APK class: aajb — sub-message of ConnectionTuningConfig oneof
+// Placeholder — sub-message structure TBD from wire captures
+message TuningParamsB {
+}
+
+// APK class: aajd — sub-message of ConnectionTuningConfig oneof
+// Placeholder — sub-message structure TBD from wire captures
+message TuningParamsC {
+}
+
+// APK class: aajc — sub-message of ConnectionTuningConfig oneof
+// Placeholder — sub-message structure TBD from wire captures
+message TuningParamsD {
 }

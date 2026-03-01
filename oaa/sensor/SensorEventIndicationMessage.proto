@@ -58,12 +58,61 @@ message SensorEventIndication
     repeated data.Gyro gyro = 20;
 
     // Fields 21-26 discovered via APK proto decoder (wbo.java, AA v16.1).
-    // Sub-message structures are mostly empty or trivial — kept as bytes.
-    repeated bytes toll_road = 21;          // APK: vxs (3 fields: int32, int32, message)
-    repeated bytes range_remaining = 22;    // APK: wch (1 field: bool)
-    repeated bytes fuel_type_info = 23;     // APK: vvg (empty)
-    repeated bytes ev_battery_info = 24;    // APK: wcl (empty)
-    repeated bytes ev_charge_info = 25;     // APK: wbh (1 field: bytes)
-    repeated bytes ev_charge_status = 26;   // APK: wbf (1 field: bytes)
+    repeated TollRoad toll_road = 21;              // APK: vxs (3 fields: int32, int32, message)
+    repeated RangeRemaining range_remaining = 22;  // APK: wch (1 field: bool)
+    repeated FuelTypeInfo fuel_type_info = 23;     // APK: vvg (empty)
+    repeated EVBatteryInfo ev_battery_info = 24;   // APK: wcl (empty)
+    repeated EVChargeInfo ev_charge_info = 25;     // APK: wbh (1 field: bytes)
+    repeated EVChargeStatus ev_charge_status = 26; // APK: wbf (1 field: bytes)
     // Field 27 (extended_sensor_data) NOT in APK v16.1 — removed.
+}
+
+// APK class: vxs — toll road sensor data (3 fields)
+// Placeholder — sub-message structure TBD from wire captures
+message TollRoad {
+    optional int32 toll_status = 1;       // int32
+    optional int32 toll_type = 2;         // int32
+    optional TollRoadInfo info = 3;       // sub-message
+}
+
+// Sub-message of TollRoad field 3 — structure TBD
+// Placeholder — sub-message structure TBD from wire captures
+message TollRoadInfo {
+}
+
+// APK class: wch — range remaining sensor data (1 field)
+message RangeRemaining {
+    optional bool is_available = 1;       // bool
+}
+
+// APK class: vvg — fuel type info sensor data (empty)
+// Placeholder — sub-message structure TBD from wire captures
+message FuelTypeInfo {
+}
+
+// APK class: wcl — EV battery info sensor data (empty)
+// Placeholder — sub-message structure TBD from wire captures
+message EVBatteryInfo {
+}
+
+// APK class: wbh — EV charge info sensor data (1 field)
+// Placeholder — sub-message structure TBD from wire captures
+message EVChargeInfo {
+    optional EVChargeInfoData data = 1;   // sub-message (bytes in APK)
+}
+
+// Sub-message of EVChargeInfo — structure TBD
+// Placeholder — sub-message structure TBD from wire captures
+message EVChargeInfoData {
+}
+
+// APK class: wbf — EV charge status sensor data (1 field)
+// Placeholder — sub-message structure TBD from wire captures
+message EVChargeStatus {
+    optional EVChargeStatusData data = 1; // sub-message (bytes in APK)
+}
+
+// Sub-message of EVChargeStatus — structure TBD
+// Placeholder — sub-message structure TBD from wire captures
+message EVChargeStatusData {
 }

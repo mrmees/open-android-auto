@@ -43,5 +43,5 @@ message CarLocalMediaPlaybackMetadata {
     // Album art as image data (decoded via BitmapFactory on phone side)
     optional bytes album_art = 4;
     // Total track duration in seconds (-1 = no duration available)
-    optional int32 duration_seconds = 5;
+    optional uint32 duration_seconds = 5;
 }
