@@ -13,7 +13,7 @@
  * protocol version and announce supported WiFi channels.
  */
 
-syntax = "proto3";
+syntax="proto2";
 
 import "oaa/control/PhoneCapabilitiesData.proto";
 import "oaa/common/FeatureFlagsData.proto";

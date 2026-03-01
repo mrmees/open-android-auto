@@ -9,7 +9,7 @@
  * BT RFCOMM message type: ordinal 5 (MESSAGE_WIFI_CONNECT_STATUS_BT)
  */
 
-syntax = "proto3";
+syntax="proto2";
 
 package oaa.proto.messages;
 

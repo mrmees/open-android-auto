@@ -28,7 +28,7 @@
  * channel type 11) — 6 fields with bool is_playing and album_art_url.
  */
 
-syntax = "proto3";
+syntax="proto2";
 
 package oaa.proto.messages;
 

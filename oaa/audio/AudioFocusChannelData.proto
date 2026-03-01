@@ -12,7 +12,7 @@
  * ChannelDescriptor to advertise audio focus support.
  */
 
-syntax="proto3";
+syntax="proto2";
 
 package oaa.proto.data;
 

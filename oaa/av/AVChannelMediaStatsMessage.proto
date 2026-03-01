@@ -15,7 +15,7 @@
  * uses a StatsEntry sub-message with avg/min/max/count.
  */
 
-syntax = "proto3";
+syntax="proto2";
 
 import "oaa/common/PingConfigurationData.proto";
 

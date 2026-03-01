@@ -10,7 +10,7 @@
  * Dispatched by ngh.java.
  */
 
-syntax = "proto3";
+syntax="proto2";
 
 package oaa.proto.messages;
 

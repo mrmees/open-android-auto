@@ -10,7 +10,7 @@
  * Telecom state mapping in vuk.java.
  */
 
-syntax="proto3";
+syntax="proto2";
 
 package oaa.proto.enums;
 

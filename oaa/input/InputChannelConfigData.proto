@@ -11,7 +11,7 @@
  * Note: zpn.java is a simpler variant with only 2 fields — vya is the full version.
  */
 
-syntax="proto3";
+syntax="proto2";
 
 import "oaa/input/TouchScreenConfigData.proto";
 import "oaa/input/TouchPadConfigData.proto";

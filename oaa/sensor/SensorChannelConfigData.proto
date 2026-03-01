@@ -8,7 +8,7 @@
  * Lists supported sensor types and data formats.
  */
 
-syntax="proto3";
+syntax="proto2";
 
 package oaa.proto.data;
 

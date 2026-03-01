@@ -12,7 +12,7 @@
  * Sub-message wdi has SSID/BSSID/passphrase with SecurityMode enum.
  */
 
-syntax = "proto3";
+syntax="proto2";
 
 import "oaa/common/FeatureFlagsData.proto";
 

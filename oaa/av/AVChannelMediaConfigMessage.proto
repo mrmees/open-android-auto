@@ -16,7 +16,7 @@
  * and boolean feature flags.
  */
 
-syntax = "proto3";
+syntax="proto2";
 
 import "oaa/common/PingConfigurationData.proto";
 
