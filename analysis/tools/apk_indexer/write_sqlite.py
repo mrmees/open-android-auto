@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import json
 from pathlib import Path
 import sqlite3
 
@@ -64,7 +65,24 @@ def _create_schema(conn: sqlite3.Connection) -> None:
             field_types TEXT NOT NULL,
             field_decls TEXT NOT NULL,
             sub_message_refs TEXT NOT NULL,
-            descriptor TEXT NOT NULL
+            descriptor TEXT NOT NULL,
+            proto_syntax TEXT NOT NULL DEFAULT '',
+            decoded_fields TEXT NOT NULL DEFAULT '[]'
+        );
+        CREATE TABLE IF NOT EXISTS proto_fields (
+            class_name TEXT NOT NULL,
+            field_number INTEGER NOT NULL,
+            type_label TEXT NOT NULL,
+            base_type TEXT NOT NULL,
+            type_id INTEGER NOT NULL,
+            is_repeated INTEGER NOT NULL DEFAULT 0,
+            is_packed INTEGER NOT NULL DEFAULT 0,
+            is_oneof INTEGER NOT NULL DEFAULT 0,
+            is_map INTEGER NOT NULL DEFAULT 0,
+            optional INTEGER NOT NULL DEFAULT 0,
+            required INTEGER NOT NULL DEFAULT 0,
+            oneof_index INTEGER,
+            enum_closed INTEGER NOT NULL DEFAULT 0
         );
         CREATE TABLE IF NOT EXISTS class_references (
             file TEXT NOT NULL,
@@ -98,6 +116,8 @@ def _create_schema(conn: sqlite3.Connection) -> None:
             value TEXT NOT NULL
         );
         CREATE INDEX IF NOT EXISTS idx_proto_classes_name ON proto_classes(class_name);
+        CREATE INDEX IF NOT EXISTS idx_proto_fields_class ON proto_fields(class_name);
+        CREATE INDEX IF NOT EXISTS idx_proto_fields_type ON proto_fields(base_type);
         CREATE INDEX IF NOT EXISTS idx_class_refs_target ON class_references(target_class);
         CREATE INDEX IF NOT EXISTS idx_class_refs_source ON class_references(source_package);
         CREATE INDEX IF NOT EXISTS idx_proto_catalog_class ON proto_catalog(class_name);
@@ -121,6 +141,7 @@ def write_sqlite(db_path: Path, signals: dict[str, list[dict[str, object]]]) -> 
         conn.execute("DELETE FROM switch_maps")
         conn.execute("DELETE FROM call_edges")
         conn.execute("DELETE FROM proto_classes")
+        conn.execute("DELETE FROM proto_fields")
         conn.execute("DELETE FROM class_references")
         conn.execute("DELETE FROM proto_catalog")
         conn.execute("DELETE FROM proto_evidence")
@@ -184,8 +205,9 @@ def write_sqlite(db_path: Path, signals: dict[str, list[dict[str, object]]]) -> 
         )
         conn.executemany(
             "INSERT INTO proto_classes(file, class_name, deprecated, field_count, "
-            "field_names, field_types, field_decls, sub_message_refs, descriptor) "
-            "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)",
+            "field_names, field_types, field_decls, sub_message_refs, descriptor, "
+            "proto_syntax, decoded_fields) "
+            "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
             [
                 (
                     row["file"],
@@ -197,9 +219,37 @@ def write_sqlite(db_path: Path, signals: dict[str, list[dict[str, object]]]) -> 
                     row["field_decls"],
                     row["sub_message_refs"],
                     row["descriptor"],
+                    row.get("proto_syntax", ""),
+                    row.get("decoded_fields", "[]"),
                 )
                 for row in signals.get("proto_classes", [])
             ],
+        )
+        # Flatten decoded fields into proto_fields table
+        proto_field_rows = []
+        for pc_row in signals.get("proto_classes", []):
+            decoded = json.loads(pc_row.get("decoded_fields", "[]"))
+            for f in decoded:
+                proto_field_rows.append((
+                    pc_row["class_name"],
+                    f["field_number"],
+                    f["type_label"],
+                    f["base_type"],
+                    f["type_id"],
+                    1 if f.get("is_repeated") else 0,
+                    1 if f.get("is_packed") else 0,
+                    1 if f.get("is_oneof") else 0,
+                    1 if f.get("is_map") else 0,
+                    1 if f.get("optional") else 0,
+                    1 if f.get("required") else 0,
+                    f.get("oneof_index"),
+                    1 if f.get("enum_closed") else 0,
+                ))
+        conn.executemany(
+            "INSERT INTO proto_fields(class_name, field_number, type_label, base_type, "
+            "type_id, is_repeated, is_packed, is_oneof, is_map, optional, required, "
+            "oneof_index, enum_closed) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+            proto_field_rows,
         )
         conn.executemany(
             "INSERT INTO class_references(file, line, source_package, target_class) "

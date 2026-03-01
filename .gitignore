@@ -6,5 +6,6 @@ analysis/aa-*/
 analysis/android_auto_*/apk-source/
 analysis/*.apkm
 
-# Keep index databases, reports, and JSON exports
+# Keep index reports and JSON exports, but not SQLite DBs (too large, regenerable)
 !analysis/android_auto_*/apk-index/
+analysis/android_auto_*/apk-index/sqlite/*.db

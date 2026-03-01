@@ -81,7 +81,7 @@
 - `m40720o.mo40671t`: 1556
 ## Catalog Totals
 
-- (none)
+- `high`: 1053
 ## Unknown Queue Totals
 
-- (none)
+- `insufficient_evidence`: 885

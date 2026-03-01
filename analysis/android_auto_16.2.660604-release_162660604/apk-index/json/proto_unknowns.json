@@ -1,1 +1,5312 @@
-[]
+[
+  {
+    "class_name": "aacd",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aace",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aacf",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aacj",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aacm",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aacn",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aacp",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aacx",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aadc",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aadd",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aade",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aadf",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aadg",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aadh",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aadi",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aadj",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aadk",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aadl",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aadn",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aado",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aadp",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aadq",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aadr",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aads",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aadt",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aadv",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aadx",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aaea",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aaeb",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aaec",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aaed",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aaee",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aaef",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aaeg",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aaeh",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aaei",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aaej",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aaen",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aaeo",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aaep",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aaeq",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aafj",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aafk",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aafo",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aafp",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aafq",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aafs",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aagm",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aahb",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aahc",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aahq",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aaio",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aaju",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aakg",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aalg",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aalh",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aali",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aalj",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aall",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aalm",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aaln",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aalo",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aalp",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aalq",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aalt",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aalx",
+    "evidence_count": 3,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aalz",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aama",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aamb",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aamf",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aamg",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aamh",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aami",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aamj",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aamk",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aaml",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aamm",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aamn",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aamr",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aams",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aamt",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aamu",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aamv",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aamw",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aamx",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aamy",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aamz",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aana",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aanb",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aanc",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aand",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aanf",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aang",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aanh",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aanl",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aann",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aano",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aanp",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aanq",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aanr",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aans",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aanz",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aaob",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aaoc",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aaod",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aaoe",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aaof",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aaog",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aaoh",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aaoi",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aaok",
+    "evidence_count": 2,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aaom",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aaon",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aaoo",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aaop",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aaoq",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aaor",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aaos",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aaot",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aaou",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aaov",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aaow",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aaox",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aaoy",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aaoz",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aapa",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aapb",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aapd",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aape",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aapf",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aapj",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aapk",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aapl",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aapm",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aapn",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aapp",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aapq",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aapr",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aapt",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aapu",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aapv",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aapx",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aapy",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aapz",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aaqa",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aaqb",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aaqc",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aaqd",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aaqf",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aaqh",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aaqi",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aaqj",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aaqk",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aaql",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aaqm",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aaqn",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aaqp",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aaqq",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aaqr",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aaqs",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aaqt",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aaqu",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aaqv",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aaqw",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aaqx",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aaqy",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aaqz",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aara",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aarb",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aarc",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aard",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aare",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aarf",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aarg",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aarh",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aari",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aarj",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aark",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aarl",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aars",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aart",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aaru",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aasb",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aasc",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aasg",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aasq",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aasy",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aatc",
+    "evidence_count": 2,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aatk",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aatl",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aatn",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aatp",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aatq",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aatr",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aats",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aavn",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aavo",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aavp",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aavq",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "ahck",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "ahco",
+    "evidence_count": 2,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "ahcv",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "ahdl",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "ahdo",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "ahdp",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "ahdq",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "ahdy",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "ahel",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "ahen",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "aheo",
+    "evidence_count": 3,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "ibg",
+    "evidence_count": 2,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "nlv",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "nme",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "nmi",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "nmj",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "nmo",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "nmp",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "nmq",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "nms",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "nmt",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "nmu",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "nna",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "noa",
+    "evidence_count": 3,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "nuw",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "phx",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "pib",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "pic",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "pih",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "rrn",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "rrp",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "rrs",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "rrv",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "rsa",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "rsc",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "rsi",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "rss",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "rst",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "unn",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "vus",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "vvp",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "vvs",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "vwf",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "vxc",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "vxg",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "vxy",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "vyd",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "vze",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "vzf",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "vzt",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "wbv",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "wca",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "wcm",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "wcv",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "wdb",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "wfv",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "wfx",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "xft",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "xfx",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "xfy",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "xgi",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "xgm",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "xgn",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "xgp",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "xgr",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "xgs",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "xho",
+    "evidence_count": 3,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "xkr",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "xks",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "xkt",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "xku",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "xkv",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "xkx",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "xky",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "xla",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "xlb",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "xlc",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "xld",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "xle",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "xlf",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "xlg",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "xli",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "xlj",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "xlk",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "xlp",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "xly",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "xma",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "xmb",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "xmc",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "xmd",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "xml",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "xms",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "xmu",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "xsz",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "xta",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "xtb",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "xtc",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "xtd",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "xtf",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "xtg",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "xth",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "xti",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "xtl",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "xtm",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "xtn",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "xtp",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "xtq",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "xts",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "xtw",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "xtx",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "xty",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "xud",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "xuf",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "xuw",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "xux",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "xuy",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "xuz",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "xva",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "xvb",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "xvc",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "xvd",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "xve",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "xvf",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "xvh",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "xvi",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "xvj",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "xvk",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "xvl",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "xvm",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "xvn",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "xvo",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "xvp",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "xvq",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "xvr",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "xvs",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "xvt",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "xvu",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "xvv",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "xvw",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "xvx",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "xvy",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "xvz",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "xwa",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "xwb",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "xwc",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "xwd",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "xwe",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "xwf",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "xwg",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "xwh",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "xwi",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "xwj",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "xwk",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "xwl",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "xwn",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "xwo",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "xwp",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "xwq",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "xwr",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "xws",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "xwt",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "xwu",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "xwv",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "xww",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "xwx",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "xwy",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "xxa",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "xxb",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "xxc",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "xxd",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "xxe",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "xxf",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "xxh",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "xxi",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "xxl",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "xxn",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "xxo",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "xxp",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "xxs",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "xxw",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "xzl",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "xzm",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "xzn",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "xzo",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "xzq",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "xzt",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "xzu",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "xzw",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "xzx",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "xzy",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "xzz",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yab",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yac",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yae",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yaf",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yag",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yah",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yai",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yaj",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yal",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yam",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yan",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yao",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yat",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "ysn",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yst",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "ysu",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "ysv",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "ysw",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "ysx",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "ysy",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yta",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "ytb",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "ytc",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "ytd",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yte",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "ytf",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "ytg",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yth",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yti",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "ytj",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "ytk",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "ytl",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "ytm",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "ytn",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yto",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "ytp",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "ytq",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "ytr",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yts",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "ytt",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "ytu",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "ytv",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "ytw",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "ytx",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yty",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "ytz",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yua",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yub",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yuc",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yud",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yue",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yuf",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yug",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yuh",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yui",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yuj",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yuk",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yul",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yum",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yun",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yuo",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yup",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yuq",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yur",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yus",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yut",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yuu",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yuv",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yuw",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yux",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yuy",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yuz",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yva",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yvb",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yvc",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yvd",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yve",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yvf",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yvg",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yvh",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yvi",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yvj",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yvk",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yvl",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yvm",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yvn",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yvo",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yvp",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yvq",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yvr",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yvs",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yvt",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yvu",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yvv",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yvw",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yvx",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yvy",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yvz",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "ywa",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "ywb",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "ywc",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "ywd",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "ywe",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "ywf",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "ywg",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "ywh",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "ywi",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "ywj",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "ywk",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "ywl",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "ywm",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "ywn",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "ywo",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "ywp",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "ywq",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "ywr",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yws",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "ywt",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "ywu",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "ywv",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yww",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "ywx",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "ywy",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "ywz",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yxa",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yxb",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yxc",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yxd",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yxe",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yxf",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yxg",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yxh",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yxi",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yxj",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yxk",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yxl",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yxm",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yxn",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yxo",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yxp",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yxq",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yxr",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yxu",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yxv",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yxw",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yxx",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yxy",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yxz",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yya",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yyb",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yyc",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yyd",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yyg",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yyh",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yyi",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yyj",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yyk",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yyl",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yym",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yyn",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yyo",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yyp",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yyq",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yyr",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yys",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yyt",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yyu",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yyv",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yyw",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yyx",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yyy",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yyz",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yza",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yzb",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yzc",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yzd",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yze",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yzg",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yzh",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yzi",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yzj",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yzk",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yzl",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yzm",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yzn",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yzo",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yzp",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yzq",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yzr",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yzs",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yzt",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yzv",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yzw",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yzx",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yzy",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "yzz",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zaa",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zab",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zac",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zad",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zae",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zaf",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zag",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zah",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zaj",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zak",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zal",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zam",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zan",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zao",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zap",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zaq",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zar",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zas",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zat",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zau",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zav",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zaw",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zax",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zay",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zaz",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zba",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zbb",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zbc",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zbd",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zbe",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zbf",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zbg",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zbh",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zbi",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zbj",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zbk",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zbl",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zbm",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zbn",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zbo",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zbp",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zbq",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zbr",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zbs",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zbt",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zbu",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zbv",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zbw",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zbx",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zby",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zbz",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zca",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zcb",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zcc",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zcd",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zce",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zcf",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zcg",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zch",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zci",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zcj",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zcm",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zcp",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zcq",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zcs",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zct",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zcu",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zcv",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zcw",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zcx",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zcy",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zcz",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zda",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zdb",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zdc",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zdd",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zde",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zdf",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zdg",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zdi",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zdj",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zdk",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zdl",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zdm",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zdn",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zdo",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zdp",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zdq",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zdr",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zds",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zdt",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zdu",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zdv",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zdw",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zdx",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zdy",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zdz",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zea",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zeb",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zec",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zee",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zeg",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zei",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zej",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zek",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zel",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zem",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zet",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zeu",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zew",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zfg",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zfh",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zfi",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zfj",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zfk",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zfl",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zfm",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zfn",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zfo",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zfq",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zfr",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zfs",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zft",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zfu",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zfv",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zfw",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zfx",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zfy",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zfz",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zga",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zgb",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zgc",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zgd",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zge",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zgf",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zgg",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zgh",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zgi",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zgk",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zgl",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zgm",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zgo",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zgp",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zgq",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zgr",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zgs",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zgt",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zgu",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zgv",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zgw",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zgx",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zgy",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zgz",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zha",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zhb",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zhc",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zhd",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zhe",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zhf",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zhg",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zhh",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zhi",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zhj",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zhk",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zhl",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zhm",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zhn",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zho",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zhp",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zhr",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zhs",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zht",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zhu",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zhv",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zhw",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zhx",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zhy",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zhz",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zia",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zib",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zic",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zid",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zie",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zig",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zih",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zii",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zij",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zik",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zil",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zim",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zin",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zio",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zip",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "ziq",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zir",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zis",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zit",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "ziu",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "ziw",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zix",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "ziy",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "ziz",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zja",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zjb",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zjc",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zjd",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zje",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zjf",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zjg",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zjh",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zji",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zjj",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zjk",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zjl",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zjm",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zjn",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zjo",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zjs",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zju",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zjz",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zka",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zkd",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zkf",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zkh",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zkl",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zkm",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zkn",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zle",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zli",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zlk",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zln",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zlr",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zls",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zlt",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zmk",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zml",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zmn",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zmx",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "znc",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "znh",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "znk",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "znm",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "znr",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zny",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "znz",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zoj",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zok",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zol",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zom",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zon",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zox",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zpr",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zps",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zqh",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zqs",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zqv",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zrl",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zrq",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zrr",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zsl",
+    "evidence_count": 3,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zso",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zta",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "ztv",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "ztx",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zty",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zud",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zue",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zuf",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zuh",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zuj",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zum",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zun",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zuo",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zup",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zuq",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zur",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zuu",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zuv",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zvb",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zvc",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zvd",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zvf",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zvg",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zvh",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zvi",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zvj",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zvl",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zvn",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zvo",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zvp",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zvq",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zvt",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zvv",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zvw",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zwb",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zwc",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zwd",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zxl",
+    "evidence_count": 1,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  },
+  {
+    "class_name": "zxx",
+    "evidence_count": 3,
+    "notes": "manual_review_required",
+    "reason": "insufficient_evidence"
+  }
+]

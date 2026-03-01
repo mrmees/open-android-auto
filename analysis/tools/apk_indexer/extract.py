@@ -4,6 +4,7 @@ from collections import Counter
 from pathlib import Path
 import json
 import re
+from typing import Any
 
 
 UUID_RE = re.compile(
@@ -24,6 +25,189 @@ CASE_RE = re.compile(r"\bcase\s+([^:]+):")
 
 # Proto-lite class patterns (base class detected dynamically by _detect_proto_names)
 DEPRECATED_RE = re.compile(r"@Deprecated")
+
+# ---------------------------------------------------------------------------
+# Java string escape decoder
+# ---------------------------------------------------------------------------
+_JAVA_UNICODE_RE = re.compile(r"\\u([0-9a-fA-F]{4})")
+_JAVA_ESCAPE_RE = re.compile(r'\\u([0-9a-fA-F]{4})|\\([btnfr"\'\\\\])')
+_JAVA_SIMPLE_ESCAPES = {
+    "b": "\b", "t": "\t", "n": "\n", "f": "\f", "r": "\r",
+    '"': '"', "'": "'", "\\": "\\",
+}
+
+
+def _decode_java_string(s: str) -> str:
+    """Decode Java string escape sequences (\\uXXXX and \\b \\t etc.) to real chars."""
+    def _repl(m: re.Match) -> str:
+        if m.group(1):
+            return chr(int(m.group(1), 16))
+        return _JAVA_SIMPLE_ESCAPES.get(m.group(2), m.group(0))
+    return _JAVA_ESCAPE_RE.sub(_repl, s)
+
+
+# ---------------------------------------------------------------------------
+# Protobuf-lite RawMessageInfo descriptor decoder
+# Based on com.google.protobuf.MessageSchema.newSchemaForRawMessageInfo()
+# ---------------------------------------------------------------------------
+
+# Singular field types (0-17)
+_SINGULAR_TYPES = {
+    0: "double", 1: "float", 2: "int64", 3: "uint64", 4: "int32",
+    5: "fixed64", 6: "fixed32", 7: "bool", 8: "string", 9: "message",
+    10: "bytes", 11: "uint32", 12: "enum", 13: "sfixed32", 14: "sfixed64",
+    15: "sint32", 16: "sint64", 17: "group",
+}
+
+# Packed types (35-48) skip non-packable types (string=8, message=9, bytes=10, group=17)
+_PACKED_TYPES = {
+    35: "double", 36: "float", 37: "int64", 38: "uint64", 39: "int32",
+    40: "fixed64", 41: "fixed32", 42: "bool",
+    43: "uint32", 44: "enum", 45: "sfixed32", 46: "sfixed64",
+    47: "sint32", 48: "sint64",
+}
+
+# Type info flag bits
+_HAS_HAS_BIT = 0x1000
+_REQUIRED_BIT = 0x100
+_ENUM_CLOSED_BIT = 0x800
+
+
+def _read_varint(chars: str, pos: int) -> tuple[int, int]:
+    """Read a variable-length encoded int from protobuf info string.
+    Chars >= 0xD800 use 13-bit continuation encoding."""
+    c = ord(chars[pos])
+    pos += 1
+    if c < 0xD800:
+        return c, pos
+    result = c & 0x1FFF
+    shift = 13
+    while True:
+        c = ord(chars[pos])
+        pos += 1
+        if c < 0xD800:
+            return result | (c << shift), pos
+        result |= (c & 0x1FFF) << shift
+        shift += 13
+
+
+def _field_type_label(ft: int) -> str:
+    """Convert a numeric field type ID to a human-readable label."""
+    if ft <= 17:
+        return _SINGULAR_TYPES.get(ft, f"?{ft}")
+    elif ft <= 34:
+        return f"repeated {_SINGULAR_TYPES.get(ft - 18, f'?{ft - 18}')}"
+    elif ft <= 48:
+        return f"repeated packed {_PACKED_TYPES.get(ft, f'?{ft}')}"
+    elif ft == 49:
+        return "repeated group"
+    elif ft == 50:
+        return "map"
+    elif ft <= 68:
+        return f"oneof {_SINGULAR_TYPES.get(ft - 51, f'?{ft - 51}')}"
+    return f"?{ft}"
+
+
+def _base_type(ft: int) -> str:
+    """Get the base proto type name (without repeated/oneof qualifiers)."""
+    if ft <= 17:
+        return _SINGULAR_TYPES.get(ft, f"?{ft}")
+    elif ft <= 34:
+        return _SINGULAR_TYPES.get(ft - 18, f"?{ft - 18}")
+    elif ft <= 48:
+        return _PACKED_TYPES.get(ft, f"?{ft}")
+    elif ft == 49:
+        return "group"
+    elif ft == 50:
+        return "map"
+    elif ft <= 68:
+        return _SINGULAR_TYPES.get(ft - 51, f"?{ft - 51}")
+    return f"?{ft}"
+
+
+def decode_proto_descriptor(raw_desc: str) -> dict[str, Any] | None:
+    """Decode a RawMessageInfo descriptor string into structured field metadata.
+
+    Returns dict with keys: syntax, field_count, oneof_count, fields (list of dicts).
+    Each field dict has: field_number, type_label, base_type, is_repeated, is_packed,
+    is_oneof, is_map, optional, required, oneof_index, enum_closed.
+    """
+    if not raw_desc:
+        return None
+
+    desc = _decode_java_string(raw_desc)
+    if len(desc) < 2:
+        return None
+
+    try:
+        pos = 0
+        flags, pos = _read_varint(desc, pos)
+        field_count, pos = _read_varint(desc, pos)
+
+        # Empty protos have just flags + field_count=0
+        if field_count == 0:
+            syntax = "proto2" if (flags & 1) else "proto3"
+            return {
+                "syntax": syntax, "field_count": 0, "oneof_count": 0,
+                "map_count": 0, "fields": [],
+            }
+
+        oneof_count, pos = _read_varint(desc, pos)
+        _hasbits_count, pos = _read_varint(desc, pos)
+        _min_field, pos = _read_varint(desc, pos)
+        _max_field, pos = _read_varint(desc, pos)
+        _num_entries, pos = _read_varint(desc, pos)
+        map_count, pos = _read_varint(desc, pos)
+        _repeated_count, pos = _read_varint(desc, pos)
+        _check_init, pos = _read_varint(desc, pos)
+
+        syntax = "proto2" if (flags & 1) else "proto3"
+
+        fields = []
+        for _ in range(field_count):
+            fn, pos = _read_varint(desc, pos)
+            twe, pos = _read_varint(desc, pos)
+
+            ft = twe & 0xFF
+            has_has = bool(twe & _HAS_HAS_BIT)
+            required = bool(twe & _REQUIRED_BIT)
+            enum_closed = bool(twe & _ENUM_CLOSED_BIT)
+
+            oneof_index = None
+            if ft >= 51:  # oneof type
+                oneof_index, pos = _read_varint(desc, pos)
+            elif has_has and ft <= 17:
+                _hasbits_idx, pos = _read_varint(desc, pos)
+
+            is_repeated = 18 <= ft <= 49
+            is_packed = 35 <= ft <= 48
+            is_oneof = ft >= 51
+            is_map = ft == 50
+
+            fields.append({
+                "field_number": fn,
+                "type_label": _field_type_label(ft),
+                "base_type": _base_type(ft),
+                "type_id": ft,
+                "is_repeated": is_repeated,
+                "is_packed": is_packed,
+                "is_oneof": is_oneof,
+                "is_map": is_map,
+                "optional": has_has and not required,
+                "required": required,
+                "oneof_index": oneof_index,
+                "enum_closed": enum_closed,
+            })
+
+        return {
+            "syntax": syntax,
+            "field_count": field_count,
+            "oneof_count": oneof_count,
+            "map_count": map_count,
+            "fields": fields,
+        }
+    except (IndexError, ValueError):
+        return None
 # Field declarations: public <type> <name>
 FIELD_DECL_RE = re.compile(
     r"^\s+public\s+(?!static|final)(\S+)\s+([a-z][a-zA-Z0-9]*)\s*[;=]",
@@ -234,6 +418,15 @@ def _extract_proto_class_from_text(
                     if n.strip().strip('"')
                 ]
 
+    # Decode descriptor into structured field metadata
+    decoded_fields: list[dict[str, object]] = []
+    proto_syntax = ""
+    if descriptor:
+        decoded = decode_proto_descriptor(descriptor)
+        if decoded is not None:
+            proto_syntax = decoded["syntax"]
+            decoded_fields = decoded["fields"]
+
     # Extract sub-message type references from field declarations
     sub_message_refs: list[str] = []
     for f in fields:
@@ -247,12 +440,14 @@ def _extract_proto_class_from_text(
         "file": str(path),
         "class_name": class_name,
         "deprecated": deprecated,
-        "field_count": len(fields),
+        "field_count": len(decoded_fields) if decoded_fields else len(fields),
         "field_names": json.dumps(field_names),
         "field_types": json.dumps([f["type"] for f in fields]),
         "field_decls": json.dumps(fields),
         "sub_message_refs": json.dumps(sub_message_refs),
         "descriptor": descriptor,
+        "proto_syntax": proto_syntax,
+        "decoded_fields": json.dumps(decoded_fields),
     }
 
 
