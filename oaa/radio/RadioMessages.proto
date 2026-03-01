@@ -33,7 +33,9 @@
  * APK: AA v16.1
  */
 
-syntax = "proto3";
+syntax = "proto2";
+
+import "oaa/radio/RadioProgramTypeSchemaEnum.proto";
 
 package oaa.proto.messages;
 
@@ -79,7 +81,7 @@ enum RadioTuneDirection {
 // Identifies a specific radio program/station.
 message RadioProgramIdentifier {
     optional RadioIdentifierType type = 1;
-    optional int64 value = 2;  // Frequency in Hz for AM/FM, or station ID for HD/DAB
+    optional uint64 value = 2;  // Frequency in Hz for AM/FM, or station ID for HD/DAB
 }
 
 // APK class: wav → SafeParcelable: RadioProgramSelector
@@ -97,9 +99,8 @@ message RadioImage {
 // APK class: waw → SafeParcelable: RadioProgramType
 // Program type classification (RDS PTY / ITU).
 message RadioProgramType {
-    // Schema: 1 = RDS PTY, 2 = ITU (APK: viz.M)
-    optional int32 schema = 1;
-    optional int32 code = 2;
+    optional enums.RadioProgramTypeSchema.Enum schema = 1;  // APK: viz.M (1=RDS_PTY, 2=ITU)
+    optional uint32 code = 2;
 }
 
 // APK class: wbb → SafeParcelable: RadioSongMetadata
@@ -110,7 +111,7 @@ message RadioSongMetadata {
     optional string album = 3;
     optional string genre = 4;
     optional RadioImage album_art = 5;
-    optional int64 duration_seconds = 6;
+    optional uint64 duration_seconds = 6;
 }
 
 // APK class: wan → SafeParcelable: RadioMetadata
@@ -124,7 +125,7 @@ message RadioMetadata {
     optional RadioSongMetadata song_metadata = 6;
     optional string message = 7;             // Station text message / RDS RadioText
     optional string service_name = 8;        // DAB service name
-    optional int32 hd_sub_channels_available = 9;
+    optional uint32 hd_sub_channels_available = 9;
     optional bool hd_signal_acquired = 10;
     optional bool hd_audio_acquired = 11;
     optional string dab_component_name = 12;

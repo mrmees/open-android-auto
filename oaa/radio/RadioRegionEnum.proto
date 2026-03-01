@@ -1,0 +1,23 @@
+// Android Auto Protocol Buffer Definitions
+// https://github.com/mrmees/open-android-auto
+// SPDX-License-Identifier: GPL-3.0-or-later
+
+/*
+ * RadioRegion — radio broadcast region.
+ *
+ * APK verifier: a.bJ() via wck.a (AA v16.1) — accepts values 0, 1.
+ * Used in RadioStation field 11.
+ */
+
+syntax="proto2";
+
+package oaa.proto.enums;
+
+message RadioRegion
+{
+    enum Enum
+    {
+        REGION_UNKNOWN = 0;
+        REGION_ITU_1 = 1;
+    }
+}

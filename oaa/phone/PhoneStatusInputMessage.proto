@@ -26,7 +26,7 @@
  * The enum likely represents the input/action type.
  */
 
-syntax = "proto3";
+syntax = "proto2";
 
 package oaa.proto.messages;
 

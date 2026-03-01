@@ -24,7 +24,7 @@
  * packed repeated enum actions. Different channel, different proto.
  */
 
-syntax = "proto3";
+syntax="proto2";
 
 package oaa.proto.messages;
 
@@ -47,7 +47,7 @@ message MediaPlaybackStatus {
     // Source application name (e.g. "YouTube Music", "Spotify")
     optional string source_app = 2;
     // Elapsed seconds in current track (resets to 0 on track change)
-    optional int32 position_seconds = 3;
+    optional uint32 position_seconds = 3;
     // Playback mode flags (confirmed via aa-proxy-rs protos and
     // AIDL interface prz.java method g() — 3 trailing boolean params)
     optional bool shuffle = 4;

@@ -9,12 +9,14 @@
  * BT RFCOMM message type: ordinal 5 (MESSAGE_WIFI_CONNECT_STATUS_BT)
  */
 
-syntax = "proto3";
+syntax="proto2";
 
 package oaa.proto.messages;
 
 // Deprecated in APK — kept for protocol completeness.
+// NOTE: state uses WifiVersionStatus values (can be negative).
+// See WifiVersionStatusEnum.proto for value mapping.
 message WifiConnectStatus {
-    optional int32 state = 1;           // APK: b (int)
+    optional int32 state = 1;           // APK: b (int, enum via wck.p/viz.au — WifiVersionStatus)
     optional string status_text = 2;    // APK: d (String) — descriptor says string
 }

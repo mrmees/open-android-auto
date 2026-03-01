@@ -1,9 +1,10 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 // Copyright (C) 2024-2026 Open Android Auto contributors
 // Based on works by: f1x.studio (aasdk), opencardev (crankshaft), aa-proxy (aa-proxy-rs)
-syntax="proto3";
+syntax="proto2";
 
 import "oaa/av/AVStreamTypeEnum.proto";
+import "oaa/av/AndroidKeycodeEnum.proto";
 import "oaa/audio/AudioTypeEnum.proto";
 import "oaa/audio/AudioConfigData.proto";
 import "oaa/video/VideoConfigData.proto";
@@ -22,6 +23,6 @@ message AVChannel
     // Fields 6-9 discovered via APK decompilation (vys.java, AA v16.1).
     optional uint32 channel_id = 6;                             // Display/channel identifier (assigned by phone)
     optional enums.DisplayType.Enum display_type = 7;           // MAIN, CLUSTER, AUXILIARY
-    optional int32 keycode = 8;                                 // Android keycode (APK enum: vyh.java)
+    optional enums.AndroidKeycode.Enum keycode = 8;              // Android keycode (APK enum: vyh.java)
     optional enums.VideoFocusReason.Enum focus_reason = 9;      // Why video focus was set
 }

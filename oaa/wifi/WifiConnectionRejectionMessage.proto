@@ -9,10 +9,12 @@
  * BT RFCOMM message type: ordinal 9 (MESSAGE_WIFI_CONNECTION_REJECTION_BT)
  */
 
-syntax = "proto3";
+syntax="proto2";
+
+import "oaa/wifi/WifiConnectionRejectionReasonEnum.proto";
 
 package oaa.proto.messages;
 
 message WifiConnectionRejection {
-    optional int32 reason = 1;          // APK: b (int, enum via wck.o/a.bW)
+    optional enums.WifiConnectionRejectionReason.Enum reason = 1;  // APK: b (enum via wck.o/a.bW)
 }

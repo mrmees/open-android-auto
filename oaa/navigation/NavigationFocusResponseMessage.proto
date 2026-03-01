@@ -1,11 +1,14 @@
+// Android Auto Protocol Buffer Definitions
+// https://github.com/mrmees/open-android-auto
 // SPDX-License-Identifier: GPL-3.0-or-later
-// Copyright (C) 2024-2026 Open Android Auto contributors
-// Based on works by: f1x.studio (aasdk), opencardev (crankshaft), aa-proxy (aa-proxy-rs)
-syntax="proto3";
+
+syntax="proto2";
+
+import "oaa/navigation/NavigationFocusRequestMessage.proto";
 
 package oaa.proto.messages;
 
 message NavigationFocusResponse
 {
-    optional uint32 type = 1;
+    optional NavigationFocusType type = 1;
 }

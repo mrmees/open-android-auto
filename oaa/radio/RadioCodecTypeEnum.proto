@@ -1,0 +1,27 @@
+// Android Auto Protocol Buffer Definitions
+// https://github.com/mrmees/open-android-auto
+// SPDX-License-Identifier: GPL-3.0-or-later
+
+/*
+ * RadioCodecType — radio tuner codec type.
+ *
+ * APK verifier: a.bl() via vvs.s (AA v16.1) — accepts values 0-5.
+ * Used in RadioStation field 7.
+ */
+
+syntax="proto2";
+
+package oaa.proto.enums;
+
+message RadioCodecType
+{
+    enum Enum
+    {
+        RADIO_CODEC_UNKNOWN = 0;
+        RADIO_CODEC_ANALOG = 1;
+        RADIO_CODEC_HD = 2;
+        RADIO_CODEC_DAB = 3;
+        RADIO_CODEC_DAB_PLUS = 4;
+        RADIO_CODEC_DMB = 5;
+    }
+}

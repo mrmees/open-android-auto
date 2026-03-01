@@ -9,7 +9,7 @@
  * Used in InputChannel field 4 (repeated).
  */
 
-syntax="proto3";
+syntax="proto2";
 
 package oaa.proto.enums;
 

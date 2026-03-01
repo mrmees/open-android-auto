@@ -9,7 +9,7 @@
  * Used in ServiceDiscoveryResponse field 6 (was bool left_hand_drive_vehicle).
  */
 
-syntax="proto3";
+syntax="proto2";
 
 package oaa.proto.enums;
 

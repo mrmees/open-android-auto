@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 // Copyright (C) 2024-2026 Open Android Auto contributors
 // Based on works by: f1x.studio (aasdk), opencardev (crankshaft), aa-proxy (aa-proxy-rs)
-syntax="proto3";
+syntax="proto2";
 
 import "oaa/sensor/SensorTypeEnum.proto";
 
@@ -10,5 +10,5 @@ package oaa.proto.messages;
 message SensorStartRequestMessage
 {
     optional enums.SensorType.Enum sensor_type = 1;
-    optional int64 refresh_interval = 2;
+    optional uint64 refresh_interval = 2;
 }

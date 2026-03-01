@@ -7,7 +7,9 @@
  * Navigation channel configuration with image dimension requirements.
  */
 
-syntax="proto3";
+syntax="proto2";
+
+import "oaa/navigation/NavigationTypeEnum.proto";
 
 package oaa.proto.data;
 
@@ -15,7 +17,7 @@ package oaa.proto.data;
 message NavigationChannelConfig
 {
     optional int32 minimum_interval_ms = 1;
-    optional int32 type = 2;                    // Navigation info type
+    optional enums.NavigationType.Enum type = 2;  // Navigation info type
     optional NavigationImageDimensions image_dimensions = 3;
 }
 

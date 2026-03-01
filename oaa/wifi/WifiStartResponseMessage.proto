@@ -10,12 +10,14 @@
  * Dispatched by ngh.java.
  */
 
-syntax = "proto3";
+syntax="proto2";
 
 package oaa.proto.messages;
 
+// NOTE: status uses WifiVersionStatus values (can be negative).
+// See WifiVersionStatusEnum.proto for value mapping.
 message WifiStartResponse {
     optional string ip_address = 1;     // APK: b — descriptor says string
     optional int32 port = 2;            // APK: c — descriptor says int32
-    optional sint32 status = 3;         // APK: d (int, enum via viz.au/wck.p)
+    optional int32 status = 3;          // APK: d (enum via viz.au/wck.p — WifiVersionStatus)
 }

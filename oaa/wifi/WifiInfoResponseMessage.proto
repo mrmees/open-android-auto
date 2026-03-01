@@ -1,7 +1,10 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 // Copyright (C) 2024-2026 Open Android Auto contributors
 // Based on works by: f1x.studio (aasdk), opencardev (crankshaft), aa-proxy (aa-proxy-rs)
-syntax = "proto3";
+syntax="proto2";
+
+import "oaa/wifi/WifiSecurityModeEnum.proto";
+import "oaa/wifi/WifiAccessPointTypeEnum.proto";
 
 package oaa.proto.messages;
 
@@ -10,6 +13,6 @@ message WifiInfoResponse {
     optional string ssid = 1;
     optional string bssid = 2;
     optional string passphrase = 3;
-    optional int32 security_mode = 4;   // enum in APK (SecurityMode)
-    optional int32 ap_type = 5;         // enum in APK (AccessPointType)
+    optional enums.WifiSecurityMode.Enum security_mode = 4;    // APK: wdr enum
+    optional enums.WifiAccessPointType.Enum ap_type = 5;       // APK: a.bJ verifier
 }

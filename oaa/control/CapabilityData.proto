@@ -1,0 +1,68 @@
+// Android Auto Protocol Buffer Definitions
+// https://github.com/mrmees/open-android-auto
+// SPDX-License-Identifier: GPL-3.0-or-later
+
+/*
+ * Phone capability sub-messages — proto3 types used in ServiceDiscoveryRequest.
+ * Split from PhoneCapabilitiesData.proto because the APK compiles these as proto3.
+ */
+
+syntax="proto3";
+
+package oaa.proto.data;
+
+// APK class: aagh — boolean flag + name
+message CapabilityFlag
+{
+    bool enabled = 1;
+    string name = 2;
+}
+
+// APK class: aags — boolean pair
+message CapabilityPair
+{
+    bool value_a = 1;
+    bool value_b = 2;
+}
+
+// APK class: aaft — paired ping configurations
+message PingConfigPair
+{
+    PingConfigEntry phone_to_hu = 1;
+    PingConfigEntry hu_to_phone = 2;
+}
+
+// Ping configuration entry (matches PingConfiguration structure)
+message PingConfigEntry
+{
+    uint32 timeout_ms = 1;
+    uint32 interval_ms = 2;
+    uint32 high_latency_threshold_ms = 3;
+    uint32 tracked_ping_count = 4;
+}
+
+// APK class: aagv — individual capability entry (10 fields)
+// Fields 4-7 are oneof (capability_value)
+message CapabilityEntry
+{
+    uint32 capability_id = 1;
+    string capability_name = 2;
+    CapabilityEnum capability_type = 3;
+    oneof capability_value {
+        CapabilityValueMsg value_msg_4 = 4;
+        CapabilityValueMsg value_msg_5 = 5;
+        CapabilityValueMsg value_msg_6 = 6;
+        CapabilityValueMsg value_msg_7 = 7;
+    }
+    bool enabled = 8;
+    string description = 9;
+    repeated CapabilityValueMsg sub_entries = 10;
+}
+
+// Placeholder for CapabilityEntry oneof values (sub-message type TBD)
+message CapabilityValueMsg {}
+
+// Placeholder enum for capability type (field 3 of aagv)
+enum CapabilityEnum {
+    CAPABILITY_UNKNOWN = 0;
+}

@@ -21,7 +21,7 @@
  *   between DHU's car app library and phone's AA app, not a proto issue.
  */
 
-syntax = "proto3";
+syntax = "proto2";
 
 import "oaa/navigation/ManeuverTypeEnum.proto";
 import "oaa/navigation/TurnSideEnum.proto";

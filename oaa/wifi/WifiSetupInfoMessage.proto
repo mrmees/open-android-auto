@@ -12,9 +12,10 @@
  * Sub-message wdi has SSID/BSSID/passphrase with SecurityMode enum.
  */
 
-syntax = "proto3";
+syntax="proto2";
 
 import "oaa/common/FeatureFlagsData.proto";
+import "oaa/wifi/WifiSecurityModeEnum.proto";
 
 package oaa.proto.messages;
 
@@ -23,7 +24,7 @@ message WifiNetworkInfo {
     optional string ssid = 1;              // APK: b (String)
     optional string bssid = 2;            // APK: c (String)
     optional string passphrase = 3;       // APK: d (String)
-    optional int32 security_mode = 4;     // APK: e (int, enum via wck.s/wdr — SecurityMode)
+    optional enums.WifiSecurityMode.Enum security_mode = 4;  // APK: e (enum via wck.s/wdr)
     // field 5: gap (not in APK)
     repeated int32 supported_channels = 6; // APK: f (repeated int32, zzb)
 }

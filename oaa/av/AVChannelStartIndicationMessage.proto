@@ -1,17 +1,18 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 // Copyright (C) 2024-2026 Open Android Auto contributors
 // Based on works by: f1x.studio (aasdk), opencardev (crankshaft), aa-proxy (aa-proxy-rs)
-syntax="proto3";
+syntax="proto2";
 
 package oaa.proto.messages;
 
+import "oaa/av/AVChannelMediaConfigMessage.proto";
+import "oaa/av/AVChannelSessionTypeEnum.proto";
+
 // APK class: wce — AV channel start (4 fields)
-// Field 4 is a nested AVChannelMediaConfig (vyo) — parsed as bytes here
-// for backward compatibility, but can be decoded as AVChannelMediaConfig.
 message AVChannelStartIndication
 {
     optional int32 session = 1;
     optional uint32 config = 2;
-    optional int32 unknown_3 = 3;
-    optional bytes media_config = 4;  // APK: vyo (AVChannelMediaConfig) — see AVChannelMediaConfigMessage.proto
+    optional enums.AVChannelSessionType.Enum session_type = 3;  // APK: d (enum via vvs.n/a.bq)
+    optional AVChannelMediaConfig media_config = 4;  // APK: vyo (AVChannelMediaConfig)
 }

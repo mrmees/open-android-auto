@@ -1,0 +1,24 @@
+// Android Auto Protocol Buffer Definitions
+// https://github.com/mrmees/open-android-auto
+// SPDX-License-Identifier: GPL-3.0-or-later
+
+/*
+ * RadioBandType — radio frequency band type.
+ *
+ * APK verifier: a.bq() via vyv.s (AA v16.1) — accepts values 0, 1, 2.
+ * Used in RadioStation field 8.
+ */
+
+syntax="proto2";
+
+package oaa.proto.enums;
+
+message RadioBandType
+{
+    enum Enum
+    {
+        BAND_TYPE_UNKNOWN = 0;
+        BAND_TYPE_AM = 1;
+        BAND_TYPE_FM = 2;
+    }
+}
