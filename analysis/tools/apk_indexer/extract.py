@@ -252,11 +252,13 @@ def _detect_proto_names(
     enum_impl_counts: Counter[str] = Counter()
 
     # Build patterns based on package style
+    # Note: "defpackage" sources may use either "defpackage.xxx" or bare "xxx"
+    # depending on jadx version, so we match both with an optional prefix.
     if obf_dir == "defpackage":
-        extends_pat = re.compile(r"\bextends\s+defpackage\.([a-z][a-z0-9]*)\b")
-        new_pat = re.compile(r"\bnew\s+defpackage\.([a-z][a-z0-9]*)\s*\(")
+        extends_pat = re.compile(r"\bextends\s+(?:defpackage\.)?([a-z][a-z0-9]*)\b")
+        new_pat = re.compile(r"\bnew\s+(?:defpackage\.)?([a-z][a-z0-9]*)\s*\(")
         enum_impl_pat = re.compile(
-            r"\benum\s+[A-Za-z_]\w*\s+implements\s+defpackage\.([a-z][a-z0-9]*)\b"
+            r"\benum\s+[A-Za-z_]\w*\s+implements\s+(?:defpackage\.)?([a-z][a-z0-9]*)\b"
         )
     else:
         extends_pat = re.compile(r"\bextends\s+([a-z][a-z0-9]*)\s")
@@ -554,7 +556,7 @@ def extract_signals(root: Path, scope: str = "all") -> dict[str, list[dict[str, 
     if base_class:
         print(f"  Proto-lite base class: {base_class} (in {obf_dir}/)")
         if obf_dir == "defpackage":
-            extends_re = re.compile(rf"\bextends\s+defpackage\.{re.escape(base_class)}\b")
+            extends_re = re.compile(rf"\bextends\s+(?:defpackage\.)?{re.escape(base_class)}\b")
         else:
             extends_re = re.compile(rf"\bextends\s+{re.escape(base_class)}\s")
     else:
@@ -568,7 +570,7 @@ def extract_signals(root: Path, scope: str = "all") -> dict[str, list[dict[str, 
         # Also: new <class>(<instance>, "<descriptor>", objArr)  [variable ref]
         # Note: descriptor may contain escaped quotes (\"), so we use (?:[^"\\]|\\.)*
         if obf_dir == "defpackage":
-            prefix = rf"defpackage\.{re.escape(descriptor_class)}"
+            prefix = rf"(?:defpackage\.)?{re.escape(descriptor_class)}"
         else:
             prefix = re.escape(descriptor_class)
         descriptor_re = re.compile(
@@ -583,7 +585,7 @@ def extract_signals(root: Path, scope: str = "all") -> dict[str, list[dict[str, 
         print(f"  Proto enum interface: {enum_interface}")
         if obf_dir == "defpackage":
             enum_interface_re = re.compile(
-                rf"\benum\s+\w+\s+implements\s+defpackage\.{re.escape(enum_interface)}\b"
+                rf"\benum\s+\w+\s+implements\s+(?:defpackage\.)?{re.escape(enum_interface)}\b"
             )
         else:
             enum_interface_re = re.compile(
