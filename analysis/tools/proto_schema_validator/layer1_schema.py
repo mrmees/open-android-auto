@@ -11,10 +11,12 @@ from analysis.tools.proto_schema_validator.models import (
     WIRE_TYPE_GROUPS,
 )
 from analysis.tools.proto_schema_validator.mapping import (
+    get_apk_enum_values,
     get_apk_fields,
     get_apk_syntax,
     get_our_syntax,
     get_proto_fields_from_descriptor,
+    is_empty_apk_class,
 )
 from google.protobuf import descriptor_pool
 
@@ -123,6 +125,74 @@ def compare_fields(
     return issues
 
 
+def validate_enum(
+    pool: descriptor_pool.DescriptorPool,
+    proto_fqn: str,
+    proto_message: str,
+    apk_class: str,
+    db_path: Path,
+    apk_enum_values: list[tuple[int, str]],
+) -> list[SchemaIssue]:
+    """Validate our enum definition against APK enum_maps values."""
+    issues: list[SchemaIssue] = []
+
+    # Try to find as enum descriptor first
+    try:
+        enum_desc = pool.FindEnumTypeByName(proto_fqn)
+        our_values = {v.number: v.name for v in enum_desc.values}
+    except KeyError:
+        # Might be a message wrapping an enum (our enum-in-message pattern)
+        # Try to find it as a message with a nested Enum type
+        try:
+            msg_desc = pool.FindMessageTypeByName(proto_fqn)
+            # Check for nested enum named "Enum"
+            if msg_desc.enum_types:
+                nested = msg_desc.enum_types[0]
+                our_values = {v.number: v.name for v in nested.values}
+            else:
+                issues.append(SchemaIssue(
+                    proto_message=proto_message,
+                    kind=IssueKind.TYPE_MISMATCH,
+                    severity=Severity.WARNING,
+                    detail=f"APK class {apk_class} is an enum but {proto_fqn} has no enum values",
+                ))
+                return issues
+        except KeyError:
+            issues.append(SchemaIssue(
+                proto_message=proto_message,
+                kind=IssueKind.MISSING_FIELD,
+                severity=Severity.WARNING,
+                detail=f"could not find {proto_fqn} in descriptor pool for enum validation",
+            ))
+            return issues
+
+    apk_by_num = {num: name for num, name in apk_enum_values}
+
+    # Check for missing values (in APK but not ours)
+    for num, name in apk_enum_values:
+        if num not in our_values:
+            issues.append(SchemaIssue(
+                proto_message=proto_message,
+                kind=IssueKind.MISSING_FIELD,
+                severity=Severity.WARNING,
+                field_number=num,
+                detail=f"enum value {num}={name} in APK but missing from our definition",
+            ))
+
+    # Check for extra values (in ours but not APK) — just informational
+    for num, name in our_values.items():
+        if num not in apk_by_num:
+            issues.append(SchemaIssue(
+                proto_message=proto_message,
+                kind=IssueKind.EXTRA_FIELD,
+                severity=Severity.WARNING,
+                field_number=num,
+                detail=f"enum value {num}={name} in our definition but not in APK enum_maps",
+            ))
+
+    return issues
+
+
 def validate_message(
     pool: descriptor_pool.DescriptorPool,
     proto_fqn: str,
@@ -157,8 +227,16 @@ def validate_message(
         ))
         return issues
 
+    # Check if this APK class is actually an enum (exists in enum_maps)
+    apk_enum_values = get_apk_enum_values(db_path, apk_class)
+    if apk_enum_values is not None:
+        return validate_enum(pool, proto_fqn, proto_message, apk_class, db_path, apk_enum_values) + issues
+
     apk_fields = get_apk_fields(db_path, apk_class)
     if not apk_fields:
+        if is_empty_apk_class(db_path, apk_class):
+            # Genuinely empty message in APK — nothing to compare
+            return issues
         issues.append(SchemaIssue(
             proto_message=proto_message,
             kind=IssueKind.MISSING_FIELD,
