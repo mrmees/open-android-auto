@@ -4,21 +4,21 @@ mappings:
   proto_fqn: oaa.proto.data.AudioConfig
   apk_classes:
     '16.1': vvp
-    '16.2': null
+    '16.2': vvb
   confidence: collision_resolved
 - proto_message: AudioFocusState
   proto_file: oaa/audio/AudioFocusStateMessage.proto
   proto_fqn: oaa.proto.messages.AudioFocusState
   apk_classes:
     '16.1': waz
-    '16.2': null
+    '16.2': waq
   confidence: triage_investigation
 - proto_message: AudioStreamType
   proto_file: oaa/audio/AudioStreamTypeMessage.proto
   proto_fqn: oaa.proto.messages.AudioStreamType
   apk_classes:
     '16.1': wba
-    '16.2': null
+    '16.2': war
   confidence: triage_investigation
 - proto_message: AudioStreamTypeEnum
   proto_file: oaa/audio/AudioStreamTypeEnum.proto
@@ -32,14 +32,14 @@ mappings:
   proto_fqn: oaa.proto.data.AudioFocusChannel
   apk_classes:
     '16.1': vxq
-    '16.2': null
+    '16.2': vxc
   confidence: proto_comment
 - proto_message: AudioFocusRequest
   proto_file: oaa/audio/AudioFocusRequestMessage.proto
   proto_fqn: oaa.proto.messages.AudioFocusRequest
   apk_classes:
     '16.1': vvr
-    '16.2': null
+    '16.2': vvd
   confidence: collision_resolved
 - proto_message: AudioFocusResponse
   proto_file: oaa/audio/AudioFocusResponseMessage.proto
@@ -74,7 +74,7 @@ mappings:
   proto_fqn: oaa.proto.messages.AVChannelSetupRequest
   apk_classes:
     '16.1': wcc
-    '16.2': null
+    '16.2': wbs
   confidence: collision_resolved
 - proto_message: AVChannelSetupResponse
   proto_file: oaa/av/AVChannelSetupResponseMessage.proto
@@ -109,7 +109,7 @@ mappings:
   proto_fqn: oaa.proto.messages.AVInputOpenResponse
   apk_classes:
     '16.1': vyy
-    '16.2': null
+    '16.2': vyj
   confidence: collision_resolved
 - proto_message: AVMediaAckIndication
   proto_file: oaa/av/AVMediaAckIndicationMessage.proto
@@ -165,14 +165,14 @@ mappings:
   proto_fqn: oaa.proto.messages.CarActionControl
   apk_classes:
     '16.1': vwi
-    '16.2': null
+    '16.2': vvu
   confidence: proto_comment
 - proto_message: CarActionNotification
   proto_file: oaa/carcontrol/CarControlMessages.proto
   proto_fqn: oaa.proto.messages.CarActionNotification
   apk_classes:
     '16.1': vwj
-    '16.2': null
+    '16.2': vvv
   confidence: jadx_message_dispatch
 - proto_message: CarAreaId
   proto_file: oaa/carcontrol/CarPropertyData.proto
@@ -305,7 +305,7 @@ mappings:
   proto_fqn: oaa.proto.data.Diagnostics
   apk_classes:
     '16.1': vxf
-    '16.2': null
+    '16.2': vwr
   confidence: proto_comment
 - proto_message: DriverPosition
   proto_file: oaa/common/DriverPositionEnum.proto
@@ -326,14 +326,14 @@ mappings:
   proto_fqn: oaa.proto.data.VersionFeatureFlags
   apk_classes:
     '16.1': wdq
-    '16.2': null
+    '16.2': wdg
   confidence: proto_comment
 - proto_message: PingConfiguration
   proto_file: oaa/common/PingConfigurationData.proto
   proto_fqn: oaa.proto.data.PingConfiguration
   apk_classes:
     '16.1': zyd
-    '16.2': null
+    '16.2': zxk
   confidence: proto_comment
 - proto_message: SessionInfo
   proto_file: oaa/common/SessionInfoData.proto
@@ -347,14 +347,14 @@ mappings:
   proto_fqn: oaa.proto.messages.AuthCompleteIndication
   apk_classes:
     '16.1': vvv
-    '16.2': null
+    '16.2': vvh
   confidence: collision_resolved
 - proto_message: ByeByeResponse
   proto_file: oaa/control/ByeByeResponseMessage.proto
   proto_fqn: oaa.proto.messages.ByeByeResponse
   apk_classes:
     '16.1': vwg
-    '16.2': null
+    '16.2': vvs
   confidence: triage_investigation
 - proto_message: BindingRequest
   proto_file: oaa/control/BindingRequestMessage.proto
@@ -382,7 +382,7 @@ mappings:
   proto_fqn: oaa.proto.messages.ChannelOpenAck
   apk_classes:
     '16.1': wcf
-    '16.2': null
+    '16.2': wbv
   confidence: triage_investigation
 - proto_message: ChannelOpenRequest
   proto_file: oaa/control/ChannelOpenRequestMessage.proto
@@ -396,21 +396,21 @@ mappings:
   proto_fqn: oaa.proto.messages.ChannelOpenResponse
   apk_classes:
     '16.1': vwy
-    '16.2': null
+    '16.2': vwk
   confidence: collision_resolved
 - proto_message: ConnectionConfiguration
   proto_file: oaa/control/ConnectionConfigurationData.proto
   proto_fqn: oaa.proto.data.ConnectionConfiguration
   apk_classes:
     '16.1': aajk
-    '16.2': null
+    '16.2': aaiq
   confidence: proto_comment
 - proto_message: ConnectionFeatureFlags
   proto_file: oaa/control/ConnectionConfigurationData.proto
   proto_fqn: oaa.proto.data.ConnectionFeatureFlags
   apk_classes:
     '16.1': aaja
-    '16.2': null
+    '16.2': aaig
   confidence: proto_comment
 - proto_message: ConnectionReservedConfig
   proto_file: oaa/control/ConnectionConfigurationData.proto
@@ -431,14 +431,14 @@ mappings:
   proto_fqn: oaa.proto.data.ConnectionTransportConfig
   apk_classes:
     '16.1': aajh
-    '16.2': null
+    '16.2': aain
   confidence: proto_comment
 - proto_message: ConnectionTuningConfig
   proto_file: oaa/control/ConnectionConfigurationData.proto
   proto_fqn: oaa.proto.data.ConnectionTuningConfig
   apk_classes:
     '16.1': aajg
-    '16.2': null
+    '16.2': aaim
   confidence: proto_comment
 - proto_message: HeadUnitInfo
   proto_file: oaa/control/HeadUnitInfoData.proto
@@ -459,14 +459,14 @@ mappings:
   proto_fqn: oaa.proto.data.CapabilityFlag
   apk_classes:
     '16.1': aagh
-    '16.2': null
+    '16.2': aafn
   confidence: proto_comment
 - proto_message: CapabilityPair
   proto_file: oaa/control/CapabilityData.proto
   proto_fqn: oaa.proto.data.CapabilityPair
   apk_classes:
     '16.1': aags
-    '16.2': null
+    '16.2': aafy
   confidence: proto_comment
 - proto_message: DeviceInfo
   proto_file: oaa/control/PhoneCapabilitiesData.proto
@@ -494,21 +494,21 @@ mappings:
   proto_fqn: oaa.proto.data.CapabilityConnectionConfig
   apk_classes:
     '16.1': aahf
-    '16.2': null
+    '16.2': aagl
   confidence: triage_investigation
 - proto_message: InputModelEntry
   proto_file: oaa/control/InputModelData.proto
   proto_fqn: oaa.proto.data.InputModelEntry
   apk_classes:
     '16.1': aafs
-    '16.2': null
+    '16.2': aaey
   confidence: triage_investigation
 - proto_message: InputModelDescriptor
   proto_file: oaa/control/InputModelData.proto
   proto_fqn: oaa.proto.data.InputModelDescriptor
   apk_classes:
     '16.1': aahd
-    '16.2': null
+    '16.2': aagj
   confidence: triage_investigation
 - proto_message: HandwritingInputModelConfig
   proto_file: oaa/control/InputModelData.proto
@@ -522,7 +522,7 @@ mappings:
   proto_fqn: oaa.proto.data.PingConfigPair
   apk_classes:
     '16.1': aaft
-    '16.2': null
+    '16.2': aaez
   confidence: proto_comment
 - proto_message: PingRequest
   proto_file: oaa/control/PingRequestMessage.proto
@@ -536,7 +536,7 @@ mappings:
   proto_fqn: oaa.proto.messages.PingResponse
   apk_classes:
     '16.1': wdp
-    '16.2': null
+    '16.2': wdf
   confidence: collision_resolved
 - proto_message: GalPingRequest
   proto_file: oaa/control/GalPingRequestMessage.proto
@@ -578,49 +578,49 @@ mappings:
   proto_fqn: oaa.proto.data.ControlChannelParams
   apk_classes:
     '16.1': wai
-    '16.2': null
+    '16.2': vzu
   confidence: triage_investigation
 - proto_message: ControlChannelConfig
   proto_file: oaa/control/ControlChannelConfigData.proto
   proto_fqn: oaa.proto.data.ControlChannelConfig
   apk_classes:
     '16.1': vxc
-    '16.2': null
+    '16.2': vwo
   confidence: triage_investigation
 - proto_message: ControlChannelConfigWrapper
   proto_file: oaa/control/ControlChannelConfigMessage.proto
   proto_fqn: oaa.proto.messages.ControlChannelConfigWrapper
   apk_classes:
     '16.1': wcx
-    '16.2': null
+    '16.2': wcn
   confidence: triage_investigation
 - proto_message: ServiceDiscoveryFeatureA
   proto_file: oaa/control/ServiceDiscoveryResponseMessage.proto
   proto_fqn: oaa.proto.messages.ServiceDiscoveryFeatureA
   apk_classes:
     '16.1': vyr
-    '16.2': null
+    '16.2': vyd
   confidence: triage_investigation
 - proto_message: ServiceDiscoveryFeatureB
   proto_file: oaa/control/ServiceDiscoveryResponseMessage.proto
   proto_fqn: oaa.proto.messages.ServiceDiscoveryFeatureB
   apk_classes:
     '16.1': vym
-    '16.2': null
+    '16.2': vxy
   confidence: triage_investigation
 - proto_message: ServiceDiscoveryFeatureC
   proto_file: oaa/control/ServiceDiscoveryResponseMessage.proto
   proto_fqn: oaa.proto.messages.ServiceDiscoveryFeatureC
   apk_classes:
     '16.1': vwt
-    '16.2': null
+    '16.2': vwf
   confidence: triage_investigation
 - proto_message: ServiceDiscoveryFeatureD
   proto_file: oaa/control/ServiceDiscoveryResponseMessage.proto
   proto_fqn: oaa.proto.messages.ServiceDiscoveryFeatureD
   apk_classes:
     '16.1': vwd
-    '16.2': null
+    '16.2': vvp
   confidence: triage_investigation
 - proto_message: ServiceDiscoveryRequest
   proto_file: oaa/control/ServiceDiscoveryRequestMessage.proto
@@ -648,7 +648,7 @@ mappings:
   proto_fqn: oaa.proto.messages.ShutdownRequest
   apk_classes:
     '16.1': vwf
-    '16.2': null
+    '16.2': vvr
   confidence: collision_resolved
 - proto_message: VendorExtensionChannel
   proto_file: oaa/control/VendorExtensionChannelData.proto
@@ -676,7 +676,7 @@ mappings:
   proto_fqn: oaa.proto.data.AbsoluteInputEvent
   apk_classes:
     '16.1': wci
-    '16.2': null
+    '16.2': wby
   confidence: collision_resolved
 - proto_message: AbsoluteInputEvents
   proto_file: oaa/input/AbsoluteInputEventsData.proto
@@ -746,7 +746,7 @@ mappings:
   proto_fqn: oaa.proto.messages.InputBindingNotification
   apk_classes:
     '16.1': vxw
-    '16.2': null
+    '16.2': vxi
   confidence: triage_investigation
 - proto_message: InputBindingRequest
   proto_file: oaa/input/InputBindingRequestMessage.proto
@@ -788,7 +788,7 @@ mappings:
   proto_fqn: oaa.proto.data.TouchLocation
   apk_classes:
     '16.1': wci
-    '16.2': null
+    '16.2': wby
   confidence: collision_resolved
 - proto_message: CarLocalMediaPlaybackMetadata
   proto_file: oaa/media/CarLocalMediaPlaybackMetadataMessage.proto
@@ -802,7 +802,7 @@ mappings:
   proto_fqn: oaa.proto.messages.CarLocalMediaPlaybackRequest
   apk_classes:
     '16.1': vwr
-    '16.2': null
+    '16.2': vwd
   confidence: proto_comment
 - proto_message: CarLocalMediaPlaybackStatus
   proto_file: oaa/media/CarLocalMediaPlaybackStatusMessage.proto
@@ -816,7 +816,7 @@ mappings:
   proto_fqn: oaa.proto.messages.MediaPlaybackCommand
   apk_classes:
     '16.1': vvm
-    '16.2': null
+    '16.2': vuy
   confidence: triage_investigation
 - proto_message: MediaStatusList
   proto_file: oaa/media/MediaStatusListData.proto
@@ -879,7 +879,7 @@ mappings:
   proto_fqn: oaa.proto.data.NavigationImageDimensions
   apk_classes:
     '16.1': vzq
-    '16.2': null
+    '16.2': vzc
   confidence: proto_comment
 - proto_message: NavigationChannel
   proto_file: oaa/navigation/NavigationChannelData.proto
@@ -942,42 +942,42 @@ mappings:
   proto_fqn: oaa.proto.messages.NavigationFocusRequest
   apk_classes:
     '16.1': vza
-    '16.2': null
+    '16.2': vyl
   confidence: collision_resolved
 - proto_message: NavigationFocusIndication
   proto_file: oaa/navigation/NavigationFocusIndicationMessage.proto
   proto_fqn: oaa.proto.messages.NavigationFocusIndication
   apk_classes:
     '16.1': wbg
-    '16.2': null
+    '16.2': waw
   confidence: triage_investigation
 - proto_message: NavigationFocusResponse
   proto_file: oaa/navigation/NavigationFocusResponseMessage.proto
   proto_fqn: oaa.proto.messages.NavigationFocusResponse
   apk_classes:
     '16.1': vyz
-    '16.2': null
+    '16.2': vyk
   confidence: collision_resolved
 - proto_message: NavigationImageOptions
   proto_file: oaa/navigation/NavigationImageOptionsData.proto
   proto_fqn: oaa.proto.data.NavigationImageOptions
   apk_classes:
     '16.1': vzq
-    '16.2': null
+    '16.2': vzc
   confidence: collision_resolved
 - proto_message: ChargingStationDetails
   proto_file: oaa/navigation/NavigationNotificationMessage.proto
   proto_fqn: oaa.proto.messages.ChargingStationDetails
   apk_classes:
     '16.1': vwz
-    '16.2': null
+    '16.2': vwl
   confidence: proto_comment
 - proto_message: NavigationDestination
   proto_file: oaa/navigation/NavigationNotificationMessage.proto
   proto_fqn: oaa.proto.messages.NavigationDestination
   apk_classes:
     '16.1': vze
-    '16.2': null
+    '16.2': vyq
   confidence: proto_comment
 - proto_message: NavigationLane
   proto_file: oaa/navigation/NavigationNotificationMessage.proto
@@ -991,7 +991,7 @@ mappings:
   proto_fqn: oaa.proto.messages.NavigationLaneDirection
   apk_classes:
     '16.1': vzi
-    '16.2': null
+    '16.2': vyu
   confidence: proto_comment
 - proto_message: NavigationManeuver
   proto_file: oaa/navigation/NavigationNotificationMessage.proto
@@ -1033,14 +1033,14 @@ mappings:
   proto_fqn: oaa.proto.messages.NavigationNotification
   apk_classes:
     '16.1': vzo
-    '16.2': null
+    '16.2': vza
   confidence: proto_comment
 - proto_message: NavigationRoadInfo
   proto_file: oaa/navigation/NavigationNotificationMessage.proto
   proto_fqn: oaa.proto.messages.NavigationRoadInfo
   apk_classes:
     '16.1': vzc
-    '16.2': null
+    '16.2': vyo
   confidence: proto_comment
 - proto_message: NavigationStep
   proto_file: oaa/navigation/NavigationNotificationMessage.proto
@@ -1068,7 +1068,7 @@ mappings:
   proto_fqn: oaa.proto.messages.NavigationState
   apk_classes:
     '16.1': vzp
-    '16.2': null
+    '16.2': vzb
   confidence: collision_resolved
 - proto_message: NavigationTurnEvent
   proto_file: oaa/navigation/NavigationTurnEventMessage.proto
@@ -1082,14 +1082,14 @@ mappings:
   proto_fqn: oaa.proto.data.NotificationChannel
   apk_classes:
     '16.1': wah
-    '16.2': null
+    '16.2': vzt
   confidence: proto_comment
 - proto_message: CallAvailabilityStatus
   proto_file: oaa/phone/CallAvailabilityMessage.proto
   proto_fqn: oaa.proto.messages.CallAvailabilityStatus
   apk_classes:
     '16.1': vwh
-    '16.2': null
+    '16.2': vvt
   confidence: collision_resolved
 - proto_message: PhoneCallState
   proto_file: oaa/phone/PhoneCallStateEnum.proto
@@ -1103,7 +1103,7 @@ mappings:
   proto_fqn: oaa.proto.messages.PhoneInputType
   apk_classes:
     '16.1': vyc
-    '16.2': null
+    '16.2': vxo
   confidence: collision_resolved
 - proto_message: PhoneStatusInput
   proto_file: oaa/phone/PhoneStatusInputMessage.proto
@@ -1131,14 +1131,14 @@ mappings:
   proto_fqn: oaa.proto.messages.VoiceSessionRequest
   apk_classes:
     '16.1': wde
-    '16.2': null
+    '16.2': wcu
   confidence: proto_comment
 - proto_message: RadioImage
   proto_file: oaa/radio/RadioMessages.proto
   proto_fqn: oaa.proto.messages.RadioImage
   apk_classes:
     '16.1': wam
-    '16.2': null
+    '16.2': wae
   confidence: proto_comment
 - proto_message: RadioMetadata
   proto_file: oaa/radio/RadioMessages.proto
@@ -1159,7 +1159,7 @@ mappings:
   proto_fqn: oaa.proto.messages.RadioProgramInfo
   apk_classes:
     '16.1': was
-    '16.2': null
+    '16.2': wak
   confidence: proto_comment
 - proto_message: RadioProgramInfoNotification
   proto_file: oaa/radio/RadioMessages.proto
@@ -1173,7 +1173,7 @@ mappings:
   proto_fqn: oaa.proto.messages.RadioProgramSelector
   apk_classes:
     '16.1': wav
-    '16.2': null
+    '16.2': wan
   confidence: proto_comment
 - proto_message: RadioProgramType
   proto_file: oaa/radio/RadioMessages.proto
@@ -1194,14 +1194,14 @@ mappings:
   proto_fqn: oaa.proto.messages.RadioTuneRequest
   apk_classes:
     '16.1': wbc
-    '16.2': null
+    '16.2': wat
   confidence: triage_investigation
 - proto_message: Accel
   proto_file: oaa/sensor/AccelData.proto
   proto_fqn: oaa.proto.data.Accel
   apk_classes:
     '16.1': vvj
-    '16.2': null
+    '16.2': vuv
   confidence: collision_resolved
 - proto_message: Compass
   proto_file: oaa/sensor/CompassData.proto
@@ -1222,7 +1222,7 @@ mappings:
   proto_fqn: oaa.proto.data.DrivingStatus
   apk_classes:
     '16.1': vxj
-    '16.2': null
+    '16.2': vwv
   confidence: collision_resolved
 - proto_message: EVConnectorType
   proto_file: oaa/sensor/EVConnectorTypeEnum.proto
@@ -1236,7 +1236,7 @@ mappings:
   proto_fqn: oaa.proto.data.Environment
   apk_classes:
     '16.1': vxk
-    '16.2': null
+    '16.2': vww
   confidence: collision_resolved
 - proto_message: FuelLevel
   proto_file: oaa/sensor/FuelLevelData.proto
@@ -1264,7 +1264,7 @@ mappings:
   proto_fqn: oaa.proto.data.Gear
   apk_classes:
     '16.1': vxp
-    '16.2': null
+    '16.2': vxb
   confidence: collision_resolved
 - proto_message: GpsSatelliteData
   proto_file: oaa/sensor/GpsSatelliteData.proto
@@ -1278,14 +1278,14 @@ mappings:
   proto_fqn: oaa.proto.data.Gyro
   apk_classes:
     '16.1': vxt
-    '16.2': null
+    '16.2': vxf
   confidence: collision_resolved
 - proto_message: HVAC
   proto_file: oaa/sensor/HVACData.proto
   proto_fqn: oaa.proto.data.HVAC
   apk_classes:
     '16.1': vxv
-    '16.2': null
+    '16.2': vxh
   confidence: collision_resolved
 - proto_message: Light
   proto_file: oaa/sensor/LightData.proto
@@ -1299,35 +1299,35 @@ mappings:
   proto_fqn: oaa.proto.data.NightMode
   apk_classes:
     '16.1': vzw
-    '16.2': null
+    '16.2': vzi
   confidence: collision_resolved
 - proto_message: Odometer
   proto_file: oaa/sensor/OdometerData.proto
   proto_fqn: oaa.proto.data.Odometer
   apk_classes:
     '16.1': vzx
-    '16.2': null
+    '16.2': vzj
   confidence: collision_resolved
 - proto_message: ParkingBrake
   proto_file: oaa/sensor/ParkingBrakeData.proto
   proto_fqn: oaa.proto.data.ParkingBrake
   apk_classes:
     '16.1': wab
-    '16.2': null
+    '16.2': vzn
   confidence: collision_resolved
 - proto_message: Passenger
   proto_file: oaa/sensor/PassengerData.proto
   proto_fqn: oaa.proto.data.Passenger
   apk_classes:
     '16.1': wac
-    '16.2': null
+    '16.2': vzo
   confidence: collision_resolved
 - proto_message: RPM
   proto_file: oaa/sensor/RPMData.proto
   proto_fqn: oaa.proto.data.RPM
   apk_classes:
     '16.1': wbn
-    '16.2': null
+    '16.2': wbd
   confidence: collision_resolved
 - proto_message: SensorChannelConfig
   proto_file: oaa/sensor/SensorChannelConfigData.proto
@@ -1341,7 +1341,7 @@ mappings:
   proto_fqn: oaa.proto.data.SensorTypeEntry
   apk_classes:
     '16.1': wbt
-    '16.2': null
+    '16.2': wbj
   confidence: proto_comment
 - proto_message: SensorChannel
   proto_file: oaa/sensor/SensorChannelData.proto
@@ -1355,7 +1355,7 @@ mappings:
   proto_fqn: oaa.proto.data.Sensor
   apk_classes:
     '16.1': wbt
-    '16.2': null
+    '16.2': wbj
   confidence: collision_resolved
 - proto_message: SensorEventFloat
   proto_file: oaa/sensor/SensorEventFloatData.proto
@@ -1383,7 +1383,7 @@ mappings:
   proto_fqn: oaa.proto.messages.SensorStartResponseMessage
   apk_classes:
     '16.1': wbs
-    '16.2': null
+    '16.2': wbi
   confidence: collision_resolved
 - proto_message: SensorRequest
   proto_file: oaa/sensor/SensorRequestMessage.proto
@@ -1411,28 +1411,28 @@ mappings:
   proto_fqn: oaa.proto.data.RawEvTripSettings
   apk_classes:
     '16.1': wbf
-    '16.2': null
+    '16.2': wav
   confidence: triage_investigation
 - proto_message: RawVehicleEnergyModel
   proto_file: oaa/sensor/RawVehicleEnergyModelData.proto
   proto_fqn: oaa.proto.data.RawVehicleEnergyModel
   apk_classes:
     '16.1': wbh
-    '16.2': null
+    '16.2': wax
   confidence: triage_investigation
 - proto_message: VehicleEnergyModelData
   proto_file: oaa/sensor/VehicleEnergyModelData.proto
   proto_fqn: oaa.proto.data.VehicleEnergyModelData
   apk_classes:
     '16.1': vvg
-    '16.2': null
+    '16.2': vus
   confidence: triage_investigation
 - proto_message: TrailerData
   proto_file: oaa/sensor/TrailerData.proto
   proto_fqn: oaa.proto.data.TrailerData
   apk_classes:
     '16.1': wcl
-    '16.2': null
+    '16.2': wca
   confidence: triage_investigation
 - proto_message: Speed
   proto_file: oaa/sensor/SpeedData.proto
@@ -1467,7 +1467,7 @@ mappings:
   proto_fqn: oaa.proto.messages.UiConfigData
   apk_classes:
     '16.1': wco
-    '16.2': null
+    '16.2': wce
   confidence: triage_investigation
 - proto_message: UiConfigEntry
   proto_file: oaa/video/UiConfigRequestMessage.proto
@@ -1481,7 +1481,7 @@ mappings:
   proto_fqn: oaa.proto.data.TollCardData
   apk_classes:
     '16.1': wch
-    '16.2': null
+    '16.2': wbx
   confidence: jadx_message_dispatch
 - proto_message: TransportMetadata
   proto_file: oaa/control/ConnectionConfigurationData.proto
@@ -1495,7 +1495,7 @@ mappings:
   proto_fqn: oaa.proto.data.TransportSecurityConfig
   apk_classes:
     '16.1': aakd
-    '16.2': null
+    '16.2': aajj
   confidence: jadx_message_dispatch
 - proto_message: VideoInsets
   proto_file: oaa/video/AdditionalVideoConfigData.proto
@@ -1516,14 +1516,14 @@ mappings:
   proto_fqn: oaa.proto.data.VideoResizeAction
   apk_classes:
     '16.1': vvl
-    '16.2': null
+    '16.2': vux
   confidence: proto_comment
 - proto_message: VideoResolutionRange
   proto_file: oaa/video/AdditionalVideoConfigData.proto
   proto_fqn: oaa.proto.data.VideoResolutionRange
   apk_classes:
     '16.1': vyb
-    '16.2': null
+    '16.2': vxn
   confidence: proto_comment
 - proto_message: VideoConfig
   proto_file: oaa/video/VideoConfigData.proto
@@ -1537,35 +1537,35 @@ mappings:
   proto_fqn: oaa.proto.messages.UiConfigRequest
   apk_classes:
     '16.1': wct
-    '16.2': null
+    '16.2': wcj
   confidence: triage_investigation
 - proto_message: VideoFocusMode
   proto_file: oaa/video/VideoFocusModeMessage.proto
   proto_fqn: oaa.proto.messages.VideoFocusMode
   apk_classes:
     '16.1': wcu
-    '16.2': null
+    '16.2': wck
   confidence: triage_investigation
 - proto_message: VideoFocusNotification
   proto_file: oaa/video/VideoFocusNotificationMessage.proto
   proto_fqn: oaa.proto.messages.VideoFocusNotification
   apk_classes:
     '16.1': vye
-    '16.2': null
+    '16.2': vxq
   confidence: triage_investigation
 - proto_message: VideoMargins
   proto_file: oaa/video/VideoMarginsData.proto
   proto_fqn: oaa.proto.data.VideoMargins
   apk_classes:
     '16.1': xhv
-    '16.2': null
+    '16.2': xhg
   confidence: triage_investigation
 - proto_message: VideoFocusIndication
   proto_file: oaa/video/VideoFocusIndicationMessage.proto
   proto_fqn: oaa.proto.messages.VideoFocusIndication
   apk_classes:
     '16.1': wdb
-    '16.2': null
+    '16.2': wcr
   confidence: apk_protos_json
 - proto_message: VideoFocusRequest
   proto_file: oaa/video/VideoFocusRequestMessage.proto
@@ -1593,14 +1593,14 @@ mappings:
   proto_fqn: oaa.proto.messages.WifiConnectStatus
   apk_classes:
     '16.1': wdj
-    '16.2': null
+    '16.2': wcz
   confidence: proto_comment
 - proto_message: WifiConnectionRejection
   proto_file: oaa/wifi/WifiConnectionRejectionMessage.proto
   proto_fqn: oaa.proto.messages.WifiConnectionRejection
   apk_classes:
     '16.1': wdk
-    '16.2': null
+    '16.2': wda
   confidence: proto_comment
 - proto_message: WifiDirectConfig
   proto_file: oaa/wifi/WifiDirectConfigData.proto
@@ -1614,7 +1614,7 @@ mappings:
   proto_fqn: oaa.proto.messages.WifiInfoRequest
   apk_classes:
     '16.1': wdl
-    '16.2': null
+    '16.2': wdb
   confidence: proto_comment
 - proto_message: WifiInfoResponse
   proto_file: oaa/wifi/WifiInfoResponseMessage.proto
