@@ -45,9 +45,9 @@ mappings:
   proto_file: oaa/av/AVChannelMediaStatsMessage.proto
   proto_fqn: oaa.proto.messages.StatsEntry
   apk_classes:
-    '16.1': vyu
+    '16.1': vvo
     '16.2': null
-  confidence: proto_comment
+  confidence: collision_resolved
 - proto_message: AVChannelSetupRequest
   proto_file: oaa/av/AVChannelSetupRequestMessage.proto
   proto_fqn: oaa.proto.messages.AVChannelSetupRequest
@@ -780,9 +780,9 @@ mappings:
   proto_file: oaa/phone/PhoneStatusInputMessage.proto
   proto_fqn: oaa.proto.messages.PhoneInputType
   apk_classes:
-    '16.1': wag
+    '16.1': vyc
     '16.2': null
-  confidence: proto_comment
+  confidence: collision_resolved
 - proto_message: PhoneStatusInput
   proto_file: oaa/phone/PhoneStatusInputMessage.proto
   proto_fqn: oaa.proto.messages.PhoneStatusInput
@@ -1165,9 +1165,9 @@ mappings:
   proto_file: oaa/wifi/WifiSetupInfoMessage.proto
   proto_fqn: oaa.proto.messages.WifiNetworkInfo
   apk_classes:
-    '16.1': wds
+    '16.1': wdi
     '16.2': null
-  confidence: proto_comment
+  confidence: collision_resolved
 - proto_message: WifiSetupMessage
   proto_file: oaa/wifi/WifiSetupMessageEnum.proto
   proto_fqn: oaa.proto.enums.WifiSetupMessage

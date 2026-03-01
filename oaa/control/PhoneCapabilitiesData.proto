@@ -76,11 +76,28 @@ message CapabilityPair
     optional bool value_b = 2;
 }
 
-// APK class: aagv — individual capability entry
+// APK class: aagv — individual capability entry (10 fields)
+// Fields 4-7 are oneof (capability_value)
 message CapabilityEntry
 {
     optional uint32 capability_id = 1;
     optional string capability_name = 2;
-    optional bytes capability_data = 3;
-    optional bytes capability_config = 7;
+    optional CapabilityEnum capability_type = 3;
+    oneof capability_value {
+        CapabilityValueMsg value_msg_4 = 4;
+        CapabilityValueMsg value_msg_5 = 5;
+        CapabilityValueMsg value_msg_6 = 6;
+        CapabilityValueMsg value_msg_7 = 7;
+    }
+    optional bool enabled = 8;
+    optional string description = 9;
+    repeated CapabilityValueMsg sub_entries = 10;
+}
+
+// Placeholder for CapabilityEntry oneof values (sub-message type TBD)
+message CapabilityValueMsg {}
+
+// Placeholder enum for capability type (field 3 of aagv)
+enum CapabilityEnum {
+    CAPABILITY_UNKNOWN = 0;
 }
