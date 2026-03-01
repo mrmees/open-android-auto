@@ -6,6 +6,20 @@ mappings:
     '16.1': vvp
     '16.2': null
   confidence: collision_resolved
+- proto_message: AudioFocusState
+  proto_file: oaa/audio/AudioFocusStateMessage.proto
+  proto_fqn: oaa.proto.messages.AudioFocusState
+  apk_classes:
+    '16.1': waz
+    '16.2': null
+  confidence: triage_investigation
+- proto_message: AudioStreamType
+  proto_file: oaa/audio/AudioStreamTypeMessage.proto
+  proto_fqn: oaa.proto.messages.AudioStreamType
+  apk_classes:
+    '16.1': wba
+    '16.2': null
+  confidence: triage_investigation
 - proto_message: AudioFocusChannel
   proto_file: oaa/audio/AudioFocusChannelData.proto
   proto_fqn: oaa.proto.data.AudioFocusChannel
@@ -363,6 +377,13 @@ mappings:
     '16.1': wbw
     '16.2': wbm
   confidence: apk_protos_json
+- proto_message: ChannelOpenAck
+  proto_file: oaa/generic/ChannelOpenAckMessage.proto
+  proto_fqn: oaa.proto.messages.ChannelOpenAck
+  apk_classes:
+    '16.1': wcf
+    '16.2': null
+  confidence: triage_investigation
 - proto_message: ChannelOpenRequest
   proto_file: oaa/control/ChannelOpenRequestMessage.proto
   proto_fqn: oaa.proto.messages.ChannelOpenRequest
@@ -552,6 +573,48 @@ mappings:
     '16.1': wax
     '16.2': null
   confidence: proto_comment
+- proto_message: ControlChannelConfig
+  proto_file: oaa/control/ControlChannelConfigData.proto
+  proto_fqn: oaa.proto.data.ControlChannelConfig
+  apk_classes:
+    '16.1': vxc
+    '16.2': null
+  confidence: triage_investigation
+- proto_message: ControlChannelConfigWrapper
+  proto_file: oaa/control/ControlChannelConfigMessage.proto
+  proto_fqn: oaa.proto.messages.ControlChannelConfigWrapper
+  apk_classes:
+    '16.1': wcx
+    '16.2': null
+  confidence: triage_investigation
+- proto_message: ServiceDiscoveryFeatureA
+  proto_file: oaa/control/ServiceDiscoveryResponseMessage.proto
+  proto_fqn: oaa.proto.messages.ServiceDiscoveryFeatureA
+  apk_classes:
+    '16.1': vyr
+    '16.2': null
+  confidence: triage_investigation
+- proto_message: ServiceDiscoveryFeatureB
+  proto_file: oaa/control/ServiceDiscoveryResponseMessage.proto
+  proto_fqn: oaa.proto.messages.ServiceDiscoveryFeatureB
+  apk_classes:
+    '16.1': vym
+    '16.2': null
+  confidence: triage_investigation
+- proto_message: ServiceDiscoveryFeatureC
+  proto_file: oaa/control/ServiceDiscoveryResponseMessage.proto
+  proto_fqn: oaa.proto.messages.ServiceDiscoveryFeatureC
+  apk_classes:
+    '16.1': vwt
+    '16.2': null
+  confidence: triage_investigation
+- proto_message: ServiceDiscoveryFeatureD
+  proto_file: oaa/control/ServiceDiscoveryResponseMessage.proto
+  proto_fqn: oaa.proto.messages.ServiceDiscoveryFeatureD
+  apk_classes:
+    '16.1': vwd
+    '16.2': null
+  confidence: triage_investigation
 - proto_message: ServiceDiscoveryRequest
   proto_file: oaa/control/ServiceDiscoveryRequestMessage.proto
   proto_fqn: oaa.proto.messages.ServiceDiscoveryRequest
@@ -587,6 +650,13 @@ mappings:
     '16.1': wcv
     '16.2': wcl
   confidence: apk_protos_json
+- proto_message: AbsInputEvent
+  proto_file: oaa/input/InputEventIndicationMessage.proto
+  proto_fqn: oaa.proto.messages.AbsInputEvent
+  apk_classes:
+    '16.1': vvh
+    '16.2': null
+  confidence: triage_investigation
 - proto_message: AbsoluteEvent
   proto_file: oaa/input/InputEventIndicationMessage.proto
   proto_fqn: oaa.proto.messages.AbsoluteEvent
@@ -664,6 +734,13 @@ mappings:
     '16.1': wbl
     '16.2': null
   confidence: collision_resolved
+- proto_message: InputBindingNotification
+  proto_file: oaa/input/InputBindingNotificationMessage.proto
+  proto_fqn: oaa.proto.messages.InputBindingNotification
+  apk_classes:
+    '16.1': vxw
+    '16.2': null
+  confidence: triage_investigation
 - proto_message: InputBindingRequest
   proto_file: oaa/input/InputBindingRequestMessage.proto
   proto_fqn: oaa.proto.messages.InputBindingRequest
@@ -727,6 +804,27 @@ mappings:
     '16.1': vws
     '16.2': vwe
   confidence: proto_comment
+- proto_message: MediaFocusRequest
+  proto_file: oaa/media/MediaFocusRequestMessage.proto
+  proto_fqn: oaa.proto.messages.MediaFocusRequest
+  apk_classes:
+    '16.1': wao
+    '16.2': null
+  confidence: triage_investigation
+- proto_message: MediaPlaybackCommand
+  proto_file: oaa/media/MediaPlaybackCommandMessage.proto
+  proto_fqn: oaa.proto.messages.MediaPlaybackCommand
+  apk_classes:
+    '16.1': vvm
+    '16.2': null
+  confidence: triage_investigation
+- proto_message: MediaStatusList
+  proto_file: oaa/media/MediaStatusListData.proto
+  proto_fqn: oaa.proto.data.MediaStatusList
+  apk_classes:
+    '16.1': vyd
+    '16.2': null
+  confidence: triage_investigation
 - proto_message: MediaPlaybackMetadata
   proto_file: oaa/media/MediaPlaybackMetadataMessage.proto
   proto_fqn: oaa.proto.messages.MediaPlaybackMetadata
@@ -846,6 +944,13 @@ mappings:
     '16.1': vza
     '16.2': null
   confidence: collision_resolved
+- proto_message: NavigationFocusIndication
+  proto_file: oaa/navigation/NavigationFocusIndicationMessage.proto
+  proto_fqn: oaa.proto.messages.NavigationFocusIndication
+  apk_classes:
+    '16.1': wbg
+    '16.2': null
+  confidence: triage_investigation
 - proto_message: NavigationFocusResponse
   proto_file: oaa/navigation/NavigationFocusResponseMessage.proto
   proto_fqn: oaa.proto.messages.NavigationFocusResponse
@@ -1252,6 +1357,13 @@ mappings:
     '16.1': wbt
     '16.2': null
   confidence: collision_resolved
+- proto_message: SensorEventFloat
+  proto_file: oaa/sensor/SensorEventFloatData.proto
+  proto_fqn: oaa.proto.data.SensorEventFloat
+  apk_classes:
+    '16.1': waa
+    '16.2': null
+  confidence: triage_investigation
 - proto_message: SensorEventIndication
   proto_file: oaa/sensor/SensorEventIndicationMessage.proto
   proto_fqn: oaa.proto.messages.SensorEventIndication
@@ -1392,6 +1504,34 @@ mappings:
     '16.1': wcz
     '16.2': wcp
   confidence: apk_protos_json
+- proto_message: UiConfigRequest
+  proto_file: oaa/video/UiConfigRequestMessage.proto
+  proto_fqn: oaa.proto.messages.UiConfigRequest
+  apk_classes:
+    '16.1': wct
+    '16.2': null
+  confidence: triage_investigation
+- proto_message: VideoFocusMode
+  proto_file: oaa/video/VideoFocusModeMessage.proto
+  proto_fqn: oaa.proto.messages.VideoFocusMode
+  apk_classes:
+    '16.1': wcu
+    '16.2': null
+  confidence: triage_investigation
+- proto_message: VideoFocusNotification
+  proto_file: oaa/video/VideoFocusNotificationMessage.proto
+  proto_fqn: oaa.proto.messages.VideoFocusNotification
+  apk_classes:
+    '16.1': vye
+    '16.2': null
+  confidence: triage_investigation
+- proto_message: VideoMargins
+  proto_file: oaa/video/VideoMarginsData.proto
+  proto_fqn: oaa.proto.data.VideoMargins
+  apk_classes:
+    '16.1': xhv
+    '16.2': null
+  confidence: triage_investigation
 - proto_message: VideoFocusIndication
   proto_file: oaa/video/VideoFocusIndicationMessage.proto
   proto_fqn: oaa.proto.messages.VideoFocusIndication
