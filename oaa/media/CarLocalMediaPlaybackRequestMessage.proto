@@ -25,7 +25,7 @@
  *   0x8003 = CarLocalMediaPlaybackRequest   (HU→Phone, vwr, 1 field)
  */
 
-syntax = "proto3";
+syntax = "proto2";
 
 import "oaa/media/CarLocalMediaPlaybackStatusMessage.proto";
 

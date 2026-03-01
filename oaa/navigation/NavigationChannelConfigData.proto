@@ -7,7 +7,7 @@
  * Navigation channel configuration with image dimension requirements.
  */
 
-syntax="proto3";
+syntax="proto2";
 
 package oaa.proto.data;
 

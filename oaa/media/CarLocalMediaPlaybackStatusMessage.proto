@@ -27,7 +27,7 @@
  * transport action command, 1 field reusing CarLocalMediaPlaybackAction enum).
  */
 
-syntax = "proto3";
+syntax = "proto2";
 
 import "oaa/media/MediaPlaybackStatusMessage.proto";
 

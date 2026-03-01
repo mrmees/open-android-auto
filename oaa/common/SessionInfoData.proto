@@ -12,7 +12,7 @@
  * Corrected via manual APK trace from wbx.java field 6 → vvf.java.
  */
 
-syntax="proto3";
+syntax="proto2";
 
 package oaa.proto.data;
 

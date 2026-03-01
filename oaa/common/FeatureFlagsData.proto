@@ -7,7 +7,7 @@
  * Feature flags from the Gearhead SDK — capabilities negotiation.
  */
 
-syntax="proto3";
+syntax="proto2";
 
 package oaa.proto.data;
 

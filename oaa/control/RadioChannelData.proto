@@ -12,7 +12,7 @@
  * tuner capability with supported bands, codec types, and feature flags.
  */
 
-syntax = "proto3";
+syntax = "proto2";
 
 package oaa.proto.data;
 
