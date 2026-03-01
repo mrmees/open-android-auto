@@ -57,6 +57,9 @@ _SUPPRESSED: dict[tuple[str, IssueKind, int | None], str] = {
     # Extra enum values we intentionally define beyond what APK indexes
     ("EVConnectorType", IssueKind.EXTRA_FIELD, 14):
         "NACS added for newer vehicles; not in 16.1 APK",
+    # Field added in 16.2 (ahep), not present in 16.1 (wdo); seen on wire
+    ("PingRequest", IssueKind.EXTRA_FIELD, 2):
+        "ping_flags added in 16.2; confirmed on wire (163/195 frames)",
     ("WifiSetupMessage", IssueKind.EXTRA_FIELD, 0):
         "NONE=0 default required by proto3; APK enum starts at 1",
     # Proto-lite encoding artifacts (also in _KNOWN_ISSUES for ERROR downgrade)

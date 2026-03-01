@@ -8,4 +8,5 @@ package oaa.proto.messages;
 message PingRequest
 {
     optional int64 timestamp = 1;
+    optional int32 ping_flags = 2;  // APK 16.2: ahep field 2 (int32, enum verifier ahce 0-19); always 0 in captures
 }
