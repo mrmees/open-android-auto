@@ -20,14 +20,17 @@ syntax="proto3";
 
 package oaa.proto.enums;
 
+// APK enum class: vvz.java (AA v16.1) — unobfuscated constant names preserved.
+// Previous values A2DP/HFP were incorrect — those are BT profiles, not pairing methods.
+// APK also defines BLUETOOTH_PAIRING_UNAVAILABLE(-1) as an internal error sentinel.
 message BluetoothPairingMethod
 {
     enum Enum
     {
         NONE = 0;
-        UNK_1 = 1;
-        A2DP = 2;
-        UNK_3 = 3;
-        HFP = 4;
+        OOB = 1;                  // Out-Of-Band pairing
+        NUMERIC_COMPARISON = 2;   // Numeric comparison (was incorrectly "A2DP")
+        PASSKEY_ENTRY = 3;        // Passkey entry
+        PIN = 4;                  // PIN code (was incorrectly "HFP")
     }
 }

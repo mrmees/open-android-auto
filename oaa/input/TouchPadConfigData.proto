@@ -22,5 +22,5 @@ message TouchPadConfig
     optional int32 unknown_5 = 5;
     optional bool unknown_6 = 6;
     optional bool unknown_7 = 7;
-    optional int32 unknown_8 = 8;
+    optional int32 sensitivity = 8;  // APK toString (qmr.java): "sensitivity"
 }
