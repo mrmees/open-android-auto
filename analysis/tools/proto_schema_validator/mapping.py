@@ -168,6 +168,32 @@ def get_or_build_bundle() -> DescriptorBundle:
     return _bundle_cache[key]
 
 
+def is_empty_apk_class(db_path: Path, class_name: str) -> bool:
+    """Check if an APK class exists in proto_classes with field_count=0."""
+    conn = sqlite3.connect(str(db_path))
+    try:
+        row = conn.execute(
+            "SELECT field_count FROM proto_classes WHERE class_name = ?",
+            (class_name,),
+        ).fetchone()
+    finally:
+        conn.close()
+    return row is not None and row[0] == 0
+
+
+def get_apk_enum_values(db_path: Path, class_name: str) -> list[tuple[int, str]] | None:
+    """Query enum_maps for enum values of an APK class. Returns None if not an enum class."""
+    conn = sqlite3.connect(str(db_path))
+    try:
+        rows = conn.execute(
+            "SELECT int_value, enum_name FROM enum_maps WHERE enum_class = ? ORDER BY int_value",
+            (class_name,),
+        ).fetchall()
+    finally:
+        conn.close()
+    return [(r[0], r[1]) for r in rows] if rows else None
+
+
 def get_all_apk_classes(db_path: Path) -> dict[str, str | None]:
     """Get all class_name -> proto_syntax from proto_classes table."""
     conn = sqlite3.connect(str(db_path))

@@ -12,6 +12,8 @@ syntax = "proto3";
 
 package oaa.proto.messages;
 
+import "oaa/carcontrol/VehicleAreaEnums.proto";
+
 // Car property IDs — VHAL property identifiers (APK enum: vuz)
 // Values are Android VHAL property IDs (VehiclePropertyIds.java)
 enum CarPropertyId {
@@ -73,11 +75,11 @@ message CarProperty {
 // Area IDs are bitmasks — list elements are ORed together on the phone side.
 message CarAreaId {
     CarAreaType area_type = 1;
-    repeated int32 window_ids = 2 [packed = true];
-    repeated int32 seat_ids = 3 [packed = true];
-    repeated int32 mirror_ids = 4 [packed = true];
-    repeated int32 door_ids = 5 [packed = true];
-    repeated int32 wheel_ids = 6 [packed = true];
+    repeated VehicleAreaWindow window_ids = 2 [packed = true];
+    repeated VehicleAreaSeat seat_ids = 3 [packed = true];
+    repeated VehicleAreaMirror mirror_ids = 4 [packed = true];
+    repeated VehicleAreaDoor door_ids = 5 [packed = true];
+    repeated VehicleAreaWheel wheel_ids = 6 [packed = true];
 }
 
 // APK class: vun → SafeParcelable: CarAction
