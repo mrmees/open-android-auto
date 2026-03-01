@@ -1,0 +1,1198 @@
+mappings:
+- proto_message: AudioConfig
+  proto_file: oaa/audio/AudioConfigData.proto
+  proto_fqn: oaa.proto.data.AudioConfig
+  apk_classes:
+    '16.1': vzy
+    '16.2': null
+  confidence: apk_protos_json_collision_9
+- proto_message: AudioFocusChannel
+  proto_file: oaa/audio/AudioFocusChannelData.proto
+  proto_fqn: oaa.proto.data.AudioFocusChannel
+  apk_classes:
+    '16.1': vxq
+    '16.2': null
+  confidence: proto_comment
+- proto_message: AudioFocusRequest
+  proto_file: oaa/audio/AudioFocusRequestMessage.proto
+  proto_fqn: oaa.proto.messages.AudioFocusRequest
+  apk_classes:
+    '16.1': aass
+    '16.2': null
+  confidence: apk_protos_json_collision_10
+- proto_message: AudioFocusResponse
+  proto_file: oaa/audio/AudioFocusResponseMessage.proto
+  proto_fqn: oaa.proto.messages.AudioFocusResponse
+  apk_classes:
+    '16.1': vvq
+    '16.2': null
+  confidence: proto_comment
+- proto_message: AVChannel
+  proto_file: oaa/av/AVChannelData.proto
+  proto_fqn: oaa.proto.data.AVChannel
+  apk_classes:
+    '16.1': vys
+    '16.2': null
+  confidence: apk_protos_json
+- proto_message: AVChannelMediaConfig
+  proto_file: oaa/av/AVChannelMediaConfigMessage.proto
+  proto_fqn: oaa.proto.messages.AVChannelMediaConfig
+  apk_classes:
+    '16.1': vyo
+    '16.2': null
+  confidence: proto_comment
+- proto_message: StatsEntry
+  proto_file: oaa/av/AVChannelMediaStatsMessage.proto
+  proto_fqn: oaa.proto.messages.StatsEntry
+  apk_classes:
+    '16.1': vyu
+    '16.2': null
+  confidence: proto_comment
+- proto_message: AVChannelSetupRequest
+  proto_file: oaa/av/AVChannelSetupRequestMessage.proto
+  proto_fqn: oaa.proto.messages.AVChannelSetupRequest
+  apk_classes:
+    '16.1': aagl
+    '16.2': null
+  confidence: apk_protos_json_collision_7
+- proto_message: AVChannelSetupResponse
+  proto_file: oaa/av/AVChannelSetupResponseMessage.proto
+  proto_fqn: oaa.proto.messages.AVChannelSetupResponse
+  apk_classes:
+    '16.1': vxb
+    '16.2': null
+  confidence: apk_protos_json
+- proto_message: AVChannelStartIndication
+  proto_file: oaa/av/AVChannelStartIndicationMessage.proto
+  proto_fqn: oaa.proto.messages.AVChannelStartIndication
+  apk_classes:
+    '16.1': wce
+    '16.2': null
+  confidence: proto_comment
+- proto_message: AVInputChannel
+  proto_file: oaa/av/AVInputChannelData.proto
+  proto_fqn: oaa.proto.data.AVInputChannel
+  apk_classes:
+    '16.1': aass
+    '16.2': null
+  confidence: apk_protos_json_collision_10
+- proto_message: AVInputOpenRequest
+  proto_file: oaa/av/AVInputOpenRequestMessage.proto
+  proto_fqn: oaa.proto.messages.AVInputOpenRequest
+  apk_classes:
+    '16.1': vyx
+    '16.2': null
+  confidence: apk_protos_json
+- proto_message: AVInputOpenResponse
+  proto_file: oaa/av/AVInputOpenResponseMessage.proto
+  proto_fqn: oaa.proto.messages.AVInputOpenResponse
+  apk_classes:
+    '16.1': vxn
+    '16.2': null
+  confidence: apk_protos_json_collision_12
+- proto_message: AVMediaAckIndication
+  proto_file: oaa/av/AVMediaAckIndicationMessage.proto
+  proto_fqn: oaa.proto.messages.AVMediaAckIndication
+  apk_classes:
+    '16.1': vvk
+    '16.2': null
+  confidence: proto_comment
+- proto_message: BluetoothChannel
+  proto_file: oaa/bluetooth/BluetoothChannelData.proto
+  proto_fqn: oaa.proto.data.BluetoothChannel
+  apk_classes:
+    '16.1': ahel
+    '16.2': null
+  confidence: apk_protos_json_collision_2
+- proto_message: BluetoothPairingRequest
+  proto_file: oaa/bluetooth/BluetoothPairingRequestMessage.proto
+  proto_fqn: oaa.proto.messages.BluetoothPairingRequest
+  apk_classes:
+    '16.1': kay
+    '16.2': null
+  confidence: apk_protos_json
+- proto_message: BluetoothPairingResponse
+  proto_file: oaa/bluetooth/BluetoothPairingResponseMessage.proto
+  proto_fqn: oaa.proto.messages.BluetoothPairingResponse
+  apk_classes:
+    '16.1': xgq
+    '16.2': null
+  confidence: apk_protos_json
+- proto_message: CarAction
+  proto_file: oaa/carcontrol/CarControlMessages.proto
+  proto_fqn: oaa.proto.messages.CarAction
+  apk_classes:
+    '16.1': vun
+    '16.2': null
+  confidence: proto_comment
+- proto_message: CarActionControl
+  proto_file: oaa/carcontrol/CarControlMessages.proto
+  proto_fqn: oaa.proto.messages.CarActionControl
+  apk_classes:
+    '16.1': vwi
+    '16.2': null
+  confidence: proto_comment
+- proto_message: CarAreaId
+  proto_file: oaa/carcontrol/CarControlMessages.proto
+  proto_fqn: oaa.proto.messages.CarAreaId
+  apk_classes:
+    '16.1': vuw
+    '16.2': null
+  confidence: proto_comment
+- proto_message: CarControl
+  proto_file: oaa/carcontrol/CarControlMessages.proto
+  proto_fqn: oaa.proto.messages.CarControl
+  apk_classes:
+    '16.1': vwl
+    '16.2': null
+  confidence: proto_comment
+- proto_message: CarControlGroup
+  proto_file: oaa/carcontrol/CarControlMessages.proto
+  proto_fqn: oaa.proto.messages.CarControlGroup
+  apk_classes:
+    '16.1': vwm
+    '16.2': null
+  confidence: proto_comment
+- proto_message: CarProperty
+  proto_file: oaa/carcontrol/CarControlMessages.proto
+  proto_fqn: oaa.proto.messages.CarProperty
+  apk_classes:
+    '16.1': vuv
+    '16.2': null
+  confidence: proto_comment
+- proto_message: CarPropertyControl
+  proto_file: oaa/carcontrol/CarControlMessages.proto
+  proto_fqn: oaa.proto.messages.CarPropertyControl
+  apk_classes:
+    '16.1': vuy
+    '16.2': null
+  confidence: proto_comment
+- proto_message: CarPropertyValue
+  proto_file: oaa/carcontrol/CarControlMessages.proto
+  proto_fqn: oaa.proto.messages.CarPropertyValue
+  apk_classes:
+    '16.1': vvd
+    '16.2': null
+  confidence: proto_comment
+- proto_message: FloatValues
+  proto_file: oaa/carcontrol/CarControlMessages.proto
+  proto_fqn: oaa.proto.messages.FloatValues
+  apk_classes:
+    '16.1': vvc
+    '16.2': null
+  confidence: proto_comment
+- proto_message: IntValues
+  proto_file: oaa/carcontrol/CarControlMessages.proto
+  proto_fqn: oaa.proto.messages.IntValues
+  apk_classes:
+    '16.1': vvb
+    '16.2': null
+  confidence: proto_comment
+- proto_message: LongValues
+  proto_file: oaa/carcontrol/CarControlMessages.proto
+  proto_fqn: oaa.proto.messages.LongValues
+  apk_classes:
+    '16.1': vva
+    '16.2': null
+  confidence: proto_comment
+- proto_message: SetCarPropertyListenerResult
+  proto_file: oaa/carcontrol/CarControlMessages.proto
+  proto_fqn: oaa.proto.messages.SetCarPropertyListenerResult
+  apk_classes:
+    '16.1': vwv
+    '16.2': null
+  confidence: proto_comment
+- proto_message: Diagnostics
+  proto_file: oaa/common/DiagnosticsData.proto
+  proto_fqn: oaa.proto.data.Diagnostics
+  apk_classes:
+    '16.1': vxf
+    '16.2': null
+  confidence: proto_comment
+- proto_message: DriverPosition
+  proto_file: oaa/common/DriverPositionEnum.proto
+  proto_fqn: oaa.proto.enums.DriverPosition
+  apk_classes:
+    '16.1': vxi
+    '16.2': null
+  confidence: proto_comment
+- proto_message: AssistantFeatureFlags
+  proto_file: oaa/common/FeatureFlagsData.proto
+  proto_fqn: oaa.proto.data.AssistantFeatureFlags
+  apk_classes:
+    '16.1': nll
+    '16.2': null
+  confidence: proto_comment
+- proto_message: VersionFeatureFlags
+  proto_file: oaa/common/FeatureFlagsData.proto
+  proto_fqn: oaa.proto.data.VersionFeatureFlags
+  apk_classes:
+    '16.1': wdq
+    '16.2': null
+  confidence: proto_comment
+- proto_message: PingConfiguration
+  proto_file: oaa/common/PingConfigurationData.proto
+  proto_fqn: oaa.proto.data.PingConfiguration
+  apk_classes:
+    '16.1': zyd
+    '16.2': null
+  confidence: proto_comment
+- proto_message: SessionInfo
+  proto_file: oaa/common/SessionInfoData.proto
+  proto_fqn: oaa.proto.data.SessionInfo
+  apk_classes:
+    '16.1': vvf
+    '16.2': null
+  confidence: proto_comment
+- proto_message: AuthCompleteIndication
+  proto_file: oaa/control/AuthCompleteIndicationMessage.proto
+  proto_fqn: oaa.proto.messages.AuthCompleteIndication
+  apk_classes:
+    '16.1': aass
+    '16.2': null
+  confidence: apk_protos_json_collision_10
+- proto_message: BindingRequest
+  proto_file: oaa/control/BindingRequestMessage.proto
+  proto_fqn: oaa.proto.messages.BindingRequest
+  apk_classes:
+    '16.1': wcg
+    '16.2': null
+  confidence: apk_protos_json
+- proto_message: BindingResponse
+  proto_file: oaa/control/BindingResponseMessage.proto
+  proto_fqn: oaa.proto.messages.BindingResponse
+  apk_classes:
+    '16.1': vwb
+    '16.2': null
+  confidence: proto_comment
+- proto_message: ChannelDescriptor
+  proto_file: oaa/control/ChannelDescriptorData.proto
+  proto_fqn: oaa.proto.data.ChannelDescriptor
+  apk_classes:
+    '16.1': wbw
+    '16.2': null
+  confidence: apk_protos_json
+- proto_message: ChannelOpenRequest
+  proto_file: oaa/control/ChannelOpenRequestMessage.proto
+  proto_fqn: oaa.proto.messages.ChannelOpenRequest
+  apk_classes:
+    '16.1': vxn
+    '16.2': null
+  confidence: apk_protos_json_collision_12
+- proto_message: ChannelOpenResponse
+  proto_file: oaa/control/ChannelOpenResponseMessage.proto
+  proto_fqn: oaa.proto.messages.ChannelOpenResponse
+  apk_classes:
+    '16.1': aass
+    '16.2': null
+  confidence: apk_protos_json_collision_10
+- proto_message: ConnectionConfiguration
+  proto_file: oaa/control/ConnectionConfigurationData.proto
+  proto_fqn: oaa.proto.data.ConnectionConfiguration
+  apk_classes:
+    '16.1': aajk
+    '16.2': null
+  confidence: proto_comment
+- proto_message: ConnectionFeatureFlags
+  proto_file: oaa/control/ConnectionConfigurationData.proto
+  proto_fqn: oaa.proto.data.ConnectionFeatureFlags
+  apk_classes:
+    '16.1': aaja
+    '16.2': null
+  confidence: proto_comment
+- proto_message: ConnectionReservedConfig
+  proto_file: oaa/control/ConnectionConfigurationData.proto
+  proto_fqn: oaa.proto.data.ConnectionReservedConfig
+  apk_classes:
+    '16.1': aaji
+    '16.2': null
+  confidence: proto_comment
+- proto_message: ConnectionSecurityConfig
+  proto_file: oaa/control/ConnectionConfigurationData.proto
+  proto_fqn: oaa.proto.data.ConnectionSecurityConfig
+  apk_classes:
+    '16.1': aajj
+    '16.2': null
+  confidence: proto_comment
+- proto_message: ConnectionTransportConfig
+  proto_file: oaa/control/ConnectionConfigurationData.proto
+  proto_fqn: oaa.proto.data.ConnectionTransportConfig
+  apk_classes:
+    '16.1': aajh
+    '16.2': null
+  confidence: proto_comment
+- proto_message: ConnectionTuningConfig
+  proto_file: oaa/control/ConnectionConfigurationData.proto
+  proto_fqn: oaa.proto.data.ConnectionTuningConfig
+  apk_classes:
+    '16.1': aajg
+    '16.2': null
+  confidence: proto_comment
+- proto_message: HeadUnitInfo
+  proto_file: oaa/control/HeadUnitInfoData.proto
+  proto_fqn: oaa.proto.data.HeadUnitInfo
+  apk_classes:
+    '16.1': aacd
+    '16.2': null
+  confidence: apk_protos_json
+- proto_message: CapabilityEntry
+  proto_file: oaa/control/PhoneCapabilitiesData.proto
+  proto_fqn: oaa.proto.data.CapabilityEntry
+  apk_classes:
+    '16.1': aagv
+    '16.2': null
+  confidence: proto_comment
+- proto_message: CapabilityFlag
+  proto_file: oaa/control/PhoneCapabilitiesData.proto
+  proto_fqn: oaa.proto.data.CapabilityFlag
+  apk_classes:
+    '16.1': aagh
+    '16.2': null
+  confidence: proto_comment
+- proto_message: CapabilityPair
+  proto_file: oaa/control/PhoneCapabilitiesData.proto
+  proto_fqn: oaa.proto.data.CapabilityPair
+  apk_classes:
+    '16.1': aags
+    '16.2': null
+  confidence: proto_comment
+- proto_message: DeviceInfo
+  proto_file: oaa/control/PhoneCapabilitiesData.proto
+  proto_fqn: oaa.proto.data.DeviceInfo
+  apk_classes:
+    '16.1': vve
+    '16.2': null
+  confidence: proto_comment
+- proto_message: PhoneConnectionConfig
+  proto_file: oaa/control/PhoneCapabilitiesData.proto
+  proto_fqn: oaa.proto.data.PhoneConnectionConfig
+  apk_classes:
+    '16.1': wdm
+    '16.2': null
+  confidence: proto_comment
+- proto_message: PingConfigPair
+  proto_file: oaa/control/PhoneCapabilitiesData.proto
+  proto_fqn: oaa.proto.data.PingConfigPair
+  apk_classes:
+    '16.1': aaft
+    '16.2': null
+  confidence: proto_comment
+- proto_message: PingRequest
+  proto_file: oaa/control/PingRequestMessage.proto
+  proto_fqn: oaa.proto.messages.PingRequest
+  apk_classes:
+    '16.1': zrz
+    '16.2': null
+  confidence: apk_protos_json_collision_2
+- proto_message: PingResponse
+  proto_file: oaa/control/PingResponseMessage.proto
+  proto_fqn: oaa.proto.messages.PingResponse
+  apk_classes:
+    '16.1': zrz
+    '16.2': null
+  confidence: apk_protos_json_collision_2
+- proto_message: RadioBand
+  proto_file: oaa/control/RadioChannelData.proto
+  proto_fqn: oaa.proto.data.RadioBand
+  apk_classes:
+    '16.1': wbe
+    '16.2': null
+  confidence: proto_comment
+- proto_message: RadioChannel
+  proto_file: oaa/control/RadioChannelData.proto
+  proto_fqn: oaa.proto.data.RadioChannel
+  apk_classes:
+    '16.1': way
+    '16.2': null
+  confidence: proto_comment
+- proto_message: RadioStation
+  proto_file: oaa/control/RadioChannelData.proto
+  proto_fqn: oaa.proto.data.RadioStation
+  apk_classes:
+    '16.1': wax
+    '16.2': null
+  confidence: proto_comment
+- proto_message: ServiceDiscoveryRequest
+  proto_file: oaa/control/ServiceDiscoveryRequestMessage.proto
+  proto_fqn: oaa.proto.messages.ServiceDiscoveryRequest
+  apk_classes:
+    '16.1': wbx
+    '16.2': null
+  confidence: apk_protos_json
+- proto_message: ServiceDiscoveryResponse
+  proto_file: oaa/control/ServiceDiscoveryResponseMessage.proto
+  proto_fqn: oaa.proto.messages.ServiceDiscoveryResponse
+  apk_classes:
+    '16.1': wby
+    '16.2': null
+  confidence: apk_protos_json
+- proto_message: ShutdownRequest
+  proto_file: oaa/control/ShutdownRequestMessage.proto
+  proto_fqn: oaa.proto.messages.ShutdownRequest
+  apk_classes:
+    '16.1': aass
+    '16.2': null
+  confidence: apk_protos_json_collision_10
+- proto_message: VendorExtensionChannel
+  proto_file: oaa/control/VendorExtensionChannelData.proto
+  proto_fqn: oaa.proto.data.VendorExtensionChannel
+  apk_classes:
+    '16.1': wcv
+    '16.2': null
+  confidence: apk_protos_json
+- proto_message: AbsoluteInputEvent
+  proto_file: oaa/input/AbsoluteInputEventData.proto
+  proto_fqn: oaa.proto.data.AbsoluteInputEvent
+  apk_classes:
+    '16.1': vxn
+    '16.2': null
+  confidence: apk_protos_json_collision_12
+- proto_message: AbsoluteInputEvents
+  proto_file: oaa/input/AbsoluteInputEventsData.proto
+  proto_fqn: oaa.proto.data.AbsoluteInputEvents
+  apk_classes:
+    '16.1': wcj
+    '16.2': null
+  confidence: proto_comment
+- proto_message: ButtonEvent
+  proto_file: oaa/input/ButtonEventData.proto
+  proto_fqn: oaa.proto.data.ButtonEvent
+  apk_classes:
+    '16.1': vyi
+    '16.2': null
+  confidence: apk_protos_json
+- proto_message: ButtonEvents
+  proto_file: oaa/input/ButtonEventsData.proto
+  proto_fqn: oaa.proto.data.ButtonEvents
+  apk_classes:
+    '16.1': ufg
+    '16.2': null
+  confidence: apk_protos_json_collision_4
+- proto_message: HapticFeedbackType
+  proto_file: oaa/input/HapticFeedbackTypeEnum.proto
+  proto_fqn: oaa.proto.enums.HapticFeedbackType
+  apk_classes:
+    '16.1': vxm
+    '16.2': null
+  confidence: proto_comment
+- proto_message: InputChannelConfig
+  proto_file: oaa/input/InputChannelConfigData.proto
+  proto_fqn: oaa.proto.data.InputChannelConfig
+  apk_classes:
+    '16.1': vya
+    '16.2': null
+  confidence: proto_comment
+- proto_message: InputChannel
+  proto_file: oaa/input/InputChannelData.proto
+  proto_fqn: oaa.proto.data.InputChannel
+  apk_classes:
+    '16.1': zpl
+    '16.2': null
+  confidence: apk_protos_json
+- proto_message: InputEventIndication
+  proto_file: oaa/input/InputEventIndicationMessage.proto
+  proto_fqn: oaa.proto.messages.InputEventIndication
+  apk_classes:
+    '16.1': vxx
+    '16.2': null
+  confidence: proto_comment
+- proto_message: KeyEvent
+  proto_file: oaa/input/KeyEventData.proto
+  proto_fqn: oaa.proto.data.KeyEvent
+  apk_classes:
+    '16.1': vyi
+    '16.2': null
+  confidence: proto_comment
+- proto_message: RelativeInputEvent
+  proto_file: oaa/input/RelativeInputEventData.proto
+  proto_fqn: oaa.proto.data.RelativeInputEvent
+  apk_classes:
+    '16.1': vxn
+    '16.2': null
+  confidence: apk_protos_json_collision_12
+- proto_message: RelativeInputEvents
+  proto_file: oaa/input/RelativeInputEventsData.proto
+  proto_fqn: oaa.proto.data.RelativeInputEvents
+  apk_classes:
+    '16.1': ufg
+    '16.2': null
+  confidence: apk_protos_json_collision_4
+- proto_message: TouchConfig
+  proto_file: oaa/input/TouchConfigData.proto
+  proto_fqn: oaa.proto.data.TouchConfig
+  apk_classes:
+    '16.1': vxn
+    '16.2': null
+  confidence: proto_comment
+- proto_message: TouchCoordinate
+  proto_file: oaa/input/TouchCoordinateData.proto
+  proto_fqn: oaa.proto.data.TouchCoordinate
+  apk_classes:
+    '16.1': wbl
+    '16.2': null
+  confidence: proto_comment
+- proto_message: TouchEvent
+  proto_file: oaa/input/TouchEventData.proto
+  proto_fqn: oaa.proto.data.TouchEvent
+  apk_classes:
+    '16.1': wcj
+    '16.2': null
+  confidence: apk_protos_json
+- proto_message: TouchLocation
+  proto_file: oaa/input/TouchLocationData.proto
+  proto_fqn: oaa.proto.data.TouchLocation
+  apk_classes:
+    '16.1': vzy
+    '16.2': null
+  confidence: apk_protos_json_collision_9
+- proto_message: CarLocalMediaPlaybackMetadata
+  proto_file: oaa/media/CarLocalMediaPlaybackMetadataMessage.proto
+  proto_fqn: oaa.proto.messages.CarLocalMediaPlaybackMetadata
+  apk_classes:
+    '16.1': vwq
+    '16.2': null
+  confidence: proto_comment
+- proto_message: CarLocalMediaPlaybackRequest
+  proto_file: oaa/media/CarLocalMediaPlaybackRequestMessage.proto
+  proto_fqn: oaa.proto.messages.CarLocalMediaPlaybackRequest
+  apk_classes:
+    '16.1': vwr
+    '16.2': null
+  confidence: proto_comment
+- proto_message: CarLocalMediaPlaybackStatus
+  proto_file: oaa/media/CarLocalMediaPlaybackStatusMessage.proto
+  proto_fqn: oaa.proto.messages.CarLocalMediaPlaybackStatus
+  apk_classes:
+    '16.1': vws
+    '16.2': null
+  confidence: proto_comment
+- proto_message: MediaPlaybackMetadata
+  proto_file: oaa/media/MediaPlaybackMetadataMessage.proto
+  proto_fqn: oaa.proto.messages.MediaPlaybackMetadata
+  apk_classes:
+    '16.1': nmi
+    '16.2': null
+  confidence: apk_protos_json
+- proto_message: MediaPlaybackStatus
+  proto_file: oaa/media/MediaPlaybackStatusMessage.proto
+  proto_fqn: oaa.proto.messages.MediaPlaybackStatus
+  apk_classes:
+    '16.1': vyq
+    '16.2': null
+  confidence: proto_comment
+- proto_message: LaneShape
+  proto_file: oaa/navigation/LaneShapeEnum.proto
+  proto_fqn: oaa.proto.enums.LaneShape
+  apk_classes:
+    '16.1': vzh
+    '16.2': null
+  confidence: proto_comment
+- proto_message: NavigationChannelConfig
+  proto_file: oaa/navigation/NavigationChannelConfigData.proto
+  proto_fqn: oaa.proto.data.NavigationChannelConfig
+  apk_classes:
+    '16.1': vzr
+    '16.2': null
+  confidence: proto_comment
+- proto_message: NavigationImageDimensions
+  proto_file: oaa/navigation/NavigationChannelConfigData.proto
+  proto_fqn: oaa.proto.data.NavigationImageDimensions
+  apk_classes:
+    '16.1': vzq
+    '16.2': null
+  confidence: proto_comment
+- proto_message: NavigationChannel
+  proto_file: oaa/navigation/NavigationChannelData.proto
+  proto_fqn: oaa.proto.data.NavigationChannel
+  apk_classes:
+    '16.1': ahdp
+    '16.2': null
+  confidence: apk_protos_json
+- proto_message: DistanceLabel
+  proto_file: oaa/navigation/NavigationDistanceDisplayData.proto
+  proto_fqn: oaa.proto.data.DistanceLabel
+  apk_classes:
+    '16.1': xnc
+    '16.2': null
+  confidence: proto_comment
+- proto_message: NavigationDistanceDisplay
+  proto_file: oaa/navigation/NavigationDistanceDisplayData.proto
+  proto_fqn: oaa.proto.data.NavigationDistanceDisplay
+  apk_classes:
+    '16.1': xnd
+    '16.2': null
+  confidence: proto_comment
+- proto_message: NavigationDistanceValue
+  proto_file: oaa/navigation/NavigationDistanceDisplayData.proto
+  proto_fqn: oaa.proto.data.NavigationDistanceValue
+  apk_classes:
+    '16.1': xmw
+    '16.2': null
+  confidence: proto_comment
+- proto_message: NavigationDistance
+  proto_file: oaa/navigation/NavigationDistanceMessage.proto
+  proto_fqn: oaa.proto.messages.NavigationDistance
+  apk_classes:
+    '16.1': xnb
+    '16.2': null
+  confidence: proto_comment
+- proto_message: NavigationDistanceEntry
+  proto_file: oaa/navigation/NavigationDistanceMessage.proto
+  proto_fqn: oaa.proto.messages.NavigationDistanceEntry
+  apk_classes:
+    '16.1': xnf
+    '16.2': null
+  confidence: proto_comment
+- proto_message: NavigationDistanceInfo
+  proto_file: oaa/navigation/NavigationDistanceMessage.proto
+  proto_fqn: oaa.proto.messages.NavigationDistanceInfo
+  apk_classes:
+    '16.1': xng
+    '16.2': null
+  confidence: proto_comment
+- proto_message: NavigationDistanceOneof
+  proto_file: oaa/navigation/NavigationDistanceMessage.proto
+  proto_fqn: oaa.proto.messages.NavigationDistanceOneof
+  apk_classes:
+    '16.1': xne
+    '16.2': null
+  confidence: proto_comment
+- proto_message: NavigationFocusRequest
+  proto_file: oaa/navigation/NavigationFocusRequestMessage.proto
+  proto_fqn: oaa.proto.messages.NavigationFocusRequest
+  apk_classes:
+    '16.1': aagl
+    '16.2': null
+  confidence: apk_protos_json_collision_7
+- proto_message: NavigationFocusResponse
+  proto_file: oaa/navigation/NavigationFocusResponseMessage.proto
+  proto_fqn: oaa.proto.messages.NavigationFocusResponse
+  apk_classes:
+    '16.1': aagl
+    '16.2': null
+  confidence: apk_protos_json_collision_7
+- proto_message: NavigationImageOptions
+  proto_file: oaa/navigation/NavigationImageOptionsData.proto
+  proto_fqn: oaa.proto.data.NavigationImageOptions
+  apk_classes:
+    '16.1': vzy
+    '16.2': null
+  confidence: apk_protos_json_collision_9
+- proto_message: ChargingStationDetails
+  proto_file: oaa/navigation/NavigationNotificationMessage.proto
+  proto_fqn: oaa.proto.messages.ChargingStationDetails
+  apk_classes:
+    '16.1': vwz
+    '16.2': null
+  confidence: proto_comment
+- proto_message: NavigationDestination
+  proto_file: oaa/navigation/NavigationNotificationMessage.proto
+  proto_fqn: oaa.proto.messages.NavigationDestination
+  apk_classes:
+    '16.1': vze
+    '16.2': null
+  confidence: proto_comment
+- proto_message: NavigationLane
+  proto_file: oaa/navigation/NavigationNotificationMessage.proto
+  proto_fqn: oaa.proto.messages.NavigationLane
+  apk_classes:
+    '16.1': vzj
+    '16.2': null
+  confidence: proto_comment
+- proto_message: NavigationLaneDirection
+  proto_file: oaa/navigation/NavigationNotificationMessage.proto
+  proto_fqn: oaa.proto.messages.NavigationLaneDirection
+  apk_classes:
+    '16.1': vzi
+    '16.2': null
+  confidence: proto_comment
+- proto_message: NavigationManeuver
+  proto_file: oaa/navigation/NavigationNotificationMessage.proto
+  proto_fqn: oaa.proto.messages.NavigationManeuver
+  apk_classes:
+    '16.1': vzk
+    '16.2': null
+  confidence: proto_comment
+- proto_message: NavigationNotification
+  proto_file: oaa/navigation/NavigationNotificationMessage.proto
+  proto_fqn: oaa.proto.messages.NavigationNotification
+  apk_classes:
+    '16.1': vzo
+    '16.2': null
+  confidence: proto_comment
+- proto_message: NavigationRoadInfo
+  proto_file: oaa/navigation/NavigationNotificationMessage.proto
+  proto_fqn: oaa.proto.messages.NavigationRoadInfo
+  apk_classes:
+    '16.1': vzc
+    '16.2': null
+  confidence: proto_comment
+- proto_message: NavigationStep
+  proto_file: oaa/navigation/NavigationNotificationMessage.proto
+  proto_fqn: oaa.proto.messages.NavigationStep
+  apk_classes:
+    '16.1': vzu
+    '16.2': null
+  confidence: proto_comment
+- proto_message: NavigationText
+  proto_file: oaa/navigation/NavigationNotificationMessage.proto
+  proto_fqn: oaa.proto.messages.NavigationText
+  apk_classes:
+    '16.1': vzn
+    '16.2': null
+  confidence: proto_comment
+- proto_message: NavigationState
+  proto_file: oaa/navigation/NavigationStateMessage.proto
+  proto_fqn: oaa.proto.messages.NavigationState
+  apk_classes:
+    '16.1': aagl
+    '16.2': null
+  confidence: apk_protos_json_collision_7
+- proto_message: NavigationTurnEvent
+  proto_file: oaa/navigation/NavigationTurnEventMessage.proto
+  proto_fqn: oaa.proto.messages.NavigationTurnEvent
+  apk_classes:
+    '16.1': vzm
+    '16.2': null
+  confidence: proto_comment
+- proto_message: NotificationChannel
+  proto_file: oaa/notification/NotificationChannelData.proto
+  proto_fqn: oaa.proto.data.NotificationChannel
+  apk_classes:
+    '16.1': wah
+    '16.2': null
+  confidence: proto_comment
+- proto_message: CallAvailabilityStatus
+  proto_file: oaa/phone/CallAvailabilityMessage.proto
+  proto_fqn: oaa.proto.messages.CallAvailabilityStatus
+  apk_classes:
+    '16.1': poe
+    '16.2': null
+  confidence: apk_protos_json_collision_4
+- proto_message: PhoneCallState
+  proto_file: oaa/phone/PhoneCallStateEnum.proto
+  proto_fqn: oaa.proto.enums.PhoneCallState
+  apk_classes:
+    '16.1': wae
+    '16.2': null
+  confidence: proto_comment
+- proto_message: PhoneInputType
+  proto_file: oaa/phone/PhoneStatusInputMessage.proto
+  proto_fqn: oaa.proto.messages.PhoneInputType
+  apk_classes:
+    '16.1': wag
+    '16.2': null
+  confidence: proto_comment
+- proto_message: PhoneStatusInput
+  proto_file: oaa/phone/PhoneStatusInputMessage.proto
+  proto_fqn: oaa.proto.messages.PhoneStatusInput
+  apk_classes:
+    '16.1': wag
+    '16.2': null
+  confidence: proto_comment
+- proto_message: PhoneCall
+  proto_file: oaa/phone/PhoneStatusMessage.proto
+  proto_fqn: oaa.proto.messages.PhoneCall
+  apk_classes:
+    '16.1': wad
+    '16.2': null
+  confidence: proto_comment
+- proto_message: PhoneStatusUpdate
+  proto_file: oaa/phone/PhoneStatusMessage.proto
+  proto_fqn: oaa.proto.messages.PhoneStatusUpdate
+  apk_classes:
+    '16.1': waf
+    '16.2': null
+  confidence: proto_comment
+- proto_message: VoiceSessionRequest
+  proto_file: oaa/phone/VoiceSessionRequestMessage.proto
+  proto_fqn: oaa.proto.messages.VoiceSessionRequest
+  apk_classes:
+    '16.1': wde
+    '16.2': null
+  confidence: proto_comment
+- proto_message: RadioImage
+  proto_file: oaa/radio/RadioMessages.proto
+  proto_fqn: oaa.proto.messages.RadioImage
+  apk_classes:
+    '16.1': wam
+    '16.2': null
+  confidence: proto_comment
+- proto_message: RadioMetadata
+  proto_file: oaa/radio/RadioMessages.proto
+  proto_fqn: oaa.proto.messages.RadioMetadata
+  apk_classes:
+    '16.1': wan
+    '16.2': null
+  confidence: proto_comment
+- proto_message: RadioProgramIdentifier
+  proto_file: oaa/radio/RadioMessages.proto
+  proto_fqn: oaa.proto.messages.RadioProgramIdentifier
+  apk_classes:
+    '16.1': war
+    '16.2': null
+  confidence: proto_comment
+- proto_message: RadioProgramInfo
+  proto_file: oaa/radio/RadioMessages.proto
+  proto_fqn: oaa.proto.messages.RadioProgramInfo
+  apk_classes:
+    '16.1': was
+    '16.2': null
+  confidence: proto_comment
+- proto_message: RadioProgramSelector
+  proto_file: oaa/radio/RadioMessages.proto
+  proto_fqn: oaa.proto.messages.RadioProgramSelector
+  apk_classes:
+    '16.1': wav
+    '16.2': null
+  confidence: proto_comment
+- proto_message: RadioProgramType
+  proto_file: oaa/radio/RadioMessages.proto
+  proto_fqn: oaa.proto.messages.RadioProgramType
+  apk_classes:
+    '16.1': waw
+    '16.2': null
+  confidence: proto_comment
+- proto_message: RadioSongMetadata
+  proto_file: oaa/radio/RadioMessages.proto
+  proto_fqn: oaa.proto.messages.RadioSongMetadata
+  apk_classes:
+    '16.1': wbb
+    '16.2': null
+  confidence: proto_comment
+- proto_message: Accel
+  proto_file: oaa/sensor/AccelData.proto
+  proto_fqn: oaa.proto.data.Accel
+  apk_classes:
+    '16.1': vzy
+    '16.2': null
+  confidence: apk_protos_json_collision_9
+- proto_message: Compass
+  proto_file: oaa/sensor/CompassData.proto
+  proto_fqn: oaa.proto.data.Compass
+  apk_classes:
+    '16.1': vzy
+    '16.2': null
+  confidence: apk_protos_json_collision_9
+- proto_message: Door
+  proto_file: oaa/sensor/DoorData.proto
+  proto_fqn: oaa.proto.data.Door
+  apk_classes:
+    '16.1': vxh
+    '16.2': null
+  confidence: apk_protos_json
+- proto_message: DrivingStatus
+  proto_file: oaa/sensor/DrivingStatusData.proto
+  proto_fqn: oaa.proto.data.DrivingStatus
+  apk_classes:
+    '16.1': aagl
+    '16.2': null
+  confidence: apk_protos_json_collision_7
+- proto_message: EVConnectorType
+  proto_file: oaa/sensor/EVConnectorTypeEnum.proto
+  proto_fqn: oaa.proto.enums.EVConnectorType
+  apk_classes:
+    '16.1': vxl
+    '16.2': null
+  confidence: proto_comment
+- proto_message: Environment
+  proto_file: oaa/sensor/EnvironmentData.proto
+  proto_fqn: oaa.proto.data.Environment
+  apk_classes:
+    '16.1': vzy
+    '16.2': null
+  confidence: apk_protos_json_collision_9
+- proto_message: FuelLevel
+  proto_file: oaa/sensor/FuelLevelData.proto
+  proto_fqn: oaa.proto.data.FuelLevel
+  apk_classes:
+    '16.1': vxn
+    '16.2': null
+  confidence: apk_protos_json_collision_12
+- proto_message: FuelType
+  proto_file: oaa/sensor/FuelTypeEnum.proto
+  proto_fqn: oaa.proto.enums.FuelType
+  apk_classes:
+    '16.1': vxo
+    '16.2': null
+  confidence: proto_comment
+- proto_message: GPSLocation
+  proto_file: oaa/sensor/GPSLocationData.proto
+  proto_fqn: oaa.proto.data.GPSLocation
+  apk_classes:
+    '16.1': vyl
+    '16.2': null
+  confidence: proto_comment
+- proto_message: Gear
+  proto_file: oaa/sensor/GearData.proto
+  proto_fqn: oaa.proto.data.Gear
+  apk_classes:
+    '16.1': aass
+    '16.2': null
+  confidence: apk_protos_json_collision_10
+- proto_message: Gyro
+  proto_file: oaa/sensor/GyroData.proto
+  proto_fqn: oaa.proto.data.Gyro
+  apk_classes:
+    '16.1': vzy
+    '16.2': null
+  confidence: apk_protos_json_collision_9
+- proto_message: HVAC
+  proto_file: oaa/sensor/HVACData.proto
+  proto_fqn: oaa.proto.data.HVAC
+  apk_classes:
+    '16.1': vxn
+    '16.2': null
+  confidence: apk_protos_json_collision_12
+- proto_message: Light
+  proto_file: oaa/sensor/LightData.proto
+  proto_fqn: oaa.proto.data.Light
+  apk_classes:
+    '16.1': vyk
+    '16.2': null
+  confidence: apk_protos_json
+- proto_message: NightMode
+  proto_file: oaa/sensor/NightModeData.proto
+  proto_fqn: oaa.proto.data.NightMode
+  apk_classes:
+    '16.1': poe
+    '16.2': null
+  confidence: apk_protos_json_collision_4
+- proto_message: Odometer
+  proto_file: oaa/sensor/OdometerData.proto
+  proto_fqn: oaa.proto.data.Odometer
+  apk_classes:
+    '16.1': vxn
+    '16.2': null
+  confidence: apk_protos_json_collision_12
+- proto_message: ParkingBrake
+  proto_file: oaa/sensor/ParkingBrakeData.proto
+  proto_fqn: oaa.proto.data.ParkingBrake
+  apk_classes:
+    '16.1': poe
+    '16.2': null
+  confidence: apk_protos_json_collision_4
+- proto_message: Passenger
+  proto_file: oaa/sensor/PassengerData.proto
+  proto_fqn: oaa.proto.data.Passenger
+  apk_classes:
+    '16.1': poe
+    '16.2': null
+  confidence: apk_protos_json_collision_4
+- proto_message: RPM
+  proto_file: oaa/sensor/RPMData.proto
+  proto_fqn: oaa.proto.data.RPM
+  apk_classes:
+    '16.1': aagl
+    '16.2': null
+  confidence: apk_protos_json_collision_7
+- proto_message: SensorChannelConfig
+  proto_file: oaa/sensor/SensorChannelConfigData.proto
+  proto_fqn: oaa.proto.data.SensorChannelConfig
+  apk_classes:
+    '16.1': wbu
+    '16.2': null
+  confidence: proto_comment
+- proto_message: SensorTypeEntry
+  proto_file: oaa/sensor/SensorChannelConfigData.proto
+  proto_fqn: oaa.proto.data.SensorTypeEntry
+  apk_classes:
+    '16.1': wbt
+    '16.2': null
+  confidence: proto_comment
+- proto_message: SensorChannel
+  proto_file: oaa/sensor/SensorChannelData.proto
+  proto_fqn: oaa.proto.data.SensorChannel
+  apk_classes:
+    '16.1': ufg
+    '16.2': null
+  confidence: apk_protos_json_collision_4
+- proto_message: Sensor
+  proto_file: oaa/sensor/SensorData.proto
+  proto_fqn: oaa.proto.data.Sensor
+  apk_classes:
+    '16.1': aass
+    '16.2': null
+  confidence: apk_protos_json_collision_10
+- proto_message: SensorEventIndication
+  proto_file: oaa/sensor/SensorEventIndicationMessage.proto
+  proto_fqn: oaa.proto.messages.SensorEventIndication
+  apk_classes:
+    '16.1': wbo
+    '16.2': null
+  confidence: apk_protos_json
+- proto_message: SensorStartRequestMessage
+  proto_file: oaa/sensor/SensorStartRequestMessage.proto
+  proto_fqn: oaa.proto.messages.SensorStartRequestMessage
+  apk_classes:
+    '16.1': war
+    '16.2': null
+  confidence: apk_protos_json
+- proto_message: SensorStartResponseMessage
+  proto_file: oaa/sensor/SensorStartResponseMessage.proto
+  proto_fqn: oaa.proto.messages.SensorStartResponseMessage
+  apk_classes:
+    '16.1': aass
+    '16.2': null
+  confidence: apk_protos_json_collision_10
+- proto_message: Speed
+  proto_file: oaa/sensor/SpeedData.proto
+  proto_fqn: oaa.proto.data.Speed
+  apk_classes:
+    '16.1': wcd
+    '16.2': null
+  confidence: proto_comment
+- proto_message: SteeringWheel
+  proto_file: oaa/sensor/SteeringWheelData.proto
+  proto_fqn: oaa.proto.data.SteeringWheel
+  apk_classes:
+    '16.1': vxn
+    '16.2': null
+  confidence: apk_protos_json_collision_12
+- proto_message: TirePressure
+  proto_file: oaa/sensor/TirePressureData.proto
+  proto_fqn: oaa.proto.data.TirePressure
+  apk_classes:
+    '16.1': wcg
+    '16.2': null
+  confidence: proto_comment
+- proto_message: VideoInsets
+  proto_file: oaa/video/AdditionalVideoConfigData.proto
+  proto_fqn: oaa.proto.data.VideoInsets
+  apk_classes:
+    '16.1': wbi
+    '16.2': null
+  confidence: proto_comment
+- proto_message: VideoMarginConfig
+  proto_file: oaa/video/AdditionalVideoConfigData.proto
+  proto_fqn: oaa.proto.data.VideoMarginConfig
+  apk_classes:
+    '16.1': vxd
+    '16.2': null
+  confidence: proto_comment
+- proto_message: VideoResizeAction
+  proto_file: oaa/video/AdditionalVideoConfigData.proto
+  proto_fqn: oaa.proto.data.VideoResizeAction
+  apk_classes:
+    '16.1': vvl
+    '16.2': null
+  confidence: proto_comment
+- proto_message: VideoResolutionRange
+  proto_file: oaa/video/AdditionalVideoConfigData.proto
+  proto_fqn: oaa.proto.data.VideoResolutionRange
+  apk_classes:
+    '16.1': vyb
+    '16.2': null
+  confidence: proto_comment
+- proto_message: VideoConfig
+  proto_file: oaa/video/VideoConfigData.proto
+  proto_fqn: oaa.proto.data.VideoConfig
+  apk_classes:
+    '16.1': wcz
+    '16.2': null
+  confidence: apk_protos_json
+- proto_message: VideoFocusIndication
+  proto_file: oaa/video/VideoFocusIndicationMessage.proto
+  proto_fqn: oaa.proto.messages.VideoFocusIndication
+  apk_classes:
+    '16.1': wdb
+    '16.2': null
+  confidence: apk_protos_json
+- proto_message: VideoFocusRequest
+  proto_file: oaa/video/VideoFocusRequestMessage.proto
+  proto_fqn: oaa.proto.messages.VideoFocusRequest
+  apk_classes:
+    '16.1': wdd
+    '16.2': null
+  confidence: proto_comment
+- proto_message: WifiChannel
+  proto_file: oaa/wifi/WifiChannelData.proto
+  proto_fqn: oaa.proto.data.WifiChannel
+  apk_classes:
+    '16.1': ahel
+    '16.2': null
+  confidence: apk_protos_json_collision_2
+- proto_message: WifiConnectStatus
+  proto_file: oaa/wifi/WifiConnectStatusMessage.proto
+  proto_fqn: oaa.proto.messages.WifiConnectStatus
+  apk_classes:
+    '16.1': wdj
+    '16.2': null
+  confidence: proto_comment
+- proto_message: WifiConnectionRejection
+  proto_file: oaa/wifi/WifiConnectionRejectionMessage.proto
+  proto_fqn: oaa.proto.messages.WifiConnectionRejection
+  apk_classes:
+    '16.1': wdk
+    '16.2': null
+  confidence: proto_comment
+- proto_message: WifiDirectConfig
+  proto_file: oaa/wifi/WifiDirectConfigData.proto
+  proto_fqn: oaa.proto.data.WifiDirectConfig
+  apk_classes:
+    '16.1': wbb
+    '16.2': null
+  confidence: apk_protos_json
+- proto_message: WifiInfoRequest
+  proto_file: oaa/wifi/WifiInfoRequestMessage.proto
+  proto_fqn: oaa.proto.messages.WifiInfoRequest
+  apk_classes:
+    '16.1': wdl
+    '16.2': null
+  confidence: proto_comment
+- proto_message: WifiInfoResponse
+  proto_file: oaa/wifi/WifiInfoResponseMessage.proto
+  proto_fqn: oaa.proto.messages.WifiInfoResponse
+  apk_classes:
+    '16.1': wdm
+    '16.2': null
+  confidence: proto_comment
+- proto_message: WiFiProjectionChannel
+  proto_file: oaa/wifi/WifiProjectionChannelData.proto
+  proto_fqn: oaa.proto.data.WiFiProjectionChannel
+  apk_classes:
+    '16.1': way
+    '16.2': null
+  confidence: proto_comment
+- proto_message: WifiSecurityResponse
+  proto_file: oaa/wifi/WifiSecurityResponseMessage.proto
+  proto_fqn: oaa.proto.messages.WifiSecurityResponse
+  apk_classes:
+    '16.1': wan
+    '16.2': null
+  confidence: apk_protos_json
+- proto_message: WifiNetworkInfo
+  proto_file: oaa/wifi/WifiSetupInfoMessage.proto
+  proto_fqn: oaa.proto.messages.WifiNetworkInfo
+  apk_classes:
+    '16.1': wds
+    '16.2': null
+  confidence: proto_comment
+- proto_message: WifiSetupMessage
+  proto_file: oaa/wifi/WifiSetupMessageEnum.proto
+  proto_fqn: oaa.proto.enums.WifiSetupMessage
+  apk_classes:
+    '16.1': wdn
+    '16.2': null
+  confidence: proto_comment
+- proto_message: WifiStartResponse
+  proto_file: oaa/wifi/WifiStartResponseMessage.proto
+  proto_fqn: oaa.proto.messages.WifiStartResponse
+  apk_classes:
+    '16.1': wdu
+    '16.2': null
+  confidence: proto_comment
+- proto_message: WifiVersionRequest
+  proto_file: oaa/wifi/WifiVersionRequestMessage.proto
+  proto_fqn: oaa.proto.messages.WifiVersionRequest
+  apk_classes:
+    '16.1': wdv
+    '16.2': null
+  confidence: proto_comment
+- proto_message: WifiVersionResponse
+  proto_file: oaa/wifi/WifiVersionResponseMessage.proto
+  proto_fqn: oaa.proto.messages.WifiVersionResponse
+  apk_classes:
+    '16.1': wdw
+    '16.2': null
+  confidence: proto_comment
