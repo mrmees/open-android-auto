@@ -651,6 +651,13 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aacx.java"
   },
   {
+    "class_name": "aacx",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aacx.java"
+  },
+  {
     "class_name": "aacy",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
@@ -714,9 +721,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aadc.java"
   },
   {
+    "class_name": "aadc",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aadc.java"
+  },
+  {
     "class_name": "aadd",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aadd.java"
+  },
+  {
+    "class_name": "aadd",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aadd.java"
   },
@@ -728,9 +749,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aade.java"
   },
   {
+    "class_name": "aade",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aade.java"
+  },
+  {
     "class_name": "aadf",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aadf.java"
+  },
+  {
+    "class_name": "aadf",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aadf.java"
   },
@@ -742,9 +777,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aadg.java"
   },
   {
+    "class_name": "aadg",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aadg.java"
+  },
+  {
     "class_name": "aadh",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aadh.java"
+  },
+  {
+    "class_name": "aadh",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aadh.java"
   },
@@ -756,9 +805,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aadi.java"
   },
   {
+    "class_name": "aadi",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aadi.java"
+  },
+  {
     "class_name": "aadj",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aadj.java"
+  },
+  {
+    "class_name": "aadj",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aadj.java"
   },
@@ -770,9 +833,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aadk.java"
   },
   {
+    "class_name": "aadk",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aadk.java"
+  },
+  {
     "class_name": "aadl",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aadl.java"
+  },
+  {
+    "class_name": "aadl",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aadl.java"
   },
@@ -784,9 +861,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aadn.java"
   },
   {
+    "class_name": "aadn",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aadn.java"
+  },
+  {
     "class_name": "aado",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aado.java"
+  },
+  {
+    "class_name": "aado",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aado.java"
   },
@@ -798,9 +889,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aadp.java"
   },
   {
+    "class_name": "aadp",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aadp.java"
+  },
+  {
     "class_name": "aadq",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aadq.java"
+  },
+  {
+    "class_name": "aadq",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aadq.java"
   },
@@ -812,9 +917,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aadr.java"
   },
   {
+    "class_name": "aadr",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aadr.java"
+  },
+  {
     "class_name": "aads",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aads.java"
+  },
+  {
+    "class_name": "aads",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aads.java"
   },
@@ -826,9 +945,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aadt.java"
   },
   {
+    "class_name": "aadt",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aadt.java"
+  },
+  {
     "class_name": "aadv",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aadv.java"
+  },
+  {
+    "class_name": "aadv",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aadv.java"
   },
@@ -840,9 +973,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aadx.java"
   },
   {
+    "class_name": "aadx",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aadx.java"
+  },
+  {
     "class_name": "aaea",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aaea.java"
+  },
+  {
+    "class_name": "aaea",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aaea.java"
   },
@@ -854,9 +1001,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aaeb.java"
   },
   {
+    "class_name": "aaeb",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aaeb.java"
+  },
+  {
     "class_name": "aaec",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aaec.java"
+  },
+  {
+    "class_name": "aaec",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aaec.java"
   },
@@ -868,9 +1029,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aaed.java"
   },
   {
+    "class_name": "aaed",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aaed.java"
+  },
+  {
     "class_name": "aaee",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aaee.java"
+  },
+  {
+    "class_name": "aaee",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aaee.java"
   },
@@ -882,9 +1057,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aaef.java"
   },
   {
+    "class_name": "aaef",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aaef.java"
+  },
+  {
     "class_name": "aaeg",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aaeg.java"
+  },
+  {
+    "class_name": "aaeg",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aaeg.java"
   },
@@ -896,6 +1085,13 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aaeh.java"
   },
   {
+    "class_name": "aaeh",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aaeh.java"
+  },
+  {
     "class_name": "aaei",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
@@ -903,9 +1099,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aaei.java"
   },
   {
+    "class_name": "aaei",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aaei.java"
+  },
+  {
     "class_name": "aaej",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aaej.java"
+  },
+  {
+    "class_name": "aaej",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aaej.java"
   },
@@ -966,6 +1176,13 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aaeo.java"
   },
   {
+    "class_name": "aaeo",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aaeo.java"
+  },
+  {
     "class_name": "aaep",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
@@ -973,9 +1190,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aaep.java"
   },
   {
+    "class_name": "aaep",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aaep.java"
+  },
+  {
     "class_name": "aaeq",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aaeq.java"
+  },
+  {
+    "class_name": "aaeq",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aaeq.java"
   },
@@ -1981,6 +2212,13 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aahb.java"
   },
   {
+    "class_name": "aahb",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aahb.java"
+  },
+  {
     "class_name": "aahc",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
@@ -2954,6 +3192,13 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aaju.java"
   },
   {
+    "class_name": "aaju",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aaju.java"
+  },
+  {
     "class_name": "aajx",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
@@ -3076,6 +3321,13 @@
     "class_name": "aakg",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aakg.java"
+  },
+  {
+    "class_name": "aakg",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aakg.java"
   },
@@ -3262,6 +3514,13 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aall.java"
   },
   {
+    "class_name": "aall",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aall.java"
+  },
+  {
     "class_name": "aalm",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
@@ -3389,6 +3648,13 @@
   },
   {
     "class_name": "aalx",
+    "evidence_detail": "descriptor",
+    "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aalx.java"
+  },
+  {
+    "class_name": "aalx",
     "evidence_detail": "field_decls",
     "evidence_source": "field_decls",
     "line": 0,
@@ -3493,6 +3759,13 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aamj.java"
   },
   {
+    "class_name": "aamj",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aamj.java"
+  },
+  {
     "class_name": "aamk",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
@@ -3517,6 +3790,13 @@
     "class_name": "aamn",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aamn.java"
+  },
+  {
+    "class_name": "aamn",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aamn.java"
   },
@@ -3577,6 +3857,13 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aamu.java"
   },
   {
+    "class_name": "aamu",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aamu.java"
+  },
+  {
     "class_name": "aamv",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
@@ -3584,9 +3871,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aamv.java"
   },
   {
+    "class_name": "aamv",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aamv.java"
+  },
+  {
     "class_name": "aamw",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aamw.java"
+  },
+  {
+    "class_name": "aamw",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aamw.java"
   },
@@ -3724,9 +4025,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aano.java"
   },
   {
+    "class_name": "aano",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aano.java"
+  },
+  {
     "class_name": "aanp",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aanp.java"
+  },
+  {
+    "class_name": "aanp",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aanp.java"
   },
@@ -3738,9 +4053,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aanq.java"
   },
   {
+    "class_name": "aanq",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aanq.java"
+  },
+  {
     "class_name": "aanr",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aanr.java"
+  },
+  {
+    "class_name": "aanr",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aanr.java"
   },
@@ -3816,6 +4145,13 @@
   },
   {
     "class_name": "aanz",
+    "evidence_detail": "descriptor",
+    "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aanz.java"
+  },
+  {
+    "class_name": "aanz",
     "evidence_detail": "field_decls",
     "evidence_source": "field_decls",
     "line": 0,
@@ -3885,11 +4221,25 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aaoh.java"
   },
   {
+    "class_name": "aaoh",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aaoh.java"
+  },
+  {
     "class_name": "aaoi",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aaoi.java"
+  },
+  {
+    "class_name": "aaok",
+    "evidence_detail": "descriptor",
+    "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aaok.java"
   },
   {
     "class_name": "aaok",
@@ -3955,6 +4305,13 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aaos.java"
   },
   {
+    "class_name": "aaos",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aaos.java"
+  },
+  {
     "class_name": "aaot",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
@@ -3972,6 +4329,13 @@
     "class_name": "aaov",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aaov.java"
+  },
+  {
+    "class_name": "aaov",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aaov.java"
   },
@@ -4011,9 +4375,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aapa.java"
   },
   {
+    "class_name": "aapa",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aapa.java"
+  },
+  {
     "class_name": "aapb",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aapb.java"
+  },
+  {
+    "class_name": "aapb",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aapb.java"
   },
@@ -4025,9 +4403,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aapd.java"
   },
   {
+    "class_name": "aapd",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aapd.java"
+  },
+  {
     "class_name": "aape",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aape.java"
+  },
+  {
+    "class_name": "aape",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aape.java"
   },
@@ -4095,6 +4487,13 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aapj.java"
   },
   {
+    "class_name": "aapj",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aapj.java"
+  },
+  {
     "class_name": "aapk",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
@@ -4109,9 +4508,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aapl.java"
   },
   {
+    "class_name": "aapl",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aapl.java"
+  },
+  {
     "class_name": "aapm",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aapm.java"
+  },
+  {
+    "class_name": "aapm",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aapm.java"
   },
@@ -4186,6 +4599,13 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aapu.java"
   },
   {
+    "class_name": "aapu",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aapu.java"
+  },
+  {
     "class_name": "aapv",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
@@ -4214,9 +4634,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aapx.java"
   },
   {
+    "class_name": "aapx",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aapx.java"
+  },
+  {
     "class_name": "aapy",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aapy.java"
+  },
+  {
+    "class_name": "aapy",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aapy.java"
   },
@@ -4256,9 +4690,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aaqd.java"
   },
   {
+    "class_name": "aaqd",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aaqd.java"
+  },
+  {
     "class_name": "aaqf",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aaqf.java"
+  },
+  {
+    "class_name": "aaqf",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aaqf.java"
   },
@@ -4270,9 +4718,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aaqh.java"
   },
   {
+    "class_name": "aaqh",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aaqh.java"
+  },
+  {
     "class_name": "aaqi",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aaqi.java"
+  },
+  {
+    "class_name": "aaqi",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aaqi.java"
   },
@@ -4284,9 +4746,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aaqj.java"
   },
   {
+    "class_name": "aaqj",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aaqj.java"
+  },
+  {
     "class_name": "aaqk",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aaqk.java"
+  },
+  {
+    "class_name": "aaqk",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aaqk.java"
   },
@@ -4347,9 +4823,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aaqq.java"
   },
   {
+    "class_name": "aaqq",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aaqq.java"
+  },
+  {
     "class_name": "aaqr",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aaqr.java"
+  },
+  {
+    "class_name": "aaqr",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aaqr.java"
   },
@@ -4364,6 +4854,13 @@
     "class_name": "aaqt",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aaqt.java"
+  },
+  {
+    "class_name": "aaqt",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aaqt.java"
   },
@@ -4399,6 +4896,13 @@
     "class_name": "aaqy",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aaqy.java"
+  },
+  {
+    "class_name": "aaqy",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aaqy.java"
   },
@@ -4459,9 +4963,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aarg.java"
   },
   {
+    "class_name": "aarg",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aarg.java"
+  },
+  {
     "class_name": "aarh",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aarh.java"
+  },
+  {
+    "class_name": "aarh",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aarh.java"
   },
@@ -4483,6 +5001,13 @@
     "class_name": "aark",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aark.java"
+  },
+  {
+    "class_name": "aark",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aark.java"
   },
@@ -4539,6 +5064,13 @@
     "class_name": "aaru",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aaru.java"
+  },
+  {
+    "class_name": "aaru",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aaru.java"
   },
@@ -4641,6 +5173,13 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aasc.java"
   },
   {
+    "class_name": "aasc",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aasc.java"
+  },
+  {
     "class_name": "aasd",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
@@ -4707,6 +5246,13 @@
     "class_name": "aasg",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aasg.java"
+  },
+  {
+    "class_name": "aasg",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aasg.java"
   },
@@ -4838,6 +5384,13 @@
   },
   {
     "class_name": "aasq",
+    "evidence_detail": "descriptor",
+    "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aasq.java"
+  },
+  {
+    "class_name": "aasq",
     "evidence_detail": "field_decls",
     "evidence_source": "field_decls",
     "line": 0,
@@ -4926,6 +5479,13 @@
     "evidence_source": "proto_writes",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aatb.java"
+  },
+  {
+    "class_name": "aatc",
+    "evidence_detail": "descriptor",
+    "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aatc.java"
   },
   {
     "class_name": "aatc",
@@ -5034,6 +5594,13 @@
   },
   {
     "class_name": "aatk",
+    "evidence_detail": "descriptor",
+    "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aatk.java"
+  },
+  {
+    "class_name": "aatk",
     "evidence_detail": "field_decls",
     "evidence_source": "field_decls",
     "line": 0,
@@ -5043,6 +5610,13 @@
     "class_name": "aatl",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aatl.java"
+  },
+  {
+    "class_name": "aatl",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aatl.java"
   },
@@ -5071,6 +5645,13 @@
     "class_name": "aatn",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aatn.java"
+  },
+  {
+    "class_name": "aatn",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aatn.java"
   },
@@ -5110,9 +5691,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aatp.java"
   },
   {
+    "class_name": "aatp",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aatp.java"
+  },
+  {
     "class_name": "aatq",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aatq.java"
+  },
+  {
+    "class_name": "aatq",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aatq.java"
   },
@@ -5563,6 +6158,13 @@
     "evidence_source": "proto_writes",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/ahcn.java"
+  },
+  {
+    "class_name": "ahco",
+    "evidence_detail": "descriptor",
+    "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/ahco.java"
   },
   {
     "class_name": "ahco",
@@ -6139,6 +6741,13 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/ahdy.java"
   },
   {
+    "class_name": "ahdy",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/ahdy.java"
+  },
+  {
     "class_name": "ahdz",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
@@ -6377,6 +6986,13 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/ahel.java"
   },
   {
+    "class_name": "ahel",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/ahel.java"
+  },
+  {
     "class_name": "ahem",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
@@ -6403,6 +7019,13 @@
     "evidence_source": "descriptor",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/ahen.java"
+  },
+  {
+    "class_name": "aheo",
+    "evidence_detail": "descriptor",
+    "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aheo.java"
   },
   {
     "class_name": "aheo",
@@ -6490,6 +7113,13 @@
   },
   {
     "class_name": "ahes",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/ahes.java"
+  },
+  {
+    "class_name": "ahes",
     "evidence_detail": "proto_writes",
     "evidence_source": "proto_writes",
     "line": 0,
@@ -6669,6 +7299,13 @@
     "evidence_source": "proto_writes",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/aidb.java"
+  },
+  {
+    "class_name": "ibg",
+    "evidence_detail": "descriptor",
+    "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/ibg.java"
   },
   {
     "class_name": "ibg",
@@ -8118,6 +8755,13 @@
     "evidence_source": "proto_writes",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/nny.java"
+  },
+  {
+    "class_name": "noa",
+    "evidence_detail": "descriptor",
+    "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/noa.java"
   },
   {
     "class_name": "noa",
@@ -14938,9 +15582,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/wfv.java"
   },
   {
+    "class_name": "wfv",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/wfv.java"
+  },
+  {
     "class_name": "wfx",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/wfx.java"
+  },
+  {
+    "class_name": "wfx",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/wfx.java"
   },
@@ -14973,6 +15631,13 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/xft.java"
   },
   {
+    "class_name": "xft",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/xft.java"
+  },
+  {
     "class_name": "xfx",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
@@ -14980,9 +15645,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/xfx.java"
   },
   {
+    "class_name": "xfx",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/xfx.java"
+  },
+  {
     "class_name": "xfy",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/xfy.java"
+  },
+  {
+    "class_name": "xfy",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/xfy.java"
   },
@@ -15218,6 +15897,13 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/xgp.java"
   },
   {
+    "class_name": "xgp",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/xgp.java"
+  },
+  {
     "class_name": "xgr",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
@@ -15225,9 +15911,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/xgr.java"
   },
   {
+    "class_name": "xgr",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/xgr.java"
+  },
+  {
     "class_name": "xgs",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/xgs.java"
+  },
+  {
+    "class_name": "xgs",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/xgs.java"
   },
@@ -15524,6 +16224,13 @@
     "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/xhn.java"
+  },
+  {
+    "class_name": "xho",
+    "evidence_detail": "descriptor",
+    "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/xho.java"
   },
   {
     "class_name": "xho",
@@ -16730,9 +17437,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/xkr.java"
   },
   {
+    "class_name": "xkr",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/xkr.java"
+  },
+  {
     "class_name": "xks",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/xks.java"
+  },
+  {
+    "class_name": "xks",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/xks.java"
   },
@@ -16744,9 +17465,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/xkt.java"
   },
   {
+    "class_name": "xkt",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/xkt.java"
+  },
+  {
     "class_name": "xku",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/xku.java"
+  },
+  {
+    "class_name": "xku",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/xku.java"
   },
@@ -16765,9 +17500,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/xkx.java"
   },
   {
+    "class_name": "xkx",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/xkx.java"
+  },
+  {
     "class_name": "xky",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/xky.java"
+  },
+  {
+    "class_name": "xky",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/xky.java"
   },
@@ -16779,9 +17528,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/xla.java"
   },
   {
+    "class_name": "xla",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/xla.java"
+  },
+  {
     "class_name": "xlb",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/xlb.java"
+  },
+  {
+    "class_name": "xlb",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/xlb.java"
   },
@@ -16793,9 +17556,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/xlc.java"
   },
   {
+    "class_name": "xlc",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/xlc.java"
+  },
+  {
     "class_name": "xld",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/xld.java"
+  },
+  {
+    "class_name": "xld",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/xld.java"
   },
@@ -16817,6 +17594,13 @@
     "class_name": "xlg",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/xlg.java"
+  },
+  {
+    "class_name": "xlg",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/xlg.java"
   },
@@ -16849,6 +17633,13 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/xli.java"
   },
   {
+    "class_name": "xli",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/xli.java"
+  },
+  {
     "class_name": "xlj",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
@@ -16859,6 +17650,13 @@
     "class_name": "xlk",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/xlk.java"
+  },
+  {
+    "class_name": "xlk",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/xlk.java"
   },
@@ -16947,6 +17745,13 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/xlp.java"
   },
   {
+    "class_name": "xlp",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/xlp.java"
+  },
+  {
     "class_name": "xlq",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
@@ -16996,9 +17801,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/xly.java"
   },
   {
+    "class_name": "xly",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/xly.java"
+  },
+  {
     "class_name": "xma",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/xma.java"
+  },
+  {
+    "class_name": "xma",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/xma.java"
   },
@@ -17010,6 +17829,13 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/xmb.java"
   },
   {
+    "class_name": "xmb",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/xmb.java"
+  },
+  {
     "class_name": "xmc",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
@@ -17017,9 +17843,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/xmc.java"
   },
   {
+    "class_name": "xmc",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/xmc.java"
+  },
+  {
     "class_name": "xmd",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/xmd.java"
+  },
+  {
+    "class_name": "xmd",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/xmd.java"
   },
@@ -17139,6 +17979,13 @@
     "class_name": "xml",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/xml.java"
+  },
+  {
+    "class_name": "xml",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/xml.java"
   },
@@ -17290,6 +18137,13 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/xms.java"
   },
   {
+    "class_name": "xms",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/xms.java"
+  },
+  {
     "class_name": "xmt",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
@@ -17360,9 +18214,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/xsz.java"
   },
   {
+    "class_name": "xsz",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/xsz.java"
+  },
+  {
     "class_name": "xta",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/xta.java"
+  },
+  {
+    "class_name": "xta",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/xta.java"
   },
@@ -17374,9 +18242,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/xtb.java"
   },
   {
+    "class_name": "xtb",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/xtb.java"
+  },
+  {
     "class_name": "xtc",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/xtc.java"
+  },
+  {
+    "class_name": "xtc",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/xtc.java"
   },
@@ -17388,9 +18270,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/xtd.java"
   },
   {
+    "class_name": "xtd",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/xtd.java"
+  },
+  {
     "class_name": "xtf",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/xtf.java"
+  },
+  {
+    "class_name": "xtf",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/xtf.java"
   },
@@ -17437,6 +18333,13 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/xtl.java"
   },
   {
+    "class_name": "xtl",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/xtl.java"
+  },
+  {
     "class_name": "xtm",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
@@ -17444,9 +18347,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/xtm.java"
   },
   {
+    "class_name": "xtm",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/xtm.java"
+  },
+  {
     "class_name": "xtn",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/xtn.java"
+  },
+  {
+    "class_name": "xtn",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/xtn.java"
   },
@@ -17465,6 +18382,13 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/xtq.java"
   },
   {
+    "class_name": "xtq",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/xtq.java"
+  },
+  {
     "class_name": "xts",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
@@ -17472,9 +18396,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/xts.java"
   },
   {
+    "class_name": "xts",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/xts.java"
+  },
+  {
     "class_name": "xtw",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/xtw.java"
+  },
+  {
+    "class_name": "xtw",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/xtw.java"
   },
@@ -17559,6 +18497,13 @@
     "class_name": "xuf",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/xuf.java"
+  },
+  {
+    "class_name": "xuf",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/xuf.java"
   },
@@ -17689,6 +18634,13 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/xux.java"
   },
   {
+    "class_name": "xux",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/xux.java"
+  },
+  {
     "class_name": "xuy",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
@@ -17738,9 +18690,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/xve.java"
   },
   {
+    "class_name": "xve",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/xve.java"
+  },
+  {
     "class_name": "xvf",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/xvf.java"
+  },
+  {
+    "class_name": "xvf",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/xvf.java"
   },
@@ -17773,9 +18739,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/xvi.java"
   },
   {
+    "class_name": "xvi",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/xvi.java"
+  },
+  {
     "class_name": "xvj",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/xvj.java"
+  },
+  {
+    "class_name": "xvj",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/xvj.java"
   },
@@ -17920,6 +18900,13 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/xwd.java"
   },
   {
+    "class_name": "xwd",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/xwd.java"
+  },
+  {
     "class_name": "xwe",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
@@ -17934,9 +18921,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/xwf.java"
   },
   {
+    "class_name": "xwf",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/xwf.java"
+  },
+  {
     "class_name": "xwg",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/xwg.java"
+  },
+  {
+    "class_name": "xwg",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/xwg.java"
   },
@@ -17965,6 +18966,13 @@
     "class_name": "xwk",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/xwk.java"
+  },
+  {
+    "class_name": "xwk",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/xwk.java"
   },
@@ -18018,6 +19026,13 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/xws.java"
   },
   {
+    "class_name": "xws",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/xws.java"
+  },
+  {
     "class_name": "xwt",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
@@ -18046,9 +19061,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/xww.java"
   },
   {
+    "class_name": "xww",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/xww.java"
+  },
+  {
     "class_name": "xwx",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/xwx.java"
+  },
+  {
+    "class_name": "xwx",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/xwx.java"
   },
@@ -18151,6 +19180,13 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/xxl.java"
   },
   {
+    "class_name": "xxl",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/xxl.java"
+  },
+  {
     "class_name": "xxm",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
@@ -18179,6 +19215,13 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/xxo.java"
   },
   {
+    "class_name": "xxo",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/xxo.java"
+  },
+  {
     "class_name": "xxp",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
@@ -18186,9 +19229,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/xxp.java"
   },
   {
+    "class_name": "xxp",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/xxp.java"
+  },
+  {
     "class_name": "xxs",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/xxs.java"
+  },
+  {
+    "class_name": "xxs",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/xxs.java"
   },
@@ -18210,6 +19267,13 @@
     "class_name": "xxw",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/xxw.java"
+  },
+  {
+    "class_name": "xxw",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/xxw.java"
   },
@@ -18403,6 +19467,13 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/xzl.java"
   },
   {
+    "class_name": "xzl",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/xzl.java"
+  },
+  {
     "class_name": "xzm",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
@@ -18413,6 +19484,13 @@
     "class_name": "xzn",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/xzn.java"
+  },
+  {
+    "class_name": "xzn",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/xzn.java"
   },
@@ -18431,9 +19509,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/xzq.java"
   },
   {
+    "class_name": "xzq",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/xzq.java"
+  },
+  {
     "class_name": "xzt",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/xzt.java"
+  },
+  {
+    "class_name": "xzt",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/xzt.java"
   },
@@ -18445,9 +19537,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/xzu.java"
   },
   {
+    "class_name": "xzu",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/xzu.java"
+  },
+  {
     "class_name": "xzw",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/xzw.java"
+  },
+  {
+    "class_name": "xzw",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/xzw.java"
   },
@@ -18466,6 +19572,13 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/xzy.java"
   },
   {
+    "class_name": "xzy",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/xzy.java"
+  },
+  {
     "class_name": "xzz",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
@@ -18476,6 +19589,13 @@
     "class_name": "yab",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yab.java"
+  },
+  {
+    "class_name": "yab",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yab.java"
   },
@@ -18494,9 +19614,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yae.java"
   },
   {
+    "class_name": "yae",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yae.java"
+  },
+  {
     "class_name": "yaf",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yaf.java"
+  },
+  {
+    "class_name": "yaf",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yaf.java"
   },
@@ -18515,9 +19649,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yah.java"
   },
   {
+    "class_name": "yah",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yah.java"
+  },
+  {
     "class_name": "yai",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yai.java"
+  },
+  {
+    "class_name": "yai",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yai.java"
   },
@@ -18529,9 +19677,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yaj.java"
   },
   {
+    "class_name": "yaj",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yaj.java"
+  },
+  {
     "class_name": "yal",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yal.java"
+  },
+  {
+    "class_name": "yal",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yal.java"
   },
@@ -19033,6 +20195,13 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yst.java"
   },
   {
+    "class_name": "yst",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yst.java"
+  },
+  {
     "class_name": "ysu",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
@@ -19047,6 +20216,13 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/ysv.java"
   },
   {
+    "class_name": "ysv",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/ysv.java"
+  },
+  {
     "class_name": "ysw",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
@@ -19054,9 +20230,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/ysw.java"
   },
   {
+    "class_name": "ysw",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/ysw.java"
+  },
+  {
     "class_name": "ysx",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/ysx.java"
+  },
+  {
+    "class_name": "ysx",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/ysx.java"
   },
@@ -19075,6 +20265,13 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yta.java"
   },
   {
+    "class_name": "yta",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yta.java"
+  },
+  {
     "class_name": "ytb",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
@@ -19089,9 +20286,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/ytc.java"
   },
   {
+    "class_name": "ytc",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/ytc.java"
+  },
+  {
     "class_name": "ytd",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/ytd.java"
+  },
+  {
+    "class_name": "ytd",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/ytd.java"
   },
@@ -19103,9 +20314,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yte.java"
   },
   {
+    "class_name": "yte",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yte.java"
+  },
+  {
     "class_name": "ytf",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/ytf.java"
+  },
+  {
+    "class_name": "ytf",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/ytf.java"
   },
@@ -19117,9 +20342,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/ytg.java"
   },
   {
+    "class_name": "ytg",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/ytg.java"
+  },
+  {
     "class_name": "yth",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yth.java"
+  },
+  {
+    "class_name": "yth",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yth.java"
   },
@@ -19131,9 +20370,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yti.java"
   },
   {
+    "class_name": "yti",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yti.java"
+  },
+  {
     "class_name": "ytj",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/ytj.java"
+  },
+  {
+    "class_name": "ytj",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/ytj.java"
   },
@@ -19145,9 +20398,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/ytk.java"
   },
   {
+    "class_name": "ytk",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/ytk.java"
+  },
+  {
     "class_name": "ytl",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/ytl.java"
+  },
+  {
+    "class_name": "ytl",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/ytl.java"
   },
@@ -19159,9 +20426,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/ytm.java"
   },
   {
+    "class_name": "ytm",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/ytm.java"
+  },
+  {
     "class_name": "ytn",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/ytn.java"
+  },
+  {
+    "class_name": "ytn",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/ytn.java"
   },
@@ -19173,9 +20454,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yto.java"
   },
   {
+    "class_name": "yto",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yto.java"
+  },
+  {
     "class_name": "ytp",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/ytp.java"
+  },
+  {
+    "class_name": "ytp",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/ytp.java"
   },
@@ -19187,9 +20482,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/ytq.java"
   },
   {
+    "class_name": "ytq",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/ytq.java"
+  },
+  {
     "class_name": "ytr",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/ytr.java"
+  },
+  {
+    "class_name": "ytr",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/ytr.java"
   },
@@ -19201,9 +20510,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yts.java"
   },
   {
+    "class_name": "yts",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yts.java"
+  },
+  {
     "class_name": "ytt",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/ytt.java"
+  },
+  {
+    "class_name": "ytt",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/ytt.java"
   },
@@ -19215,9 +20538,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/ytu.java"
   },
   {
+    "class_name": "ytu",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/ytu.java"
+  },
+  {
     "class_name": "ytv",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/ytv.java"
+  },
+  {
+    "class_name": "ytv",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/ytv.java"
   },
@@ -19229,9 +20566,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/ytw.java"
   },
   {
+    "class_name": "ytw",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/ytw.java"
+  },
+  {
     "class_name": "ytx",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/ytx.java"
+  },
+  {
+    "class_name": "ytx",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/ytx.java"
   },
@@ -19243,9 +20594,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yty.java"
   },
   {
+    "class_name": "yty",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yty.java"
+  },
+  {
     "class_name": "ytz",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/ytz.java"
+  },
+  {
+    "class_name": "ytz",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/ytz.java"
   },
@@ -19257,9 +20622,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yua.java"
   },
   {
+    "class_name": "yua",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yua.java"
+  },
+  {
     "class_name": "yub",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yub.java"
+  },
+  {
+    "class_name": "yub",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yub.java"
   },
@@ -19271,9 +20650,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yuc.java"
   },
   {
+    "class_name": "yuc",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yuc.java"
+  },
+  {
     "class_name": "yud",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yud.java"
+  },
+  {
+    "class_name": "yud",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yud.java"
   },
@@ -19285,9 +20678,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yue.java"
   },
   {
+    "class_name": "yue",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yue.java"
+  },
+  {
     "class_name": "yuf",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yuf.java"
+  },
+  {
+    "class_name": "yuf",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yuf.java"
   },
@@ -19299,9 +20706,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yug.java"
   },
   {
+    "class_name": "yug",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yug.java"
+  },
+  {
     "class_name": "yuh",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yuh.java"
+  },
+  {
+    "class_name": "yuh",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yuh.java"
   },
@@ -19313,9 +20734,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yui.java"
   },
   {
+    "class_name": "yui",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yui.java"
+  },
+  {
     "class_name": "yuj",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yuj.java"
+  },
+  {
+    "class_name": "yuj",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yuj.java"
   },
@@ -19327,9 +20762,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yuk.java"
   },
   {
+    "class_name": "yuk",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yuk.java"
+  },
+  {
     "class_name": "yul",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yul.java"
+  },
+  {
+    "class_name": "yul",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yul.java"
   },
@@ -19341,9 +20790,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yum.java"
   },
   {
+    "class_name": "yum",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yum.java"
+  },
+  {
     "class_name": "yun",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yun.java"
+  },
+  {
+    "class_name": "yun",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yun.java"
   },
@@ -19355,9 +20818,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yuo.java"
   },
   {
+    "class_name": "yuo",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yuo.java"
+  },
+  {
     "class_name": "yup",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yup.java"
+  },
+  {
+    "class_name": "yup",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yup.java"
   },
@@ -19369,9 +20846,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yuq.java"
   },
   {
+    "class_name": "yuq",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yuq.java"
+  },
+  {
     "class_name": "yur",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yur.java"
+  },
+  {
+    "class_name": "yur",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yur.java"
   },
@@ -19383,9 +20874,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yus.java"
   },
   {
+    "class_name": "yus",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yus.java"
+  },
+  {
     "class_name": "yut",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yut.java"
+  },
+  {
+    "class_name": "yut",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yut.java"
   },
@@ -19397,9 +20902,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yuu.java"
   },
   {
+    "class_name": "yuu",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yuu.java"
+  },
+  {
     "class_name": "yuv",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yuv.java"
+  },
+  {
+    "class_name": "yuv",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yuv.java"
   },
@@ -19411,9 +20930,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yuw.java"
   },
   {
+    "class_name": "yuw",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yuw.java"
+  },
+  {
     "class_name": "yux",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yux.java"
+  },
+  {
+    "class_name": "yux",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yux.java"
   },
@@ -19425,9 +20958,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yuy.java"
   },
   {
+    "class_name": "yuy",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yuy.java"
+  },
+  {
     "class_name": "yuz",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yuz.java"
+  },
+  {
+    "class_name": "yuz",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yuz.java"
   },
@@ -19439,9 +20986,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yva.java"
   },
   {
+    "class_name": "yva",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yva.java"
+  },
+  {
     "class_name": "yvb",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yvb.java"
+  },
+  {
+    "class_name": "yvb",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yvb.java"
   },
@@ -19453,9 +21014,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yvc.java"
   },
   {
+    "class_name": "yvc",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yvc.java"
+  },
+  {
     "class_name": "yvd",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yvd.java"
+  },
+  {
+    "class_name": "yvd",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yvd.java"
   },
@@ -19467,9 +21042,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yve.java"
   },
   {
+    "class_name": "yve",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yve.java"
+  },
+  {
     "class_name": "yvf",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yvf.java"
+  },
+  {
+    "class_name": "yvf",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yvf.java"
   },
@@ -19481,9 +21070,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yvg.java"
   },
   {
+    "class_name": "yvg",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yvg.java"
+  },
+  {
     "class_name": "yvh",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yvh.java"
+  },
+  {
+    "class_name": "yvh",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yvh.java"
   },
@@ -19495,9 +21098,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yvi.java"
   },
   {
+    "class_name": "yvi",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yvi.java"
+  },
+  {
     "class_name": "yvj",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yvj.java"
+  },
+  {
+    "class_name": "yvj",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yvj.java"
   },
@@ -19509,9 +21126,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yvk.java"
   },
   {
+    "class_name": "yvk",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yvk.java"
+  },
+  {
     "class_name": "yvl",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yvl.java"
+  },
+  {
+    "class_name": "yvl",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yvl.java"
   },
@@ -19523,9 +21154,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yvm.java"
   },
   {
+    "class_name": "yvm",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yvm.java"
+  },
+  {
     "class_name": "yvn",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yvn.java"
+  },
+  {
+    "class_name": "yvn",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yvn.java"
   },
@@ -19537,9 +21182,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yvo.java"
   },
   {
+    "class_name": "yvo",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yvo.java"
+  },
+  {
     "class_name": "yvp",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yvp.java"
+  },
+  {
+    "class_name": "yvp",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yvp.java"
   },
@@ -19551,9 +21210,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yvq.java"
   },
   {
+    "class_name": "yvq",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yvq.java"
+  },
+  {
     "class_name": "yvr",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yvr.java"
+  },
+  {
+    "class_name": "yvr",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yvr.java"
   },
@@ -19565,9 +21238,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yvs.java"
   },
   {
+    "class_name": "yvs",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yvs.java"
+  },
+  {
     "class_name": "yvt",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yvt.java"
+  },
+  {
+    "class_name": "yvt",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yvt.java"
   },
@@ -19579,9 +21266,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yvu.java"
   },
   {
+    "class_name": "yvu",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yvu.java"
+  },
+  {
     "class_name": "yvv",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yvv.java"
+  },
+  {
+    "class_name": "yvv",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yvv.java"
   },
@@ -19593,9 +21294,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yvw.java"
   },
   {
+    "class_name": "yvw",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yvw.java"
+  },
+  {
     "class_name": "yvx",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yvx.java"
+  },
+  {
+    "class_name": "yvx",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yvx.java"
   },
@@ -19607,9 +21322,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yvy.java"
   },
   {
+    "class_name": "yvy",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yvy.java"
+  },
+  {
     "class_name": "yvz",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yvz.java"
+  },
+  {
+    "class_name": "yvz",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yvz.java"
   },
@@ -19621,9 +21350,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/ywa.java"
   },
   {
+    "class_name": "ywa",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/ywa.java"
+  },
+  {
     "class_name": "ywb",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/ywb.java"
+  },
+  {
+    "class_name": "ywb",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/ywb.java"
   },
@@ -19635,9 +21378,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/ywc.java"
   },
   {
+    "class_name": "ywc",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/ywc.java"
+  },
+  {
     "class_name": "ywd",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/ywd.java"
+  },
+  {
+    "class_name": "ywd",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/ywd.java"
   },
@@ -19649,9 +21406,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/ywe.java"
   },
   {
+    "class_name": "ywe",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/ywe.java"
+  },
+  {
     "class_name": "ywf",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/ywf.java"
+  },
+  {
+    "class_name": "ywf",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/ywf.java"
   },
@@ -19663,9 +21434,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/ywg.java"
   },
   {
+    "class_name": "ywg",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/ywg.java"
+  },
+  {
     "class_name": "ywh",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/ywh.java"
+  },
+  {
+    "class_name": "ywh",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/ywh.java"
   },
@@ -19677,9 +21462,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/ywi.java"
   },
   {
+    "class_name": "ywi",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/ywi.java"
+  },
+  {
     "class_name": "ywj",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/ywj.java"
+  },
+  {
+    "class_name": "ywj",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/ywj.java"
   },
@@ -19691,9 +21490,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/ywk.java"
   },
   {
+    "class_name": "ywk",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/ywk.java"
+  },
+  {
     "class_name": "ywl",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/ywl.java"
+  },
+  {
+    "class_name": "ywl",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/ywl.java"
   },
@@ -19705,9 +21518,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/ywm.java"
   },
   {
+    "class_name": "ywm",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/ywm.java"
+  },
+  {
     "class_name": "ywn",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/ywn.java"
+  },
+  {
+    "class_name": "ywn",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/ywn.java"
   },
@@ -19719,9 +21546,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/ywo.java"
   },
   {
+    "class_name": "ywo",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/ywo.java"
+  },
+  {
     "class_name": "ywp",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/ywp.java"
+  },
+  {
+    "class_name": "ywp",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/ywp.java"
   },
@@ -19733,9 +21574,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/ywq.java"
   },
   {
+    "class_name": "ywq",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/ywq.java"
+  },
+  {
     "class_name": "ywr",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/ywr.java"
+  },
+  {
+    "class_name": "ywr",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/ywr.java"
   },
@@ -19747,9 +21602,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yws.java"
   },
   {
+    "class_name": "yws",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yws.java"
+  },
+  {
     "class_name": "ywt",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/ywt.java"
+  },
+  {
+    "class_name": "ywt",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/ywt.java"
   },
@@ -19761,9 +21630,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/ywu.java"
   },
   {
+    "class_name": "ywu",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/ywu.java"
+  },
+  {
     "class_name": "ywv",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/ywv.java"
+  },
+  {
+    "class_name": "ywv",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/ywv.java"
   },
@@ -19775,9 +21658,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yww.java"
   },
   {
+    "class_name": "yww",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yww.java"
+  },
+  {
     "class_name": "ywx",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/ywx.java"
+  },
+  {
+    "class_name": "ywx",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/ywx.java"
   },
@@ -19789,9 +21686,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/ywy.java"
   },
   {
+    "class_name": "ywy",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/ywy.java"
+  },
+  {
     "class_name": "ywz",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/ywz.java"
+  },
+  {
+    "class_name": "ywz",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/ywz.java"
   },
@@ -19803,9 +21714,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yxa.java"
   },
   {
+    "class_name": "yxa",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yxa.java"
+  },
+  {
     "class_name": "yxb",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yxb.java"
+  },
+  {
+    "class_name": "yxb",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yxb.java"
   },
@@ -19817,9 +21742,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yxc.java"
   },
   {
+    "class_name": "yxc",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yxc.java"
+  },
+  {
     "class_name": "yxd",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yxd.java"
+  },
+  {
+    "class_name": "yxd",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yxd.java"
   },
@@ -19831,9 +21770,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yxe.java"
   },
   {
+    "class_name": "yxe",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yxe.java"
+  },
+  {
     "class_name": "yxf",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yxf.java"
+  },
+  {
+    "class_name": "yxf",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yxf.java"
   },
@@ -19845,9 +21798,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yxg.java"
   },
   {
+    "class_name": "yxg",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yxg.java"
+  },
+  {
     "class_name": "yxh",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yxh.java"
+  },
+  {
+    "class_name": "yxh",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yxh.java"
   },
@@ -19859,9 +21826,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yxi.java"
   },
   {
+    "class_name": "yxi",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yxi.java"
+  },
+  {
     "class_name": "yxj",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yxj.java"
+  },
+  {
+    "class_name": "yxj",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yxj.java"
   },
@@ -19873,9 +21854,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yxk.java"
   },
   {
+    "class_name": "yxk",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yxk.java"
+  },
+  {
     "class_name": "yxl",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yxl.java"
+  },
+  {
+    "class_name": "yxl",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yxl.java"
   },
@@ -19887,9 +21882,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yxm.java"
   },
   {
+    "class_name": "yxm",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yxm.java"
+  },
+  {
     "class_name": "yxn",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yxn.java"
+  },
+  {
+    "class_name": "yxn",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yxn.java"
   },
@@ -19901,9 +21910,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yxo.java"
   },
   {
+    "class_name": "yxo",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yxo.java"
+  },
+  {
     "class_name": "yxp",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yxp.java"
+  },
+  {
+    "class_name": "yxp",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yxp.java"
   },
@@ -19922,9 +21945,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yxr.java"
   },
   {
+    "class_name": "yxr",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yxr.java"
+  },
+  {
     "class_name": "yxu",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yxu.java"
+  },
+  {
+    "class_name": "yxu",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yxu.java"
   },
@@ -19936,9 +21973,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yxv.java"
   },
   {
+    "class_name": "yxv",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yxv.java"
+  },
+  {
     "class_name": "yxw",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yxw.java"
+  },
+  {
+    "class_name": "yxw",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yxw.java"
   },
@@ -19950,9 +22001,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yxx.java"
   },
   {
+    "class_name": "yxx",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yxx.java"
+  },
+  {
     "class_name": "yxy",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yxy.java"
+  },
+  {
+    "class_name": "yxy",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yxy.java"
   },
@@ -19964,9 +22029,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yxz.java"
   },
   {
+    "class_name": "yxz",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yxz.java"
+  },
+  {
     "class_name": "yya",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yya.java"
+  },
+  {
+    "class_name": "yya",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yya.java"
   },
@@ -19978,6 +22057,13 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yyb.java"
   },
   {
+    "class_name": "yyb",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yyb.java"
+  },
+  {
     "class_name": "yyc",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
@@ -19985,9 +22071,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yyc.java"
   },
   {
+    "class_name": "yyc",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yyc.java"
+  },
+  {
     "class_name": "yyd",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yyd.java"
+  },
+  {
+    "class_name": "yyd",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yyd.java"
   },
@@ -20013,9 +22113,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yyg.java"
   },
   {
+    "class_name": "yyg",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yyg.java"
+  },
+  {
     "class_name": "yyh",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yyh.java"
+  },
+  {
+    "class_name": "yyh",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yyh.java"
   },
@@ -20027,9 +22141,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yyi.java"
   },
   {
+    "class_name": "yyi",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yyi.java"
+  },
+  {
     "class_name": "yyj",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yyj.java"
+  },
+  {
+    "class_name": "yyj",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yyj.java"
   },
@@ -20041,6 +22169,13 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yyk.java"
   },
   {
+    "class_name": "yyk",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yyk.java"
+  },
+  {
     "class_name": "yyl",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
@@ -20048,9 +22183,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yyl.java"
   },
   {
+    "class_name": "yyl",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yyl.java"
+  },
+  {
     "class_name": "yym",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yym.java"
+  },
+  {
+    "class_name": "yym",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yym.java"
   },
@@ -20069,9 +22218,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yyo.java"
   },
   {
+    "class_name": "yyo",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yyo.java"
+  },
+  {
     "class_name": "yyp",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yyp.java"
+  },
+  {
+    "class_name": "yyp",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yyp.java"
   },
@@ -20083,9 +22246,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yyq.java"
   },
   {
+    "class_name": "yyq",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yyq.java"
+  },
+  {
     "class_name": "yyr",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yyr.java"
+  },
+  {
+    "class_name": "yyr",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yyr.java"
   },
@@ -20097,9 +22274,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yys.java"
   },
   {
+    "class_name": "yys",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yys.java"
+  },
+  {
     "class_name": "yyt",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yyt.java"
+  },
+  {
+    "class_name": "yyt",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yyt.java"
   },
@@ -20111,9 +22302,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yyu.java"
   },
   {
+    "class_name": "yyu",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yyu.java"
+  },
+  {
     "class_name": "yyv",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yyv.java"
+  },
+  {
+    "class_name": "yyv",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yyv.java"
   },
@@ -20125,9 +22330,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yyw.java"
   },
   {
+    "class_name": "yyw",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yyw.java"
+  },
+  {
     "class_name": "yyx",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yyx.java"
+  },
+  {
+    "class_name": "yyx",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yyx.java"
   },
@@ -20139,9 +22358,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yyy.java"
   },
   {
+    "class_name": "yyy",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yyy.java"
+  },
+  {
     "class_name": "yyz",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yyz.java"
+  },
+  {
+    "class_name": "yyz",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yyz.java"
   },
@@ -20153,6 +22386,13 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yza.java"
   },
   {
+    "class_name": "yza",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yza.java"
+  },
+  {
     "class_name": "yzb",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
@@ -20160,9 +22400,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yzb.java"
   },
   {
+    "class_name": "yzb",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yzb.java"
+  },
+  {
     "class_name": "yzc",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yzc.java"
+  },
+  {
+    "class_name": "yzc",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yzc.java"
   },
@@ -20181,9 +22435,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yze.java"
   },
   {
+    "class_name": "yze",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yze.java"
+  },
+  {
     "class_name": "yzg",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yzg.java"
+  },
+  {
+    "class_name": "yzg",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yzg.java"
   },
@@ -20195,9 +22463,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yzh.java"
   },
   {
+    "class_name": "yzh",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yzh.java"
+  },
+  {
     "class_name": "yzi",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yzi.java"
+  },
+  {
+    "class_name": "yzi",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yzi.java"
   },
@@ -20209,9 +22491,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yzj.java"
   },
   {
+    "class_name": "yzj",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yzj.java"
+  },
+  {
     "class_name": "yzk",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yzk.java"
+  },
+  {
+    "class_name": "yzk",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yzk.java"
   },
@@ -20223,9 +22519,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yzl.java"
   },
   {
+    "class_name": "yzl",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yzl.java"
+  },
+  {
     "class_name": "yzm",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yzm.java"
+  },
+  {
+    "class_name": "yzm",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yzm.java"
   },
@@ -20237,9 +22547,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yzn.java"
   },
   {
+    "class_name": "yzn",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yzn.java"
+  },
+  {
     "class_name": "yzo",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yzo.java"
+  },
+  {
+    "class_name": "yzo",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yzo.java"
   },
@@ -20251,9 +22575,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yzp.java"
   },
   {
+    "class_name": "yzp",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yzp.java"
+  },
+  {
     "class_name": "yzq",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yzq.java"
+  },
+  {
+    "class_name": "yzq",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yzq.java"
   },
@@ -20265,9 +22603,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yzr.java"
   },
   {
+    "class_name": "yzr",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yzr.java"
+  },
+  {
     "class_name": "yzs",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yzs.java"
+  },
+  {
+    "class_name": "yzs",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yzs.java"
   },
@@ -20279,9 +22631,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yzt.java"
   },
   {
+    "class_name": "yzt",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yzt.java"
+  },
+  {
     "class_name": "yzv",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yzv.java"
+  },
+  {
+    "class_name": "yzv",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yzv.java"
   },
@@ -20293,9 +22659,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yzw.java"
   },
   {
+    "class_name": "yzw",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yzw.java"
+  },
+  {
     "class_name": "yzx",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yzx.java"
+  },
+  {
+    "class_name": "yzx",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yzx.java"
   },
@@ -20307,9 +22687,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yzy.java"
   },
   {
+    "class_name": "yzy",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yzy.java"
+  },
+  {
     "class_name": "yzz",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yzz.java"
+  },
+  {
+    "class_name": "yzz",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/yzz.java"
   },
@@ -20321,6 +22715,13 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zaa.java"
   },
   {
+    "class_name": "zaa",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zaa.java"
+  },
+  {
     "class_name": "zab",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
@@ -20328,9 +22729,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zab.java"
   },
   {
+    "class_name": "zab",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zab.java"
+  },
+  {
     "class_name": "zac",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zac.java"
+  },
+  {
+    "class_name": "zac",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zac.java"
   },
@@ -20349,9 +22764,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zae.java"
   },
   {
+    "class_name": "zae",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zae.java"
+  },
+  {
     "class_name": "zaf",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zaf.java"
+  },
+  {
+    "class_name": "zaf",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zaf.java"
   },
@@ -20363,9 +22792,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zag.java"
   },
   {
+    "class_name": "zag",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zag.java"
+  },
+  {
     "class_name": "zah",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zah.java"
+  },
+  {
+    "class_name": "zah",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zah.java"
   },
@@ -20391,9 +22834,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zaj.java"
   },
   {
+    "class_name": "zaj",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zaj.java"
+  },
+  {
     "class_name": "zak",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zak.java"
+  },
+  {
+    "class_name": "zak",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zak.java"
   },
@@ -20405,9 +22862,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zal.java"
   },
   {
+    "class_name": "zal",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zal.java"
+  },
+  {
     "class_name": "zam",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zam.java"
+  },
+  {
+    "class_name": "zam",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zam.java"
   },
@@ -20419,9 +22890,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zan.java"
   },
   {
+    "class_name": "zan",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zan.java"
+  },
+  {
     "class_name": "zao",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zao.java"
+  },
+  {
+    "class_name": "zao",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zao.java"
   },
@@ -20433,9 +22918,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zap.java"
   },
   {
+    "class_name": "zap",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zap.java"
+  },
+  {
     "class_name": "zaq",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zaq.java"
+  },
+  {
+    "class_name": "zaq",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zaq.java"
   },
@@ -20447,9 +22946,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zar.java"
   },
   {
+    "class_name": "zar",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zar.java"
+  },
+  {
     "class_name": "zas",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zas.java"
+  },
+  {
+    "class_name": "zas",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zas.java"
   },
@@ -20461,9 +22974,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zat.java"
   },
   {
+    "class_name": "zat",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zat.java"
+  },
+  {
     "class_name": "zau",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zau.java"
+  },
+  {
+    "class_name": "zau",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zau.java"
   },
@@ -20475,9 +23002,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zav.java"
   },
   {
+    "class_name": "zav",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zav.java"
+  },
+  {
     "class_name": "zaw",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zaw.java"
+  },
+  {
+    "class_name": "zaw",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zaw.java"
   },
@@ -20489,9 +23030,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zax.java"
   },
   {
+    "class_name": "zax",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zax.java"
+  },
+  {
     "class_name": "zay",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zay.java"
+  },
+  {
+    "class_name": "zay",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zay.java"
   },
@@ -20503,9 +23058,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zaz.java"
   },
   {
+    "class_name": "zaz",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zaz.java"
+  },
+  {
     "class_name": "zba",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zba.java"
+  },
+  {
+    "class_name": "zba",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zba.java"
   },
@@ -20517,6 +23086,13 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zbb.java"
   },
   {
+    "class_name": "zbb",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zbb.java"
+  },
+  {
     "class_name": "zbc",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
@@ -20524,9 +23100,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zbc.java"
   },
   {
+    "class_name": "zbc",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zbc.java"
+  },
+  {
     "class_name": "zbd",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zbd.java"
+  },
+  {
+    "class_name": "zbd",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zbd.java"
   },
@@ -20590,6 +23180,13 @@
     "class_name": "zbm",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zbm.java"
+  },
+  {
+    "class_name": "zbm",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zbm.java"
   },
@@ -20797,6 +23394,13 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zcp.java"
   },
   {
+    "class_name": "zcp",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zcp.java"
+  },
+  {
     "class_name": "zcq",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
@@ -20811,9 +23415,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zcs.java"
   },
   {
+    "class_name": "zcs",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zcs.java"
+  },
+  {
     "class_name": "zct",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zct.java"
+  },
+  {
+    "class_name": "zct",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zct.java"
   },
@@ -20916,6 +23534,13 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zdi.java"
   },
   {
+    "class_name": "zdi",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zdi.java"
+  },
+  {
     "class_name": "zdj",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
@@ -20923,9 +23548,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zdj.java"
   },
   {
+    "class_name": "zdj",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zdj.java"
+  },
+  {
     "class_name": "zdk",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zdk.java"
+  },
+  {
+    "class_name": "zdk",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zdk.java"
   },
@@ -21035,6 +23674,13 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zdz.java"
   },
   {
+    "class_name": "zdz",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zdz.java"
+  },
+  {
     "class_name": "zea",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
@@ -21045,6 +23691,13 @@
     "class_name": "zeb",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zeb.java"
+  },
+  {
+    "class_name": "zeb",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zeb.java"
   },
@@ -21063,6 +23716,13 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zee.java"
   },
   {
+    "class_name": "zee",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zee.java"
+  },
+  {
     "class_name": "zeg",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
@@ -21070,9 +23730,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zeg.java"
   },
   {
+    "class_name": "zeg",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zeg.java"
+  },
+  {
     "class_name": "zei",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zei.java"
+  },
+  {
+    "class_name": "zei",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zei.java"
   },
@@ -21497,6 +24171,13 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zgk.java"
   },
   {
+    "class_name": "zgk",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zgk.java"
+  },
+  {
     "class_name": "zgl",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
@@ -21812,6 +24493,13 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zib.java"
   },
   {
+    "class_name": "zib",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zib.java"
+  },
+  {
     "class_name": "zic",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
@@ -21840,9 +24528,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zig.java"
   },
   {
+    "class_name": "zig",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zig.java"
+  },
+  {
     "class_name": "zih",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zih.java"
+  },
+  {
+    "class_name": "zih",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zih.java"
   },
@@ -21945,9 +24647,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/ziw.java"
   },
   {
+    "class_name": "ziw",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/ziw.java"
+  },
+  {
     "class_name": "zix",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zix.java"
+  },
+  {
+    "class_name": "zix",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zix.java"
   },
@@ -22067,6 +24783,13 @@
     "class_name": "zjo",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zjo.java"
+  },
+  {
+    "class_name": "zjo",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zjo.java"
   },
@@ -22253,6 +24976,13 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zkd.java"
   },
   {
+    "class_name": "zkd",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zkd.java"
+  },
+  {
     "class_name": "zkf",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
@@ -22291,6 +25021,13 @@
     "class_name": "zkh",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zkh.java"
+  },
+  {
+    "class_name": "zkh",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zkh.java"
   },
@@ -22582,6 +25319,13 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zle.java"
   },
   {
+    "class_name": "zle",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zle.java"
+  },
+  {
     "class_name": "zli",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
@@ -22592,6 +25336,13 @@
     "class_name": "zlk",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zlk.java"
+  },
+  {
+    "class_name": "zlk",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zlk.java"
   },
@@ -22627,6 +25378,13 @@
     "class_name": "zln",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zln.java"
+  },
+  {
+    "class_name": "zln",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zln.java"
   },
@@ -23359,6 +26117,13 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zok.java"
   },
   {
+    "class_name": "zok",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zok.java"
+  },
+  {
     "class_name": "zol",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
@@ -23520,6 +26285,13 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zox.java"
   },
   {
+    "class_name": "zox",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zox.java"
+  },
+  {
     "class_name": "zoy",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
@@ -23621,6 +26393,13 @@
     "class_name": "zpr",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zpr.java"
+  },
+  {
+    "class_name": "zpr",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zpr.java"
   },
@@ -23835,6 +26614,13 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zqh.java"
   },
   {
+    "class_name": "zqh",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zqh.java"
+  },
+  {
     "class_name": "zql",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
@@ -23957,6 +26743,13 @@
     "class_name": "zqv",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zqv.java"
+  },
+  {
+    "class_name": "zqv",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zqv.java"
   },
@@ -24561,6 +27354,13 @@
     "evidence_source": "proto_writes",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zsk.java"
+  },
+  {
+    "class_name": "zsl",
+    "evidence_detail": "descriptor",
+    "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zsl.java"
   },
   {
     "class_name": "zsl",
@@ -25263,6 +28063,13 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zuf.java"
   },
   {
+    "class_name": "zuf",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zuf.java"
+  },
+  {
     "class_name": "zug",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
@@ -25354,6 +28161,13 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zun.java"
   },
   {
+    "class_name": "zun",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zun.java"
+  },
+  {
     "class_name": "zuo",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
@@ -25378,6 +28192,13 @@
     "class_name": "zur",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zur.java"
+  },
+  {
+    "class_name": "zur",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zur.java"
   },
@@ -25431,9 +28252,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zuu.java"
   },
   {
+    "class_name": "zuu",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zuu.java"
+  },
+  {
     "class_name": "zuv",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zuv.java"
+  },
+  {
+    "class_name": "zuv",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zuv.java"
   },
@@ -25494,9 +28329,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zvb.java"
   },
   {
+    "class_name": "zvb",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zvb.java"
+  },
+  {
     "class_name": "zvc",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zvc.java"
+  },
+  {
+    "class_name": "zvc",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zvc.java"
   },
@@ -25508,9 +28357,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zvd.java"
   },
   {
+    "class_name": "zvd",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zvd.java"
+  },
+  {
     "class_name": "zvf",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zvf.java"
+  },
+  {
+    "class_name": "zvf",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zvf.java"
   },
@@ -25522,6 +28385,13 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zvg.java"
   },
   {
+    "class_name": "zvg",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zvg.java"
+  },
+  {
     "class_name": "zvh",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
@@ -25529,9 +28399,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zvh.java"
   },
   {
+    "class_name": "zvh",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zvh.java"
+  },
+  {
     "class_name": "zvi",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zvi.java"
+  },
+  {
+    "class_name": "zvi",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zvi.java"
   },
@@ -25550,9 +28434,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zvl.java"
   },
   {
+    "class_name": "zvl",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zvl.java"
+  },
+  {
     "class_name": "zvn",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zvn.java"
+  },
+  {
+    "class_name": "zvn",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zvn.java"
   },
@@ -25564,9 +28462,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zvo.java"
   },
   {
+    "class_name": "zvo",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zvo.java"
+  },
+  {
     "class_name": "zvp",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zvp.java"
+  },
+  {
+    "class_name": "zvp",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zvp.java"
   },
@@ -25578,9 +28490,23 @@
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zvq.java"
   },
   {
+    "class_name": "zvq",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zvq.java"
+  },
+  {
     "class_name": "zvt",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zvt.java"
+  },
+  {
+    "class_name": "zvt",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zvt.java"
   },
@@ -25609,6 +28535,13 @@
     "class_name": "zvw",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zvw.java"
+  },
+  {
+    "class_name": "zvw",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zvw.java"
   },
@@ -25665,6 +28598,13 @@
     "class_name": "zwd",
     "evidence_detail": "descriptor",
     "evidence_source": "descriptor",
+    "line": 0,
+    "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zwd.java"
+  },
+  {
+    "class_name": "zwd",
+    "evidence_detail": "field_decls",
+    "evidence_source": "field_decls",
     "line": 0,
     "source_file": "analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/zwd.java"
   },
