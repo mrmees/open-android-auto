@@ -4,13 +4,13 @@
 
 | Category | Count |
 |---|---|
-| Already mapped | 156 |
-| WIRE_HIGH | 38 |
-| WIRE_MEDIUM | 60 |
-| WIRE_LOW | 138 |
+| Already mapped | 189 |
+| WIRE_HIGH | 10 |
+| WIRE_MEDIUM | 50 |
+| WIRE_LOW | 150 |
 | INTERNAL | 79 |
-| UTILITY | 449 |
-| UNKNOWN | 1033 |
+| UTILITY | 448 |
+| UNKNOWN | 1028 |
 | **Total in APK** | **1946** |
 
 ## Wire Protocol Candidates
@@ -19,45 +19,42 @@
 
 | Class | Cat | Conf | Syntax | Fields | Sub-refs | Signals |
 |---|---|---|---|---|---|---|
-| `vyu` | WIRE_HIGH | 0.85 | proto2 | 15 | 2 | BFS hop 1, hub_files=1, struct:has_sub_refs, struct:proto2 |
 | `noo` | WIRE_MEDIUM | 0.65 | proto3 | 4 | 0 | hub_files=2, struct:proto3 |
-| `noq` | WIRE_MEDIUM | 0.65 | proto3 | 6 | 4 | hub_files=3, struct:has_sub_refs, struct:proto3 |
+| `noq` | WIRE_MEDIUM | 0.65 | proto3 | 6 | 4 | hub_files=4, struct:has_sub_refs, struct:proto3 |
+| `xjs` | WIRE_MEDIUM | 0.65 | proto2 | 3 | 0 | hub_files=2, struct:proto2 |
+| `nnx` | WIRE_LOW | 0.40 | proto3 | 3 | 0 | hub_files=1, struct:proto3 |
+| `noa` | WIRE_LOW | 0.40 | proto3 | 6 | 1 | hub_files=1, struct:has_sub_refs, struct:proto3 |
+| `nob` | WIRE_LOW | 0.40 | proto3 | 6 | 0 | hub_files=1, struct:proto3 |
 | `wcf` | WIRE_LOW | 0.40 | proto2 | 0 | 0 | hub_files=1, struct:proto2, struct:zero_fields |
+| `xhr` | WIRE_LOW | 0.40 | proto2 | 31 | 1 | hub_files=1, struct:has_sub_refs, struct:proto2 |
+| `xkk` | WIRE_LOW | 0.40 | proto2 | 1 | 1 | hub_files=1, struct:has_sub_refs, struct:proto2 |
+| `xkl` | WIRE_LOW | 0.40 | proto2 | 19 | 1 | hub_files=1, struct:has_sub_refs, struct:proto2 |
 
 ### Control
 
 | Class | Cat | Conf | Syntax | Fields | Sub-refs | Signals |
 |---|---|---|---|---|---|---|
 | `aafu` | WIRE_HIGH | 0.85 | proto3 | 3 | 1 | BFS hop 1, hub_files=2, struct:has_sub_refs, struct:proto3 |
-| `aagf` | WIRE_HIGH | 0.85 | proto3 | 6 | 1 | BFS hop 1, hub_files=1, struct:has_sub_refs, struct:proto3 |
-| `aagr` | WIRE_HIGH | 0.85 | proto3 | 6 | 4 | BFS hop 1, hub_files=1, struct:has_sub_refs, struct:proto3 |
+| `aahf` | WIRE_HIGH | 0.85 | proto3 | 2 | 2 | BFS hop 1, hub_files=1, struct:has_sub_refs, struct:proto3 |
 | `aaij` | WIRE_HIGH | 0.85 | proto3 | 2 | 2 | BFS hop 1, hub_files=2, struct:has_sub_refs, struct:proto3 |
-| `aais` | WIRE_HIGH | 0.85 | proto3 | 3 | 3 | BFS hop 1, hub_files=1, struct:has_sub_refs, struct:proto3 |
-| `aaix` | WIRE_HIGH | 0.85 | proto3 | 2 | 1 | BFS hop 1, hub_files=2, struct:has_sub_refs, struct:proto3 |
-| `aajt` | WIRE_HIGH | 0.85 | proto3 | 2 | 1 | BFS hop 1, hub_files=2, pkg=INTERNAL, struct:has_sub_refs, struct:proto3 |
-| `aakd` | WIRE_HIGH | 0.85 | proto3 | 1 | 1 | BFS hop 1, hub_files=1, struct:has_sub_refs, struct:proto3 |
-| `wbz` | WIRE_HIGH | 0.85 | proto2 | 1 | 1 | BFS hop 1, hub_files=3, struct:has_sub_refs, struct:proto2 |
-| `aafs` | WIRE_MEDIUM | 0.75 | proto3 | 4 | 0 | BFS hop 2, hub_files=2, struct:proto3 |
-| `aaiu` | WIRE_MEDIUM | 0.75 | proto3 | 2 | 2 | BFS hop 2, hub_files=2, struct:has_sub_refs, struct:proto3 |
-| `aaiz` | WIRE_MEDIUM | 0.75 | proto3 | 3 | 1 | BFS hop 2, hub_files=2, pkg=INTERNAL, struct:has_sub_refs, struct:proto3 |
+| `aajs` | WIRE_HIGH | 0.85 | proto3 | 2 | 0 | BFS hop 1, hub_files=1, pkg=INTERNAL, struct:proto3 |
+| `aakc` | WIRE_HIGH | 0.85 | proto3 | 1 | 1 | BFS hop 1, hub_files=1, struct:has_sub_refs, struct:proto3 |
 | `aake` | WIRE_MEDIUM | 0.75 | proto3 | 2 | 1 | BFS hop 2, hub_files=3, pkg=INTERNAL, struct:has_sub_refs, struct:proto3 |
-| `aahf` | WIRE_MEDIUM | 0.70 | proto3 | 2 | 2 | BFS hop 2, hub_files=1, struct:has_sub_refs, struct:proto3 |
-| `aahi` | WIRE_MEDIUM | 0.70 | proto3 | 5 | 2 | BFS hop 2, hub_files=1, struct:has_sub_refs, struct:proto3 |
-| `aaiq` | WIRE_MEDIUM | 0.70 | proto3 | 2 | 0 | BFS hop 2, hub_files=1, struct:proto3 |
-| `aair` | WIRE_MEDIUM | 0.70 | proto3 | 8 | 0 | BFS hop 2, hub_files=1, struct:proto3 |
-| `aajs` | WIRE_MEDIUM | 0.70 | proto3 | 2 | 0 | BFS hop 2, hub_files=1, pkg=INTERNAL, struct:proto3 |
-| `aakc` | WIRE_MEDIUM | 0.70 | proto3 | 1 | 1 | BFS hop 2, hub_files=1, struct:has_sub_refs, struct:proto3 |
+| `aagf` | WIRE_MEDIUM | 0.70 | proto3 | 6 | 1 | BFS hop 2, hub_files=1, struct:has_sub_refs, struct:proto3 |
+| `aakb` | WIRE_MEDIUM | 0.70 | proto3 | 2 | 2 | BFS hop 2, hub_files=1, struct:has_sub_refs, struct:proto3 |
 | `aafz` | WIRE_MEDIUM | 0.65 | proto3 | 3 | 0 | hub_files=2, struct:proto3 |
-| `aagg` | WIRE_MEDIUM | 0.65 | proto3 | 4 | 0 | BFS hop 3, hub_files=2, struct:proto3 |
-| `aahd` | WIRE_MEDIUM | 0.65 | proto3 | 2 | 1 | BFS hop 3, hub_files=2, struct:has_sub_refs, struct:proto3 |
-| `aail` | WIRE_MEDIUM | 0.65 | proto3 | 2 | 2 | BFS hop 3, hub_files=2, struct:has_sub_refs, struct:proto3 |
+| `aagg` | WIRE_MEDIUM | 0.65 | proto3 | 4 | 0 | hub_files=2, struct:proto3 |
+| `aail` | WIRE_MEDIUM | 0.65 | proto3 | 2 | 2 | hub_files=2, struct:has_sub_refs, struct:proto3 |
 | `aaim` | WIRE_MEDIUM | 0.65 | proto3 | 5 | 2 | BFS hop 3, hub_files=3, struct:has_sub_refs, struct:proto3 |
+| `aaiu` | WIRE_MEDIUM | 0.65 | proto3 | 2 | 2 | hub_files=2, struct:has_sub_refs, struct:proto3 |
+| `aaix` | WIRE_MEDIUM | 0.65 | proto3 | 2 | 1 | hub_files=2, struct:has_sub_refs, struct:proto3 |
+| `aaiz` | WIRE_MEDIUM | 0.65 | proto3 | 3 | 1 | BFS hop 5, hub_files=2, pkg=INTERNAL, struct:has_sub_refs, struct:proto3 |
 | `aajb` | WIRE_MEDIUM | 0.65 | proto3 | 1 | 0 | hub_files=3, struct:proto3 |
 | `aajd` | WIRE_MEDIUM | 0.65 | proto3 | 1 | 1 | hub_files=2, struct:has_sub_refs, struct:proto3 |
 | `aaje` | WIRE_MEDIUM | 0.65 | proto3 | 3 | 0 | hub_files=3, struct:proto3 |
 | `aajf` | WIRE_MEDIUM | 0.65 | proto3 | 1 | 1 | hub_files=2, struct:has_sub_refs, struct:proto3 |
-| `aajp` | WIRE_MEDIUM | 0.65 | proto3 | 7 | 5 | BFS hop 3, hub_files=2, pkg=INTERNAL, struct:has_sub_refs, struct:proto3 |
-| `aaki` | WIRE_MEDIUM | 0.65 | proto3 | 3 | 0 | BFS hop 4, hub_files=2, struct:proto3 |
+| `aajp` | WIRE_MEDIUM | 0.65 | proto3 | 7 | 5 | BFS hop 4, hub_files=2, pkg=INTERNAL, struct:has_sub_refs, struct:proto3 |
+| `aaki` | WIRE_MEDIUM | 0.65 | proto3 | 3 | 0 | hub_files=2, struct:proto3 |
 | `poe` | WIRE_MEDIUM | 0.65 | proto3 | 1 | 0 | hub_files=2, struct:proto3 |
 | `vwg` | WIRE_MEDIUM | 0.65 | proto2 | 0 | 0 | hub_files=3, struct:proto2, struct:zero_fields |
 | `vxz` | WIRE_MEDIUM | 0.65 | proto2 | 3 | 0 | hub_files=3, struct:proto2 |
@@ -65,15 +62,11 @@
 | `wak` | WIRE_MEDIUM | 0.65 | proto2 | 2 | 1 | hub_files=3, struct:has_sub_refs, struct:proto2 |
 | `wcw` | WIRE_MEDIUM | 0.65 | proto2 | 0 | 0 | hub_files=2, struct:proto2, struct:zero_fields |
 | `zop` | WIRE_MEDIUM | 0.65 | proto2 | 12 | 1 | hub_files=2, struct:has_sub_refs, struct:proto2 |
-| `aago` | WIRE_LOW | 0.50 | proto3 | 6 | 0 | BFS hop 3, hub_files=1, struct:proto3 |
-| `aahn` | WIRE_LOW | 0.50 | proto3 | 2 | 0 | BFS hop 3, hub_files=1, struct:proto3 |
-| `aait` | WIRE_LOW | 0.50 | proto3 | 4 | 0 | BFS hop 3, hub_files=1, struct:proto3 |
-| `aaiw` | WIRE_LOW | 0.50 | proto3 | 4 | 0 | BFS hop 4, hub_files=1, pkg=INTERNAL, struct:proto3 |
-| `aajl` | WIRE_LOW | 0.50 | proto3 | 2 | 0 | BFS hop 4, hub_files=1, pkg=INTERNAL, struct:proto3 |
-| `aajq` | WIRE_LOW | 0.50 | proto3 | 2 | 0 | BFS hop 4, hub_files=1, struct:proto3 |
-| `aajz` | WIRE_LOW | 0.50 | proto3 | 1 | 0 | BFS hop 4, hub_files=1, struct:proto3 |
-| `aaka` | WIRE_LOW | 0.50 | proto3 | 5 | 0 | BFS hop 4, hub_files=1, struct:proto3 |
-| `aakb` | WIRE_LOW | 0.50 | proto3 | 2 | 2 | BFS hop 3, hub_files=1, struct:has_sub_refs, struct:proto3 |
+| `aaiw` | WIRE_LOW | 0.50 | proto3 | 4 | 0 | BFS hop 5, hub_files=1, pkg=INTERNAL, struct:proto3 |
+| `aajl` | WIRE_LOW | 0.50 | proto3 | 2 | 0 | BFS hop 5, hub_files=1, pkg=INTERNAL, struct:proto3 |
+| `aajq` | WIRE_LOW | 0.50 | proto3 | 2 | 0 | BFS hop 5, hub_files=1, struct:proto3 |
+| `aajz` | WIRE_LOW | 0.50 | proto3 | 1 | 0 | BFS hop 3, hub_files=1, struct:proto3 |
+| `aaka` | WIRE_LOW | 0.50 | proto3 | 5 | 0 | BFS hop 3, hub_files=1, struct:proto3 |
 | `aafl` | WIRE_LOW | 0.40 | proto3 | 4 | 0 | hub_files=1, struct:proto3 |
 | `aafm` | WIRE_LOW | 0.40 | proto3 | 1 | 0 | hub_files=1, struct:proto3 |
 | `aafv` | WIRE_LOW | 0.40 | proto3 | 1 | 0 | hub_files=1, struct:proto3 |
@@ -86,6 +79,7 @@
 | `aagd` | WIRE_LOW | 0.40 | proto3 | 0 | 0 | hub_files=1, struct:proto3, struct:zero_fields |
 | `aage` | WIRE_LOW | 0.40 | proto3 | 0 | 0 | hub_files=1, struct:proto3, struct:zero_fields |
 | `aagn` | WIRE_LOW | 0.40 | proto3 | 3 | 0 | hub_files=1, struct:proto3 |
+| `aago` | WIRE_LOW | 0.40 | proto3 | 6 | 0 | hub_files=1, struct:proto3 |
 | `aagp` | WIRE_LOW | 0.40 | proto3 | 1 | 1 | hub_files=1, struct:has_sub_refs, struct:proto3 |
 | `aagq` | WIRE_LOW | 0.40 | proto3 | 2 | 0 | hub_files=1, struct:proto3 |
 | `aagt` | WIRE_LOW | 0.40 | proto3 | 1 | 0 | hub_files=1, struct:proto3 |
@@ -103,9 +97,14 @@
 | `aahj` | WIRE_LOW | 0.40 | proto3 | 1 | 0 | hub_files=1, struct:proto3 |
 | `aahk` | WIRE_LOW | 0.40 | proto3 | 2 | 0 | hub_files=1, struct:proto3 |
 | `aahl` | WIRE_LOW | 0.40 | proto3 | 3 | 0 | hub_files=1, struct:proto3 |
+| `aahn` | WIRE_LOW | 0.40 | proto3 | 2 | 0 | hub_files=1, struct:proto3 |
 | `aaik` | WIRE_LOW | 0.40 | proto3 | 0 | 0 | hub_files=1, struct:proto3, struct:zero_fields |
 | `aain` | WIRE_LOW | 0.40 | proto3 | 5 | 1 | hub_files=1, struct:has_sub_refs, struct:proto3 |
 | `aaio` | WIRE_LOW | 0.40 | proto3 | 1 | 0 | hub_files=1, struct:proto3 |
+| `aaiq` | WIRE_LOW | 0.40 | proto3 | 2 | 0 | hub_files=1, struct:proto3 |
+| `aair` | WIRE_LOW | 0.40 | proto3 | 8 | 0 | hub_files=1, struct:proto3 |
+| `aais` | WIRE_LOW | 0.40 | proto3 | 3 | 3 | hub_files=1, struct:has_sub_refs, struct:proto3 |
+| `aait` | WIRE_LOW | 0.40 | proto3 | 4 | 0 | hub_files=1, struct:proto3 |
 | `aajc` | WIRE_LOW | 0.40 | proto3 | 1 | 0 | hub_files=1, struct:proto3 |
 | `aajn` | WIRE_LOW | 0.40 | proto3 | 1 | 1 | hub_files=1, struct:has_sub_refs, struct:proto3 |
 | `aajo` | WIRE_LOW | 0.40 | proto3 | 2 | 0 | hub_files=1, struct:proto3 |
@@ -124,7 +123,6 @@
 | `iar` | WIRE_LOW | 0.40 | proto3 | 12 | 0 | hub_files=1, struct:proto3 |
 | `vxc` | WIRE_LOW | 0.40 | proto2 | 1 | 1 | hub_files=1, struct:has_sub_refs, struct:proto2 |
 | `wcx` | WIRE_LOW | 0.40 | proto2 | 1 | 1 | hub_files=1, struct:has_sub_refs, struct:proto2 |
-| `xiz` | WIRE_LOW | 0.40 | proto2 | 2 | 1 | hub_files=1, pkg=INTERNAL, struct:has_sub_refs, struct:proto2 |
 | `zll` | WIRE_LOW | 0.40 | proto2 | 1 | 0 | hub_files=1, struct:proto2 |
 | `zlm` | WIRE_LOW | 0.40 | proto2 | 3 | 0 | hub_files=1, struct:proto2 |
 | `znq` | WIRE_LOW | 0.40 | proto2 | 0 | 0 | hub_files=1, struct:proto2, struct:zero_fields |
@@ -135,15 +133,15 @@
 
 | Class | Cat | Conf | Syntax | Fields | Sub-refs | Signals |
 |---|---|---|---|---|---|---|
-| `vvi` | WIRE_HIGH | 0.85 | proto2 | 1 | 0 | BFS hop 1, hub_files=2, struct:proto2 |
-| `nnv` | WIRE_MEDIUM | 0.70 | proto3 | 16 | 3 | BFS hop 2, hub_files=1, struct:has_sub_refs, struct:proto3 |
 | `aacu` | WIRE_MEDIUM | 0.65 | proto2 | 1 | 0 | hub_files=3, struct:proto2 |
-| `nnu` | WIRE_MEDIUM | 0.65 | proto3 | 6 | 2 | BFS hop 3, hub_files=2, struct:has_sub_refs, struct:proto3 |
+| `nnu` | WIRE_MEDIUM | 0.65 | proto3 | 6 | 2 | hub_files=3, struct:has_sub_refs, struct:proto3 |
+| `nnv` | WIRE_MEDIUM | 0.65 | proto3 | 16 | 3 | hub_files=2, struct:has_sub_refs, struct:proto3 |
+| `nok` | WIRE_MEDIUM | 0.65 | proto3 | 5 | 1 | hub_files=2, struct:has_sub_refs, struct:proto3 |
 | `vxy` | WIRE_MEDIUM | 0.65 | proto2 | 8 | 0 | hub_files=4, struct:proto2 |
 | `vyf` | WIRE_MEDIUM | 0.65 | proto2 | 1 | 0 | hub_files=2, struct:proto2 |
 | `vyg` | WIRE_MEDIUM | 0.65 | proto2 | 1 | 0 | hub_files=2, struct:proto2 |
-| `noc` | WIRE_LOW | 0.50 | proto3 | 6 | 1 | BFS hop 3, hub_files=1, struct:has_sub_refs, struct:proto3 |
-| `aadk` | WIRE_LOW | 0.40 | proto2 | 7 | 1 | hub_files=1, struct:has_sub_refs, struct:proto2 |
+| `znc` | WIRE_MEDIUM | 0.65 | proto2 | 1 | 0 | hub_files=2, struct:proto2 |
+| `zvs` | WIRE_MEDIUM | 0.65 | proto2 | 4 | 0 | hub_files=2, struct:proto2 |
 | `aadl` | WIRE_LOW | 0.40 | proto2 | 1 | 0 | hub_files=1, struct:proto2 |
 | `aadt` | WIRE_LOW | 0.40 | proto3 | 2 | 0 | hub_files=1, struct:proto3 |
 | `aadu` | WIRE_LOW | 0.40 | proto3 | 1 | 0 | hub_files=1, struct:proto3 |
@@ -158,7 +156,7 @@
 | `jpf` | WIRE_LOW | 0.40 | proto3 | 4 | 1 | hub_files=1, struct:has_sub_refs, struct:proto3 |
 | `nfs` | WIRE_LOW | 0.40 | proto3 | 9 | 0 | hub_files=1, struct:proto3 |
 | `nft` | WIRE_LOW | 0.40 | proto3 | 1 | 0 | hub_files=1, struct:proto3 |
-| `nok` | WIRE_LOW | 0.40 | proto3 | 5 | 1 | hub_files=1, struct:has_sub_refs, struct:proto3 |
+| `noc` | WIRE_LOW | 0.40 | proto3 | 6 | 1 | hub_files=1, struct:has_sub_refs, struct:proto3 |
 | `ufe` | WIRE_LOW | 0.40 | proto3 | 4 | 0 | hub_files=1, struct:proto3 |
 | `ufg` | WIRE_LOW | 0.40 | proto3 | 3 | 1 | hub_files=1, struct:has_sub_refs, struct:proto3 |
 | `ufi` | WIRE_LOW | 0.40 | proto3 | 3 | 1 | hub_files=1, struct:has_sub_refs, struct:proto3 |
@@ -174,10 +172,8 @@
 | `xss` | WIRE_LOW | 0.40 | proto2 | 3 | 1 | hub_files=1, struct:has_sub_refs, struct:proto2 |
 | `ysu` | WIRE_LOW | 0.40 | proto2 | 1 | 0 | hub_files=1, struct:proto2 |
 | `zfp` | WIRE_LOW | 0.40 | proto2 | 1 | 0 | hub_files=1, struct:proto2 |
-| `zli` | WIRE_LOW | 0.40 | proto2 | 1 | 0 | hub_files=1, struct:proto2 |
 | `zlq` | WIRE_LOW | 0.40 | proto2 | 1 | 0 | hub_files=1, struct:proto2 |
 | `zlr` | WIRE_LOW | 0.40 | proto2 | 1 | 0 | hub_files=1, struct:proto2 |
-| `znc` | WIRE_LOW | 0.40 | proto2 | 1 | 0 | hub_files=1, struct:proto2 |
 | `znn` | WIRE_LOW | 0.40 | proto2 | 1 | 0 | hub_files=1, struct:proto2 |
 | `zrg` | WIRE_LOW | 0.40 | proto2 | 3 | 0 | hub_files=1, struct:proto2 |
 | `zsr` | WIRE_LOW | 0.40 | proto3 | 6 | 3 | hub_files=1, struct:has_sub_refs, struct:proto3 |
@@ -186,7 +182,6 @@
 | `ztq` | WIRE_LOW | 0.40 | proto3 | 1 | 0 | hub_files=1, struct:proto3 |
 | `zts` | WIRE_LOW | 0.40 | proto3 | 3 | 1 | hub_files=1, struct:has_sub_refs, struct:proto3 |
 | `zvm` | WIRE_LOW | 0.40 | proto2 | 3 | 1 | hub_files=1, struct:has_sub_refs, struct:proto2 |
-| `zvs` | WIRE_LOW | 0.40 | proto2 | 4 | 0 | hub_files=1, struct:proto2 |
 
 ### Mixed/Control
 
@@ -202,10 +197,7 @@
 
 | Class | Cat | Conf | Syntax | Fields | Sub-refs | Signals |
 |---|---|---|---|---|---|---|
-| `vzd` | WIRE_HIGH | 0.85 | proto2 | 3 | 2 | BFS hop 1, hub_files=4, struct:has_sub_refs, struct:proto2 |
-| `vzv` | WIRE_MEDIUM | 0.75 | proto2 | 2 | 1 | BFS hop 2, hub_files=2, struct:has_sub_refs, struct:proto2 |
-| `vzg` | WIRE_MEDIUM | 0.65 | proto2 | 3 | 0 | BFS hop 3, hub_files=2, struct:proto2 |
-| `vzf` | WIRE_LOW | 0.50 | proto2 | 3 | 1 | BFS hop 4, hub_files=1, struct:has_sub_refs, struct:proto2 |
+| `vzf` | WIRE_HIGH | 0.85 | proto2 | 3 | 1 | BFS hop 1, hub_files=1, struct:has_sub_refs, struct:proto2 |
 | `non` | WIRE_LOW | 0.40 | proto3 | 12 | 0 | hub_files=1, struct:proto3 |
 | `ujq` | WIRE_LOW | 0.40 | proto3 | 4 | 0 | hub_files=1, struct:proto3 |
 | `wbg` | WIRE_LOW | 0.40 | proto2 | 1 | 1 | hub_files=1, struct:has_sub_refs, struct:proto2 |
@@ -214,29 +206,27 @@
 
 | Class | Cat | Conf | Syntax | Fields | Sub-refs | Signals |
 |---|---|---|---|---|---|---|
-| `vum` | WIRE_HIGH | 0.85 | proto3 | 3 | 2 | BFS hop 1, hub_files=2, struct:has_sub_refs, struct:proto3 |
-| `vuo` | WIRE_HIGH | 0.85 | proto3 | 1 | 1 | BFS hop 1, hub_files=3, struct:has_sub_refs, struct:proto3 |
-| `vwj` | WIRE_HIGH | 0.85 | proto2 | 1 | 1 | BFS hop 1, hub_files=2, struct:has_sub_refs, struct:proto2 |
-| `vwo` | WIRE_HIGH | 0.85 | proto2 | 3 | 0 | BFS hop 1, hub_files=3, struct:proto2 |
-| `vwu` | WIRE_HIGH | 0.85 | proto2 | 3 | 2 | BFS hop 1, hub_files=3, struct:has_sub_refs, struct:proto2 |
-| `wca` | WIRE_HIGH | 0.85 | proto2 | 3 | 2 | BFS hop 1, hub_files=2, struct:has_sub_refs, struct:proto2 |
-| `wcb` | WIRE_HIGH | 0.85 | proto2 | 4 | 1 | BFS hop 1, hub_files=2, struct:has_sub_refs, struct:proto2 |
-| `wcm` | WIRE_HIGH | 0.85 | proto2 | 7 | 1 | BFS hop 1, hub_files=3, struct:has_sub_refs, struct:proto2 |
-| `wcs` | WIRE_MEDIUM | 0.75 | proto2 | 1 | 1 | BFS hop 2, hub_files=2, struct:has_sub_refs, struct:proto2 |
-| `vux` | WIRE_MEDIUM | 0.65 | proto3 | 7 | 0 | hub_files=3, struct:proto3 |
+| `aadk` | WIRE_MEDIUM | 0.65 | proto2 | 7 | 1 | hub_files=2, struct:has_sub_refs, struct:proto2 |
 | `wbj` | WIRE_MEDIUM | 0.65 | proto2 | 1 | 0 | hub_files=2, struct:proto2 |
+| `zli` | WIRE_MEDIUM | 0.65 | proto2 | 1 | 0 | hub_files=2, struct:proto2 |
+| `aadi` | WIRE_LOW | 0.40 | proto2 | 2 | 0 | hub_files=1, struct:proto2 |
+| `aadj` | WIRE_LOW | 0.40 | proto2 | 0 | 0 | hub_files=1, struct:proto2, struct:zero_fields |
+| `tta` | WIRE_LOW | 0.40 | proto3 | 6 | 6 | hub_files=1, struct:has_sub_refs, struct:proto3 |
+| `vvm` | WIRE_LOW | 0.40 | proto2 | 1 | 0 | hub_files=1, struct:proto2 |
+| `vyd` | WIRE_LOW | 0.40 | proto2 | 1 | 0 | hub_files=1, struct:proto2 |
 | `vye` | WIRE_LOW | 0.40 | proto2 | 1 | 0 | hub_files=1, struct:proto2 |
 | `vzy` | WIRE_LOW | 0.40 | proto2 | 4 | 0 | hub_files=1, struct:proto2 |
 | `vzz` | WIRE_LOW | 0.40 | proto2 | 3 | 2 | hub_files=1, struct:has_sub_refs, struct:proto2 |
 | `waa` | WIRE_LOW | 0.40 | proto2 | 1 | 0 | hub_files=1, struct:proto2 |
-| `wbk` | WIRE_LOW | 0.40 | proto2 | 1 | 0 | hub_files=1, struct:proto2 |
+| `wct` | WIRE_LOW | 0.40 | proto2 | 1 | 1 | hub_files=1, struct:has_sub_refs, struct:proto2 |
 | `wcu` | WIRE_LOW | 0.40 | proto2 | 1 | 0 | hub_files=1, struct:proto2 |
+| `xhv` | WIRE_LOW | 0.40 | proto2 | 3 | 0 | hub_files=1, struct:proto2 |
+| `xiz` | WIRE_LOW | 0.40 | proto2 | 2 | 1 | hub_files=1, pkg=INTERNAL, struct:has_sub_refs, struct:proto2 |
 
 ### Radio
 
 | Class | Cat | Conf | Syntax | Fields | Sub-refs | Signals |
 |---|---|---|---|---|---|---|
-| `wbc` | WIRE_HIGH | 0.85 | proto2 | 1 | 1 | BFS hop 1, hub_files=1, struct:has_sub_refs, struct:proto2 |
 | `wao` | WIRE_LOW | 0.40 | proto2 | 1 | 0 | hub_files=1, struct:proto2 |
 | `waz` | WIRE_LOW | 0.40 | proto2 | 1 | 0 | hub_files=1, struct:proto2 |
 | `wba` | WIRE_LOW | 0.40 | proto2 | 1 | 0 | hub_files=1, struct:proto2 |
@@ -245,8 +235,6 @@
 
 | Class | Cat | Conf | Syntax | Fields | Sub-refs | Signals |
 |---|---|---|---|---|---|---|
-| `vxs` | WIRE_HIGH | 0.80 | proto2 | 3 | 0 | hub_files=6, struct:proto2 |
-| `wch` | WIRE_HIGH | 0.80 | proto2 | 1 | 0 | hub_files=5, struct:proto2 |
 | `aacw` | WIRE_MEDIUM | 0.65 | proto2 | 1 | 0 | hub_files=2, struct:proto2 |
 | `vvg` | WIRE_MEDIUM | 0.65 | proto3 | 0 | 0 | hub_files=4, struct:proto3, struct:zero_fields |
 | `wbf` | WIRE_MEDIUM | 0.65 | proto2 | 1 | 1 | hub_files=3, struct:has_sub_refs, struct:proto2 |
@@ -262,50 +250,36 @@
 | Class | Cat | Conf | Syntax | Fields | Sub-refs | Signals |
 |---|---|---|---|---|---|---|
 | `aaci` | WIRE_HIGH | 0.85 | proto3 | 2 | 1 | BFS hop 1, struct:has_sub_refs, struct:proto3 |
-| `aafo` | WIRE_HIGH | 0.85 | proto3 | 2 | 2 | BFS hop 1, struct:has_sub_refs, struct:proto3 |
-| `aafr` | WIRE_HIGH | 0.85 | proto3 | 4 | 4 | BFS hop 1, struct:has_sub_refs, struct:proto3 |
-| `aheu` | WIRE_HIGH | 0.85 | proto2 | 5 | 1 | BFS hop 1, struct:has_sub_refs, struct:proto2 |
-| `ahfy` | WIRE_HIGH | 0.85 | proto3 | 5 | 1 | BFS hop 1, struct:has_sub_refs, struct:proto3 |
 | `nmj` | WIRE_HIGH | 0.85 | proto3 | 3 | 2 | BFS hop 1, struct:has_sub_refs, struct:proto3 |
 | `nmo` | WIRE_HIGH | 0.85 | proto3 | 9 | 4 | BFS hop 1, struct:has_sub_refs, struct:proto3 |
-| `noa` | WIRE_HIGH | 0.85 | proto3 | 6 | 1 | BFS hop 1, struct:has_sub_refs, struct:proto3 |
-| `nvl` | WIRE_HIGH | 0.85 | proto3 | 3 | 1 | BFS hop 1, struct:has_sub_refs, struct:proto3 |
-| `nvm` | WIRE_HIGH | 0.85 | proto3 | 2 | 1 | BFS hop 1, struct:has_sub_refs, struct:proto3 |
 | `rse` | WIRE_HIGH | 0.85 | proto3 | 7 | 1 | BFS hop 1, struct:has_sub_refs, struct:proto3 |
-| `vwn` | WIRE_HIGH | 0.85 | proto2 | 1 | 1 | BFS hop 1, struct:has_sub_refs, struct:proto2 |
-| `wat` | WIRE_HIGH | 0.85 | proto2 | 3 | 1 | BFS hop 1, struct:has_sub_refs, struct:proto2 |
-| `xmv` | WIRE_HIGH | 0.85 | proto2 | 2 | 1 | BFS hop 1, struct:has_sub_refs, struct:proto2 |
-| `aafn` | WIRE_MEDIUM | 0.70 | proto3 | 6 | 0 | BFS hop 2, struct:proto3 |
-| `aafq` | WIRE_MEDIUM | 0.70 | proto3 | 2 | 2 | BFS hop 2, struct:has_sub_refs, struct:proto3 |
-| `aahm` | WIRE_MEDIUM | 0.70 | proto3 | 1 | 0 | BFS hop 2, struct:proto3 |
-| `aaho` | WIRE_MEDIUM | 0.70 | proto3 | 5 | 4 | BFS hop 2, struct:has_sub_refs, struct:proto3 |
-| `nmd` | WIRE_MEDIUM | 0.70 | proto3 | 3 | 0 | BFS hop 2, struct:proto3 |
-| `nme` | WIRE_MEDIUM | 0.70 | proto3 | 5 | 3 | BFS hop 2, struct:has_sub_refs, struct:proto3 |
+| `nmd` | WIRE_MEDIUM | 0.70 | proto3 | 3 | 0 | BFS hop 2, pkg=INTERNAL, struct:proto3 |
+| `nme` | WIRE_MEDIUM | 0.70 | proto3 | 5 | 3 | BFS hop 2, pkg=INTERNAL, struct:has_sub_refs, struct:proto3 |
 | `nmp` | WIRE_MEDIUM | 0.70 | proto3 | 3 | 0 | BFS hop 2, struct:proto3 |
-| `nof` | WIRE_MEDIUM | 0.70 | proto3 | 10 | 4 | BFS hop 2, struct:has_sub_refs, struct:proto3 |
 | `rsz` | WIRE_MEDIUM | 0.70 | proto3 | 2 | 1 | BFS hop 2, struct:has_sub_refs, struct:proto3 |
-| `xma` | WIRE_MEDIUM | 0.70 | proto3 | 3 | 1 | BFS hop 2, struct:has_sub_refs, struct:proto3 |
-| `xmu` | WIRE_MEDIUM | 0.70 | proto2 | 1 | 1 | BFS hop 2, struct:has_sub_refs, struct:proto2 |
-| `aafp` | WIRE_LOW | 0.50 | proto3 | 4 | 0 | BFS hop 3, struct:proto3 |
-| `aajm` | WIRE_LOW | 0.50 | proto3 | 3 | 0 | BFS hop 4, pkg=INTERNAL, struct:proto3 |
+| `aajm` | WIRE_LOW | 0.50 | proto3 | 3 | 0 | BFS hop 5, pkg=INTERNAL, struct:proto3 |
 | `nmq` | WIRE_LOW | 0.50 | proto3 | 1 | 0 | BFS hop 3, struct:proto3 |
-| `nnr` | WIRE_LOW | 0.50 | proto3 | 3 | 2 | BFS hop 3, struct:has_sub_refs, struct:proto3 |
-| `nnx` | WIRE_LOW | 0.50 | proto3 | 3 | 0 | BFS hop 4, struct:proto3 |
-| `nob` | WIRE_LOW | 0.50 | proto3 | 6 | 0 | BFS hop 3, struct:proto3 |
+| `nnr` | WIRE_LOW | 0.50 | proto3 | 3 | 2 | BFS hop 3, pkg=INTERNAL, struct:has_sub_refs, struct:proto3 |
 
 ### WiFi
 
 | Class | Cat | Conf | Syntax | Fields | Sub-refs | Signals |
 |---|---|---|---|---|---|---|
-| `wds` | WIRE_HIGH | 0.85 | proto2 | 5 | 3 | BFS hop 1, hub_files=4, struct:has_sub_refs, struct:proto2 |
 | `wdt` | WIRE_MEDIUM | 0.65 | proto2 | 3 | 0 | hub_files=3, struct:proto2 |
+| `ahdv` | WIRE_LOW | 0.40 | proto3 | 3 | 0 | hub_files=1, struct:proto3 |
 | `nwf` | WIRE_LOW | 0.40 | proto3 | 2 | 0 | hub_files=1, struct:proto3 |
+| `zlj` | WIRE_LOW | 0.40 | proto2 | 1 | 0 | hub_files=1, struct:proto2 |
+| `zls` | WIRE_LOW | 0.40 | proto2 | 1 | 0 | hub_files=1, struct:proto2 |
+| `zna` | WIRE_LOW | 0.40 | proto2 | 1 | 0 | hub_files=1, struct:proto2 |
+| `znb` | WIRE_LOW | 0.40 | proto2 | 6 | 4 | hub_files=1, struct:has_sub_refs, struct:proto2 |
+| `zpb` | WIRE_LOW | 0.40 | proto2 | 2 | 1 | hub_files=1, struct:has_sub_refs, struct:proto2 |
+| `zvb` | WIRE_LOW | 0.40 | proto3 | 1 | 1 | hub_files=1, struct:has_sub_refs, struct:proto3 |
 
 ## Internal Classifications
 
 | Class | Conf | Syntax | Fields | Evidence |
 |---|---|---|---|---|
-| `aaav` | 0.85 | proto3 | 2 | telemetry_cluster, struct:proto3 |
+| `aaav` | 0.85 | proto3 | 2 | telemetry_cluster, hub_files=1, struct:proto3 |
 | `ahdg` | 0.85 | proto2 | 3 | telemetry_cluster, struct:has_sub_refs, struct:proto2 |
 | `ahdh` | 0.85 | proto2 | 1 | telemetry_cluster, struct:proto2 |
 | `ahdi` | 0.85 | proto2 | 10 | telemetry_cluster, hub_files=1, pkg=INTERNAL, struct:has_sub_refs, struct:proto2 |
@@ -350,9 +324,9 @@
 | `xhp` | 0.85 | proto2 | 2 | telemetry_cluster, struct:proto2 |
 | `xhq` | 0.85 | proto2 | 5 | telemetry_cluster, hub_files=2, struct:proto2 |
 | `xhs` | 0.85 | proto2 | 5 | telemetry_cluster, struct:proto2 |
-| `xhw` | 0.85 | proto2 | 2 | telemetry_cluster, struct:proto2 |
+| `xhw` | 0.85 | proto2 | 2 | telemetry_cluster, hub_files=1, struct:proto2 |
 | `xhx` | 0.85 | proto2 | 12 | telemetry_cluster, struct:proto2 |
-| `xid` | 0.85 | proto2 | 58 | telemetry_cluster, hub_files=7, pkg=INTERNAL, struct:has_sub_refs, struct:proto2 |
+| `xid` | 0.85 | proto2 | 58 | telemetry_cluster, hub_files=9, pkg=INTERNAL, struct:has_sub_refs, struct:proto2 |
 | `xif` | 0.85 | proto2 | 4 | telemetry_cluster, struct:proto2 |
 | `xih` | 0.85 | proto2 | 6 | telemetry_cluster, struct:proto2 |
 | `xij` | 0.85 | proto2 | 8 | telemetry_cluster, struct:proto2 |
@@ -389,9 +363,9 @@
 
 | Class | Conf | Syntax | Fields | Signals |
 |---|---|---|---|---|
-| `zyn` | 0.70 | (empty) | 1 | hub_files=51, struct:empty_syntax, struct:has_sub_refs |
-| `zyq` | 0.70 | (empty) | 1 | struct:empty_syntax, struct:has_sub_refs |
-| `zyt` | 0.70 | (empty) | 1 | hub_files=51, struct:empty_syntax |
+| `zyn` | 0.70 | (empty) | 1 | hub_files=58, struct:empty_syntax, struct:has_sub_refs |
+| `zyq` | 0.70 | (empty) | 1 | hub_files=1, struct:empty_syntax, struct:has_sub_refs |
+| `zyt` | 0.70 | (empty) | 1 | hub_files=59, struct:empty_syntax |
 | `Proxy` | 0.60 | proto2 | 0 | struct:proto2, struct:zero_fields |
 | `ProxyOptions` | 0.60 | proto2 | 0 | struct:proto2, struct:zero_fields |
 | `RequestContextConfigOptions` | 0.60 | proto2 | 0 | struct:proto2, struct:zero_fields |
@@ -401,7 +375,6 @@
 | `aadd` | 0.60 | proto3 | 0 | struct:proto3, struct:zero_fields |
 | `aadg` | 0.60 | proto3 | 0 | struct:proto3, struct:zero_fields |
 | `aadh` | 0.60 | proto3 | 0 | struct:proto3, struct:zero_fields |
-| `aadj` | 0.60 | proto2 | 0 | struct:proto2, struct:zero_fields |
 | `aafh` | 0.60 | proto3 | 0 | struct:proto3, struct:zero_fields |
 | `aagi` | 0.60 | proto3 | 0 | struct:proto3, struct:zero_fields |
 | `aagj` | 0.60 | proto3 | 0 | struct:proto3, struct:zero_fields |
@@ -846,7 +819,6 @@
 | Class | Conf | Fields | Sub-refs | Signals |
 |---|---|---|---|---|
 | `aacv` | 0.30 | 1 | 0 | struct:proto2 |
-| `aadi` | 0.30 | 2 | 0 | struct:proto2 |
 | `aadm` | 0.30 | 2 | 1 | struct:has_sub_refs, struct:proto2 |
 | `aadn` | 0.30 | 2 | 0 | struct:proto2 |
 | `aado` | 0.30 | 2 | 0 | struct:proto2 |
@@ -910,6 +882,7 @@
 | `ahdk` | 0.30 | 2 | 1 | struct:has_sub_refs, struct:proto2 |
 | `ahdo` | 0.30 | 7 | 1 | struct:has_sub_refs, struct:proto2 |
 | `ahep` | 0.30 | 3 | 0 | struct:proto2 |
+| `aheu` | 0.30 | 5 | 1 | struct:has_sub_refs, struct:proto2 |
 | `ahez` | 0.30 | 1 | 0 | struct:proto2 |
 | `ahfb` | 0.30 | 1 | 0 | struct:proto2 |
 | `ahfh` | 0.30 | 2 | 0 | struct:proto2 |
@@ -924,12 +897,10 @@
 | `ahzx` | 0.30 | 1 | 0 | struct:proto2 |
 | `oxi` | 0.30 | 1 | 0 | struct:proto2 |
 | `oxj` | 0.30 | 2 | 0 | struct:proto2 |
-| `vvm` | 0.30 | 1 | 0 | struct:proto2 |
 | `vvw` | 0.30 | 3 | 0 | struct:proto2 |
 | `vvx` | 0.30 | 1 | 0 | struct:proto2 |
 | `vvy` | 0.30 | 1 | 0 | struct:proto2 |
 | `vwa` | 0.30 | 2 | 0 | struct:proto2 |
-| `vyd` | 0.30 | 1 | 0 | struct:proto2 |
 | `vyp` | 0.30 | 7 | 1 | struct:has_sub_refs, struct:proto2 |
 | `vzl` | 0.30 | 4 | 0 | struct:proto2 |
 | `wai` | 0.30 | 4 | 0 | struct:proto2 |
@@ -940,7 +911,6 @@
 | `wco` | 0.30 | 2 | 0 | struct:proto2 |
 | `wcp` | 0.30 | 1 | 0 | struct:proto2 |
 | `wcq` | 0.30 | 2 | 0 | struct:proto2 |
-| `wct` | 0.30 | 1 | 1 | struct:has_sub_refs, struct:proto2 |
 | `wdg` | 0.30 | 4 | 0 | struct:proto2 |
 | `wgf` | 0.30 | 1 | 0 | struct:proto2 |
 | `wgh` | 0.30 | 1 | 0 | struct:proto2 |
@@ -955,9 +925,7 @@
 | `xhg` | 0.30 | 1 | 0 | struct:proto2 |
 | `xhh` | 0.30 | 1 | 0 | struct:proto2 |
 | `xhk` | 0.30 | 5 | 0 | struct:proto2 |
-| `xhr` | 0.30 | 31 | 1 | struct:has_sub_refs, struct:proto2 |
 | `xht` | 0.30 | 2 | 0 | struct:proto2 |
-| `xhv` | 0.30 | 3 | 0 | struct:proto2 |
 | `xhy` | 0.30 | 2 | 0 | struct:proto2 |
 | `xhz` | 0.30 | 2 | 0 | struct:proto2 |
 | `xib` | 0.30 | 3 | 0 | struct:proto2 |
@@ -976,15 +944,12 @@
 | `xjp` | 0.30 | 4 | 0 | struct:proto2 |
 | `xjq` | 0.30 | 4 | 0 | struct:proto2 |
 | `xjr` | 0.30 | 4 | 1 | struct:has_sub_refs, struct:proto2 |
-| `xjs` | 0.30 | 3 | 0 | struct:proto2 |
 | `xjt` | 0.30 | 3 | 0 | struct:proto2 |
 | `xju` | 0.30 | 2 | 0 | struct:proto2 |
 | `xjv` | 0.30 | 3 | 0 | struct:proto2 |
 | `xjy` | 0.30 | 1 | 0 | struct:proto2 |
 | `xjz` | 0.30 | 4 | 0 | struct:proto2 |
 | `xkc` | 0.30 | 2 | 0 | struct:proto2 |
-| `xkk` | 0.30 | 1 | 1 | struct:has_sub_refs, struct:proto2 |
-| `xkl` | 0.30 | 19 | 1 | struct:has_sub_refs, struct:proto2 |
 | `xkq` | 0.30 | 4 | 0 | struct:proto2 |
 | `xld` | 0.30 | 5 | 0 | struct:proto2 |
 | `xls` | 0.30 | 3 | 0 | struct:proto2 |
@@ -1069,11 +1034,9 @@
 | `zlc` | 0.30 | 5 | 1 | struct:has_sub_refs, struct:proto2 |
 | `zld` | 0.30 | 3 | 1 | struct:has_sub_refs, struct:proto2 |
 | `zlh` | 0.30 | 3 | 2 | struct:has_sub_refs, struct:proto2 |
-| `zlj` | 0.30 | 1 | 0 | struct:proto2 |
 | `zlk` | 0.30 | 2 | 0 | struct:proto2 |
 | `zln` | 0.30 | 2 | 0 | struct:proto2 |
 | `zlp` | 0.30 | 2 | 0 | struct:proto2 |
-| `zls` | 0.30 | 1 | 0 | struct:proto2 |
 | `zlv` | 0.30 | 14 | 0 | struct:proto2 |
 | `zlw` | 0.30 | 1 | 0 | struct:proto2 |
 | `zlx` | 0.30 | 1 | 0 | struct:proto2 |
@@ -1091,8 +1054,6 @@
 | `zmt` | 0.30 | 9 | 1 | struct:has_sub_refs, struct:proto2 |
 | `zmv` | 0.30 | 3 | 0 | struct:proto2 |
 | `zmy` | 0.30 | 15 | 1 | struct:has_sub_refs, struct:proto2 |
-| `zna` | 0.30 | 1 | 0 | struct:proto2 |
-| `znb` | 0.30 | 6 | 4 | struct:has_sub_refs, struct:proto2 |
 | `znj` | 0.30 | 2 | 0 | struct:proto2 |
 | `znl` | 0.30 | 4 | 0 | struct:proto2 |
 | `znp` | 0.30 | 21 | 4 | struct:has_sub_refs, struct:proto2 |
@@ -1112,7 +1073,6 @@
 | `zox` | 0.30 | 3 | 0 | struct:proto2 |
 | `zoz` | 0.30 | 3 | 0 | struct:proto2 |
 | `zpa` | 0.30 | 1 | 0 | struct:proto2 |
-| `zpb` | 0.30 | 2 | 1 | struct:has_sub_refs, struct:proto2 |
 | `zpd` | 0.30 | 1 | 0 | struct:proto2 |
 | `zpi` | 0.30 | 10 | 1 | struct:has_sub_refs, struct:proto2 |
 | `zpj` | 0.30 | 2 | 0 | struct:proto2 |
@@ -1222,6 +1182,13 @@
 | `aafb` | 0.20 | 1 | 0 | struct:proto3 |
 | `aafc` | 0.20 | 1 | 0 | struct:proto3 |
 | `aafd` | 0.20 | 1 | 0 | struct:proto3 |
+| `aafn` | 0.20 | 6 | 0 | struct:proto3 |
+| `aafo` | 0.20 | 2 | 2 | struct:has_sub_refs, struct:proto3 |
+| `aafp` | 0.20 | 4 | 0 | struct:proto3 |
+| `aafq` | 0.20 | 2 | 2 | struct:has_sub_refs, struct:proto3 |
+| `aafr` | 0.20 | 4 | 4 | struct:has_sub_refs, struct:proto3 |
+| `aahm` | 0.20 | 1 | 0 | struct:proto3 |
+| `aaho` | 0.20 | 5 | 4 | struct:has_sub_refs, struct:proto3 |
 | `aahy` | 0.20 | 13 | 5 | struct:has_sub_refs, struct:proto3 |
 | `aaia` | 0.20 | 1 | 0 | struct:proto3 |
 | `aaib` | 0.20 | 1 | 1 | struct:has_sub_refs, struct:proto3 |
@@ -1309,8 +1276,8 @@
 | `abnv` | 0.20 | 3 | 0 | struct:proto3 |
 | `abnw` | 0.20 | 3 | 0 | struct:proto3 |
 | `ahdt` | 0.20 | 8 | 0 | struct:proto3 |
-| `ahdv` | 0.20 | 3 | 0 | struct:proto3 |
 | `ahdx` | 0.20 | 1 | 1 | struct:has_sub_refs, struct:proto3 |
+| `ahfy` | 0.20 | 5 | 1 | struct:has_sub_refs, struct:proto3 |
 | `aied` | 0.20 | 2 | 0 | struct:proto3 |
 | `aiee` | 0.20 | 2 | 0 | struct:proto3 |
 | `aief` | 0.20 | 3 | 1 | struct:has_sub_refs, struct:proto3 |
@@ -1365,11 +1332,14 @@
 | `nns` | 0.20 | 2 | 0 | struct:proto3 |
 | `nnz` | 0.20 | 5 | 1 | struct:has_sub_refs, struct:proto3 |
 | `noe` | 0.20 | 3 | 1 | struct:has_sub_refs, struct:proto3 |
+| `nof` | 0.20 | 10 | 4 | struct:has_sub_refs, struct:proto3 |
 | `nol` | 0.20 | 14 | 0 | struct:proto3 |
 | `ntp` | 0.20 | 7 | 0 | struct:proto3 |
 | `nvf` | 0.20 | 2 | 0 | struct:proto3 |
 | `nvi` | 0.20 | 2 | 0 | struct:proto3 |
 | `nvj` | 0.20 | 4 | 1 | struct:has_sub_refs, struct:proto3 |
+| `nvl` | 0.20 | 3 | 1 | struct:has_sub_refs, struct:proto3 |
+| `nvm` | 0.20 | 2 | 1 | struct:has_sub_refs, struct:proto3 |
 | `nvn` | 0.20 | 1 | 0 | struct:proto3 |
 | `nvo` | 0.20 | 7 | 1 | struct:has_sub_refs, struct:proto3 |
 | `nvp` | 0.20 | 1 | 0 | struct:proto3 |
@@ -1481,7 +1451,6 @@
 | `smm` | 0.20 | 6 | 2 | struct:has_sub_refs, struct:proto3 |
 | `tez` | 0.20 | 5 | 0 | struct:proto3 |
 | `tle` | 0.20 | 1 | 0 | struct:proto3 |
-| `tta` | 0.20 | 6 | 6 | struct:has_sub_refs, struct:proto3 |
 | `ttb` | 0.20 | 1 | 0 | struct:proto3 |
 | `ttc` | 0.20 | 2 | 0 | struct:proto3 |
 | `ttg` | 0.20 | 14 | 1 | struct:has_sub_refs, struct:proto3 |
@@ -1879,7 +1848,6 @@
 | `zuv` | 0.20 | 2 | 0 | struct:proto3 |
 | `zuy` | 0.20 | 1 | 0 | struct:proto3 |
 | `zuz` | 0.20 | 1 | 1 | struct:has_sub_refs, struct:proto3 |
-| `zvb` | 0.20 | 1 | 1 | struct:has_sub_refs, struct:proto3 |
 | `zvf` | 0.20 | 1 | 0 | struct:proto3 |
 | `zvh` | 0.20 | 1 | 0 | struct:proto3 |
 | `zww` | 0.20 | 3 | 0 | struct:proto3 |

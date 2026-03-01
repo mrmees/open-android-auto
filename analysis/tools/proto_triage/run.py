@@ -17,6 +17,7 @@ from analysis.tools.proto_triage.db import (
 from analysis.tools.proto_triage.report import generate_report, write_report
 from analysis.tools.proto_triage.score import TriageCategory, score_all
 from analysis.tools.proto_triage.signals import (
+    _find_utility_seeds,
     compute_bfs_signal,
     compute_hub_signal,
     compute_package_signal,
@@ -84,6 +85,9 @@ def main(argv: list[str] | None = None) -> int:
 
     # --- Compute signals ---
     print("Computing Signal 1: sub-message BFS...", file=sys.stderr)
+    utility_seeds = _find_utility_seeds(graph, seeds)
+    if utility_seeds:
+        print(f"  {len(utility_seeds)} utility seeds excluded from BFS: {sorted(utility_seeds)}", file=sys.stderr)
     bfs = compute_bfs_signal(graph, seeds, excluded=telemetry)
     print(f"  {len(bfs.hop_distance)} classes reachable", file=sys.stderr)
 

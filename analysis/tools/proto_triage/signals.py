@@ -57,6 +57,12 @@ _INTERNAL_PATTERNS: list[re.Pattern[str]] = [
     re.compile(r"ConnectivityEvent", re.IGNORECASE),
     re.compile(r"performance\.primes", re.IGNORECASE),
     re.compile(r"CarSetupService", re.IGNORECASE),
+    re.compile(r"HatsService", re.IGNORECASE),
+    re.compile(r"dapper", re.IGNORECASE),
+    re.compile(r"FailureInjection", re.IGNORECASE),
+    re.compile(r"AudioDiagnostics", re.IGNORECASE),
+    re.compile(r"suggestion", re.IGNORECASE),
+    re.compile(r"AssistantConnection", re.IGNORECASE),
 ]
 
 _WIRE_PATTERNS: list[re.Pattern[str]] = [
@@ -76,6 +82,10 @@ _TELEMETRY_ROOT_PATTERNS: list[re.Pattern[str]] = [
     re.compile(r"performance\.primes", re.IGNORECASE),
     re.compile(r"[Tt]elemetry"),
     re.compile(r"CarSetupService", re.IGNORECASE),
+    re.compile(r"HatsService", re.IGNORECASE),
+    re.compile(r"dapper", re.IGNORECASE),
+    re.compile(r"FailureInjection", re.IGNORECASE),
+    re.compile(r"AudioDiagnostics", re.IGNORECASE),
 ]
 
 
@@ -132,6 +142,26 @@ def compute_telemetry_cluster(
 
 # --- Signal 1: Sub-message graph BFS ---
 
+def _find_utility_seeds(
+    graph: dict[str, set[str]],
+    seeds: set[str],
+    max_non_seed_neighbors: int = 8,
+) -> set[str]:
+    """Identify seeds with too many non-seed neighbors (utility/shared types).
+
+    Seeds like Duration/PingConfiguration are embedded by many unrelated
+    classes. Using them as BFS sources creates false positives. We detect
+    these by counting non-seed neighbors in the bidirectional graph.
+    """
+    utility: set[str] = set()
+    for seed in seeds:
+        neighbors = graph.get(seed, set())
+        non_seed_neighbors = sum(1 for n in neighbors if n not in seeds)
+        if non_seed_neighbors > max_non_seed_neighbors:
+            utility.add(seed)
+    return utility
+
+
 def compute_bfs_signal(
     graph: dict[str, set[str]],
     seeds: set[str],
@@ -146,14 +176,19 @@ def compute_bfs_signal(
     Classes in ``excluded`` are treated as walls — BFS won't enter or
     traverse through them, preventing telemetry clusters from polluting
     wire-protocol results.
+
+    High-fan-out "utility seeds" (e.g., Duration) are auto-detected and
+    excluded from BFS sourcing to prevent false positives.
     """
     result = BFSResult()
+    utility_seeds = _find_utility_seeds(graph, seeds)
+    bfs_seeds = seeds - utility_seeds
     blocked = (excluded or set()) | seeds
     visited: set[str] = set(blocked)
     queue: deque[tuple[str, int]] = deque()
 
-    # Seed the BFS with direct neighbors of known classes
-    for seed in seeds:
+    # Seed the BFS with direct neighbors of known classes (excluding utility seeds)
+    for seed in bfs_seeds:
         for neighbor in graph.get(seed, ()):
             if neighbor not in visited:
                 visited.add(neighbor)
