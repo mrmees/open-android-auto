@@ -40,10 +40,20 @@ message NavigationTurnEvent {
 
 // APK class: vzg — turn distance with display text and unit
 // Distinct from NavigationDistance (xnb) which is the full distance/ETA message.
+// Distance display unit (APK enum, values TBD — likely km/mi/m/ft)
+enum DistanceDisplayUnit {
+    DISTANCE_UNIT_UNKNOWN = 0;
+    DISTANCE_UNIT_METERS = 1;
+    DISTANCE_UNIT_KILOMETERS = 2;
+    DISTANCE_UNIT_MILES = 3;
+    DISTANCE_UNIT_FEET = 4;
+    DISTANCE_UNIT_YARDS = 5;
+}
+
 message NavigationTurnDistance {
-    optional int32 distance_value = 1;    // APK: int32
-    optional string display_text = 2;     // APK: string
-    optional int32 distance_unit = 3;     // APK: enum (int32 wire) — distance unit type
+    optional int32 distance_value = 1;              // APK: int32
+    optional string display_text = 2;               // APK: string
+    optional DistanceDisplayUnit distance_unit = 3;  // APK: enum
 }
 
 // APK class: vzf — destination distance with remaining time

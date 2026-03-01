@@ -18,9 +18,19 @@ import "oaa/media/CarLocalMediaPlaybackEnum.proto";
 
 package oaa.proto.messages;
 
+// Media focus type (APK validator: a.bA, values 1-5, no named enum class)
+enum MediaFocusType {
+    MEDIA_FOCUS_UNKNOWN = 0;
+    MEDIA_FOCUS_GAIN = 1;
+    MEDIA_FOCUS_GAIN_TRANSIENT = 2;
+    MEDIA_FOCUS_GAIN_TRANSIENT_MAY_DUCK = 3;
+    MEDIA_FOCUS_GAIN_TRANSIENT_EXCLUSIVE = 4;
+    MEDIA_FOCUS_LOSS = 5;
+}
+
 message MediaFocusRequest
 {
-    optional int32 focus_type = 1;           // 5-value enum (1-5), no named APK class — via a.bA
+    optional MediaFocusType focus_type = 1;  // 5-value enum (1-5), validator: a.bA
     optional string media_source = 2;
     optional int32 media_type = 3;
     repeated enums.CarLocalMediaPlayback.Enum playback_commands = 4;   // APK: vwp
