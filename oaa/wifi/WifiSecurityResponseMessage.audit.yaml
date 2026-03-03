@@ -1,0 +1,11 @@
+proto: oaa/wifi/WifiSecurityResponseMessage.proto
+message: WifiSecurityResponse
+confidence: bronze
+last_updated: '2026-03-03'
+evidence:
+- type: apk_static
+  method: proto_access
+  source: class_mapping.yaml (v16.1:wan, v16.2:waf)
+  date: '2026-03-03'
+  description: Mapped WifiSecurityResponse to obfuscated APK class(es) via proto_access
+    analysis.

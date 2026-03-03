@@ -1,0 +1,10 @@
+proto: oaa/input/KeyEventData.proto
+message: KeyEvent
+confidence: bronze
+last_updated: '2026-03-03'
+evidence:
+- type: apk_static
+  method: string_const
+  source: class_mapping.yaml (v15.9:vqq, v16.1:vyi, v16.2:vxu)
+  date: '2026-03-03'
+  description: Mapped KeyEvent to obfuscated APK class(es) via string_const analysis.

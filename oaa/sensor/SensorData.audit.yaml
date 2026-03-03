@@ -1,0 +1,10 @@
+proto: oaa/sensor/SensorData.proto
+message: Sensor
+confidence: bronze
+last_updated: '2026-03-03'
+evidence:
+- type: apk_static
+  method: enum_match
+  source: class_mapping.yaml (v15.9:vub, v16.1:wbt, v16.2:wbj)
+  date: '2026-03-03'
+  description: Mapped Sensor to obfuscated APK class(es) via enum_match analysis.

@@ -1,0 +1,59 @@
+proto: oaa/navigation/NavigationNotificationMessage.proto
+message: NavigationNotification
+confidence: bronze
+last_updated: '2026-03-03'
+evidence:
+- type: apk_static
+  method: string_const
+  source: class_mapping.yaml (v15.9:vph, v16.1:vwz, v16.2:vwl)
+  date: '2026-03-03'
+  description: Mapped ChargingStationDetails to obfuscated APK class(es) via string_const
+    analysis.
+- type: apk_static
+  method: string_const
+  source: class_mapping.yaml (v15.9:vrm, v16.1:vze, v16.2:vyq)
+  date: '2026-03-03'
+  description: Mapped NavigationDestination to obfuscated APK class(es) via string_const
+    analysis.
+- type: apk_static
+  method: string_const
+  source: class_mapping.yaml (v15.9:vst, v16.1:vzj)
+  date: '2026-03-03'
+  description: Mapped NavigationLane to obfuscated APK class(es) via string_const
+    analysis.
+- type: apk_static
+  method: string_const
+  source: class_mapping.yaml (v15.9:vrq, v16.1:vzi, v16.2:vyu)
+  date: '2026-03-03'
+  description: Mapped NavigationLaneDirection to obfuscated APK class(es) via string_const
+    analysis.
+- type: apk_static
+  method: string_const
+  source: class_mapping.yaml (v15.9:vrs, v16.1:vzk, v16.2:vyw)
+  date: '2026-03-03'
+  description: Mapped NavigationManeuver to obfuscated APK class(es) via string_const
+    analysis.
+- type: apk_static
+  method: string_const
+  source: class_mapping.yaml (v15.9:vrw, v16.1:vzo, v16.2:vza)
+  date: '2026-03-03'
+  description: Mapped NavigationNotification to obfuscated APK class(es) via string_const
+    analysis.
+- type: apk_static
+  method: string_const
+  source: class_mapping.yaml (v15.9:xbx, v16.1:vzc, v16.2:vyo)
+  date: '2026-03-03'
+  description: Mapped NavigationRoadInfo to obfuscated APK class(es) via string_const
+    analysis.
+- type: apk_static
+  method: string_const
+  source: class_mapping.yaml (v15.9:vsc, v16.1:vzu, v16.2:vzg)
+  date: '2026-03-03'
+  description: Mapped NavigationStep to obfuscated APK class(es) via string_const
+    analysis.
+- type: apk_static
+  method: string_const
+  source: class_mapping.yaml (v16.1:vzn)
+  date: '2026-03-03'
+  description: Mapped NavigationText to obfuscated APK class(es) via string_const
+    analysis.

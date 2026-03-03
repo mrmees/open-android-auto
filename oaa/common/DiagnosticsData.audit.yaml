@@ -1,0 +1,10 @@
+proto: oaa/common/DiagnosticsData.proto
+message: Diagnostics
+confidence: bronze
+last_updated: '2026-03-03'
+evidence:
+- type: apk_static
+  method: string_const
+  source: class_mapping.yaml (v15.9:vpn, v16.1:vxf, v16.2:vwr)
+  date: '2026-03-03'
+  description: Mapped Diagnostics to obfuscated APK class(es) via string_const analysis.

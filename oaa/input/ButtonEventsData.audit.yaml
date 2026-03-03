@@ -1,0 +1,10 @@
+proto: oaa/input/ButtonEventsData.proto
+message: ButtonEvents
+confidence: bronze
+last_updated: '2026-03-03'
+evidence:
+- type: apk_static
+  method: enum_match
+  source: class_mapping.yaml (v15.9:vqr, v16.1:vyj)
+  date: '2026-03-03'
+  description: Mapped ButtonEvents to obfuscated APK class(es) via enum_match analysis.

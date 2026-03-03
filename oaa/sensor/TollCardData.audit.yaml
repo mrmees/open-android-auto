@@ -1,0 +1,10 @@
+proto: oaa/sensor/TollCardData.proto
+message: TollCardData
+confidence: bronze
+last_updated: '2026-03-03'
+evidence:
+- type: apk_static
+  method: call_graph
+  source: class_mapping.yaml (v15.9:vup, v16.1:wch, v16.2:wbx)
+  date: '2026-03-03'
+  description: Mapped TollCardData to obfuscated APK class(es) via call_graph analysis.

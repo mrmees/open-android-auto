@@ -1,0 +1,11 @@
+proto: oaa/input/RelativeInputEventsData.proto
+message: RelativeInputEvents
+confidence: bronze
+last_updated: '2026-03-03'
+evidence:
+- type: apk_static
+  method: enum_match
+  source: class_mapping.yaml (v15.9:vtu, v16.1:wbm)
+  date: '2026-03-03'
+  description: Mapped RelativeInputEvents to obfuscated APK class(es) via enum_match
+    analysis.

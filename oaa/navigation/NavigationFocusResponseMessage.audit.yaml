@@ -1,0 +1,11 @@
+proto: oaa/navigation/NavigationFocusResponseMessage.proto
+message: NavigationFocusResponse
+confidence: bronze
+last_updated: '2026-03-03'
+evidence:
+- type: apk_static
+  method: enum_match
+  source: class_mapping.yaml (v15.9:vrh, v16.1:vyz, v16.2:vyk)
+  date: '2026-03-03'
+  description: Mapped NavigationFocusResponse to obfuscated APK class(es) via enum_match
+    analysis.

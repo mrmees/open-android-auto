@@ -1,0 +1,11 @@
+proto: oaa/audio/AudioFocusChannelData.proto
+message: AudioFocusChannel
+confidence: bronze
+last_updated: '2026-03-03'
+evidence:
+- type: apk_static
+  method: string_const
+  source: class_mapping.yaml (v16.1:vxq, v16.2:vxc)
+  date: '2026-03-03'
+  description: Mapped AudioFocusChannel to obfuscated APK class(es) via string_const
+    analysis.

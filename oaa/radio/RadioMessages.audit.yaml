@@ -1,0 +1,56 @@
+proto: oaa/radio/RadioMessages.proto
+message: RadioImage
+confidence: bronze
+last_updated: '2026-03-03'
+evidence:
+- type: apk_static
+  method: string_const
+  source: class_mapping.yaml (v15.9:vsu, v16.1:wam, v16.2:wae)
+  date: '2026-03-03'
+  description: Mapped RadioImage to obfuscated APK class(es) via string_const analysis.
+- type: apk_static
+  method: string_const
+  source: class_mapping.yaml (v16.1:wan, v16.2:waf)
+  date: '2026-03-03'
+  description: Mapped RadioMetadata to obfuscated APK class(es) via string_const analysis.
+- type: apk_static
+  method: string_const
+  source: class_mapping.yaml (v15.9:vsz, v16.1:war, v16.2:waj)
+  date: '2026-03-03'
+  description: Mapped RadioProgramIdentifier to obfuscated APK class(es) via string_const
+    analysis.
+- type: apk_static
+  method: string_const
+  source: class_mapping.yaml (v15.9:vta, v16.1:was, v16.2:wak)
+  date: '2026-03-03'
+  description: Mapped RadioProgramInfo to obfuscated APK class(es) via string_const
+    analysis.
+- type: apk_static
+  method: bfs_trace
+  source: class_mapping.yaml (v15.9:vtb, v16.1:wat, v16.2:wal)
+  date: '2026-03-03'
+  description: Mapped RadioProgramInfoNotification to obfuscated APK class(es) via
+    bfs_trace analysis.
+- type: apk_static
+  method: string_const
+  source: class_mapping.yaml (v15.9:zvi, v16.1:wav, v16.2:wan)
+  date: '2026-03-03'
+  description: Mapped RadioProgramSelector to obfuscated APK class(es) via string_const
+    analysis.
+- type: apk_static
+  method: string_const
+  source: class_mapping.yaml (v15.9:vte, v16.1:waw, v16.2:wao)
+  date: '2026-03-03'
+  description: Mapped RadioProgramType to obfuscated APK class(es) via string_const
+    analysis.
+- type: apk_static
+  method: string_const
+  source: class_mapping.yaml (v15.9:vtj, v16.1:wbb, v16.2:was)
+  date: '2026-03-03'
+  description: Mapped RadioSongMetadata to obfuscated APK class(es) via string_const
+    analysis.
+- type: apk_static
+  method: bfs_trace
+  source: class_mapping.yaml (v15.9:vtk, v16.1:wbc, v16.2:wat)
+  date: '2026-03-03'
+  description: Mapped RadioTuneRequest to obfuscated APK class(es) via bfs_trace analysis.

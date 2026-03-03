@@ -1,0 +1,11 @@
+proto: oaa/wifi/WifiConnectStatusMessage.proto
+message: WifiConnectStatus
+confidence: bronze
+last_updated: '2026-03-03'
+evidence:
+- type: apk_static
+  method: string_const
+  source: class_mapping.yaml (v15.9:vvr, v16.1:wdj, v16.2:wcz)
+  date: '2026-03-03'
+  description: Mapped WifiConnectStatus to obfuscated APK class(es) via string_const
+    analysis.

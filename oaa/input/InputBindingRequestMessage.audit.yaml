@@ -1,0 +1,11 @@
+proto: oaa/input/InputBindingRequestMessage.proto
+message: InputBindingRequest
+confidence: bronze
+last_updated: '2026-03-03'
+evidence:
+- type: apk_static
+  method: string_const
+  source: class_mapping.yaml (v15.9:vtt, v16.1:wbl, v16.2:wbb)
+  date: '2026-03-03'
+  description: Mapped InputBindingRequest to obfuscated APK class(es) via string_const
+    analysis.

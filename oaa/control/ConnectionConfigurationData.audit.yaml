@@ -1,0 +1,53 @@
+proto: oaa/control/ConnectionConfigurationData.proto
+message: ConnectionConfiguration
+confidence: bronze
+last_updated: '2026-03-03'
+evidence:
+- type: apk_static
+  method: string_const
+  source: class_mapping.yaml (v15.9:zyb, v16.1:aajk, v16.2:aaiq)
+  date: '2026-03-03'
+  description: Mapped ConnectionConfiguration to obfuscated APK class(es) via string_const
+    analysis.
+- type: apk_static
+  method: string_const
+  source: class_mapping.yaml (v15.9:pgi, v16.1:aaja, v16.2:aaig)
+  date: '2026-03-03'
+  description: Mapped ConnectionFeatureFlags to obfuscated APK class(es) via string_const
+    analysis.
+- type: apk_static
+  method: string_const
+  source: class_mapping.yaml (v16.1:aaji)
+  date: '2026-03-03'
+  description: Mapped ConnectionReservedConfig to obfuscated APK class(es) via string_const
+    analysis.
+- type: apk_static
+  method: string_const
+  source: class_mapping.yaml (v15.9:aabf, v16.1:aajj, v16.2:aaip)
+  date: '2026-03-03'
+  description: Mapped ConnectionSecurityConfig to obfuscated APK class(es) via string_const
+    analysis.
+- type: apk_static
+  method: string_const
+  source: class_mapping.yaml (v15.9:aabd, v16.1:aajh, v16.2:aain)
+  date: '2026-03-03'
+  description: Mapped ConnectionTransportConfig to obfuscated APK class(es) via string_const
+    analysis.
+- type: apk_static
+  method: string_const
+  source: class_mapping.yaml (v15.9:zxx, v16.1:aajg, v16.2:aaim)
+  date: '2026-03-03'
+  description: Mapped ConnectionTuningConfig to obfuscated APK class(es) via string_const
+    analysis.
+- type: apk_static
+  method: call_graph
+  source: class_mapping.yaml (v15.9:aabp, v16.1:aajt, v16.2:aaiz)
+  date: '2026-03-03'
+  description: Mapped TransportMetadata to obfuscated APK class(es) via call_graph
+    analysis.
+- type: apk_static
+  method: call_graph
+  source: class_mapping.yaml (v15.9:zax, v16.1:aakd, v16.2:aajj)
+  date: '2026-03-03'
+  description: Mapped TransportSecurityConfig to obfuscated APK class(es) via call_graph
+    analysis.

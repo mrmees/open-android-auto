@@ -1,0 +1,10 @@
+proto: oaa/wifi/WifiChannelData.proto
+message: WifiChannel
+confidence: bronze
+last_updated: '2026-03-03'
+evidence:
+- type: apk_static
+  method: enum_match
+  source: class_mapping.yaml (v16.1:wdh)
+  date: '2026-03-03'
+  description: Mapped WifiChannel to obfuscated APK class(es) via enum_match analysis.

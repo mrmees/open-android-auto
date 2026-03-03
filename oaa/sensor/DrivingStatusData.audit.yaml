@@ -1,0 +1,10 @@
+proto: oaa/sensor/DrivingStatusData.proto
+message: DrivingStatus
+confidence: bronze
+last_updated: '2026-03-03'
+evidence:
+- type: apk_static
+  method: enum_match
+  source: class_mapping.yaml (v15.9:vpr, v16.1:vxj, v16.2:vwv)
+  date: '2026-03-03'
+  description: Mapped DrivingStatus to obfuscated APK class(es) via enum_match analysis.

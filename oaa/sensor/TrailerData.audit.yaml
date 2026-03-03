@@ -1,0 +1,10 @@
+proto: oaa/sensor/TrailerData.proto
+message: TrailerData
+confidence: bronze
+last_updated: '2026-03-03'
+evidence:
+- type: apk_static
+  method: bfs_trace
+  source: class_mapping.yaml (v16.1:wcl, v16.2:wca)
+  date: '2026-03-03'
+  description: Mapped TrailerData to obfuscated APK class(es) via bfs_trace analysis.

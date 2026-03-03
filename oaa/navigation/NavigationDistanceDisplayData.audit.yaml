@@ -1,0 +1,22 @@
+proto: oaa/navigation/NavigationDistanceDisplayData.proto
+message: NavigationDistanceDisplay
+confidence: bronze
+last_updated: '2026-03-03'
+evidence:
+- type: apk_static
+  method: string_const
+  source: class_mapping.yaml (v15.9:xfb, v16.1:xnc, v16.2:xmn)
+  date: '2026-03-03'
+  description: Mapped DistanceLabel to obfuscated APK class(es) via string_const analysis.
+- type: apk_static
+  method: string_const
+  source: class_mapping.yaml (v15.9:xfc, v16.1:xnd, v16.2:xmo)
+  date: '2026-03-03'
+  description: Mapped NavigationDistanceDisplay to obfuscated APK class(es) via string_const
+    analysis.
+- type: apk_static
+  method: string_const
+  source: class_mapping.yaml (v15.9:xev, v16.1:xmw, v16.2:xmg)
+  date: '2026-03-03'
+  description: Mapped NavigationDistanceValue to obfuscated APK class(es) via string_const
+    analysis.

@@ -1,0 +1,10 @@
+proto: oaa/sensor/AccelData.proto
+message: Accel
+confidence: bronze
+last_updated: '2026-03-03'
+evidence:
+- type: apk_static
+  method: enum_match
+  source: class_mapping.yaml (v15.9:vnr, v16.1:vvj, v16.2:vuv)
+  date: '2026-03-03'
+  description: Mapped Accel to obfuscated APK class(es) via enum_match analysis.

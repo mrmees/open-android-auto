@@ -1,0 +1,16 @@
+proto: oaa/control/PhoneCapabilitiesData.proto
+message: DeviceInfo
+confidence: bronze
+last_updated: '2026-03-03'
+evidence:
+- type: apk_static
+  method: string_const
+  source: class_mapping.yaml (v15.9:vnm, v16.1:vve, v16.2:vuq)
+  date: '2026-03-03'
+  description: Mapped DeviceInfo to obfuscated APK class(es) via string_const analysis.
+- type: apk_static
+  method: string_const
+  source: class_mapping.yaml (v15.9:vvu, v16.1:wdm, v16.2:wdc)
+  date: '2026-03-03'
+  description: Mapped PhoneConnectionConfig to obfuscated APK class(es) via string_const
+    analysis.

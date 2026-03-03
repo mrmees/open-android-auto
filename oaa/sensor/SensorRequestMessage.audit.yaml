@@ -1,0 +1,10 @@
+proto: oaa/sensor/SensorRequestMessage.proto
+message: SensorRequest
+confidence: bronze
+last_updated: '2026-03-03'
+evidence:
+- type: apk_static
+  method: bfs_trace
+  source: class_mapping.yaml (v15.9:vtz, v16.1:wbr, v16.2:wbh)
+  date: '2026-03-03'
+  description: Mapped SensorRequest to obfuscated APK class(es) via bfs_trace analysis.

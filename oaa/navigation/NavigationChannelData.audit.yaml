@@ -1,0 +1,11 @@
+proto: oaa/navigation/NavigationChannelData.proto
+message: NavigationChannel
+confidence: bronze
+last_updated: '2026-03-03'
+evidence:
+- type: apk_static
+  method: proto_access
+  source: class_mapping.yaml (v15.9:agsu, v16.1:ahdp, v16.2:ahcm)
+  date: '2026-03-03'
+  description: Mapped NavigationChannel to obfuscated APK class(es) via proto_access
+    analysis.

@@ -1,0 +1,11 @@
+proto: oaa/input/InputBindingNotificationMessage.proto
+message: InputBindingNotification
+confidence: bronze
+last_updated: '2026-03-03'
+evidence:
+- type: apk_static
+  method: bfs_trace
+  source: class_mapping.yaml (v15.9:vqe, v16.1:vxw, v16.2:vxi)
+  date: '2026-03-03'
+  description: Mapped InputBindingNotification to obfuscated APK class(es) via bfs_trace
+    analysis.

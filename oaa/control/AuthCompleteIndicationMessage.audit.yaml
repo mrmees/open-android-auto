@@ -1,0 +1,11 @@
+proto: oaa/control/AuthCompleteIndicationMessage.proto
+message: AuthCompleteIndication
+confidence: bronze
+last_updated: '2026-03-03'
+evidence:
+- type: apk_static
+  method: enum_match
+  source: class_mapping.yaml (v15.9:vod, v16.1:vvv, v16.2:vvh)
+  date: '2026-03-03'
+  description: Mapped AuthCompleteIndication to obfuscated APK class(es) via enum_match
+    analysis.

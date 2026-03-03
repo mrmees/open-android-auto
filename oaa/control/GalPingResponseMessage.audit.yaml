@@ -1,0 +1,10 @@
+proto: oaa/control/GalPingResponseMessage.proto
+message: GalPingResponse
+confidence: bronze
+last_updated: '2026-03-03'
+evidence:
+- type: apk_static
+  method: bfs_trace
+  source: class_mapping.yaml (v15.9:vss, v16.1:wak, v16.2:vzw)
+  date: '2026-03-03'
+  description: Mapped GalPingResponse to obfuscated APK class(es) via bfs_trace analysis.

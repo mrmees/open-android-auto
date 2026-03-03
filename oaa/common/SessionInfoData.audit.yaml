@@ -1,0 +1,10 @@
+proto: oaa/common/SessionInfoData.proto
+message: SessionInfo
+confidence: bronze
+last_updated: '2026-03-03'
+evidence:
+- type: apk_static
+  method: string_const
+  source: class_mapping.yaml (v15.9:vnn, v16.1:vvf, v16.2:vur)
+  date: '2026-03-03'
+  description: Mapped SessionInfo to obfuscated APK class(es) via string_const analysis.

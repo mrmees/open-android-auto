@@ -1,0 +1,11 @@
+proto: oaa/control/PhoneCapabilitiesMessage.proto
+message: PhoneCapabilities
+confidence: bronze
+last_updated: '2026-03-03'
+evidence:
+- type: apk_static
+  method: call_graph
+  source: class_mapping.yaml (v15.9:zyn, v16.1:aagr, v16.2:aafx)
+  date: '2026-03-03'
+  description: Mapped PhoneCapabilities to obfuscated APK class(es) via call_graph
+    analysis.

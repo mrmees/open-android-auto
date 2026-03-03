@@ -1,0 +1,11 @@
+proto: oaa/wifi/WifiVersionResponseMessage.proto
+message: WifiVersionResponse
+confidence: bronze
+last_updated: '2026-03-03'
+evidence:
+- type: apk_static
+  method: string_const
+  source: class_mapping.yaml (v15.9:vwe, v16.1:wdw, v16.2:wdm)
+  date: '2026-03-03'
+  description: Mapped WifiVersionResponse to obfuscated APK class(es) via string_const
+    analysis.

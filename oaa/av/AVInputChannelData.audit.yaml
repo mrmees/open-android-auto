@@ -1,0 +1,10 @@
+proto: oaa/av/AVInputChannelData.proto
+message: AVInputChannel
+confidence: bronze
+last_updated: '2026-03-03'
+evidence:
+- type: apk_static
+  method: enum_match
+  source: class_mapping.yaml (v15.9:vrb, v16.1:vyt, v16.2:vyf)
+  date: '2026-03-03'
+  description: Mapped AVInputChannel to obfuscated APK class(es) via enum_match analysis.

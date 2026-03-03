@@ -1,0 +1,64 @@
+proto: oaa/carcontrol/CarPropertyData.proto
+message: CarProperty
+confidence: bronze
+last_updated: '2026-03-03'
+evidence:
+- type: apk_static
+  method: string_const
+  source: class_mapping.yaml (v15.9:vmv, v16.1:vun, v16.2:vtz)
+  date: '2026-03-03'
+  description: Mapped CarAction to obfuscated APK class(es) via string_const analysis.
+- type: apk_static
+  method: bfs_trace
+  source: class_mapping.yaml (v15.9:vmw, v16.1:vuo, v16.2:vua)
+  date: '2026-03-03'
+  description: Mapped CarActionEntry to obfuscated APK class(es) via bfs_trace analysis.
+- type: apk_static
+  method: string_const
+  source: class_mapping.yaml (v15.9:vne, v16.1:vuw, v16.2:vui)
+  date: '2026-03-03'
+  description: Mapped CarAreaId to obfuscated APK class(es) via string_const analysis.
+- type: apk_static
+  method: string_const
+  source: class_mapping.yaml (v15.9:vnd, v16.1:vuv, v16.2:vuh)
+  date: '2026-03-03'
+  description: Mapped CarProperty to obfuscated APK class(es) via string_const analysis.
+- type: apk_static
+  method: call_graph
+  source: class_mapping.yaml (v15.9:vmu, v16.1:vum, v16.2:vty)
+  date: '2026-03-03'
+  description: Mapped CarPropertyAreaConfig to obfuscated APK class(es) via call_graph
+    analysis.
+- type: apk_static
+  method: call_graph
+  source: class_mapping.yaml (v15.9:vnf, v16.1:vux, v16.2:vuj)
+  date: '2026-03-03'
+  description: Mapped CarPropertyConfig to obfuscated APK class(es) via call_graph
+    analysis.
+- type: apk_static
+  method: string_const
+  source: class_mapping.yaml (v15.9:vng, v16.1:vuy, v16.2:vuk)
+  date: '2026-03-03'
+  description: Mapped CarPropertyControl to obfuscated APK class(es) via string_const
+    analysis.
+- type: apk_static
+  method: string_const
+  source: class_mapping.yaml (v15.9:vnl, v16.1:vvd, v16.2:vup)
+  date: '2026-03-03'
+  description: Mapped CarPropertyValue to obfuscated APK class(es) via string_const
+    analysis.
+- type: apk_static
+  method: string_const
+  source: class_mapping.yaml (v15.9:vnk, v16.1:vvc, v16.2:vuo)
+  date: '2026-03-03'
+  description: Mapped FloatValues to obfuscated APK class(es) via string_const analysis.
+- type: apk_static
+  method: string_const
+  source: class_mapping.yaml (v15.9:vnj, v16.1:vvb, v16.2:vun)
+  date: '2026-03-03'
+  description: Mapped IntValues to obfuscated APK class(es) via string_const analysis.
+- type: apk_static
+  method: string_const
+  source: class_mapping.yaml (v15.9:vni, v16.1:vva, v16.2:vum)
+  date: '2026-03-03'
+  description: Mapped LongValues to obfuscated APK class(es) via string_const analysis.

@@ -1,0 +1,10 @@
+proto: oaa/navigation/NavigationStateMessage.proto
+message: NavigationState
+confidence: bronze
+last_updated: '2026-03-03'
+evidence:
+- type: apk_static
+  method: enum_match
+  source: class_mapping.yaml (v15.9:vrx, v16.1:vzp, v16.2:vzb)
+  date: '2026-03-03'
+  description: Mapped NavigationState to obfuscated APK class(es) via enum_match analysis.

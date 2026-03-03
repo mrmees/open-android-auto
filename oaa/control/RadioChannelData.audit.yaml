@@ -1,0 +1,20 @@
+proto: oaa/control/RadioChannelData.proto
+message: RadioChannel
+confidence: bronze
+last_updated: '2026-03-03'
+evidence:
+- type: apk_static
+  method: string_const
+  source: class_mapping.yaml (v15.9:vtm, v16.1:wbe, v16.2:aasf)
+  date: '2026-03-03'
+  description: Mapped RadioBand to obfuscated APK class(es) via string_const analysis.
+- type: apk_static
+  method: string_const
+  source: class_mapping.yaml (v15.9:vtg, v16.1:way)
+  date: '2026-03-03'
+  description: Mapped RadioChannel to obfuscated APK class(es) via string_const analysis.
+- type: apk_static
+  method: string_const
+  source: class_mapping.yaml (v15.9:vtf, v16.1:wax)
+  date: '2026-03-03'
+  description: Mapped RadioStation to obfuscated APK class(es) via string_const analysis.

@@ -1,0 +1,10 @@
+proto: oaa/generic/ChannelOpenAckMessage.proto
+message: ChannelOpenAck
+confidence: bronze
+last_updated: '2026-03-03'
+evidence:
+- type: apk_static
+  method: bfs_trace
+  source: class_mapping.yaml (v16.1:wcf, v16.2:wbv)
+  date: '2026-03-03'
+  description: Mapped ChannelOpenAck to obfuscated APK class(es) via bfs_trace analysis.

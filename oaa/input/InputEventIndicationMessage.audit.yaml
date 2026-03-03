@@ -1,0 +1,21 @@
+proto: oaa/input/InputEventIndicationMessage.proto
+message: InputEventIndication
+confidence: bronze
+last_updated: '2026-03-03'
+evidence:
+- type: apk_static
+  method: bfs_trace
+  source: class_mapping.yaml (v15.9:vnp, v16.1:vvh, v16.2:vut)
+  date: '2026-03-03'
+  description: Mapped AbsInputEvent to obfuscated APK class(es) via bfs_trace analysis.
+- type: apk_static
+  method: bfs_trace
+  source: class_mapping.yaml (v15.9:vnq, v16.1:vvi)
+  date: '2026-03-03'
+  description: Mapped AbsoluteEvent to obfuscated APK class(es) via bfs_trace analysis.
+- type: apk_static
+  method: string_const
+  source: class_mapping.yaml (v15.9:vqf, v16.1:vxx, v16.2:vxj)
+  date: '2026-03-03'
+  description: Mapped InputEventIndication to obfuscated APK class(es) via string_const
+    analysis.

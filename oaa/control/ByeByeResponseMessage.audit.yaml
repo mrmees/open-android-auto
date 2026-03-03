@@ -1,0 +1,10 @@
+proto: oaa/control/ByeByeResponseMessage.proto
+message: ByeByeResponse
+confidence: bronze
+last_updated: '2026-03-03'
+evidence:
+- type: apk_static
+  method: bfs_trace
+  source: class_mapping.yaml (v16.1:vwg, v16.2:vvs)
+  date: '2026-03-03'
+  description: Mapped ByeByeResponse to obfuscated APK class(es) via bfs_trace analysis.

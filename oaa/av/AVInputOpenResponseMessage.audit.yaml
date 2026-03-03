@@ -1,0 +1,11 @@
+proto: oaa/av/AVInputOpenResponseMessage.proto
+message: AVInputOpenResponse
+confidence: bronze
+last_updated: '2026-03-03'
+evidence:
+- type: apk_static
+  method: enum_match
+  source: class_mapping.yaml (v15.9:vrg, v16.1:vyy, v16.2:vyj)
+  date: '2026-03-03'
+  description: Mapped AVInputOpenResponse to obfuscated APK class(es) via enum_match
+    analysis.

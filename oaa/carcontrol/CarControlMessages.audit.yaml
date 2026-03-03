@@ -1,0 +1,70 @@
+proto: oaa/carcontrol/CarControlMessages.proto
+message: CarActionControl
+confidence: bronze
+last_updated: '2026-03-03'
+evidence:
+- type: apk_static
+  method: string_const
+  source: class_mapping.yaml (v15.9:voq, v16.1:vwi, v16.2:vvu)
+  date: '2026-03-03'
+  description: Mapped CarActionControl to obfuscated APK class(es) via string_const
+    analysis.
+- type: apk_static
+  method: call_graph
+  source: class_mapping.yaml (v15.9:vor, v16.1:vwj, v16.2:vvv)
+  date: '2026-03-03'
+  description: Mapped CarActionNotification to obfuscated APK class(es) via call_graph
+    analysis.
+- type: apk_static
+  method: string_const
+  source: class_mapping.yaml (v15.9:vot, v16.1:vwl, v16.2:vvx)
+  date: '2026-03-03'
+  description: Mapped CarControl to obfuscated APK class(es) via string_const analysis.
+- type: apk_static
+  method: call_graph
+  source: class_mapping.yaml (v15.9:vow, v16.1:vwo, v16.2:vwa)
+  date: '2026-03-03'
+  description: Mapped CarControlChannelDescriptor to obfuscated APK class(es) via
+    call_graph analysis.
+- type: apk_static
+  method: string_const
+  source: class_mapping.yaml (v15.9:vou, v16.1:vwm, v16.2:vvy)
+  date: '2026-03-03'
+  description: Mapped CarControlGroup to obfuscated APK class(es) via string_const
+    analysis.
+- type: apk_static
+  method: call_graph
+  source: class_mapping.yaml (v15.9:vov, v16.1:vwn, v16.2:vvz)
+  date: '2026-03-03'
+  description: Mapped CarControlGroupUpdate to obfuscated APK class(es) via call_graph
+    analysis.
+- type: apk_static
+  method: call_graph
+  source: class_mapping.yaml (v15.9:vpc, v16.1:vwu, v16.2:vwg)
+  date: '2026-03-03'
+  description: Mapped CarPropertyChangeEvent to obfuscated APK class(es) via call_graph
+    analysis.
+- type: apk_static
+  method: call_graph
+  source: class_mapping.yaml (v15.9:xeg, v16.1:wbk)
+  date: '2026-03-03'
+  description: Mapped RegisterCarPropertyListenersResponse to obfuscated APK class(es)
+    via call_graph analysis.
+- type: apk_static
+  method: call_graph
+  source: class_mapping.yaml (v15.9:vuj, v16.1:wcb, v16.2:wbr)
+  date: '2026-03-03'
+  description: Mapped SetCarPropertyValueResponse to obfuscated APK class(es) via
+    call_graph analysis.
+- type: apk_static
+  method: string_const
+  source: class_mapping.yaml (v15.9:vpd, v16.1:vwv, v16.2:vwh)
+  date: '2026-03-03'
+  description: Mapped SetCarPropertyListenerResult to obfuscated APK class(es) via
+    string_const analysis.
+- type: apk_static
+  method: call_graph
+  source: class_mapping.yaml (v15.9:vui, v16.1:wca, v16.2:wbq)
+  date: '2026-03-03'
+  description: Mapped SetCarPropertyValueRequest to obfuscated APK class(es) via call_graph
+    analysis.

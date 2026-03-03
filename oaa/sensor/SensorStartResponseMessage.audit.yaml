@@ -1,0 +1,11 @@
+proto: oaa/sensor/SensorStartResponseMessage.proto
+message: SensorStartResponseMessage
+confidence: bronze
+last_updated: '2026-03-03'
+evidence:
+- type: apk_static
+  method: enum_match
+  source: class_mapping.yaml (v15.9:vua, v16.1:wbs, v16.2:wbi)
+  date: '2026-03-03'
+  description: Mapped SensorStartResponseMessage to obfuscated APK class(es) via enum_match
+    analysis.

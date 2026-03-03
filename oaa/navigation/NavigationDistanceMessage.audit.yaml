@@ -1,0 +1,29 @@
+proto: oaa/navigation/NavigationDistanceMessage.proto
+message: NavigationDistance
+confidence: bronze
+last_updated: '2026-03-03'
+evidence:
+- type: apk_static
+  method: string_const
+  source: class_mapping.yaml (v15.9:xfa, v16.1:xnb, v16.2:xmm)
+  date: '2026-03-03'
+  description: Mapped NavigationDistance to obfuscated APK class(es) via string_const
+    analysis.
+- type: apk_static
+  method: string_const
+  source: class_mapping.yaml (v15.9:xfe, v16.1:xnf, v16.2:xmq)
+  date: '2026-03-03'
+  description: Mapped NavigationDistanceEntry to obfuscated APK class(es) via string_const
+    analysis.
+- type: apk_static
+  method: string_const
+  source: class_mapping.yaml (v15.9:xff, v16.1:xng, v16.2:xmr)
+  date: '2026-03-03'
+  description: Mapped NavigationDistanceInfo to obfuscated APK class(es) via string_const
+    analysis.
+- type: apk_static
+  method: string_const
+  source: class_mapping.yaml (v15.9:xfd, v16.1:xne)
+  date: '2026-03-03'
+  description: Mapped NavigationDistanceOneof to obfuscated APK class(es) via string_const
+    analysis.

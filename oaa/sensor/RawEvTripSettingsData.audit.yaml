@@ -1,0 +1,11 @@
+proto: oaa/sensor/RawEvTripSettingsData.proto
+message: RawEvTripSettings
+confidence: bronze
+last_updated: '2026-03-03'
+evidence:
+- type: apk_static
+  method: bfs_trace
+  source: class_mapping.yaml (v15.9:vtn, v16.1:wbf, v16.2:wav)
+  date: '2026-03-03'
+  description: Mapped RawEvTripSettings to obfuscated APK class(es) via bfs_trace
+    analysis.

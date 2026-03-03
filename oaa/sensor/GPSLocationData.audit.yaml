@@ -1,0 +1,10 @@
+proto: oaa/sensor/GPSLocationData.proto
+message: GPSLocation
+confidence: bronze
+last_updated: '2026-03-03'
+evidence:
+- type: apk_static
+  method: string_const
+  source: class_mapping.yaml (v15.9:vqt, v16.1:vyl, v16.2:vxx)
+  date: '2026-03-03'
+  description: Mapped GPSLocation to obfuscated APK class(es) via string_const analysis.

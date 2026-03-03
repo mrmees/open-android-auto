@@ -1,0 +1,29 @@
+proto: oaa/control/CapabilityData.proto
+message: CapabilityEntry
+confidence: bronze
+last_updated: '2026-03-03'
+evidence:
+- type: apk_static
+  method: string_const
+  source: class_mapping.yaml (v15.9:zyr, v16.1:aagv, v16.2:aagb)
+  date: '2026-03-03'
+  description: Mapped CapabilityEntry to obfuscated APK class(es) via string_const
+    analysis.
+- type: apk_static
+  method: string_const
+  source: class_mapping.yaml (v15.9:aabh, v16.1:aagh, v16.2:aafn)
+  date: '2026-03-03'
+  description: Mapped CapabilityFlag to obfuscated APK class(es) via string_const
+    analysis.
+- type: apk_static
+  method: string_const
+  source: class_mapping.yaml (v15.9:aabm, v16.1:aags, v16.2:aafy)
+  date: '2026-03-03'
+  description: Mapped CapabilityPair to obfuscated APK class(es) via string_const
+    analysis.
+- type: apk_static
+  method: string_const
+  source: class_mapping.yaml (v15.9:aaaq, v16.1:aaft, v16.2:aaez)
+  date: '2026-03-03'
+  description: Mapped PingConfigPair to obfuscated APK class(es) via string_const
+    analysis.

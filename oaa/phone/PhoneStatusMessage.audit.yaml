@@ -1,0 +1,16 @@
+proto: oaa/phone/PhoneStatusMessage.proto
+message: PhoneStatusUpdate
+confidence: bronze
+last_updated: '2026-03-03'
+evidence:
+- type: apk_static
+  method: string_const
+  source: class_mapping.yaml (v15.9:vsl, v16.1:wad, v16.2:vzp)
+  date: '2026-03-03'
+  description: Mapped PhoneCall to obfuscated APK class(es) via string_const analysis.
+- type: apk_static
+  method: string_const
+  source: class_mapping.yaml (v15.9:vsn, v16.1:waf, v16.2:vzr)
+  date: '2026-03-03'
+  description: Mapped PhoneStatusUpdate to obfuscated APK class(es) via string_const
+    analysis.

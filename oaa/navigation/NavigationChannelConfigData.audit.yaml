@@ -1,0 +1,17 @@
+proto: oaa/navigation/NavigationChannelConfigData.proto
+message: NavigationChannelConfig
+confidence: bronze
+last_updated: '2026-03-03'
+evidence:
+- type: apk_static
+  method: string_const
+  source: class_mapping.yaml (v15.9:vrz, v16.1:vzr, v16.2:vzd)
+  date: '2026-03-03'
+  description: Mapped NavigationChannelConfig to obfuscated APK class(es) via string_const
+    analysis.
+- type: apk_static
+  method: string_const
+  source: class_mapping.yaml (v15.9:vry, v16.1:vzq, v16.2:vzc)
+  date: '2026-03-03'
+  description: Mapped NavigationImageDimensions to obfuscated APK class(es) via string_const
+    analysis.

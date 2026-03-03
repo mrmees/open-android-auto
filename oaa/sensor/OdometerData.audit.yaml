@@ -1,0 +1,10 @@
+proto: oaa/sensor/OdometerData.proto
+message: Odometer
+confidence: bronze
+last_updated: '2026-03-03'
+evidence:
+- type: apk_static
+  method: enum_match
+  source: class_mapping.yaml (v15.9:vsf, v16.1:vzx, v16.2:vzj)
+  date: '2026-03-03'
+  description: Mapped Odometer to obfuscated APK class(es) via enum_match analysis.

@@ -1,0 +1,11 @@
+proto: oaa/wifi/WifiProjectionChannelData.proto
+message: WiFiProjectionChannel
+confidence: bronze
+last_updated: '2026-03-03'
+evidence:
+- type: apk_static
+  method: string_const
+  source: class_mapping.yaml (v16.1:wdh)
+  date: '2026-03-03'
+  description: Mapped WiFiProjectionChannel to obfuscated APK class(es) via string_const
+    analysis.

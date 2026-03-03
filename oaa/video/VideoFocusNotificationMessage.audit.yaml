@@ -1,0 +1,11 @@
+proto: oaa/video/VideoFocusNotificationMessage.proto
+message: VideoFocusNotification
+confidence: bronze
+last_updated: '2026-03-03'
+evidence:
+- type: apk_static
+  method: bfs_trace
+  source: class_mapping.yaml (v15.9:vqm, v16.1:vye, v16.2:vxq)
+  date: '2026-03-03'
+  description: Mapped VideoFocusNotification to obfuscated APK class(es) via bfs_trace
+    analysis.

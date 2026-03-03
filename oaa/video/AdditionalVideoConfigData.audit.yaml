@@ -1,0 +1,34 @@
+proto: oaa/video/AdditionalVideoConfigData.proto
+message: AdditionalVideoConfig
+confidence: bronze
+last_updated: '2026-03-03'
+evidence:
+- type: apk_static
+  method: call_graph
+  source: class_mapping.yaml (v15.9:vuu, v16.1:wcm, v16.2:wcb)
+  date: '2026-03-03'
+  description: Mapped AdditionalVideoConfig to obfuscated APK class(es) via call_graph
+    analysis.
+- type: apk_static
+  method: string_const
+  source: class_mapping.yaml (v15.9:vtq, v16.1:wbi, v16.2:way)
+  date: '2026-03-03'
+  description: Mapped VideoInsets to obfuscated APK class(es) via string_const analysis.
+- type: apk_static
+  method: string_const
+  source: class_mapping.yaml (v15.9:vpl, v16.1:vxd, v16.2:vwp)
+  date: '2026-03-03'
+  description: Mapped VideoMarginConfig to obfuscated APK class(es) via string_const
+    analysis.
+- type: apk_static
+  method: string_const
+  source: class_mapping.yaml (v15.9:vnt, v16.1:vvl, v16.2:vux)
+  date: '2026-03-03'
+  description: Mapped VideoResizeAction to obfuscated APK class(es) via string_const
+    analysis.
+- type: apk_static
+  method: string_const
+  source: class_mapping.yaml (v15.9:vqj, v16.1:vyb, v16.2:vxn)
+  date: '2026-03-03'
+  description: Mapped VideoResolutionRange to obfuscated APK class(es) via string_const
+    analysis.

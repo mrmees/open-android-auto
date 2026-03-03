@@ -1,0 +1,11 @@
+proto: oaa/av/AVChannelSetupResponseMessage.proto
+message: AVChannelSetupResponse
+confidence: bronze
+last_updated: '2026-03-03'
+evidence:
+- type: apk_static
+  method: proto_access
+  source: class_mapping.yaml (v15.9:vpj, v16.1:vxb, v16.2:vwn)
+  date: '2026-03-03'
+  description: Mapped AVChannelSetupResponse to obfuscated APK class(es) via proto_access
+    analysis.

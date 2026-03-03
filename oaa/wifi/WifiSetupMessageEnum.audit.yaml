@@ -1,0 +1,11 @@
+proto: oaa/wifi/WifiSetupMessageEnum.proto
+message: WifiSetupMessage
+confidence: bronze
+last_updated: '2026-03-03'
+evidence:
+- type: apk_static
+  method: string_const
+  source: class_mapping.yaml (v15.9:vvv, v16.1:wdn, v16.2:wdd)
+  date: '2026-03-03'
+  description: Mapped WifiSetupMessage to obfuscated APK class(es) via string_const
+    analysis.

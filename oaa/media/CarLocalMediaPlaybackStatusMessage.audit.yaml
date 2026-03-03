@@ -1,0 +1,11 @@
+proto: oaa/media/CarLocalMediaPlaybackStatusMessage.proto
+message: CarLocalMediaPlaybackStatus
+confidence: bronze
+last_updated: '2026-03-03'
+evidence:
+- type: apk_static
+  method: string_const
+  source: class_mapping.yaml (v15.9:vpa, v16.1:vws, v16.2:vwe)
+  date: '2026-03-03'
+  description: Mapped CarLocalMediaPlaybackStatus to obfuscated APK class(es) via
+    string_const analysis.

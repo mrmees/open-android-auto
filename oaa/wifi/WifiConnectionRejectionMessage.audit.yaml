@@ -1,0 +1,11 @@
+proto: oaa/wifi/WifiConnectionRejectionMessage.proto
+message: WifiConnectionRejection
+confidence: bronze
+last_updated: '2026-03-03'
+evidence:
+- type: apk_static
+  method: string_const
+  source: class_mapping.yaml (v15.9:vvs, v16.1:wdk, v16.2:wda)
+  date: '2026-03-03'
+  description: Mapped WifiConnectionRejection to obfuscated APK class(es) via string_const
+    analysis.

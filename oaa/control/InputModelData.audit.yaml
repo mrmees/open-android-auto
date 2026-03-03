@@ -1,0 +1,28 @@
+proto: oaa/control/InputModelData.proto
+message: InputModelEntry
+confidence: bronze
+last_updated: '2026-03-03'
+evidence:
+- type: apk_static
+  method: bfs_trace
+  source: class_mapping.yaml (v15.9:nnj, v16.1:aahf, v16.2:aagl)
+  date: '2026-03-03'
+  description: Mapped CapabilityConnectionConfig to obfuscated APK class(es) via bfs_trace
+    analysis.
+- type: apk_static
+  method: bfs_trace
+  source: class_mapping.yaml (v15.9:aaas, v16.1:aafs, v16.2:aaey)
+  date: '2026-03-03'
+  description: Mapped InputModelEntry to obfuscated APK class(es) via bfs_trace analysis.
+- type: apk_static
+  method: bfs_trace
+  source: class_mapping.yaml (v15.9:aaca, v16.1:aahd, v16.2:aagj)
+  date: '2026-03-03'
+  description: Mapped InputModelDescriptor to obfuscated APK class(es) via bfs_trace
+    analysis.
+- type: apk_static
+  method: bfs_trace
+  source: class_mapping.yaml (v15.9:zze, v16.1:aahi, v16.2:aago)
+  date: '2026-03-03'
+  description: Mapped HandwritingInputModelConfig to obfuscated APK class(es) via
+    bfs_trace analysis.

@@ -1,0 +1,11 @@
+proto: oaa/av/AVChannelStartIndicationMessage.proto
+message: AVChannelStartIndication
+confidence: bronze
+last_updated: '2026-03-03'
+evidence:
+- type: apk_static
+  method: string_const
+  source: class_mapping.yaml (v15.9:vum, v16.1:wce, v16.2:wbu)
+  date: '2026-03-03'
+  description: Mapped AVChannelStartIndication to obfuscated APK class(es) via string_const
+    analysis.

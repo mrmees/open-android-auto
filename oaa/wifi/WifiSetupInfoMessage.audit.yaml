@@ -1,0 +1,15 @@
+proto: oaa/wifi/WifiSetupInfoMessage.proto
+message: WifiSetupInfo
+confidence: bronze
+last_updated: '2026-03-03'
+evidence:
+- type: apk_static
+  method: enum_match
+  source: class_mapping.yaml (v15.9:vvq, v16.1:wdi, v16.2:wcy)
+  date: '2026-03-03'
+  description: Mapped WifiNetworkInfo to obfuscated APK class(es) via enum_match analysis.
+- type: apk_static
+  method: bfs_trace
+  source: class_mapping.yaml (v15.9:vwa, v16.1:wds, v16.2:wdi)
+  date: '2026-03-03'
+  description: Mapped WifiSetupInfo to obfuscated APK class(es) via bfs_trace analysis.

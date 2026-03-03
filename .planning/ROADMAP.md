@@ -33,7 +33,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 
 Plans:
 - [x] 01-01-PLAN.md — Confidence tiers, evidence types, and source provenance rules
-- [ ] 01-02-PLAN.md — Audit trail format with JSON Schema and verification procedures
+- [x] 01-02-PLAN.md — Audit trail format with JSON Schema and verification procedures
 
 ### Phase 2: Seed Import & Proto Foundation
 **Goal**: Existing reverse-engineering work is captured in the audit system and the first compilable .proto files exist with field-level confidence annotations
@@ -44,11 +44,11 @@ Plans:
   2. At least one channel's .proto files compile successfully with protoc
   3. Every proto field in published .proto files carries a confidence annotation referencing the verification framework
   4. A new contributor can clone the repo, run protoc, and get zero errors on published .proto files
-**Plans**: TBD
+**Plans:** 2 plans
 
 Plans:
-- [ ] 02-01: TBD
-- [ ] 02-02: TBD
+- [ ] 02-01-PLAN.md — Seed import pipeline and proto compilation check script
+- [ ] 02-02-PLAN.md — Confidence annotation pass on sensor and common protos
 
 ### Phase 3: Cross-Version Validation
 **Goal**: Proto definitions are validated across APK versions with automated tooling, and obfuscated-to-canonical name mappings exist for all three available versions
@@ -100,8 +100,8 @@ Note: Phases 3 and 4 both depend on Phase 2 and could theoretically run in paral
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Verification Framework | 1/2 | In progress | - |
-| 2. Seed Import & Proto Foundation | 0/? | Not started | - |
+| 1. Verification Framework | 2/2 | Complete | 2026-03-03 |
+| 2. Seed Import & Proto Foundation | 0/2 | Not started | - |
 | 3. Cross-Version Validation | 0/? | Not started | - |
 | 4. Connection Lifecycle | 0/? | Not started | - |
 | 5. Feature Channel Documentation | 0/? | Not started | - |
