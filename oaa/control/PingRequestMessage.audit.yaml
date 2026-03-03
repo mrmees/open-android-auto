@@ -1,6 +1,6 @@
 proto: oaa/control/PingRequestMessage.proto
 message: PingRequest
-confidence: bronze
+confidence: silver
 last_updated: '2026-03-03'
 evidence:
 - type: apk_static
@@ -8,3 +8,9 @@ evidence:
   source: class_mapping.yaml (v15.9:vvw, v16.1:wdo, v16.2:wde)
   date: '2026-03-03'
   description: Mapped PingRequest to obfuscated APK class(es) via enum_match analysis.
+- type: cross_version
+  method: structural_comparison
+  source: cross-version checker (15.9, 16.1, 16.2)
+  date: '2026-03-03'
+  description: Structural match confirmed across versions 15.9, 16.1, 16.2. Field
+    numbers, types, and modifiers are consistent.

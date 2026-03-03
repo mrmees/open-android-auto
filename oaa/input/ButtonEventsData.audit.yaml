@@ -1,6 +1,6 @@
 proto: oaa/input/ButtonEventsData.proto
 message: ButtonEvents
-confidence: bronze
+confidence: silver
 last_updated: '2026-03-03'
 evidence:
 - type: apk_static
@@ -8,3 +8,9 @@ evidence:
   source: class_mapping.yaml (v15.9:vqr, v16.1:vyj)
   date: '2026-03-03'
   description: Mapped ButtonEvents to obfuscated APK class(es) via enum_match analysis.
+- type: cross_version
+  method: structural_comparison
+  source: cross-version checker (15.9, 16.1)
+  date: '2026-03-03'
+  description: Structural match confirmed across versions 15.9, 16.1. Field numbers,
+    types, and modifiers are consistent.

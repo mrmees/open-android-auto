@@ -199,11 +199,15 @@ def get_apk_enum_values(db_path: Path, class_name: str) -> list[tuple[int, str]]
         if rows:
             return [(r[0], r[1]) for r in rows]
 
-        # Fallback: check proto_enum_classes table
-        row = conn.execute(
-            'SELECT "values" FROM proto_enum_classes WHERE class_name = ?',
-            (class_name,),
-        ).fetchone()
+        # Fallback: check proto_enum_classes table (not present in all DB versions)
+        try:
+            row = conn.execute(
+                'SELECT "values" FROM proto_enum_classes WHERE class_name = ?',
+                (class_name,),
+            ).fetchone()
+        except sqlite3.OperationalError:
+            # Table doesn't exist in this DB version
+            row = None
     finally:
         conn.close()
 

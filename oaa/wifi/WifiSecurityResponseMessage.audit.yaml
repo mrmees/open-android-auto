@@ -1,6 +1,6 @@
 proto: oaa/wifi/WifiSecurityResponseMessage.proto
 message: WifiSecurityResponse
-confidence: bronze
+confidence: silver
 last_updated: '2026-03-03'
 evidence:
 - type: apk_static
@@ -9,3 +9,9 @@ evidence:
   date: '2026-03-03'
   description: Mapped WifiSecurityResponse to obfuscated APK class(es) via proto_access
     analysis.
+- type: cross_version
+  method: structural_comparison
+  source: cross-version checker (16.1, 16.2)
+  date: '2026-03-03'
+  description: Structural match confirmed across versions 16.1, 16.2. Field numbers,
+    types, and modifiers are consistent.
