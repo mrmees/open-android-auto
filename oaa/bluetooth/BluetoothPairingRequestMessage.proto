@@ -7,11 +7,12 @@ import "oaa/bluetooth/BluetoothPairingMethodEnum.proto";
 
 package oaa.proto.messages;
 
+// confidence: silver [apk_static, cross_version]
 message BluetoothPairingRequest
 {
-    optional string phone_address = 1;
-    optional enums.BluetoothPairingMethod.Enum pairing_method = 2;
+    optional string phone_address = 1;  // confidence: silver [apk_static, cross_version]
+    optional enums.BluetoothPairingMethod.Enum pairing_method = 2;  // confidence: silver [apk_static, cross_version]
 
     // Discovered via APK proto decoder (kay.java, AA v16.1)
-    optional string phone_name = 3;  // Human-readable phone name
+    optional string phone_name = 3; // Human-readable phone name  // confidence: silver [apk_static, cross_version]
 }

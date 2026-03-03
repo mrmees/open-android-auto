@@ -7,8 +7,9 @@ import "oaa/bluetooth/BluetoothPairingMethodEnum.proto";
 
 package oaa.proto.data;
 
+// confidence: silver [apk_static, cross_version]
 message BluetoothChannel
 {
-    optional string adapter_address = 1;
+    optional string adapter_address = 1;  // confidence: silver [apk_static, cross_version]
     repeated enums.BluetoothPairingMethod.Enum supported_pairing_methods = 2 [packed=true];
 }

@@ -15,8 +15,9 @@ syntax="proto2";
 
 package oaa.proto.messages;
 
+// confidence: silver [apk_static, cross_version]
 message InputBindingRequest
 {
-    required uint32 display_id = 1;
-    required int32 binding_type = 2;
+    required uint32 display_id = 1;  // confidence: silver [apk_static, cross_version]
+    required int32 binding_type = 2;  // confidence: silver [apk_static, cross_version]
 }

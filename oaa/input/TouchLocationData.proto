@@ -5,9 +5,10 @@ syntax="proto2";
 
 package oaa.proto.data;
 
+// confidence: silver [apk_static, cross_version]
 message TouchLocation
 {
-    optional uint32 x = 1;
-    optional uint32 y = 2;
-    optional uint32 pointer_id = 3;
+    optional uint32 x = 1;  // confidence: silver [apk_static, cross_version]
+    optional uint32 y = 2;  // confidence: silver [apk_static, cross_version]
+    optional uint32 pointer_id = 3;  // confidence: silver [apk_static, cross_version]
 }

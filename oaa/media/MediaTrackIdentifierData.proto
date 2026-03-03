@@ -15,12 +15,14 @@ syntax="proto3";
 package oaa.proto.messages;
 
 // Placeholder sub-messages for the three message-type fields
+// confidence: silver [apk_static, cross_version]
 message MediaTrackField {}
 
 // APK class: xma — media track identifier (3 message fields)
+// confidence: silver [apk_static, cross_version]
 message MediaTrackIdentifier
 {
-    MediaTrackField track_id = 1;       // APK: message (type_id=9)
-    MediaTrackField track_source = 2;   // APK: message (type_id=9)
-    MediaTrackField track_metadata = 3; // APK: message (type_id=9)
+    MediaTrackField track_id = 1; // APK: message (type_id=9)  // confidence: silver [apk_static, cross_version]
+    MediaTrackField track_source = 2; // APK: message (type_id=9)  // confidence: silver [apk_static, cross_version]
+    MediaTrackField track_metadata = 3; // APK: message (type_id=9)  // confidence: silver [apk_static, cross_version]
 }

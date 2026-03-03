@@ -12,8 +12,9 @@ syntax="proto3";
 
 package oaa.proto.messages;
 
+// confidence: unverified
 message WifiStartRequest
 {
-    optional string ip_address = 1;
-    optional uint32 port = 2;
+    optional string ip_address = 1;  // confidence: unverified
+    optional uint32 port = 2;  // confidence: unverified
 }

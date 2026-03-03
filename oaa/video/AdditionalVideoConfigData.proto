@@ -12,48 +12,54 @@ syntax="proto2";
 
 package oaa.proto.data;
 
+// confidence: silver [apk_static, cross_version]
 message AdditionalVideoConfig
 {
-    optional VideoResolutionRange min_resolution = 1;   // APK: vyb — minimum supported resolution
-    optional VideoResolutionRange max_resolution = 2;   // APK: vyb — maximum supported resolution
-    optional VideoResolutionRange preferred_resolution = 3; // APK: vyb — preferred resolution
-    optional UITheme ui_theme = 4;                       // APK: wcr enum — light/dark/auto (0=auto, 1=light, 2=dark)
-    repeated UIElement hidden_ui_elements = 5;           // APK: wcn enum — elements phone should hide
-    repeated VideoResizeAction resize_actions = 6;      // APK: vvl — supported resize behaviors
-    repeated VideoMarginConfig margin_configs = 7;      // APK: vxd — margin/inset configs
+    optional VideoResolutionRange min_resolution = 1; // APK: vyb — minimum supported resolution  // confidence: silver [apk_static, cross_version]
+    optional VideoResolutionRange max_resolution = 2; // APK: vyb — maximum supported resolution  // confidence: silver [apk_static, cross_version]
+    optional VideoResolutionRange preferred_resolution = 3; // APK: vyb — preferred resolution  // confidence: silver [apk_static, cross_version]
+    optional UITheme ui_theme = 4; // APK: wcr enum — light/dark/auto (0=auto, 1=light, 2=dark)  // confidence: silver [apk_static, cross_version]
+    repeated UIElement hidden_ui_elements = 5; // APK: wcn enum — elements phone should hide  // confidence: silver [apk_static, cross_version]
+    repeated VideoResizeAction resize_actions = 6; // APK: vvl — supported resize behaviors  // confidence: silver [apk_static, cross_version]
+    repeated VideoMarginConfig margin_configs = 7; // APK: vxd — margin/inset configs  // confidence: silver [apk_static, cross_version]
 }
 
 // APK class: vyb — resolution dimensions (width x height x density x fps)
+// confidence: silver [apk_static, cross_version]
 message VideoResolutionRange
 {
-    optional uint32 width = 1;
-    optional uint32 height = 2;
-    optional uint32 density = 3;
-    optional uint32 fps = 4;
+    optional uint32 width = 1;  // confidence: silver [apk_static, cross_version]
+    optional uint32 height = 2;  // confidence: silver [apk_static, cross_version]
+    optional uint32 density = 3;  // confidence: silver [apk_static, cross_version]
+    optional uint32 fps = 4;  // confidence: silver [apk_static, cross_version]
 }
 
 // APK class: vvl — video resize action wrapper
+// confidence: silver [apk_static, cross_version]
 message VideoResizeAction
 {
-    optional ResizeActionType action = 1;
+    optional ResizeActionType action = 1;  // confidence: silver [apk_static, cross_version]
 }
 
 // APK class: vxd / wbi — margin/inset configuration
+// confidence: silver [apk_static, cross_version]
 message VideoMarginConfig
 {
-    optional VideoInsets insets = 1;
+    optional VideoInsets insets = 1;  // confidence: silver [apk_static, cross_version]
 }
 
 // APK class: wbi — inset values (top/bottom/left/right)
+// confidence: silver [apk_static, cross_version]
 message VideoInsets
 {
-    optional uint32 left = 1;
-    optional uint32 top = 2;
-    optional uint32 right = 3;
-    optional uint32 bottom = 4;
+    optional uint32 left = 1;  // confidence: silver [apk_static, cross_version]
+    optional uint32 top = 2;  // confidence: silver [apk_static, cross_version]
+    optional uint32 right = 3;  // confidence: silver [apk_static, cross_version]
+    optional uint32 bottom = 4;  // confidence: silver [apk_static, cross_version]
 }
 
 // APK class: wcr
+// confidence: silver [apk_static, cross_version]
 enum UITheme
 {
     UI_THEME_AUTOMATIC = 0;
@@ -62,6 +68,7 @@ enum UITheme
 }
 
 // APK class: wcn
+// confidence: silver [apk_static, cross_version]
 enum UIElement
 {
     UI_ELEMENT_UNKNOWN = 0;
@@ -73,6 +80,7 @@ enum UIElement
 }
 
 // APK class: vvn
+// confidence: silver [apk_static, cross_version]
 enum ResizeActionType
 {
     ACTION_UNKNOWN = 0;

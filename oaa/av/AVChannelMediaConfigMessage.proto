@@ -22,18 +22,19 @@ import "oaa/common/PingConfigurationData.proto";
 
 package oaa.proto.messages;
 
+// confidence: silver [apk_static, cross_version]
 message AVChannelMediaConfig {
-    optional data.PingConfiguration timing_1 = 1;   // APK: zyd sub-message
-    optional bool feature_flag_1 = 2;               // APK: boolean
-    optional data.PingConfiguration timing_2 = 3;   // APK: zyd sub-message
-    optional data.PingConfiguration timing_3 = 4;   // APK: zyd sub-message
-    optional data.PingConfiguration timing_4 = 5;   // APK: zyd sub-message
-    optional data.PingConfiguration timing_5 = 6;   // APK: zyd sub-message
-    optional uint32 config_value = 7;                // APK: int (uint32)
-    optional data.PingConfiguration timing_6 = 8;   // APK: zyd sub-message
-    optional bool feature_flag_2 = 9;               // APK: boolean
-    optional data.PingConfiguration timing_7 = 10;  // APK: zyd sub-message
-    optional bool feature_flag_3 = 11;              // APK: boolean
-    optional data.PingConfiguration timing_8 = 12;  // APK: zyd sub-message
-    optional data.PingConfiguration timing_9 = 13;  // APK: zyd sub-message
+    optional data.PingConfiguration timing_1 = 1; // APK: zyd sub-message  // confidence: silver [apk_static, cross_version]
+    optional bool feature_flag_1 = 2; // APK: boolean  // confidence: silver [apk_static, cross_version]
+    optional data.PingConfiguration timing_2 = 3; // APK: zyd sub-message  // confidence: silver [apk_static, cross_version]
+    optional data.PingConfiguration timing_3 = 4; // APK: zyd sub-message  // confidence: silver [apk_static, cross_version]
+    optional data.PingConfiguration timing_4 = 5; // APK: zyd sub-message  // confidence: silver [apk_static, cross_version]
+    optional data.PingConfiguration timing_5 = 6; // APK: zyd sub-message  // confidence: silver [apk_static, cross_version]
+    optional uint32 config_value = 7; // APK: int (uint32)  // confidence: silver [apk_static, cross_version]
+    optional data.PingConfiguration timing_6 = 8; // APK: zyd sub-message  // confidence: silver [apk_static, cross_version]
+    optional bool feature_flag_2 = 9; // APK: boolean  // confidence: silver [apk_static, cross_version]
+    optional data.PingConfiguration timing_7 = 10; // APK: zyd sub-message  // confidence: silver [apk_static, cross_version]
+    optional bool feature_flag_3 = 11; // APK: boolean  // confidence: silver [apk_static, cross_version]
+    optional data.PingConfiguration timing_8 = 12; // APK: zyd sub-message  // confidence: silver [apk_static, cross_version]
+    optional data.PingConfiguration timing_9 = 13; // APK: zyd sub-message  // confidence: silver [apk_static, cross_version]
 }

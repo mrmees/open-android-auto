@@ -13,10 +13,12 @@ syntax = "proto3";
 
 package oaa.proto.messages;
 
+// confidence: unverified
 message WifiPingRequest {
-    optional int64 timestamp_ns = 1;    // APK: b — descriptor says int64 (1 field only)
+    optional int64 timestamp_ns = 1; // APK: b — descriptor says int64 (1 field only)  // confidence: unverified
 }
 
+// confidence: unverified
 message WifiPingResponse {
-    optional int64 timestamp_ns = 1;    // APK: b (long)
+    optional int64 timestamp_ns = 1; // APK: b (long)  // confidence: unverified
 }

@@ -13,11 +13,12 @@ import "oaa/input/HapticFeedbackTypeEnum.proto";
 package oaa.proto.data;
 
 // APK class: vya — input channel descriptor (service discovery)
+// confidence: silver [apk_static, cross_version]
 message InputChannel
 {
     repeated int32 supported_keycodes = 1 [packed = true];
-    repeated TouchConfig touch_screen_config = 2;
-    repeated TouchConfig touch_pad_config = 3;
-    repeated enums.HapticFeedbackType.Enum supported_haptic_feedback = 4;
-    optional uint32 max_touchscreen_pointers = 5;
+    repeated TouchConfig touch_screen_config = 2;  // confidence: silver [apk_static, cross_version]
+    repeated TouchConfig touch_pad_config = 3;  // confidence: silver [apk_static, cross_version]
+    repeated enums.HapticFeedbackType.Enum supported_haptic_feedback = 4;  // confidence: silver [apk_static, cross_version]
+    optional uint32 max_touchscreen_pointers = 5;  // confidence: silver [apk_static, cross_version]
 }

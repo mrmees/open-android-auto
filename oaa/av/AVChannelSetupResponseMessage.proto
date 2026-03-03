@@ -7,9 +7,10 @@ import "oaa/av/AVChannelSetupStatusEnum.proto";
 
 package oaa.proto.messages;
 
+// confidence: silver [apk_static, cross_version]
 message AVChannelSetupResponse
 {
-    optional enums.AVChannelSetupStatus.Enum media_status = 1;
-    optional uint32 max_unacked = 2;
-    repeated uint32 configs = 3;
+    optional enums.AVChannelSetupStatus.Enum media_status = 1;  // confidence: silver [apk_static, cross_version]
+    optional uint32 max_unacked = 2;  // confidence: silver [apk_static, cross_version]
+    repeated uint32 configs = 3;  // confidence: silver [apk_static, cross_version]
 }

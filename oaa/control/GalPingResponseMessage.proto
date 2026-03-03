@@ -14,8 +14,9 @@ syntax="proto2";
 
 package oaa.proto.messages;
 
+// confidence: silver [apk_static, cross_version]
 message GalPingResponse
 {
-    required int64 timestamp = 1;
-    optional bytes payload = 2;
+    required int64 timestamp = 1;  // confidence: silver [apk_static, cross_version]
+    optional bytes payload = 2;  // confidence: silver [apk_static, cross_version]
 }

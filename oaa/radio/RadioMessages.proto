@@ -44,6 +44,7 @@ package oaa.proto.messages;
 // ============================================================================
 
 // Radio program identifier type (APK enum: waq — unobfuscated)
+// confidence: silver [apk_static, cross_version]
 enum RadioIdentifierType {
     IDENTIFIER_TYPE_INVALID = 0;
     IDENTIFIER_TYPE_AMFM_FREQUENCY = 1;
@@ -58,6 +59,7 @@ enum RadioIdentifierType {
 }
 
 // Tune response status (APK: a.by, values 1-4)
+// confidence: silver [apk_static, cross_version]
 enum RadioTuneStatus {
     RADIO_TUNE_STATUS_UNKNOWN = 0;
     RADIO_TUNE_STATUS_SUCCESS = 1;
@@ -67,6 +69,7 @@ enum RadioTuneStatus {
 }
 
 // Tune direction for seek/step (APK: viz.M, values 1-2)
+// confidence: silver [apk_static, cross_version]
 enum RadioTuneDirection {
     RADIO_TUNE_DIRECTION_UNKNOWN = 0;
     RADIO_TUNE_DIRECTION_UP = 1;
@@ -79,64 +82,71 @@ enum RadioTuneDirection {
 
 // APK class: war → SafeParcelable: RadioProgramIdentifier
 // Identifies a specific radio program/station.
+// confidence: silver [apk_static, cross_version]
 message RadioProgramIdentifier {
-    optional RadioIdentifierType type = 1;
-    optional uint64 value = 2;  // Frequency in Hz for AM/FM, or station ID for HD/DAB
+    optional RadioIdentifierType type = 1;  // confidence: silver [apk_static, cross_version]
+    optional uint64 value = 2; // Frequency in Hz for AM/FM, or station ID for HD/DAB  // confidence: silver [apk_static, cross_version]
 }
 
 // APK class: wav → SafeParcelable: RadioProgramSelector
 // Selects a program via primary + optional secondary identifiers.
+// confidence: silver [apk_static, cross_version]
 message RadioProgramSelector {
-    optional RadioProgramIdentifier primary_identifier = 1;
-    repeated RadioProgramIdentifier secondary_identifiers = 2;
+    optional RadioProgramIdentifier primary_identifier = 1;  // confidence: silver [apk_static, cross_version]
+    repeated RadioProgramIdentifier secondary_identifiers = 2;  // confidence: silver [apk_static, cross_version]
 }
 
 // APK class: wam — station icon or album art image data
+// confidence: silver [apk_static, cross_version]
 message RadioImage {
-    optional bytes image_data = 1;
+    optional bytes image_data = 1;  // confidence: silver [apk_static, cross_version]
 }
 
 // APK class: waw → SafeParcelable: RadioProgramType
 // Program type classification (RDS PTY / ITU).
+// confidence: silver [apk_static, cross_version]
 message RadioProgramType {
-    optional enums.RadioProgramTypeSchema.Enum schema = 1;  // APK: viz.M (1=RDS_PTY, 2=ITU)
-    optional uint32 code = 2;
+    optional enums.RadioProgramTypeSchema.Enum schema = 1; // APK: viz.M (1=RDS_PTY, 2=ITU)  // confidence: silver [apk_static, cross_version]
+    optional uint32 code = 2;  // confidence: silver [apk_static, cross_version]
 }
 
 // APK class: wbb → SafeParcelable: RadioSongMetadata
 // Currently playing song information.
+// confidence: silver [apk_static, cross_version]
 message RadioSongMetadata {
-    optional string title = 1;
-    optional string artist = 2;
-    optional string album = 3;
-    optional string genre = 4;
-    optional RadioImage album_art = 5;
-    optional uint64 duration_seconds = 6;
+    optional string title = 1;  // confidence: silver [apk_static, cross_version]
+    optional string artist = 2;  // confidence: silver [apk_static, cross_version]
+    optional string album = 3;  // confidence: silver [apk_static, cross_version]
+    optional string genre = 4;  // confidence: silver [apk_static, cross_version]
+    optional RadioImage album_art = 5;  // confidence: silver [apk_static, cross_version]
+    optional uint64 duration_seconds = 6;  // confidence: silver [apk_static, cross_version]
 }
 
 // APK class: wan → SafeParcelable: RadioMetadata
 // Full station metadata including HD Radio and DAB fields.
+// confidence: silver [apk_static, cross_version]
 message RadioMetadata {
-    optional string station_name = 1;
-    optional string station_name_short = 2;
-    optional string station_name_long = 3;
-    optional RadioProgramType program_type = 4;
-    optional RadioImage station_icon = 5;
-    optional RadioSongMetadata song_metadata = 6;
-    optional string message = 7;             // Station text message / RDS RadioText
-    optional string service_name = 8;        // DAB service name
-    optional uint32 hd_sub_channels_available = 9;
-    optional bool hd_signal_acquired = 10;
-    optional bool hd_audio_acquired = 11;
-    optional string dab_component_name = 12;
-    optional bool dts_autostage_enriched = 13;
+    optional string station_name = 1;  // confidence: silver [apk_static, cross_version]
+    optional string station_name_short = 2;  // confidence: silver [apk_static, cross_version]
+    optional string station_name_long = 3;  // confidence: silver [apk_static, cross_version]
+    optional RadioProgramType program_type = 4;  // confidence: silver [apk_static, cross_version]
+    optional RadioImage station_icon = 5;  // confidence: silver [apk_static, cross_version]
+    optional RadioSongMetadata song_metadata = 6;  // confidence: silver [apk_static, cross_version]
+    optional string message = 7; // Station text message / RDS RadioText  // confidence: silver [apk_static, cross_version]
+    optional string service_name = 8; // DAB service name  // confidence: silver [apk_static, cross_version]
+    optional uint32 hd_sub_channels_available = 9;  // confidence: silver [apk_static, cross_version]
+    optional bool hd_signal_acquired = 10;  // confidence: silver [apk_static, cross_version]
+    optional bool hd_audio_acquired = 11;  // confidence: silver [apk_static, cross_version]
+    optional string dab_component_name = 12;  // confidence: silver [apk_static, cross_version]
+    optional bool dts_autostage_enriched = 13;  // confidence: silver [apk_static, cross_version]
 }
 
 // APK class: was → SafeParcelable: RadioProgramInfo
 // A radio program entry — selector + metadata.
+// confidence: silver [apk_static, cross_version]
 message RadioProgramInfo {
-    optional RadioProgramSelector program_selector = 1;
-    optional RadioMetadata metadata = 2;
+    optional RadioProgramSelector program_selector = 1;  // confidence: silver [apk_static, cross_version]
+    optional RadioMetadata metadata = 2;  // confidence: silver [apk_static, cross_version]
 }
 
 // ============================================================================
@@ -145,34 +155,39 @@ message RadioProgramInfo {
 
 // 0x801A: RadioProgramListNotification (APK class: wau)
 // Full list of available radio programs.
+// confidence: silver [apk_static, cross_version]
 message RadioProgramListNotification {
-    repeated RadioProgramInfo programs = 1;
+    repeated RadioProgramInfo programs = 1;  // confidence: silver [apk_static, cross_version]
 }
 
 // 0x801B: RadioProgramInfoNotification (APK class: wat)
 // Current program info update (e.g., station changed, metadata updated).
+// confidence: silver [apk_static, cross_version]
 message RadioProgramInfoNotification {
-    optional RadioProgramInfo program_info = 1;
-    optional bool is_muted = 2;
-    optional bool has_audio_focus = 3;
+    optional RadioProgramInfo program_info = 1;  // confidence: silver [apk_static, cross_version]
+    optional bool is_muted = 2;  // confidence: silver [apk_static, cross_version]
+    optional bool has_audio_focus = 3;  // confidence: silver [apk_static, cross_version]
 }
 
 // 0x801D: RadioMuteResponse (APK class: wap)
 // Response to mute request.
+// confidence: silver [apk_static, cross_version]
 message RadioMuteResponse {
-    optional bool is_muted = 1;
+    optional bool is_muted = 1;  // confidence: silver [apk_static, cross_version]
 }
 
 // 0x801F: RadioTuneResponse (APK class: wbd)
 // Response to tune request with status.
+// confidence: silver [apk_static, cross_version]
 message RadioTuneResponse {
-    optional RadioTuneStatus status = 1;
+    optional RadioTuneStatus status = 1;  // confidence: silver [apk_static, cross_version]
 }
 
 // 0x8020: RadioFavoriteListNotification (APK class: wal)
 // List of favorite/preset programs.
+// confidence: silver [apk_static, cross_version]
 message RadioFavoriteListNotification {
-    repeated RadioProgramInfo favorites = 1;
+    repeated RadioProgramInfo favorites = 1;  // confidence: silver [apk_static, cross_version]
 }
 
 // ============================================================================
@@ -180,24 +195,28 @@ message RadioFavoriteListNotification {
 // ============================================================================
 
 // 0x801C: RadioMuteRequest (APK class: wao)
+// confidence: silver [apk_static, cross_version]
 message RadioMuteRequest {
-    optional bool mute = 1;
+    optional bool mute = 1;  // confidence: silver [apk_static, cross_version]
 }
 
 // 0x801E: RadioTuneRequest (APK class: wbc)
 // Tune to a specific program by selector.
+// confidence: silver [apk_static, cross_version]
 message RadioTuneRequest {
-    optional RadioProgramSelector program_selector = 1;
+    optional RadioProgramSelector program_selector = 1;  // confidence: silver [apk_static, cross_version]
 }
 
 // 0x8021: RadioFavoriteToggleRequest (APK class: waz)
 // Toggle current program as favorite.
+// confidence: silver [apk_static, cross_version]
 message RadioFavoriteToggleRequest {
-    optional bool is_favorite = 1;
+    optional bool is_favorite = 1;  // confidence: silver [apk_static, cross_version]
 }
 
 // 0x8022: RadioTuneDirectionRequest (APK class: wba)
 // Seek up/down to next available station.
+// confidence: silver [apk_static, cross_version]
 message RadioTuneDirectionRequest {
-    optional RadioTuneDirection direction = 1;
+    optional RadioTuneDirection direction = 1;  // confidence: silver [apk_static, cross_version]
 }

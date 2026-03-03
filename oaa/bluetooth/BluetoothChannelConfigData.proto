@@ -11,10 +11,11 @@ syntax="proto3";
 
 package oaa.proto.data;
 
+// confidence: unverified
 message BluetoothChannelConfig
 {
     // BT adapter address (e.g. "DC:A6:32:E7:5A:FE")
-    optional string adapter_address = 1;
+    optional string adapter_address = 1;  // confidence: unverified
     // Supported BT pairing methods (enum values in APK)
-    repeated int32 supported_pairing_methods = 2;
+    repeated int32 supported_pairing_methods = 2;  // confidence: unverified
 }

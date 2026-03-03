@@ -5,7 +5,8 @@ syntax="proto2";
 
 package oaa.proto.messages;
 
+// confidence: silver [apk_static, cross_version]
 message AuthCompleteIndication
 {
-    optional int32 status = 1;
+    optional int32 status = 1;  // confidence: silver [apk_static, cross_version]
 }

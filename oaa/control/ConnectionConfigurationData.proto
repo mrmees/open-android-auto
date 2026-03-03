@@ -20,51 +20,57 @@ import "oaa/common/PingConfigurationData.proto";
 
 package oaa.proto.data;
 
+// confidence: silver [apk_static, cross_version]
 message ConnectionConfiguration {
-    optional PingConfiguration ping_configuration = 1;  // APK: zyd
+    optional PingConfiguration ping_configuration = 1; // APK: zyd  // confidence: silver [apk_static, cross_version]
 
     oneof config_type {
-        ConnectionSecurityConfig security_config = 2;   // APK: aajj
-        ConnectionTransportConfig transport_config = 3;  // APK: aajh
-        ConnectionFeatureFlags feature_flags = 4;        // APK: aaja
-        ConnectionTuningConfig tuning_config = 5;        // APK: aajg
-        ConnectionReservedConfig reserved_config = 6;    // APK: aaji (empty)
+        ConnectionSecurityConfig security_config = 2; // APK: aajj  // confidence: silver [apk_static, cross_version]
+        ConnectionTransportConfig transport_config = 3; // APK: aajh  // confidence: silver [apk_static, cross_version]
+        ConnectionFeatureFlags feature_flags = 4; // APK: aaja  // confidence: silver [apk_static, cross_version]
+        ConnectionTuningConfig tuning_config = 5; // APK: aajg  // confidence: silver [apk_static, cross_version]
+        ConnectionReservedConfig reserved_config = 6; // APK: aaji (empty)  // confidence: silver [apk_static, cross_version]
     }
 }
 
 // Connection security mode for the AA protocol link (APK class: aajj)
 // Distinct from WiFi security — this controls the AA session encryption.
 // Values mapped through a.bC() in the APK.
+// confidence: silver [apk_static, cross_version]
 enum ConnectionSecurityMode {
     CONNECTION_SECURITY_UNKNOWN = 0;
     CONNECTION_SECURITY_ENCRYPTED = 1;
 }
 
 // APK class: aajj — 1 enum field
+// confidence: silver [apk_static, cross_version]
 message ConnectionSecurityConfig {
-    optional ConnectionSecurityMode security_mode = 1;
+    optional ConnectionSecurityMode security_mode = 1;  // confidence: silver [apk_static, cross_version]
 }
 
 // APK class: aajh — 2 sub-message fields (fields 2-3, no field 1)
+// confidence: silver [apk_static, cross_version]
 message ConnectionTransportConfig {
-    optional TransportMetadata transport_metadata = 2;        // APK: aajt
-    optional TransportSecurityConfig transport_security = 3;  // APK: aakd
+    optional TransportMetadata transport_metadata = 2; // APK: aajt  // confidence: silver [apk_static, cross_version]
+    optional TransportSecurityConfig transport_security = 3; // APK: aakd  // confidence: silver [apk_static, cross_version]
 }
 
 // APK class: aaja — single bool
+// confidence: silver [apk_static, cross_version]
 message ConnectionFeatureFlags {
-    optional bool enabled = 1;
+    optional bool enabled = 1;  // confidence: silver [apk_static, cross_version]
 }
 
 // APK class: aajg — uint32 + oneof with 4 sub-messages
+// confidence: silver [apk_static, cross_version]
 message ConnectionTuningConfig {
-    optional uint32 timeout_ms = 1;
+    optional uint32 timeout_ms = 1;  // confidence: silver [apk_static, cross_version]
 
     oneof tuning_params {
-        TuningParamsA tuning_a = 2;    // APK: aajf — sub-message, fields TBD
-        TuningParamsB tuning_b = 3;    // APK: aajb — sub-message, fields TBD
-        TuningParamsC tuning_c = 4;    // APK: aajd — sub-message, fields TBD
-        TuningParamsD tuning_d = 5;    // APK: aajc — sub-message, fields TBD
+        TuningParamsA tuning_a = 2; // APK: aajf — sub-message, fields TBD  // confidence: silver [apk_static, cross_version]
+        TuningParamsB tuning_b = 3; // APK: aajb — sub-message, fields TBD  // confidence: silver [apk_static, cross_version]
+        TuningParamsC tuning_c = 4; // APK: aajd — sub-message, fields TBD  // confidence: silver [apk_static, cross_version]
+        TuningParamsD tuning_d = 5; // APK: aajc — sub-message, fields TBD  // confidence: silver [apk_static, cross_version]
     }
 
     // Note: timeout_factor at field 60 was previously here, but APK descriptor
@@ -73,56 +79,67 @@ message ConnectionTuningConfig {
 }
 
 // APK class: aaji — empty message
+// confidence: silver [apk_static, cross_version]
 message ConnectionReservedConfig {
 }
 
 // APK class: aajt (proto3) — transport metadata
 // Sub-message ref: aajs (TransportCapabilities)
+// confidence: silver [apk_static, cross_version]
 message TransportMetadata {
-    optional TransportCapabilities capabilities = 1;  // APK: message (aajs)
-    string transport_name = 2;                        // APK: string
+    optional TransportCapabilities capabilities = 1; // APK: message (aajs)  // confidence: silver [apk_static, cross_version]
+    string transport_name = 2; // APK: string  // confidence: silver [apk_static, cross_version]
 }
 
 // APK class: aajs (proto3) — transport capability details
+// confidence: silver [apk_static, cross_version]
 message TransportCapabilities {
-    repeated TransportCapabilityEntry entries = 1;   // APK: repeated message
-    repeated string supported_protocols = 2;         // APK: repeated string
+    repeated TransportCapabilityEntry entries = 1; // APK: repeated message  // confidence: silver [apk_static, cross_version]
+    repeated string supported_protocols = 2; // APK: repeated string  // confidence: silver [apk_static, cross_version]
 }
 
 // Placeholder for TransportCapabilities sub-message entries
+// confidence: silver [apk_static, cross_version]
 message TransportCapabilityEntry {}
 
 // APK class: aakd (proto3) — transport security configuration
 // Sub-message ref: aakc (TransportSecurityEntry) at field 2
+// confidence: silver [apk_static, cross_version]
 message TransportSecurityConfig {
-    optional TransportSecurityEntry security_entry = 1;  // APK: message (aakc) at field 1
+    optional TransportSecurityEntry security_entry = 1; // APK: message (aakc) at field 1  // confidence: silver [apk_static, cross_version]
 }
 
 // APK class: aakc (proto3) — security entry
 // Sub-message ref: aakb
+// confidence: silver [apk_static, cross_version]
 message TransportSecurityEntry {
-    optional TransportSecurityDetail detail = 2;  // APK: message (aakb) at field 2
+    optional TransportSecurityDetail detail = 2; // APK: message (aakb) at field 2  // confidence: silver [apk_static, cross_version]
 }
 
 // APK class: aakb — placeholder for security detail structure
+// confidence: silver [apk_static, cross_version]
 message TransportSecurityDetail {}
 
 // APK class: aajf — sub-message of ConnectionTuningConfig oneof
 // Placeholder — sub-message structure TBD from wire captures
+// confidence: silver [apk_static, cross_version]
 message TuningParamsA {
 }
 
 // APK class: aajb — sub-message of ConnectionTuningConfig oneof
 // Placeholder — sub-message structure TBD from wire captures
+// confidence: silver [apk_static, cross_version]
 message TuningParamsB {
 }
 
 // APK class: aajd — sub-message of ConnectionTuningConfig oneof
 // Placeholder — sub-message structure TBD from wire captures
+// confidence: silver [apk_static, cross_version]
 message TuningParamsC {
 }
 
 // APK class: aajc — sub-message of ConnectionTuningConfig oneof
 // Placeholder — sub-message structure TBD from wire captures
+// confidence: silver [apk_static, cross_version]
 message TuningParamsD {
 }

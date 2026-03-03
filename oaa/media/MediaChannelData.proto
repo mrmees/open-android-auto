@@ -5,6 +5,7 @@ syntax="proto3";
 
 package oaa.proto.data;
 
+// confidence: unverified
 message MediaInfoChannel
 {
    

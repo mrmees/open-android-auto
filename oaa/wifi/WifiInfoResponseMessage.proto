@@ -9,10 +9,11 @@ import "oaa/wifi/WifiAccessPointTypeEnum.proto";
 package oaa.proto.messages;
 
 // APK class: wdm — WiFi connection status response (phone sends as msgId=7)
+// confidence: silver [apk_static, cross_version]
 message WifiInfoResponse {
-    optional string ssid = 1;
-    optional string bssid = 2;
-    optional string passphrase = 3;
-    optional enums.WifiSecurityMode.Enum security_mode = 4;    // APK: wdr enum
-    optional enums.WifiAccessPointType.Enum ap_type = 5;       // APK: a.bJ verifier
+    optional string ssid = 1;  // confidence: silver [apk_static, cross_version]
+    optional string bssid = 2;  // confidence: silver [apk_static, cross_version]
+    optional string passphrase = 3;  // confidence: silver [apk_static, cross_version]
+    optional enums.WifiSecurityMode.Enum security_mode = 4; // APK: wdr enum  // confidence: silver [apk_static, cross_version]
+    optional enums.WifiAccessPointType.Enum ap_type = 5; // APK: a.bJ verifier  // confidence: silver [apk_static, cross_version]
 }

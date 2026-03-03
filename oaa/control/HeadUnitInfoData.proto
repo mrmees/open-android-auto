@@ -6,13 +6,14 @@ syntax="proto3";
 
 package oaa.proto.data;
 
+// confidence: silver [apk_static, cross_version]
 message HeadUnitInfo {
-    optional string make = 1;
-    optional string model = 2;
-    optional string year = 3;
-    optional string vehicle_id = 4;
-    optional string head_unit_make = 5;
-    optional string head_unit_model = 6;
-    optional string head_unit_software_build = 7;
-    optional string head_unit_software_version = 8;
+    optional string make = 1;  // confidence: silver [apk_static, cross_version]
+    optional string model = 2;  // confidence: silver [apk_static, cross_version]
+    optional string year = 3;  // confidence: silver [apk_static, cross_version]
+    optional string vehicle_id = 4;  // confidence: silver [apk_static, cross_version]
+    optional string head_unit_make = 5;  // confidence: silver [apk_static, cross_version]
+    optional string head_unit_model = 6;  // confidence: silver [apk_static, cross_version]
+    optional string head_unit_software_build = 7;  // confidence: silver [apk_static, cross_version]
+    optional string head_unit_software_version = 8;  // confidence: silver [apk_static, cross_version]
 }

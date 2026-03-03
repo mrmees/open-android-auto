@@ -11,36 +11,39 @@ package oaa.proto.messages;
 // Field numbers MUST match what the phone expects — the original aasdk had
 // them wrong (key=1, security_mode=2, ssid=3, no bssid).
 // Correct order: ssid=1, key=2, bssid=3, security_mode=4, access_point_type=5.
+// confidence: silver [apk_static, cross_version]
 message WifiSecurityResponse {
-    optional string ssid = 1;
-    optional string key = 2;
-    optional string bssid = 3;
-    optional SecurityMode security_mode = 4;
-    optional AccessPointType access_point_type = 5;
+    optional string ssid = 1;  // confidence: silver [apk_static, cross_version]
+    optional string key = 2;  // confidence: silver [apk_static, cross_version]
+    optional string bssid = 3;  // confidence: silver [apk_static, cross_version]
+    optional SecurityMode security_mode = 4;  // confidence: silver [apk_static, cross_version]
+    optional AccessPointType access_point_type = 5;  // confidence: silver [apk_static, cross_version]
 
     // Fields 6-11 discovered via APK proto decoder (wan.java, AA v16.1)
-    optional data.WifiDirectConfig wifi_direct_config = 6;  // WiFi Direct connection params (APK: wbb)
-    optional string ip_address = 7;         // HU IP address for direct connection
-    optional string gateway = 8;            // Gateway IP
-    optional uint32 prefix_length = 9;      // Network prefix length (e.g. 24)
-    optional bool hidden_network = 10;      // Whether AP is hidden (no SSID broadcast)
-    optional bool band_5ghz = 11;           // Whether to use 5GHz band
-    optional string unknown_12 = 12;        // Discovered via APK proto decoder (wan.java)
-    optional bool unknown_13 = 13;          // Discovered via APK proto decoder (wan.java)
+    optional data.WifiDirectConfig wifi_direct_config = 6; // WiFi Direct connection params (APK: wbb)  // confidence: silver [apk_static, cross_version]
+    optional string ip_address = 7; // HU IP address for direct connection  // confidence: silver [apk_static, cross_version]
+    optional string gateway = 8; // Gateway IP  // confidence: silver [apk_static, cross_version]
+    optional uint32 prefix_length = 9; // Network prefix length (e.g. 24)  // confidence: silver [apk_static, cross_version]
+    optional bool hidden_network = 10; // Whether AP is hidden (no SSID broadcast)  // confidence: silver [apk_static, cross_version]
+    optional bool band_5ghz = 11; // Whether to use 5GHz band  // confidence: silver [apk_static, cross_version]
+    optional string unknown_12 = 12; // Discovered via APK proto decoder (wan.java)  // confidence: silver [apk_static, cross_version]
+    optional bool unknown_13 = 13; // Discovered via APK proto decoder (wan.java)  // confidence: silver [apk_static, cross_version]
 
+    // confidence: silver [apk_static, cross_version]
     enum SecurityMode {
         UNKNOWN_SECURITY_MODE = 0;
         OPEN = 1;
-        WEP_64 = 2;
-        WEP_128 = 3;
+        WEP_64 = 2;  // confidence: silver [apk_static, cross_version]
+        WEP_128 = 3;  // confidence: silver [apk_static, cross_version]
         WPA_PERSONAL = 4;
-        WPA2_PERSONAL = 8;
-        WPA_WPA2_PERSONAL = 12;
+        WPA2_PERSONAL = 8;  // confidence: silver [apk_static, cross_version]
+        WPA_WPA2_PERSONAL = 12;  // confidence: silver [apk_static, cross_version]
         WPA_ENTERPRISE = 20;
-        WPA2_ENTERPRISE = 24;
-        WPA_WPA2_ENTERPRISE = 28;
+        WPA2_ENTERPRISE = 24;  // confidence: silver [apk_static, cross_version]
+        WPA_WPA2_ENTERPRISE = 28;  // confidence: silver [apk_static, cross_version]
     }
 
+    // confidence: silver [apk_static, cross_version]
     enum AccessPointType {
         STATIC = 0;
         DYNAMIC = 1;

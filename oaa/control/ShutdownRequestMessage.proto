@@ -7,7 +7,8 @@ import "oaa/control/ShutdownReasonEnum.proto";
 
 package oaa.proto.messages;
 
+// confidence: silver [apk_static, cross_version]
 message ShutdownRequest
 {
-    optional enums.ShutdownReason.Enum reason = 1;
+    optional enums.ShutdownReason.Enum reason = 1;  // confidence: silver [apk_static, cross_version]
 }

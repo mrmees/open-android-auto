@@ -5,10 +5,10 @@ syntax="proto2";
 
 package oaa.proto.data;
 
-// confidence: bronze [apk_static]
+// confidence: silver [apk_static, cross_version]
 message FuelLevel
 {
-    optional int32 fuel_level = 1;  // confidence: bronze [apk_static]
-    optional int32 range = 2;  // confidence: bronze [apk_static]
-    optional bool low_fuel = 3;  // confidence: bronze [apk_static]
+    optional int32 fuel_level = 1;  // confidence: silver [apk_static, cross_version]
+    optional int32 range = 2;  // confidence: silver [apk_static, cross_version]
+    optional bool low_fuel = 3;  // confidence: silver [apk_static, cross_version]
 }

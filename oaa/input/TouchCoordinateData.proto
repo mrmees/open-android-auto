@@ -12,9 +12,10 @@ syntax="proto2";
 package oaa.proto.data;
 
 // APK class: wbl — touch coordinate
+// confidence: silver [apk_static, cross_version]
 message TouchCoordinate
 {
-    optional uint32 x = 1;
-    optional int32 y = 2;
-    optional uint32 pointer_id = 3;
+    optional uint32 x = 1;  // confidence: silver [apk_static, cross_version]
+    optional int32 y = 2;  // confidence: silver [apk_static, cross_version]
+    optional uint32 pointer_id = 3;  // confidence: silver [apk_static, cross_version]
 }

@@ -20,42 +20,48 @@ syntax="proto3";
 package oaa.proto.data;
 
 // APK class: aahf — connection config with two sub-messages
+// confidence: silver [apk_static, cross_version]
 message CapabilityConnectionConfig
 {
-    CapabilityConnectionEntry entry_a = 1;
-    CapabilityConnectionEntry entry_b = 2;
+    CapabilityConnectionEntry entry_a = 1;  // confidence: silver [apk_static, cross_version]
+    CapabilityConnectionEntry entry_b = 2;  // confidence: silver [apk_static, cross_version]
 }
 
 // Placeholder for CapabilityConnectionConfig sub-message fields
+// confidence: silver [apk_static, cross_version]
 message CapabilityConnectionEntry {}
 
 // APK class: aahd — describes an input model (name + serialized descriptor)
+// confidence: silver [apk_static, cross_version]
 message InputModelDescriptor
 {
-    string model_name = 1;
-    bytes model_data = 2;
+    string model_name = 1;  // confidence: silver [apk_static, cross_version]
+    bytes model_data = 2;  // confidence: silver [apk_static, cross_version]
 }
 
 // APK class: aafs — input model entry (4 fields)
+// confidence: silver [apk_static, cross_version]
 message InputModelEntry
 {
-    string entry_name = 1;
-    string entry_type = 2;
-    string entry_value = 3;
+    string entry_name = 1;  // confidence: silver [apk_static, cross_version]
+    string entry_type = 2;  // confidence: silver [apk_static, cross_version]
+    string entry_value = 3;  // confidence: silver [apk_static, cross_version]
     repeated InputModelEnum model_flags = 4 [packed = true];
 }
 
 // Placeholder enum for InputModelEntry field 4
+// confidence: silver [apk_static, cross_version]
 enum InputModelEnum {
     INPUT_MODEL_UNKNOWN = 0;
 }
 
 // APK class: aahi — handwriting input model configuration (5 fields)
+// confidence: silver [apk_static, cross_version]
 message HandwritingInputModelConfig
 {
-    InputModelDescriptor descriptor = 1;     // field 1: message
-    InputModelDescriptor alt_descriptor = 2; // field 2: message
-    string config_name = 3;                  // field 3: string
+    InputModelDescriptor descriptor = 1; // field 1: message  // confidence: silver [apk_static, cross_version]
+    InputModelDescriptor alt_descriptor = 2; // field 2: message  // confidence: silver [apk_static, cross_version]
+    string config_name = 3; // field 3: string  // confidence: silver [apk_static, cross_version]
     repeated InputModelEnum config_flags = 4 [packed = true]; // field 4: packed enum
-    string config_value = 5;                 // field 5: string
+    string config_value = 5; // field 5: string  // confidence: silver [apk_static, cross_version]
 }

@@ -17,7 +17,8 @@ import "oaa/audio/AudioStreamTypeEnum.proto";
 
 package oaa.proto.messages;
 
+// confidence: silver [apk_static, cross_version]
 message AudioStreamType
 {
-    optional enums.AudioStreamType.Enum stream_type = 1;
+    optional enums.AudioStreamType.Enum stream_type = 1;  // confidence: silver [apk_static, cross_version]
 }

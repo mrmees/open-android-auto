@@ -12,25 +12,27 @@ package oaa.proto.messages;
 // Sent by HU to phone to report call state changes.
 // APK class: waf.java (AA v16.1)
 // See also: PhoneStatusInputMessage.proto (msgId 0x8002, wag — phone→HU input)
+// confidence: silver [apk_static, cross_version]
 message PhoneStatusUpdate {
     // Active calls (empty = no calls / idle)
-    repeated PhoneCall calls = 1;
-    optional uint32 signal_strength = 2;  // APK: uint32, set from CarPhoneStatus.b
+    repeated PhoneCall calls = 1;  // confidence: silver [apk_static, cross_version]
+    optional uint32 signal_strength = 2; // APK: uint32, set from CarPhoneStatus.b  // confidence: silver [apk_static, cross_version]
 }
 
 // APK class: wad.java (AA v16.1)
+// confidence: silver [apk_static, cross_version]
 message PhoneCall {
     // APK: required enum wae — see PhoneCallStateEnum.proto
-    optional enums.PhoneCallState.Enum call_state = 1;
+    optional enums.PhoneCallState.Enum call_state = 1;  // confidence: silver [apk_static, cross_version]
     // APK: required uint32 — elapsed seconds since call connected
     // Previously misidentified as "direction" (0 = just connected)
-    optional uint32 call_duration_seconds = 2;
+    optional uint32 call_duration_seconds = 2;  // confidence: silver [apk_static, cross_version]
     // Phone number (e.g. "+1 858-225-7702")
-    optional string phone_number = 3;
+    optional string phone_number = 3;  // confidence: silver [apk_static, cross_version]
     // Caller display name (e.g. "Spam Risk", contact name)
-    optional string display_name = 4;
+    optional string display_name = 4;  // confidence: silver [apk_static, cross_version]
     // Contact ID (empty for unknown contacts)
-    optional string contact_id = 5;
+    optional string contact_id = 5;  // confidence: silver [apk_static, cross_version]
     // Contact photo as PNG image (sent with ACTIVE state)
-    optional bytes contact_photo = 6;
+    optional bytes contact_photo = 6;  // confidence: silver [apk_static, cross_version]
 }

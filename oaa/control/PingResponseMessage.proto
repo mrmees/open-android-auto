@@ -5,7 +5,8 @@ syntax="proto2";
 
 package oaa.proto.messages;
 
+// confidence: silver [apk_static, cross_version]
 message PingResponse
 {
-    optional int64 timestamp = 1;
+    optional int64 timestamp = 1;  // confidence: silver [apk_static, cross_version]
 }

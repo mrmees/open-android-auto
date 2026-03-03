@@ -11,27 +11,30 @@ syntax="proto2";
 package oaa.proto.data;
 
 // APK class: xnd — single distance display (primary/secondary text + timestamp)
+// confidence: silver [apk_static, cross_version]
 message NavigationDistanceDisplay
 {
-    required string primary_text = 1;
-    optional string secondary_text = 2;
-    optional int64 update_timestamp = 3;
-    repeated DistanceLabel labels = 4;  // APK: MAP type_id=49 (xnc entry class)
+    required string primary_text = 1;  // confidence: silver [apk_static, cross_version]
+    optional string secondary_text = 2;  // confidence: silver [apk_static, cross_version]
+    optional int64 update_timestamp = 3;  // confidence: silver [apk_static, cross_version]
+    repeated DistanceLabel labels = 4; // APK: MAP type_id=49 (xnc entry class)  // confidence: silver [apk_static, cross_version]
 }
 
 // APK class: xmw — distance value with unit info
+// confidence: silver [apk_static, cross_version]
 message NavigationDistanceValue
 {
-    required int64 raw_meters = 1;
-    required fixed32 value = 2;
-    required fixed32 unit = 3;
+    required int64 raw_meters = 1;  // confidence: silver [apk_static, cross_version]
+    required fixed32 value = 2;  // confidence: silver [apk_static, cross_version]
+    required fixed32 unit = 3;  // confidence: silver [apk_static, cross_version]
 }
 
 // APK class: xnc — distance label (fields 5-8, map entry with non-standard keys)
+// confidence: silver [apk_static, cross_version]
 message DistanceLabel
 {
-    required string label = 5;
-    required string unit_text = 6;
-    optional string extra = 7;
-    required int32 label_type = 8;
+    required string label = 5;  // confidence: silver [apk_static, cross_version]
+    required string unit_text = 6;  // confidence: silver [apk_static, cross_version]
+    optional string extra = 7;  // confidence: silver [apk_static, cross_version]
+    required int32 label_type = 8;  // confidence: silver [apk_static, cross_version]
 }

@@ -13,8 +13,10 @@ syntax="proto3";
 
 package oaa.proto.enums;
 
+// confidence: unverified
 message NavigationType
 {
+    // confidence: unverified
     enum Enum
     {
         NAVIGATION_UNKNOWN = 0;

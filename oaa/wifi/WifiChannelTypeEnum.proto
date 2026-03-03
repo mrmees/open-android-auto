@@ -13,13 +13,15 @@ syntax="proto2";
 
 package oaa.proto.enums;
 
+// confidence: unverified
 message WifiChannelType
 {
+    // confidence: unverified
     enum Enum
     {
         CHANNEL_TYPE_UNKNOWN = 0;
-        CHANNEL_TYPE_5GHZ_ONLY = 1;
-        CHANNEL_TYPE_24GHZ_ONLY = 2;
+        CHANNEL_TYPE_5GHZ_ONLY = 1;  // confidence: unverified
+        CHANNEL_TYPE_24GHZ_ONLY = 2;  // confidence: unverified
         CHANNEL_TYPE_DUAL_BAND = 3;
     }
 }

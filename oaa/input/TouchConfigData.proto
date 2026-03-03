@@ -6,9 +6,10 @@ syntax="proto2";
 package oaa.proto.data;
 
 // APK class: vxn — 3 fields including bool at field 3
+// confidence: silver [apk_static, cross_version]
 message TouchConfig
 {
-    optional int32 width = 1;
-    optional int32 height = 2;
-    optional bool unknown_3 = 3;
+    optional int32 width = 1;  // confidence: silver [apk_static, cross_version]
+    optional int32 height = 2;  // confidence: silver [apk_static, cross_version]
+    optional bool unknown_3 = 3;  // confidence: silver [apk_static, cross_version]
 }

@@ -8,12 +8,14 @@ package oaa.proto.messages;
 
 // Navigation focus type (APK enum: vzb)
 // Used in both NavigationFocusRequest and NavigationFocusResponse.
+// confidence: silver [apk_static, cross_version]
 enum NavigationFocusType {
     NAV_FOCUS_NATIVE = 1;
     NAV_FOCUS_PROJECTED = 2;
 }
 
+// confidence: silver [apk_static, cross_version]
 message NavigationFocusRequest
 {
-    optional NavigationFocusType type = 1;
+    optional NavigationFocusType type = 1;  // confidence: silver [apk_static, cross_version]
 }

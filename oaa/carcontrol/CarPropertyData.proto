@@ -16,6 +16,7 @@ import "oaa/carcontrol/VehicleAreaEnums.proto";
 
 // Car property IDs — VHAL property identifiers (APK enum: vuz)
 // Values are Android VHAL property IDs (VehiclePropertyIds.java)
+// confidence: silver [apk_static, cross_version]
 enum CarPropertyId {
     CAR_PROPERTY_UNKNOWN = 0;
     // HVAC properties
@@ -47,6 +48,7 @@ enum CarPropertyId {
 }
 
 // Car action IDs — application launch actions (APK class: vun)
+// confidence: silver [apk_static, cross_version]
 enum CarActionId {
     CAR_ACTION_UNKNOWN = 0;
     CAR_ACTION_LAUNCH_HVAC = 3;
@@ -56,6 +58,7 @@ enum CarActionId {
 }
 
 // Area type for CarAreaId (APK class: vuw, field 1)
+// confidence: silver [apk_static, cross_version]
 enum CarAreaType {
     CAR_AREA_GLOBAL = 0;
     CAR_AREA_WINDOW = 2;
@@ -66,15 +69,17 @@ enum CarAreaType {
 }
 
 // APK class: vuv → SafeParcelable: CarProperty
+// confidence: silver [apk_static, cross_version]
 message CarProperty {
-    CarPropertyId property_id = 1;
-    CarAreaId area_id = 2;
+    CarPropertyId property_id = 1;  // confidence: silver [apk_static, cross_version]
+    CarAreaId area_id = 2;  // confidence: silver [apk_static, cross_version]
 }
 
 // APK class: vuw → SafeParcelable: CarAreaId
 // Area IDs are bitmasks — list elements are ORed together on the phone side.
+// confidence: silver [apk_static, cross_version]
 message CarAreaId {
-    CarAreaType area_type = 1;
+    CarAreaType area_type = 1;  // confidence: silver [apk_static, cross_version]
     repeated VehicleAreaWindow window_ids = 2 [packed = true];
     repeated VehicleAreaSeat seat_ids = 3 [packed = true];
     repeated VehicleAreaMirror mirror_ids = 4 [packed = true];
@@ -83,69 +88,79 @@ message CarAreaId {
 }
 
 // APK class: vun → SafeParcelable: CarAction
+// confidence: silver [apk_static, cross_version]
 message CarAction {
-    CarActionId action_id = 1;
+    CarActionId action_id = 1;  // confidence: silver [apk_static, cross_version]
 }
 
 // APK class: vvd (proto3) → SafeParcelable: CarPropertyValue
+// confidence: silver [apk_static, cross_version]
 message CarPropertyValue {
     oneof value {
-        int32 int_value = 1;
-        float float_value = 2;
-        bool bool_value = 3;
-        int64 long_value = 4;
-        string string_value = 5;
-        CarPropertyValueMsg msg_value_6 = 6;
-        CarPropertyValueMsg msg_value_7 = 7;
-        CarPropertyValueMsg msg_value_8 = 8;
+        int32 int_value = 1;  // confidence: silver [apk_static, cross_version]
+        float float_value = 2;  // confidence: silver [apk_static, cross_version]
+        bool bool_value = 3;  // confidence: silver [apk_static, cross_version]
+        int64 long_value = 4;  // confidence: silver [apk_static, cross_version]
+        string string_value = 5;  // confidence: silver [apk_static, cross_version]
+        CarPropertyValueMsg msg_value_6 = 6;  // confidence: silver [apk_static, cross_version]
+        CarPropertyValueMsg msg_value_7 = 7;  // confidence: silver [apk_static, cross_version]
+        CarPropertyValueMsg msg_value_8 = 8;  // confidence: silver [apk_static, cross_version]
     }
 }
 
 // Placeholder for CarPropertyValue oneof cases 6-8 (sub-message type unknown).
+// confidence: silver [apk_static, cross_version]
 message CarPropertyValueMsg {
 }
 
 // APK class: vvb (proto3) — repeated int32 values
+// confidence: silver [apk_static, cross_version]
 message IntValues {
     repeated int32 values = 1 [packed = true];
 }
 
 // APK class: vvc (proto3) — repeated packed int64
+// confidence: silver [apk_static, cross_version]
 message FloatValues {
     repeated int64 values = 1 [packed = true];
 }
 
 // APK class: vva (proto3) — repeated packed float
+// confidence: silver [apk_static, cross_version]
 message LongValues {
     repeated float values = 1 [packed = true];
 }
 
 // APK class: vuo (proto3) → wraps CarAction in an entry wrapper
+// confidence: silver [apk_static, cross_version]
 message CarActionEntry {
-    CarAction action = 1;     // APK: message (sub_ref: vun)
+    CarAction action = 1; // APK: message (sub_ref: vun)  // confidence: silver [apk_static, cross_version]
 }
 
 // APK class: vum (proto3) → SafeParcelable: CarPropertyAreaConfig
 // Configures a property for a specific vehicle area, with min/max value bounds.
+// confidence: silver [apk_static, cross_version]
 message CarPropertyAreaConfig {
-    CarAreaId area_id = 1;            // APK: message (sub_ref: vuw)
-    CarPropertyValue min_value = 2;   // APK: message (sub_ref: vvd)
-    CarPropertyValue max_value = 3;   // APK: message (sub_ref: vvd)
+    CarAreaId area_id = 1; // APK: message (sub_ref: vuw)  // confidence: silver [apk_static, cross_version]
+    CarPropertyValue min_value = 2; // APK: message (sub_ref: vvd)  // confidence: silver [apk_static, cross_version]
+    CarPropertyValue max_value = 3; // APK: message (sub_ref: vvd)  // confidence: silver [apk_static, cross_version]
 }
 
 // APK class: vux (proto3) → SafeParcelable: CarPropertyConfig
 // Describes a car property's type, access mode, and area configurations.
+// confidence: silver [apk_static, cross_version]
 message CarPropertyConfig {
-    CarPropertyId property_id = 1;                // APK: enum (type_id=12)
-    CarPropertyAccessMode access_mode = 2;        // APK: enum (type_id=12)
-    CarPropertyChangeMode change_mode = 3;        // APK: enum (type_id=12)
-    repeated CarPropertyAreaConfig area_configs = 4; // APK: repeated message
-    CarPropertyType property_type = 5;            // APK: enum (type_id=12)
+    CarPropertyId property_id = 1; // APK: enum (type_id=12)  // confidence: silver [apk_static, cross_version]
+    CarPropertyAccessMode access_mode = 2; // APK: enum (type_id=12)  // confidence: silver [apk_static, cross_version]
+    CarPropertyChangeMode change_mode = 3; // APK: enum (type_id=12)  // confidence: silver [apk_static, cross_version]
+    repeated CarPropertyAreaConfig area_configs = 4; // APK: repeated message  // confidence: silver [apk_static, cross_version]
+    CarPropertyType property_type = 5; // APK: enum (type_id=12)  // confidence: silver [apk_static, cross_version]
     repeated int32 config_array = 6 [packed = true]; // APK: repeated packed int32
-    repeated CarPropertyValue supported_values = 7;  // APK: repeated message
+    repeated CarPropertyValue supported_values = 7; // APK: repeated message  // confidence: silver [apk_static, cross_version]
 }
 
 // Access mode for CarPropertyConfig field 2
+// confidence: silver [apk_static, cross_version]
 enum CarPropertyAccessMode {
     CAR_PROPERTY_ACCESS_NONE = 0;
     CAR_PROPERTY_ACCESS_READ = 1;
@@ -154,6 +169,7 @@ enum CarPropertyAccessMode {
 }
 
 // Change mode for CarPropertyConfig field 3
+// confidence: silver [apk_static, cross_version]
 enum CarPropertyChangeMode {
     CAR_PROPERTY_CHANGE_STATIC = 0;
     CAR_PROPERTY_CHANGE_ON_CHANGE = 1;
@@ -161,23 +177,25 @@ enum CarPropertyChangeMode {
 }
 
 // Value type for CarPropertyConfig field 5
+// confidence: silver [apk_static, cross_version]
 enum CarPropertyType {
     CAR_PROPERTY_TYPE_UNKNOWN = 0;
     CAR_PROPERTY_TYPE_BOOLEAN = 1;
-    CAR_PROPERTY_TYPE_INT32 = 2;
-    CAR_PROPERTY_TYPE_INT64 = 3;
+    CAR_PROPERTY_TYPE_INT32 = 2;  // confidence: silver [apk_static, cross_version]
+    CAR_PROPERTY_TYPE_INT64 = 3;  // confidence: silver [apk_static, cross_version]
     CAR_PROPERTY_TYPE_FLOAT = 4;
     CAR_PROPERTY_TYPE_STRING = 5;
     CAR_PROPERTY_TYPE_BYTES = 6;
-    CAR_PROPERTY_TYPE_INT32_VEC = 7;
-    CAR_PROPERTY_TYPE_INT64_VEC = 8;
+    CAR_PROPERTY_TYPE_INT32_VEC = 7;  // confidence: silver [apk_static, cross_version]
+    CAR_PROPERTY_TYPE_INT64_VEC = 8;  // confidence: silver [apk_static, cross_version]
     CAR_PROPERTY_TYPE_FLOAT_VEC = 9;
     CAR_PROPERTY_TYPE_MIXED = 10;
 }
 
 // APK class: vuy → SafeParcelable: CarPropertyControl
+// confidence: silver [apk_static, cross_version]
 message CarPropertyControl {
-    CarProperty property = 1;
-    CarAction associated_action = 2;
-    CarProperty associated_property = 3;
+    CarProperty property = 1;  // confidence: silver [apk_static, cross_version]
+    CarAction associated_action = 2;  // confidence: silver [apk_static, cross_version]
+    CarProperty associated_property = 3;  // confidence: silver [apk_static, cross_version]
 }

@@ -5,7 +5,8 @@ syntax="proto2";
 
 package oaa.proto.messages;
 
+// confidence: silver [apk_static, cross_version]
 message BindingRequest
 {
-    repeated int32 scan_codes = 1;
+    repeated int32 scan_codes = 1;  // confidence: silver [apk_static, cross_version]
 }

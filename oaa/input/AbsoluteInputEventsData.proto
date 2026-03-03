@@ -9,9 +9,10 @@ import "oaa/input/TouchActionEnum.proto";
 package oaa.proto.data;
 
 // APK class: wcj — absolute input events container (3 fields)
+// confidence: silver [apk_static, cross_version]
 message AbsoluteInputEvents
 {
-    repeated AbsoluteInputEvent absolute_input_events = 1;
-    optional uint32 display_id = 2;
-    optional enums.TouchAction.Enum action = 3;  // APK: e (enum via vyv.m/vee.P — TouchAction)
+    repeated AbsoluteInputEvent absolute_input_events = 1;  // confidence: silver [apk_static, cross_version]
+    optional uint32 display_id = 2;  // confidence: silver [apk_static, cross_version]
+    optional enums.TouchAction.Enum action = 3; // APK: e (enum via vyv.m/vee.P — TouchAction)  // confidence: silver [apk_static, cross_version]
 }

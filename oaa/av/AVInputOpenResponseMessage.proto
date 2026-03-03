@@ -5,8 +5,9 @@ syntax="proto2";
 
 package oaa.proto.messages;
 
+// confidence: silver [apk_static, cross_version]
 message AVInputOpenResponse
 {
-    optional int32 session = 1;
-    optional int32 value = 2;
+    optional int32 session = 1;  // confidence: silver [apk_static, cross_version]
+    optional int32 value = 2;  // confidence: silver [apk_static, cross_version]
 }

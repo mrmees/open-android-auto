@@ -33,15 +33,16 @@ syntax="proto2";
 package oaa.proto.messages;
 
 // APK class: vwq
+// confidence: silver [apk_static, cross_version]
 message CarLocalMediaPlaybackMetadata {
     // Track title (falls back to default "missing song name" string if empty)
-    optional string song = 1;
+    optional string song = 1;  // confidence: silver [apk_static, cross_version]
     // Artist name
-    optional string artist = 2;
+    optional string artist = 2;  // confidence: silver [apk_static, cross_version]
     // Album name
-    optional string album = 3;
+    optional string album = 3;  // confidence: silver [apk_static, cross_version]
     // Album art as image data (decoded via BitmapFactory on phone side)
-    optional bytes album_art = 4;
+    optional bytes album_art = 4;  // confidence: silver [apk_static, cross_version]
     // Total track duration in seconds (-1 = no duration available)
-    optional uint32 duration_seconds = 5;
+    optional uint32 duration_seconds = 5;  // confidence: silver [apk_static, cross_version]
 }

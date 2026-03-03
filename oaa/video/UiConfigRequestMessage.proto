@@ -18,25 +18,29 @@ syntax="proto2";
 package oaa.proto.messages;
 
 // Placeholder for UiConfigEntry oneof value
+// confidence: silver [apk_static, cross_version]
 message UiConfigValue {}
 
 // APK class: wcq — config entry with key and value
+// confidence: silver [apk_static, cross_version]
 message UiConfigEntry
 {
-    optional string key = 1;
+    optional string key = 1;  // confidence: silver [apk_static, cross_version]
     oneof value {
-        UiConfigValue config_value = 2;  // APK: oneof message (type_id=60)
+        UiConfigValue config_value = 2; // APK: oneof message (type_id=60)  // confidence: silver [apk_static, cross_version]
     }
 }
 
 // APK class: wco — config data with two lists of entries
+// confidence: silver [apk_static, cross_version]
 message UiConfigData
 {
-    repeated UiConfigEntry primary_configs = 1;    // APK: wcq
-    repeated UiConfigEntry secondary_configs = 2;  // APK: wcq
+    repeated UiConfigEntry primary_configs = 1; // APK: wcq  // confidence: silver [apk_static, cross_version]
+    repeated UiConfigEntry secondary_configs = 2; // APK: wcq  // confidence: silver [apk_static, cross_version]
 }
 
+// confidence: silver [apk_static, cross_version]
 message UiConfigRequest
 {
-    optional UiConfigData config = 1;   // APK: wco
+    optional UiConfigData config = 1; // APK: wco  // confidence: silver [apk_static, cross_version]
 }

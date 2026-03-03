@@ -18,7 +18,8 @@ syntax="proto2";
 
 package oaa.proto.messages;
 
+// confidence: silver [apk_static, cross_version]
 message NavigationFocusIndication
 {
-    required bytes focus_data = 1;   // APK: bytes (type_id=10)
+    required bytes focus_data = 1; // APK: bytes (type_id=10)  // confidence: silver [apk_static, cross_version]
 }

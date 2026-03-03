@@ -5,8 +5,9 @@ syntax="proto2";
 
 package oaa.proto.data;
 
+// confidence: silver [apk_static, cross_version]
 message RelativeInputEvent
 {
-    optional uint32 scan_code = 1;
-    optional int32 delta = 2;
+    optional uint32 scan_code = 1;  // confidence: silver [apk_static, cross_version]
+    optional int32 delta = 2;  // confidence: silver [apk_static, cross_version]
 }

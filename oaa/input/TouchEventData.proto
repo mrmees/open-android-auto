@@ -8,9 +8,10 @@ import "oaa/input/TouchActionEnum.proto";
 
 package oaa.proto.data;
 
+// confidence: silver [apk_static, cross_version]
 message TouchEvent
 {
-    repeated data.TouchLocation touch_location = 1;
-    optional uint32 action_index = 2;
-    optional enums.TouchAction.Enum touch_action = 3;
+    repeated data.TouchLocation touch_location = 1;  // confidence: silver [apk_static, cross_version]
+    optional uint32 action_index = 2;  // confidence: silver [apk_static, cross_version]
+    optional enums.TouchAction.Enum touch_action = 3;  // confidence: silver [apk_static, cross_version]
 }

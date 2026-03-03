@@ -5,6 +5,7 @@ syntax="proto3";
 
 package oaa.proto.messages;
 
+// confidence: unverified
 message AVChannelStopIndication
 {
 }

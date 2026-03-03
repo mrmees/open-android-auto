@@ -5,17 +5,19 @@ syntax="proto3";
 
 package oaa.proto.enums;
 
+// confidence: unverified
 message VideoResolution
 {
+    // confidence: unverified
     enum Enum
     {
         NONE = 0;
-        _480p = 1;
-        _720p = 2;
-       _1080p = 3;
-       _1440p = 4;
-       _720p_p = 5;
-       _1080pp = 6;
-       _1080p_p = 7;
+        _480p = 1;  // confidence: unverified
+        _720p = 2;  // confidence: unverified
+       _1080p = 3;  // confidence: unverified
+       _1440p = 4;  // confidence: unverified
+       _720p_p = 5;  // confidence: unverified
+       _1080pp = 6;  // confidence: unverified
+       _1080p_p = 7;  // confidence: unverified
     }
 }

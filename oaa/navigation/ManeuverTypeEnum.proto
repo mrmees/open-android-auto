@@ -14,8 +14,10 @@ syntax="proto3";
 
 package oaa.proto.enums;
 
+// confidence: unverified
 message ManeuverType
 {
+    // confidence: unverified
     enum Enum
     {
         UNKNOWN = 0;

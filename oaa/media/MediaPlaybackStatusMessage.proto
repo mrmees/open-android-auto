@@ -32,6 +32,7 @@ package oaa.proto.messages;
 // Mapped to Android PlaybackStateCompat constants in qbw.java:
 //   1 → STATE_STOPPED(1), 2 → STATE_PLAYING(3),
 //   3 → STATE_PAUSED(2), 4 → STATE_ERROR(7), else → STATE_NONE(0)
+// confidence: silver [apk_static, cross_version]
 enum PlaybackState {
     PLAYBACK_STATE_UNKNOWN = 0;
     PLAYBACK_STATE_STOPPED = 1;
@@ -43,24 +44,27 @@ enum PlaybackState {
 // APK class: xmu — media event ID wrapper (1 field at high field number)
 // Field 13 is a message sub-type; APK sub_ref is xmv but cross-domain
 // reference suggests shared obfuscated naming rather than actual dependency.
+// confidence: silver [apk_static, cross_version]
 message MediaEventIdWrapper {
-    optional MediaEventId event_id = 13;   // APK: message (type_id=9) at field 13
+    optional MediaEventId event_id = 13; // APK: message (type_id=9) at field 13  // confidence: silver [apk_static, cross_version]
 }
 
 // Placeholder for MediaEventIdWrapper sub-message
+// confidence: silver [apk_static, cross_version]
 message MediaEventId {}
 
 // APK class: vyq
+// confidence: silver [apk_static, cross_version]
 message MediaPlaybackStatus {
     // Current playback state
-    optional PlaybackState playback_state = 1;
+    optional PlaybackState playback_state = 1;  // confidence: silver [apk_static, cross_version]
     // Source application name (e.g. "YouTube Music", "Spotify")
-    optional string source_app = 2;
+    optional string source_app = 2;  // confidence: silver [apk_static, cross_version]
     // Elapsed seconds in current track (resets to 0 on track change)
-    optional uint32 position_seconds = 3;
+    optional uint32 position_seconds = 3;  // confidence: silver [apk_static, cross_version]
     // Playback mode flags (confirmed via aa-proxy-rs protos and
     // AIDL interface prz.java method g() — 3 trailing boolean params)
-    optional bool shuffle = 4;
-    optional bool repeat = 5;
-    optional bool repeat_one = 6;
+    optional bool shuffle = 4;  // confidence: silver [apk_static, cross_version]
+    optional bool repeat = 5;  // confidence: silver [apk_static, cross_version]
+    optional bool repeat_one = 6;  // confidence: silver [apk_static, cross_version]
 }

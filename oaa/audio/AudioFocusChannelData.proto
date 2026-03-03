@@ -16,6 +16,7 @@ syntax="proto2";
 
 package oaa.proto.data;
 
+// confidence: bronze [apk_static]
 message AudioFocusChannel
 {
 }

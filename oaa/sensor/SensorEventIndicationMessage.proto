@@ -31,98 +31,98 @@ package oaa.proto.messages;
 //   Fields 1,3,6: functionally confirmed (affect phone behavior), silent in logcat
 //   Field 9: enum numbering verified via "no listener" log referencing sensor:9
 //   Field 10: fully verified — complete processing pipeline traced in logcat
-// confidence: bronze [apk_static]
+// confidence: silver [apk_static, cross_version]
 message SensorEventIndication
 {
-    repeated data.GPSLocation gps_location = 1; // LOCATION — functionally verified (DHU 2.1)  // confidence: bronze [apk_static]
-    repeated data.Compass compass = 2; // COMPASS  // confidence: bronze [apk_static]
-    repeated data.Speed speed = 3; // CAR_SPEED — sent OK, silent in logcat (DHU 2.1)  // confidence: bronze [apk_static]
-    repeated data.RPM rpm = 4; // RPM  // confidence: bronze [apk_static]
-    repeated data.Odometer odometer = 5; // ODOMETER  // confidence: bronze [apk_static]
-    repeated data.FuelLevel fuel_level = 6; // FUEL_LEVEL — sent successfully (DHU 2.1)  // confidence: bronze [apk_static]
-    repeated data.ParkingBrake parking_brake = 7; // PARKING_BRAKE  // confidence: bronze [apk_static]
-    repeated data.Gear gear = 8; // GEAR — no DHU 2.1 CLI command  // confidence: bronze [apk_static]
-    repeated data.Diagnostics diagnostics = 9; // DIAGNOSTICS — enum verified (sensor:9 log)  // confidence: bronze [apk_static]
-    repeated data.NightMode night_mode = 10; // NIGHT_DATA — VERIFIED full pipeline  // confidence: bronze [apk_static]
-    repeated data.Environment enviorment = 11;  // confidence: bronze [apk_static]
+    repeated data.GPSLocation gps_location = 1; // LOCATION — functionally verified (DHU 2.1)  // confidence: silver [apk_static, cross_version]
+    repeated data.Compass compass = 2; // COMPASS  // confidence: silver [apk_static, cross_version]
+    repeated data.Speed speed = 3; // CAR_SPEED — sent OK, silent in logcat (DHU 2.1)  // confidence: silver [apk_static, cross_version]
+    repeated data.RPM rpm = 4; // RPM  // confidence: silver [apk_static, cross_version]
+    repeated data.Odometer odometer = 5; // ODOMETER  // confidence: silver [apk_static, cross_version]
+    repeated data.FuelLevel fuel_level = 6; // FUEL_LEVEL — sent successfully (DHU 2.1)  // confidence: silver [apk_static, cross_version]
+    repeated data.ParkingBrake parking_brake = 7; // PARKING_BRAKE  // confidence: silver [apk_static, cross_version]
+    repeated data.Gear gear = 8; // GEAR — no DHU 2.1 CLI command  // confidence: silver [apk_static, cross_version]
+    repeated data.Diagnostics diagnostics = 9; // DIAGNOSTICS — enum verified (sensor:9 log)  // confidence: silver [apk_static, cross_version]
+    repeated data.NightMode night_mode = 10; // NIGHT_DATA — VERIFIED full pipeline  // confidence: silver [apk_static, cross_version]
+    repeated data.Environment enviorment = 11;  // confidence: silver [apk_static, cross_version]
 
     // Fields 12-20: Removed in AA v16.1 APK (wbo.java only has fields 1-11).
     // Kept for backward compatibility — phone silently ignores unknown fields.
-    repeated data.HVAC hvac = 12;  // confidence: bronze [apk_static]
-    repeated data.DrivingStatus driving_status = 13;  // confidence: bronze [apk_static]
-    repeated data.SteeringWheel steering_wheel = 14;  // confidence: bronze [apk_static]
-    repeated data.Passenger passenger = 15;  // confidence: bronze [apk_static]
-    repeated data.Door door = 16;  // confidence: bronze [apk_static]
-    repeated data.Light light = 17;  // confidence: bronze [apk_static]
-    repeated data.TirePressure tire_pressure = 18;  // confidence: bronze [apk_static]
-    repeated data.Accel accel = 19;  // confidence: bronze [apk_static]
-    repeated data.Gyro gyro = 20;  // confidence: bronze [apk_static]
+    repeated data.HVAC hvac = 12;  // confidence: silver [apk_static, cross_version]
+    repeated data.DrivingStatus driving_status = 13;  // confidence: silver [apk_static, cross_version]
+    repeated data.SteeringWheel steering_wheel = 14;  // confidence: silver [apk_static, cross_version]
+    repeated data.Passenger passenger = 15;  // confidence: silver [apk_static, cross_version]
+    repeated data.Door door = 16;  // confidence: silver [apk_static, cross_version]
+    repeated data.Light light = 17;  // confidence: silver [apk_static, cross_version]
+    repeated data.TirePressure tire_pressure = 18;  // confidence: silver [apk_static, cross_version]
+    repeated data.Accel accel = 19;  // confidence: silver [apk_static, cross_version]
+    repeated data.Gyro gyro = 20;  // confidence: silver [apk_static, cross_version]
 
     // Fields 21-26 discovered via APK proto decoder (wbo.java, AA v16.1).
-    repeated TollRoad toll_road = 21; // APK: vxs (3 fields: int32, int32, message)  // confidence: bronze [apk_static]
-    repeated RangeRemaining range_remaining = 22; // APK: wch (1 field: bool)  // confidence: bronze [apk_static]
-    repeated FuelTypeInfo fuel_type_info = 23; // APK: vvg (empty)  // confidence: bronze [apk_static]
-    repeated EVBatteryInfo ev_battery_info = 24; // APK: wcl (empty)  // confidence: bronze [apk_static]
-    repeated EVChargeInfo ev_charge_info = 25; // APK: wbh (1 field: bytes)  // confidence: bronze [apk_static]
-    repeated EVChargeStatus ev_charge_status = 26; // APK: wbf (1 field: bytes)  // confidence: bronze [apk_static]
+    repeated TollRoad toll_road = 21; // APK: vxs (3 fields: int32, int32, message)  // confidence: silver [apk_static, cross_version]
+    repeated RangeRemaining range_remaining = 22; // APK: wch (1 field: bool)  // confidence: silver [apk_static, cross_version]
+    repeated FuelTypeInfo fuel_type_info = 23; // APK: vvg (empty)  // confidence: silver [apk_static, cross_version]
+    repeated EVBatteryInfo ev_battery_info = 24; // APK: wcl (empty)  // confidence: silver [apk_static, cross_version]
+    repeated EVChargeInfo ev_charge_info = 25; // APK: wbh (1 field: bytes)  // confidence: silver [apk_static, cross_version]
+    repeated EVChargeStatus ev_charge_status = 26; // APK: wbf (1 field: bytes)  // confidence: silver [apk_static, cross_version]
     // Field 27 (extended_sensor_data) NOT in APK v16.1 — removed.
 }
 
 // APK class: vxs — toll road sensor data (3 fields)
 // Placeholder — sub-message structure TBD from wire captures
-// confidence: bronze [apk_static]
+// confidence: silver [apk_static, cross_version]
 message TollRoad {
-    optional int32 toll_status = 1; // int32  // confidence: bronze [apk_static]
-    optional int32 toll_type = 2; // int32  // confidence: bronze [apk_static]
-    optional TollRoadInfo info = 3; // sub-message  // confidence: bronze [apk_static]
+    optional int32 toll_status = 1; // int32  // confidence: silver [apk_static, cross_version]
+    optional int32 toll_type = 2; // int32  // confidence: silver [apk_static, cross_version]
+    optional TollRoadInfo info = 3; // sub-message  // confidence: silver [apk_static, cross_version]
 }
 
 // Sub-message of TollRoad field 3 — structure TBD
 // Placeholder — sub-message structure TBD from wire captures
-// confidence: bronze [apk_static]
+// confidence: silver [apk_static, cross_version]
 message TollRoadInfo {
 }
 
 // APK class: wch — range remaining sensor data (1 field)
-// confidence: bronze [apk_static]
+// confidence: silver [apk_static, cross_version]
 message RangeRemaining {
-    optional bool is_available = 1; // bool  // confidence: bronze [apk_static]
+    optional bool is_available = 1; // bool  // confidence: silver [apk_static, cross_version]
 }
 
 // APK class: vvg — fuel type info sensor data (empty)
 // Placeholder — sub-message structure TBD from wire captures
-// confidence: bronze [apk_static]
+// confidence: silver [apk_static, cross_version]
 message FuelTypeInfo {
 }
 
 // APK class: wcl — EV battery info sensor data (empty)
 // Placeholder — sub-message structure TBD from wire captures
-// confidence: bronze [apk_static]
+// confidence: silver [apk_static, cross_version]
 message EVBatteryInfo {
 }
 
 // APK class: wbh — EV charge info sensor data (1 field)
 // Placeholder — sub-message structure TBD from wire captures
-// confidence: bronze [apk_static]
+// confidence: silver [apk_static, cross_version]
 message EVChargeInfo {
-    optional EVChargeInfoData data = 1; // sub-message (bytes in APK)  // confidence: bronze [apk_static]
+    optional EVChargeInfoData data = 1; // sub-message (bytes in APK)  // confidence: silver [apk_static, cross_version]
 }
 
 // Sub-message of EVChargeInfo — structure TBD
 // Placeholder — sub-message structure TBD from wire captures
-// confidence: bronze [apk_static]
+// confidence: silver [apk_static, cross_version]
 message EVChargeInfoData {
 }
 
 // APK class: wbf — EV charge status sensor data (1 field)
 // Placeholder — sub-message structure TBD from wire captures
-// confidence: bronze [apk_static]
+// confidence: silver [apk_static, cross_version]
 message EVChargeStatus {
-    optional EVChargeStatusData data = 1; // sub-message (bytes in APK)  // confidence: bronze [apk_static]
+    optional EVChargeStatusData data = 1; // sub-message (bytes in APK)  // confidence: silver [apk_static, cross_version]
 }
 
 // Sub-message of EVChargeStatus — structure TBD
 // Placeholder — sub-message structure TBD from wire captures
-// confidence: bronze [apk_static]
+// confidence: silver [apk_static, cross_version]
 message EVChargeStatusData {
 }

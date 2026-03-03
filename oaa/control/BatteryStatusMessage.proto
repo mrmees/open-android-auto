@@ -22,8 +22,9 @@ package oaa.proto.messages;
 
 // 0x0017: BatteryStatusNotification (Phone->HU)
 // Periodic or event-driven battery status update.
+// confidence: unverified
 message BatteryStatusNotification {
-    optional uint32 battery_level = 1;
-    optional uint32 time_remaining_s = 2;
-    optional bool critical_battery = 3;
+    optional uint32 battery_level = 1;  // confidence: unverified
+    optional uint32 time_remaining_s = 2;  // confidence: unverified
+    optional bool critical_battery = 3;  // confidence: unverified
 }

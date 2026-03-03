@@ -14,8 +14,10 @@ syntax="proto2";
 
 package oaa.proto.enums;
 
+// confidence: silver [apk_static, cross_version]
 message PhoneCallState
 {
+    // confidence: silver [apk_static, cross_version]
     enum Enum
     {
         UNKNOWN = 0;

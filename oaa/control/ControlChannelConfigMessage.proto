@@ -16,7 +16,8 @@ import "oaa/control/ControlChannelConfigData.proto";
 
 package oaa.proto.messages;
 
+// confidence: silver [apk_static, cross_version]
 message ControlChannelConfigWrapper
 {
-    optional data.ControlChannelConfig config = 1;   // APK: vxc
+    optional data.ControlChannelConfig config = 1; // APK: vxc  // confidence: silver [apk_static, cross_version]
 }

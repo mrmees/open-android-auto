@@ -5,8 +5,9 @@ syntax="proto2";
 
 package oaa.proto.messages;
 
+// confidence: silver [apk_static, cross_version]
 message PingRequest
 {
-    optional int64 timestamp = 1;
-    optional int32 ping_flags = 2;  // APK 16.2: ahep field 2 (int32, enum verifier ahce 0-19); always 0 in captures
+    optional int64 timestamp = 1;  // confidence: silver [apk_static, cross_version]
+    optional int32 ping_flags = 2; // APK 16.2: ahep field 2 (int32, enum verifier ahce 0-19); always 0 in captures  // confidence: silver [apk_static, cross_version]
 }

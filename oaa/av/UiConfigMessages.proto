@@ -33,6 +33,7 @@ syntax = "proto2";
 package oaa.proto.messages;
 
 // UI theme mode
+// confidence: silver [apk_static, cross_version]
 enum UiTheme {
     UI_THEME_AUTOMATIC = 0;
     UI_THEME_LIGHT = 1;
@@ -40,38 +41,44 @@ enum UiTheme {
 }
 
 // Display area insets (pixels from edge)
+// confidence: silver [apk_static, cross_version]
 message Insets {
-    optional uint32 top = 1;
-    optional uint32 bottom = 2;
-    optional uint32 left = 3;
-    optional uint32 right = 4;
+    optional uint32 top = 1;  // confidence: silver [apk_static, cross_version]
+    optional uint32 bottom = 2;  // confidence: silver [apk_static, cross_version]
+    optional uint32 left = 3;  // confidence: silver [apk_static, cross_version]
+    optional uint32 right = 4;  // confidence: silver [apk_static, cross_version]
 }
 
 // UI configuration — margins, content area, theme
+// confidence: silver [apk_static, cross_version]
 message UiConfig {
-    optional Insets margins = 1;
-    optional Insets content_insets = 2;
-    optional Insets stable_content_insets = 3;
-    optional UiTheme ui_theme = 4;
+    optional Insets margins = 1;  // confidence: silver [apk_static, cross_version]
+    optional Insets content_insets = 2;  // confidence: silver [apk_static, cross_version]
+    optional Insets stable_content_insets = 3;  // confidence: silver [apk_static, cross_version]
+    optional UiTheme ui_theme = 4;  // confidence: silver [apk_static, cross_version]
 }
 
 // 0x800A: UpdateUiConfigRequest (HU->Phone) — APK class: wcs
+// confidence: silver [apk_static, cross_version]
 message UpdateUiConfigRequest {
-    optional UiConfig ui_config = 1;
+    optional UiConfig ui_config = 1;  // confidence: silver [apk_static, cross_version]
 }
 
 // 0x800B: UpdateUiConfigReply (Phone->HU)
+// confidence: silver [apk_static, cross_version]
 message UpdateUiConfigReply {
-    optional UiConfig ui_config = 1;
+    optional UiConfig ui_config = 1;  // confidence: silver [apk_static, cross_version]
 }
 
 // 0x8012: UpdateHuUiConfigRequest (HU->Phone)
 // HU proactively pushes UI config changes (e.g., day/night switch).
+// confidence: silver [apk_static, cross_version]
 message UpdateHuUiConfigRequest {
-    optional UiConfig ui_config = 1;
+    optional UiConfig ui_config = 1;  // confidence: silver [apk_static, cross_version]
 }
 
 // 0x8013: UpdateHuUiConfigResponse (Phone->HU)
+// confidence: silver [apk_static, cross_version]
 message UpdateHuUiConfigResponse {
-    optional UiConfig ui_config = 1;
+    optional UiConfig ui_config = 1;  // confidence: silver [apk_static, cross_version]
 }

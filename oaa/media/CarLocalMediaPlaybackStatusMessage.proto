@@ -35,6 +35,7 @@ package oaa.proto.messages;
 
 // Available transport actions (APK enum: vwp, AA v16.1)
 // Mapped to Android PlaybackStateCompat.ACTION_* flags in qbw.java
+// confidence: silver [apk_static, cross_version]
 enum CarLocalMediaPlaybackAction {
     CAR_LOCAL_MEDIA_PLAYBACK_PLAY = 0;       // ACTION_PLAY (4L)
     CAR_LOCAL_MEDIA_PLAYBACK_PAUSE = 1;      // ACTION_PAUSE (2L)
@@ -44,13 +45,14 @@ enum CarLocalMediaPlaybackAction {
 }
 
 // APK class: vws
+// confidence: silver [apk_static, cross_version]
 message CarLocalMediaPlaybackStatus {
     // Current playback state (shared enum with MediaPlaybackStatus)
-    optional PlaybackState playback_state = 1;
+    optional PlaybackState playback_state = 1;  // confidence: silver [apk_static, cross_version]
     // Source application name (e.g. "YouTube Music", "Spotify")
-    optional string media_source = 2;
+    optional string media_source = 2;  // confidence: silver [apk_static, cross_version]
     // Elapsed seconds in current track
-    optional int32 playback_position = 3;
+    optional int32 playback_position = 3;  // confidence: silver [apk_static, cross_version]
     // Currently available transport actions
-    repeated CarLocalMediaPlaybackAction actions = 4;
+    repeated CarLocalMediaPlaybackAction actions = 4;  // confidence: silver [apk_static, cross_version]
 }

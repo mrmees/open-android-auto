@@ -5,10 +5,11 @@ syntax="proto2";
 
 package oaa.proto.messages;
 
+// confidence: silver [apk_static, cross_version]
 message AVInputOpenRequest
 {
-    optional bool open = 1;
-    optional bool anc = 2;
-    optional bool ec = 3;
-    optional int32 max_unacked = 4;
+    optional bool open = 1;  // confidence: silver [apk_static, cross_version]
+    optional bool anc = 2;  // confidence: silver [apk_static, cross_version]
+    optional bool ec = 3;  // confidence: silver [apk_static, cross_version]
+    optional int32 max_unacked = 4;  // confidence: silver [apk_static, cross_version]
 }

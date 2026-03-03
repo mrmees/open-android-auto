@@ -12,17 +12,19 @@ syntax="proto2";
 
 package oaa.proto.data;
 
+// confidence: silver [apk_static, cross_version]
 message WifiDirectConfig
 {
-    optional string device_name = 1;     // WiFi Direct device name
-    optional string device_address = 2;  // WiFi Direct device MAC
-    optional string ssid = 3;            // WiFi Direct SSID (if different from AP)
-    optional string passphrase = 4;      // WiFi Direct passphrase
-    optional GroupOwnerInfo group_owner_info = 5; // APK class: wam
-    optional uint64 frequency = 6;       // Operating frequency in MHz
+    optional string device_name = 1; // WiFi Direct device name  // confidence: silver [apk_static, cross_version]
+    optional string device_address = 2; // WiFi Direct device MAC  // confidence: silver [apk_static, cross_version]
+    optional string ssid = 3; // WiFi Direct SSID (if different from AP)  // confidence: silver [apk_static, cross_version]
+    optional string passphrase = 4; // WiFi Direct passphrase  // confidence: silver [apk_static, cross_version]
+    optional GroupOwnerInfo group_owner_info = 5; // APK class: wam  // confidence: silver [apk_static, cross_version]
+    optional uint64 frequency = 6; // Operating frequency in MHz  // confidence: silver [apk_static, cross_version]
 }
 
 // APK class: wam — WiFi Direct group owner info
 // Placeholder — sub-message structure TBD from wire captures
+// confidence: silver [apk_static, cross_version]
 message GroupOwnerInfo {
 }

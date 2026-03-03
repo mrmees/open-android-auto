@@ -34,6 +34,7 @@ package oaa.proto.messages;
 // APK class: vwr
 // 0x8003: CarLocalMediaPlaybackRequest (HU→Phone)
 // Command to perform a media transport action (play, pause, skip, stop).
+// confidence: silver [apk_static, cross_version]
 message CarLocalMediaPlaybackRequest {
-    optional CarLocalMediaPlaybackAction action = 1;
+    optional CarLocalMediaPlaybackAction action = 1;  // confidence: silver [apk_static, cross_version]
 }

@@ -13,8 +13,10 @@ syntax="proto2";
 
 package oaa.proto.enums;
 
+// confidence: unverified
 message WifiConnectionRejectionReason
 {
+    // confidence: unverified
     enum Enum
     {
         REJECTION_REASON_UNKNOWN = 0;

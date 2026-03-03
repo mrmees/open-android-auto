@@ -5,9 +5,10 @@ syntax="proto2";
 
 package oaa.proto.data;
 
+// confidence: silver [apk_static, cross_version]
 message AudioConfig
 {
-    optional uint32 sample_rate = 1;
-    optional uint32 bit_depth = 2;
-    optional uint32 channel_count = 3;
+    optional uint32 sample_rate = 1;  // confidence: silver [apk_static, cross_version]
+    optional uint32 bit_depth = 2;  // confidence: silver [apk_static, cross_version]
+    optional uint32 channel_count = 3;  // confidence: silver [apk_static, cross_version]
 }

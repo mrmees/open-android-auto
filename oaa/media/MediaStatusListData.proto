@@ -18,9 +18,11 @@ syntax="proto2";
 package oaa.proto.data;
 
 // Placeholder — sub-message type for media status entries (TBD)
+// confidence: silver [apk_static, cross_version]
 message MediaStatusEntry {}
 
+// confidence: silver [apk_static, cross_version]
 message MediaStatusList
 {
-    repeated MediaStatusEntry entries = 1;   // APK: repeated message (type_id=27)
+    repeated MediaStatusEntry entries = 1; // APK: repeated message (type_id=27)  // confidence: silver [apk_static, cross_version]
 }

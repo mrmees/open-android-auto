@@ -12,56 +12,65 @@ package oaa.proto.messages;
 // Navigation notification (msgId 0x8006 on Nav channel)
 // Sent by phone with turn-by-turn instructions and destination info
 // APK class: vzo.java (AA v16.1) — NOT utj.java (collision match)
+// confidence: silver [apk_static, cross_version]
 message NavigationNotification {
-    repeated NavigationStep steps = 1;                  // APK: repeated vzu
-    repeated NavigationDestination destinations = 2;    // APK: repeated vze
+    repeated NavigationStep steps = 1; // APK: repeated vzu  // confidence: silver [apk_static, cross_version]
+    repeated NavigationDestination destinations = 2; // APK: repeated vze  // confidence: silver [apk_static, cross_version]
 }
 
 // APK class: vzu.java
+// confidence: silver [apk_static, cross_version]
 message NavigationStep {
-    optional NavigationManeuver maneuver = 1;           // APK: vzk
-    optional NavigationText instruction = 2;            // APK: vzn
-    repeated NavigationLane lanes = 3;                  // APK: repeated vzj
-    optional NavigationRoadInfo road_info = 4;          // APK: vzc
+    optional NavigationManeuver maneuver = 1; // APK: vzk  // confidence: silver [apk_static, cross_version]
+    optional NavigationText instruction = 2; // APK: vzn  // confidence: silver [apk_static, cross_version]
+    repeated NavigationLane lanes = 3; // APK: repeated vzj  // confidence: silver [apk_static, cross_version]
+    optional NavigationRoadInfo road_info = 4; // APK: vzc  // confidence: silver [apk_static, cross_version]
 }
 
 // APK class: vzk.java — maneuver type with roundabout parameters
+// confidence: silver [apk_static, cross_version]
 message NavigationManeuver {
-    optional enums.ManeuverType.Enum type = 1;          // APK: enum via vee.R()
-    optional int32 roundabout_exit_number = 2;          // APK: maneuver.b
-    optional int32 roundabout_turn_angle = 3;           // APK: maneuver.c
+    optional enums.ManeuverType.Enum type = 1; // APK: enum via vee.R()  // confidence: silver [apk_static, cross_version]
+    optional int32 roundabout_exit_number = 2; // APK: maneuver.b  // confidence: silver [apk_static, cross_version]
+    optional int32 roundabout_turn_angle = 3; // APK: maneuver.c  // confidence: silver [apk_static, cross_version]
 }
 
 // APK class: vzn.java
+// confidence: silver [apk_static, cross_version]
 message NavigationText {
-    optional string text = 1;
+    optional string text = 1;  // confidence: silver [apk_static, cross_version]
 }
 
 // APK class: vzj.java — lane guidance
+// confidence: silver [apk_static, cross_version]
 message NavigationLane {
-    repeated NavigationLaneDirection directions = 1;    // APK: repeated vzi
+    repeated NavigationLaneDirection directions = 1; // APK: repeated vzi  // confidence: silver [apk_static, cross_version]
 }
 
 // APK class: vzi.java — individual lane direction
+// confidence: silver [apk_static, cross_version]
 message NavigationLaneDirection {
-    optional enums.LaneShape.Enum shape = 1;            // APK: enum vzh
-    optional bool is_recommended = 2;
+    optional enums.LaneShape.Enum shape = 1; // APK: enum vzh  // confidence: silver [apk_static, cross_version]
+    optional bool is_recommended = 2;  // confidence: silver [apk_static, cross_version]
 }
 
 // APK class: vzc.java — road name segments
+// confidence: silver [apk_static, cross_version]
 message NavigationRoadInfo {
-    repeated string road_names = 1;
+    repeated string road_names = 1;  // confidence: silver [apk_static, cross_version]
 }
 
 // APK class: vze.java — destination with optional EV charging info
+// confidence: silver [apk_static, cross_version]
 message NavigationDestination {
-    optional string address = 1;
-    optional ChargingStationDetails charging_station = 2;  // APK: vwz
+    optional string address = 1;  // confidence: silver [apk_static, cross_version]
+    optional ChargingStationDetails charging_station = 2; // APK: vwz  // confidence: silver [apk_static, cross_version]
 }
 
 // APK class: vwz.java — EV charging station details
+// confidence: silver [apk_static, cross_version]
 message ChargingStationDetails {
-    optional int32 connector_count = 1;     // APK: chargingStationDetails.a
-    optional int32 available_count = 2;     // APK: chargingStationDetails.b
-    optional int32 max_power_kw = 3;        // APK: chargingStationDetails.c
+    optional int32 connector_count = 1; // APK: chargingStationDetails.a  // confidence: silver [apk_static, cross_version]
+    optional int32 available_count = 2; // APK: chargingStationDetails.b  // confidence: silver [apk_static, cross_version]
+    optional int32 max_power_kw = 3; // APK: chargingStationDetails.c  // confidence: silver [apk_static, cross_version]
 }

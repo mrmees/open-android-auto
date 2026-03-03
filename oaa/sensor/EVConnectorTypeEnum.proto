@@ -13,18 +13,18 @@ syntax="proto2";
 
 package oaa.proto.enums;
 
-// confidence: bronze [apk_static]
+// confidence: silver [apk_static, cross_version]
 message EVConnectorType
 {
-    // confidence: bronze [apk_static]
+    // confidence: silver [apk_static, cross_version]
     enum Enum
     {
         UNKNOWN = 0;
-        J1772 = 1;  // confidence: bronze [apk_static]
+        J1772 = 1;  // confidence: silver [apk_static, cross_version]
         MENNEKES = 2;
         CHADEMO = 3;
-        COMBO_1 = 4;  // confidence: bronze [apk_static]
-        COMBO_2 = 5;  // confidence: bronze [apk_static]
+        COMBO_1 = 4;  // confidence: silver [apk_static, cross_version]
+        COMBO_2 = 5;  // confidence: silver [apk_static, cross_version]
         TESLA_ROADSTER = 6;
         TESLA_HPWC = 7;
         TESLA_SUPERCHARGER = 8;

@@ -15,7 +15,8 @@ syntax="proto2";
 
 package oaa.proto.messages;
 
+// confidence: silver [apk_static, cross_version]
 message VideoFocusNotification
 {
-    optional int32 focus_mode = 1;    // VideoFocusMode enum value
+    optional int32 focus_mode = 1; // VideoFocusMode enum value  // confidence: silver [apk_static, cross_version]
 }

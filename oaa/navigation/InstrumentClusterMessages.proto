@@ -37,6 +37,7 @@ package oaa.proto.messages;
 // Names recovered from aa-proxy-rs (AOSP DHU source). D-pad style
 // navigation for instrument cluster displays (steering wheel controls).
 // Shared with PhoneStatusInput — same enum used for both channels.
+// confidence: unverified
 enum InstrumentClusterAction {
     CLUSTER_ACTION_UNKNOWN = 0;
     CLUSTER_ACTION_UP = 1;
@@ -51,11 +52,13 @@ enum InstrumentClusterAction {
 // 0x8001: InstrumentClusterStart (APK class: vzs — empty message)
 // Signal that the instrument cluster is ready. No payload — the actual
 // cluster info comes from service discovery config (vzr).
+// confidence: unverified
 message InstrumentClusterStart {
 }
 
 // 0x8002: InstrumentClusterStop (APK class: vzt — empty message)
 // Signal that the instrument cluster session ended.
+// confidence: unverified
 message InstrumentClusterStop {
 }
 
@@ -63,9 +66,10 @@ message InstrumentClusterStop {
 // User input from the instrument cluster (button presses, navigation).
 // NOTE: The Java API passes action_type as 1-based (1-8) but the proto
 // stores it as 0-based (0-7) — hzy.java does `vzl.f = i4 - 1`.
+// confidence: unverified
 message InstrumentClusterInput {
-    optional int32 input_source = 1;
-    optional int32 key_code = 2;
-    optional int32 key_action = 3;
-    optional InstrumentClusterAction action_type = 4;
+    optional int32 input_source = 1;  // confidence: unverified
+    optional int32 key_code = 2;  // confidence: unverified
+    optional int32 key_action = 3;  // confidence: unverified
+    optional InstrumentClusterAction action_type = 4;  // confidence: unverified
 }

@@ -37,7 +37,9 @@ package oaa.proto.enums;
 
 // Reference enum — actual wire values are sint32 (can be negative).
 // Use the int32 field directly and compare against these constants.
+// confidence: unverified
 message WifiVersionStatus {
+    // confidence: unverified
     enum Enum {
         _UNKNOWN = 0;
         STATUS_SUCCESS = 1;

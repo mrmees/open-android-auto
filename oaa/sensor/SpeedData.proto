@@ -6,10 +6,10 @@ syntax="proto2";
 package oaa.proto.data;
 
 // APK class: wcd — fields 1(int32), 2(bool), 4(int32); no field 3
-// confidence: bronze [apk_static]
+// confidence: silver [apk_static, cross_version]
 message Speed
 {
-    optional int32 speed = 1;  // confidence: bronze [apk_static]
-    optional bool cruise_engaged = 2;  // confidence: bronze [apk_static]
-    optional int32 unknown_4 = 4;  // confidence: bronze [apk_static]
+    optional int32 speed = 1;  // confidence: silver [apk_static, cross_version]
+    optional bool cruise_engaged = 2;  // confidence: silver [apk_static, cross_version]
+    optional int32 unknown_4 = 4;  // confidence: silver [apk_static, cross_version]
 }

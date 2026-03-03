@@ -17,7 +17,8 @@ import "oaa/video/VideoFocusModeEnum.proto";
 
 package oaa.proto.messages;
 
+// confidence: silver [apk_static, cross_version]
 message VideoFocusMode
 {
-    optional enums.VideoFocusMode.Enum focus = 1;
+    optional enums.VideoFocusMode.Enum focus = 1;  // confidence: silver [apk_static, cross_version]
 }

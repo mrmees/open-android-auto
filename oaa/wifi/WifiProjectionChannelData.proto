@@ -15,7 +15,8 @@ syntax="proto2";
 package oaa.proto.data;
 
 // APK class: wdh — 1 field (string at field 1)
+// confidence: bronze [apk_static]
 message WiFiProjectionChannel
 {
-    optional string ssid = 1;
+    optional string ssid = 1;  // confidence: bronze [apk_static]
 }

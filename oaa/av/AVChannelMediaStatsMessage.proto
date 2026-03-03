@@ -22,27 +22,29 @@ import "oaa/common/PingConfigurationData.proto";
 package oaa.proto.messages;
 
 // APK class: vvo — statistics entry with aggregate values
+// confidence: silver [apk_static, cross_version]
 message StatsEntry {
-    optional int64 average = 1;    // APK: b (long)
-    optional int64 minimum = 2;    // APK: c (long)
-    optional int64 maximum = 3;    // APK: d (long)
-    optional int64 count = 4;      // APK: e (long)
+    optional int64 average = 1; // APK: b (long)  // confidence: silver [apk_static, cross_version]
+    optional int64 minimum = 2; // APK: c (long)  // confidence: silver [apk_static, cross_version]
+    optional int64 maximum = 3; // APK: d (long)  // confidence: silver [apk_static, cross_version]
+    optional int64 count = 4; // APK: e (long)  // confidence: silver [apk_static, cross_version]
 }
 
+// confidence: silver [apk_static, cross_version]
 message AVChannelMediaStats {
-    optional data.PingConfiguration duration = 1;   // APK: b (zyd) — session duration config
-    optional int64 total_frames = 2;                // APK: c (long)
-    optional int64 rendered_frames = 3;             // APK: d (long)
-    optional int64 dropped_frames = 4;              // APK: e (long)
-    optional StatsEntry video_frame_jitter = 5;     // APK: f (vvo)
-    optional StatsEntry video_pacing_delay = 6;     // APK: g (vvo)
-    optional StatsEntry decode_duration = 7;        // APK: h (vvo) — per-frame decode time
-    optional StatsEntry render_duration = 8;        // APK: i (vvo) — per-frame render time
-    optional int64 too_slow_count = 9;              // APK: j (long) — frames that arrived too late
-    optional int64 too_fast_count = 10;             // APK: k (long) — frames that arrived too early
-    optional StatsEntry overflow_duration = 11;     // APK: l (vvo) — buffer overflow stats
-    optional StatsEntry underflow_duration = 12;    // APK: m (vvo) — buffer underflow stats
-    optional StatsEntry pipeline_latency = 13;      // APK: n (vvo) — end-to-end pipeline latency
-    optional int64 total_bytes = 14;                // APK: o (long)
-    optional int64 session_duration_ns = 15;        // APK: p (long) — total session time in ns
+    optional data.PingConfiguration duration = 1; // APK: b (zyd) — session duration config  // confidence: silver [apk_static, cross_version]
+    optional int64 total_frames = 2; // APK: c (long)  // confidence: silver [apk_static, cross_version]
+    optional int64 rendered_frames = 3; // APK: d (long)  // confidence: silver [apk_static, cross_version]
+    optional int64 dropped_frames = 4; // APK: e (long)  // confidence: silver [apk_static, cross_version]
+    optional StatsEntry video_frame_jitter = 5; // APK: f (vvo)  // confidence: silver [apk_static, cross_version]
+    optional StatsEntry video_pacing_delay = 6; // APK: g (vvo)  // confidence: silver [apk_static, cross_version]
+    optional StatsEntry decode_duration = 7; // APK: h (vvo) — per-frame decode time  // confidence: silver [apk_static, cross_version]
+    optional StatsEntry render_duration = 8; // APK: i (vvo) — per-frame render time  // confidence: silver [apk_static, cross_version]
+    optional int64 too_slow_count = 9; // APK: j (long) — frames that arrived too late  // confidence: silver [apk_static, cross_version]
+    optional int64 too_fast_count = 10; // APK: k (long) — frames that arrived too early  // confidence: silver [apk_static, cross_version]
+    optional StatsEntry overflow_duration = 11; // APK: l (vvo) — buffer overflow stats  // confidence: silver [apk_static, cross_version]
+    optional StatsEntry underflow_duration = 12; // APK: m (vvo) — buffer underflow stats  // confidence: silver [apk_static, cross_version]
+    optional StatsEntry pipeline_latency = 13; // APK: n (vvo) — end-to-end pipeline latency  // confidence: silver [apk_static, cross_version]
+    optional int64 total_bytes = 14; // APK: o (long)  // confidence: silver [apk_static, cross_version]
+    optional int64 session_duration_ns = 15; // APK: p (long) — total session time in ns  // confidence: silver [apk_static, cross_version]
 }

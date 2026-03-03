@@ -11,9 +11,10 @@ package oaa.proto.messages;
 // APK class: xgq — 3 fields
 // Field 3 is "repeated packed enum" per APK descriptor, sharing the same
 // enum verifier (wck.u) as field 2 (BluetoothPairingStatus).
+// confidence: silver [apk_static, cross_version]
 message BluetoothPairingResponse
 {
-    optional bool already_paired = 1;
-    optional enums.BluetoothPairingStatus.Enum status = 2;
+    optional bool already_paired = 1;  // confidence: silver [apk_static, cross_version]
+    optional enums.BluetoothPairingStatus.Enum status = 2;  // confidence: silver [apk_static, cross_version]
     repeated enums.BluetoothPairingStatus.Enum error_codes = 3 [packed = true];
 }

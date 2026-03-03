@@ -13,35 +13,38 @@ syntax = "proto3";
 package oaa.proto.messages;
 
 // AOSP VehicleAreaWindow — bitmask values from hardware/interfaces/automotive/vehicle/
+// confidence: unverified
 enum VehicleAreaWindow {
     VEHICLE_AREA_WINDOW_UNKNOWN = 0;
     VEHICLE_AREA_WINDOW_FRONT_WINDSHIELD = 1;
     VEHICLE_AREA_WINDOW_REAR_WINDSHIELD = 2;
-    VEHICLE_AREA_WINDOW_ROW_1_LEFT = 16;      // 0x10
-    VEHICLE_AREA_WINDOW_ROW_1_RIGHT = 64;     // 0x40
-    VEHICLE_AREA_WINDOW_ROW_2_LEFT = 256;     // 0x100
-    VEHICLE_AREA_WINDOW_ROW_2_RIGHT = 1024;   // 0x400
-    VEHICLE_AREA_WINDOW_ROW_3_LEFT = 4096;    // 0x1000
-    VEHICLE_AREA_WINDOW_ROW_3_RIGHT = 16384;  // 0x4000
-    VEHICLE_AREA_WINDOW_ROOF_TOP_1 = 65536;   // 0x10000
-    VEHICLE_AREA_WINDOW_ROOF_TOP_2 = 131072;  // 0x20000
+    VEHICLE_AREA_WINDOW_ROW_1_LEFT = 16; // 0x10  // confidence: unverified
+    VEHICLE_AREA_WINDOW_ROW_1_RIGHT = 64; // 0x40  // confidence: unverified
+    VEHICLE_AREA_WINDOW_ROW_2_LEFT = 256; // 0x100  // confidence: unverified
+    VEHICLE_AREA_WINDOW_ROW_2_RIGHT = 1024; // 0x400  // confidence: unverified
+    VEHICLE_AREA_WINDOW_ROW_3_LEFT = 4096; // 0x1000  // confidence: unverified
+    VEHICLE_AREA_WINDOW_ROW_3_RIGHT = 16384; // 0x4000  // confidence: unverified
+    VEHICLE_AREA_WINDOW_ROOF_TOP_1 = 65536; // 0x10000  // confidence: unverified
+    VEHICLE_AREA_WINDOW_ROOF_TOP_2 = 131072; // 0x20000  // confidence: unverified
 }
 
 // AOSP VehicleAreaSeat
+// confidence: unverified
 enum VehicleAreaSeat {
     VEHICLE_AREA_SEAT_UNKNOWN = 0;
-    VEHICLE_AREA_SEAT_ROW_1_LEFT = 1;
-    VEHICLE_AREA_SEAT_ROW_1_CENTER = 2;
-    VEHICLE_AREA_SEAT_ROW_1_RIGHT = 4;
-    VEHICLE_AREA_SEAT_ROW_2_LEFT = 16;     // 0x10
-    VEHICLE_AREA_SEAT_ROW_2_CENTER = 32;   // 0x20
-    VEHICLE_AREA_SEAT_ROW_2_RIGHT = 64;    // 0x40
-    VEHICLE_AREA_SEAT_ROW_3_LEFT = 256;    // 0x100
-    VEHICLE_AREA_SEAT_ROW_3_CENTER = 512;  // 0x200
-    VEHICLE_AREA_SEAT_ROW_3_RIGHT = 1024;  // 0x400
+    VEHICLE_AREA_SEAT_ROW_1_LEFT = 1;  // confidence: unverified
+    VEHICLE_AREA_SEAT_ROW_1_CENTER = 2;  // confidence: unverified
+    VEHICLE_AREA_SEAT_ROW_1_RIGHT = 4;  // confidence: unverified
+    VEHICLE_AREA_SEAT_ROW_2_LEFT = 16; // 0x10  // confidence: unverified
+    VEHICLE_AREA_SEAT_ROW_2_CENTER = 32; // 0x20  // confidence: unverified
+    VEHICLE_AREA_SEAT_ROW_2_RIGHT = 64; // 0x40  // confidence: unverified
+    VEHICLE_AREA_SEAT_ROW_3_LEFT = 256; // 0x100  // confidence: unverified
+    VEHICLE_AREA_SEAT_ROW_3_CENTER = 512; // 0x200  // confidence: unverified
+    VEHICLE_AREA_SEAT_ROW_3_RIGHT = 1024; // 0x400  // confidence: unverified
 }
 
 // AOSP VehicleAreaMirror
+// confidence: unverified
 enum VehicleAreaMirror {
     VEHICLE_AREA_MIRROR_UNKNOWN = 0;
     VEHICLE_AREA_MIRROR_DRIVER_LEFT = 1;
@@ -50,19 +53,21 @@ enum VehicleAreaMirror {
 }
 
 // AOSP VehicleAreaDoor
+// confidence: unverified
 enum VehicleAreaDoor {
     VEHICLE_AREA_DOOR_UNKNOWN = 0;
-    VEHICLE_AREA_DOOR_ROW_1_LEFT = 1;
-    VEHICLE_AREA_DOOR_ROW_1_RIGHT = 4;
-    VEHICLE_AREA_DOOR_ROW_2_LEFT = 16;      // 0x10
-    VEHICLE_AREA_DOOR_ROW_2_RIGHT = 64;     // 0x40
-    VEHICLE_AREA_DOOR_ROW_3_LEFT = 256;     // 0x100
-    VEHICLE_AREA_DOOR_ROW_3_RIGHT = 1024;   // 0x400
+    VEHICLE_AREA_DOOR_ROW_1_LEFT = 1;  // confidence: unverified
+    VEHICLE_AREA_DOOR_ROW_1_RIGHT = 4;  // confidence: unverified
+    VEHICLE_AREA_DOOR_ROW_2_LEFT = 16; // 0x10  // confidence: unverified
+    VEHICLE_AREA_DOOR_ROW_2_RIGHT = 64; // 0x40  // confidence: unverified
+    VEHICLE_AREA_DOOR_ROW_3_LEFT = 256; // 0x100  // confidence: unverified
+    VEHICLE_AREA_DOOR_ROW_3_RIGHT = 1024; // 0x400  // confidence: unverified
     VEHICLE_AREA_DOOR_HOOD = 268435456;     // 0x10000000
     VEHICLE_AREA_DOOR_REAR = 536870912;     // 0x20000000
 }
 
 // AOSP VehicleAreaWheel
+// confidence: unverified
 enum VehicleAreaWheel {
     VEHICLE_AREA_WHEEL_UNKNOWN = 0;
     VEHICLE_AREA_WHEEL_LEFT_FRONT = 1;

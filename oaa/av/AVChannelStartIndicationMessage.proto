@@ -9,10 +9,11 @@ import "oaa/av/AVChannelMediaConfigMessage.proto";
 import "oaa/av/AVChannelSessionTypeEnum.proto";
 
 // APK class: wce — AV channel start (4 fields)
+// confidence: silver [apk_static, cross_version]
 message AVChannelStartIndication
 {
-    optional int32 session = 1;
-    optional uint32 config = 2;
-    optional enums.AVChannelSessionType.Enum session_type = 3;  // APK: d (enum via vvs.n/a.bq)
-    optional AVChannelMediaConfig media_config = 4;  // APK: vyo (AVChannelMediaConfig)
+    optional int32 session = 1;  // confidence: silver [apk_static, cross_version]
+    optional uint32 config = 2;  // confidence: silver [apk_static, cross_version]
+    optional enums.AVChannelSessionType.Enum session_type = 3; // APK: d (enum via vvs.n/a.bq)  // confidence: silver [apk_static, cross_version]
+    optional AVChannelMediaConfig media_config = 4; // APK: vyo (AVChannelMediaConfig)  // confidence: silver [apk_static, cross_version]
 }

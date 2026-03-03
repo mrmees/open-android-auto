@@ -5,9 +5,10 @@ syntax="proto2";
 
 package oaa.proto.data;
 
+// confidence: silver [apk_static, cross_version]
 message VendorExtensionChannel
 {
-    optional string name = 1;
-    repeated string package_white_list = 2;
-    optional bytes data = 3;
+    optional string name = 1;  // confidence: silver [apk_static, cross_version]
+    repeated string package_white_list = 2;  // confidence: silver [apk_static, cross_version]
+    optional bytes data = 3;  // confidence: silver [apk_static, cross_version]
 }

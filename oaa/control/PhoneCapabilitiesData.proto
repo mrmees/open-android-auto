@@ -14,48 +14,52 @@ syntax="proto2";
 package oaa.proto.data;
 
 // APK class: vve — phone device information (9 fields)
+// confidence: silver [apk_static, cross_version]
 message DeviceInfo
 {
-    optional string manufacturer = 1;
-    optional string model = 2;
-    optional string android_version = 3;
-    optional string build_fingerprint = 4;
-    optional string field_5 = 5;
-    optional string field_6 = 6;
-    optional string field_7 = 7;
-    optional string field_8 = 8;
-    optional int32 device_type = 9;
+    optional string manufacturer = 1;  // confidence: silver [apk_static, cross_version]
+    optional string model = 2;  // confidence: silver [apk_static, cross_version]
+    optional string android_version = 3;  // confidence: silver [apk_static, cross_version]
+    optional string build_fingerprint = 4;  // confidence: silver [apk_static, cross_version]
+    optional string field_5 = 5;  // confidence: silver [apk_static, cross_version]
+    optional string field_6 = 6;  // confidence: silver [apk_static, cross_version]
+    optional string field_7 = 7;  // confidence: silver [apk_static, cross_version]
+    optional string field_8 = 8;  // confidence: silver [apk_static, cross_version]
+    optional int32 device_type = 9;  // confidence: silver [apk_static, cross_version]
 }
 
 // WiFi security mode (APK enum: wdr)
 // Used for WiFi Direct connection between phone and HU.
+// confidence: silver [apk_static, cross_version]
 enum WifiSecurityMode {
     WIFI_SECURITY_UNKNOWN = 0;
     WIFI_SECURITY_OPEN = 1;
-    WIFI_SECURITY_WEP_64 = 2;
-    WIFI_SECURITY_WEP_128 = 3;
+    WIFI_SECURITY_WEP_64 = 2;  // confidence: silver [apk_static, cross_version]
+    WIFI_SECURITY_WEP_128 = 3;  // confidence: silver [apk_static, cross_version]
     WIFI_SECURITY_WPA_PERSONAL = 4;
-    WIFI_SECURITY_WPA2_PERSONAL = 8;
-    WIFI_SECURITY_WPA_WPA2_PERSONAL = 12;
+    WIFI_SECURITY_WPA2_PERSONAL = 8;  // confidence: silver [apk_static, cross_version]
+    WIFI_SECURITY_WPA_WPA2_PERSONAL = 12;  // confidence: silver [apk_static, cross_version]
     WIFI_SECURITY_WPA_ENTERPRISE = 20;
-    WIFI_SECURITY_WPA2_ENTERPRISE = 24;
-    WIFI_SECURITY_WPA_WPA2_ENTERPRISE = 28;
-    WIFI_SECURITY_WPA3_PERSONAL = 32;
-    WIFI_SECURITY_WPA2_WPA3_PERSONAL = 40;
+    WIFI_SECURITY_WPA2_ENTERPRISE = 24;  // confidence: silver [apk_static, cross_version]
+    WIFI_SECURITY_WPA_WPA2_ENTERPRISE = 28;  // confidence: silver [apk_static, cross_version]
+    WIFI_SECURITY_WPA3_PERSONAL = 32;  // confidence: silver [apk_static, cross_version]
+    WIFI_SECURITY_WPA2_WPA3_PERSONAL = 40;  // confidence: silver [apk_static, cross_version]
 }
 
 // WiFi access point type (APK class: wdm, field 5)
+// confidence: silver [apk_static, cross_version]
 enum WifiAccessPointType {
     WIFI_AP_STATIC = 0;
     WIFI_AP_DYNAMIC = 1;
 }
 
 // APK class: wdm — phone connection config (WiFi info)
+// confidence: silver [apk_static, cross_version]
 message PhoneConnectionConfig
 {
-    optional string ssid = 1;
-    optional string bssid = 2;
-    optional string passphrase = 3;
-    optional WifiSecurityMode security_mode = 4;
-    optional WifiAccessPointType ap_type = 5;
+    optional string ssid = 1;  // confidence: silver [apk_static, cross_version]
+    optional string bssid = 2;  // confidence: silver [apk_static, cross_version]
+    optional string passphrase = 3;  // confidence: silver [apk_static, cross_version]
+    optional WifiSecurityMode security_mode = 4;  // confidence: silver [apk_static, cross_version]
+    optional WifiAccessPointType ap_type = 5;  // confidence: silver [apk_static, cross_version]
 }

@@ -15,9 +15,10 @@ import "oaa/video/DisplayTypeEnum.proto";
 
 package oaa.proto.data;
 
+// confidence: unverified
 message TouchScreenConfig
 {
-    optional int32 width = 1;
-    optional int32 height = 2;
-    optional enums.DisplayType.Enum display_type = 3;
+    optional int32 width = 1;  // confidence: unverified
+    optional int32 height = 2;  // confidence: unverified
+    optional enums.DisplayType.Enum display_type = 3;  // confidence: unverified
 }

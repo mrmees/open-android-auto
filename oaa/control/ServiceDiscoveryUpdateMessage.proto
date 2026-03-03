@@ -18,7 +18,8 @@ import "oaa/control/ChannelDescriptorData.proto";
 
 package oaa.proto.messages;
 
+// confidence: silver [apk_static, cross_version]
 message ServiceDiscoveryUpdate
 {
-    optional data.ChannelDescriptor descriptor = 1;   // APK: wbw
+    optional data.ChannelDescriptor descriptor = 1; // APK: wbw  // confidence: silver [apk_static, cross_version]
 }

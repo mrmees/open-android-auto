@@ -10,30 +10,34 @@ import "oaa/navigation/NavigationDistanceDisplayData.proto";
 
 // APK class: xnb — Navigation distance/ETA update (msgId 0x8007 on Nav channel)
 // Sent periodically by phone during active navigation
+// confidence: silver [apk_static, cross_version]
 message NavigationDistance {
-    required data.NavigationDistanceValue distance = 1;  // APK: xmw — required per descriptor
-    required string eta_text = 2;                        // APK: required
-    required int32 eta_seconds = 3;                      // APK: required
-    optional NavigationDistanceInfo info = 8;             // APK: xng
+    required data.NavigationDistanceValue distance = 1; // APK: xmw — required per descriptor  // confidence: silver [apk_static, cross_version]
+    required string eta_text = 2; // APK: required  // confidence: silver [apk_static, cross_version]
+    required int32 eta_seconds = 3; // APK: required  // confidence: silver [apk_static, cross_version]
+    optional NavigationDistanceInfo info = 8; // APK: xng  // confidence: silver [apk_static, cross_version]
 }
 
 // APK class: xng — groups distance displays and alternates
+// confidence: silver [apk_static, cross_version]
 message NavigationDistanceInfo {
-    optional data.NavigationDistanceDisplay display = 1;          // APK: xnd
-    repeated data.NavigationDistanceDisplay alternate_display = 2; // APK: repeated xnd
+    optional data.NavigationDistanceDisplay display = 1; // APK: xnd  // confidence: silver [apk_static, cross_version]
+    repeated data.NavigationDistanceDisplay alternate_display = 2; // APK: repeated xnd  // confidence: silver [apk_static, cross_version]
     oneof oneof_display_wrapper {
-        NavigationDistanceOneof oneof_display = 4;               // APK: xne (oneof)
+        NavigationDistanceOneof oneof_display = 4; // APK: xne (oneof)  // confidence: silver [apk_static, cross_version]
     }
 }
 
 // APK class: xne — wrapper for repeated distance entries
+// confidence: silver [apk_static, cross_version]
 message NavigationDistanceOneof {
-    repeated NavigationDistanceEntry entries = 1;  // APK: repeated xnf
+    repeated NavigationDistanceEntry entries = 1; // APK: repeated xnf  // confidence: silver [apk_static, cross_version]
 }
 
 // APK class: xnf — single distance entry (display + metadata)
+// confidence: silver [apk_static, cross_version]
 message NavigationDistanceEntry {
-    optional data.NavigationDistanceDisplay display = 1;  // APK: xnd
-    optional int32 value = 2;
+    optional data.NavigationDistanceDisplay display = 1; // APK: xnd  // confidence: silver [apk_static, cross_version]
+    optional int32 value = 2;  // confidence: silver [apk_static, cross_version]
     repeated int32 metadata = 3 [packed = true];
 }

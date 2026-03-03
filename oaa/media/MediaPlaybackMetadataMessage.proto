@@ -8,14 +8,15 @@ package oaa.proto.messages;
 
 // Media playback metadata (msgId 0x8003 on Media channel)
 // Sent by phone when track changes — includes album art
+// confidence: silver [apk_static, cross_version]
 message MediaPlaybackMetadata {
-    optional string title = 1;
-    optional string artist = 2;
-    optional string album = 3;
+    optional string title = 1;  // confidence: silver [apk_static, cross_version]
+    optional string artist = 2;  // confidence: silver [apk_static, cross_version]
+    optional string album = 3;  // confidence: silver [apk_static, cross_version]
     // Album art as PNG image data
-    optional bytes album_art = 4;
+    optional bytes album_art = 4;  // confidence: silver [apk_static, cross_version]
 
     // Fields 5-6 discovered via APK proto decoder (nmi.java, AA v16.1)
-    optional bool is_playing = 5;       // Whether media is actively playing
-    optional string album_art_url = 6;  // URL for album art (alternative to embedded bytes)
+    optional bool is_playing = 5; // Whether media is actively playing  // confidence: silver [apk_static, cross_version]
+    optional string album_art_url = 6; // URL for album art (alternative to embedded bytes)  // confidence: silver [apk_static, cross_version]
 }

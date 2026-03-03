@@ -13,17 +13,18 @@ import "oaa/video/AdditionalVideoConfigData.proto";
 package oaa.proto.data;
 
 // APK class: wcz — video channel configuration
+// confidence: silver [apk_static, cross_version]
 message VideoConfig
 {
-    optional enums.VideoResolution.Enum video_resolution = 1;
-    optional enums.VideoFPS.Enum video_fps = 2;
-    optional uint32 margin_width = 3;
-    optional uint32 margin_height = 4;
-    optional uint32 dpi = 5;
-    optional uint32 additional_depth = 6;
-    optional uint32 unknown_7 = 7;
-    optional uint32 unknown_8 = 8;
-    optional uint32 unknown_9 = 9;
-    optional enums.MediaCodecType.Enum codec = 10;
-    optional AdditionalVideoConfig additional_config = 11;  // APK: wcm sub-message
+    optional enums.VideoResolution.Enum video_resolution = 1;  // confidence: silver [apk_static, cross_version]
+    optional enums.VideoFPS.Enum video_fps = 2;  // confidence: silver [apk_static, cross_version]
+    optional uint32 margin_width = 3;  // confidence: silver [apk_static, cross_version]
+    optional uint32 margin_height = 4;  // confidence: silver [apk_static, cross_version]
+    optional uint32 dpi = 5;  // confidence: silver [apk_static, cross_version]
+    optional uint32 additional_depth = 6;  // confidence: silver [apk_static, cross_version]
+    optional uint32 unknown_7 = 7;  // confidence: silver [apk_static, cross_version]
+    optional uint32 unknown_8 = 8;  // confidence: silver [apk_static, cross_version]
+    optional uint32 unknown_9 = 9;  // confidence: silver [apk_static, cross_version]
+    optional enums.MediaCodecType.Enum codec = 10;  // confidence: silver [apk_static, cross_version]
+    optional AdditionalVideoConfig additional_config = 11; // APK: wcm sub-message  // confidence: silver [apk_static, cross_version]
 }

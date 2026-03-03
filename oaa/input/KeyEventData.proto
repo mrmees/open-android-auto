@@ -12,10 +12,11 @@ syntax="proto2";
 package oaa.proto.data;
 
 // APK class: vyi — key event with keycode and down/pressed state
+// confidence: silver [apk_static, cross_version]
 message KeyEvent
 {
-    optional uint32 keycode = 1;
-    optional bool is_pressed = 2;
-    optional uint32 meta_state = 3;
-    optional bool long_press = 4;
+    optional uint32 keycode = 1;  // confidence: silver [apk_static, cross_version]
+    optional bool is_pressed = 2;  // confidence: silver [apk_static, cross_version]
+    optional uint32 meta_state = 3;  // confidence: silver [apk_static, cross_version]
+    optional bool long_press = 4;  // confidence: silver [apk_static, cross_version]
 }

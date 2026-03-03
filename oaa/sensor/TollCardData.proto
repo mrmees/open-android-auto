@@ -15,8 +15,8 @@ syntax="proto2";
 
 package oaa.proto.data;
 
-// confidence: bronze [apk_static]
+// confidence: silver [apk_static, cross_version]
 message TollCardData
 {
-    required bool toll_card_present = 1;  // confidence: bronze [apk_static]
+    required bool toll_card_present = 1;  // confidence: silver [apk_static, cross_version]
 }

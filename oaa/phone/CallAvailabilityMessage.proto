@@ -5,6 +5,7 @@
 syntax="proto2";
 package oaa.proto.messages;
 
+// confidence: silver [apk_static, cross_version]
 message CallAvailabilityStatus {
-    optional bool call_available = 1;
+    optional bool call_available = 1;  // confidence: silver [apk_static, cross_version]
 }

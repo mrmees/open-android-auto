@@ -7,13 +7,13 @@ package oaa.proto.data;
 
 // APK class: vyl — GPS location data (6 fields, fields 2-7)
 // NOTE: No field 1 (timestamp) in APK vyl. Fields 8-22 belong to ahdz, not vyl.
-// confidence: bronze [apk_static]
+// confidence: silver [apk_static, cross_version]
 message GPSLocation
 {
-    optional int32 latitude = 2;  // confidence: bronze [apk_static]
-    optional int32 longitude = 3;  // confidence: bronze [apk_static]
-    optional uint32 accuracy = 4;  // confidence: bronze [apk_static]
-    optional int32 altitude = 5;  // confidence: bronze [apk_static]
-    optional int32 speed = 6;  // confidence: bronze [apk_static]
-    optional int32 bearing = 7;  // confidence: bronze [apk_static]
+    optional int32 latitude = 2;  // confidence: silver [apk_static, cross_version]
+    optional int32 longitude = 3;  // confidence: silver [apk_static, cross_version]
+    optional uint32 accuracy = 4;  // confidence: silver [apk_static, cross_version]
+    optional int32 altitude = 5;  // confidence: silver [apk_static, cross_version]
+    optional int32 speed = 6;  // confidence: silver [apk_static, cross_version]
+    optional int32 bearing = 7;  // confidence: silver [apk_static, cross_version]
 }

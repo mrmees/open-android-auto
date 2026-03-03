@@ -37,6 +37,7 @@ package oaa.proto.messages;
 // ============================================================================
 
 // Status codes for property operations (APK enum: vyw)
+// confidence: silver [apk_static, cross_version]
 enum CarControlStatus {
     CAR_CONTROL_STATUS_SUCCESS = 0;
     CAR_CONTROL_STATUS_CAR_PROPERTY_SET_REQUEST_FAILED = 1;       // APK: -26
@@ -45,6 +46,7 @@ enum CarControlStatus {
 
 // Side affinity for controls — driver vs passenger side
 // (APK class: vwl, field 6; SafeParcelable: CarControl.sideAffinity)
+// confidence: silver [apk_static, cross_version]
 enum SideAffinity {
     SIDE_NONE = 0;
     SIDE_DRIVER = 1;
@@ -52,12 +54,14 @@ enum SideAffinity {
 }
 
 // Control group type (APK class: vwm, field 1)
+// confidence: silver [apk_static, cross_version]
 enum CarControlGroupType {
     CAR_CONTROL_GROUP_UNKNOWN = 0;
     CAR_CONTROL_GROUP_PRIMARY = 1;
 }
 
 // Metadata type for CarControl entries (APK enum: vuu)
+// confidence: silver [apk_static, cross_version]
 enum CarControlMetadataType {
     METADATA_UNKNOWN = 0;
     METADATA_COMPACT_UI = 1;
@@ -68,27 +72,30 @@ enum CarControlMetadataType {
 // ============================================================================
 
 // APK class: vwi → wraps CarAction for action-only controls
+// confidence: silver [apk_static, cross_version]
 message CarActionControl {
-    optional CarAction action = 1;
+    optional CarAction action = 1;  // confidence: silver [apk_static, cross_version]
 }
 
 // APK class: vwl → SafeParcelable: CarControl
 // A single control entry — either a property, action, or nested group.
+// confidence: silver [apk_static, cross_version]
 message CarControl {
     oneof control {
-        CarPropertyControl property_control = 1;  // vuy
-        CarActionControl action_control = 2;       // vwi
-        CarControlGroup control_group = 3;         // vwm (recursive)
+        CarPropertyControl property_control = 1; // vuy  // confidence: silver [apk_static, cross_version]
+        CarActionControl action_control = 2; // vwi  // confidence: silver [apk_static, cross_version]
+        CarControlGroup control_group = 3; // vwm (recursive)  // confidence: silver [apk_static, cross_version]
     }
-    optional bool enabled = 4;
-    repeated CarControlMetadataType metadata = 5;
-    optional SideAffinity side_affinity = 6;
+    optional bool enabled = 4;  // confidence: silver [apk_static, cross_version]
+    repeated CarControlMetadataType metadata = 5;  // confidence: silver [apk_static, cross_version]
+    optional SideAffinity side_affinity = 6;  // confidence: silver [apk_static, cross_version]
 }
 
 // APK class: vwm → SafeParcelable: CarControlGroup
+// confidence: silver [apk_static, cross_version]
 message CarControlGroup {
-    optional CarControlGroupType group_type = 1;
-    repeated CarControl controls = 2;
+    optional CarControlGroupType group_type = 1;  // confidence: silver [apk_static, cross_version]
+    repeated CarControl controls = 2;  // confidence: silver [apk_static, cross_version]
 }
 
 // ============================================================================
@@ -97,58 +104,66 @@ message CarControlGroup {
 
 // 0x8002: SetCarPropertyValueResponse (APK class: wcb)
 // Phone responds to HU's set-property request with result.
+// confidence: silver [apk_static, cross_version]
 message SetCarPropertyValueResponse {
-    optional CarProperty car_property = 1;
-    optional CarControlStatus status = 2;
-    optional string request_id = 3;     // UUID correlating to original request
-    optional int32 error_code = 4;      // CarPropertySetError.error
+    optional CarProperty car_property = 1;  // confidence: silver [apk_static, cross_version]
+    optional CarControlStatus status = 2;  // confidence: silver [apk_static, cross_version]
+    optional string request_id = 3; // UUID correlating to original request  // confidence: silver [apk_static, cross_version]
+    optional int32 error_code = 4; // CarPropertySetError.error  // confidence: silver [apk_static, cross_version]
 }
 
 // 0x8004: RegisterCarPropertyListenersResponse (APK class: wbk)
 // Phone responds with current values for all registered properties.
+// confidence: silver [apk_static, cross_version]
 message RegisterCarPropertyListenersResponse {
-    repeated SetCarPropertyListenerResult results = 1;
+    repeated SetCarPropertyListenerResult results = 1;  // confidence: silver [apk_static, cross_version]
 }
 
 // APK class: vwv — individual listener registration result
+// confidence: silver [apk_static, cross_version]
 message SetCarPropertyListenerResult {
-    optional CarProperty car_property = 1;
-    optional CarControlStatus status = 2;
+    optional CarProperty car_property = 1;  // confidence: silver [apk_static, cross_version]
+    optional CarControlStatus status = 2;  // confidence: silver [apk_static, cross_version]
 }
 
 // 0x8005: CarPropertyChangeEvent (APK class: vwu)
 // Phone notifies HU that a car property value changed.
+// confidence: silver [apk_static, cross_version]
 message CarPropertyChangeEvent {
-    optional CarProperty car_property = 1;
-    optional CarPropertyValue property_value = 2;
-    optional int32 status = 3;
+    optional CarProperty car_property = 1;  // confidence: silver [apk_static, cross_version]
+    optional CarPropertyValue property_value = 2;  // confidence: silver [apk_static, cross_version]
+    optional int32 status = 3;  // confidence: silver [apk_static, cross_version]
 }
 
 // 0x8007: CarControlGroupUpdate (APK class: vwn)
 // Phone sends updated control group layout to HU.
+// confidence: silver [apk_static, cross_version]
 message CarControlGroupUpdate {
-    optional CarControlGroup car_control_group = 1;
+    optional CarControlGroup car_control_group = 1;  // confidence: silver [apk_static, cross_version]
 }
 
 // 0x8001: SetCarPropertyValueRequest (APK class: wca)
 // HU requests the phone to set a car property value.
+// confidence: silver [apk_static, cross_version]
 message SetCarPropertyValueRequest {
-    optional CarProperty car_property = 1;       // APK: message (sub_ref: vuv)
-    optional CarPropertyValue property_value = 2; // APK: message (sub_ref: vvd)
-    optional string request_id = 3;              // APK: string — UUID for correlating response
+    optional CarProperty car_property = 1; // APK: message (sub_ref: vuv)  // confidence: silver [apk_static, cross_version]
+    optional CarPropertyValue property_value = 2; // APK: message (sub_ref: vvd)  // confidence: silver [apk_static, cross_version]
+    optional string request_id = 3; // APK: string — UUID for correlating response  // confidence: silver [apk_static, cross_version]
 }
 
 // 0x8006: CarActionNotification (APK class: vwj)
 // Notifies a car action event (e.g., launch HVAC app).
+// confidence: silver [apk_static, cross_version]
 message CarActionNotification {
-    optional CarAction action = 1;   // APK: message (sub_ref: vun)
+    optional CarAction action = 1; // APK: message (sub_ref: vun)  // confidence: silver [apk_static, cross_version]
 }
 
 // CarControlChannelDescriptor (APK class: vwo)
 // Describes the car control channel's available property configs, controls, and actions.
 // Sent during channel setup to inform the phone about HU capabilities.
+// confidence: silver [apk_static, cross_version]
 message CarControlChannelDescriptor {
-    repeated CarPropertyConfig property_configs = 1;    // APK: repeated message
-    repeated CarControlGroup control_groups = 2;        // APK: repeated message
-    repeated CarActionEntry action_entries = 3;         // APK: repeated message
+    repeated CarPropertyConfig property_configs = 1; // APK: repeated message  // confidence: silver [apk_static, cross_version]
+    repeated CarControlGroup control_groups = 2; // APK: repeated message  // confidence: silver [apk_static, cross_version]
+    repeated CarActionEntry action_entries = 3; // APK: repeated message  // confidence: silver [apk_static, cross_version]
 }

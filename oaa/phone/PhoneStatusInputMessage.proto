@@ -34,6 +34,7 @@ package oaa.proto.messages;
 // Same d-pad navigation enum as InstrumentClusterAction (confirmed via
 // aa-proxy-rs: PhoneStatusInput embeds InstrumentClusterInput directly).
 // Used for navigating phone status UI on the instrument cluster display.
+// confidence: silver [apk_static, cross_version]
 enum PhoneInputAction {
     PHONE_INPUT_UNKNOWN = 0;
     PHONE_INPUT_UP = 1;
@@ -46,16 +47,18 @@ enum PhoneInputAction {
 }
 
 // APK class: vyc — sub-message carrying the action type
+// confidence: silver [apk_static, cross_version]
 message PhoneInputType {
-    optional PhoneInputAction action = 1;
+    optional PhoneInputAction action = 1;  // confidence: silver [apk_static, cross_version]
 }
 
 // APK class: wag — phone-side input relayed to HU (0x8002)
+// confidence: silver [apk_static, cross_version]
 message PhoneStatusInput {
     // Action type from the phone side
-    optional PhoneInputType input_type = 1;
+    optional PhoneInputType input_type = 1;  // confidence: silver [apk_static, cross_version]
     // Likely phone number or caller identifier
-    optional string caller_id = 2;
+    optional string caller_id = 2;  // confidence: silver [apk_static, cross_version]
     // Likely display name or contact label
-    optional string display_name = 3;
+    optional string display_name = 3;  // confidence: silver [apk_static, cross_version]
 }

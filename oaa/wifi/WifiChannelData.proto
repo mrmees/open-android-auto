@@ -9,7 +9,8 @@ option optimize_for=SPEED;
 
 package oaa.proto.data;
 
+// confidence: bronze [apk_static]
 message WifiChannel
 {
-    optional string ssid = 1;
+    optional string ssid = 1;  // confidence: bronze [apk_static]
 } 

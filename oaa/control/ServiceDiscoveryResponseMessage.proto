@@ -12,34 +12,39 @@ import "oaa/control/HeadUnitInfoData.proto";
 package oaa.proto.messages;
 
 // APK class: vyr (proto2, 0 fields) — feature flag placeholder
+// confidence: silver [apk_static, cross_version]
 message ServiceDiscoveryFeatureA {}
 
 // APK class: vym (proto2, 0 fields) — feature flag placeholder
+// confidence: silver [apk_static, cross_version]
 message ServiceDiscoveryFeatureB {}
 
 // APK class: vwt (proto2, 0 fields) — feature flag placeholder
+// confidence: silver [apk_static, cross_version]
 message ServiceDiscoveryFeatureC {}
 
 // APK class: vwd (proto2, 0 fields) — feature flag placeholder
+// confidence: silver [apk_static, cross_version]
 message ServiceDiscoveryFeatureD {}
 
+// confidence: silver [apk_static, cross_version]
 message ServiceDiscoveryResponse
 {
-    repeated data.ChannelDescriptor channels = 1;
-    optional string head_unit_name = 2;
-    optional string car_model = 3;
-    optional string car_year = 4;
-    optional string car_serial = 5;
-    optional enums.DriverPosition.Enum driver_position = 6;
-    optional string headunit_manufacturer = 7;
-    optional string headunit_model = 8;
-    optional string sw_build = 9;
-    optional string sw_version = 10;
-    optional bool can_play_native_media_during_vr = 11;
+    repeated data.ChannelDescriptor channels = 1;  // confidence: silver [apk_static, cross_version]
+    optional string head_unit_name = 2;  // confidence: silver [apk_static, cross_version]
+    optional string car_model = 3;  // confidence: silver [apk_static, cross_version]
+    optional string car_year = 4;  // confidence: silver [apk_static, cross_version]
+    optional string car_serial = 5;  // confidence: silver [apk_static, cross_version]
+    optional enums.DriverPosition.Enum driver_position = 6;  // confidence: silver [apk_static, cross_version]
+    optional string headunit_manufacturer = 7;  // confidence: silver [apk_static, cross_version]
+    optional string headunit_model = 8;  // confidence: silver [apk_static, cross_version]
+    optional string sw_build = 9;  // confidence: silver [apk_static, cross_version]
+    optional string sw_version = 10;  // confidence: silver [apk_static, cross_version]
+    optional bool can_play_native_media_during_vr = 11;  // confidence: silver [apk_static, cross_version]
     // Field 12 not in APK v16.1.
-    optional int32 session_configuration = 13;
-    optional string display_name = 14;
-    optional bool probe_for_support = 15;
+    optional int32 session_configuration = 13;  // confidence: silver [apk_static, cross_version]
+    optional string display_name = 14;  // confidence: silver [apk_static, cross_version]
+    optional bool probe_for_support = 15;  // confidence: silver [apk_static, cross_version]
     // Field 16 not in APK v16.1.
-    optional data.HeadUnitInfo headunit_info = 17;
+    optional data.HeadUnitInfo headunit_info = 17;  // confidence: silver [apk_static, cross_version]
 }

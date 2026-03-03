@@ -22,16 +22,18 @@ package oaa.proto.data;
 
 // APK enum for phone_identifier field (field 7, packed repeated)
 // Actual enum values TBD — APK uses type_id=44 (packed enum).
+// confidence: silver [apk_static, cross_version]
 enum PhoneIdentifierType {
     PHONE_IDENTIFIER_UNKNOWN = 0;
 }
 
+// confidence: silver [apk_static, cross_version]
 message PhoneCapabilities
 {
-    CapabilityFlag feature_flags = 1;
-    DeviceInfo device_info = 2;
-    PhoneConnectionConfig connection_config = 3;
-    CapabilityPair display_capabilities = 4;
-    repeated CapabilityEntry capabilities = 5;
+    CapabilityFlag feature_flags = 1;  // confidence: silver [apk_static, cross_version]
+    DeviceInfo device_info = 2;  // confidence: silver [apk_static, cross_version]
+    PhoneConnectionConfig connection_config = 3;  // confidence: silver [apk_static, cross_version]
+    CapabilityPair display_capabilities = 4;  // confidence: silver [apk_static, cross_version]
+    repeated CapabilityEntry capabilities = 5;  // confidence: silver [apk_static, cross_version]
     repeated PhoneIdentifierType phone_identifier = 7 [packed = true];
 }

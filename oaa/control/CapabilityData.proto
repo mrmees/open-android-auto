@@ -12,57 +12,64 @@ syntax="proto3";
 package oaa.proto.data;
 
 // APK class: aagh — boolean flag + name
+// confidence: silver [apk_static, cross_version]
 message CapabilityFlag
 {
-    bool enabled = 1;
-    string name = 2;
+    bool enabled = 1;  // confidence: silver [apk_static, cross_version]
+    string name = 2;  // confidence: silver [apk_static, cross_version]
 }
 
 // APK class: aags — boolean pair
+// confidence: silver [apk_static, cross_version]
 message CapabilityPair
 {
-    bool value_a = 1;
-    bool value_b = 2;
+    bool value_a = 1;  // confidence: silver [apk_static, cross_version]
+    bool value_b = 2;  // confidence: silver [apk_static, cross_version]
 }
 
 // APK class: aaft — paired ping configurations
+// confidence: silver [apk_static, cross_version]
 message PingConfigPair
 {
-    PingConfigEntry phone_to_hu = 1;
-    PingConfigEntry hu_to_phone = 2;
+    PingConfigEntry phone_to_hu = 1;  // confidence: silver [apk_static, cross_version]
+    PingConfigEntry hu_to_phone = 2;  // confidence: silver [apk_static, cross_version]
 }
 
 // Ping configuration entry (matches PingConfiguration structure)
+// confidence: silver [apk_static, cross_version]
 message PingConfigEntry
 {
-    uint32 timeout_ms = 1;
-    uint32 interval_ms = 2;
-    uint32 high_latency_threshold_ms = 3;
-    uint32 tracked_ping_count = 4;
+    uint32 timeout_ms = 1;  // confidence: silver [apk_static, cross_version]
+    uint32 interval_ms = 2;  // confidence: silver [apk_static, cross_version]
+    uint32 high_latency_threshold_ms = 3;  // confidence: silver [apk_static, cross_version]
+    uint32 tracked_ping_count = 4;  // confidence: silver [apk_static, cross_version]
 }
 
 // APK class: aagv — individual capability entry (10 fields)
 // Fields 4-7 are oneof (capability_value)
+// confidence: silver [apk_static, cross_version]
 message CapabilityEntry
 {
-    uint32 capability_id = 1;
-    string capability_name = 2;
-    CapabilityEnum capability_type = 3;
+    uint32 capability_id = 1;  // confidence: silver [apk_static, cross_version]
+    string capability_name = 2;  // confidence: silver [apk_static, cross_version]
+    CapabilityEnum capability_type = 3;  // confidence: silver [apk_static, cross_version]
     oneof capability_value {
-        CapabilityValueMsg value_msg_4 = 4;
-        CapabilityValueMsg value_msg_5 = 5;
-        CapabilityValueMsg value_msg_6 = 6;
-        CapabilityValueMsg value_msg_7 = 7;
+        CapabilityValueMsg value_msg_4 = 4;  // confidence: silver [apk_static, cross_version]
+        CapabilityValueMsg value_msg_5 = 5;  // confidence: silver [apk_static, cross_version]
+        CapabilityValueMsg value_msg_6 = 6;  // confidence: silver [apk_static, cross_version]
+        CapabilityValueMsg value_msg_7 = 7;  // confidence: silver [apk_static, cross_version]
     }
-    bool enabled = 8;
-    string description = 9;
-    repeated CapabilityValueMsg sub_entries = 10;
+    bool enabled = 8;  // confidence: silver [apk_static, cross_version]
+    string description = 9;  // confidence: silver [apk_static, cross_version]
+    repeated CapabilityValueMsg sub_entries = 10;  // confidence: silver [apk_static, cross_version]
 }
 
 // Placeholder for CapabilityEntry oneof values (sub-message type TBD)
+// confidence: silver [apk_static, cross_version]
 message CapabilityValueMsg {}
 
 // Placeholder enum for capability type (field 3 of aagv)
+// confidence: silver [apk_static, cross_version]
 enum CapabilityEnum {
     CAPABILITY_UNKNOWN = 0;
 }

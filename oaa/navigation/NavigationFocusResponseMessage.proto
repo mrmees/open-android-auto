@@ -8,7 +8,8 @@ import "oaa/navigation/NavigationFocusRequestMessage.proto";
 
 package oaa.proto.messages;
 
+// confidence: silver [apk_static, cross_version]
 message NavigationFocusResponse
 {
-    optional NavigationFocusType type = 1;
+    optional NavigationFocusType type = 1;  // confidence: silver [apk_static, cross_version]
 }

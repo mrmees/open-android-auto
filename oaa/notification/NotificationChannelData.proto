@@ -12,6 +12,7 @@ syntax="proto2";
 package oaa.proto.data;
 
 // APK class: wah — empty message
+// confidence: bronze [apk_static]
 message NotificationChannel
 {
 }

@@ -5,12 +5,14 @@ syntax="proto3";
 
 package oaa.proto.enums;
 
+// confidence: unverified
 message VideoFPS
 {
+    // confidence: unverified
     enum Enum
     {
         NONE = 0;
-        _60 = 1;
-        _30 = 2;
+        _60 = 1;  // confidence: unverified
+        _30 = 2;  // confidence: unverified
     }
 }

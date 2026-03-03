@@ -20,11 +20,12 @@ import "oaa/input/HapticFeedbackTypeEnum.proto";
 package oaa.proto.data;
 
 // APK class: vya — full input channel config (5 fields)
+// confidence: silver [apk_static, cross_version]
 message InputChannelConfig
 {
     repeated int32 input_type = 1 [packed = true];            // APK: packed int32 (input device types)
-    repeated TouchScreenConfig touch_screen_configs = 2;    // APK: vxz.class (repeated message)
-    repeated TouchPadConfig touchpad_configs = 3;           // APK: vxy.class (repeated message)
-    repeated enums.HapticFeedbackType.Enum key_configs = 4; // APK: repeated enum (vvs.m → vxm/HapticFeedback)
-    optional uint32 capabilities = 5;                       // APK: singular uint32
+    repeated TouchScreenConfig touch_screen_configs = 2; // APK: vxz.class (repeated message)  // confidence: silver [apk_static, cross_version]
+    repeated TouchPadConfig touchpad_configs = 3; // APK: vxy.class (repeated message)  // confidence: silver [apk_static, cross_version]
+    repeated enums.HapticFeedbackType.Enum key_configs = 4; // APK: repeated enum (vvs.m → vxm/HapticFeedback)  // confidence: silver [apk_static, cross_version]
+    optional uint32 capabilities = 5; // APK: singular uint32  // confidence: silver [apk_static, cross_version]
 }

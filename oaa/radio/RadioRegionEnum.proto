@@ -13,11 +13,13 @@ syntax="proto2";
 
 package oaa.proto.enums;
 
+// confidence: unverified
 message RadioRegion
 {
+    // confidence: unverified
     enum Enum
     {
         REGION_UNKNOWN = 0;
-        REGION_ITU_1 = 1;
+        REGION_ITU_1 = 1;  // confidence: unverified
     }
 }

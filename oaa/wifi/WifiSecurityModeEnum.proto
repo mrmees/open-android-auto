@@ -13,21 +13,23 @@ syntax="proto2";
 
 package oaa.proto.enums;
 
+// confidence: unverified
 message WifiSecurityMode
 {
+    // confidence: unverified
     enum Enum
     {
         UNKNOWN_SECURITY_MODE = 0;
         OPEN = 1;
-        WEP_64 = 2;
-        WEP_128 = 3;
+        WEP_64 = 2;  // confidence: unverified
+        WEP_128 = 3;  // confidence: unverified
         WPA_PERSONAL = 4;
-        WPA2_PERSONAL = 8;
-        WPA_WPA2_PERSONAL = 12;
+        WPA2_PERSONAL = 8;  // confidence: unverified
+        WPA_WPA2_PERSONAL = 12;  // confidence: unverified
         WPA_ENTERPRISE = 20;
-        WPA2_ENTERPRISE = 24;
-        WPA_WPA2_ENTERPRISE = 28;
-        WPA3_PERSONAL = 32;
-        WPA2_WPA3_PERSONAL = 40;
+        WPA2_ENTERPRISE = 24;  // confidence: unverified
+        WPA_WPA2_ENTERPRISE = 28;  // confidence: unverified
+        WPA3_PERSONAL = 32;  // confidence: unverified
+        WPA2_WPA3_PERSONAL = 40;  // confidence: unverified
     }
 }

@@ -11,8 +11,10 @@ syntax="proto3";
 
 package oaa.proto.enums;
 
+// confidence: unverified
 message NotificationType
 {
+    // confidence: unverified
     enum Enum
     {
         NONE = 0;
@@ -49,7 +51,7 @@ message NotificationType
         OPT_IN_ABOVE_ONGOING = 30;
         OPT_IN_BELOW_ONGOING = 31;
         VANAGON_DEPRECATION = 32;
-        VANAGON_DEPRECATION_2 = 33;
+        VANAGON_DEPRECATION_2 = 33;  // confidence: unverified
         OS_DEPRECATION = 34;
     }
 }

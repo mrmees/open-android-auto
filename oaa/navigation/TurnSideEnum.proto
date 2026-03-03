@@ -14,7 +14,9 @@ syntax = "proto3";
 
 package oaa.proto.enums;
 
+// confidence: unverified
 message TurnSide {
+    // confidence: unverified
     enum Enum {
         UNKNOWN = 0;
         LEFT = 1;

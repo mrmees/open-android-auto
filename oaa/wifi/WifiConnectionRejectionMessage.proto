@@ -15,6 +15,7 @@ import "oaa/wifi/WifiConnectionRejectionReasonEnum.proto";
 
 package oaa.proto.messages;
 
+// confidence: silver [apk_static, cross_version]
 message WifiConnectionRejection {
-    optional enums.WifiConnectionRejectionReason.Enum reason = 1;  // APK: b (enum via wck.o/a.bW)
+    optional enums.WifiConnectionRejectionReason.Enum reason = 1; // APK: b (enum via wck.o/a.bW)  // confidence: silver [apk_static, cross_version]
 }

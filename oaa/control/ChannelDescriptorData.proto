@@ -41,43 +41,48 @@ import "oaa/wifi/WifiChannelData.proto";
 
 package oaa.proto.data;
 
+// confidence: silver [apk_static, cross_version]
 message ChannelDescriptor
 {
-    optional int32 channel_id = 1;
-    optional SensorChannel sensor_channel = 2;
-    optional AVChannel av_channel = 3;
-    optional InputChannel input_channel = 4;
-    optional AVInputChannel av_input_channel = 5;
-    optional BluetoothChannel bluetooth_channel = 6;
-    optional RadioChannel radio_channel = 7;
-    optional NavigationChannel navigation_channel = 8;
-    optional MediaInfoChannel media_info_channel = 9;
-    optional PhoneStatusChannel phone_status_channel = 10;
-    optional MediaBrowserChannel media_browser_channel = 11;       // APK: vym (empty proto)
-    optional VendorExtensionChannel vendor_extension_channel = 12;
-    optional NotificationChannel notification_channel = 13;
-    optional WifiChannel wifi_channel = 14;
-    optional CarControlChannel car_control_channel = 15;          // APK: vwo (3 fields)
-    optional GenericNotificationChannel generic_notification_channel = 16; // APK: vwt (empty proto)
-    optional VoiceChannel voice_channel = 17;                // APK: vwd (empty proto)
+    optional int32 channel_id = 1;  // confidence: silver [apk_static, cross_version]
+    optional SensorChannel sensor_channel = 2;  // confidence: silver [apk_static, cross_version]
+    optional AVChannel av_channel = 3;  // confidence: silver [apk_static, cross_version]
+    optional InputChannel input_channel = 4;  // confidence: silver [apk_static, cross_version]
+    optional AVInputChannel av_input_channel = 5;  // confidence: silver [apk_static, cross_version]
+    optional BluetoothChannel bluetooth_channel = 6;  // confidence: silver [apk_static, cross_version]
+    optional RadioChannel radio_channel = 7;  // confidence: silver [apk_static, cross_version]
+    optional NavigationChannel navigation_channel = 8;  // confidence: silver [apk_static, cross_version]
+    optional MediaInfoChannel media_info_channel = 9;  // confidence: silver [apk_static, cross_version]
+    optional PhoneStatusChannel phone_status_channel = 10;  // confidence: silver [apk_static, cross_version]
+    optional MediaBrowserChannel media_browser_channel = 11; // APK: vym (empty proto)  // confidence: silver [apk_static, cross_version]
+    optional VendorExtensionChannel vendor_extension_channel = 12;  // confidence: silver [apk_static, cross_version]
+    optional NotificationChannel notification_channel = 13;  // confidence: silver [apk_static, cross_version]
+    optional WifiChannel wifi_channel = 14;  // confidence: silver [apk_static, cross_version]
+    optional CarControlChannel car_control_channel = 15; // APK: vwo (3 fields)  // confidence: silver [apk_static, cross_version]
+    optional GenericNotificationChannel generic_notification_channel = 16; // APK: vwt (empty proto)  // confidence: silver [apk_static, cross_version]
+    optional VoiceChannel voice_channel = 17; // APK: vwd (empty proto)  // confidence: silver [apk_static, cross_version]
 }
 
 // APK class: vym — empty message
 // Placeholder — sub-message structure TBD from wire captures
+// confidence: silver [apk_static, cross_version]
 message MediaBrowserChannel {
 }
 
 // APK class: vwo — 3 fields, structure TBD
 // Placeholder — sub-message structure TBD from wire captures
+// confidence: silver [apk_static, cross_version]
 message CarControlChannel {
 }
 
 // APK class: vwt — empty message
 // Placeholder — sub-message structure TBD from wire captures
+// confidence: silver [apk_static, cross_version]
 message GenericNotificationChannel {
 }
 
 // APK class: vwd — empty message
 // Placeholder — sub-message structure TBD from wire captures
+// confidence: silver [apk_static, cross_version]
 message VoiceChannel {
 }

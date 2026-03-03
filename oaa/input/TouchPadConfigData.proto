@@ -13,14 +13,15 @@ syntax="proto3";
 
 package oaa.proto.data;
 
+// confidence: unverified
 message TouchPadConfig
 {
-    optional int32 width = 1;
-    optional int32 height = 2;
-    optional bool unknown_3 = 3;
-    optional int32 unknown_4 = 4;
-    optional int32 unknown_5 = 5;
-    optional bool unknown_6 = 6;
-    optional bool unknown_7 = 7;
-    optional int32 sensitivity = 8;  // APK toString (qmr.java): "sensitivity"
+    optional int32 width = 1;  // confidence: unverified
+    optional int32 height = 2;  // confidence: unverified
+    optional bool unknown_3 = 3;  // confidence: unverified
+    optional int32 unknown_4 = 4;  // confidence: unverified
+    optional int32 unknown_5 = 5;  // confidence: unverified
+    optional bool unknown_6 = 6;  // confidence: unverified
+    optional bool unknown_7 = 7;  // confidence: unverified
+    optional int32 sensitivity = 8; // APK toString (qmr.java): "sensitivity"  // confidence: unverified
 }

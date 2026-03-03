@@ -6,9 +6,10 @@ syntax="proto2";
 package oaa.proto.messages;
 
 // APK class: vvk — AV media ack (3 fields)
+// confidence: silver [apk_static, cross_version]
 message AVMediaAckIndication
 {
-    optional int32 session = 1;
-    optional uint32 value = 2;
-    repeated uint64 ack_timestamps = 3;
+    optional int32 session = 1;  // confidence: silver [apk_static, cross_version]
+    optional uint32 value = 2;  // confidence: silver [apk_static, cross_version]
+    repeated uint64 ack_timestamps = 3;  // confidence: silver [apk_static, cross_version]
 }

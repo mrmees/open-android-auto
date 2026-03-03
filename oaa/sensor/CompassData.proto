@@ -5,10 +5,10 @@ syntax="proto2";
 
 package oaa.proto.data;
 
-// confidence: bronze [apk_static]
+// confidence: silver [apk_static, cross_version]
 message Compass
 {
-    optional int32 bearing =1;  // confidence: bronze [apk_static]
-    optional int32 pitch = 2;  // confidence: bronze [apk_static]
-    optional int32 roll = 3;  // confidence: bronze [apk_static]
+    optional int32 bearing =1;  // confidence: silver [apk_static, cross_version]
+    optional int32 pitch = 2;  // confidence: silver [apk_static, cross_version]
+    optional int32 roll = 3;  // confidence: silver [apk_static, cross_version]
 }
