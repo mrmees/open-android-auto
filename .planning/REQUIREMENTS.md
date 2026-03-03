@@ -18,7 +18,7 @@ Requirements for initial release. Each maps to roadmap phases.
 
 - [x] **PROTO-01**: Compilable .proto files for verified AA message types
 - [x] **PROTO-02**: Field-level confidence annotations on each proto field indicating evidence tier
-- [ ] **PROTO-03**: Cross-version mapping tables (obfuscated class names → canonical names across 15.9, 16.1, 16.2)
+- [x] **PROTO-03**: Cross-version mapping tables (obfuscated class names → canonical names across 15.9, 16.1, 16.2)
 
 ### Protocol Documentation
 
@@ -71,7 +71,7 @@ Which phases cover which requirements. Updated during roadmap creation.
 | VERI-04 | Phase 1 | Complete |
 | PROTO-01 | Phase 2 | Complete |
 | PROTO-02 | Phase 2 | Complete |
-| PROTO-03 | Phase 3 | Pending |
+| PROTO-03 | Phase 3 | Complete |
 | DOCS-01 | Phase 4 | Pending |
 | DOCS-02 | Phase 5 | Pending |
 | DOCS-03 | Phase 5 | Pending |

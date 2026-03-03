@@ -61,8 +61,8 @@ Plans:
 **Plans:** 2 plans
 
 Plans:
-- [ ] 03-01-PLAN.md — Index 15.9 APK, identify unknown version, build cross-version comparison tool
-- [ ] 03-02-PLAN.md — Run checker, generate mapping tables, promote sidecars, update annotations
+- [x] 03-01-PLAN.md — Index 15.9 APK, identify unknown version, build cross-version comparison tool
+- [x] 03-02-PLAN.md — Run checker, generate mapping tables, promote sidecars, update annotations
 
 ### Phase 4: Connection Lifecycle
 **Goal**: A head unit implementer can read the connection lifecycle documentation and understand every step from physical connection to session teardown
@@ -102,6 +102,6 @@ Note: Phases 3 and 4 both depend on Phase 2 and could theoretically run in paral
 |-------|----------------|--------|-----------|
 | 1. Verification Framework | 2/2 | Complete | 2026-03-03 |
 | 2. Seed Import & Proto Foundation | 2/2 | Complete | 2026-03-03 |
-| 3. Cross-Version Validation | 0/2 | Not started | - |
+| 3. Cross-Version Validation | 2/2 | Complete | 2026-03-03 |
 | 4. Connection Lifecycle | 0/? | Not started | - |
 | 5. Feature Channel Documentation | 0/? | Not started | - |
