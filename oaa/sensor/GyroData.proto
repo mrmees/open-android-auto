@@ -5,9 +5,10 @@ syntax="proto2";
 
 package oaa.proto.data;
 
+// confidence: bronze [apk_static]
 message Gyro
 {
-    optional int32 rotation_speed_x = 1;
-    optional int32 rotation_speed_y = 2;
-    optional int32 rotation_speed_z = 3;
+    optional int32 rotation_speed_x = 1;  // confidence: bronze [apk_static]
+    optional int32 rotation_speed_y = 2;  // confidence: bronze [apk_static]
+    optional int32 rotation_speed_z = 3;  // confidence: bronze [apk_static]
 }

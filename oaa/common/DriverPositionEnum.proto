@@ -13,8 +13,10 @@ syntax="proto2";
 
 package oaa.proto.enums;
 
+// confidence: bronze [apk_static]
 message DriverPosition
 {
+    // confidence: bronze [apk_static]
     enum Enum
     {
         LEFT = 0;

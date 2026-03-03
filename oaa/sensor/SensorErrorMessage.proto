@@ -19,8 +19,9 @@ import "oaa/sensor/SensorErrorStatusEnum.proto";
 
 package oaa.proto.messages;
 
+// confidence: bronze [apk_static]
 message SensorError
 {
-    required enums.SensorType.Enum sensor_type = 1;            // APK: wbv
-    required enums.SensorErrorStatus.Enum error_status = 2;    // APK: wbq
+    required enums.SensorType.Enum sensor_type = 1; // APK: wbv  // confidence: bronze [apk_static]
+    required enums.SensorErrorStatus.Enum error_status = 2; // APK: wbq  // confidence: bronze [apk_static]
 }

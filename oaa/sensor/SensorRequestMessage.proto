@@ -19,8 +19,9 @@ import "oaa/sensor/SensorTypeEnum.proto";
 
 package oaa.proto.messages;
 
+// confidence: bronze [apk_static]
 message SensorRequest
 {
-    required enums.SensorType.Enum sensor_type = 1;   // APK: wbv (SensorType enum)
-    required int64 refresh_interval = 2;               // Refresh interval in milliseconds
+    required enums.SensorType.Enum sensor_type = 1; // APK: wbv (SensorType enum)  // confidence: bronze [apk_static]
+    required int64 refresh_interval = 2; // Refresh interval in milliseconds  // confidence: bronze [apk_static]
 }

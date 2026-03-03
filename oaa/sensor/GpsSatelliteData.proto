@@ -17,14 +17,16 @@ syntax="proto2";
 package oaa.proto.data;
 
 // Per-satellite information (sub-message type unresolved — placeholder)
+// confidence: bronze [apk_static]
 message GpsSatelliteInfo
 {
     // Fields TBD from wire captures
 }
 
+// confidence: bronze [apk_static]
 message GpsSatelliteData
 {
-    required int32 satellite_count = 1;
-    optional int32 satellites_used = 2;
-    repeated GpsSatelliteInfo satellites = 3;
+    required int32 satellite_count = 1;  // confidence: bronze [apk_static]
+    optional int32 satellites_used = 2;  // confidence: bronze [apk_static]
+    repeated GpsSatelliteInfo satellites = 3;  // confidence: bronze [apk_static]
 }

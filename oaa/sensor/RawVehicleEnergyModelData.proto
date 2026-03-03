@@ -14,7 +14,8 @@ syntax="proto2";
 
 package oaa.proto.data;
 
+// confidence: bronze [apk_static]
 message RawVehicleEnergyModel
 {
-    optional bytes raw_data = 1;
+    optional bytes raw_data = 1;  // confidence: bronze [apk_static]
 }

@@ -13,20 +13,21 @@ syntax="proto3";
 package oaa.proto.data;
 
 // APK class: nll — Google Assistant feature flags (14 bool fields)
+// confidence: bronze [apk_static]
 message AssistantFeatureFlags
 {
-    bool assistant_available = 1;
-    bool voice_trigger = 2;
-    bool assistant_shortcuts = 3;
-    bool continued_conversation = 4;
-    bool device_assistant = 5;
-    bool assistant_on_lockscreen = 6;
-    bool smart_display = 7;
-    bool routine_suggestions = 8;
-    bool interpreter_mode = 9;
-    bool multi_modal = 10;
-    bool settings_support = 11;
-    bool field_12 = 12;
-    bool proactive_suggestions = 13;
-    bool field_14 = 14;
+    bool assistant_available = 1;  // confidence: bronze [apk_static]
+    bool voice_trigger = 2;  // confidence: bronze [apk_static]
+    bool assistant_shortcuts = 3;  // confidence: bronze [apk_static]
+    bool continued_conversation = 4;  // confidence: bronze [apk_static]
+    bool device_assistant = 5;  // confidence: bronze [apk_static]
+    bool assistant_on_lockscreen = 6;  // confidence: bronze [apk_static]
+    bool smart_display = 7;  // confidence: bronze [apk_static]
+    bool routine_suggestions = 8;  // confidence: bronze [apk_static]
+    bool interpreter_mode = 9;  // confidence: bronze [apk_static]
+    bool multi_modal = 10;  // confidence: bronze [apk_static]
+    bool settings_support = 11;  // confidence: bronze [apk_static]
+    bool field_12 = 12;  // confidence: bronze [apk_static]
+    bool proactive_suggestions = 13;  // confidence: bronze [apk_static]
+    bool field_14 = 14;  // confidence: bronze [apk_static]
 }

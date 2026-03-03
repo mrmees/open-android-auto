@@ -5,8 +5,9 @@ syntax="proto2";
 
 package oaa.proto.data;
 
+// confidence: bronze [apk_static]
 message Odometer
 {
-    optional int32 total_mileage = 1;
-    optional int32 trip_mileage = 2;
+    optional int32 total_mileage = 1;  // confidence: bronze [apk_static]
+    optional int32 trip_mileage = 2;  // confidence: bronze [apk_static]
 }

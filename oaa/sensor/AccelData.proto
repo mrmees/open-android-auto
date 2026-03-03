@@ -5,9 +5,10 @@ syntax="proto2";
 
 package oaa.proto.data;
 
+// confidence: bronze [apk_static]
 message Accel
 {
-    optional int32 acceleration_x = 1;
-    optional int32 acceleration_y = 2;
-    optional int32 acceleration_z = 3;
+    optional int32 acceleration_x = 1;  // confidence: bronze [apk_static]
+    optional int32 acceleration_y = 2;  // confidence: bronze [apk_static]
+    optional int32 acceleration_z = 3;  // confidence: bronze [apk_static]
 }

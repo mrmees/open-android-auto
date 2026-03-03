@@ -8,9 +8,10 @@ import "oaa/sensor/IndicatorStatusEnum.proto";
 
 package oaa.proto.data;
 
+// confidence: bronze [apk_static]
 message Light
 {
-    optional enums.HeadlightStatus.Enum headlight = 1;
-    optional enums.IndicatorStatus.Enum indicator = 2;
-    optional bool hazard_light_on = 3;
+    optional enums.HeadlightStatus.Enum headlight = 1;  // confidence: bronze [apk_static]
+    optional enums.IndicatorStatus.Enum indicator = 2;  // confidence: bronze [apk_static]
+    optional bool hazard_light_on = 3;  // confidence: bronze [apk_static]
 }

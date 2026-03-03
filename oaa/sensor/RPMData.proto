@@ -5,7 +5,8 @@ syntax="proto2";
 
 package oaa.proto.data;
 
+// confidence: bronze [apk_static]
 message RPM
 {
-    optional int32 rpm = 1;
+    optional int32 rpm = 1;  // confidence: bronze [apk_static]
 }

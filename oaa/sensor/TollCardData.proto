@@ -15,7 +15,8 @@ syntax="proto2";
 
 package oaa.proto.data;
 
+// confidence: bronze [apk_static]
 message TollCardData
 {
-    required bool toll_card_present = 1;
+    required bool toll_card_present = 1;  // confidence: bronze [apk_static]
 }

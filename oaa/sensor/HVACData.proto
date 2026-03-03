@@ -5,8 +5,9 @@ syntax="proto2";
 
 package oaa.proto.data;
 
+// confidence: bronze [apk_static]
 message HVAC
 {
-    optional int32 target_temperature = 1;
-    optional int32 current_temperature = 2;
+    optional int32 target_temperature = 1;  // confidence: bronze [apk_static]
+    optional int32 current_temperature = 2;  // confidence: bronze [apk_static]
 }

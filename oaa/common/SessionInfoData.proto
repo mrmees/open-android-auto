@@ -16,16 +16,17 @@ syntax="proto2";
 
 package oaa.proto.data;
 
+// confidence: bronze [apk_static]
 message SessionInfo
 {
     // UUID string, e.g. "13504ec4-0e63-4e0f-a4d6-38472b4c39f7"
     // Confirmed via live capture (Samsung S25 Ultra, 2026-02-24)
-    optional string session_uuid = 1;
+    optional string session_uuid = 1;  // confidence: bronze [apk_static]
 
     // APK: vvf.java fields 2-4 are all strings (not bytes/int64 as previously mapped)
-    optional string unknown_2 = 2;   // was incorrectly typed as bytes
-    optional string unknown_3 = 3;
-    optional string unknown_4 = 4;   // was incorrectly typed as int64
+    optional string unknown_2 = 2; // was incorrectly typed as bytes  // confidence: bronze [apk_static]
+    optional string unknown_3 = 3;  // confidence: bronze [apk_static]
+    optional string unknown_4 = 4; // was incorrectly typed as int64  // confidence: bronze [apk_static]
 
     // field 5 (SessionHistoryEntry) removed — does not exist in APK vvf.java
 }

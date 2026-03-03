@@ -7,7 +7,8 @@ import "oaa/sensor/SensorTypeEnum.proto";
 
 package oaa.proto.data;
 
+// confidence: bronze [apk_static]
 message Sensor
 {
-    optional enums.SensorType.Enum type = 1;
+    optional enums.SensorType.Enum type = 1;  // confidence: bronze [apk_static]
 }

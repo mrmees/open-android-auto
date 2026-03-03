@@ -5,9 +5,10 @@ syntax="proto2";
 
 package oaa.proto.data;
 
+// confidence: bronze [apk_static]
 message Door
 {
-    optional bool hood_open = 1;
-    optional bool boot_open = 2;
-    repeated bool door_open = 3;
+    optional bool hood_open = 1;  // confidence: bronze [apk_static]
+    optional bool boot_open = 2;  // confidence: bronze [apk_static]
+    repeated bool door_open = 3;  // confidence: bronze [apk_static]
 }

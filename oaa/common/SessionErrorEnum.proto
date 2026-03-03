@@ -11,8 +11,10 @@ syntax="proto3";
 
 package oaa.proto.enums;
 
+// confidence: unverified
 message SessionError
 {
+    // confidence: unverified
     enum Enum
     {
         NONE = 0;

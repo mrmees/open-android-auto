@@ -7,7 +7,8 @@ import "oaa/common/StatusEnum.proto";
 
 package oaa.proto.messages;
 
+// confidence: bronze [apk_static]
 message SensorStartResponseMessage
 {
-    optional enums.Status.Enum status = 1;
+    optional enums.Status.Enum status = 1;  // confidence: bronze [apk_static]
 }

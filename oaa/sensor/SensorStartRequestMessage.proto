@@ -7,8 +7,9 @@ import "oaa/sensor/SensorTypeEnum.proto";
 
 package oaa.proto.messages;
 
+// confidence: bronze [apk_static]
 message SensorStartRequestMessage
 {
-    optional enums.SensorType.Enum sensor_type = 1;
-    optional uint64 refresh_interval = 2;
+    optional enums.SensorType.Enum sensor_type = 1;  // confidence: bronze [apk_static]
+    optional uint64 refresh_interval = 2;  // confidence: bronze [apk_static]
 }

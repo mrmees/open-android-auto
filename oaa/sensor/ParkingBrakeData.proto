@@ -5,7 +5,8 @@ syntax="proto2";
 
 package oaa.proto.data;
 
+// confidence: bronze [apk_static]
 message ParkingBrake
 {
-    optional bool parking_brake = 1;
+    optional bool parking_brake = 1;  // confidence: bronze [apk_static]
 }

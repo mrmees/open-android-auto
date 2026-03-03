@@ -10,7 +10,8 @@ package oaa.proto.data;
 // → updateDayNightMode(source=SENSOR) → CAR.SYS (setting night mode) → CAR.WM (video config update).
 // Night mode also triggers generic "sensor event while no listener, sensor:10" path
 // in addition to the dedicated processing pipeline.
+// confidence: bronze [apk_static]
 message NightMode
 {
-    optional bool is_night = 1;
+    optional bool is_night = 1;  // confidence: bronze [apk_static]
 }

@@ -5,7 +5,8 @@ syntax="proto2";
 
 package oaa.proto.data;
 
+// confidence: bronze [apk_static]
 message DrivingStatus
 {
-    optional int32 status = 1;
+    optional int32 status = 1;  // confidence: bronze [apk_static]
 }
