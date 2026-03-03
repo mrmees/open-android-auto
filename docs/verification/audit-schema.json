@@ -1,0 +1,100 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/mrmees/open-android-auto/audit-schema.json",
+  "title": "Open Android Auto Audit Trail",
+  "description": "Schema for .audit.yaml sidecar files that record verification evidence for proto definitions.",
+  "type": "object",
+  "required": ["proto", "message", "confidence"],
+  "additionalProperties": false,
+  "properties": {
+    "proto": {
+      "type": "string",
+      "pattern": "^oaa/.+\\.proto$",
+      "description": "Relative path to the .proto file from the repo root. Must be under the oaa/ directory."
+    },
+    "message": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Primary message name defined in this proto file."
+    },
+    "confidence": {
+      "$ref": "#/$defs/confidence_tier",
+      "description": "Current overall confidence tier for this message."
+    },
+    "evidence": {
+      "type": "array",
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/evidence_entry"
+      },
+      "description": "Ordered list of evidence entries supporting this claim. Empty for Unverified tier."
+    },
+    "fields": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/$defs/field_override"
+      },
+      "description": "Per-field overrides when a specific field's confidence differs from the message level."
+    }
+  },
+  "$defs": {
+    "confidence_tier": {
+      "type": "string",
+      "enum": ["unverified", "bronze", "silver", "gold"],
+      "description": "Confidence tier: unverified (no evidence), bronze (single source), silver (2+ distinct types), gold (OEM capture)."
+    },
+    "evidence_entry": {
+      "type": "object",
+      "required": ["type", "source", "date", "description"],
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["apk_static", "dhu_observation", "oem_capture", "cross_version"],
+          "description": "Evidence type — determines which methodology was used to gather this evidence."
+        },
+        "method": {
+          "type": "string",
+          "description": "Sub-method tag (free-form). Describes the specific analysis technique used. See 03-verification-procedures.md for suggested values."
+        },
+        "source": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Human-readable source reference. Include enough detail to locate the raw material."
+        },
+        "date": {
+          "type": "string",
+          "format": "date",
+          "description": "ISO 8601 date (YYYY-MM-DD) when the evidence was gathered."
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1,
+          "description": "What was found and how. Should be self-contained."
+        }
+      }
+    },
+    "field_override": {
+      "type": "object",
+      "required": ["confidence"],
+      "additionalProperties": false,
+      "properties": {
+        "confidence": {
+          "$ref": "#/$defs/confidence_tier",
+          "description": "Confidence tier for this specific field."
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/evidence_entry"
+          },
+          "description": "Evidence entries specific to this field."
+        },
+        "notes": {
+          "type": "string",
+          "description": "Free-form notes about this field's verification status."
+        }
+      }
+    }
+  }
+}
