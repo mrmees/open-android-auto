@@ -30,7 +30,7 @@ Requirements for initial release. Each maps to roadmap phases.
 ### Tooling
 
 - [x] **TOOL-01**: Seed import pipeline to migrate existing ~236 proto class mappings into the audit trail as unverified entries
-- [ ] **TOOL-02**: Cross-version consistency checker for automated proto structure comparison across APK versions
+- [x] **TOOL-02**: Cross-version consistency checker for automated proto structure comparison across APK versions
 
 ## v2 Requirements
 
@@ -77,7 +77,7 @@ Which phases cover which requirements. Updated during roadmap creation.
 | DOCS-03 | Phase 5 | Pending |
 | DOCS-04 | Phase 5 | Pending |
 | TOOL-01 | Phase 2 | Complete |
-| TOOL-02 | Phase 3 | Pending |
+| TOOL-02 | Phase 3 | Complete |
 
 **Coverage:**
 - v1 requirements: 13 total
