@@ -22,10 +22,10 @@ Phone                                    Head Unit
   |                                         |
   |  ──────── SSL Handshake ─────────────   |
   |                                         |
-  |←── SSL_HANDSHAKE (0x0003) ──────────── |  HU sends ServerHello (HU = TLS server)
-  |─── SSL_HANDSHAKE (0x0003) ──────────→  |  Phone sends ClientHello
-  |←── SSL_HANDSHAKE (0x0003) ──────────── |  (multiple round-trips)
-  |─── SSL_HANDSHAKE (0x0003) ──────────→  |  ...until TLS FINISHED
+  |─── SSL_HANDSHAKE (0x0003) ──────────→  |  HU sends ClientHello (HU = TLS client)
+  |←── SSL_HANDSHAKE (0x0003) ──────────── |  Phone sends ServerHello (phone = TLS server)
+  |─── SSL_HANDSHAKE (0x0003) ──────────→  |  (multiple round-trips)
+  |←── SSL_HANDSHAKE (0x0003) ──────────── |  ...until TLS FINISHED
   |                                         |
   |  ──── All further messages encrypted ── |
   |                                         |
@@ -110,21 +110,23 @@ Phone responds: 00 02 00 01 00 07 00 00    (negotiated v1.7, MATCH)
 
 ### Version Negotiation Behavior
 
-- The phone supports v1.0 through v1.7 (as of AA 16.2)
+- The phone's preferred version is **v1.7** (`hzh.java:33`)
+- If the HU requests > v1.7, the phone negotiates up to **v6.0** (`hzh.java:36`)
 - The HU sends its minimum supported version
 - The phone responds with the **highest version it supports** that is compatible
 - If the phone's major version differs from the HU's → MISMATCH
 - Protocol version affects feature availability:
 
-| Min Version | Feature Unlocked |
-|-------------|-----------------|
-| v1.5 | 48kHz TTS/guidance audio |
-| v1.6 | WireConfig in version exchange |
-| v1.7 | (current, full feature set) |
+| Min Version | Feature Unlocked | APK Evidence |
+|-------------|-----------------|--------------|
+| v1.4 | Unknown gate | `hna.java:1347` checks `>= 1.4` |
+| v1.6 | WireConfig appended to version response | `hzh.java:199-200` gates on `>= 1.6` |
+| v1.7 | Default preferred version | `hzh.java:33` |
+| v6.0 | Extended feature set (widespread gates) | `huw.java`, `huz.java`, `hna.java`, `hnt.java` |
 
 ### Implementation Notes
 
-- aasdk hardcodes v1.1. Bumping to v1.7 is safe — the phone already negotiates 1.7 regardless.
+- aasdk hardcodes v1.1. Bumping to v1.7 is safe — the phone already negotiates 1.7 regardless. Requesting > v1.7 triggers v6.0 negotiation with additional feature gates.
 - The version exchange MUST complete before any other message is sent.
 - If MISMATCH is received, the connection must be torn down immediately.
 
@@ -134,7 +136,7 @@ Phone responds: 00 02 00 01 00 07 00 00    (negotiated v1.7, MATCH)
 
 ### Overview
 
-After version negotiation succeeds, the HU initiates an **application-layer TLS 1.2 handshake.** This is NOT socket-level TLS — the SSL bytes are wrapped in AA control messages and processed through in-memory BIO pairs (OpenSSL) or SSLEngine (Java/Android).
+After version negotiation succeeds, an **application-layer TLS 1.2 handshake** begins. This is NOT socket-level TLS — the SSL bytes are wrapped in AA control messages and processed through in-memory BIO pairs (OpenSSL) or SSLEngine (Java/Android). The **phone is the TLS server** and the **HU is the TLS client.**
 
 ### Frame Structure
 
@@ -156,28 +158,28 @@ SSL handshake bytes are wrapped as control channel messages:
 |-----------|-------|
 | Protocol | TLS 1.2 (hardcoded, not negotiable) |
 | Cipher | AES/CBC/PKCS5Padding (from APK) |
-| HU Role | **Server** (phone connects as client) |
-| Client Auth | Required (mutual TLS) |
+| Phone Role | **Server** (`setUseClientMode(false)` in `hzh.java`, `qmg.java`, `nbw.java`) |
+| HU Role | **Client** |
+| Client Auth | Required — mutual TLS (`setNeedClientAuth(true)`) |
 | Provider | GmsCore_OpenSSL (phone side) |
 
 ### Handshake Flow
 
-The HU acts as TLS server. The handshake follows standard TLS 1.2:
+The **phone acts as TLS server** (`setUseClientMode(false)` in `hzh.java:130`, `qmg.java:137`, `nbw.java:192`). The HU is the TLS client. The handshake follows standard TLS 1.2:
 
 ```
-Phone (TLS Client)                   Head Unit (TLS Server)
+Head Unit (TLS Client)                Phone (TLS Server)
   |                                     |
   |                          beginHandshake()
   |                          SSLEngine NEED_WRAP
+  |──── ClientHello ────────────────→  |  (wrapped in 0x0003 msg)
+  |                                     |
   |←─── ServerHello + Cert ─────────── |  (wrapped in 0x0003 msg)
   |                                     |
-  |──── ClientHello + Cert ──────────→  |  (wrapped in 0x0003 msg)
+  |──── ClientKeyExchange + Cert ───→  |
+  |──── ChangeCipherSpec + Finished ─→ |
   |                                     |
-  |←─── ServerKeyExchange ───────────── |
-  |──── ClientKeyExchange ───────────→  |
-  |                                     |
-  |←─── ChangeCipherSpec + Finished ─── |
-  |──── ChangeCipherSpec + Finished ──→ |
+  |←─── ChangeCipherSpec + Finished ── |
   |                                     |
   |     TLS session established         |
 ```
@@ -189,10 +191,10 @@ Multiple round-trips occur. The exact number depends on the cipher suite negotia
 The HU must have a valid certificate. In practice:
 
 - The JVC Kenwood certificate bundled with aasdk works (expires 2045)
-- The phone uses `SSL_VERIFY_NONE` equivalent — it does NOT validate the HU cert against a CA
-- However, the phone **logs** the certificate details and **rejects** certain subject names:
-  - Rejects subject containing "CarService"
-  - Rejects subject containing "Google Automotive Link"
+- The phone uses a custom TrustManager (`ibm.java:126`) — no standard CA chain validation, but it applies specific rejection rules (`ibm.java:313-322`):
+  - Rejects cert subject containing "CarService" (`SSLPeerUnverifiedException`)
+  - Rejects cert subject containing "Google Automotive Link" (the embedded CA cert itself)
+- Any other cert is accepted regardless of issuer
 
 **Certificate from our captured session:**
 ```
@@ -212,26 +214,25 @@ After the TLS handshake completes:
 
 ### Implementation Guidance
 
-**OpenSSL (C/C++) approach:**
+**OpenSSL (C/C++) approach — HU as TLS client:**
 ```
 // Create BIO pair (not socket BIO)
 BIO_new_bio_pair(&internal_bio, 0, &network_bio, 0);
 SSL_set_bio(ssl, internal_bio, internal_bio);
-SSL_set_accept_state(ssl);  // HU is server
+SSL_set_connect_state(ssl);  // HU is client
 
 // Handshake loop:
-// 1. Read 0x0003 message from phone → write to network_bio
-// 2. Call SSL_do_handshake()
-// 3. Read from network_bio → send as 0x0003 message to phone
+// 1. Call SSL_do_handshake()
+// 2. Read from network_bio → send as 0x0003 message to phone
+// 3. Read 0x0003 message from phone → write to network_bio
 // 4. Repeat until SSL_is_init_finished()
 ```
 
-**Java/Android (SSLEngine) approach:**
+**Java/Android (SSLEngine) approach — HU as TLS client:**
 ```java
 SSLEngine engine = SSLContext.getInstance("TLSv1.2")
     .createSSLEngine();
-engine.setUseClientMode(false);      // HU is server
-engine.setNeedClientAuth(true);      // Require phone cert
+engine.setUseClientMode(true);       // HU is client
 engine.beginHandshake();
 
 // Loop through HandshakeStatus:
@@ -240,6 +241,8 @@ engine.beginHandshake();
 //   NEED_TASK → run delegated tasks
 //   FINISHED → done
 ```
+
+**Note:** The phone side (`hzh.java:130`) sets `setUseClientMode(false)` and `setNeedClientAuth(true)` — it's the TLS server requiring mutual authentication. The HU must present a valid certificate.
 
 ---
 

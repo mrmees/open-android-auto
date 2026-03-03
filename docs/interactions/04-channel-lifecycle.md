@@ -106,8 +106,8 @@ All AV channels (video ch 3, audio ch 4/5/6, mic ch 7) share the same message ID
 | 0x8006 | AV_INPUT_OPEN_RESPONSE | HU → Phone |
 | 0x8007 | VIDEO_FOCUS_REQUEST | Phone → HU |
 | 0x8008 | VIDEO_FOCUS_INDICATION | HU → Phone |
-| 0x800C | AUDIO_UNDERFLOW | HU → Phone |
-| 0x8014 | MEDIA_STATS | Phone → HU |
+| 0x800B | AUDIO_UNDERFLOW | HU → Phone |
+| 0x8013 | MEDIA_STATS | Phone → HU |
 
 **Critical:** These messages use `MessageType::Specific`, NOT `Control`. Getting this wrong causes the phone to silently ignore messages.
 
@@ -193,14 +193,13 @@ message AudioFocusRequest {
 }
 ```
 
-**Focus types:**
+**Focus types** (from `vvf.java`):
 
 | Value | Name | Usage |
 |-------|------|-------|
-| 0 | NONE | |
 | 1 | GAIN | Music playback — permanent focus |
-| 2 | GAIN_TRANSIENT | Assistant/TTS — temporary, ducks media |
-| 3 | GAIN_NAVI | Navigation prompt — ducks media briefly |
+| 2 | GAIN_TRANSIENT | Assistant/TTS — temporary focus |
+| 3 | GAIN_TRANSIENT_MAY_DUCK | Navigation prompt — ducks media briefly |
 | 4 | RELEASE | Release audio focus |
 
 ### AudioFocusResponse (0x0013) — HU → Phone
@@ -226,7 +225,7 @@ message AudioFocusResponse {
 
 **The HU is the audio focus arbiter.** It must implement Android-compatible focus semantics:
 - GAIN request during GAIN → grant (replace)
-- GAIN_NAVI during GAIN → grant navi, duck media (LOSS_TRANSIENT_CAN_DUCK)
+- GAIN_TRANSIENT_MAY_DUCK during GAIN → grant, duck media (LOSS_TRANSIENT_CAN_DUCK)
 - RELEASE → acknowledge, no audio playing
 
 ---
