@@ -72,10 +72,11 @@ Plans:
   1. Documentation covers the full sequence: USB/WiFi setup, version negotiation, channel opening, and session teardown
   2. Each protocol step references specific proto messages from the compiled .proto files
   3. A head unit developer reading only this document could implement the connection handshake
-**Plans**: TBD
+**Plans:** 1/2 plans executed
 
 Plans:
-- [ ] 04-01: TBD
+- [ ] 04-01-PLAN.md — Enhance docs 01-04 with confidence annotations, gotchas, implementation guidance, and MVC checklist
+- [ ] 04-02-PLAN.md — Create session maintenance and teardown document (doc 05)
 
 ### Phase 5: Feature Channel Documentation
 **Goal**: Media, navigation, and phone channels are documented with verified proto references so implementers can build feature-complete head units
@@ -86,7 +87,7 @@ Plans:
   2. Navigation channel docs cover turn events, cluster data, maneuver types, and step distance/time with proto message references
   3. Phone channel docs cover call state, DTMF, and contact sync with proto message references
   4. Each documented message type references its confidence tier from the verification framework
-**Plans**: TBD
+**Plans:** 2 plans
 
 Plans:
 - [ ] 05-01: TBD
@@ -103,5 +104,5 @@ Note: Phases 3 and 4 both depend on Phase 2 and could theoretically run in paral
 | 1. Verification Framework | 2/2 | Complete | 2026-03-03 |
 | 2. Seed Import & Proto Foundation | 2/2 | Complete | 2026-03-03 |
 | 3. Cross-Version Validation | 2/2 | Complete | 2026-03-03 |
-| 4. Connection Lifecycle | 0/? | Not started | - |
+| 4. Connection Lifecycle | 1/2 | In Progress|  |
 | 5. Feature Channel Documentation | 0/? | Not started | - |
