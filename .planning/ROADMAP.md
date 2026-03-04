@@ -90,8 +90,8 @@ Plans:
 **Plans:** 2 plans
 
 Plans:
-- [ ] 05-01: TBD
-- [ ] 05-02: TBD
+- [ ] 05-01-PLAN.md — Audio and media channel documentation (audio.md, media.md)
+- [ ] 05-02-PLAN.md — Navigation and phone channel documentation (nav.md, phone.md)
 
 ## Progress
 
@@ -105,4 +105,4 @@ Note: Phases 3 and 4 both depend on Phase 2 and could theoretically run in paral
 | 2. Seed Import & Proto Foundation | 2/2 | Complete | 2026-03-03 |
 | 3. Cross-Version Validation | 2/2 | Complete | 2026-03-03 |
 | 4. Connection Lifecycle | 1/2 | In Progress|  |
-| 5. Feature Channel Documentation | 0/? | Not started | - |
+| 5. Feature Channel Documentation | 0/2 | Not started | - |

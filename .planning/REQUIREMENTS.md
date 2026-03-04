@@ -24,8 +24,8 @@ Requirements for initial release. Each maps to roadmap phases.
 
 - [x] **DOCS-01**: Connection lifecycle documentation (USB/WiFi setup → version negotiation → channel open → session teardown)
 - [ ] **DOCS-02**: Media/audio channel documentation (audio focus, ducking, playback control, MediaBrowserService interaction)
-- [ ] **DOCS-03**: Navigation channel documentation (turn events, cluster data, maneuver types, step distance/time)
-- [ ] **DOCS-04**: Phone/dialer channel documentation (call state, DTMF, contact sync)
+- [x] **DOCS-03**: Navigation channel documentation (turn events, cluster data, maneuver types, step distance/time)
+- [x] **DOCS-04**: Phone/dialer channel documentation (call state, DTMF, contact sync)
 
 ### Tooling
 
@@ -74,8 +74,8 @@ Which phases cover which requirements. Updated during roadmap creation.
 | PROTO-03 | Phase 3 | Complete |
 | DOCS-01 | Phase 4 | Complete |
 | DOCS-02 | Phase 5 | Pending |
-| DOCS-03 | Phase 5 | Pending |
-| DOCS-04 | Phase 5 | Pending |
+| DOCS-03 | Phase 5 | Complete |
+| DOCS-04 | Phase 5 | Complete |
 | TOOL-01 | Phase 2 | Complete |
 | TOOL-02 | Phase 3 | Complete |
 
