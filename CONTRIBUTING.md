@@ -71,6 +71,51 @@ message ServiceDiscoveryRequest {
 }
 ```
 
+## Verification Framework
+
+Every `.proto` file in this repo has a corresponding `.audit.yaml` sidecar that tracks **how we know** each message and field is correct. If you add or modify a proto, you must update (or create) the matching sidecar.
+
+### Confidence Tiers
+
+| Tier | Evidence Required | Meaning |
+|------|-------------------|---------|
+| **Gold** | OEM wire capture | Production-confirmed |
+| **Silver** | 2+ distinct evidence types | Corroborated independently |
+| **Bronze** | Any single evidence source | Directionally correct |
+| **Unverified** | None yet | Known to exist, not confirmed |
+
+Tiers are computed deterministically from evidence — see [`docs/verification/01-confidence-tiers.md`](docs/verification/01-confidence-tiers.md).
+
+### Audit Sidecars (`.audit.yaml`)
+
+Each proto file gets a co-located sidecar with the same basename:
+
+```
+oaa/sensor/NightModeData.proto       ← proto definition
+oaa/sensor/NightModeData.audit.yaml  ← evidence + confidence
+```
+
+When adding a new proto:
+1. Create the `.audit.yaml` alongside it
+2. Record at least one evidence entry (APK analysis, DHU observation, etc.)
+3. Run `annotate.py` to sync confidence comments into the proto file
+
+Sidecar format and schema: [`docs/verification/02-audit-trail-format.md`](docs/verification/02-audit-trail-format.md)
+
+### Annotation Tool
+
+After creating or updating sidecars, refresh the inline confidence comments in proto files:
+
+```bash
+python -m analysis.tools.seed_import.annotate oaa/<category>
+```
+
+This reads `.audit.yaml` files and adds/updates confidence comments above each message and on each field line. The cross-version promotion tool (`analysis/tools/cross_version/run.py --promote`) runs this automatically after promoting sidecars.
+
+### Verification Procedures
+
+Step-by-step procedures for gathering each evidence type are documented in [`docs/verification/03-verification-procedures.md`](docs/verification/03-verification-procedures.md).
+
 ## Proto Syntax
 
 All definitions use **proto3**. The original aasdk used proto2; these have been migrated.

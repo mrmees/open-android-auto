@@ -19,6 +19,7 @@ from analysis.tools.cross_version.promote import promote_sidecars
 from analysis.tools.cross_version.report import generate_report
 from analysis.tools.cross_version.tables import generate_tables
 from analysis.tools.proto_schema_validator.mapping import load_mapping
+from analysis.tools.seed_import.annotate import annotate_directory
 
 _REPO_ROOT = Path(__file__).resolve().parents[3]
 _ANALYSIS = _REPO_ROOT / "analysis"
@@ -123,6 +124,15 @@ def main(argv: list[str] | None = None) -> int:
     if args.promote:
         promotion_count = promote_sidecars(results)
         print(f"Promoted {promotion_count} sidecar(s) from bronze to silver")
+        if promotion_count > 0:
+            # Re-annotate proto files so confidence comments match promoted sidecars
+            oaa_root = _REPO_ROOT / "oaa"
+            annotated = 0
+            for proto_dir in sorted(oaa_root.iterdir()):
+                if proto_dir.is_dir():
+                    stats = annotate_directory(proto_dir)
+                    annotated += stats["files"]
+            print(f"Re-annotated {annotated} proto file(s) after promotion")
     else:
         eligible = sum(1 for r in results if r.is_consistent and r.pairs_compared)
         print(f"Promotion skipped (dry-run). {eligible} sidecars eligible. "
