@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-stopped_at: Completed 04-02-PLAN.md
-last_updated: "2026-03-04T01:31:56.743Z"
+stopped_at: Completed 04-01-PLAN.md
+last_updated: "2026-03-04T01:37:32.669Z"
 last_activity: 2026-03-04 -- Completed 04-02 (Session Maintenance and Teardown)
 progress:
   total_phases: 5
-  completed_phases: 3
+  completed_phases: 4
   total_plans: 8
-  completed_plans: 7
+  completed_plans: 8
   percent: 88
 ---
 
@@ -53,6 +53,7 @@ Progress: [█████████░] 88%
 - Trend: stable
 
 *Updated after each plan completion*
+| Phase 04 P01 | 7min | 2 tasks | 4 files |
 
 ## Accumulated Context
 
@@ -84,6 +85,9 @@ Recent decisions affecting current work:
 - [04-02]: ShutdownReason enum values documented from proto source (plan frontmatter had incorrect names)
 - [04-02]: DisconnectReason documented as phone-internal context, clearly separated from wire protocol
 - [04-02]: Both ping mechanisms given equal documentation weight with comparison table
+- [Phase 04-01]: MVC checklist placed in doc 04 (natural summary point at end of connection lifecycle)
+- [Phase 04-01]: Enum-only proto files without audit sidecars marked Unverified consistently
+- [Phase 04-01]: Confidence badges use lowest tier when section references multiple protos
 
 ### Pending Todos
 
@@ -95,6 +99,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-04T01:31:56.741Z
-Stopped at: Completed 04-02-PLAN.md
+Last session: 2026-03-04T01:37:32.666Z
+Stopped at: Completed 04-01-PLAN.md
 Resume file: None
