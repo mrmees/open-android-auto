@@ -16,7 +16,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [ ] **Phase 2: Seed Import & Proto Foundation** - Migrate existing mappings into the audit system and produce the first compilable, annotated .proto files
 - [ ] **Phase 3: Cross-Version Validation** - Build cross-version mapping tables and automated consistency checking across 15.9, 16.1, 16.2
 - [ ] **Phase 4: Connection Lifecycle** - Document the full connection lifecycle from USB/WiFi setup through session teardown
-- [ ] **Phase 5: Feature Channel Documentation** - Document media, navigation, and phone/dialer channels with verified proto references
+- [x] **Phase 5: Feature Channel Documentation** - Document media, navigation, and phone/dialer channels with verified proto references (completed 2026-03-04)
 
 ## Phase Details
 
@@ -87,7 +87,7 @@ Plans:
   2. Navigation channel docs cover turn events, cluster data, maneuver types, and step distance/time with proto message references
   3. Phone channel docs cover call state, DTMF, and contact sync with proto message references
   4. Each documented message type references its confidence tier from the verification framework
-**Plans:** 2 plans
+**Plans:** 2/2 plans complete
 
 Plans:
 - [ ] 05-01-PLAN.md — Audio and media channel documentation (audio.md, media.md)
@@ -105,4 +105,4 @@ Note: Phases 3 and 4 both depend on Phase 2 and could theoretically run in paral
 | 2. Seed Import & Proto Foundation | 2/2 | Complete | 2026-03-03 |
 | 3. Cross-Version Validation | 2/2 | Complete | 2026-03-03 |
 | 4. Connection Lifecycle | 1/2 | In Progress|  |
-| 5. Feature Channel Documentation | 0/2 | Not started | - |
+| 5. Feature Channel Documentation | 2/2 | Complete   | 2026-03-04 |

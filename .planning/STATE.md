@@ -47,6 +47,7 @@ Progress: [██████████] 100%
 | 02-seed-import-proto-foundation | 2 | 6 min | 3 min |
 | 03-cross-version-validation | 2 | 7 min | 3.5 min |
 | 04-connection-lifecycle | 1 | 2 min | 2 min |
+| 05-feature-channel-documentation | 2 | 8 min | 4 min |
 
 **Recent Trend:**
 - Last 5 plans: 02-02 (3min), 03-01 (4min), 03-02 (3min), 04-02 (2min)
