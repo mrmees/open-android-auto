@@ -1,5 +1,22 @@
 # 03 — Service Discovery
 
+## Proto Confidence Summary
+
+| Message | Tier | Evidence | Audit File |
+|---------|------|----------|------------|
+| ServiceDiscoveryRequest | Silver | apk_static + cross_version | [ServiceDiscoveryRequestMessage.audit.yaml](../../oaa/control/ServiceDiscoveryRequestMessage.audit.yaml) |
+| ServiceDiscoveryResponse | Silver | apk_static + cross_version | [ServiceDiscoveryResponseMessage.audit.yaml](../../oaa/control/ServiceDiscoveryResponseMessage.audit.yaml) |
+| ChannelDescriptor | Silver | apk_static + cross_version | [ChannelDescriptorData.audit.yaml](../../oaa/control/ChannelDescriptorData.audit.yaml) |
+| AVChannel | Silver | apk_static + cross_version | [AVChannelData.audit.yaml](../../oaa/av/AVChannelData.audit.yaml) |
+| AVInputChannel | Silver | apk_static + cross_version | [AVInputChannelData.audit.yaml](../../oaa/av/AVInputChannelData.audit.yaml) |
+| SensorChannel | Silver | apk_static + cross_version | [SensorChannelData.audit.yaml](../../oaa/sensor/SensorChannelData.audit.yaml) |
+| InputChannel | Silver | apk_static + cross_version | [InputChannelData.audit.yaml](../../oaa/input/InputChannelData.audit.yaml) |
+| BluetoothChannel | Silver | apk_static + cross_version | [BluetoothChannelData.audit.yaml](../../oaa/bluetooth/BluetoothChannelData.audit.yaml) |
+| WifiChannel | Bronze | apk_static | [WifiChannelData.audit.yaml](../../oaa/wifi/WifiChannelData.audit.yaml) |
+| ConnectionConfiguration | Silver | apk_static + cross_version | [ConnectionConfigurationData.audit.yaml](../../oaa/control/ConnectionConfigurationData.audit.yaml) |
+| AudioConfig | Silver | apk_static + cross_version | [AudioConfigData.audit.yaml](../../oaa/audio/AudioConfigData.audit.yaml) |
+| VideoConfig | Silver | apk_static + cross_version | [VideoConfigData.audit.yaml](../../oaa/video/VideoConfigData.audit.yaml) |
+
 ## Overview
 
 After authentication, the HU and phone exchange capability advertisements. The HU sends a `ServiceDiscoveryResponse` describing all channels it supports (video, audio, sensors, input, etc.). The phone responds with a `ServiceDiscoveryRequest` containing device info. This exchange determines what features the session will use.
@@ -15,23 +32,27 @@ After authentication, the HU and phone exchange capability advertisements. The H
 ```
 Phone                                        Head Unit
   |                                             |
-  |←── SERVICE_DISCOVERY_RESPONSE (0x0006) ──── |  HU advertises capabilities
+  |<-- SERVICE_DISCOVERY_RESPONSE (0x0006) ---- |  HU advertises capabilities
   |                                             |
-  |─── SERVICE_DISCOVERY_REQUEST (0x0005) ────→ |  Phone sends device info
+  |--- SERVICE_DISCOVERY_REQUEST (0x0005) ----> |  Phone sends device info
   |                                             |
   |     Phone parses HU capabilities,           |
   |     determines which channels to open        |
   |                                             |
-  |     → continues to channel opens (doc 04)    |
+  |     -> continues to channel opens (doc 04)   |
 ```
 
 **Note:** Despite the names, the HU sends the Response first. The "response" is the HU responding to the implicit question "what do you support?" The phone's "request" is it providing its own info. This naming comes from aasdk and is confusing but established.
 
 ---
 
-## Step 1: ServiceDiscoveryResponse (0x0006) — HU → Phone
+## Step 1: ServiceDiscoveryResponse (0x0006) -- HU -> Phone
+
+> Confidence: Silver [apk_static + cross_version] -- see [ServiceDiscoveryResponseMessage.audit.yaml](../../oaa/control/ServiceDiscoveryResponseMessage.audit.yaml)
 
 This is the most important message the HU sends. It defines the entire session's capabilities.
+
+> **Gotcha:** The `ServiceDiscoveryResponse` contains a `ConnectionConfiguration` (field 16, via `HeadUnitInfo`) which embeds a `PingConfiguration` with timing parameters for keepalive (`ping_interval_ns` and `ping_timeout_ms`). Implementers must parse and store these values -- they control the keepalive heartbeat that prevents the phone from disconnecting. Ignoring this configuration results in the phone using its own defaults, which may cause unexpected disconnects.
 
 ### Message Structure
 
@@ -55,7 +76,7 @@ message ServiceDiscoveryResponse {
 }
 ```
 
-### Example (from our captured session)
+### Example Configuration
 
 ```
 head_unit_name: "OpenAuto Prodigy"
@@ -71,6 +92,8 @@ can_play_native_media_during_vr: false
 ```
 
 ### Channel Descriptors
+
+> Confidence: Silver [apk_static + cross_version] -- see [ChannelDescriptorData.audit.yaml](../../oaa/control/ChannelDescriptorData.audit.yaml)
 
 Each `ChannelDescriptor` advertises one channel the HU supports:
 
@@ -98,6 +121,8 @@ message ChannelDescriptor {
 
 Only ONE of the channel-type fields is set per descriptor. The `channel_id` determines the channel number used in frame headers.
 
+> **Gotcha:** Channel IDs in `ChannelDescriptor` are phone-assigned after the HU sends them, not fixed protocol constants. The HU proposes IDs (typically 1-14 matching the field numbers above), but the phone's channel open flow uses whatever IDs the HU advertised. Do not hardcode channel ID assumptions -- always reference the IDs from the service discovery exchange.
+
 ### Minimum Viable HU Configuration
 
 The phone enforces minimum requirements. An HU MUST advertise:
@@ -110,15 +135,17 @@ The phone enforces minimum requirements. An HU MUST advertise:
 | Sensor | 2 | At minimum: driving status + night mode |
 
 **Mandatory sensor types:**
-- `DRIVING_STATUS` (type 13) — always added by SDK even if not configured
-- `NIGHT_DATA` (type 10) — strongly recommended; without it AA stays in day mode permanently
+- `DRIVING_STATUS` (type 13) -- always added by SDK even if not configured
+- `NIGHT_DATA` (type 10) -- strongly recommended; without it AA stays in day mode permanently
 
 **Mandatory video resolution:**
-- 480p (800x480) — always added by SDK even if higher resolutions are configured
+- 480p (800x480) -- always added by SDK even if higher resolutions are configured
 
 ### Channel Configuration Details
 
 #### Video Channel (ch 3)
+
+> Confidence: Silver [apk_static + cross_version] -- see [AVChannelData.audit.yaml](../../oaa/av/AVChannelData.audit.yaml)
 
 ```protobuf
 message AVChannel {
@@ -141,7 +168,7 @@ message VideoConfig {
 }
 ```
 
-**Example (our HU):**
+**Example configuration:**
 ```
 channel_id: 3
 stream_type: H264_BP (3)
@@ -191,16 +218,20 @@ message AudioConfig {
 
 #### Microphone Input (ch 7)
 
+> Confidence: Silver [apk_static + cross_version] -- see [AVInputChannelData.audit.yaml](../../oaa/av/AVInputChannelData.audit.yaml)
+
 ```protobuf
 message AVInputChannel {
     optional MediaCodecType stream_type = 1;  // PCM (1)
-    optional AudioConfig audio_config = 2;    // ≥16kHz, mono
+    optional AudioConfig audio_config = 2;    // >=16kHz, mono
 }
 ```
 
 Phone will request mic open via `AVInputOpenRequest` when Google Assistant activates.
 
 #### Sensor Channel (ch 2)
+
+> Confidence: Silver [apk_static + cross_version] -- see [SensorChannelData.audit.yaml](../../oaa/sensor/SensorChannelData.audit.yaml)
 
 ```protobuf
 message SensorChannel {
@@ -213,7 +244,7 @@ message SensorChannel {
 | Value | Name | Data Message |
 |-------|------|-------------|
 | 1 | LOCATION | GPSLocation (lat, lng, accuracy, altitude, speed, bearing) |
-| 3 | CAR_SPEED | Speed (int32, speed in m/s × 100) |
+| 3 | CAR_SPEED | Speed (int32, speed in m/s x 100) |
 | 5 | ODOMETER | Odometer (total_mileage) |
 | 6 | FUEL_LEVEL | FuelLevel (level, range, low_fuel) |
 | 7 | PARKING_BRAKE | ParkingBrake (bool) |
@@ -223,9 +254,11 @@ message SensorChannel {
 | 11 | ENVIRONMENT | Environment (temp, pressure, rain) |
 | 13 | DRIVING_STATUS | DrivingStatus (restrictions enum) |
 
-**Our HU advertises:** `[NIGHT_DATA (10), DRIVING_STATUS (13), LOCATION (1)]`
+**Typical HU advertises:** `[NIGHT_DATA (10), DRIVING_STATUS (13), LOCATION (1)]`
 
 #### Input Channel (ch 1)
+
+> Confidence: Silver [apk_static + cross_version] -- see [InputChannelData.audit.yaml](../../oaa/input/InputChannelData.audit.yaml)
 
 ```protobuf
 message InputChannel {
@@ -235,11 +268,13 @@ message InputChannel {
 }
 ```
 
-Touch screen config includes width/height matching the video resolution. Keycodes are Android `KeyEvent` codes — at minimum `HOME (3)`, `BACK (4)`, and `SEARCH (84)`.
+Touch screen config includes width/height matching the video resolution. Keycodes are Android `KeyEvent` codes -- at minimum `HOME (3)`, `BACK (4)`, and `SEARCH (84)`.
 
-**Our HU:** touch screen 800x410, keycodes [3, 4, 84]
+**Typical HU:** touch screen 800x410, keycodes [3, 4, 84]
 
 #### Bluetooth Channel (ch 8)
+
+> Confidence: Silver [apk_static + cross_version] -- see [BluetoothChannelData.audit.yaml](../../oaa/bluetooth/BluetoothChannelData.audit.yaml)
 
 ```protobuf
 message BluetoothChannel {
@@ -250,6 +285,8 @@ message BluetoothChannel {
 
 #### WiFi Channel (ch 14)
 
+> Confidence: Bronze [apk_static] -- see [WifiChannelData.audit.yaml](../../oaa/wifi/WifiChannelData.audit.yaml)
+
 ```protobuf
 message WifiChannel {
     optional string ssid = 1;
@@ -258,7 +295,9 @@ message WifiChannel {
 
 ---
 
-## Step 2: ServiceDiscoveryRequest (0x0005) — Phone → HU
+## Step 2: ServiceDiscoveryRequest (0x0005) -- Phone -> HU
+
+> Confidence: Silver [apk_static + cross_version] -- see [ServiceDiscoveryRequestMessage.audit.yaml](../../oaa/control/ServiceDiscoveryRequestMessage.audit.yaml)
 
 The phone sends its device info after receiving the HU's capabilities.
 
@@ -273,7 +312,7 @@ message ServiceDiscoveryRequest {
 }
 ```
 
-**Example (from our captured session):**
+**Example (observed):**
 ```
 device_name: "Android"
 device_brand: "samsung SM-S938U"
@@ -290,13 +329,13 @@ The HU can display these icons in its native UI to show the connected phone.
 
 After parsing the `ServiceDiscoveryResponse`, the phone:
 
-1. **Selects video config** — picks the highest resolution/fps the phone can encode (usually constrained by hardware encoder capability)
-2. **Configures audio pipelines** — sets up per-channel encoding based on sample rates
-3. **Registers sensor listeners** — subscribes to advertised sensor types
-4. **Evaluates features** — checks `CarModuleFeatures` for things like Coolwalk, multi-display, theming
-5. **Begins channel opens** — see [04-channel-lifecycle](04-channel-lifecycle.md)
+1. **Selects video config** -- picks the highest resolution/fps the phone can encode (usually constrained by hardware encoder capability)
+2. **Configures audio pipelines** -- sets up per-channel encoding based on sample rates
+3. **Registers sensor listeners** -- subscribes to advertised sensor types
+4. **Evaluates features** -- checks `CarModuleFeatures` for things like Coolwalk, multi-display, theming
+5. **Begins channel opens** -- see [04-channel-lifecycle](04-channel-lifecycle.md)
 
-The phone is tolerant of missing optional channels. It logs warnings but doesn't fail if radio, notification, or other extended channels are absent.
+The phone is tolerant of missing optional channels. It logs warnings but does not fail if radio, notification, or other extended channels are absent.
 
 ---
 
@@ -304,12 +343,12 @@ The phone is tolerant of missing optional channels. It logs warnings but doesn't
 
 | Error | Detection | Impact |
 |-------|-----------|--------|
-| No video channel | Phone sends ShutdownRequest | Fatal — can't project without video |
+| No video channel | Phone sends ShutdownRequest | Fatal -- projection requires video |
 | No 480p video config | SDK adds it automatically | Non-issue if using SDK correctly |
 | No driving status sensor | SDK adds it automatically | Non-issue if using SDK correctly |
 | No night mode sensor | AA stays in day mode permanently | UX issue, not fatal |
-| No audio channels | Phone can't play media | Severely degraded but may still project |
-| Invalid channel_id | Phone ignores the descriptor | Channel won't be opened |
+| No audio channels | Phone cannot play media | Severely degraded but may still project |
+| Invalid channel_id | Phone ignores the descriptor | Channel will not be opened |
 
 ## Log Tags
 
@@ -317,7 +356,7 @@ The phone is tolerant of missing optional channels. It logs warnings but doesn't
 |-----|--------------|
 | `CAR.GAL.GAL.LITE` | "SDP_REQUEST_SENT", "SDP_RESPONSE_RECEIVED (9 services)" |
 | `GH.ConnLoggerV2` | `SDP_REQUEST_SENT`, `SDP_RESPONSE_RECEIVED_WIFI` / `_USB` |
-| `CAR.CLIENT` | CarModuleFeatures cache — what features the phone detected |
+| `CAR.CLIENT` | CarModuleFeatures cache -- detected feature set |
 | `CAR.WM` | Display params after video config selection |
 | `GH.ThemingManager` | Theme/palette version negotiation |
 
@@ -337,5 +376,5 @@ At the end of this phase:
 - `oaa/sensor/SensorChannelData.proto`, `oaa/sensor/SensorTypeEnum.proto`
 - `oaa/input/InputChannelData.proto`
 - `oaa/bluetooth/BluetoothChannelData.proto`
-- [`phone-side-debug.md`](../phone-side-debug.md) — Pi-Side Correlation section
-- [`protocol-reference.md`](../protocol-reference.md) — full proto field catalog
+- [`phone-side-debug.md`](../phone-side-debug.md) -- Pi-Side Correlation section
+- [`protocol-reference.md`](../protocol-reference.md) -- full proto field catalog

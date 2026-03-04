@@ -1,5 +1,15 @@
 # 02 — Version Exchange, SSL Handshake & Authentication
 
+## Proto Confidence Summary
+
+| Message | Tier | Evidence | Audit File |
+|---------|------|----------|------------|
+| ControlMessageIds (enum) | Unverified | -- | -- |
+| VersionResponseStatus (enum) | Unverified | -- | -- |
+| AuthCompleteIndication | Silver | apk_static + cross_version | [AuthCompleteIndicationMessage.audit.yaml](../../oaa/control/AuthCompleteIndicationMessage.audit.yaml) |
+| BindingRequest | Silver | apk_static + cross_version | [BindingRequestMessage.audit.yaml](../../oaa/control/BindingRequestMessage.audit.yaml) |
+| BindingResponse | Silver | apk_static + cross_version | [BindingResponseMessage.audit.yaml](../../oaa/control/BindingResponseMessage.audit.yaml) |
+
 ## Overview
 
 Once a raw byte stream exists (TCP or USB), three sequential handshakes establish the secure, authenticated session: binary version negotiation, app-layer TLS 1.2, and device binding/authentication. All three must complete before any protobuf service messages are exchanged.
@@ -7,7 +17,7 @@ Once a raw byte stream exists (TCP or USB), three sequential handshakes establis
 ## Prerequisites
 
 - Bidirectional byte stream between phone and HU (from [01-transport-setup](01-transport-setup.md))
-- No encryption active — all bytes in this phase start as plaintext
+- No encryption active -- all bytes in this phase start as plaintext
 - HU has an SSL certificate and private key loaded (see [SSL Certificates](#ssl-certificates))
 
 ## Sequence Diagram
@@ -15,25 +25,25 @@ Once a raw byte stream exists (TCP or USB), three sequential handshakes establis
 ```
 Phone                                    Head Unit
   |                                         |
-  |  ──────── Version Exchange ──────────   |
+  |  -------- Version Exchange ----------   |
   |                                         |
-  |←── VERSION_REQUEST (0x0001) ────────── |  HU sends first, raw binary
-  |─── VERSION_RESPONSE (0x0002) ────────→ |  Phone responds with negotiated version
+  |<-- VERSION_REQUEST (0x0001) ---------- |  HU sends first, raw binary
+  |--- VERSION_RESPONSE (0x0002) --------> |  Phone responds with negotiated version
   |                                         |
-  |  ──────── SSL Handshake ─────────────   |
+  |  -------- SSL Handshake ------------   |
   |                                         |
-  |─── SSL_HANDSHAKE (0x0003) ──────────→  |  HU sends ClientHello (HU = TLS client)
-  |←── SSL_HANDSHAKE (0x0003) ──────────── |  Phone sends ServerHello (phone = TLS server)
-  |─── SSL_HANDSHAKE (0x0003) ──────────→  |  (multiple round-trips)
-  |←── SSL_HANDSHAKE (0x0003) ──────────── |  ...until TLS FINISHED
+  |--- SSL_HANDSHAKE (0x0003) --------->  |  HU sends ClientHello (HU = TLS client)
+  |<-- SSL_HANDSHAKE (0x0003) ----------  |  Phone sends ServerHello (phone = TLS server)
+  |--- SSL_HANDSHAKE (0x0003) --------->  |  (multiple round-trips)
+  |<-- SSL_HANDSHAKE (0x0003) ----------  |  ...until TLS FINISHED
   |                                         |
-  |  ──── All further messages encrypted ── |
+  |  ---- All further messages encrypted -- |
   |                                         |
-  |  ──────── Authentication ────────────   |
+  |  -------- Authentication ------------- |
   |                                         |
-  |←── AUTH_COMPLETE (0x0004) ──────────── |  HU signals auth success
+  |<-- AUTH_COMPLETE (0x0004) ------------ |  HU signals auth success
   |                                         |
-  |  ──── Ready for Service Discovery ───   |
+  |  ---- Ready for Service Discovery ---   |
 ```
 
 **Important:** The HU initiates all three phases. The phone is reactive throughout.
@@ -42,9 +52,15 @@ Phone                                    Head Unit
 
 ## Step 1: Version Exchange
 
+> Confidence: Unverified [--] -- ControlMessageIds and VersionResponseStatus enums have no audit sidecars
+>
+> The version exchange uses raw binary, not protobuf messages. The message IDs (0x0001, 0x0002) are defined in `ControlMessageIdsEnum.proto` which is Unverified. However, these IDs are well-established in aasdk and production implementations.
+
+> **Gotcha:** The version exchange must complete BEFORE SSL -- the first 4 bytes on the wire are plaintext version data. Attempting to wrap version messages in TLS, or starting TLS before the version response, causes the connection to fail silently.
+
 ### Format
 
-The version exchange uses a **raw binary format** — it is NOT protobuf. This is the only non-protobuf message pair in the entire protocol (aside from raw AV data frames).
+The version exchange uses a **raw binary format** -- it is NOT protobuf. This is the only non-protobuf message pair in the entire protocol (aside from raw AV data frames).
 
 **Note:** Do not confuse this with the WiFi projection version exchange (RFCOMM msgId 1/7, which IS protobuf). The GAL version exchange happens over the main data stream after TCP connect.
 
@@ -53,18 +69,18 @@ The version exchange uses a **raw binary format** — it is NOT protobuf. This i
 Version messages use the standard AA frame header but contain raw bytes, not protobuf:
 
 ```
-┌─────────────────────── Frame Header (2 bytes) ──────────────────────┐
-│ Byte 0: Channel ID (0x00 = control)                                 │
-│ Byte 1: Flags (0x00 = BULK frame, MessageType CONTROL, PLAINTEXT)   │
-├─────────────────────── Frame Payload ───────────────────────────────┤
-│ Byte 0-1: Message ID (uint16 BE) — 0x0001 or 0x0002                │
-│ Byte 2-3: Major version (uint16 BE)                                 │
-│ Byte 4-5: Minor version (uint16 BE)                                 │
-│ Byte 6-7: Status (uint16 BE) — response only                       │
-└─────────────────────────────────────────────────────────────────────┘
++----------------------- Frame Header (2 bytes) ---------------------+
+| Byte 0: Channel ID (0x00 = control)                                |
+| Byte 1: Flags (0x00 = BULK frame, MessageType CONTROL, PLAINTEXT)  |
++----------------------- Frame Payload ------------------------------+
+| Byte 0-1: Message ID (uint16 BE) -- 0x0001 or 0x0002               |
+| Byte 2-3: Major version (uint16 BE)                                |
+| Byte 4-5: Minor version (uint16 BE)                                |
+| Byte 6-7: Status (uint16 BE) -- response only                      |
++--------------------------------------------------------------------+
 ```
 
-### VERSION_REQUEST (0x0001) — HU → Phone
+### VERSION_REQUEST (0x0001) -- HU -> Phone
 
 The HU sends first, immediately after the byte stream is established.
 
@@ -77,14 +93,14 @@ Offset  Bytes         Meaning
 
 Total: **6 bytes** (message ID + 2 version shorts)
 
-**Example from captured session:**
+**Example (observed):**
 ```
 HU sends: 00 01 00 01 00 01    (requesting v1.1)
 ```
 
 The HU advertises the **minimum version it supports.** The phone will negotiate up.
 
-### VERSION_RESPONSE (0x0002) — Phone → HU
+### VERSION_RESPONSE (0x0002) -- Phone -> HU
 
 ```
 Offset  Bytes         Meaning
@@ -101,9 +117,9 @@ Total: **8 bytes** (message ID + 2 version shorts + status)
 | Value | Name | Meaning |
 |-------|------|---------|
 | 0x0000 | MATCH | Compatible version found |
-| 0xFFFF | MISMATCH | No compatible version — connection will close |
+| 0xFFFF | MISMATCH | No compatible version -- connection will close |
 
-**Example from captured session:**
+**Example (observed):**
 ```
 Phone responds: 00 02 00 01 00 07 00 00    (negotiated v1.7, MATCH)
 ```
@@ -114,7 +130,7 @@ Phone responds: 00 02 00 01 00 07 00 00    (negotiated v1.7, MATCH)
 - If the HU requests > v1.7, the phone negotiates up to **v6.0** (`hzh.java:36`)
 - The HU sends its minimum supported version
 - The phone responds with the **highest version it supports** that is compatible
-- If the phone's major version differs from the HU's → MISMATCH
+- If the phone's major version differs from the HU's -> MISMATCH
 - Protocol version affects feature availability:
 
 | Min Version | Feature Unlocked | APK Evidence |
@@ -126,7 +142,7 @@ Phone responds: 00 02 00 01 00 07 00 00    (negotiated v1.7, MATCH)
 
 ### Implementation Notes
 
-- aasdk hardcodes v1.1. Bumping to v1.7 is safe — the phone already negotiates 1.7 regardless. Requesting > v1.7 triggers v6.0 negotiation with additional feature gates.
+- aasdk hardcodes v1.1. Bumping to v1.7 is safe -- the phone already negotiates 1.7 regardless. Requesting > v1.7 triggers v6.0 negotiation with additional feature gates.
 - The version exchange MUST complete before any other message is sent.
 - If MISMATCH is received, the connection must be torn down immediately.
 
@@ -136,20 +152,22 @@ Phone responds: 00 02 00 01 00 07 00 00    (negotiated v1.7, MATCH)
 
 ### Overview
 
-After version negotiation succeeds, an **application-layer TLS 1.2 handshake** begins. This is NOT socket-level TLS — the SSL bytes are wrapped in AA control messages and processed through in-memory BIO pairs (OpenSSL) or SSLEngine (Java/Android). The **phone is the TLS server** and the **HU is the TLS client.**
+After version negotiation succeeds, an **application-layer TLS 1.2 handshake** begins. This is NOT socket-level TLS -- the SSL bytes are wrapped in AA control messages and processed through in-memory BIO pairs (OpenSSL) or SSLEngine (Java/Android). The **phone is the TLS server** and the **HU is the TLS client.**
+
+> **Gotcha:** The SSL upgrade is version-dependent. The phone only proceeds to SSL after a successful version exchange. If the version response indicates MISMATCH, no SSL handshake occurs -- the connection tears down. Additionally, the HU must send the ClientHello first (it is the TLS client), but it must wait until it has received the version response before doing so.
 
 ### Frame Structure
 
 SSL handshake bytes are wrapped as control channel messages:
 
 ```
-┌─────────────────────── Frame Header ────────────────────────────────┐
-│ Channel: 0x00 (control)                                             │
-│ Flags: BULK/FIRST/LAST, MessageType CONTROL, PLAINTEXT              │
-├─────────────────────── Payload ─────────────────────────────────────┤
-│ Byte 0-1: Message ID 0x0003 (SSL_HANDSHAKE)                        │
-│ Byte 2+:  Raw TLS handshake bytes                                   │
-└─────────────────────────────────────────────────────────────────────┘
++----------------------- Frame Header ----------------------------+
+| Channel: 0x00 (control)                                          |
+| Flags: BULK/FIRST/LAST, MessageType CONTROL, PLAINTEXT           |
++----------------------- Payload ----------------------------------+
+| Byte 0-1: Message ID 0x0003 (SSL_HANDSHAKE)                     |
+| Byte 2+:  Raw TLS handshake bytes                                |
++------------------------------------------------------------------+
 ```
 
 ### TLS Configuration
@@ -160,7 +178,7 @@ SSL handshake bytes are wrapped as control channel messages:
 | Cipher | AES/CBC/PKCS5Padding (from APK) |
 | Phone Role | **Server** (`setUseClientMode(false)` in `hzh.java`, `qmg.java`, `nbw.java`) |
 | HU Role | **Client** |
-| Client Auth | Required — mutual TLS (`setNeedClientAuth(true)`) |
+| Client Auth | Required -- mutual TLS (`setNeedClientAuth(true)`) |
 | Provider | GmsCore_OpenSSL (phone side) |
 
 ### Handshake Flow
@@ -172,31 +190,31 @@ Head Unit (TLS Client)                Phone (TLS Server)
   |                                     |
   |                          beginHandshake()
   |                          SSLEngine NEED_WRAP
-  |──── ClientHello ────────────────→  |  (wrapped in 0x0003 msg)
+  |---- ClientHello ----------------->  |  (wrapped in 0x0003 msg)
   |                                     |
-  |←─── ServerHello + Cert ─────────── |  (wrapped in 0x0003 msg)
+  |<--- ServerHello + Cert ----------  |  (wrapped in 0x0003 msg)
   |                                     |
-  |──── ClientKeyExchange + Cert ───→  |
-  |──── ChangeCipherSpec + Finished ─→ |
+  |---- ClientKeyExchange + Cert ---->  |
+  |---- ChangeCipherSpec + Finished ->  |
   |                                     |
-  |←─── ChangeCipherSpec + Finished ── |
+  |<--- ChangeCipherSpec + Finished --  |
   |                                     |
   |     TLS session established         |
 ```
 
-Multiple round-trips occur. The exact number depends on the cipher suite negotiated. From our captured session: **2348 bytes from phone, 51 bytes back** during the handshake.
+Multiple round-trips occur. The exact number depends on the cipher suite negotiated. In practice: **2348 bytes from phone, 51 bytes back** during the handshake.
 
 ### SSL Certificates
 
 The HU must have a valid certificate. In practice:
 
 - The JVC Kenwood certificate bundled with aasdk works (expires 2045)
-- The phone uses a custom TrustManager (`ibm.java:126`) — no standard CA chain validation, but it applies specific rejection rules (`ibm.java:313-322`):
+- The phone uses a custom TrustManager (`ibm.java:126`) -- no standard CA chain validation, but it applies specific rejection rules (`ibm.java:313-322`):
   - Rejects cert subject containing "CarService" (`SSLPeerUnverifiedException`)
   - Rejects cert subject containing "Google Automotive Link" (the embedded CA cert itself)
 - Any other cert is accepted regardless of issuer
 
-**Certificate from our captured session:**
+**Certificate (from observed session):**
 ```
 Subject:  OU=01, O=JVC Kenwood, L=Hachioji, ST=Tokyo, C=JP
 Serial:   27 (0x1b)
@@ -209,13 +227,13 @@ NotAfter:  2045-04-29
 After the TLS handshake completes:
 - **All subsequent message payloads are encrypted** through the TLS layer
 - **Frame headers remain plaintext** (channel ID + flags are always readable)
-- **Ping messages (0x000b/0x000c) stay PLAINTEXT** — they bypass the TLS layer entirely
+- **Ping messages (0x000b/0x000c) stay PLAINTEXT** -- they bypass the TLS layer entirely
 - The encryption/decryption happens in memory (BIO pairs), not at the socket level
 
 ### Implementation Guidance
 
-**OpenSSL (C/C++) approach — HU as TLS client:**
-```
+**OpenSSL (C/C++) approach -- HU as TLS client:**
+```c
 // Create BIO pair (not socket BIO)
 BIO_new_bio_pair(&internal_bio, 0, &network_bio, 0);
 SSL_set_bio(ssl, internal_bio, internal_bio);
@@ -223,12 +241,12 @@ SSL_set_connect_state(ssl);  // HU is client
 
 // Handshake loop:
 // 1. Call SSL_do_handshake()
-// 2. Read from network_bio → send as 0x0003 message to phone
-// 3. Read 0x0003 message from phone → write to network_bio
+// 2. Read from network_bio -> send as 0x0003 message to phone
+// 3. Read 0x0003 message from phone -> write to network_bio
 // 4. Repeat until SSL_is_init_finished()
 ```
 
-**Java/Android (SSLEngine) approach — HU as TLS client:**
+**Java/Android (SSLEngine) approach -- HU as TLS client:**
 ```java
 SSLEngine engine = SSLContext.getInstance("TLSv1.2")
     .createSSLEngine();
@@ -236,37 +254,42 @@ engine.setUseClientMode(true);       // HU is client
 engine.beginHandshake();
 
 // Loop through HandshakeStatus:
-//   NEED_WRAP → encrypt and send as 0x0003
-//   NEED_UNWRAP → receive 0x0003, decrypt
-//   NEED_TASK → run delegated tasks
-//   FINISHED → done
+//   NEED_WRAP -> encrypt and send as 0x0003
+//   NEED_UNWRAP -> receive 0x0003, decrypt
+//   NEED_TASK -> run delegated tasks
+//   FINISHED -> done
 ```
 
-**Note:** The phone side (`hzh.java:130`) sets `setUseClientMode(false)` and `setNeedClientAuth(true)` — it's the TLS server requiring mutual authentication. The HU must present a valid certificate.
+**Note:** The phone side (`hzh.java:130`) sets `setUseClientMode(false)` and `setNeedClientAuth(true)` -- it's the TLS server requiring mutual authentication. The HU must present a valid certificate.
 
 ---
 
 ## Step 3: Authentication / Binding
 
+> Confidence: Silver [apk_static + cross_version] -- see [AuthCompleteIndicationMessage.audit.yaml](../../oaa/control/AuthCompleteIndicationMessage.audit.yaml)
+
 ### Overview
 
 After TLS is established, the HU sends an `AUTH_COMPLETE` indication. In the aasdk/open-source implementations, this is a simple signal. Production Google SDKs may perform additional binding (BindingRequest/BindingResponse with key exchange), but the minimal flow that works is:
+
+> **Gotcha:** The auth binding type differs between wired and wireless connections. Wired (USB) connections typically use the minimal AUTH_COMPLETE flow. Wireless connections may require the extended BindingRequest/BindingResponse exchange, especially on first pairing. If the phone rejects AUTH_COMPLETE with a ShutdownRequest, try the extended binding flow.
 
 ### Minimal Flow (aasdk-compatible)
 
 ```
 Phone                                    Head Unit
   |                                         |
-  |←── AUTH_COMPLETE (0x0004) ──────────── |  Encrypted, protobuf
+  |<-- AUTH_COMPLETE (0x0004) ------------ |  Encrypted, protobuf
   |                                         |
   |     Phone accepts, session is           |
   |     authenticated                       |
 ```
 
-### AUTH_COMPLETE (0x0004) — HU → Phone
+### AUTH_COMPLETE (0x0004) -- HU -> Phone
 
 ```protobuf
 // oaa/control/AuthCompleteIndicationMessage.proto
+// confidence: silver [apk_static, cross_version]
 message AuthCompleteIndication {
     optional int32 status = 1;    // 0 = success
 }
@@ -280,17 +303,19 @@ Payload:    08 00        (field 1 = 0, status SUCCESS)
 
 ### Extended Binding Flow (Production SDKs)
 
-Production head units (Kenwood, Sony, Alpine) may perform a fuller binding exchange. This is optional — the phone accepts either flow:
+> Confidence: Silver [apk_static + cross_version] -- see [BindingRequestMessage.audit.yaml](../../oaa/control/BindingRequestMessage.audit.yaml)
+
+Production head units (Kenwood, Sony, Alpine) may perform a fuller binding exchange. This is optional -- the phone accepts either flow:
 
 ```
 Phone                                    Head Unit
   |                                         |
-  |←── BindingRequest (encrypted) ──────── |
-  |─── BindingResponse (encrypted) ──────→ |
-  |←── AUTH_COMPLETE (0x0004) ──────────── |
+  |<-- BindingRequest (encrypted) -------- |
+  |--- BindingResponse (encrypted) ------> |
+  |<-- AUTH_COMPLETE (0x0004) ------------ |
 ```
 
-**BindingRequest (no dedicated message ID — uses 0x0004 flow):**
+**BindingRequest (no dedicated message ID -- uses 0x0004 flow):**
 ```protobuf
 message BindingRequest {
     repeated int32 scan_codes = 1;  // Keycodes the HU supports
@@ -322,7 +347,7 @@ This pairing state is stored on the phone. Clearing AA app data resets it.
 |-------|-----------|---------|
 | Version MISMATCH | Response status = 0xFFFF | Connection must close. HU needs to support a version the phone accepts. |
 | SSL handshake timeout | No SSL_HANDSHAKE message within ~5s | Phone disconnects. Check certificate loading and BIO setup. |
-| SSL cert rejected | Phone drops connection after receiving cert | Check cert subject — must not contain "CarService" or "Google Automotive Link". |
+| SSL cert rejected | Phone drops connection after receiving cert | Check cert subject -- must not contain "CarService" or "Google Automotive Link". |
 | SSL handshake failure | `SSL_do_handshake()` returns error | Check cert/key pair match, TLS 1.2 support, cipher suite compatibility. |
 | Auth rejected | Phone sends ShutdownRequest after AUTH_COMPLETE | Check BindingRequest content. May need user confirmation on phone. |
 
@@ -335,7 +360,7 @@ This pairing state is stored on the phone. Clearing AA app data resets it.
 | Auth complete | ~300ms |
 | Ready for service discovery | ~300ms |
 
-Total phase duration: **~300ms** — this phase is fast.
+Total phase duration: **~300ms** -- this phase is fast.
 
 ## Log Tags
 
@@ -355,10 +380,10 @@ At the end of this phase:
 
 ## References
 
-- `oaa/control/ControlMessageIdsEnum.proto` — message ID definitions
-- `oaa/control/VersionResponseStatusEnum.proto` — MATCH/MISMATCH enum
-- `oaa/control/AuthCompleteIndicationMessage.proto` — auth complete message
-- `oaa/control/BindingRequestMessage.proto` — binding request (optional)
-- `oaa/control/BindingResponseMessage.proto` — binding response (optional)
-- [`phone-side-debug.md`](../phone-side-debug.md) — captured session (Phase 5: TCP + GAL Handshake)
+- `oaa/control/ControlMessageIdsEnum.proto` -- message ID definitions
+- `oaa/control/VersionResponseStatusEnum.proto` -- MATCH/MISMATCH enum
+- `oaa/control/AuthCompleteIndicationMessage.proto` -- auth complete message
+- `oaa/control/BindingRequestMessage.proto` -- binding request (optional)
+- `oaa/control/BindingResponseMessage.proto` -- binding response (optional)
+- [`phone-side-debug.md`](../phone-side-debug.md) -- captured session (Phase 5: TCP + GAL Handshake)
 - APK classes: `hzh.java` (version handler), `ibm.java` (SSL engine), `iod.java` (auth flow)
