@@ -2,7 +2,7 @@
 
 The most complete open-source Android Auto protocol reference available. Protocol buffer definitions, protocol documentation, wireless Bluetooth setup guides, decompiled headunit firmware analysis, and APK analysis tools.
 
-**164 `.proto` files** organized into 13 categories covering the full AA protocol surface: session control, audio/video streaming, input, sensors, navigation, Bluetooth, WiFi projection, and more.
+**223 `.proto` files** organized into 16 categories covering the full AA protocol surface: session control, audio/video streaming, input, sensors, navigation, Bluetooth, WiFi projection, car control, radio, and more.
 
 ## Origins
 
@@ -16,19 +16,22 @@ All proto files live under `oaa/`:
 
 | Category | Files | Description |
 |----------|------:|-------------|
-| `common` | 11 | Shared enums and base types: status codes, channel types, session info, error codes |
-| `control` | 20 | Session lifecycle: service discovery, channel open/close, ping, auth, shutdown |
-| `av` | 15 | Shared audio/video channel types: setup, start/stop, media ack, codec types |
-| `video` | 9 | Video channel: resolution, FPS, focus negotiation, display config |
-| `audio` | 7 | Audio channels: focus requests/responses, audio types, config |
-| `input` | 20 | Input channel: touch events, buttons, absolute/relative input, haptics |
-| `sensor` | 33 | Sensor channel: GPS, accel, gyro, speed, RPM, fuel, gear, HVAC, vehicle data |
+| `audio` | 10 | Audio channels: focus requests/responses, audio types, config |
+| `av` | 18 | Shared audio/video channel types: setup, start/stop, media ack, codec types |
 | `bluetooth` | 7 | Bluetooth channel: pairing requests/responses, methods, status |
-| `wifi` | 18 | WiFi projection: security, connection, version negotiation |
-| `navigation` | 14 | Navigation status: turn events, distance, maneuvers, lane guidance |
-| `phone` | 5 | Phone status: call state, capabilities, voice session |
-| `media` | 3 | Media status: playback status, metadata |
+| `carcontrol` | 3 | Car control: HVAC, door locks, mirrors, vehicle properties |
+| `common` | 12 | Shared enums and base types: status codes, channel types, session info, error codes |
+| `control` | 32 | Session lifecycle: service discovery, channel open/close, ping, auth, shutdown |
+| `generic` | 1 | Generic channel message wrapper (channel open acknowledgement) |
+| `input` | 22 | Input channel: touch events, buttons, absolute/relative input, haptics |
+| `media` | 11 | Media status: playback status, metadata, browsing |
+| `navigation` | 16 | Navigation status: turn events, distance, maneuvers, lane guidance |
 | `notification` | 2 | Notification types and channel data |
+| `phone` | 6 | Phone status: call state, capabilities, voice session |
+| `radio` | 5 | Radio channel: tuner control, presets, station metadata, band/codec enums |
+| `sensor` | 43 | Sensor channel: GPS, accel, gyro, speed, RPM, fuel, gear, HVAC, vehicle data |
+| `video` | 13 | Video channel: resolution, FPS, focus negotiation, display config |
+| `wifi` | 22 | WiFi projection: security, connection, version negotiation |
 
 ## Quick Start
 
