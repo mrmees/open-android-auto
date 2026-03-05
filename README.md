@@ -2,11 +2,11 @@
 
 The most complete open-source Android Auto protocol reference available. Protocol buffer definitions, protocol documentation, wireless Bluetooth setup guides, decompiled headunit firmware analysis, and APK analysis tools.
 
-**164 `.proto` files** organized into 13 categories covering the full AA protocol surface: session control, audio/video streaming, input, sensors, navigation, Bluetooth, WiFi projection, and more.
+**223 `.proto` files** organized into 16 categories covering the full AA protocol surface: session control, audio/video streaming, input, sensors, navigation, Bluetooth, WiFi projection, car control, radio, and more.
 
 ## Origins
 
-These definitions were reverse-engineered from Android Auto firmware (APK v16.1) and extended from [f1x.studio's aasdk](https://github.com/nicka-2/aasdk) (Michal Szwaj's original Android Auto SDK). The original aasdk provided a proto2 foundation; this collection upgrades to proto3, adds dozens of previously undocumented messages, and includes field-level annotations from live protocol captures.
+These definitions were reverse-engineered from Android Auto firmware (APK v16.1 and v16.2) and extended from [f1x.studio's aasdk](https://github.com/nicka-2/aasdk) (Michal Szwaj's original Android Auto SDK). The original aasdk provided a proto2 foundation; this collection upgrades to proto3, adds dozens of previously undocumented messages, and includes field-level annotations from live protocol captures.
 
 This repository is the protocol definition layer used by [OpenAuto Prodigy](https://github.com/mrmees/openauto-prodigy), a clean-room open-source Android Auto head unit for Raspberry Pi.
 
@@ -16,19 +16,22 @@ All proto files live under `oaa/`:
 
 | Category | Files | Description |
 |----------|------:|-------------|
-| `common` | 11 | Shared enums and base types: status codes, channel types, session info, error codes |
-| `control` | 20 | Session lifecycle: service discovery, channel open/close, ping, auth, shutdown |
-| `av` | 15 | Shared audio/video channel types: setup, start/stop, media ack, codec types |
-| `video` | 9 | Video channel: resolution, FPS, focus negotiation, display config |
-| `audio` | 7 | Audio channels: focus requests/responses, audio types, config |
-| `input` | 20 | Input channel: touch events, buttons, absolute/relative input, haptics |
-| `sensor` | 33 | Sensor channel: GPS, accel, gyro, speed, RPM, fuel, gear, HVAC, vehicle data |
+| `audio` | 10 | Audio channels: focus requests/responses, audio types, config |
+| `av` | 18 | Shared audio/video channel types: setup, start/stop, media ack, codec types |
 | `bluetooth` | 7 | Bluetooth channel: pairing requests/responses, methods, status |
-| `wifi` | 18 | WiFi projection: security, connection, version negotiation |
-| `navigation` | 14 | Navigation status: turn events, distance, maneuvers, lane guidance |
-| `phone` | 5 | Phone status: call state, capabilities, voice session |
-| `media` | 3 | Media status: playback status, metadata |
+| `carcontrol` | 3 | Car control: HVAC, door locks, mirrors, vehicle properties |
+| `common` | 12 | Shared enums and base types: status codes, channel types, session info, error codes |
+| `control` | 32 | Session lifecycle: service discovery, channel open/close, ping, auth, shutdown |
+| `generic` | 1 | Generic channel message wrapper (channel open acknowledgement) |
+| `input` | 22 | Input channel: touch events, buttons, absolute/relative input, haptics |
+| `media` | 11 | Media status: playback status, metadata, browsing |
+| `navigation` | 16 | Navigation status: turn events, distance, maneuvers, lane guidance |
 | `notification` | 2 | Notification types and channel data |
+| `phone` | 6 | Phone status: call state, capabilities, voice session |
+| `radio` | 5 | Radio channel: tuner control, presets, station metadata, band/codec enums |
+| `sensor` | 43 | Sensor channel: GPS, accel, gyro, speed, RPM, fuel, gear, HVAC, vehicle data |
+| `video` | 13 | Video channel: resolution, FPS, focus negotiation, display config |
+| `wifi` | 22 | WiFi projection: security, connection, version negotiation |
 
 ## Quick Start
 
@@ -103,7 +106,7 @@ import "oaa/video/VideoConfigData.proto";
 ### Protocol Reference
 
 - [Protocol Overview](docs/protocol-overview.md) — high-level AA protocol architecture
-- [Protocol Reference](docs/protocol-reference.md) — auto-generated message catalog (80 messages, 8 enums from APK v16.1)
+- [Protocol Reference](docs/protocol-reference.md) — auto-generated message catalog (86 messages, 8 enums)
 - [Protocol Cross-Reference](docs/protocol-cross-reference.md) — cross-referencing phone-side (APK) and head-unit-side (firmware) protocol implementations
 - [Channel Map](docs/channel-map.md) — channel IDs, message types, and data flow directions
 - [Field Notes](docs/field-notes.md) — hard-won implementation knowledge and gotchas
@@ -115,6 +118,41 @@ import "oaa/video/VideoConfigData.proto";
 - [Display Rendering](docs/display-rendering.md) — rendering AA video on non-standard displays with letterboxing and sidebars
 - [Phone-Side Debug](docs/phone-side-debug.md) — debugging AA from the phone's perspective
 - [Troubleshooting](docs/troubleshooting.md) — common failure modes and diagnostic workflows
+
+### Channel Specifications
+
+Detailed protocol specs for each Android Auto channel:
+
+- [Audio](docs/channels/audio.md) — codec negotiation, focus, PCM/AAC config
+- [Bluetooth](docs/channels/bluetooth.md) — pairing, connection, status
+- [Car Control](docs/channels/carcontrol.md) — HVAC, door locks, mirrors
+- [Coolwalk Layout](docs/channels/coolwalk-layout.md) — UI layout engine and phenotype flags
+- [Display Routing](docs/channels/display-routing.md) — multi-display content routing
+- [Input](docs/channels/input.md) — touch, buttons, rotary, touchpad
+- [Media](docs/channels/media.md) — playback status, metadata
+- [Navigation](docs/channels/nav.md) — turn-by-turn, routing, lane guidance
+- [Phone](docs/channels/phone.md) — call state, contacts, SIM
+- [Radio](docs/channels/radio.md) — tuner, presets, station metadata
+- [WiFi Projection](docs/channels/wifi-projection.md) — wireless AA setup and config
+
+### Session Lifecycle
+
+Step-by-step AA handshake and session lifecycle:
+
+- [Transport Setup](docs/interactions/01-transport-setup.md) — TCP/AOA connection
+- [Version & SSL Auth](docs/interactions/02-version-ssl-auth.md) — TLS negotiation
+- [Service Discovery](docs/interactions/03-service-discovery.md) — SDP exchange
+- [Channel Lifecycle](docs/interactions/04-channel-lifecycle.md) — open/close/teardown
+- [Session Maintenance](docs/interactions/05-session-maintenance-teardown.md) — keep-alive, errors, disconnect
+
+### Verification Framework
+
+How discoveries are tracked and validated:
+
+- [Confidence Tiers](docs/verification/01-confidence-tiers.md) — Gold/Silver/Bronze scoring
+- [Audit Trail Format](docs/verification/02-audit-trail-format.md) — `.audit.yaml` sidecar spec
+- [Verification Procedures](docs/verification/03-verification-procedures.md) — wire capture and APK validation
+- [Source Provenance](docs/verification/04-source-provenance.md) — attribution tracking
 
 ### Decompiled Headunit Firmware
 
@@ -128,7 +166,7 @@ Protocol implementation details extracted from commercial AA head units:
 
 ### Analysis Tools
 
-- [APK Analysis](analysis/README.md) — Python indexer scripts and pre-built SQLite database from Android Auto APK v16.1
+- [APK Analysis](analysis/README.md) — Python indexer scripts and pre-built SQLite databases from Android Auto APK v16.1 and v16.2
 
 ### Research & Contributing
 
