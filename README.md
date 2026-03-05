@@ -119,6 +119,41 @@ import "oaa/video/VideoConfigData.proto";
 - [Phone-Side Debug](docs/phone-side-debug.md) — debugging AA from the phone's perspective
 - [Troubleshooting](docs/troubleshooting.md) — common failure modes and diagnostic workflows
 
+### Channel Specifications
+
+Detailed protocol specs for each Android Auto channel:
+
+- [Audio](docs/channels/audio.md) — codec negotiation, focus, PCM/AAC config
+- [Bluetooth](docs/channels/bluetooth.md) — pairing, connection, status
+- [Car Control](docs/channels/carcontrol.md) — HVAC, door locks, mirrors
+- [Coolwalk Layout](docs/channels/coolwalk-layout.md) — UI layout engine and phenotype flags
+- [Display Routing](docs/channels/display-routing.md) — multi-display content routing
+- [Input](docs/channels/input.md) — touch, buttons, rotary, touchpad
+- [Media](docs/channels/media.md) — playback status, metadata
+- [Navigation](docs/channels/nav.md) — turn-by-turn, routing, lane guidance
+- [Phone](docs/channels/phone.md) — call state, contacts, SIM
+- [Radio](docs/channels/radio.md) — tuner, presets, station metadata
+- [WiFi Projection](docs/channels/wifi-projection.md) — wireless AA setup and config
+
+### Session Lifecycle
+
+Step-by-step AA handshake and session lifecycle:
+
+- [Transport Setup](docs/interactions/01-transport-setup.md) — TCP/AOA connection
+- [Version & SSL Auth](docs/interactions/02-version-ssl-auth.md) — TLS negotiation
+- [Service Discovery](docs/interactions/03-service-discovery.md) — SDP exchange
+- [Channel Lifecycle](docs/interactions/04-channel-lifecycle.md) — open/close/teardown
+- [Session Maintenance](docs/interactions/05-session-maintenance-teardown.md) — keep-alive, errors, disconnect
+
+### Verification Framework
+
+How discoveries are tracked and validated:
+
+- [Confidence Tiers](docs/verification/01-confidence-tiers.md) — Gold/Silver/Bronze scoring
+- [Audit Trail Format](docs/verification/02-audit-trail-format.md) — `.audit.yaml` sidecar spec
+- [Verification Procedures](docs/verification/03-verification-procedures.md) — wire capture and APK validation
+- [Source Provenance](docs/verification/04-source-provenance.md) — attribution tracking
+
 ### Decompiled Headunit Firmware
 
 Protocol implementation details extracted from commercial AA head units:
