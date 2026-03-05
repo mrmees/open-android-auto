@@ -6,7 +6,7 @@ The most complete open-source Android Auto protocol reference available. Protoco
 
 ## Origins
 
-These definitions were reverse-engineered from Android Auto firmware (APK v16.1) and extended from [f1x.studio's aasdk](https://github.com/nicka-2/aasdk) (Michal Szwaj's original Android Auto SDK). The original aasdk provided a proto2 foundation; this collection upgrades to proto3, adds dozens of previously undocumented messages, and includes field-level annotations from live protocol captures.
+These definitions were reverse-engineered from Android Auto firmware (APK v16.1 and v16.2) and extended from [f1x.studio's aasdk](https://github.com/nicka-2/aasdk) (Michal Szwaj's original Android Auto SDK). The original aasdk provided a proto2 foundation; this collection upgrades to proto3, adds dozens of previously undocumented messages, and includes field-level annotations from live protocol captures.
 
 This repository is the protocol definition layer used by [OpenAuto Prodigy](https://github.com/mrmees/openauto-prodigy), a clean-room open-source Android Auto head unit for Raspberry Pi.
 
@@ -106,7 +106,7 @@ import "oaa/video/VideoConfigData.proto";
 ### Protocol Reference
 
 - [Protocol Overview](docs/protocol-overview.md) — high-level AA protocol architecture
-- [Protocol Reference](docs/protocol-reference.md) — auto-generated message catalog (80 messages, 8 enums from APK v16.1)
+- [Protocol Reference](docs/protocol-reference.md) — auto-generated message catalog (86 messages, 8 enums)
 - [Protocol Cross-Reference](docs/protocol-cross-reference.md) — cross-referencing phone-side (APK) and head-unit-side (firmware) protocol implementations
 - [Channel Map](docs/channel-map.md) — channel IDs, message types, and data flow directions
 - [Field Notes](docs/field-notes.md) — hard-won implementation knowledge and gotchas
@@ -166,7 +166,7 @@ Protocol implementation details extracted from commercial AA head units:
 
 ### Analysis Tools
 
-- [APK Analysis](analysis/README.md) — Python indexer scripts and pre-built SQLite database from Android Auto APK v16.1
+- [APK Analysis](analysis/README.md) — Python indexer scripts and pre-built SQLite databases from Android Auto APK v16.1 and v16.2
 
 ### Research & Contributing
 
