@@ -8,12 +8,23 @@ package oaa.proto.messages;
 
 import "oaa/navigation/NavigationDistanceDisplayData.proto";
 
-// APK class: xnb — Navigation distance/ETA update
-// Message ID: UNKNOWN — previously assigned 0x8007 but wire capture (2026-03-04)
-// proved that 0x8007 is NavigationNextTurnDistanceEvent (vzd), not this message.
-// NavigationDistance field 1 expects NavigationDistanceValue (int64 raw_meters),
-// but wire 0x8007 payload has nested submessage (NavigationRemainingDistance).
-// This message may be sent on a different channel or use a different message ID.
+// APK class: xnb (v16.1) / xmm (v16.2) — Navigation distance/ETA structure
+//
+// NOT A WIRE MESSAGE. This proto is never dispatched on any GAL channel.
+// In both v16.1 and v16.2, the nav channel handler (hkx/hlj) dispatches exactly
+// 4 message types (0x8003, 0x8006, 0x8007, 0x8008) — none of which use this class.
+// The only external reference to xmm is from ahdy, a phone-internal config proto
+// embedded inside aheo (navigation state management). This proto exists for
+// phone-side state tracking, not head-unit communication.
+//
+// Previously misattributed to message ID 0x8007 — wire capture (2026-03-04) proved
+// that 0x8007 is NavigationNextTurnDistanceEvent (vzd/vyp), defined in
+// NavigationTurnEventMessage.proto. APK call graph analysis (2026-03-04) confirmed
+// xmm has zero references from any channel handler class.
+//
+// If you need distance data from the wire, use NavigationNextTurnDistanceEvent
+// (0x8007) which has all optional fields and works correctly when stationary.
+//
 // confidence: silver [apk_static, cross_version]
 message NavigationDistance {
     required data.NavigationDistanceValue distance = 1; // APK: xmw — required per descriptor  // confidence: silver [apk_static, cross_version]
