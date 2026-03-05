@@ -242,6 +242,120 @@ The ducking response time should be under 200ms to avoid audible artifacts where
 
 ---
 
+## Codec Negotiation
+
+> Confidence: Silver [apk_static, 16.2 deep trace] -- codec selection algorithm fully traced through APK
+
+### Supported Codecs — MediaCodecType Enum
+
+| Value | Name | Status |
+|:-----:|------|--------|
+| 0 | MEDIA_CODEC_UNKNOWN | Default/fallback |
+| 1 | MEDIA_CODEC_AUDIO_PCM | **Mandatory** — always supported, universal fallback |
+| 2 | MEDIA_CODEC_AUDIO_AAC_LC | Supported — AAC-LC without framing |
+| 4 | MEDIA_CODEC_AUDIO_AAC_LC_ADTS | Supported — AAC-LC with ADTS framing headers |
+
+**There is no Opus codec.** The string "opus" does not appear anywhere in the AA 16.2 APK. Audio is strictly PCM or AAC-LC.
+
+Values 3, 5, 6, 7 are video codecs (H.264, VP9, AV1, H.265) — not relevant for audio.
+
+### AudioConfig Constraints
+
+The phone validates these hard limits (`C0000a.m3D()` in 16.2):
+
+| Parameter | Accepted Values |
+|-----------|----------------|
+| Sample rate | 48000 Hz or 16000 Hz only |
+| Bit depth | 16 only |
+| Channel count | 1 (mono) or 2 (stereo) only |
+
+Any config not matching these constraints is rejected.
+
+### How Codec Selection Works
+
+There is **no multi-codec negotiation**. The HU declares ONE codec per channel:
+
+1. HU sets `AVChannel.audio_type` (field 2 of `vye`) to a `MediaCodecType` value in the SDP
+2. Phone reads this value. If unrecognized, falls back to `MEDIA_CODEC_AUDIO_PCM`
+3. If AAC (value 2 or 4): phone initializes an AAC encoder (`hsk` class). For AAC-LC-ADTS (value 4), ADTS framing headers are added
+4. If PCM (value 1): no encoder — raw PCM samples sent directly
+5. Phone sends `AVChannelSetupRequest` (msg 0x8000) with `config_index = codec_enum_value`
+6. HU responds with `AVChannelSetupResponse` (msg 0x8003): status OK/FAIL, max_unacked buffer depth
+
+The `repeated AudioConfig` field in `AVChannel` (field 4) specifies **format parameters** (sample rate, channels), NOT alternative codecs. Multiple AudioConfig entries = different sample rate/channel combinations the HU supports.
+
+### Per-Channel Defaults
+
+| Channel | Type | Default Format | Sample Rate | Channels |
+|---------|------|---------------|-------------|----------|
+| 4 | Media | 48000_STEREO | 48000 Hz | Stereo |
+| 5 | Guidance/TTS | 16000_MONO or 48000_MONO | 16000 or 48000 Hz | Mono |
+| 6 | Phone call | 16000_MONO or 48000_MONO | 16000 or 48000 Hz | Mono |
+
+Selection logic from `hqh.java:160-166`:
+- Media channel → always 48kHz stereo
+- Other channels → 16kHz mono if HU supports it, otherwise 48kHz mono
+
+### Audio Format Priority
+
+From `hrf.java:127-141`, the phone uses priority lists:
+- **Default**: [STEREO_48000, MONO_16000, MONO_48000] — prefers stereo
+- **Alternative**: [MONO_16000, MONO_48000, STEREO_48000] — prefers mono (used for guidance/system)
+
+### Audio Buffer Sizing
+
+From `ibt.m20149r()`:
+
+| Codec | Sample Rate | Buffer Size | Buffer Duration |
+|-------|-------------|-------------|-----------------|
+| PCM | 48000 Hz | 2048 samples | ~42.7 ms |
+| PCM | 16000 Hz | 1024 samples | 64 ms |
+| AAC | any | 1024 samples | varies |
+
+### AVChannelSetupRequest/Response Details
+
+**AVChannelSetupRequest** (0x8000, Phone → HU):
+
+| Field | Type | Description |
+|-------|------|-------------|
+| 1 | enum (MediaCodecType) | Codec the phone will use |
+
+**AVChannelSetupResponse** (0x8003, HU → Phone):
+
+| Field | Type | Description |
+|-------|------|-------------|
+| 1 | enum | Status: NONE=0, FAIL=1, OK=2 |
+| 2 | uint32 | max_unacked — flow control buffer depth |
+| 3 | repeated uint32 | configs — accepted configuration indices |
+
+**AVChannelStartIndication** (0x8001, Phone → HU):
+
+| Field | Type | Description |
+|-------|------|-------------|
+| 1 | int32 | session ID (monotonically incrementing) |
+| 2 | uint32 | config — internal format index (1-4, not codec enum) |
+| 3 | enum | Session type: UNKNOWN=0, NORMAL=1, ALTERNATE=2 |
+| 4 | message | AVChannelMediaConfig (timing/ping parameters) |
+
+### Microphone Input (HU → Phone)
+
+For channel 6 (phone call), the HU sends mic audio TO the phone. Configured via `AVInputChannel` (`vyf`) in the SDP:
+
+| Field | Type | Description |
+|-------|------|-------------|
+| 2 | enum (MediaCodecType) | Codec (default: PCM) |
+| 3 | AudioConfig | Single config (not repeated) — sample rate, bit depth, channels |
+
+### Ackless Audio (PDK 5.0+)
+
+When `CarInfo.f20437e >= 5` (PDK version 5+), ackless mode is enabled — the phone streams audio without waiting for `AVMediaAckIndication` between frames. This reduces latency on modern head units. From `hrf.java:221`.
+
+### Car-Specific Quirks
+
+Certain vehicles have force-single-channel (mono) capturing enabled via a hardcoded list at `pli.java:91`. Known affected: KIA, HYUNDAI (daudio), Ford SYNC.
+
+---
+
 ## Gotchas
 
 > **Gotcha:** Focus messages go on **channel 0** (control), not on the audio channels themselves. Sending AudioFocusRequest on channel 4/5/6 will be ignored. The phone always sends focus requests on the control channel, and the HU must handle them there. The `channel_id` context for which audio channel is requesting focus comes from the session state, not from the message routing.
@@ -251,6 +365,18 @@ The ducking response time should be under 200ms to avoid audible artifacts where
 > **Gotcha:** AV channel setup (AVChannelSetupRequest/Response, AVChannelStartIndication) is a **prerequisite** for audio data flow. The phone will not send PCM data until the AV setup handshake completes on each channel. Audio focus must also be granted before the phone starts streaming. Both conditions must be met. See [04-channel-lifecycle.md](../interactions/04-channel-lifecycle.md) for the full setup sequence.
 
 > **Gotcha:** Channel 6 (phone call audio) is **bidirectional** -- the HU must send microphone PCM data back to the phone for the caller to hear the driver. Channels 4 and 5 are phone-to-HU only.
+
+> **Gotcha:** There is **no Opus codec** in Android Auto. Despite being common in other protocols, AA only supports PCM and AAC-LC. The HU cannot negotiate Opus.
+
+> **Gotcha:** **PCM is mandatory.** If the HU doesn't set a codec or sends an unrecognized value, the phone falls back to PCM. Every HU must handle raw PCM audio at minimum.
+
+> **Gotcha:** **AAC-LC vs AAC-LC-ADTS** are two distinct codec values (2 vs 4). The ADTS variant wraps each AAC frame in an ADTS header for easier framing. Choose one — don't mix them on the same channel.
+
+> **Gotcha:** The `config` field in `AVChannelStartIndication` carries the **internal format index** (1=stereo 48k, 2=mono 16k, 3=mono 48k), NOT the MediaCodecType enum. Don't confuse the two.
+
+> **Gotcha:** **Multiple AVChannelSetupResponse = error.** If the HU sends a second setup response on the same channel, the phone terminates with `MULTIPLE_DISPLAY_CONFIGS` error.
+
+> **Gotcha:** **16-bit only.** The phone rejects any AudioConfig with bit_depth != 16. Do not advertise 24-bit or 32-bit audio.
 
 ---
 
@@ -274,6 +400,23 @@ The ducking response time should be under 200ms to avoid audible artifacts where
 - [AVChannelStartIndicationMessage.proto](../../oaa/av/AVChannelStartIndicationMessage.proto)
 - [AVMediaAckIndicationMessage.proto](../../oaa/av/AVMediaAckIndicationMessage.proto)
 - [AVChannelMessageIdsEnum.proto](../../oaa/av/AVChannelMessageIdsEnum.proto)
+
+### Codec Negotiation Classes (16.2)
+- `vxz.java` — MediaCodecType enum (PCM=1, AAC_LC=2, AAC_LC_ADTS=4)
+- `vye.java` — AVChannel / ChannelDescriptor with audio_type and audio_configs
+- `vyf.java` — AVInputChannel (mic input config)
+- `vvb.java` — AudioConfig proto (sample_rate, bit_depth, channel_count)
+- `hqh.java` — Audio format selection per channel type
+- `hrf.java` — Audio format priority lists, ackless mode (PDK 5+)
+- `hsk.java` — AAC encoder wrapper
+- `hsz.java` — AAC codec detection helper
+- `ibt.java` — Audio buffer sizing, channel type mapping
+- `icv.java` — AVChannelSetup request/response handling
+- `gnq.java` — Internal audio format enum (48k stereo, 16k mono, 48k mono)
+- `nnv.java` — AudioStreamType diagnostics enum
+- `pli.java` — Car-specific force-mono list (KIA, HYUNDAI, SYNC)
+- `wbs.java` — AVChannelSetupRequest proto (single codec field)
+- `vwn.java` — AVChannelSetupResponse proto (status, max_unacked, configs)
 
 ### Cross-References
 - [Audio cross-version mapping](../cross-version/audio.md) -- APK class mappings across versions 15.9, 16.1, 16.2

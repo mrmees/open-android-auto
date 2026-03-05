@@ -5,10 +5,11 @@
 | Message | Tier | Evidence | Audit File |
 |---------|------|----------|------------|
 | NavigationTurnEvent | Silver | apk_static + cross_version | [NavigationTurnEventMessage.audit.yaml](../../oaa/navigation/NavigationTurnEventMessage.audit.yaml) |
-| NavigationNotification | Silver | apk_static + cross_version | [NavigationNotificationMessage.audit.yaml](../../oaa/navigation/NavigationNotificationMessage.audit.yaml) |
+| NavigationNotification | Gold | apk_static + cross_version + **wire_verified** | [NavigationNotificationMessage.audit.yaml](../../oaa/navigation/NavigationNotificationMessage.audit.yaml) |
+| NavigationNextTurnDistanceEvent | Gold | apk_static + cross_version + **wire_verified** | [NavigationTurnEventMessage.audit.yaml](../../oaa/navigation/NavigationTurnEventMessage.audit.yaml) |
 | NavigationDistance | Silver | apk_static + cross_version | [NavigationDistanceMessage.audit.yaml](../../oaa/navigation/NavigationDistanceMessage.audit.yaml) |
 | NavigationDistanceDisplay | Silver | apk_static + cross_version | [NavigationDistanceDisplayData.audit.yaml](../../oaa/navigation/NavigationDistanceDisplayData.audit.yaml) |
-| NavigationState | Silver | apk_static + cross_version | [NavigationStateMessage.audit.yaml](../../oaa/navigation/NavigationStateMessage.audit.yaml) |
+| NavigationState | Gold | apk_static + cross_version + **wire_verified** | [NavigationStateMessage.audit.yaml](../../oaa/navigation/NavigationStateMessage.audit.yaml) |
 | NavigationFocusRequest | Silver | apk_static + cross_version | [NavigationFocusRequestMessage.audit.yaml](../../oaa/navigation/NavigationFocusRequestMessage.audit.yaml) |
 | NavigationFocusResponse | Silver | apk_static + cross_version | [NavigationFocusResponseMessage.audit.yaml](../../oaa/navigation/NavigationFocusResponseMessage.audit.yaml) |
 | NavigationFocusIndication | Silver | apk_static + cross_version | [NavigationFocusIndicationMessage.audit.yaml](../../oaa/navigation/NavigationFocusIndicationMessage.audit.yaml) |
@@ -30,7 +31,7 @@ Channel 11 (`NAVIGATION_STATUS`) carries turn-by-turn navigation guidance from t
 
 **NavigationTurnEvent** is the primary message, observed firing at ~1Hz during active navigation via DHU 2.1 testing. It contains the next turn's maneuver type, road name, distance, and optionally a turn icon. **NavigationNotification** carries the same information in a richer hierarchical format with multi-step lookahead, lane guidance, and destination/ETA data.
 
-The navigation channel also carries distance/ETA data via **NavigationDistance** and navigation state transitions via **NavigationState** (active/inactive/ended). Focus negotiation (**NavigationFocusRequest/Response/Indication**) tells the HU when a navigation app is active, separate from audio focus which is negotiated on the audio channels (4/5/6).
+The navigation channel also carries distance data via **NavigationNextTurnDistanceEvent** (0x8007) and navigation state transitions via **NavigationState** (active/inactive/ended). Focus negotiation (**NavigationFocusRequest/Response/Indication**) tells the HU when a navigation app is active, separate from audio focus which is negotiated on the audio channels (4/5/6).
 
 This is the deepest channel in the protocol: 14 proto files, 31 cross-version mappings, and the richest sub-message hierarchy. See [cross-version mapping table](../cross-version/navigation.md) for version stability across 15.9, 16.1, and 16.2.
 
@@ -40,13 +41,13 @@ This is the deepest channel in the protocol: 14 proto files, 31 cross-version ma
 
 ### Turn Guidance
 
-> Confidence: Silver [apk_static, cross_version] -- NavigationTurnEvent and NavigationNotification both Silver; ManeuverType and TurnSide enums are Unverified but values map 1:1 to Android `Maneuver.TYPE_*` constants
+> Confidence: NavigationNotification and NavigationNextTurnDistanceEvent are **Gold** [apk_static, cross_version, wire_verified — 2026-03-04 decrypted capture]; NavigationTurnEvent is Silver; ManeuverType and TurnSide enums are Unverified but values map 1:1 to Android `Maneuver.TYPE_*` constants
 
 | MsgID | Message | Direction | Purpose |
 |-------|---------|-----------|---------|
 | 0x8004 | NavigationTurnEvent | Phone -> HU | Next turn: maneuver type, road name, distance, turn icon |
 | 0x8006 | NavigationNotification | Phone -> HU | Rich turn-by-turn with steps, lanes, destinations, ETA |
-| 0x8007 | NavigationDistance | Phone -> HU | Distance/ETA to next maneuver and destination |
+| 0x8007 | NavigationNextTurnDistanceEvent | Phone -> HU | Distance to next turn with display text and unit |
 
 **NavigationTurnEvent** is the simplified, flat representation:
 
@@ -65,7 +66,7 @@ message NavigationTurnEvent {
 
 ### Navigation State
 
-> Confidence: Silver [apk_static, cross_version] -- NavigationState and all focus messages are Silver
+> Confidence: NavigationState is **Gold** [apk_static, cross_version, wire_verified — 2026-03-04]; focus messages are Silver
 
 | MsgID | Message | Direction | Purpose |
 |-------|---------|-----------|---------|
@@ -117,7 +118,7 @@ See [Instrument Cluster](#instrument-cluster-1) section below for details.
 | TurnSide | 3 values (0-2) | NavigationTurnEvent |
 | LaneShape | 10 values (0-9) | NavigationLaneDirection |
 | NavigationType | 3 values (0-2) | NavigationChannel config |
-| DistanceDisplayUnit | 6 values (0-5) | NavigationTurnEvent |
+| DistanceDisplayUnit | 7 values (0-6) | NavigationTurnEvent, NavigationNextTurnDistanceEvent |
 
 See [ManeuverType Reference](#maneuvertype-reference) and [LaneShape Reference](#laneshape-reference) for grouped summaries.
 
@@ -170,7 +171,7 @@ Phone                                    Head Unit
   |                                         |
   |--- NavigationTurnEvent -------------->  |  ~1Hz turn guidance
   |--- NavigationTurnEvent -------------->  |
-  |--- NavigationDistance --------------->  |  Distance/ETA updates
+  |--- NavigationNextTurnDistanceEvent -->  |  Distance to next turn
   |--- NavigationNotification ----------->  |  Rich turn-by-turn (periodic)
   |--- NavigationTurnEvent -------------->  |
   |                                         |
@@ -378,7 +379,7 @@ Track `NavigationState` to know when to show/hide navigation UI:
 
 > **Gotcha:** ManeuverType `UNKNOWN` (0) is the default value. If the phone can't determine the maneuver type, it sends 0. Your icon mapping must handle this case -- don't crash or show a blank on UNKNOWN. A generic "continue" arrow is the standard fallback.
 
-> **Gotcha:** NavigationDistance and NavigationTurnEvent both contain distance information but in different formats. NavigationTurnEvent has a simple `distance_meters` int, while NavigationDistance carries a complex hierarchy of `NavigationDistanceValue`, `NavigationDistanceDisplay`, and `DistanceLabel` for rich formatting (primary text, secondary text, labels with units). Use NavigationTurnEvent for basic distance display; use NavigationDistance for formatted distance strings the phone has already localized.
+> **Gotcha:** NavigationNextTurnDistanceEvent (0x8007) and NavigationTurnEvent (0x8004) both contain distance information but in different formats. NavigationTurnEvent has a simple `distance_meters` int, while NavigationNextTurnDistanceEvent carries `NavigationRemainingDistance` with display text and a `DistanceDisplayUnit` enum for localized formatting. Use NavigationTurnEvent for basic distance display; use NavigationNextTurnDistanceEvent for pre-formatted distance strings. **Note:** NavigationDistance (APK class xnb) was previously assigned to 0x8007 but wire capture analysis (2026-03-04) proved this wrong — NavigationDistance's field 1 expects int64, but wire data has a nested submessage matching NavigationNextTurnDistanceEvent. NavigationDistance's actual message ID is unknown; it may not be sent on the nav channel at all.
 
 ---
 

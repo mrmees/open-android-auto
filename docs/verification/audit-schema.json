@@ -21,6 +21,11 @@
       "$ref": "#/$defs/confidence_tier",
       "description": "Current overall confidence tier for this message."
     },
+    "last_updated": {
+      "type": "string",
+      "format": "date",
+      "description": "ISO 8601 date (YYYY-MM-DD) when this audit file was last modified."
+    },
     "evidence": {
       "type": "array",
       "default": [],

@@ -508,6 +508,15 @@ At the end of this phase:
 
 Session is active. See [Session Maintenance and Teardown](05-session-maintenance-teardown.md) for keepalive and shutdown.
 
+## Channel Documentation
+
+For detailed protocol coverage of individual feature channels, see:
+
+- [Audio Channel](../channels/audio.md) -- audio focus negotiation, streaming, ducking across channels 4/5/6
+- [Media Channel](../channels/media.md) -- phone-sourced playback, metadata, MediaBrowserService interaction
+- [Navigation Channel](../channels/nav.md) -- turn events, cluster data, maneuver types, step distance/time
+- [Phone Channel](../channels/phone.md) -- call state, DTMF, contact sync
+
 ## References
 
 - `oaa/control/ChannelOpenRequestMessage.proto`, `ChannelOpenResponseMessage.proto`

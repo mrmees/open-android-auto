@@ -119,16 +119,18 @@ message IntValues {
     repeated int32 values = 1 [packed = true];
 }
 
-// APK class: vvc (proto3) — repeated packed int64
+// APK class: vum (16.2) / vvc (16.1) — repeated packed float
+// BUG FIX: was incorrectly declared as int64, confirmed float via zzq schema char '$'=packed float
 // confidence: silver [apk_static, cross_version]
 message FloatValues {
-    repeated int64 values = 1 [packed = true];
+    repeated float values = 1 [packed = true];
 }
 
-// APK class: vva (proto3) — repeated packed float
+// APK class: vuo (16.2) / vva (16.1) — repeated packed int64
+// BUG FIX: was incorrectly declared as float, confirmed int64 via zzq schema char '%'=packed int64
 // confidence: silver [apk_static, cross_version]
 message LongValues {
-    repeated float values = 1 [packed = true];
+    repeated int64 values = 1 [packed = true];
 }
 
 // APK class: vuo (proto3) → wraps CarAction in an entry wrapper

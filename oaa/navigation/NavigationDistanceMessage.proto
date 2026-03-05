@@ -8,8 +8,12 @@ package oaa.proto.messages;
 
 import "oaa/navigation/NavigationDistanceDisplayData.proto";
 
-// APK class: xnb — Navigation distance/ETA update (msgId 0x8007 on Nav channel)
-// Sent periodically by phone during active navigation
+// APK class: xnb — Navigation distance/ETA update
+// Message ID: UNKNOWN — previously assigned 0x8007 but wire capture (2026-03-04)
+// proved that 0x8007 is NavigationNextTurnDistanceEvent (vzd), not this message.
+// NavigationDistance field 1 expects NavigationDistanceValue (int64 raw_meters),
+// but wire 0x8007 payload has nested submessage (NavigationRemainingDistance).
+// This message may be sent on a different channel or use a different message ID.
 // confidence: silver [apk_static, cross_version]
 message NavigationDistance {
     required data.NavigationDistanceValue distance = 1; // APK: xmw — required per descriptor  // confidence: silver [apk_static, cross_version]

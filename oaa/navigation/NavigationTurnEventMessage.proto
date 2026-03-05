@@ -40,8 +40,7 @@ message NavigationTurnEvent {
 }
 
 // APK class: vzg — turn distance with display text and unit
-// Distinct from NavigationDistance (xnb) which is the full distance/ETA message.
-// Distance display unit (APK enum, values TBD — likely km/mi/m/ft)
+// Distinct from NavigationDistance (xnb) which has unknown message ID.
 // confidence: silver [apk_static, cross_version]
 enum DistanceDisplayUnit {
     DISTANCE_UNIT_UNKNOWN = 0;
@@ -50,6 +49,7 @@ enum DistanceDisplayUnit {
     DISTANCE_UNIT_MILES = 3;
     DISTANCE_UNIT_FEET = 4;
     DISTANCE_UNIT_YARDS = 5;
+    DISTANCE_UNIT_UNKNOWN_6 = 6; // Observed on wire (2026-03-04) — seen in stationary capture, may be a placeholder or locale-specific unit. Needs driving capture to confirm.
 }
 
 // confidence: silver [apk_static, cross_version]
@@ -84,7 +84,10 @@ message NavigationTurnLabel {
 
 // APK class: vzd — next turn distance event with remaining and step distances
 // Sub-message refs: vzv (NavigationRemainingDistance), vzn (NavigationTurnLabel)
-// confidence: silver [apk_static, cross_version]
+// Message ID: 0x8007 (32775) on Navigation channel — WIRE VERIFIED (2026-03-04)
+// Wire payload: {1: {1: {2: "0", 3: 6}}} = remaining_distance.distance.display_text="0", distance_unit=6
+// Previously misattributed to NavigationDistance (xnb); wire type mismatch proved it wrong.
+// confidence: gold [apk_static, cross_version, wire_verified]
 message NavigationNextTurnDistanceEvent {
     optional NavigationRemainingDistance remaining_distance = 1; // APK: message (vzv)  // confidence: silver [apk_static, cross_version]
     repeated NavigationTurnLabel turn_labels = 2; // APK: repeated message (vzn)  // confidence: silver [apk_static, cross_version]
