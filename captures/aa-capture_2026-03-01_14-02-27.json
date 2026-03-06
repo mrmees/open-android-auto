@@ -1,0 +1,22 @@
+{
+  "device": "samsung SM-S938U",
+  "android_version": "16",
+  "aa_version": "not installed",
+  "filters": [
+    "session",
+    "sensors",
+    "radio",
+    "navigation",
+    "car_control",
+    "verbose",
+    "video",
+    "audio",
+    "media"
+  ],
+  "notes": "",
+  "start_time": "2026-03-01T20:02:27Z",
+  "end_time": "2026-03-01T20:07:04Z",
+  "markers": [],
+  "line_count": 260,
+  "file_size_bytes": 36905
+}

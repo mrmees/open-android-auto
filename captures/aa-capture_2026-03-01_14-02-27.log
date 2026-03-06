@@ -1,0 +1,260 @@
+--------- beginning of main
+03-01 14:02:30.560 16399 16399 I VRI[MainActivity]@ed04595: call setFrameRateCategory for touch hint category=no preference, reason=boost timeout, vri=VRI[MainActivity]@ed04595
+03-01 14:02:44.887 16399 16399 I ImeFocusController: onPreWindowFocus: skipped hasWindowFocus=false mHasImeFocus=true
+03-01 14:02:44.887 16399 16399 I ImeFocusController: onPostWindowFocus: skipped hasWindowFocus=false mHasImeFocus=true
+03-01 14:02:44.942 16399 16399 I InsetsSourceConsumer: applyRequestedVisibilityToControl: visible=true, type=statusBars, host=org.openauto.aacapture/org.openauto.aacapture.ui.MainActivity
+03-01 14:02:44.942 16399 16399 I InsetsSourceConsumer: applyRequestedVisibilityToControl: visible=true, type=navigationBars, host=org.openauto.aacapture/org.openauto.aacapture.ui.MainActivity
+03-01 14:02:44.946 16399 16399 D VRI[MainActivity]@ed04595: mThreadedRenderer.initializeIfNeeded()#2 mSurface={isValid=true 0xb400007d1c98e780}
+03-01 14:02:44.946 16399 16399 D InputMethodManagerUtils: startInputInner - Id : 0
+03-01 14:02:44.946 16399 16399 I InputMethodManager: startInputInner - IInputMethodManagerGlobalInvoker.startInputOrWindowGainedFocus
+03-01 14:02:44.950 16399 16399 I InputMethodManager: handleMessage: setImeVisibility visible=false
+03-01 14:02:44.950 16399 16399 D InsetsController: hide(ime(), fromIme=false)
+03-01 14:02:44.950 16399 16399 I ImeTracker: org.openauto.aacapture:ddb5c9a9: onCancelled at PHASE_CLIENT_ALREADY_HIDDEN
+03-01 14:02:44.953 16399 16399 I ImeFocusController: onPreWindowFocus: skipped hasWindowFocus=false mHasImeFocus=true
+03-01 14:02:44.953 16399 16399 I ImeFocusController: onPostWindowFocus: skipped hasWindowFocus=false mHasImeFocus=true
+03-01 14:02:44.954 16399 30250 D InputTransport: Input channel constructed: 'ClientS', fd=170
+03-01 14:02:44.961 16399 16399 D VRI[MainActivity]@ed04595: mThreadedRenderer.initializeIfNeeded()#2 mSurface={isValid=true 0xb400007d1c98e780}
+03-01 14:02:44.961 16399 16399 D InputMethodManagerUtils: startInputInner - Id : 0
+03-01 14:02:44.961 16399 16399 I InputMethodManager: startInputInner - IInputMethodManagerGlobalInvoker.startInputOrWindowGainedFocus
+03-01 14:02:44.964 16399 16399 I InputMethodManager: handleMessage: setImeVisibility visible=false
+03-01 14:02:44.964 16399 16399 D InsetsController: hide(ime(), fromIme=false)
+03-01 14:02:44.964 16399 16399 I ImeTracker: org.openauto.aacapture:57bd7665: onCancelled at PHASE_CLIENT_ALREADY_HIDDEN
+03-01 14:02:44.966 16399 30261 D InputTransport: Input channel constructed: 'ClientS', fd=172
+03-01 14:02:47.601 16399 16399 I ImeFocusController: onPreWindowFocus: skipped hasWindowFocus=false mHasImeFocus=true
+03-01 14:02:47.601 16399 16399 I ImeFocusController: onPostWindowFocus: skipped hasWindowFocus=false mHasImeFocus=true
+03-01 14:02:47.822 16399 16399 D InputTransport: Input channel destroyed: 'ClientS', fd=119
+03-01 14:03:09.717 16399 16399 I VRI[MainActivity]@ed04595: ViewPostIme pointer 0
+03-01 14:03:09.719 16399 16399 I VRI[MainActivity]@ed04595: call setFrameRateCategory for touch hint category=high hint, reason=touch, vri=VRI[MainActivity]@ed04595
+03-01 14:03:09.747 16399 16399 D VRI[MainActivity]@ed04595: mThreadedRenderer.initializeIfNeeded()#2 mSurface={isValid=true 0xb400007d1c98e780}
+03-01 14:03:09.747 16399 16399 D InputMethodManagerUtils: startInputInner - Id : 0
+03-01 14:03:09.747 16399 16399 I InputMethodManager: startInputInner - IInputMethodManagerGlobalInvoker.startInputOrWindowGainedFocus
+03-01 14:03:09.748 16399 16399 I InputMethodManager: handleMessage: setImeVisibility visible=false
+03-01 14:03:09.748 16399 16399 D InsetsController: hide(ime(), fromIme=false)
+03-01 14:03:09.748 16399 16399 I ImeTracker: org.openauto.aacapture:4cc13cf8: onCancelled at PHASE_CLIENT_ALREADY_HIDDEN
+03-01 14:03:09.789 16399 30250 D InputTransport: Input channel constructed: 'ClientS', fd=125
+03-01 14:03:09.822 16399 16399 I VRI[MainActivity]@ed04595: ViewPostIme pointer 1
+03-01 14:03:12.825 16399 16399 I VRI[MainActivity]@ed04595: call setFrameRateCategory for touch hint category=no preference, reason=boost timeout, vri=VRI[MainActivity]@ed04595
+03-01 14:05:26.270 16399 16399 I VRI[MainActivity]@ed04595: ViewPostIme pointer 0
+03-01 14:05:26.272 16399 16399 I VRI[MainActivity]@ed04595: call setFrameRateCategory for touch hint category=high hint, reason=touch, vri=VRI[MainActivity]@ed04595
+03-01 14:05:26.564 16399 16399 I ViewRootImpl: [ViewRootImpl] action cancel - 1, eccen:2.4
+03-01 14:05:26.572 16399 16399 I ViewRootImpl: [ViewRootImpl] action cancel - 1, eccen:2.3333333
+03-01 14:05:26.581 16399 16399 I ViewRootImpl: [ViewRootImpl] action cancel - 1, eccen:2.1875
+03-01 14:05:26.589 16399 16399 I ViewRootImpl: [ViewRootImpl] action cancel - 1, eccen:2.25
+03-01 14:05:26.597 16399 16399 I ViewRootImpl: [ViewRootImpl] action cancel - 1, eccen:2.1875
+03-01 14:05:26.606 16399 16399 I ViewRootImpl: [ViewRootImpl] action cancel - 1, eccen:2.125
+03-01 14:05:26.614 16399 16399 I ViewRootImpl: [ViewRootImpl] action cancel - 1, eccen:2.2666667
+03-01 14:05:26.622 16399 16399 I ViewRootImpl: [ViewRootImpl] action cancel - 1, eccen:1.0
+03-01 14:05:26.626 16399 16399 I ViewRootImpl: [ViewRootImpl] action cancel - 1, eccen:2.2666667
+03-01 14:05:26.626 16399 16399 I VRI[MainActivity]@ed04595: ViewPostIme pointer 1
+03-01 14:05:27.293 16399 16399 I VRI[MainActivity]@ed04595: ViewPostIme pointer 0
+03-01 14:05:27.321 16399 16399 I ViewRootImpl: [ViewRootImpl] action cancel - 1, eccen:1.5333333
+03-01 14:05:27.338 16399 16399 I ViewRootImpl: [ViewRootImpl] action cancel - 1, eccen:1.5
+03-01 14:05:27.346 16399 16399 I ViewRootImpl: [ViewRootImpl] action cancel - 1, eccen:1.5714285
+03-01 14:05:27.354 16399 16399 I ViewRootImpl: [ViewRootImpl] action cancel - 1, eccen:1.5
+03-01 14:05:27.654 16399 16399 I ViewRootImpl: [ViewRootImpl] action cancel - 1, eccen:2.125
+03-01 14:05:27.657 16399 16399 I ViewRootImpl: [ViewRootImpl] action cancel - 1, eccen:2.0
+03-01 14:05:27.658 16399 16399 I VRI[MainActivity]@ed04595: ViewPostIme pointer 1
+03-01 14:05:28.408 16399 16399 I VRI[MainActivity]@ed04595: ViewPostIme pointer 0
+03-01 14:05:28.415 16399 16399 I VRI[MainActivity]@ed04595: ViewPostIme pointer 1
+03-01 14:05:28.648 16399 16399 I VRI[MainActivity]@ed04595: ViewPostIme pointer 0
+03-01 14:05:28.656 16399 16399 I VRI[MainActivity]@ed04595: ViewPostIme pointer 1
+03-01 14:05:28.657 16399 16399 I VRI[MainActivity]@ed04595: ViewPostIme pointer 0
+03-01 14:05:28.664 16399 16399 I VRI[MainActivity]@ed04595: ViewPostIme pointer 1
+03-01 14:05:28.673 16399 16399 I VRI[MainActivity]@ed04595: ViewPostIme pointer 0
+03-01 14:05:28.773 16399 16399 I VRI[MainActivity]@ed04595: ViewPostIme pointer 1
+03-01 14:05:31.776 16399 16399 I VRI[MainActivity]@ed04595: call setFrameRateCategory for touch hint category=no preference, reason=boost timeout, vri=VRI[MainActivity]@ed04595
+03-01 14:05:32.869 16399 16399 I VRI[MainActivity]@ed04595: ViewPostIme pointer 0
+03-01 14:05:32.871 16399 16399 I VRI[MainActivity]@ed04595: call setFrameRateCategory for touch hint category=high hint, reason=touch, vri=VRI[MainActivity]@ed04595
+03-01 14:05:32.884 16399 16399 I VRI[MainActivity]@ed04595: ViewPostIme pointer 1
+03-01 14:05:35.886 16399 16399 I VRI[MainActivity]@ed04595: call setFrameRateCategory for touch hint category=no preference, reason=boost timeout, vri=VRI[MainActivity]@ed04595
+03-01 14:05:36.931 16399 16399 I VRI[MainActivity]@ed04595: ViewPostIme pointer 0
+03-01 14:05:36.932 16399 16399 I VRI[MainActivity]@ed04595: call setFrameRateCategory for touch hint category=high hint, reason=touch, vri=VRI[MainActivity]@ed04595
+03-01 14:05:37.013 16399 16399 I VRI[MainActivity]@ed04595: ViewPostIme pointer 1
+03-01 14:05:40.016 16399 16399 I VRI[MainActivity]@ed04595: call setFrameRateCategory for touch hint category=no preference, reason=boost timeout, vri=VRI[MainActivity]@ed04595
+03-01 14:05:40.251 16399 16399 I VRI[MainActivity]@ed04595: ViewPostIme pointer 0
+03-01 14:05:40.254 16399 16399 I VRI[MainActivity]@ed04595: call setFrameRateCategory for touch hint category=high hint, reason=touch, vri=VRI[MainActivity]@ed04595
+03-01 14:05:40.266 16399 16399 I VRI[MainActivity]@ed04595: ViewPostIme pointer 1
+03-01 14:05:43.270 16399 16399 I VRI[MainActivity]@ed04595: call setFrameRateCategory for touch hint category=no preference, reason=boost timeout, vri=VRI[MainActivity]@ed04595
+03-01 14:05:47.326 16399 16399 I VRI[MainActivity]@ed04595: ViewPostIme pointer 0
+03-01 14:05:47.329 16399 16399 I VRI[MainActivity]@ed04595: call setFrameRateCategory for touch hint category=high hint, reason=touch, vri=VRI[MainActivity]@ed04595
+03-01 14:05:48.072 16399 16399 I VRI[MainActivity]@ed04595: ViewPostIme pointer 1
+03-01 14:05:48.348 16399 16399 I VRI[MainActivity]@ed04595: ViewPostIme pointer 0
+03-01 14:05:48.610 16399 16399 I ViewRootImpl: [ViewRootImpl] action cancel - 1, eccen:3.4285715
+03-01 14:05:48.618 16399 16399 I ViewRootImpl: [ViewRootImpl] action cancel - 1, eccen:3.4285715
+03-01 14:05:48.626 16399 16399 I ViewRootImpl: [ViewRootImpl] action cancel - 1, eccen:3.4285715
+03-01 14:05:48.635 16399 16399 I ViewRootImpl: [ViewRootImpl] action cancel - 1, eccen:3.4285715
+03-01 14:05:48.643 16399 16399 I ViewRootImpl: [ViewRootImpl] action cancel - 1, eccen:3.4285715
+03-01 14:05:48.651 16399 16399 I ViewRootImpl: [ViewRootImpl] action cancel - 1, eccen:3.857143
+03-01 14:05:48.660 16399 16399 I ViewRootImpl: [ViewRootImpl] action cancel - 1, eccen:3.9285715
+03-01 14:05:48.668 16399 16399 I ViewRootImpl: [ViewRootImpl] action cancel - 1, eccen:4.0
+03-01 14:05:48.676 16399 16399 I ViewRootImpl: [ViewRootImpl] action cancel - 1, eccen:4.071429
+03-01 14:05:48.684 16399 16399 I ViewRootImpl: [ViewRootImpl] action cancel - 1, eccen:4.142857
+03-01 14:05:48.693 16399 16399 I ViewRootImpl: [ViewRootImpl] action cancel - 1, eccen:4.214286
+03-01 14:05:48.701 16399 16399 I ViewRootImpl: [ViewRootImpl] action cancel - 1, eccen:4.285714
+03-01 14:05:48.709 16399 16399 I ViewRootImpl: [ViewRootImpl] action cancel - 1, eccen:4.6153846
+03-01 14:05:48.718 16399 16399 I ViewRootImpl: [ViewRootImpl] action cancel - 1, eccen:4.357143
+03-01 14:05:48.726 16399 16399 I ViewRootImpl: [ViewRootImpl] action cancel - 1, eccen:4.428571
+03-01 14:05:48.734 16399 16399 I ViewRootImpl: [ViewRootImpl] action cancel - 1, eccen:4.357143
+03-01 14:05:48.743 16399 16399 I ViewRootImpl: [ViewRootImpl] action cancel - 1, eccen:4.6923075
+03-01 14:05:48.751 16399 16399 I ViewRootImpl: [ViewRootImpl] action cancel - 1, eccen:4.769231
+03-01 14:05:48.759 16399 16399 I ViewRootImpl: [ViewRootImpl] action cancel - 1, eccen:4.6153846
+--------- beginning of system
+03-01 14:05:48.770 16399 16399 I NotificationManager: org.openauto.aacapture: notify(2001, null, Notification(channel=aa_capture_channel shortcut=null contentView=null vibrate=null sound=null defaults=0 flags=ONGOING_EVENT color=0x00000000 actions=2 vis=PRIVATE semFlags=0x0 semPriority=0 semMissedCount=0)) as user
+03-01 14:05:48.771 16399 16399 D NotificationManager: BOOTING pkg =org.openauto.aacapture mBlockedChannelsForOverflowNoti=[]
+03-01 14:05:48.773 16399 16399 I ViewRootImpl: [ViewRootImpl] action cancel - 1, eccen:2.0
+03-01 14:05:48.791 16399 16399 I ViewRootImpl: [ViewRootImpl] action cancel - 1, eccen:1.9333333
+03-01 14:05:48.791 16399 16406 D InputTransport: Input channel destroyed: 'ClientS', fd=170
+03-01 14:05:48.791 16399 16406 D InputTransport: Input channel destroyed: 'ClientS', fd=172
+03-01 14:05:48.871 16399 16399 I VRI[MainActivity]@ed04595: ViewPostIme pointer 1
+03-01 14:05:51.874 16399 16399 I VRI[MainActivity]@ed04595: call setFrameRateCategory for touch hint category=no preference, reason=boost timeout, vri=VRI[MainActivity]@ed04595
+03-01 14:06:58.997 16399 16399 I VRI[MainActivity]@ed04595: ViewPostIme pointer 0
+03-01 14:06:59.000 16399 16399 I VRI[MainActivity]@ed04595: call setFrameRateCategory for touch hint category=high hint, reason=touch, vri=VRI[MainActivity]@ed04595
+03-01 14:06:59.164 16399 16399 I VRI[MainActivity]@ed04595: ViewPostIme pointer 1
+03-01 14:06:59.170 16399 16399 I VRI[MainActivity]@ed04595: ViewPostIme pointer 0
+03-01 14:06:59.216 16399 16399 I ViewRootImpl: [ViewRootImpl] action cancel - 1, eccen:1.8461539
+03-01 14:06:59.221 16399 16399 I ViewRootImpl: [ViewRootImpl] action cancel - 1, eccen:1.8461539
+03-01 14:06:59.222 16399 16399 I ViewRootImpl: [ViewRootImpl] action cancel - 1, eccen:2.3333333
+03-01 14:06:59.229 16399 16399 I ViewRootImpl: [ViewRootImpl] action cancel - 1, eccen:2.2105262
+03-01 14:06:59.229 16399 16399 I ViewRootImpl: [ViewRootImpl] action cancel - 1, eccen:2.0
+03-01 14:06:59.229 16399 16399 I ViewRootImpl: [ViewRootImpl] action cancel - 1, eccen:1.1111112
+03-01 14:06:59.229 16399 16399 I ViewRootImpl: [ViewRootImpl] action cancel - 1, eccen:2.642857
+03-01 14:06:59.241 16399 16399 I ViewRootImpl: [ViewRootImpl] action cancel - 1, eccen:2.7857144
+03-01 14:06:59.250 16399 16399 I ViewRootImpl: [ViewRootImpl] action cancel - 1, eccen:2.7857144
+03-01 14:06:59.254 16399 16399 I ViewRootImpl: [ViewRootImpl] action cancel - 1, eccen:2.6
+03-01 14:06:59.254 16399 16399 I ViewRootImpl: [ViewRootImpl] action cancel - 1, eccen:2.6
+03-01 14:06:59.262 16399 16399 I ViewRootImpl: [ViewRootImpl] action cancel - 1, eccen:2.7
+03-01 14:06:59.266 16399 16399 I ViewRootImpl: [ViewRootImpl] action cancel - 1, eccen:1.7333333
+03-01 14:06:59.270 16399 16399 I ViewRootImpl: [ViewRootImpl] action cancel - 1, eccen:1.8
+03-01 14:06:59.275 16399 16399 I ViewRootImpl: [ViewRootImpl] action cancel - 1, eccen:1.3
+03-01 14:06:59.283 16399 16399 I ViewRootImpl: [ViewRootImpl] action cancel - 1, eccen:1.1818181
+03-01 14:06:59.291 16399 16399 I ViewRootImpl: [ViewRootImpl] action cancel - 1, eccen:1.2727273
+03-01 14:06:59.300 16399 16399 I ViewRootImpl: [ViewRootImpl] action cancel - 1, eccen:1.1666666
+03-01 14:06:59.304 16399 16399 I ViewRootImpl: [ViewRootImpl] action cancel - 1, eccen:1.25
+03-01 14:06:59.304 16399 16399 I ViewRootImpl: [ViewRootImpl] action cancel - 1, eccen:1.2142857
+03-01 14:06:59.316 16399 16399 I ViewRootImpl: [ViewRootImpl] action cancel - 1, eccen:1.2857143
+03-01 14:06:59.325 16399 16399 I ViewRootImpl: [ViewRootImpl] action cancel - 1, eccen:1.2068965
+03-01 14:06:59.333 16399 16399 I ViewRootImpl: [ViewRootImpl] action cancel - 1, eccen:1.2413793
+03-01 14:06:59.345 16399 16399 I ViewRootImpl: [ViewRootImpl] action cancel - 1, eccen:1.2758621
+03-01 14:06:59.345 16399 16399 I ViewRootImpl: [ViewRootImpl] action cancel - 1, eccen:1.2333333
+03-01 14:06:59.350 16399 16399 I ViewRootImpl: [ViewRootImpl] action cancel - 1, eccen:1.2857143
+03-01 14:06:59.358 16399 16399 I ViewRootImpl: [ViewRootImpl] action cancel - 1, eccen:2.0
+03-01 14:06:59.366 16399 16399 I ViewRootImpl: [ViewRootImpl] action cancel - 1, eccen:2.0666666
+03-01 14:06:59.375 16399 16399 I ViewRootImpl: [ViewRootImpl] action cancel - 1, eccen:2.0714285
+03-01 14:06:59.383 16399 16399 I ViewRootImpl: [ViewRootImpl] action cancel - 1, eccen:2.142857
+03-01 14:06:59.391 16399 16399 I ViewRootImpl: [ViewRootImpl] action cancel - 1, eccen:2.0
+03-01 14:06:59.399 16399 16399 I ViewRootImpl: [ViewRootImpl] action cancel - 1, eccen:2.0769231
+03-01 14:06:59.408 16399 16399 I ViewRootImpl: [ViewRootImpl] action cancel - 1, eccen:2.1538463
+03-01 14:06:59.416 16399 16399 I ViewRootImpl: [ViewRootImpl] action cancel - 1, eccen:2.0
+03-01 14:06:59.425 16399 16399 I ViewRootImpl: [ViewRootImpl] action cancel - 1, eccen:1.9230769
+03-01 14:06:59.433 16399 16399 I ViewRootImpl: [ViewRootImpl] action cancel - 1, eccen:2.0833333
+03-01 14:06:59.441 16399 16399 I ViewRootImpl: [ViewRootImpl] action cancel - 1, eccen:2.0
+03-01 14:06:59.449 16399 16399 I ViewRootImpl: [ViewRootImpl] action cancel - 1, eccen:1.9166666
+03-01 14:06:59.458 16399 16399 I ViewRootImpl: [ViewRootImpl] action cancel - 1, eccen:2.0
+03-01 14:06:59.466 16399 16399 I ViewRootImpl: [ViewRootImpl] action cancel - 1, eccen:2.090909
+03-01 14:06:59.483 16399 16399 I ViewRootImpl: [ViewRootImpl] action cancel - 1, eccen:2.0
+03-01 14:06:59.491 16399 16399 I ViewRootImpl: [ViewRootImpl] action cancel - 1, eccen:2.0
+03-01 14:06:59.499 16399 16399 I ViewRootImpl: [ViewRootImpl] action cancel - 1, eccen:2.1
+03-01 14:06:59.508 16399 16399 I ViewRootImpl: [ViewRootImpl] action cancel - 1, eccen:2.2
+03-01 14:06:59.516 16399 16399 I ViewRootImpl: [ViewRootImpl] action cancel - 1, eccen:2.1
+03-01 14:06:59.524 16399 16399 I ViewRootImpl: [ViewRootImpl] action cancel - 1, eccen:2.2222223
+03-01 14:06:59.532 16399 16399 I ViewRootImpl: [ViewRootImpl] action cancel - 1, eccen:2.3333333
+03-01 14:06:59.541 16399 16399 I ViewRootImpl: [ViewRootImpl] action cancel - 1, eccen:2.2222223
+03-01 14:06:59.549 16399 16399 I ViewRootImpl: [ViewRootImpl] action cancel - 1, eccen:2.2222223
+03-01 14:06:59.553 16399 16399 I ViewRootImpl: [ViewRootImpl] action cancel - 1, eccen:1.2857143
+03-01 14:06:59.553 16399 16399 I VRI[MainActivity]@ed04595: ViewPostIme pointer 1
+03-01 14:06:59.716 16399 16399 I VRI[MainActivity]@ed04595: ViewPostIme pointer 0
+03-01 14:06:59.938 16399 16399 I VRI[MainActivity]@ed04595: ViewPostIme pointer 1
+03-01 14:07:00.720 16399 16399 I VRI[MainActivity]@ed04595: ViewPostIme pointer 0
+03-01 14:07:00.785 16399 16399 I ViewRootImpl: [ViewRootImpl] action cancel - 1, eccen:1.5384616
+03-01 14:07:00.789 16399 16399 I ViewRootImpl: [ViewRootImpl] action cancel - 1, eccen:1.3
+03-01 14:07:00.797 16399 16399 I ViewRootImpl: [ViewRootImpl] action cancel - 1, eccen:1.35
+03-01 14:07:00.806 16399 16399 I ViewRootImpl: [ViewRootImpl] action cancel - 1, eccen:1.4
+03-01 14:07:00.814 16399 16399 I ViewRootImpl: [ViewRootImpl] action cancel - 1, eccen:1.35
+03-01 14:07:00.823 16399 16399 I ViewRootImpl: [ViewRootImpl] action cancel - 1, eccen:1.2857143
+03-01 14:07:00.831 16399 16399 I ViewRootImpl: [ViewRootImpl] action cancel - 1, eccen:1.3333334
+03-01 14:07:00.848 16399 16399 I ViewRootImpl: [ViewRootImpl] action cancel - 1, eccen:1.3809524
+03-01 14:07:00.856 16399 16399 I ViewRootImpl: [ViewRootImpl] action cancel - 1, eccen:1.3333334
+03-01 14:07:00.864 16399 16399 I ViewRootImpl: [ViewRootImpl] action cancel - 1, eccen:1.3809524
+03-01 14:07:00.872 16399 16399 I ViewRootImpl: [ViewRootImpl] action cancel - 1, eccen:1.3333334
+03-01 14:07:00.881 16399 16399 I ViewRootImpl: [ViewRootImpl] action cancel - 1, eccen:1.4
+03-01 14:07:00.889 16399 16399 I ViewRootImpl: [ViewRootImpl] action cancel - 1, eccen:1.45
+03-01 14:07:00.897 16399 16399 I ViewRootImpl: [ViewRootImpl] action cancel - 1, eccen:1.5263158
+03-01 14:07:00.906 16399 16399 I ViewRootImpl: [ViewRootImpl] action cancel - 1, eccen:1.5789474
+03-01 14:07:00.914 16399 16399 I ViewRootImpl: [ViewRootImpl] action cancel - 1, eccen:2.0
+03-01 14:07:00.922 16399 16399 I ViewRootImpl: [ViewRootImpl] action cancel - 1, eccen:2.0666666
+03-01 14:07:00.931 16399 16399 I ViewRootImpl: [ViewRootImpl] action cancel - 1, eccen:2.0714285
+03-01 14:07:00.939 16399 16399 I ViewRootImpl: [ViewRootImpl] action cancel - 1, eccen:2.142857
+03-01 14:07:00.947 16399 16399 I ViewRootImpl: [ViewRootImpl] action cancel - 1, eccen:2.0
+03-01 14:07:00.956 16399 16399 I ViewRootImpl: [ViewRootImpl] action cancel - 1, eccen:2.1538463
+03-01 14:07:00.964 16399 16399 I ViewRootImpl: [ViewRootImpl] action cancel - 1, eccen:2.2307692
+03-01 14:07:00.968 16399 16399 I ViewRootImpl: [ViewRootImpl] action cancel - 1, eccen:2.0769231
+03-01 14:07:00.968 16399 16399 I VRI[MainActivity]@ed04595: ViewPostIme pointer 1
+03-01 14:07:01.035 16399 16399 I VRI[MainActivity]@ed04595: ViewPostIme pointer 0
+03-01 14:07:01.118 16399 16399 I ViewRootImpl: [ViewRootImpl] action cancel - 1, eccen:2.0
+03-01 14:07:01.119 16399 16399 I ViewRootImpl: [ViewRootImpl] action cancel - 1, eccen:1.6086956
+03-01 14:07:01.130 16399 16399 I ViewRootImpl: [ViewRootImpl] action cancel - 1, eccen:1.6086956
+03-01 14:07:01.134 16399 16399 I ViewRootImpl: [ViewRootImpl] action cancel - 1, eccen:1.6521739
+03-01 14:07:01.139 16399 16399 I ViewRootImpl: [ViewRootImpl] action cancel - 1, eccen:1.2222222
+03-01 14:07:01.147 16399 16399 I ViewRootImpl: [ViewRootImpl] action cancel - 1, eccen:1.2222222
+03-01 14:07:01.155 16399 16399 I ViewRootImpl: [ViewRootImpl] action cancel - 1, eccen:1.2222222
+03-01 14:07:01.164 16399 16399 I ViewRootImpl: [ViewRootImpl] action cancel - 1, eccen:1.2222222
+03-01 14:07:01.174 16399 16399 I NotificationManager: org.openauto.aacapture: notify(2001, null, Notification(channel=aa_capture_channel shortcut=null contentView=null vibrate=null sound=null defaults=0 flags=ONGOING_EVENT color=0x00000000 actions=2 vis=PRIVATE semFlags=0x0 semPriority=0 semMissedCount=0)) as user
+03-01 14:07:01.178 16399 16399 I ViewRootImpl: [ViewRootImpl] action cancel - 1, eccen:1.2222222
+03-01 14:07:01.186 16399 16399 I ViewRootImpl: [ViewRootImpl] action cancel - 1, eccen:1.2222222
+03-01 14:07:01.192 16399 16399 I ViewRootImpl: [ViewRootImpl] action cancel - 1, eccen:1.2222222
+03-01 14:07:01.197 16399 16399 I ViewRootImpl: [ViewRootImpl] action cancel - 1, eccen:1.3333334
+03-01 14:07:01.202 16399 16399 I VRI[MainActivity]@ed04595: ViewPostIme pointer 1
+03-01 14:07:01.218 16399 16399 I VRI[MainActivity]@ed04595: ViewPostIme pointer 0
+03-01 14:07:01.417 16399 16399 I VRI[MainActivity]@ed04595: ViewPostIme pointer 1
+03-01 14:07:01.425 16399 16399 I VRI[MainActivity]@ed04595: ViewPostIme pointer 0
+03-01 14:07:01.442 16399 16399 I VRI[MainActivity]@ed04595: ViewPostIme pointer 1
+03-01 14:07:01.512 16399 16399 I VRI[MainActivity]@ed04595: ViewPostIme pointer 0
+03-01 14:07:01.517 16399 16399 I VRI[MainActivity]@ed04595: ViewPostIme pointer 1
+03-01 14:07:02.081 16399 16399 I ImeFocusController: onPreWindowFocus: skipped hasWindowFocus=false mHasImeFocus=true
+03-01 14:07:02.082 16399 16399 I ImeFocusController: onPostWindowFocus: skipped hasWindowFocus=false mHasImeFocus=true
+03-01 14:07:02.323 16399 16399 I VRI[MainActivity]@ed04595: handleAppVisibility mAppVisible = true visible = false
+03-01 14:07:02.324 16399 16399 D VRI[MainActivity]@ed04595: visibilityChanged oldVisibility=true newVisibility=false
+03-01 14:07:02.338 16399 16426 D HWUI    : CacheManager::trimMemory(20)
+03-01 14:07:02.343 16399 16399 I VRI[MainActivity]@ed04595: Relayout returned: old=(0,0,1080,2340) new=(0,0,1080,2340) relayoutAsync=false req=(1080,2340)8 dur=1 res=0x2 s={false 0x0} ch=true seqId=0
+03-01 14:07:02.343 16399 16399 D VRI[MainActivity]@ed04595: Not drawing due to not visible. Reason=!mAppVisible && !mForceDecorViewVisibility
+03-01 14:07:02.344 16399 16399 I VRI[MainActivity]@ed04595: stopped(true) old = false
+03-01 14:07:02.344 16399 16399 D VRI[MainActivity]@ed04595: WindowStopped on org.openauto.aacapture/org.openauto.aacapture.ui.MainActivity set to true
+03-01 14:07:02.344 16399 16426 D HWUI    : CacheManager::trimMemory(20)
+03-01 14:07:03.580 16399 16399 I VRI[MainActivity]@ed04595: handleAppVisibility mAppVisible = false visible = true
+03-01 14:07:03.582 16399 16399 I VRI[MainActivity]@ed04595: stopped(false) old = true
+03-01 14:07:03.582 16399 16399 D VRI[MainActivity]@ed04595: WindowStopped on org.openauto.aacapture/org.openauto.aacapture.ui.MainActivity set to false
+03-01 14:07:03.582 16399 16399 D ViewRootImpl: Skipping stats log for color mode
+03-01 14:07:03.586 16399 16399 I InsetsController: onStateChanged: host=org.openauto.aacapture/org.openauto.aacapture.ui.MainActivity, from=android.view.ViewRootImpl.onInsetsStateChanged:3026, state=InsetsState: {mDisplayFrame=Rect(0, 0 - 1080, 2340), mDisplayCutout=DisplayCutout{insets=Rect(0, 85 - 0, 0) waterfall=Insets{left=0, top=0, right=0, bottom=0} boundingRect={Bounds=[Rect(0, 0 - 0, 0), Rect(514, 0 - 566, 85), Rect(0, 0 - 0, 0), Rect(0, 0 - 0, 0)]} cutoutPathParserInfo={CutoutPathParserInfo{displayWidth=1080 displayHeight=2340 physicalDisplayWidth=1080 physicalDisplayHeight=2340 density={2.8125} cutoutSpec={M 0,0 H -9.333333333333333 V 30.13333333333333 H 9.333333333333333 V 0 H 0 Z @dp} rotation={0} scale={1.0} physicalPixelDisplaySizeRatio={1.0}}} sideOverrides={}}, mRoundedCorners=RoundedCorners{[RoundedCorner{position=TopLeft, radius=42, center=Point(42, 42)}, RoundedCorner{position=TopRight, radius=42, center=Point(1038, 42)}, RoundedCorner{position=BottomRight, radius=42, center=Point(1038, 2298)}, RoundedCorner{position=BottomLeft, radius=42, center=Point(42, 2298)}]}  mRoundedCornerFrame=Rect(0, 0 - 1080, 2340), mPrivacyIndicatorBounds=PrivacyIndicatorBounds {static bounds=Rect(956, 0 - 1080, 85) rotation=0}, mDisplayShape=DisplayShape{ spec=-311912193 displayWidth=1080 displayHeight=2340 physicalPixelDisplaySizeRatio=0.75 rotation=0 offsetX=0 offsetY=0 scale=1.0}, mSources= { InsetsSource: {8fd00001 mType=navigationBars mFrame=[0,2205][1080,2340] mVisible=false mFlags= mSideHint=BOTTOM mBoundingRects=null}, InsetsSource: {8fd00004 mType=systemGestures mFrame=[0,0][0,0] mVisible=true mFlags= mSideHint=NONE mBoundingRects=null}, InsetsSource: {8fd00005 mType=mandatorySystemGestures mFrame=[0,2205][1080,2340] mVisible=true mFlags= mSideHint=BOTTOM mBoundingRects=null}, InsetsSource: {8fd00006 mType=tappableElement mFrame=[0,2205][1080,2340] mVisible=true mFlags= mSideHint=BOTTOM mBoundingRects=null}, InsetsSource: {8fd00024 mType=systemGestures mFrame=[0,0][0,0] mVisible=true mFlags= mSideHint=NONE mBoundingRects=null}, InsetsSource: {fc9f0000 mType=statusBars mFrame=[0,0][1080,85] mVisible=true mFlags= mSideHint=TOP mBoundingRects=null}, InsetsSource: {fc9f0005 mType=mandatorySystemGestures mFrame=[0,0][1080,119] mVisible=true mFlags= mSideHint=TOP mBoundingRects=null}, InsetsSource: {fc9f0006 mType=tappableElement mFrame=[0,0][1080,85] mVisible=true mFlags= mSideHint=TOP mBoundingRects=null}, InsetsSource: {3 mType=ime mFrame=[0,0][0,0] mVisible=false mFlags= mSideHint=NONE mBoundingRects=null}, InsetsSource: {27 mType=displayCutout mFrame=[0,0][1080,85] mVisible=true mFlags= mSideHint=TOP mBoundingRects=null} }
+03-01 14:07:03.587 16399 16399 I BufferQueueProducer: [](id:400f00000004,api:0,p:-1,c:16399) setDequeueTimeout:2077252342
+03-01 14:07:03.587 16399 16399 I BLASTBufferQueue_Java: new BLASTBufferQueue, mName= VRI[MainActivity]@ed04595 mNativeObject= 0xb400007c8c9953f0 caller= android.view.ViewRootImpl.updateBlastSurfaceIfNeeded:3585 android.view.ViewRootImpl.relayoutWindow:11685 android.view.ViewRootImpl.performTraversals:4804 android.view.ViewRootImpl.doTraversal:3924 android.view.ViewRootImpl$TraversalRunnable.run:12903 android.view.Choreographer$CallbackRecord.run:1901 android.view.Choreographer$CallbackRecord.run:1910 android.view.Choreographer.doCallbacks:1367 android.view.Choreographer.doFrame:1292 android.view.Choreographer$FrameDisplayEventReceiver.run:1870 
+03-01 14:07:03.587 16399 16399 I BLASTBufferQueue_Java: update, w= 1080 h= 2340 mName = VRI[MainActivity]@ed04595 mNativeObject= 0xb400007c8c9953f0 sc.mNativeObject= 0xb400007d2c974810 format= -1 caller= android.view.ViewRootImpl.updateBlastSurfaceIfNeeded:3590 android.view.ViewRootImpl.relayoutWindow:11685 android.view.ViewRootImpl.performTraversals:4804 android.view.ViewRootImpl.doTraversal:3924 android.view.ViewRootImpl$TraversalRunnable.run:12903 android.view.Choreographer$CallbackRecord.run:1901 
+03-01 14:07:03.587 16399 16399 I VRI[MainActivity]@ed04595: Relayout returned: old=(0,0,1080,2340) new=(0,0,1080,2340) relayoutAsync=false req=(1080,2340)0 dur=2 res=0x3 s={true 0xb400007d1c9a6350} ch=true seqId=0
+03-01 14:07:03.588 16399 16399 D VRI[MainActivity]@ed04595: mThreadedRenderer.initialize() mSurface={isValid=true 0xb400007d1c9a6350} hwInitialized=true
+03-01 14:07:03.589 16399 16399 D VRI[MainActivity]@ed04595: reportNextDraw android.view.ViewRootImpl.performTraversals:5443 android.view.ViewRootImpl.doTraversal:3924 android.view.ViewRootImpl$TraversalRunnable.run:12903 android.view.Choreographer$CallbackRecord.run:1901 android.view.Choreographer$CallbackRecord.run:1910 
+03-01 14:07:03.589 16399 16399 D VRI[MainActivity]@ed04595: Setup new sync=wmsSync-VRI[MainActivity]@ed04595#8
+03-01 14:07:03.589 16399 16399 I VRI[MainActivity]@ed04595: Creating new active sync group VRI[MainActivity]@ed04595#9
+03-01 14:07:03.589 16399 16399 D VRI[MainActivity]@ed04595: Start draw after previous draw not visible
+03-01 14:07:03.589 16399 16399 D VRI[MainActivity]@ed04595: registerCallbacksForSync syncBuffer=false
+03-01 14:07:03.590 16399 16437 D VRI[MainActivity]@ed04595: Received frameDrawingCallback syncResult=0 frameNum=1.
+03-01 14:07:03.590 16399 16437 I VRI[MainActivity]@ed04595: mWNT: t=0xb400007cec973510 mBlastBufferQueue=0xb400007c8c9953f0 fn= 1 HdrRenderState mRenderHdrSdrRatio=1.0 caller= android.view.ViewRootImpl$12.onFrameDraw:15441 android.view.ThreadedRenderer$1.onFrameDraw:718 <bottom of call stack> 
+03-01 14:07:03.590 16399 16437 I VRI[MainActivity]@ed04595: Setting up sync and frameCommitCallback
+03-01 14:07:03.591 16399 16426 I BLASTBufferQueue: [VRI[MainActivity]@ed04595#4](f:0,a:0,s:0) onFrameAvailable the first frame is available
+03-01 14:07:03.591 16399 16426 I SurfaceComposerClient: apply transaction with the first frame. layerId: 9610, bufferData(ID: 70433168687122, frameNumber: 1)
+03-01 14:07:03.591 16399 16426 I VRI[MainActivity]@ed04595: Received frameCommittedCallback lastAttemptedDrawFrameNum=1 didProduceBuffer=true
+03-01 14:07:03.591 16399 16399 D VRI[MainActivity]@ed04595: reportDrawFinished seqId=0
+03-01 14:07:03.613 16399 16399 I InsetsController: onStateChanged: host=org.openauto.aacapture/org.openauto.aacapture.ui.MainActivity, from=android.view.ViewRootImpl.onInsetsStateChanged:3026, state=InsetsState: {mDisplayFrame=Rect(0, 0 - 1080, 2340), mDisplayCutout=DisplayCutout{insets=Rect(0, 85 - 0, 0) waterfall=Insets{left=0, top=0, right=0, bottom=0} boundingRect={Bounds=[Rect(0, 0 - 0, 0), Rect(514, 0 - 566, 85), Rect(0, 0 - 0, 0), Rect(0, 0 - 0, 0)]} cutoutPathParserInfo={CutoutPathParserInfo{displayWidth=1080 displayHeight=2340 physicalDisplayWidth=1080 physicalDisplayHeight=2340 density={2.8125} cutoutSpec={M 0,0 H -9.333333333333333 V 30.13333333333333 H 9.333333333333333 V 0 H 0 Z @dp} rotation={0} scale={1.0} physicalPixelDisplaySizeRatio={1.0}}} sideOverrides={}}, mRoundedCorners=RoundedCorners{[RoundedCorner{position=TopLeft, radius=42, center=Point(42, 42)}, RoundedCorner{position=TopRight, radius=42, center=Point(1038, 42)}, RoundedCorner{position=BottomRight, radius=42, center=Point(1038, 2298)}, RoundedCorner{position=BottomLeft, radius=42, center=Point(42, 2298)}]}  mRoundedCornerFrame=Rect(0, 0 - 1080, 2340), mPrivacyIndicatorBounds=PrivacyIndicatorBounds {static bounds=Rect(956, 0 - 1080, 85) rotation=0}, mDisplayShape=DisplayShape{ spec=-311912193 displayWidth=1080 displayHeight=2340 physicalPixelDisplaySizeRatio=0.75 rotation=0 offsetX=0 offsetY=0 scale=1.0}, mSources= { InsetsSource: {8fd00001 mType=navigationBars mFrame=[0,2205][1080,2340] mVisible=false mFlags= mSideHint=BOTTOM mBoundingRects=null}, InsetsSource: {8fd00004 mType=systemGestures mFrame=[0,0][0,0] mVisible=true mFlags= mSideHint=NONE mBoundingRects=null}, InsetsSource: {8fd00005 mType=mandatorySystemGestures mFrame=[0,2205][1080,2340] mVisible=true mFlags= mSideHint=BOTTOM mBoundingRects=null}, InsetsSource: {8fd00006 mType=tappableElement mFrame=[0,2205][1080,2340] mVisible=true mFlags= mSideHint=BOTTOM mBoundingRects=null}, InsetsSource: {8fd00024 mType=systemGestures mFrame=[0,0][0,0] mVisible=true mFlags= mSideHint=NONE mBoundingRects=null}, InsetsSource: {fc9f0000 mType=statusBars mFrame=[0,0][1080,85] mVisible=true mFlags= mSideHint=TOP mBoundingRects=null}, InsetsSource: {fc9f0005 mType=mandatorySystemGestures mFrame=[0,0][1080,119] mVisible=true mFlags= mSideHint=TOP mBoundingRects=null}, InsetsSource: {fc9f0006 mType=tappableElement mFrame=[0,0][1080,85] mVisible=true mFlags= mSideHint=TOP mBoundingRects=null}, InsetsSource: {3 mType=ime mFrame=[0,0][0,0] mVisible=false mFlags= mSideHint=NONE mBoundingRects=null}, InsetsSource: {27 mType=displayCutout mFrame=[0,0][1080,85] mVisible=true mFlags= mSideHint=TOP mBoundingRects=null} }
+03-01 14:07:03.613 16399 16399 I VRI[MainActivity]@ed04595: handleResized, frames=ClientWindowFrames{frame=[0,0][1080,2340] display=[0,0][1080,2340] parentFrame=[0,0][0,0]} displayId=0 dragResizing=false compatScale=1.0 frameChanged=false attachedFrameChanged=false configChanged=false displayChanged=false compatScaleChanged=false dragResizingChanged=false
+03-01 14:07:03.615 16399 16399 I InsetsController: onStateChanged: host=org.openauto.aacapture/org.openauto.aacapture.ui.MainActivity, from=android.view.ViewRootImpl.onInsetsStateChanged:3026, state=InsetsState: {mDisplayFrame=Rect(0, 0 - 1080, 2340), mDisplayCutout=DisplayCutout{insets=Rect(0, 85 - 0, 0) waterfall=Insets{left=0, top=0, right=0, bottom=0} boundingRect={Bounds=[Rect(0, 0 - 0, 0), Rect(514, 0 - 566, 85), Rect(0, 0 - 0, 0), Rect(0, 0 - 0, 0)]} cutoutPathParserInfo={CutoutPathParserInfo{displayWidth=1080 displayHeight=2340 physicalDisplayWidth=1080 physicalDisplayHeight=2340 density={2.8125} cutoutSpec={M 0,0 H -9.333333333333333 V 30.13333333333333 H 9.333333333333333 V 0 H 0 Z @dp} rotation={0} scale={1.0} physicalPixelDisplaySizeRatio={1.0}}} sideOverrides={}}, mRoundedCorners=RoundedCorners{[RoundedCorner{position=TopLeft, radius=42, center=Point(42, 42)}, RoundedCorner{position=TopRight, radius=42, center=Point(1038, 42)}, RoundedCorner{position=BottomRight, radius=42, center=Point(1038, 2298)}, RoundedCorner{position=BottomLeft, radius=42, center=Point(42, 2298)}]}  mRoundedCornerFrame=Rect(0, 0 - 1080, 2340), mPrivacyIndicatorBounds=PrivacyIndicatorBounds {static bounds=Rect(956, 0 - 1080, 85) rotation=0}, mDisplayShape=DisplayShape{ spec=-311912193 displayWidth=1080 displayHeight=2340 physicalPixelDisplaySizeRatio=0.75 rotation=0 offsetX=0 offsetY=0 scale=1.0}, mSources= { InsetsSource: {8fd00001 mType=navigationBars mFrame=[0,2205][1080,2340] mVisible=true mFlags= mSideHint=BOTTOM mBoundingRects=null}, InsetsSource: {8fd00004 mType=systemGestures mFrame=[0,0][0,0] mVisible=true mFlags= mSideHint=NONE mBoundingRects=null}, InsetsSource: {8fd00005 mType=mandatorySystemGestures mFrame=[0,2205][1080,2340] mVisible=true mFlags= mSideHint=BOTTOM mBoundingRects=null}, InsetsSource: {8fd00006 mType=tappableElement mFrame=[0,2205][1080,2340] mVisible=true mFlags= mSideHint=BOTTOM mBoundingRects=null}, InsetsSource: {8fd00024 mType=systemGestures mFrame=[0,0][0,0] mVisible=true mFlags= mSideHint=NONE mBoundingRects=null}, InsetsSource: {fc9f0000 mType=statusBars mFrame=[0,0][1080,85] mVisible=true mFlags= mSideHint=TOP mBoundingRects=null}, InsetsSource: {fc9f0005 mType=mandatorySystemGestures mFrame=[0,0][1080,119] mVisible=true mFlags= mSideHint=TOP mBoundingRects=null}, InsetsSource: {fc9f0006 mType=tappableElement mFrame=[0,0][1080,85] mVisible=true mFlags= mSideHint=TOP mBoundingRects=null}, InsetsSource: {3 mType=ime mFrame=[0,0][0,0] mVisible=false mFlags= mSideHint=NONE mBoundingRects=null}, InsetsSource: {27 mType=displayCutout mFrame=[0,0][1080,85] mVisible=true mFlags= mSideHint=TOP mBoundingRects=null} }
+03-01 14:07:03.615 16399 16399 I VRI[MainActivity]@ed04595: handleResized, frames=ClientWindowFrames{frame=[0,0][1080,2340] display=[0,0][1080,2340] parentFrame=[0,0][0,0]} displayId=0 dragResizing=false compatScale=1.0 frameChanged=false attachedFrameChanged=false configChanged=false displayChanged=false compatScaleChanged=false dragResizingChanged=false
+03-01 14:07:03.770 16399 16399 I InsetsSourceConsumer: applyRequestedVisibilityToControl: visible=true, type=statusBars, host=org.openauto.aacapture/org.openauto.aacapture.ui.MainActivity
+03-01 14:07:03.770 16399 16399 I InsetsSourceConsumer: applyRequestedVisibilityToControl: visible=true, type=navigationBars, host=org.openauto.aacapture/org.openauto.aacapture.ui.MainActivity
+03-01 14:07:03.771 16399 16399 D VRI[MainActivity]@ed04595: mThreadedRenderer.initializeIfNeeded()#2 mSurface={isValid=true 0xb400007d1c9a6350}
+03-01 14:07:03.771 16399 16399 D InputMethodManagerUtils: startInputInner - Id : 0
+03-01 14:07:03.771 16399 16399 I InputMethodManager: startInputInner - IInputMethodManagerGlobalInvoker.startInputOrWindowGainedFocus
+03-01 14:07:03.772 16399 16399 I InputMethodManager: handleMessage: setImeVisibility visible=false
+03-01 14:07:03.772 16399 16399 D InsetsController: hide(ime(), fromIme=false)
+03-01 14:07:03.772 16399 16399 I ImeTracker: org.openauto.aacapture:ff27b4b9: onCancelled at PHASE_CLIENT_ALREADY_HIDDEN
+03-01 14:07:03.772 16399 16446 D InputTransport: Input channel constructed: 'ClientS', fd=152
+03-01 14:07:04.429 16399 16399 I VRI[MainActivity]@ed04595: ViewPostIme pointer 0
+03-01 14:07:04.431 16399 16399 I VRI[MainActivity]@ed04595: call setFrameRateCategory for touch hint category=high hint, reason=touch, vri=VRI[MainActivity]@ed04595
+03-01 14:07:04.495 16399 16399 I VRI[MainActivity]@ed04595: ViewPostIme pointer 1
