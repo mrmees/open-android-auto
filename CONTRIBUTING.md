@@ -8,7 +8,8 @@ Contributions to expand and improve these protocol buffer definitions are welcom
 2. Create your `.proto` file with the appropriate naming convention (see below).
 3. Use the correct package namespace based on file type.
 4. Add inline comments documenting observed field values and behavior.
-5. Ensure the file compiles cleanly: `protoc --proto_path=. --cpp_out=/tmp oaa/<category>/YourFile.proto`
+5. Create a matching `.audit.yaml` sidecar (see [Verification Framework](#verification-framework) below).
+6. Ensure the file compiles cleanly: `protoc --proto_path=. --cpp_out=/tmp oaa/<category>/YourFile.proto`
 
 ## File Naming
 
