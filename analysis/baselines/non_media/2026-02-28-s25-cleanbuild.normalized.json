@@ -2,7 +2,7 @@
   {
     "channel_id": 0,
     "decoded": {
-      "status": "OK"
+      "status": 0
     },
     "direction": "HU->Phone",
     "frame_index": 4,
@@ -28,7 +28,7 @@
                 "margin_height": 0,
                 "margin_width": 45,
                 "video_fps": "_30",
-                "video_resolution": "_480p"
+                "video_resolution": "VIDEO_800x480"
               },
               {
                 "codec": "MEDIA_CODEC_VIDEO_H265",
@@ -36,7 +36,7 @@
                 "margin_height": 0,
                 "margin_width": 45,
                 "video_fps": "_30",
-                "video_resolution": "_480p"
+                "video_resolution": "VIDEO_800x480"
               }
             ]
           },
@@ -92,7 +92,7 @@
               4,
               84
             ],
-            "touch_screen_config": [
+            "touch_screen_configs": [
               {
                 "height": 480,
                 "width": 755
@@ -120,7 +120,7 @@
           "bluetooth_channel": {
             "adapter_address": "DC:A6:32:E7:5A:FF",
             "supported_pairing_methods": [
-              "HFP"
+              "PIN"
             ]
           },
           "channel_id": 8
@@ -128,7 +128,7 @@
         {
           "channel_id": 14,
           "wifi_channel": {
-            "ssid": "Prodigy_478c"
+            "bssid": "Prodigy_478c"
           }
         },
         {
@@ -151,7 +151,7 @@
               "width": 64
             },
             "minimum_interval_ms": 500,
-            "type": "TURN_BY_TURN"
+            "type": 1
           }
         },
         {
@@ -510,7 +510,7 @@
   {
     "channel_id": 4,
     "decoded": {
-      "config_index": 1
+      "media_codec_type": "MEDIA_CODEC_AUDIO_PCM"
     },
     "direction": "Phone->HU",
     "frame_index": 34,
@@ -549,7 +549,7 @@
   {
     "channel_id": 3,
     "decoded": {
-      "config_index": 7
+      "media_codec_type": "MEDIA_CODEC_VIDEO_H265"
     },
     "direction": "Phone->HU",
     "frame_index": 37,
@@ -639,7 +639,7 @@
   {
     "channel_id": 5,
     "decoded": {
-      "config_index": 1
+      "media_codec_type": "MEDIA_CODEC_AUDIO_PCM"
     },
     "direction": "Phone->HU",
     "frame_index": 44,
@@ -665,7 +665,7 @@
   {
     "channel_id": 6,
     "decoded": {
-      "config_index": 1
+      "media_codec_type": "MEDIA_CODEC_AUDIO_PCM"
     },
     "direction": "Phone->HU",
     "frame_index": 46,
@@ -820,6 +820,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188254728285431"
     },
     "direction": "Phone->HU",
@@ -888,6 +889,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188255728224910"
     },
     "direction": "Phone->HU",
@@ -944,6 +946,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188256728048347"
     },
     "direction": "Phone->HU",
@@ -966,6 +969,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188257728670118"
     },
     "direction": "Phone->HU",
@@ -1032,6 +1036,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188258729360742"
     },
     "direction": "Phone->HU",
@@ -1076,6 +1081,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188259728543398"
     },
     "direction": "Phone->HU",
@@ -1098,6 +1104,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188260729174491"
     },
     "direction": "Phone->HU",
@@ -1120,6 +1127,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188261728784595"
     },
     "direction": "Phone->HU",
@@ -1142,6 +1150,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188262729088970"
     },
     "direction": "Phone->HU",
@@ -1164,6 +1173,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188263728853188"
     },
     "direction": "Phone->HU",
@@ -1208,6 +1218,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188264729999802"
     },
     "direction": "Phone->HU",
@@ -1230,6 +1241,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188265730186833"
     },
     "direction": "Phone->HU",
@@ -1252,6 +1264,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188266730392302"
     },
     "direction": "Phone->HU",
@@ -1274,6 +1287,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188267730328812"
     },
     "direction": "Phone->HU",
@@ -1296,6 +1310,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188268730822457"
     },
     "direction": "Phone->HU",
@@ -1340,6 +1355,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188269731559488"
     },
     "direction": "Phone->HU",
@@ -1362,6 +1378,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188270732491206"
     },
     "direction": "Phone->HU",
@@ -1384,6 +1401,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188271732088862"
     },
     "direction": "Phone->HU",
@@ -1406,6 +1424,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188272732040841"
     },
     "direction": "Phone->HU",
@@ -1428,6 +1447,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188273732346466"
     },
     "direction": "Phone->HU",
@@ -1472,6 +1492,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188274732705580"
     },
     "direction": "Phone->HU",
@@ -1494,6 +1515,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188275733230423"
     },
     "direction": "Phone->HU",
@@ -1560,6 +1582,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188276733457089"
     },
     "direction": "Phone->HU",
@@ -1626,6 +1649,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188277733355527"
     },
     "direction": "Phone->HU",
@@ -1648,6 +1672,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188278733218860"
     },
     "direction": "Phone->HU",
@@ -1704,6 +1729,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188279733100734"
     },
     "direction": "Phone->HU",
@@ -1726,6 +1752,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188280732989796"
     },
     "direction": "Phone->HU",
@@ -1748,6 +1775,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188281732885525"
     },
     "direction": "Phone->HU",
@@ -1770,6 +1798,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188282733557452"
     },
     "direction": "Phone->HU",
@@ -1792,6 +1821,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188283734749795"
     },
     "direction": "Phone->HU",
@@ -1836,6 +1866,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188284735374639"
     },
     "direction": "Phone->HU",
@@ -1858,6 +1889,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188285734841930"
     },
     "direction": "Phone->HU",
@@ -1880,6 +1912,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188286735538388"
     },
     "direction": "Phone->HU",
@@ -1902,6 +1935,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188287736768231"
     },
     "direction": "Phone->HU",
@@ -1924,6 +1958,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188288736961772"
     },
     "direction": "Phone->HU",
@@ -1968,6 +2003,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188289737605262"
     },
     "direction": "Phone->HU",
@@ -1990,6 +2026,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188290738059324"
     },
     "direction": "Phone->HU",
@@ -2012,6 +2049,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188291738744792"
     },
     "direction": "Phone->HU",
@@ -2034,6 +2072,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188292739689010"
     },
     "direction": "Phone->HU",
@@ -2056,6 +2095,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188293739653073"
     },
     "direction": "Phone->HU",
@@ -2100,6 +2140,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188294740462291"
     },
     "direction": "Phone->HU",
@@ -2122,6 +2163,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188295740229113"
     },
     "direction": "Phone->HU",
@@ -2144,6 +2186,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188296739800103"
     },
     "direction": "Phone->HU",
@@ -2166,6 +2209,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188297740524165"
     },
     "direction": "Phone->HU",
@@ -2188,6 +2232,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188298741179164"
     },
     "direction": "Phone->HU",
@@ -2232,6 +2277,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188299740676612"
     },
     "direction": "Phone->HU",
@@ -2254,6 +2300,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188300741291351"
     },
     "direction": "Phone->HU",
@@ -2276,6 +2323,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188301740885882"
     },
     "direction": "Phone->HU",
@@ -2298,6 +2346,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188302741466298"
     },
     "direction": "Phone->HU",
@@ -2320,6 +2369,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188303741363694"
     },
     "direction": "Phone->HU",
@@ -2364,6 +2414,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188304740717287"
     },
     "direction": "Phone->HU",
@@ -2386,6 +2437,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188305741379943"
     },
     "direction": "Phone->HU",
@@ -2408,6 +2460,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188306740920516"
     },
     "direction": "Phone->HU",
@@ -2430,6 +2483,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188307741073692"
     },
     "direction": "Phone->HU",
@@ -2441,7 +2495,7 @@
   {
     "channel_id": 0,
     "decoded": {
-      "type": 2
+      "type": "NAV_FOCUS_PROJECTED"
     },
     "direction": "HU->Phone",
     "frame_index": 1982,
@@ -2452,7 +2506,7 @@
   {
     "channel_id": 0,
     "decoded": {
-      "type": 2
+      "type": "NAV_FOCUS_PROJECTED"
     },
     "direction": "Phone->HU",
     "frame_index": 1983,
@@ -2486,6 +2540,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188308741401973"
     },
     "direction": "Phone->HU",
@@ -2530,6 +2585,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188309740976816"
     },
     "direction": "Phone->HU",
@@ -2552,6 +2608,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188310740863066"
     },
     "direction": "Phone->HU",
@@ -2583,6 +2640,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188311741372128"
     },
     "direction": "Phone->HU",
@@ -2605,6 +2663,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188312740626815"
     },
     "direction": "Phone->HU",
@@ -2627,6 +2686,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188313741461346"
     },
     "direction": "Phone->HU",
@@ -2671,6 +2731,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188314741079887"
     },
     "direction": "Phone->HU",
@@ -2693,6 +2754,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188315741445564"
     },
     "direction": "Phone->HU",
@@ -2715,6 +2777,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188316740910251"
     },
     "direction": "Phone->HU",
@@ -2737,6 +2800,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188317741041501"
     },
     "direction": "Phone->HU",
@@ -2759,6 +2823,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188318741361657"
     },
     "direction": "Phone->HU",
@@ -2803,6 +2868,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188319741025823"
     },
     "direction": "Phone->HU",
@@ -2825,6 +2891,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188320741422281"
     },
     "direction": "Phone->HU",
@@ -2847,6 +2914,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188321741286499"
     },
     "direction": "Phone->HU",
@@ -2869,6 +2937,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188322741399416"
     },
     "direction": "Phone->HU",
@@ -2891,6 +2960,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188323740711290"
     },
     "direction": "Phone->HU",
@@ -2935,6 +3005,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188324742808790"
     },
     "direction": "Phone->HU",
@@ -2957,6 +3028,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188325743277852"
     },
     "direction": "Phone->HU",
@@ -2979,6 +3051,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188326743493841"
     },
     "direction": "Phone->HU",
@@ -2990,7 +3063,7 @@
   {
     "channel_id": 0,
     "decoded": {
-      "type": 1
+      "type": "NAV_FOCUS_NATIVE"
     },
     "direction": "HU->Phone",
     "frame_index": 2697,
@@ -3001,7 +3074,7 @@
   {
     "channel_id": 0,
     "decoded": {
-      "type": 1
+      "type": "NAV_FOCUS_NATIVE"
     },
     "direction": "Phone->HU",
     "frame_index": 2698,
@@ -3023,6 +3096,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188327743381185"
     },
     "direction": "Phone->HU",
@@ -3045,6 +3119,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188328742842434"
     },
     "direction": "Phone->HU",
@@ -3089,6 +3164,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188329743151132"
     },
     "direction": "Phone->HU",
@@ -3111,6 +3187,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188330742918371"
     },
     "direction": "Phone->HU",
@@ -3133,6 +3210,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188331742979881"
     },
     "direction": "Phone->HU",
@@ -3155,6 +3233,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188332742738006"
     },
     "direction": "Phone->HU",
@@ -3177,6 +3256,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188333743491964"
     },
     "direction": "Phone->HU",
@@ -3233,6 +3313,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188334743534932"
     },
     "direction": "Phone->HU",
@@ -3255,6 +3336,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188335744389150"
     },
     "direction": "Phone->HU",
@@ -3299,6 +3381,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188336743939098"
     },
     "direction": "Phone->HU",
@@ -3343,6 +3426,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188337744242118"
     },
     "direction": "Phone->HU",
@@ -3365,6 +3449,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188338744062430"
     },
     "direction": "Phone->HU",
@@ -3431,6 +3516,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188339744310399"
     },
     "direction": "Phone->HU",
@@ -3453,6 +3539,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188340743988211"
     },
     "direction": "Phone->HU",
@@ -3607,6 +3694,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188341744099148"
     },
     "direction": "Phone->HU",
@@ -3893,6 +3981,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188342744763002"
     },
     "direction": "Phone->HU",
@@ -3959,6 +4048,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188343745642689"
     },
     "direction": "Phone->HU",
@@ -4047,6 +4137,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188344746620709"
     },
     "direction": "Phone->HU",
@@ -4069,6 +4160,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188345747733834"
     },
     "direction": "Phone->HU",
@@ -4177,7 +4269,7 @@
   {
     "channel_id": 0,
     "decoded": {
-      "session_type": 1
+      "session_type": "VOICE_SESSION_START"
     },
     "direction": "Phone->HU",
     "frame_index": 3397,
@@ -4312,6 +4404,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188346747934927"
     },
     "direction": "Phone->HU",
@@ -4334,6 +4427,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188347748654458"
     },
     "direction": "Phone->HU",
@@ -4412,7 +4506,7 @@
   {
     "channel_id": 0,
     "decoded": {
-      "session_type": 2
+      "session_type": "VOICE_SESSION_STOP"
     },
     "direction": "Phone->HU",
     "frame_index": 3480,
@@ -4434,6 +4528,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188348748886020"
     },
     "direction": "Phone->HU",
@@ -4490,6 +4585,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188349749461905"
     },
     "direction": "Phone->HU",
@@ -4512,6 +4608,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188350749026905"
     },
     "direction": "Phone->HU",
@@ -4556,6 +4653,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188351749464405"
     },
     "direction": "Phone->HU",
@@ -4600,6 +4698,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188352749299144"
     },
     "direction": "Phone->HU",
@@ -4622,6 +4721,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188353749719612"
     },
     "direction": "Phone->HU",
@@ -4688,6 +4788,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188354750562268"
     },
     "direction": "Phone->HU",
@@ -4710,6 +4811,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188355750965705"
     },
     "direction": "Phone->HU",
@@ -4732,6 +4834,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188356750873205"
     },
     "direction": "Phone->HU",
@@ -4754,6 +4857,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188357751502527"
     },
     "direction": "Phone->HU",
@@ -4776,6 +4880,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188358751533985"
     },
     "direction": "Phone->HU",
@@ -4820,6 +4925,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188359750981902"
     },
     "direction": "Phone->HU",
@@ -4842,6 +4948,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188360751486485"
     },
     "direction": "Phone->HU",
@@ -4864,6 +4971,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188361751041797"
     },
     "direction": "Phone->HU",
@@ -4886,6 +4994,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188362751010338"
     },
     "direction": "Phone->HU",
@@ -4908,6 +5017,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188363750772577"
     },
     "direction": "Phone->HU",
@@ -4952,6 +5062,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188364751262993"
     },
     "direction": "Phone->HU",
@@ -4974,6 +5085,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188365750867420"
     },
     "direction": "Phone->HU",
@@ -4996,6 +5108,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188366750820024"
     },
     "direction": "Phone->HU",
@@ -5018,6 +5131,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188367751235492"
     },
     "direction": "Phone->HU",
@@ -5040,6 +5154,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188368751566169"
     },
     "direction": "Phone->HU",
@@ -5084,6 +5199,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188369752089137"
     },
     "direction": "Phone->HU",
@@ -5106,6 +5222,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188370752470074"
     },
     "direction": "Phone->HU",
@@ -5128,6 +5245,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188371753086741"
     },
     "direction": "Phone->HU",
@@ -5150,6 +5268,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188372755323303"
     },
     "direction": "Phone->HU",
@@ -5172,6 +5291,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188373756623927"
     },
     "direction": "Phone->HU",
@@ -5216,6 +5336,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188374757512417"
     },
     "direction": "Phone->HU",
@@ -5228,7 +5349,7 @@
     "channel_id": 8,
     "decoded": {
       "already_paired": true,
-      "status": "OK"
+      "status": 1
     },
     "direction": "HU->Phone",
     "frame_index": 4464,
@@ -5239,7 +5360,7 @@
   {
     "channel_id": 8,
     "decoded": {
-      "pairing_method": "HFP",
+      "pairing_method": "PIN",
       "phone_address": "8C:C5:D0:DD:74:15"
     },
     "direction": "Phone->HU",
@@ -5262,6 +5383,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188375757911635"
     },
     "direction": "Phone->HU",
@@ -5284,6 +5406,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188376760277572"
     },
     "direction": "Phone->HU",
@@ -5306,6 +5429,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188377761113301"
     },
     "direction": "Phone->HU",
@@ -5328,6 +5452,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188378762791790"
     },
     "direction": "Phone->HU",
@@ -5372,6 +5497,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188379763639863"
     },
     "direction": "Phone->HU",
@@ -5394,6 +5520,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188380768189237"
     },
     "direction": "Phone->HU",
@@ -5416,6 +5543,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188381770145799"
     },
     "direction": "Phone->HU",
@@ -5482,6 +5610,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188382771223039"
     },
     "direction": "Phone->HU",
@@ -5504,6 +5633,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188383771893924"
     },
     "direction": "Phone->HU",
@@ -5548,6 +5678,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188384772801267"
     },
     "direction": "Phone->HU",
@@ -5570,6 +5701,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188385773237204"
     },
     "direction": "Phone->HU",
@@ -5592,6 +5724,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188386775076318"
     },
     "direction": "Phone->HU",
@@ -5614,6 +5747,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188387777214130"
     },
     "direction": "Phone->HU",
@@ -5636,6 +5770,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188388779248193"
     },
     "direction": "Phone->HU",
@@ -5680,6 +5815,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188389779927411"
     },
     "direction": "Phone->HU",
@@ -5702,6 +5838,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188390782391786"
     },
     "direction": "Phone->HU",
@@ -5724,6 +5861,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188391783976316"
     },
     "direction": "Phone->HU",
@@ -5746,6 +5884,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188392785373347"
     },
     "direction": "Phone->HU",
@@ -5768,6 +5907,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188393785884909"
     },
     "direction": "Phone->HU",
@@ -5812,6 +5952,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188394787456732"
     },
     "direction": "Phone->HU",
@@ -5834,6 +5975,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188395789240690"
     },
     "direction": "Phone->HU",
@@ -5856,6 +5998,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188396791716315"
     },
     "direction": "Phone->HU",
@@ -5878,6 +6021,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188397793628345"
     },
     "direction": "Phone->HU",
@@ -5900,6 +6044,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188398795767251"
     },
     "direction": "Phone->HU",
@@ -5944,6 +6089,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188399798656313"
     },
     "direction": "Phone->HU",
@@ -5966,6 +6112,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188400801181001"
     },
     "direction": "Phone->HU",
@@ -5988,6 +6135,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188401803090011"
     },
     "direction": "Phone->HU",
@@ -6010,6 +6158,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188402805028187"
     },
     "direction": "Phone->HU",
@@ -6032,6 +6181,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188403807209385"
     },
     "direction": "Phone->HU",
@@ -6076,6 +6226,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188404808716884"
     },
     "direction": "Phone->HU",
@@ -6098,6 +6249,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188405810511311"
     },
     "direction": "Phone->HU",
@@ -6120,6 +6272,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188406811266936"
     },
     "direction": "Phone->HU",
@@ -6142,6 +6295,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188407812889435"
     },
     "direction": "Phone->HU",
@@ -6164,6 +6318,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188408815115060"
     },
     "direction": "Phone->HU",
@@ -6208,6 +6363,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188409816200528"
     },
     "direction": "Phone->HU",
@@ -6230,6 +6386,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188410818037351"
     },
     "direction": "Phone->HU",
@@ -6252,6 +6409,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188411820199069"
     },
     "direction": "Phone->HU",
@@ -6274,6 +6432,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188412822375371"
     },
     "direction": "Phone->HU",
@@ -6296,6 +6455,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188413824464902"
     },
     "direction": "Phone->HU",
@@ -6340,6 +6500,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188414825032818"
     },
     "direction": "Phone->HU",
@@ -6362,6 +6523,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188415826743651"
     },
     "direction": "Phone->HU",
@@ -6384,6 +6546,7 @@
   {
     "channel_id": 0,
     "decoded": {
+      "bugreport_request": false,
       "timestamp": "188416828542401"
     },
     "direction": "Phone->HU",
