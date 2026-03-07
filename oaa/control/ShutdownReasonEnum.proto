@@ -1,17 +1,24 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 // Copyright (C) 2024-2026 Open Android Auto contributors
 // Based on works by: f1x.studio (aasdk), opencardev (crankshaft), aa-proxy (aa-proxy-rs)
-syntax="proto3";
+
+/*
+ * Shutdown reason enum — used in ShutdownRequest (msg 15).
+ *
+ * APK class: vvq (16.2)
+ * Closed enum (enum_closed=1) — unknown values rejected, default = USER_SELECTION.
+ * No value 0 exists in the APK — m37356b returns null for unknown values.
+ */
+syntax="proto2";
 
 package oaa.proto.enums;
 
-// confidence: unverified
+// confidence: gold [apk_deep_trace]
 message ShutdownReason
 {
-    // confidence: unverified
+    // confidence: gold [apk_deep_trace]
     enum Enum
     {
-        NONE = 0;
         USER_SELECTION = 1;
         DEVICE_SWITCH = 2;
         NOT_SUPPORTED = 3;

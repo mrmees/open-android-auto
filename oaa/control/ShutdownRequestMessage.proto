@@ -7,8 +7,12 @@ import "oaa/control/ShutdownReasonEnum.proto";
 
 package oaa.proto.messages;
 
-// confidence: silver [apk_static, cross_version]
+// APK class: vvr (16.2)
+// Msg ID: 15 (SHUTDOWN_REQUEST / ByeByeRequest) on control channel
+// Direction: Bidirectional — both HU and phone can send
+// Handler: hzh.java case 15 (receive), mo20031c (send)
+// confidence: gold [apk_deep_trace]
 message ShutdownRequest
 {
-    optional enums.ShutdownReason.Enum reason = 1;  // confidence: silver [apk_static, cross_version]
+    required enums.ShutdownReason.Enum reason = 1;  // confidence: gold [apk_deep_trace]
 }

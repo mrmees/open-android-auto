@@ -5,8 +5,13 @@ syntax="proto2";
 
 package oaa.proto.messages;
 
-// confidence: silver [apk_static, cross_version]
+// APK class: vvh (16.2), vvh (16.1)
+// Msg ID: 4 (AUTH_COMPLETE) on control channel (GAL type 1)
+// Direction: HU->Phone
+// Handler: hzh.java case 4 — status resolved via vyh (ProtocolStatus enum)
+// Also deserialized by qmg.java (alternate handler) and qex.java (debug printer)
+// confidence: gold [apk_deep_trace]
 message AuthCompleteIndication
 {
-    optional int32 status = 1;  // confidence: silver [apk_static, cross_version]
+    required int32 status = 1;  // vyh/ProtocolStatus enum value  // confidence: gold [apk_deep_trace]
 }

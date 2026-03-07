@@ -1,30 +1,26 @@
-// Android Auto Protocol Buffer Definitions
-// https://github.com/mrmees/open-android-auto
 // SPDX-License-Identifier: GPL-3.0-or-later
+// Copyright (C) 2024-2026 Open Android Auto contributors
+// Based on works by: f1x.studio (aasdk), opencardev (crankshaft), aa-proxy (aa-proxy-rs)
 
 /*
- * Battery Status Notification (Control channel, GAL type 1)
- * Handler: vee.java (control channel message dispatcher)
+ * Battery Status Notification (msg ID 23 on control channel).
  *
  * Phone reports its battery status to the head unit.
- * Confirmed via wire capture: 08 0d 10 b0 39 18 01 decodes to
- * battery_level=13, time_remaining_s=7344, critical_battery=true.
+ * Requires protocol version >= 1.4.
  *
- * Message ID:
- *   0x0017 = BatteryStatusNotification  (Phone->HU)
- *
- * APK: AA v16.1
+ * APK class: vvi (16.2)
+ * Sender: hna.java line 1369 via hzh.m20106k(23, ...)
+ * Direction: Phone->HU (not received by phone handler)
+ * Battery level from BatteryManager.EXTRA_LEVEL.
+ * Time from getBatteryDischargePrediction() (API 31+) or manual fallback.
  */
-
-syntax = "proto3";
+syntax="proto2";
 
 package oaa.proto.messages;
 
-// 0x0017: BatteryStatusNotification (Phone->HU)
-// Periodic or event-driven battery status update.
-// confidence: unverified
+// confidence: gold [apk_deep_trace]
 message BatteryStatusNotification {
-    optional uint32 battery_level = 1;  // confidence: unverified
-    optional uint32 time_remaining_s = 2;  // confidence: unverified
-    optional bool critical_battery = 3;  // confidence: unverified
+    optional uint32 battery_level = 1;  // percentage  // confidence: gold [apk_deep_trace]
+    optional uint32 time_remaining_s = 2;  // discharge time in seconds  // confidence: gold [apk_deep_trace]
+    optional bool critical_battery = 3;  // confidence: gold [apk_deep_trace]
 }

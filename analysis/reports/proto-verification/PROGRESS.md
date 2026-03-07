@@ -8,10 +8,11 @@
 
 | Status | Count |
 |--------|-------|
-| Verified (Gold) | 28 |
-| Schema Errors Found & Fixed | 10 |
+| Verified (Gold) | 51 |
+| Schema Errors Found & Fixed | 22 |
 | New Protos Discovered | 2 (MediaPlaybackStatusEvent, VehicleEnergyForecast) |
-| Retracted / Removed | 6 |
+| Retracted / Removed | 9 |
+| Relocated (wrong channel) | 2 (BindingRequest/Response → input) |
 | Pending | remaining channels |
 
 ## Channel Verification Status
@@ -24,7 +25,7 @@
 | 1b | Media AV Stream | CAR.GAL.MEDIA | qnf/icv | **COMPLETE** | [media.md](media.md) | 3 Gold msgs (wbs/vwn/vuw), msg IDs corrected |
 | 1c | Car Local Media | CAR.GAL.CAR_LOCAL_MEDIA | hyh (16.2) | **COMPLETE** | [media.md](media.md) | 3 Gold msgs, direction corrected, own PlaybackState enum |
 | 2 | Navigation | CAR.INST | ian/hlj (16.2) | **COMPLETE** | [navigation.md](navigation.md) | 7 Gold msgs, 2 retractions, 1 new proto, enum fixes |
-| 3 | Control (ch 0) | CAR.GAL.GAL | hzh (16.2) | PENDING | | Session lifecycle, NavFocus found here |
+| 3 | Control (ch 0) | CAR.GAL.GAL | hzh (16.2) | **COMPLETE** | [control.md](control.md) | 18 Gold msgs, 5 Gold enums, 3 retractions, 2 relocated |
 | 4 | Input | CAR.GAL.INPUT | TBD | PENDING | | Touch/button |
 | 5 | Phone | TBD | TBD | PENDING | | Phone status |
 | 6 | Video | CAR.GAL.VIDEO | TBD | PENDING | | Video sink |
@@ -45,7 +46,7 @@
 
 ## Resume Pointer
 
-**Next action:** Begin control channel (#3) verification. NavFocus messages already found on hzh (GAL type 1). Partial control channel message table discovered during nav verification.
+**Next action:** Begin input channel (#4) verification. BindingRequest/Response relocated here from control — need full input handler trace. Also sensor (#9) and phone (#5) channels.
 
 ## Completed — Navigation Channel (Wave 2)
 
