@@ -9,13 +9,13 @@
  * from wire captures. Distinct from RawVehicleEnergyModel (sensor 25)
  * which carries an opaque bytes blob.
  *
- * APK class: vvg (AA v16.1, proto3, 0 fields)
+ * APK class: vvg (AA v16.1), vus (AA v16.2) — proto3, 0 fields
  */
 syntax="proto3";
 
 package oaa.proto.data;
 
-// confidence: bronze [apk_static]
+// confidence: gold [deep_trace, 16.2 DB verified — confirmed 0 fields]
 message VehicleEnergyModelData
 {
 }

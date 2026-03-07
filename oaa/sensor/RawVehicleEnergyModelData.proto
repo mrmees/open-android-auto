@@ -7,15 +7,16 @@
  *
  * Opaque blob — internal structure TBD from wire captures.
  *
- * APK class: wbh (AA v16.1)
+ * APK class: wbh (AA v16.1), wax (AA v16.2)
+ * NOTE: wbh in 16.2 is SensorRequest — obfuscated name reuse!
  * Field numbers decoded from protobuf-lite RawMessageInfo descriptor.
  */
 syntax="proto2";
 
 package oaa.proto.data;
 
-// confidence: silver [apk_static, cross_version]
+// confidence: gold [deep_trace, 16.2 DB verified]
 message RawVehicleEnergyModel
 {
-    optional bytes raw_data = 1;  // confidence: silver [apk_static, cross_version]
+    optional bytes raw_data = 1;  // confidence: gold
 }

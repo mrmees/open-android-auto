@@ -5,9 +5,10 @@ syntax="proto2";
 
 package oaa.proto.data;
 
-// confidence: silver [apk_static, cross_version]
+// APK class: vxh (AA v16.2)
+// confidence: gold [deep_trace, 16.2 DB verified]
 message HVAC
 {
-    optional int32 target_temperature = 1;  // confidence: silver [apk_static, cross_version]
-    optional int32 current_temperature = 2;  // confidence: silver [apk_static, cross_version]
+    optional int32 target_temperature = 1;  // confidence: gold
+    optional int32 current_temperature = 2;  // confidence: gold
 }

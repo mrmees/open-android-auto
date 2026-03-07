@@ -8,15 +8,15 @@
  * Boolean indicating toll card presence/status.
  * VERIFIED: phone logs "sensor event while no listener, sensor:22"
  *
- * APK class: wch (AA v16.1)
+ * APK class: wch (AA v16.1), wbx (AA v16.2)
  * Field numbers decoded from protobuf-lite RawMessageInfo descriptor.
  */
 syntax="proto2";
 
 package oaa.proto.data;
 
-// confidence: silver [apk_static, cross_version]
+// confidence: gold [deep_trace, 16.2 DB verified]
 message TollCardData
 {
-    required bool toll_card_present = 1;  // confidence: silver [apk_static, cross_version]
+    required bool toll_card_present = 1;  // confidence: gold
 }

@@ -8,10 +8,10 @@
 
 | Status | Count |
 |--------|-------|
-| Verified (Gold) | 91 |
-| Schema Errors Found & Fixed | 47 |
+| Verified (Gold) | 127 |
+| Schema Errors Found & Fixed | 62 |
 | New Protos Discovered | 10 (MediaPlaybackStatusEvent, VehicleEnergyForecast, InputBindingResponse, IntegratedOverlayStart/Stop, UpdateHuUiConfigResponse, UpdateUiConfigRequest, AVChannelMediaOptions, MicrophoneOpenResponse, RadioSearchRequest) |
-| Retracted / Removed | 22 |
+| Retracted / Removed | 23 |
 | Relocated (wrong channel) | 4 (BindingRequest/Response → input, CallAvailability/VoiceSession → control) |
 | Pending | remaining channels |
 
@@ -31,7 +31,7 @@
 | 6 | Video | CAR.GAL.VIDEO | ied/icv (16.2) | **COMPLETE** | [video.md](video.md) | 8 Gold msgs, 2 Gold enums, 1 enum rewrite, 2 retractions, 4 new protos |
 | 7 | Audio (output) | CAR.GAL.MEDIA | qnf (extends qnp) | **COMPLETE** | [audio.md](audio.md) | Shares AV protocol with video — no audio-specific msgs |
 | 8 | Audio (mic) | CAR.GAL.MIC | ict/ial | **COMPLETE** | [audio.md](audio.md) | 1 Gold msg (MicrophoneOpenResponse), 3 retractions |
-| 9 | Sensor | CAR.GAL.SENSOR | TBD | PENDING | | Sensor data |
+| 9 | Sensor | CAR.GAL.SENSOR | ibi (16.2) | **COMPLETE** | [sensor.md](sensor.md) | 4 Gold msgs, 26 Gold sub-msgs, 4 Gold enums, 2 Gold SDP, 1 retraction |
 | 10 | Bluetooth | CAR.GAL.BT / CAR.BT | TBD | PENDING | | BT pairing |
 
 ### Phase 1 — Secondary Channels
@@ -46,7 +46,64 @@
 
 ## Resume Pointer
 
-**Next action:** Begin sensor (#9) channel verification. Radio channel (#11) partially verified via audio pass — directions fixed, 16.2 class refs updated, RadioSearchRequest (0x8023) added. Full radio verification still needed.
+**Next action:** Begin Bluetooth (#10) or Radio (#11) channel verification. Radio partially verified via audio pass — directions fixed, 16.2 class refs updated, RadioSearchRequest (0x8023) added. Full radio sub-message schema verification still needed.
+
+## Completed — Sensor Channel (Wave 8)
+
+### CAR.GAL.SENSOR (ibi.java, GAL type 7)
+
+| Proto | Wire ID | Direction | 16.2 Class | Confidence | Result |
+|-------|---------|-----------|------------|------------|--------|
+| SensorRequest | 0x8001 | HU→Phone | wbh | Gold | Correct, updated 16.2 class |
+| SensorStartResponse | 0x8002 | Phone→HU | wbi | Gold | optional→required on status field |
+| SensorEventIndication | 0x8003 | Phone→HU | wbe | Gold | MAJOR FIX: fields 21-26 had wrong sub-message types |
+| SensorError | 0x8004 | Phone→HU | wbf | Gold | Correct, updated 16.2 class |
+
+### Sub-Messages (26 sensor data types, all Gold)
+
+All 26 sensor data sub-messages verified against 16.2 DB. Key fixes:
+- 9 fields changed optional→required (GPSLocation lat/lon, Compass bearing, Speed, RPM, Odometer, ParkingBrake, Gear, DrivingStatus)
+- GpsSatelliteInfo filled with 5 fields from vxd (was empty placeholder)
+- GearEnum syntax proto3→proto2 (closed enum)
+- SensorEventIndication fields 21-26 type names completely wrong — replaced with correct types
+
+### Enums (4 Gold, 2 Silver)
+
+| Enum | 16.2 Class | Confidence |
+|------|------------|------------|
+| SensorType (26 values) | wbl | Gold |
+| SensorErrorStatus (3 values) | wbg | Gold |
+| Gear (14 values) | vxb closed | Gold |
+| FuelType (13 values) | vxa | Gold |
+| EVConnectorType (12 values) | vwx | Gold |
+| HeadlightStatus (placeholder) | — | Silver |
+| IndicatorStatus (placeholder) | — | Silver |
+
+### SDP Config (2 Gold)
+
+| Proto | 16.2 Class | Confidence |
+|-------|------------|------------|
+| SensorChannelConfig | wbk | Gold |
+| SensorTypeEntry | wbj | Gold |
+
+### Retracted
+
+| Proto | Reason |
+|-------|--------|
+| SensorStartRequestMessage | Duplicate of SensorRequestMessage (wrong field modifiers: optional/uint64 vs required/int64) |
+
+### SensorEventIndication Fields 21-26 — CORRECTED
+
+| Field | Was (WRONG) | Now (CORRECT) | 16.2 Class |
+|-------|------------|---------------|------------|
+| 21 | TollRoad | GpsSatelliteData | vxe |
+| 22 | RangeRemaining | TollCardData | wbx |
+| 23 | FuelTypeInfo | VehicleEnergyModelData | vus |
+| 24 | EVBatteryInfo | TrailerData | wca |
+| 25 | EVChargeInfo | RawVehicleEnergyModel | wax |
+| 26 | EVChargeStatus | RawEvTripSettings | wav |
+
+Inline message definitions (TollRoad, TollRoadInfo, RangeRemaining, FuelTypeInfo, EVBatteryInfo, EVChargeInfo, EVChargeInfoData, EVChargeStatus, EVChargeStatusData) removed — replaced by imports of correct standalone proto files.
 
 ## Completed — Audio Channel (Wave 7)
 

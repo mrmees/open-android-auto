@@ -1,6 +1,22 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 // Copyright (C) 2024-2026 Open Android Auto contributors
 // Based on works by: f1x.studio (aasdk), opencardev (crankshaft), aa-proxy (aa-proxy-rs)
+
+/*
+ * Sensor event indication message (msg ID 0x8003).
+ *
+ * Sent by the phone to deliver sensor data to the head unit.
+ * Field numbers match SensorType enum values (field 1 = LOCATION = 1, etc.).
+ * All fields are repeated messages — each batch can contain multiple readings.
+ *
+ * APK class: wbo (AA v16.1), wbe (AA v16.2)
+ * Handler: ibi.java (16.2) dispatches all 26 fields via m20130u().
+ *
+ * DHU 2.1 verification status (2026-02-28):
+ *   Fields 1,3,6: functionally confirmed (affect phone behavior), silent in logcat
+ *   Field 9: enum numbering verified via "no listener" log referencing sensor:9
+ *   Field 10: fully verified — complete processing pipeline traced in logcat
+ */
 syntax="proto2";
 
 import "oaa/sensor/GPSLocationData.proto";
@@ -23,106 +39,42 @@ import "oaa/sensor/LightData.proto";
 import "oaa/sensor/TirePressureData.proto";
 import "oaa/sensor/AccelData.proto";
 import "oaa/sensor/GyroData.proto";
+import "oaa/sensor/GpsSatelliteData.proto";
+import "oaa/sensor/TollCardData.proto";
+import "oaa/sensor/VehicleEnergyModelData.proto";
+import "oaa/sensor/TrailerData.proto";
+import "oaa/sensor/RawVehicleEnergyModelData.proto";
+import "oaa/sensor/RawEvTripSettingsData.proto";
 
 package oaa.proto.messages;
 
-// Field numbers match SensorTypeEnum values (field 1 = LOCATION = 1, etc.).
-// DHU 2.1 verification status (2026-02-28):
-//   Fields 1,3,6: functionally confirmed (affect phone behavior), silent in logcat
-//   Field 9: enum numbering verified via "no listener" log referencing sensor:9
-//   Field 10: fully verified — complete processing pipeline traced in logcat
-// confidence: silver [apk_static, cross_version]
+// confidence: gold [deep_trace, 16.2 handler ibi.java + wbe.java zzq descriptor]
 message SensorEventIndication
 {
-    repeated data.GPSLocation gps_location = 1; // LOCATION — functionally verified (DHU 2.1)  // confidence: silver [apk_static, cross_version]
-    repeated data.Compass compass = 2; // COMPASS  // confidence: silver [apk_static, cross_version]
-    repeated data.Speed speed = 3; // CAR_SPEED — sent OK, silent in logcat (DHU 2.1)  // confidence: silver [apk_static, cross_version]
-    repeated data.RPM rpm = 4; // RPM  // confidence: silver [apk_static, cross_version]
-    repeated data.Odometer odometer = 5; // ODOMETER  // confidence: silver [apk_static, cross_version]
-    repeated data.FuelLevel fuel_level = 6; // FUEL_LEVEL — sent successfully (DHU 2.1)  // confidence: silver [apk_static, cross_version]
-    repeated data.ParkingBrake parking_brake = 7; // PARKING_BRAKE  // confidence: silver [apk_static, cross_version]
-    repeated data.Gear gear = 8; // GEAR — no DHU 2.1 CLI command  // confidence: silver [apk_static, cross_version]
-    repeated data.Diagnostics diagnostics = 9; // DIAGNOSTICS — enum verified (sensor:9 log)  // confidence: silver [apk_static, cross_version]
-    repeated data.NightMode night_mode = 10; // NIGHT_DATA — VERIFIED full pipeline  // confidence: silver [apk_static, cross_version]
-    repeated data.Environment enviorment = 11;  // confidence: silver [apk_static, cross_version]
-
-    // Fields 12-20: Removed in AA v16.1 APK (wbo.java only has fields 1-11).
-    // Kept for backward compatibility — phone silently ignores unknown fields.
-    repeated data.HVAC hvac = 12;  // confidence: silver [apk_static, cross_version]
-    repeated data.DrivingStatus driving_status = 13;  // confidence: silver [apk_static, cross_version]
-    repeated data.SteeringWheel steering_wheel = 14;  // confidence: silver [apk_static, cross_version]
-    repeated data.Passenger passenger = 15;  // confidence: silver [apk_static, cross_version]
-    repeated data.Door door = 16;  // confidence: silver [apk_static, cross_version]
-    repeated data.Light light = 17;  // confidence: silver [apk_static, cross_version]
-    repeated data.TirePressure tire_pressure = 18;  // confidence: silver [apk_static, cross_version]
-    repeated data.Accel accel = 19;  // confidence: silver [apk_static, cross_version]
-    repeated data.Gyro gyro = 20;  // confidence: silver [apk_static, cross_version]
-
-    // Fields 21-26 discovered via APK proto decoder (wbo.java, AA v16.1).
-    repeated TollRoad toll_road = 21; // APK: vxs (3 fields: int32, int32, message)  // confidence: silver [apk_static, cross_version]
-    repeated RangeRemaining range_remaining = 22; // APK: wch (1 field: bool)  // confidence: silver [apk_static, cross_version]
-    repeated FuelTypeInfo fuel_type_info = 23; // APK: vvg (empty)  // confidence: silver [apk_static, cross_version]
-    repeated EVBatteryInfo ev_battery_info = 24; // APK: wcl (empty)  // confidence: silver [apk_static, cross_version]
-    repeated EVChargeInfo ev_charge_info = 25; // APK: wbh (1 field: bytes)  // confidence: silver [apk_static, cross_version]
-    repeated EVChargeStatus ev_charge_status = 26; // APK: wbf (1 field: bytes)  // confidence: silver [apk_static, cross_version]
-    // Field 27 (extended_sensor_data) NOT in APK v16.1 — removed.
-}
-
-// APK class: vxs — toll road sensor data (3 fields)
-// Placeholder — sub-message structure TBD from wire captures
-// confidence: silver [apk_static, cross_version]
-message TollRoad {
-    optional int32 toll_status = 1; // int32  // confidence: silver [apk_static, cross_version]
-    optional int32 toll_type = 2; // int32  // confidence: silver [apk_static, cross_version]
-    optional TollRoadInfo info = 3; // sub-message  // confidence: silver [apk_static, cross_version]
-}
-
-// Sub-message of TollRoad field 3 — structure TBD
-// Placeholder — sub-message structure TBD from wire captures
-// confidence: silver [apk_static, cross_version]
-message TollRoadInfo {
-}
-
-// APK class: wch — range remaining sensor data (1 field)
-// confidence: silver [apk_static, cross_version]
-message RangeRemaining {
-    optional bool is_available = 1; // bool  // confidence: silver [apk_static, cross_version]
-}
-
-// APK class: vvg — fuel type info sensor data (empty)
-// Placeholder — sub-message structure TBD from wire captures
-// confidence: silver [apk_static, cross_version]
-message FuelTypeInfo {
-}
-
-// APK class: wcl — EV battery info sensor data (empty)
-// Placeholder — sub-message structure TBD from wire captures
-// confidence: silver [apk_static, cross_version]
-message EVBatteryInfo {
-}
-
-// APK class: wbh — EV charge info sensor data (1 field)
-// Placeholder — sub-message structure TBD from wire captures
-// confidence: silver [apk_static, cross_version]
-message EVChargeInfo {
-    optional EVChargeInfoData data = 1; // sub-message (bytes in APK)  // confidence: silver [apk_static, cross_version]
-}
-
-// Sub-message of EVChargeInfo — structure TBD
-// Placeholder — sub-message structure TBD from wire captures
-// confidence: silver [apk_static, cross_version]
-message EVChargeInfoData {
-}
-
-// APK class: wbf — EV charge status sensor data (1 field)
-// Placeholder — sub-message structure TBD from wire captures
-// confidence: silver [apk_static, cross_version]
-message EVChargeStatus {
-    optional EVChargeStatusData data = 1; // sub-message (bytes in APK)  // confidence: silver [apk_static, cross_version]
-}
-
-// Sub-message of EVChargeStatus — structure TBD
-// Placeholder — sub-message structure TBD from wire captures
-// confidence: silver [apk_static, cross_version]
-message EVChargeStatusData {
+    repeated data.GPSLocation gps_location = 1;         // LOCATION — 16.2: vxx  // confidence: gold
+    repeated data.Compass compass = 2;                   // COMPASS — 16.2: vwm  // confidence: gold
+    repeated data.Speed speed = 3;                       // CAR_SPEED — 16.2: wbt  // confidence: gold
+    repeated data.RPM rpm = 4;                           // RPM — 16.2: wbd  // confidence: gold
+    repeated data.Odometer odometer = 5;                 // ODOMETER — 16.2: vzj  // confidence: gold
+    repeated data.FuelLevel fuel_level = 6;              // FUEL_LEVEL — 16.2: vwz  // confidence: gold
+    repeated data.ParkingBrake parking_brake = 7;        // PARKING_BRAKE — 16.2: vzn  // confidence: gold
+    repeated data.Gear gear = 8;                         // GEAR — 16.2: vxb  // confidence: gold
+    repeated data.Diagnostics diagnostics = 9;           // DIAGNOSTICS — 16.2: vwr  // confidence: gold
+    repeated data.NightMode night_mode = 10;             // NIGHT_DATA — 16.2: vzi  // confidence: gold
+    repeated data.Environment enviorment = 11;           // ENVIRONMENT — 16.2: vww  // confidence: gold
+    repeated data.HVAC hvac = 12;                        // HVAC — 16.2: vxh  // confidence: gold
+    repeated data.DrivingStatus driving_status = 13;     // DRIVING_STATUS — 16.2: vwv  // confidence: gold
+    repeated data.SteeringWheel steering_wheel = 14;     // DEAD_RECKONING — 16.2: vwq  // confidence: gold
+    repeated data.Passenger passenger = 15;              // PASSENGER — 16.2: vzo  // confidence: gold
+    repeated data.Door door = 16;                        // DOOR — 16.2: vwt  // confidence: gold
+    repeated data.Light light = 17;                      // LIGHT — 16.2: vxw  // confidence: gold
+    repeated data.TirePressure tire_pressure = 18;       // TIRE_PRESSURE — 16.2: wbw  // confidence: gold
+    repeated data.Accel accel = 19;                      // ACCELEROMETER — 16.2: vuv  // confidence: gold
+    repeated data.Gyro gyro = 20;                        // GYROSCOPE — 16.2: vxf  // confidence: gold
+    repeated data.GpsSatelliteData gps_satellite = 21;   // GPS_SATELLITE — 16.2: vxe  // confidence: gold
+    repeated data.TollCardData toll_card = 22;           // TOLL_CARD — 16.2: wbx  // confidence: gold
+    repeated data.VehicleEnergyModelData vehicle_energy_model = 23;  // VEHICLE_ENERGY_MODEL — 16.2: vus  // confidence: gold
+    repeated data.TrailerData trailer = 24;              // TRAILER — 16.2: wca  // confidence: gold
+    repeated data.RawVehicleEnergyModel raw_vehicle_energy_model = 25;  // RAW_VEHICLE_ENERGY_MODEL — 16.2: wax  // confidence: gold
+    repeated data.RawEvTripSettings raw_ev_trip_settings = 26;  // RAW_EV_TRIP_SETTINGS — 16.2: wav  // confidence: gold
 }

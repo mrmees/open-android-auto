@@ -5,10 +5,11 @@ syntax="proto2";
 
 package oaa.proto.data;
 
-// confidence: silver [apk_static, cross_version]
+// APK class: vwt (AA v16.2)
+// confidence: gold [deep_trace, 16.2 DB verified]
 message Door
 {
-    optional bool hood_open = 1;  // confidence: silver [apk_static, cross_version]
-    optional bool boot_open = 2;  // confidence: silver [apk_static, cross_version]
-    repeated bool door_open = 3;  // confidence: silver [apk_static, cross_version]
+    optional bool hood_open = 1;  // confidence: gold
+    optional bool boot_open = 2;  // confidence: gold
+    repeated bool door_open = 3;  // confidence: gold
 }

@@ -1,14 +1,15 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 // Copyright (C) 2024-2026 Open Android Auto contributors
 // Based on works by: f1x.studio (aasdk), opencardev (crankshaft), aa-proxy (aa-proxy-rs)
-syntax="proto3";
+syntax="proto2";
 
 package oaa.proto.enums;
 
-// confidence: unverified
+// APK class: vxb uses closed enum (enum_closed=1 in DB). 16.2 validator: vik.m36840m
+// confidence: gold [deep_trace, 16.2 DB verified, 14 values confirmed]
 message Gear
 {
-    // confidence: unverified
+    // confidence: gold
     enum Enum
     {
         NEUTRAL = 0;

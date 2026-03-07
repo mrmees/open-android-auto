@@ -6,11 +6,12 @@
  * Sensor error message (msg ID 0x8004).
  *
  * Sent when a sensor request fails or a sensor becomes unavailable.
+ * Direction: Phone -> HU.
  *
- * APK class: wbp (AA v16.1)
- * Field numbers decoded from protobuf-lite RawMessageInfo descriptor.
- * Field 1 enum verified as SensorType (wbv) via verifier vyv.u (validator 20).
- * Field 2 enum verified as SensorErrorStatus (wbq) via verifier vyv.t (validator 19).
+ * APK class: wbp (AA v16.1), wbf (AA v16.2)
+ * Handler: ibi.java (16.2) logs sensor type (wbl) + error code (wbg).
+ * Field 1 enum verified as SensorType (wbl) via verifier vym index 19.
+ * Field 2 enum verified as SensorErrorStatus (wbg) via verifier vym index 18.
  */
 syntax="proto2";
 
@@ -19,9 +20,9 @@ import "oaa/sensor/SensorErrorStatusEnum.proto";
 
 package oaa.proto.messages;
 
-// confidence: silver [apk_static, cross_version]
+// confidence: gold [deep_trace, 16.2 handler ibi.java]
 message SensorError
 {
-    required enums.SensorType.Enum sensor_type = 1; // APK: wbv  // confidence: silver [apk_static, cross_version]
-    required enums.SensorErrorStatus.Enum error_status = 2; // APK: wbq  // confidence: silver [apk_static, cross_version]
+    required enums.SensorType.Enum sensor_type = 1;  // 16.2: wbl  // confidence: gold
+    required enums.SensorErrorStatus.Enum error_status = 2;  // 16.2: wbg  // confidence: gold
 }

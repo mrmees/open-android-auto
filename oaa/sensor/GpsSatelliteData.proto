@@ -5,28 +5,31 @@
 /*
  * GPS satellite data (sensor type 21 = GPS).
  *
- * Carries satellite constellation information. Field 3 is a repeated
- * sub-message for per-satellite data (sub-message type not resolved
- * from APK — no sub_message_refs in DB).
+ * Carries satellite constellation information.
  *
- * APK class: vxs (AA v16.1)
- * Field numbers decoded from protobuf-lite RawMessageInfo descriptor.
+ * APK class: vxs (AA v16.1), vxe (AA v16.2)
+ * Sub-message class: vxd (AA v16.2) — 5 fields per satellite
  */
 syntax="proto2";
 
 package oaa.proto.data;
 
-// Per-satellite information (sub-message type unresolved — placeholder)
-// confidence: silver [apk_static, cross_version]
+// Per-satellite information
+// APK class: vxd (AA v16.2) — 5 fields
+// confidence: gold [deep_trace, 16.2 DB verified]
 message GpsSatelliteInfo
 {
-    // Fields TBD from wire captures
+    required int32 prn = 1;              // Satellite PRN/ID  // confidence: gold
+    required int32 snr = 2;              // Signal-to-noise ratio  // confidence: gold
+    required bool in_use = 3;            // Whether satellite is used in fix  // confidence: gold
+    optional int32 azimuth = 4;          // Azimuth in degrees  // confidence: gold
+    optional int32 elevation = 5;        // Elevation in degrees  // confidence: gold
 }
 
-// confidence: silver [apk_static, cross_version]
+// confidence: gold [deep_trace, 16.2 vxe.java DB verified]
 message GpsSatelliteData
 {
-    required int32 satellite_count = 1;  // confidence: silver [apk_static, cross_version]
-    optional int32 satellites_used = 2;  // confidence: silver [apk_static, cross_version]
-    repeated GpsSatelliteInfo satellites = 3;  // confidence: silver [apk_static, cross_version]
+    required int32 satellite_count = 1;  // confidence: gold
+    optional int32 satellites_used = 2;  // confidence: gold
+    repeated GpsSatelliteInfo satellites = 3;  // confidence: gold
 }

@@ -5,8 +5,9 @@ syntax="proto2";
 
 package oaa.proto.data;
 
-// confidence: silver [apk_static, cross_version]
+// APK class: vzn (AA v16.2)
+// confidence: gold [deep_trace, 16.2 DB verified]
 message ParkingBrake
 {
-    optional bool parking_brake = 1;  // confidence: silver [apk_static, cross_version]
+    required bool parking_brake = 1;  // confidence: gold
 }

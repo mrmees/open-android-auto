@@ -5,10 +5,11 @@ syntax="proto2";
 
 package oaa.proto.data;
 
-// confidence: silver [apk_static, cross_version]
+// APK class: vwm (AA v16.2)
+// confidence: gold [deep_trace, 16.2 DB verified]
 message Compass
 {
-    optional int32 bearing =1;  // confidence: silver [apk_static, cross_version]
-    optional int32 pitch = 2;  // confidence: silver [apk_static, cross_version]
-    optional int32 roll = 3;  // confidence: silver [apk_static, cross_version]
+    required int32 bearing = 1;  // confidence: gold
+    optional int32 pitch = 2;  // confidence: gold
+    optional int32 roll = 3;  // confidence: gold
 }

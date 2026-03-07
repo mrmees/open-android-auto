@@ -8,10 +8,12 @@ import "oaa/sensor/IndicatorStatusEnum.proto";
 
 package oaa.proto.data;
 
-// confidence: silver [apk_static, cross_version]
+// APK class: vxw (AA v16.2) — uses closed enums (zxo.f90982a)
+// Note: fields 2,3 default to 1 in APK (unusual — may mean default=ON)
+// confidence: gold [deep_trace, 16.2 DB verified]
 message Light
 {
-    optional enums.HeadlightStatus.Enum headlight = 1;  // confidence: silver [apk_static, cross_version]
-    optional enums.IndicatorStatus.Enum indicator = 2;  // confidence: silver [apk_static, cross_version]
-    optional bool hazard_light_on = 3;  // confidence: silver [apk_static, cross_version]
+    optional enums.HeadlightStatus.Enum headlight = 1;  // confidence: gold
+    optional enums.IndicatorStatus.Enum indicator = 2;  // confidence: gold
+    optional bool hazard_light_on = 3;  // confidence: gold
 }

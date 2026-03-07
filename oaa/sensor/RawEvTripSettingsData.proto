@@ -7,15 +7,16 @@
  *
  * Opaque blob — internal structure TBD from wire captures.
  *
- * APK class: wbf (AA v16.1)
+ * APK class: wbf (AA v16.1), wav (AA v16.2)
+ * NOTE: wbf in 16.2 is SensorError — obfuscated name reuse!
  * Field numbers decoded from protobuf-lite RawMessageInfo descriptor.
  */
 syntax="proto2";
 
 package oaa.proto.data;
 
-// confidence: silver [apk_static, cross_version]
+// confidence: gold [deep_trace, 16.2 DB verified]
 message RawEvTripSettings
 {
-    optional bytes raw_data = 1;  // confidence: silver [apk_static, cross_version]
+    optional bytes raw_data = 1;  // confidence: gold
 }

@@ -6,12 +6,11 @@
  * GAL-level sensor request message (msg ID 0x8001).
  *
  * Sent by the head unit to request sensor data at a given refresh interval.
- * Distinct from the aasdk-era SensorStartRequest — this is the GAL channel
- * variant used by AA v16.x.
+ * Direction: HU -> Phone.
  *
- * APK class: wbr (AA v16.1)
- * Field numbers decoded from protobuf-lite RawMessageInfo descriptor.
- * Field 1 enum verified as SensorType (wbv) via verifier vyv.u.
+ * APK class: wbr (AA v16.1), wbh (AA v16.2)
+ * Handler: ibi.java (16.2) builds and sends via m20133s().
+ * Field 1 enum verified as SensorType (wbl) via verifier vym index 19.
  */
 syntax="proto2";
 
@@ -19,9 +18,9 @@ import "oaa/sensor/SensorTypeEnum.proto";
 
 package oaa.proto.messages;
 
-// confidence: silver [apk_static, cross_version]
+// confidence: gold [deep_trace, 16.2 handler ibi.java]
 message SensorRequest
 {
-    required enums.SensorType.Enum sensor_type = 1; // APK: wbv (SensorType enum)  // confidence: silver [apk_static, cross_version]
-    required int64 refresh_interval = 2; // Refresh interval in milliseconds  // confidence: silver [apk_static, cross_version]
+    required enums.SensorType.Enum sensor_type = 1;  // 16.2: wbl enum  // confidence: gold
+    required int64 refresh_interval = 2;  // Refresh interval in milliseconds  // confidence: gold
 }

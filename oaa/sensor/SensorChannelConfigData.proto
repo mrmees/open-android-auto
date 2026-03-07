@@ -16,19 +16,19 @@ import "oaa/sensor/EVConnectorTypeEnum.proto";
 
 package oaa.proto.data;
 
-// APK class: wbu — sensor channel config
-// confidence: silver [apk_static, cross_version]
+// APK class: wbu (AA v16.1), wbk (AA v16.2) — sensor channel config
+// confidence: gold [deep_trace, 16.2 DB verified]
 message SensorChannelConfig
 {
-    repeated SensorTypeEntry supported_sensors = 1; // APK: wbt — sensor types we support  // confidence: silver [apk_static, cross_version]
-    optional uint32 update_interval_ms = 2; // Minimum update interval  // confidence: silver [apk_static, cross_version]
-    repeated enums.FuelType.Enum fuel_types = 3; // APK: vxo enum (repeated)  // confidence: silver [apk_static, cross_version]
-    repeated enums.EVConnectorType.Enum ev_connector_types = 4; // APK: vxl enum (repeated)  // confidence: silver [apk_static, cross_version]
+    repeated SensorTypeEntry supported_sensors = 1; // 16.2: wbj  // confidence: gold
+    optional uint32 update_interval_ms = 2;  // confidence: gold
+    repeated enums.FuelType.Enum fuel_types = 3; // 16.2: vxa enum  // confidence: gold
+    repeated enums.EVConnectorType.Enum ev_connector_types = 4; // 16.2: vwx enum  // confidence: gold
 }
 
-// APK class: wbt — individual sensor type entry
-// confidence: silver [apk_static, cross_version]
+// APK class: wbt (AA v16.1), wbj (AA v16.2) — individual sensor type entry
+// confidence: gold [deep_trace, 16.2 DB verified]
 message SensorTypeEntry
 {
-    optional enums.SensorType.Enum sensor_type = 1; // APK: wbv enum  // confidence: silver [apk_static, cross_version]
+    optional enums.SensorType.Enum sensor_type = 1; // 16.2: wbl enum  // confidence: gold
 }

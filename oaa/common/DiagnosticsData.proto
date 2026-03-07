@@ -5,9 +5,9 @@ syntax="proto2";
 
 package oaa.proto.data;
 
-// APK class: vxf — 1 field only (field 1 bytes)
-// confidence: silver [apk_static, cross_version]
+// APK class: vxf (AA v16.1), vwr (AA v16.2) — 1 field only (field 1 bytes)
+// confidence: gold [deep_trace, 16.2 DB verified]
 message Diagnostics
 {
-    optional bytes diagnostics = 1;  // confidence: silver [apk_static, cross_version]
+    optional bytes diagnostics = 1;  // confidence: gold
 }

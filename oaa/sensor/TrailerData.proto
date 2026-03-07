@@ -8,13 +8,13 @@
  * Empty message — trailer presence may be indicated by message
  * existence alone, or fields are TBD from wire captures.
  *
- * APK class: wcl (AA v16.1, proto2, 0 fields)
+ * APK class: wcl (AA v16.1), wca (AA v16.2) — proto2, 0 fields
  */
 syntax="proto2";
 
 package oaa.proto.data;
 
-// confidence: bronze [apk_static]
+// confidence: gold [deep_trace, 16.2 DB verified — confirmed 0 fields]
 message TrailerData
 {
 }

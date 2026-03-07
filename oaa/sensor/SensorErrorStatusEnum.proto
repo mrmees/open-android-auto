@@ -5,17 +5,17 @@
 /*
  * Sensor error status codes.
  *
- * APK enum class: wbq (AA v16.1)
- * Values decoded from enum constants in wbq.java.
+ * APK class: wbq (AA v16.1), wbg (AA v16.2)
+ * Values verified from wbg.java and handler usage in ibi.java.
  */
 syntax="proto2";
 
 package oaa.proto.enums;
 
-// confidence: bronze [apk_static]
+// confidence: gold [deep_trace, 16.2 wbg.java]
 message SensorErrorStatus
 {
-    // confidence: bronze [apk_static]
+    // confidence: gold
     enum Enum
     {
         SENSOR_OK = 1;

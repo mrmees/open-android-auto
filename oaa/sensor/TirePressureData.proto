@@ -6,9 +6,9 @@ syntax="proto2";
 
 package oaa.proto.data;
 
-// APK class: wcg — 1 repeated int32 field
-// confidence: silver [apk_static, cross_version]
+// APK class: wcg (AA v16.1), wbw (AA v16.2) — 1 repeated int32 field
+// confidence: gold [deep_trace, 16.2 DB verified]
 message TirePressure
 {
-    repeated int32 tire_pressures = 1;  // confidence: silver [apk_static, cross_version]
+    repeated int32 tire_pressures = 1;  // confidence: gold
 }
