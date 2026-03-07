@@ -134,6 +134,8 @@ Detailed protocol specs for each Android Auto channel:
 - [Navigation](docs/channels/nav.md) — turn-by-turn, routing, lane guidance
 - [Phone](docs/channels/phone.md) — call state, contacts, SIM
 - [Radio](docs/channels/radio.md) — tuner, presets, station metadata
+- [Sensor](docs/channels/sensor.md) — GPS, speed, fuel, gear, accelerometer, 26 sensor types
+- [Video](docs/channels/video.md) — projected display, focus modes, resolution, UI config
 - [WiFi Projection](docs/channels/wifi-projection.md) — wireless AA setup and config
 
 ### Session Lifecycle
