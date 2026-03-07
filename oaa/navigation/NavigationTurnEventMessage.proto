@@ -5,20 +5,19 @@
 /*
  * NavigationTurnEvent — turn-by-turn navigation detail.
  *
- * APK class: vzm.java (AA v16.1)
- * Channel: Navigation (channel 10)
- * Message ID: 0x8004 (32772) — sent by phone
- * Dispatched by hkx.java line 1033: hzyVar.k(32772, o.q())
+ * DEPRECATED in 16.2: Message ID 0x8004 existed in 16.1 (APK class vzm,
+ * 6 fields: road_name, maneuver_type, turn_direction, turn_icon, distance_meters,
+ * distance_unit). In 16.2, 0x8004 was removed entirely and vzm was reassigned
+ * to an unrelated overlay parameter class (2 fields: int + float).
  *
- * Contains turn icon, maneuver type, turn side, and distance.
- * Complements NavigationStep (0x8003) with richer turn detail.
+ * Legacy replacement: 0x8005 (vyx, @Deprecated, 4 fields — see InstrumentClusterMessages.proto)
+ * Modern replacement: 0x8006 NavigationNotification (vza) for modern HUs (PDK >= 1.6)
  *
- * VERIFIED active via DHU 2.1 + logcat (2026-02-28):
- * Phone-side class: com.google.android.apps.auto.sdk.nav.state.TurnEvent
- * Fires at ~1Hz during active navigation (Google Maps).
- * Phone logs: CSL.AbstractBundleable: Failed to instantiate TurnEvent
- *   BadParcelableException on obfuscated class "lbg" — version mismatch
- *   between DHU's car app library and phone's AA app, not a proto issue.
+ * The sub-messages below (NavigationNextTurnDistanceEvent at 0x8007, etc.)
+ * ARE still active and verified on the wire.
+ *
+ * DHU 2.1 logcat (2026-02-28) showed NavigationTurnEvent at ~1Hz during nav,
+ * but that was the GMS Car App Library TurnEvent, not this wire message.
  */
 
 syntax = "proto2";
@@ -29,14 +28,17 @@ import "oaa/navigation/NavigationDistanceDisplayData.proto";
 
 package oaa.proto.messages;
 
-// confidence: silver [apk_static, cross_version]
+// DEPRECATED — 16.1 only (msg ID 0x8004, APK class vzm)
+// Removed in 16.2. Modern HUs use NavigationNotification (0x8006) instead.
+// Kept for reference and 16.1 compatibility.
+// confidence: silver [apk_static, 16.1_only]
 message NavigationTurnEvent {
-    optional string road_name = 1; // APK: b — descriptor says string (not bytes)  // confidence: silver [apk_static, cross_version]
-    optional oaa.proto.enums.ManeuverType.Enum maneuver_type = 2; // APK: c — descriptor says enum (int32 wire)  // confidence: silver [apk_static, cross_version]
-    optional oaa.proto.enums.TurnSide.Enum turn_direction = 3; // APK: d (int, default=1) — validated by vyv.h/vee.Q()  // confidence: silver [apk_static, cross_version]
-    optional bytes turn_icon = 4; // APK: e — descriptor says bytes  // confidence: silver [apk_static, cross_version]
-    optional int32 distance_meters = 5; // APK: f (int) — distance to turn  // confidence: silver [apk_static, cross_version]
-    optional int32 distance_unit = 6; // APK: g (int) — distance display unit  // confidence: silver [apk_static, cross_version]
+    optional string road_name = 1; // APK: vzm.b (16.1)  // confidence: silver [apk_static]
+    optional oaa.proto.enums.ManeuverType.Enum maneuver_type = 2; // APK: vzm.c (16.1)  // confidence: silver [apk_static]
+    optional oaa.proto.enums.TurnSide.Enum turn_direction = 3; // APK: vzm.d (16.1)  // confidence: silver [apk_static]
+    optional bytes turn_icon = 4; // APK: vzm.e (16.1)  // confidence: silver [apk_static]
+    optional int32 distance_meters = 5; // APK: vzm.f (16.1)  // confidence: silver [apk_static]
+    optional int32 distance_unit = 6; // APK: vzm.g (16.1)  // confidence: silver [apk_static]
 }
 
 // APK class: vzg — turn distance with display text and unit

@@ -8,11 +8,11 @@
 
 | Status | Count |
 |--------|-------|
-| Verified (Gold) | 11 |
-| Schema Errors Found & Fixed | 5 |
-| New Protos Discovered | 1 (MediaPlaybackStatusEvent) |
-| Retracted / Removed | 4 (MediaStatusList, MediaTrackIdentifier, MediaEventIdWrapper, CarLocalMediaPlaybackEnum) |
-| Pending | all remaining channels |
+| Verified (Gold) | 28 |
+| Schema Errors Found & Fixed | 10 |
+| New Protos Discovered | 2 (MediaPlaybackStatusEvent, VehicleEnergyForecast) |
+| Retracted / Removed | 6 |
+| Pending | remaining channels |
 
 ## Channel Verification Status
 
@@ -23,8 +23,8 @@
 | 1a | Media Info | CAR.GAL.INST | iai/hvx | **COMPLETE** | [media.md](media.md) | 3 Gold msgs, 1 retraction (MediaEventIdWrapper) |
 | 1b | Media AV Stream | CAR.GAL.MEDIA | qnf/icv | **COMPLETE** | [media.md](media.md) | 3 Gold msgs (wbs/vwn/vuw), msg IDs corrected |
 | 1c | Car Local Media | CAR.GAL.CAR_LOCAL_MEDIA | hyh (16.2) | **COMPLETE** | [media.md](media.md) | 3 Gold msgs, direction corrected, own PlaybackState enum |
-| 2 | Navigation | TBD | TBD | PENDING | | Next up |
-| 3 | Control (ch 0) | CAR.GAL.SERVICE | TBD | PENDING | | Session lifecycle |
+| 2 | Navigation | CAR.INST | ian/hlj (16.2) | **COMPLETE** | [navigation.md](navigation.md) | 7 Gold msgs, 2 retractions, 1 new proto, enum fixes |
+| 3 | Control (ch 0) | CAR.GAL.GAL | hzh (16.2) | PENDING | | Session lifecycle, NavFocus found here |
 | 4 | Input | CAR.GAL.INPUT | TBD | PENDING | | Touch/button |
 | 5 | Phone | TBD | TBD | PENDING | | Phone status |
 | 6 | Video | CAR.GAL.VIDEO | TBD | PENDING | | Video sink |
@@ -45,7 +45,70 @@
 
 ## Resume Pointer
 
-**Next action:** Begin navigation channel (#2) verification.
+**Next action:** Begin control channel (#3) verification. NavFocus messages already found on hzh (GAL type 1). Partial control channel message table discovered during nav verification.
+
+## Completed — Navigation Channel (Wave 2)
+
+### CAR.INST (Navigation/Instrument Cluster, GAL type 10)
+
+| Proto | Msg ID | Direction | 16.2 Class | Confidence | Result |
+|-------|--------|-----------|------------|------------|--------|
+| InstrumentClusterStart | 0x8001 | HU->Phone | vze | Gold | Fixed direction (was Phone->HU), fixed syntax (proto2) |
+| InstrumentClusterStop | 0x8002 | HU->Phone | vzf | Gold | Fixed direction (was Phone->HU), fixed syntax (proto2) |
+| NavigationState | 0x8003 | Phone->HU | vzb | Gold | Fixed enum: UNKNOWN→UNAVAILABLE, ENDED→REROUTING |
+| NavigationTurnEvent | 0x8004 | — | vzm (16.1) | Deprecated | Removed in 16.2. vzm reassigned to overlay param |
+| LegacyNavigationTurnEvent | 0x8005 | Phone->HU | vyx | Gold | NEW identity — was wrongly InstrumentClusterInput (vzl) |
+| NavigationNotification | 0x8006 | Phone->HU | vza | Gold | All 8 sub-msgs verified, 16.2 class refs updated |
+| NavigationNextTurnDistanceEvent | 0x8007 | Phone->HU | vyp | Gold | Already verified (wire capture 2026-03-04) |
+| VehicleEnergyForecast | 0x8008 | Phone->HU | waw | Gold | NEW — EV energy forecast, PDK >= 5.1 |
+
+### NavigationNotification Sub-messages (all Gold)
+
+| Sub-message | 16.2 Class | 16.1 Class | Fields |
+|-------------|------------|------------|--------|
+| NavigationStep | vzg | vzu | 4 |
+| NavigationManeuver | vyw | vzk | 3 |
+| NavigationText | vyz | vzn | 1 |
+| NavigationLane | vyv | vzj | 1 |
+| NavigationLaneDirection | vyu | vzi | 2 |
+| NavigationRoadInfo | vyo | vzc | 1 |
+| NavigationDestination | vyq | vze | 2 |
+| ChargingStationDetails | vwl | vwz | 3 |
+
+### VehicleEnergyForecast Sub-messages (all Gold)
+
+| Sub-message | 16.2 Class | Fields |
+|-------------|------------|--------|
+| VehicleEnergyForecast (inner) | ysl | 6 |
+| EnergyAtDistance | ysh | 3 (field 3 reserved) |
+| EnergyChargingStationDetails | ysf | 3 |
+| StopDetails | ysk | 2 |
+| DataAuthorization | ysg | 1 |
+| ForecastQuality enum | — | 3 values (0-2) |
+
+### Retracted/Corrected Protos
+
+| Proto | Reason | Actually Is |
+|-------|--------|-------------|
+| InstrumentClusterInput (vzl, 0x8005) | Wrong class | vzl = display OverlayParameters. Actual 0x8005 = vyx (LegacyNavigationTurnEvent) |
+| NavigationFocusIndication (wbg) | Doesn't exist | wbg in 16.2 = SensorStatus enum. No "indication" message in protocol |
+| NavigationTurnEvent (vzm, 0x8004) | Deprecated | Removed in 16.2. vzm in 16.2 = overlay parameter (2 fields) |
+
+### NavigationFocus — Moved to Control Channel
+
+| Proto | Msg ID | Channel | Direction | 16.2 Class |
+|-------|--------|---------|-----------|------------|
+| NavigationFocusRequest | 13 | Control (GAL type 1) | Phone->HU | vyl |
+| NavigationFocusResponse | 14 | Control (GAL type 1) | HU->Phone | vyk |
+| NavigationFocusType enum | — | — | — | vyn (was incorrectly vzb) |
+
+### Other Fixes
+
+| Item | Change |
+|------|--------|
+| LaneShape enum | Silver → Gold |
+| ManeuverType enum | Confirmed values 0-50 (gap at 30-31) |
+| NavigationFocusType enum class | vzb → vyn (vzb = NavigationState in 16.2) |
 
 ## Completed — Media Channel (Wave 1)
 
@@ -82,7 +145,7 @@
 
 **CRITICAL FIX:** Direction reversed — status/metadata are HU->Phone (car tells phone what local media is playing), not Phone->HU. CarLocal PlaybackState is its own enum (values 1-5), NOT shared with MediaPlaybackStatus (values 0-4).
 
-### Retracted Protos
+### All Retracted Protos
 
 | Proto | Reason | Actually Is |
 |-------|--------|-------------|
@@ -90,19 +153,12 @@
 | MediaTrackIdentifier (xma/xll) | Not wire protocol | Internal MediaBrowserService queue structure (oui -> xlm -> xll) |
 | MediaEventIdWrapper (xme) | Not wire protocol | Internal MediaBrowserService structure, never in any GAL handler |
 | CarLocalMediaPlaybackEnum | Redundant | Superseded by enum in CarLocalMediaPlaybackStatusMessage.proto |
-
-### Other Fixes
-
-| Item | Change |
-|------|--------|
-| MediaInfoChannel | Syntax proto3->proto2, added class mapping (16.1:vyr, 16.2:vyd) |
-| AVChannelSetupStatus enum | Upgraded to Gold, noted value 0 invalid |
-| AVChannelMessageIds enum | Confirmed correct (already had right wire values) |
-| BufferedMediaSinkMessage | No change — documented stub, no wire messages |
+| InstrumentClusterInput (vzl) | Wrong class | vzl = display OverlayParameters, not a nav channel message |
+| NavigationFocusIndication (wbg) | Doesn't exist | wbg = SensorStatus enum in 16.2 |
 
 ## Running Discoveries
 
-1. **AV msg ID off-by-one:** `vdp.m36513at()` adds +1 for internal dispatch. Wire values are 1 less than what the handler switch cases show. BUT this does NOT apply to CAR_LOCAL_MEDIA — `iav.mo20009T()` reads wire IDs directly.
+1. **AV msg ID off-by-one:** `vdp.m36513at()` adds +1 for internal dispatch. Wire values are 1 less than what the handler switch cases show. BUT this does NOT apply to CAR_LOCAL_MEDIA — `iav.mo20009T()` reads wire IDs directly. Also does NOT apply to nav channel (`ian`) which uses raw msg IDs.
 
 2. **CAR.GAL.MEDIA vs CAR.GAL.INST confusion:** `CAR.GAL.MEDIA` (qnf) is the AV audio stream endpoint. Media status/metadata lives on `CAR.GAL.INST` (iai/hvx, GAL type 11).
 
@@ -112,6 +168,12 @@
 
 5. **GMS proxy strips fields:** `pre.java` hardcodes metadata field 5=null, field 7=0, status repeat/repeat_one=false.
 
-6. **Obfuscated name reuse across versions:** Same class name (e.g., vyd, xma, vwq) can refer to completely different protos in different APK versions. Always verify by structure AND handler context, not just name.
+6. **Obfuscated name reuse across versions:** Same class name (e.g., vyd, xma, vwq, vzm) can refer to completely different protos in different APK versions. Always verify by structure AND handler context, not just name. vzm=NavigationTurnEvent in 16.1, overlay param in 16.2.
 
 7. **CarLocal direction is reversed:** Status/metadata are HU->Phone (car reports local media), request is Phone->HU. The +1 msg ID offset does NOT apply to this channel.
+
+8. **NavigationFocus is on control channel (GAL type 1):** NOT on nav channel (GAL type 10). Msg IDs 13 (request) and 14 (response) on hzh.java. VoiceFocusRequest (msg 17, wcu) also discovered on control channel.
+
+9. **Nav channel has legacy/modern split:** HUs with CarInfo PDK < 1.6 get legacy msgs (0x8005 vyx). Modern HUs get 0x8006/0x8007. VehicleEnergyForecast (0x8008) requires PDK >= 5.1.
+
+10. **Double-encoding pattern:** VehicleEnergyForecast uses proto2 wrapper (waw) containing serialized proto3 inner message (ysl). Watch for this in other channels.

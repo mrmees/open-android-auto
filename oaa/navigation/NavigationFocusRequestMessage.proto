@@ -2,20 +2,36 @@
 // https://github.com/mrmees/open-android-auto
 // SPDX-License-Identifier: GPL-3.0-or-later
 
+/*
+ * NavigationFocusRequest — sent by phone to request/release navigation focus.
+ *
+ * IMPORTANT: This is a CONTROL CHANNEL message (GAL service type 1, hzh.java),
+ * NOT a navigation channel message. Message ID = 13 (not 0x8xxx).
+ *
+ * APK class: vyl (16.2)
+ * Sent from hwm.java lines 143/169 via hzh (control endpoint).
+ * Triggered when a nav app calls startNavigation().
+ *
+ * Enum class: vyn (16.2) — NavigationFocusType (NAV_FOCUS_NATIVE=1, NAV_FOCUS_PROJECTED=2)
+ * Previous audit incorrectly said enum class was vzb — that's NavigationState in 16.2.
+ */
+
 syntax="proto2";
 
 package oaa.proto.messages;
 
-// Navigation focus type (APK enum: vzb)
-// Used in both NavigationFocusRequest and NavigationFocusResponse.
-// confidence: silver [apk_static, cross_version]
+// Navigation focus type
+// APK enum: vyn (16.2), vzb (16.1 — name collision with NavigationState in 16.2!)
+// confidence: gold [apk_deep_trace]
 enum NavigationFocusType {
     NAV_FOCUS_NATIVE = 1;
     NAV_FOCUS_PROJECTED = 2;
 }
 
-// confidence: silver [apk_static, cross_version]
+// Message ID: 13 on Control channel (GAL type 1)
+// Direction: Phone→HU
+// confidence: gold [apk_deep_trace]
 message NavigationFocusRequest
 {
-    optional NavigationFocusType type = 1;  // confidence: silver [apk_static, cross_version]
+    optional NavigationFocusType type = 1;  // confidence: gold [apk_deep_trace]
 }

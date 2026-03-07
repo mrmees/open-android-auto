@@ -5,18 +5,19 @@
 /*
  * LaneShape — lane direction shape for navigation lane guidance.
  *
- * APK class: vzh.java (AA v16.1)
+ * APK class: vyt (16.2), vzh (16.1)
  * Used in NavigationLaneDirection field 1.
+ * Validator: vyt.m37371b (16.2) — values 0-9
  */
 
 syntax="proto2";
 
 package oaa.proto.enums;
 
-// confidence: silver [apk_static, cross_version]
+// confidence: gold [apk_deep_trace]
 message LaneShape
 {
-    // confidence: silver [apk_static, cross_version]
+    // confidence: gold [apk_deep_trace]
     enum Enum
     {
         UNKNOWN = 0;
