@@ -32,7 +32,7 @@ package oaa.proto.messages;
 // Mapped to Android PlaybackStateCompat constants in qbw.java:
 //   1 → STATE_STOPPED(1), 2 → STATE_PLAYING(3),
 //   3 → STATE_PAUSED(2), 4 → STATE_ERROR(7), else → STATE_NONE(0)
-// confidence: silver [apk_static, cross_version]
+// confidence: gold [apk_deep_trace, 2026-03-06]
 enum PlaybackState {
     PLAYBACK_STATE_UNKNOWN = 0;
     PLAYBACK_STATE_STOPPED = 1;
@@ -50,17 +50,17 @@ enum PlaybackState {
 // Retracted: 2026-03-06, proto-verification pipeline
 
 // APK class: vyq
-// confidence: silver [apk_static, cross_version]
+// confidence: gold [apk_deep_trace, 2026-03-06]
 message MediaPlaybackStatus {
     // Current playback state
-    optional PlaybackState playback_state = 1;  // confidence: silver [apk_static, cross_version]
+    optional PlaybackState playback_state = 1;  // confidence: gold [apk_deep_trace, 2026-03-06]
     // Source application name (e.g. "YouTube Music", "Spotify")
-    optional string source_app = 2;  // confidence: silver [apk_static, cross_version]
+    optional string source_app = 2;  // confidence: gold [apk_deep_trace, 2026-03-06]
     // Elapsed seconds in current track (resets to 0 on track change)
-    optional uint32 position_seconds = 3;  // confidence: silver [apk_static, cross_version]
+    optional uint32 position_seconds = 3;  // confidence: gold [apk_deep_trace, 2026-03-06]
     // Playback mode flags (confirmed via aa-proxy-rs protos and
     // AIDL interface prz.java method g() — 3 trailing boolean params)
-    optional bool shuffle = 4;  // confidence: silver [apk_static, cross_version]
-    optional bool repeat = 5;  // confidence: silver [apk_static, cross_version]
-    optional bool repeat_one = 6;  // confidence: silver [apk_static, cross_version]
+    optional bool shuffle = 4;  // confidence: gold [apk_deep_trace, 2026-03-06]
+    optional bool repeat = 5;  // confidence: gold [apk_deep_trace, 2026-03-06]
+    optional bool repeat_one = 6;  // confidence: gold [apk_deep_trace, 2026-03-06]
 }
