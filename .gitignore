@@ -4,6 +4,7 @@ __pycache__/
 # APK binaries and decompiled source (too large, regenerable)
 analysis/aa-*/
 analysis/android_auto_*/apk-source/
+analysis/android_auto_unknown_unknown/
 analysis/*.apkm
 
 # Keep index reports and JSON exports, but not SQLite DBs (too large, regenerable)
