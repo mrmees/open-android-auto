@@ -13,7 +13,7 @@ The input pipeline on the phone: HU sends `InputEventIndication` (msg 0x8001) �
 | Msg ID | Direction | Proto Class (16.2) | Name | Purpose |
 |--------|-----------|-------------------|------|---------|
 | 0x8001 | HU → Phone | `vxj` | InputEventIndication | All input events (touch, button, rotary, touchpad) |
-| 0x8002 | Phone → HU | `vxr` | InputBindingRequest | Phone tells HU which keycodes it wants to receive |
+| 0x8002 | Phone → HU | `vxr` | InputBindingRequest | Phone advertises supported keybindings to HU |
 | 0x8003 | HU → Phone | `vxs` | InputBindingResponse | HU acknowledges binding request |
 | 0x8004 | Phone → HU | `vxi` | InputBindingNotification | Haptic feedback requests |
 
@@ -25,7 +25,7 @@ The main input message. Exactly one of fields 3-7 is populated per message.
 
 ```protobuf
 message InputEventIndication {
-    required uint64 timestamp       = 1;  // elapsedRealtime in microseconds
+    optional uint64 timestamp       = 1;  // elapsedRealtime in microseconds
     // field 2 does NOT exist (skipped in proto numbering)
     optional TouchEvent touch_event     = 3;  // touchscreen input
     optional ButtonEvents button_event  = 4;  // hardware button press/release
@@ -226,7 +226,7 @@ message InputChannelConfig {
     repeated int32 supported_keycodes = 1 [packed = true];
     repeated TouchScreenConfig touch_screen_configs = 2;
     repeated TouchPadConfig touchpad_configs = 3;
-    repeated HapticFeedbackType haptic_types = 4;  // enum values 1-5
+    repeated HapticFeedbackType supported_haptic_types = 4;  // enum values 1-5
     optional uint32 display_id = 5;  // matches VideoChannelDescriptor display
 }
 ```
@@ -237,8 +237,8 @@ message InputChannelConfig {
 
 ```protobuf
 message TouchScreenConfig {
-    required int32 width      = 1;  // touch area width in pixels
-    required int32 height     = 2;  // touch area height in pixels
+    required uint32 width     = 1;  // touch area width in pixels
+    required uint32 height    = 2;  // touch area height in pixels
     optional DisplayType type = 3;  // MAIN=1, CLUSTER=2, AUXILIARY=3 (default=1)
 }
 ```
@@ -254,8 +254,8 @@ message TouchPadConfig {
     optional bool  ui_navigation   = 3;  // touchpad for focus navigation (DPAD mode)
     optional int32 physical_width  = 4;  // physical pad width in mm
     optional int32 physical_height = 5;  // physical pad height in mm
-    optional bool  unknown_6       = 6;
-    optional bool  absolute_mode   = 7;  // absolute positioning vs relative
+    optional bool  ui_absolute     = 6;  // absolute UI positioning mode
+    optional bool  tap_as_select   = 7;  // tap gesture acts as selection
     optional int32 sensitivity     = 8;  // 0-10 range (5 = neutral)
 }
 ```

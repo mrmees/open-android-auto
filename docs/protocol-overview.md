@@ -19,26 +19,27 @@ USB connections use AOA (Android Open Accessory) protocol. The phone enumerates 
 
 ## Framing
 
-All data on the transport is wrapped in 8-byte frame headers:
+All data on the transport is wrapped in **4-byte frame headers**:
 
 ```
-Bytes 0-1: Channel ID (uint16, big-endian)
-Bytes 2-3: Frame type + flags (uint8 each)
-Bytes 4-7: Payload length (uint32, big-endian)
+Byte 0:   Channel ID (uint8)
+Byte 1:   Flags (uint8)
+Bytes 2-3: Payload length (uint16, big-endian)
 ```
 
-**Frame types:**
+**Flag values (observed from wire captures):**
 
-| Type | Value | Description |
-|------|------:|-------------|
-| First | 1 | First (or only) frame of a message |
-| Middle | 2 | Continuation frame |
-| Last | 3 | Final frame of a multi-frame message |
-| Bulk | 0 | Complete single-frame message |
+| Flag | Hex | Description |
+|------|----:|-------------|
+| Plaintext | 0x03 | Unencrypted frame (version exchange) |
+| Encrypted data (first) | 0x08 | First encrypted data frame |
+| Encrypted data (cont.) | 0x0a | Continuation encrypted data frame |
+| Encrypted signaling | 0x0b | Encrypted signaling frame |
+| Encrypted + control | 0x0f | Encrypted control frame |
 
 Large protobuf messages are split across multiple frames. The receiver reassembles them before parsing.
 
-**Encryption:** After the SSL handshake, frame payloads are encrypted. The frame header itself is always plaintext.
+**Encryption:** After the TLS 1.2 handshake (BoringSSL), frame payloads are encrypted. The 4-byte frame header is always plaintext.
 
 ## Message Types
 
@@ -59,10 +60,10 @@ A single TCP connection carries all data for all channels. Each frame's channel 
 
 ### Service Discovery
 
-1. **HU sends `ServiceDiscoveryRequest`** -- Contains the HU's device name, brand, and optional icons.
-2. **Phone sends `ServiceDiscoveryResponse`** -- Contains an array of `ChannelDescriptor` entries, one per channel the phone supports. Each descriptor includes the channel type and channel-specific configuration data.
+1. **HU sends `ServiceDiscoveryRequest`** -- Contains the HU's device name, brand, model info, and capabilities.
+2. **Phone sends `ServiceDiscoveryResponse`** -- Contains an array of `ChannelDescriptor` entries (14 channels observed in captures), one per channel the phone supports. Each descriptor includes the GAL service type and channel-specific configuration data (sensor types, video codecs, audio configs, input capabilities, radio bands, car control properties, etc.).
 
-The service discovery response tells the HU what capabilities the phone offers (video codecs, sensor types, audio configs, etc.).
+The service discovery response tells the HU what capabilities the phone offers. The HU then opens individual channels via `ChannelOpenRequest`/`ChannelOpenResponse` pairs.
 
 ### Channel Lifecycle
 
@@ -114,10 +115,10 @@ Each has independent focus management. The phone requests audio focus; the HU gr
 
 ## Authentication
 
-After the SSL handshake, the HU and phone exchange authentication messages:
+After the TLS handshake, the phone and HU exchange authentication messages:
 
-1. HU sends `BindingRequest` with its public key.
-2. Phone sends `BindingResponse`.
+1. Phone sends `BindingRequest` with authentication data.
+2. HU sends `BindingResponse`.
 3. Phone sends `AuthCompleteIndication` when authentication succeeds.
 
 On first connection, the phone may prompt the user to trust the HU. Subsequent connections use cached credentials.

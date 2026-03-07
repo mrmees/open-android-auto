@@ -22,7 +22,7 @@
 | FloatValues | `vnk` | `vvc` | `vuo` | 1/1/1 |
 | IntValues | `vnj` | `vvb` | `vun` | 1/1/1 |
 | LongValues | `vni` | `vva` | `vum` | 1/1/1 |
-| RegisterCarPropertyListenersResponse | `xeg` | `wbk` | -- | 1/1/0 |
+| RegisterCarPropertyListenersResponse | `xeg` | `wbk` | `wba` | 1/1/1 | **CORRECTED (2026-03-07):** 16.2 class is `wba`, not missing |
 | SetCarPropertyListenerResult | `vpd` | `vwv` | `vwh` | 2/2/2 |
 | SetCarPropertyValueRequest | `vui` | `wca` | `wbq` | 3/3/3 |
 | SetCarPropertyValueResponse | `vuj` | `wcb` | `wbr` | 4/4/4 |

@@ -6,7 +6,7 @@
 |---|---|---|---|---|
 | AuthCompleteIndication | `vod` | `vvv` | `vvh` | 1/1/1 |
 | BindingRequest | `vuo` | `wcg` | `wbw` | 1/1/1 |
-| BindingResponse | `voj` | `vwb` | `vvn` | 2/2/2 |
+| BindingResponse | `voj` | `vwb` | `vvn` | 2/2/2 | **Note:** 16.2 class `vvn` also used by BluetoothPairingResponse — name collision |
 | ByeByeResponse | -- | `vwg` | `vvs` | 0/0/0 |
 | CapabilityConnectionConfig | `nnj` | `aahf` | `aagl` | 2/2/2 |
 | CapabilityEntry | `zyr` | `aagv` | `aagb` | 10/10/10 |

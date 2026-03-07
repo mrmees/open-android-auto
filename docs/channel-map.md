@@ -2,143 +2,188 @@
 
 Android Auto multiplexes all communication over a single TCP connection using channel IDs. Each channel handles a specific domain of the protocol.
 
+> **Note:** Channel IDs below are GAL service type numbers from the SDP `ChannelDescriptor`. The actual multiplexed channel number on the wire may differ — it's assigned dynamically per-session based on the SDP response order. The GAL type is the stable identifier.
+
 ## Channel ID Table
 
-| ID | Channel | Category | Description |
-|---:|---------|----------|-------------|
-| 0 | Control | `control` | Session lifecycle, service discovery, auth, ping, shutdown |
-| 1 | Input | `input` | Touch events, button presses, haptic feedback |
-| 2 | Sensor | `sensor` | GPS, vehicle sensors, driving status |
+| GAL Type | Channel | Category | Description |
+|---------:|---------|----------|-------------|
+| 0 | Control | `control` | Session lifecycle, service discovery, auth, ping, shutdown, focus |
+| 1 | Input | `input` | Touch events, button presses, rotary, touchpad, haptic feedback |
+| 7 | Sensor | `sensor` | GPS, vehicle sensors, driving status |
 | 3 | Video | `video` | H.264/H.265/VP9/AV1 encoded video stream |
-| 4 | Media Audio | `audio` | Music/podcast PCM audio stream |
+| 4 | Media Audio | `audio` | Music/podcast PCM/AAC audio stream |
 | 5 | Speech Audio | `audio` | Navigation prompts, assistant voice |
 | 6 | Phone Audio | `audio` | Voice call audio (bidirectional) |
-| 7 | Bluetooth | `bluetooth` | BT pairing coordination |
-| 8 | WiFi Projection | `wifi` | WiFi connection setup and management |
-| 9 | Notification | `notification` | Phone notification mirroring |
-| 10 | Media Status | `media` | Now-playing metadata and playback state |
-| 11 | Navigation Status | `navigation` | Turn-by-turn guidance, maneuvers, ETA |
-| 12 | Phone Status | `phone` | Call state, phone capabilities |
+| 9 | Bluetooth | `bluetooth` | BT pairing coordination |
+| 17 | WiFi Projection | `wifi` | WiFi credential delivery (GAL, 1 msg) |
+| 10 | Navigation Status | `navigation` | Turn-by-turn guidance, maneuvers, ETA, instrument cluster |
+| 11 | Media Info | `media` | Now-playing metadata and playback state |
+| 13 | Phone Status | `phone` | Call state, phone input |
+| 15 | Radio | `radio` | AM/FM/DAB radio program info, tuning, favorites |
+| 19 | Car Control | `carcontrol` | HVAC, seat temp, door locks, mirror heat via VHAL |
+| 20 | Car Local Media | `media` | Local media (car's own source) status/metadata |
 
 ## Channel Details
 
-### Channel 0: Control
+### Channel 0: Control (GAL type 0)
 
-Session-level messages. All use `MessageType::Control`.
+Session-level messages. All use `MessageType::Control`. Handles service discovery, auth, focus negotiation, and channel lifecycle.
 
 | Message | Direction | Purpose |
 |---------|-----------|---------|
-| `ServiceDiscoveryRequest` | HU -> Phone | Advertise HU capabilities, request phone services |
+| `ServiceDiscoveryRequest` | HU -> Phone | Advertise HU capabilities |
 | `ServiceDiscoveryResponse` | Phone -> HU | Phone's available channels and configs |
 | `ChannelOpenRequest` | HU -> Phone | Open a specific channel |
 | `ChannelOpenResponse` | Phone -> HU | Accept/reject channel open |
-| `PingRequest` | HU -> Phone | Keepalive |
-| `PingResponse` | Phone -> HU | Keepalive reply |
-| `BindingRequest` | HU -> Phone | Auth key exchange |
-| `BindingResponse` | Phone -> HU | Auth key response |
+| `PingRequest` | Bidirectional | Keepalive |
+| `PingResponse` | Bidirectional | Keepalive reply |
+| `BindingRequest` | Phone -> HU | Auth key exchange |
+| `BindingResponse` | HU -> Phone | Auth key response |
 | `AuthCompleteIndication` | Phone -> HU | Auth success |
+| `NavigationFocusRequest` | Phone -> HU | Request nav display focus (msg 13) |
+| `NavigationFocusResponse` | HU -> Phone | Grant/deny nav focus (msg 14) |
+| `VoiceSessionRequest` | Phone -> HU | Initiate voice assistant (msg 17) |
+| `CallAvailabilityStatus` | HU -> Phone | Whether phone calls are available (msg 24) |
 | `ShutdownRequest` | Either | Initiate disconnect |
 | `ShutdownResponse` | Either | Acknowledge disconnect |
 
-### Channel 1: Input
+### Channel 1: Input (GAL type 1)
 
 All use `MessageType::Specific`.
 
 | Message | Direction | Purpose |
 |---------|-----------|---------|
-| `InputEventIndication` | HU -> Phone | Touch, button, or relative input events |
+| `InputEventIndication` | HU -> Phone | Touch, button, rotary, touchpad, absolute input |
+| `InputBindingRequest` | Phone -> HU | Phone advertises supported keybindings |
+| `InputBindingResponse` | HU -> Phone | HU acknowledges binding request |
+| `InputBindingNotification` | Phone -> HU | Haptic feedback requests |
 
-Touch events contain arrays of `TouchEvent` with pointer tracking. Button events use Android `KeyEvent` codes.
-
-### Channel 2: Sensor
+### Channel 7: Sensor (GAL type 7)
 
 | Message | Direction | Purpose |
 |---------|-----------|---------|
-| `SensorStartRequest` | Phone -> HU | Request specific sensor data |
-| `SensorStartResponse` | HU -> Phone | Acknowledge sensor subscription |
-| `SensorEventIndication` | HU -> Phone | Sensor data payload (GPS, speed, RPM, etc.) |
+| `SensorRequest` | HU -> Phone | Subscribe to specific sensor types |
+| `SensorStartResponse` | Phone -> HU | Acknowledge sensor subscription |
+| `SensorEventIndication` | Phone -> HU | Sensor data payload (GPS, speed, RPM, etc.) |
+| `SensorError` | Phone -> HU | Sensor error notification |
 
-The phone requests which sensors it wants. The HU sends periodic updates for subscribed sensors.
-
-### Channel 3: Video
+### Channel 3: Video (GAL type 3)
 
 | Message | Direction | Purpose |
 |---------|-----------|---------|
 | `AVChannelSetupRequest` | Phone -> HU | Select video codec and resolution |
 | `AVChannelSetupResponse` | HU -> Phone | Accept/reject setup |
-| `AVChannelStartIndication` | Phone -> HU | Begin video stream |
+| `AVChannelStartIndication` | Bidirectional | Begin video stream |
 | `AVChannelStopIndication` | Phone -> HU | Pause/stop video stream |
 | `AVMediaAckIndication` | HU -> Phone | Flow control acknowledgment |
-| `VideoFocusRequest` | Phone -> HU | Request video focus change |
-| `VideoFocusIndication` | HU -> Phone | Grant/revoke video focus |
+| `VideoFocusRequest` | HU -> Phone | Request video focus change |
+| `VideoFocusIndication` | Phone -> HU | Grant/revoke video focus |
+| `UpdateUiConfigRequest` | Bidirectional | Runtime UI config (theming, insets) |
+| `UiConfigRequest` | HU -> Phone | Request UI configuration |
 | (raw video frames) | Phone -> HU | Encoded H.264/H.265/VP9/AV1 data |
 
-### Channels 4, 5, 6: Audio
+### Channels 4, 5, 6: Audio (GAL types 4, 5, 6)
 
-Three audio channels share the same message types from the `av` and `audio` categories.
+Three audio channels share the same AV message types.
 
 | Message | Direction | Purpose |
 |---------|-----------|---------|
 | `AVChannelSetupRequest` | Phone -> HU | Select audio codec and config |
 | `AVChannelSetupResponse` | HU -> Phone | Accept/reject setup |
-| `AVChannelStartIndication` | Phone -> HU | Begin audio stream |
+| `AVChannelStartIndication` | Bidirectional | Begin audio stream |
 | `AVChannelStopIndication` | Phone -> HU | Stop audio stream |
-| `AudioFocusRequest` | Phone -> HU | Request audio focus (gain, transient, duck) |
-| `AudioFocusResponse` | HU -> Phone | Grant/deny audio focus |
-| (raw audio frames) | Phone -> HU | PCM audio data |
+| `AVMediaAckIndication` | HU -> Phone | Flow control acknowledgment |
+| (raw audio frames) | Phone -> HU | PCM or AAC-LC audio data |
 
-Channel 6 (phone audio) is bidirectional -- the HU also sends microphone audio to the phone.
+Audio focus is negotiated on the control channel, not on audio channels themselves. Channel 6 (phone audio) is bidirectional — the HU also sends microphone audio to the phone.
 
-### Channel 7: Bluetooth
-
-| Message | Direction | Purpose |
-|---------|-----------|---------|
-| `BluetoothPairingRequest` | Phone -> HU | Request BT pairing |
-| `BluetoothPairingResponse` | HU -> Phone | Pairing result |
-
-### Channel 8: WiFi Projection
+### Mic Input (GAL type 8)
 
 | Message | Direction | Purpose |
 |---------|-----------|---------|
-| `WifiVersionRequest` | Either | Protocol version negotiation |
-| `WifiVersionResponse` | Either | Version response |
-| `WifiSecurityRequest` | Phone -> HU | Request WiFi security params |
-| `WifiSecurityResponse` | HU -> Phone | WiFi credentials (SSID, password, BSSID) |
-| `WifiStartRequest` | Phone -> HU | Begin WiFi projection |
-| `WifiStartResponse` | HU -> Phone | Accept/reject WiFi start |
-| `WifiInfoRequest` | Either | WiFi status query |
-| `WifiInfoResponse` | Either | WiFi status response |
+| `MicrophoneOpenResponse` | HU -> Phone | Mic session config (status, sample rate) |
+| (raw audio frames) | Bidirectional | PCM audio: 0x0000 HU→Phone, 0x0001 Phone→HU |
 
-### Channel 9: Notification
+### Channel 9: Bluetooth (GAL type 9)
 
 | Message | Direction | Purpose |
 |---------|-----------|---------|
-| (notification data) | Phone -> HU | Phone notification content |
+| `BluetoothPairingRequest` | HU -> Phone | Request BT pairing |
+| `BluetoothPairingResponse` | HU -> Phone | Pairing result (status via ProtocolStatus) |
+| `BluetoothAuthenticationData` | HU -> Phone | Auth data (string) |
+| `BluetoothAuthenticationResult` | Phone -> HU | Auth result (status) |
 
-Phone-to-HU only. The HU does not send notifications to the phone.
+### Channel 17: WiFi Projection (GAL type 17)
 
-### Channel 10: Media Status
+Only 1 GAL message. Most WiFi setup happens over BT RFCOMM, not on this channel.
+
+| Message | Direction | Purpose |
+|---------|-----------|---------|
+| `WifiCredentialsResponse` | HU -> Phone | WiFi credentials (SSID, passphrase, security, BSSID) |
+
+### Channel 10: Navigation Status (GAL type 10)
+
+| Message | Direction | Purpose |
+|---------|-----------|---------|
+| `InstrumentClusterStart` | HU -> Phone | Signal cluster display is ready |
+| `InstrumentClusterStop` | HU -> Phone | Signal cluster session ended |
+| `NavigationState` | Phone -> HU | Navigation active/inactive/rerouting |
+| `LegacyNavigationTurnEvent` | Phone -> HU | Simplified turn data (legacy HUs, PDK < 1.6) |
+| `NavigationNotification` | Phone -> HU | Rich turn-by-turn with steps, lanes, destinations |
+| `NavigationNextTurnDistanceEvent` | Phone -> HU | Distance to next maneuver |
+| `VehicleEnergyForecast` | Phone -> HU | EV energy/range forecast (PDK >= 5.1) |
+
+### Channel 11: Media Info (GAL type 11)
 
 | Message | Direction | Purpose |
 |---------|-----------|---------|
 | `MediaPlaybackStatus` | Phone -> HU | Play/pause/stop state, position, duration |
+| `MediaPlaybackStatusEvent` | HU -> Phone | Playback input action |
 | `MediaPlaybackMetadata` | Phone -> HU | Track title, artist, album, art |
 
-### Channel 11: Navigation Status
+Media playback controls (play, pause, next, previous) are sent as button events on the **input channel**, not here.
+
+### Channel 13: Phone Status (GAL type 13)
 
 | Message | Direction | Purpose |
 |---------|-----------|---------|
-| `NavigationTurnEvent` | Phone -> HU | Next turn info, maneuver type, road name |
-| `NavigationDistance` | Phone -> HU | Distance to next maneuver |
-| `NavigationState` | Phone -> HU | Active/inactive navigation state |
-| `NavigationNotification` | Phone -> HU | ETA, traffic info |
-| `NavigationFocusRequest` | Phone -> HU | Request nav display focus |
-| `NavigationFocusResponse` | HU -> Phone | Grant/deny nav focus |
+| `PhoneStatusUpdate` | Phone -> HU | Call state, phone call details |
+| `PhoneStatusInput` | HU -> Phone | Input action for phone status display |
 
-### Channel 12: Phone Status
+Note: `CallAvailabilityStatus` and `VoiceSessionRequest` are on the **control channel** (msgs 24 and 17), not here.
+
+### Channel 15: Radio (GAL type 15)
 
 | Message | Direction | Purpose |
 |---------|-----------|---------|
-| `PhoneStatus` | Phone -> HU | Call state (idle, ringing, active), signal strength |
-| `CallAvailability` | Phone -> HU | Whether phone calls are available |
-| `VoiceSessionRequest` | HU -> Phone | Initiate voice assistant |
+| `RadioProgramListNotification` | HU -> Phone | Full program list |
+| `RadioProgramInfoNotification` | HU -> Phone | Current station info |
+| `RadioMuteRequest` | Phone -> HU | Mute/unmute radio |
+| `RadioMuteResponse` | HU -> Phone | Mute status |
+| `RadioTuneRequest` | Phone -> HU | Tune to station |
+| `RadioTuneResponse` | HU -> Phone | Tune result |
+| `RadioFavoriteListNotification` | HU -> Phone | Favorite stations |
+| `RadioFavoriteToggleRequest` | Phone -> HU | Add/remove favorite |
+| `RadioTuneDirectionRequest` | Phone -> HU | Seek up/down |
+| `RadioSearchRequest` | Phone -> HU | Search radio (new in 16.2) |
+
+### Channel 19: Car Control (GAL type 19)
+
+| Message | Direction | Purpose |
+|---------|-----------|---------|
+| `SetCarPropertyValueRequest` | HU -> Phone | Set a VHAL property |
+| `SetCarPropertyValueResponse` | Phone -> HU | Property set result |
+| `RegisterCarPropertyListenersRequest` | HU -> Phone | Subscribe to property changes |
+| `RegisterCarPropertyListenersResponse` | Phone -> HU | Per-property registration results |
+| `CarPropertyChangeEvent` | Phone -> HU | Property value changed |
+| `CarActionNotification` | HU -> Phone | App launch action (HVAC, media, etc.) |
+| `CarControlGroupUpdate` | Phone -> HU | Updated control group layout |
+
+### Channel 20: Car Local Media (GAL type 20)
+
+| Message | Direction | Purpose |
+|---------|-----------|---------|
+| `CarLocalMediaPlaybackStatus` | HU -> Phone | Local media playback state |
+| `CarLocalMediaPlaybackMetadata` | HU -> Phone | Local media track info |
+| `CarLocalMediaPlaybackRequest` | Phone -> HU | Request playback action |

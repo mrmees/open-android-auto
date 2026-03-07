@@ -49,7 +49,7 @@ Phone acknowledges a property set request.
 ```protobuf
 message SetCarPropertyValueResponse {      // APK class: wbr (16.2) / wcb (16.1)
     optional CarProperty car_property    = 1;  // property that was set
-    optional CarControlStatus status     = 2;  // result code
+    optional int32 status                = 2;  // ProtocolStatus (vyh) — shared enum, not CarControlStatus
     optional string request_id           = 3;  // UUID matching the original request
     optional int32 error_code            = 4;  // CarPropertySetError code
 }
@@ -63,7 +63,7 @@ HU subscribes to change events for a list of properties. Sent once on channel op
 
 ```protobuf
 message RegisterCarPropertyListenersRequest {  // APK class: waz (16.2) / wbk? (16.1)
-    repeated CarProperty properties = 1;       // properties to subscribe to
+    repeated CarProperty car_properties = 1;    // properties to subscribe to
 }
 ```
 
@@ -82,7 +82,7 @@ message RegisterCarPropertyListenersResponse {  // APK class: wba (16.2) / wbk (
 
 message SetCarPropertyListenerResult {          // APK class: vwh (16.2) / vwv (16.1)
     optional CarProperty car_property = 1;      // property registered
-    optional CarControlStatus status  = 2;      // registration status
+    optional int32 status             = 2;      // ProtocolStatus (vyh) — shared enum
 }
 ```
 
@@ -212,7 +212,7 @@ Embedded in the SDP `ChannelDescriptorData` during service discovery. Tells the 
 ```protobuf
 message CarControlChannelDescriptor {       // APK class: vwa (16.2) / vwo (16.1)
     repeated CarPropertyConfig property_configs = 1;  // available VHAL properties
-    repeated CarControlGroup control_groups     = 2;  // UI control layout tree
+    repeated CarControl controls               = 2;  // UI control layout (vvx, NOT CarControlGroup)
     repeated CarActionEntry action_entries      = 3;  // available car actions
 }
 ```
@@ -287,48 +287,44 @@ message CarActionEntry {                   // APK class: vua (16.2) / vuo (16.1)
 
 ## Enums
 
-### CarControlStatus
+### ~~CarControlStatus~~ — RETRACTED
 
-```protobuf
-enum CarControlStatus {                     // APK class: vyh (16.2) / vyw (16.1)
-    CAR_CONTROL_STATUS_SUCCESS = 0;
-    CAR_CONTROL_STATUS_CAR_PROPERTY_SET_REQUEST_FAILED = 1;
-    CAR_CONTROL_STATUS_CAR_PROPERTY_LISTENER_REGISTRATION_FAILED = 2;
-}
-```
+The original 3-value `CarControlStatus` enum has been **retracted**. The APK class `vyh` (16.2) is actually the shared **ProtocolStatus** enum with 34 values covering auth, BT, radio, sensors, car properties, and protocol errors. Status fields in `SetCarPropertyValueResponse` and `SetCarPropertyListenerResult` use `int32 status` (ProtocolStatus values), not a dedicated car control enum.
+
+See [ProtocolStatus reference](../../analysis/reports/proto-verification/control.md) for the full 34-value enum.
 
 ### CarPropertyId
 
-25 vehicle properties. Values are protocol-level IDs (not raw VHAL IDs).
+25 vehicle properties. **Values are raw VHAL IDs** (e.g., 358614275 = HVAC_TEMPERATURE_SET), NOT sequential 1-23 as previously documented.
 
-| Proto ID | Name | VHAL ID | Area | Value Type | Description |
-|----------|------|---------|------|------------|-------------|
-| 0 | UNKNOWN | - | - | - | Default |
-| 1 | HVAC_TEMPERATURE_SET | 358614275 | SEAT | float | Target temperature per zone |
-| 2 | HVAC_AUTO_ON | 354419978 | SEAT | bool | Auto climate mode |
-| 3 | HVAC_DUAL_ON | 354419977 | SEAT | bool | Dual zone sync |
-| 4 | HVAC_SEAT_TEMPERATURE | 356517131 | SEAT | int32 | Heated/cooled seat level |
-| 5 | HVAC_FAN_SPEED | 356517120 | SEAT | int32 | Fan speed level |
-| 6 | HVAC_FAN_DIRECTION | 356517121 | SEAT | int32 | Air direction (face/feet/defrost) |
-| 7 | HVAC_FAN_DIRECTION_AVAILABLE | 356582673 | SEAT | int32 | Available direction bitmask |
-| 8 | HVAC_TEMPERATURE_DISPLAY_UNITS | 289408270 | GLOBAL | int32 | 1=Celsius, 2=Fahrenheit |
-| 9 | HVAC_AC_ON | 354419973 | SEAT | bool | A/C compressor |
-| 10 | HVAC_MAX_AC_ON | 354419974 | SEAT | bool | Max A/C mode |
-| 11 | HVAC_DEFROSTER | 320865540 | WINDOW | bool | Defroster per window zone |
-| 12 | HVAC_MAX_DEFROST_ON | 354419975 | SEAT | bool | Max defrost mode |
-| 13 | HVAC_POWER_ON | 354419984 | SEAT | bool | HVAC system on/off |
-| 14 | HVAC_AUTO_RECIRC_ON | 354419986 | SEAT | bool | Auto recirculation |
-| 15 | HVAC_RECIRC_ON | 354419976 | SEAT | bool | Manual recirculation |
-| 16 | HVAC_SEAT_VENTILATION | 356517139 | SEAT | int32 | Ventilated seat level |
-| 17 | HVAC_SIDE_MIRROR_HEAT | 339739916 | MIRROR | int32 | Mirror heater on/off/level |
-| 18 | HVAC_STEERING_WHEEL_HEAT | 289408269 | GLOBAL | int32 | Steering wheel heater level |
-| 19 | ELECTRONIC_TOLL_COLLECTION_CARD_STATUS | 289410874 | GLOBAL | int32 | Toll card reader status |
-| 20 | HMG_HVAC_MTC_TEMPERATURE | 624984185 | SEAT | int32 | HMG multi-temp control |
-| 21 | HMG_HVAC_TEMPERATURE_RANGE | 557940737 | SEAT | int32 | HMG temp range config |
-| 22 | HMG_HVAC_TEMPERATURE_SET_CELSIUS | 627081341 | SEAT | float | HMG temperature (Celsius) |
-| 23 | HMG_HVAC_TEMPERATURE_SET_FAHRENHEIT | 627081339 | SEAT | float | HMG temperature (Fahrenheit) |
-| 24 | DOOR_LOCK | 371198722 | DOOR | bool | Per-door lock state (new in 16.2) |
-| 25 | HMG_CAR_ALERTS_COUNT | 34908672 | GLOBAL | int32 | HMG vehicle alert count (new in 16.2) |
+| VHAL ID | Name | Area | Value Type | Description |
+|---------|------|------|------------|-------------|
+| 0 | UNKNOWN | - | - | Default |
+| 358614275 | HVAC_TEMPERATURE_SET | SEAT | float | Target temperature per zone |
+| 354419978 | HVAC_AUTO_ON | SEAT | bool | Auto climate mode |
+| 354419977 | HVAC_DUAL_ON | SEAT | bool | Dual zone sync |
+| 356517131 | HVAC_SEAT_TEMPERATURE | SEAT | int32 | Heated/cooled seat level |
+| 356517120 | HVAC_FAN_SPEED | SEAT | int32 | Fan speed level |
+| 356517121 | HVAC_FAN_DIRECTION | SEAT | int32 | Air direction (face/feet/defrost) |
+| 356582673 | HVAC_FAN_DIRECTION_AVAILABLE | SEAT | int32 | Available direction bitmask |
+| 289408270 | HVAC_TEMPERATURE_DISPLAY_UNITS | GLOBAL | int32 | 1=Celsius, 2=Fahrenheit |
+| 354419973 | HVAC_AC_ON | SEAT | bool | A/C compressor |
+| 354419974 | HVAC_MAX_AC_ON | SEAT | bool | Max A/C mode |
+| 320865540 | HVAC_DEFROSTER | WINDOW | bool | Defroster per window zone |
+| 354419975 | HVAC_MAX_DEFROST_ON | SEAT | bool | Max defrost mode |
+| 354419984 | HVAC_POWER_ON | SEAT | bool | HVAC system on/off |
+| 354419986 | HVAC_AUTO_RECIRC_ON | SEAT | bool | Auto recirculation |
+| 354419976 | HVAC_RECIRC_ON | SEAT | bool | Manual recirculation |
+| 356517139 | HVAC_SEAT_VENTILATION | SEAT | int32 | Ventilated seat level |
+| 339739916 | HVAC_SIDE_MIRROR_HEAT | MIRROR | int32 | Mirror heater on/off/level |
+| 289408269 | HVAC_STEERING_WHEEL_HEAT | GLOBAL | int32 | Steering wheel heater level |
+| 289410874 | ELECTRONIC_TOLL_COLLECTION_CARD_STATUS | GLOBAL | int32 | Toll card reader status |
+| 624984185 | HMG_HVAC_MTC_TEMPERATURE | SEAT | int32 | HMG multi-temp control |
+| 557940737 | HMG_HVAC_TEMPERATURE_RANGE | SEAT | int32 | HMG temp range config |
+| 627081341 | HMG_HVAC_TEMPERATURE_SET_CELSIUS | SEAT | float | HMG temperature (Celsius) |
+| 627081339 | HMG_HVAC_TEMPERATURE_SET_FAHRENHEIT | SEAT | float | HMG temperature (Fahrenheit) |
+| 371198722 | DOOR_LOCK | DOOR | bool | Per-door lock state (new in 16.2) |
+| 34908672 | HMG_CAR_ALERTS_COUNT | GLOBAL | int32 | HMG vehicle alert count (new in 16.2) |
 
 ### Car Action IDs
 
@@ -407,6 +403,7 @@ enum CarControlStatus {                     // APK class: vyh (16.2) / vyw (16.1
 |-------|------|
 | 0 | UNKNOWN |
 | 1 | COMPACT_UI |
+| 2 | PREFER_STATUS_BAR |
 
 ---
 
@@ -426,7 +423,6 @@ All area enums are bitmask-based. The `CarAreaId` message uses repeated packed e
 | 32 | 0x20 | Row 2 Center |
 | 64 | 0x40 | Row 2 Right |
 | 256 | 0x100 | Row 3 Left |
-| 512 | 0x200 | Row 3 Center |
 | 1024 | 0x400 | Row 3 Right |
 
 ### VehicleAreaWindow

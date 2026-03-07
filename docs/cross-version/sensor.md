@@ -33,7 +33,7 @@
 | SensorEventFloat | `vsi` | `waa` | `vzm` | 1/1/1 |
 | SensorEventIndication | `vtw` | `wbo` | `wbe` | 26/26/26 |
 | SensorRequest | `vtz` | `wbr` | `wbh` | 2/2/2 |
-| SensorStartRequestMessage | `vsz` | `war` | `waj` | 2/2/2 |
+| SensorStartRequestMessage | `vsz` | `war` | `waj` | 2/2/2 | **Note:** 16.1 class `war` = RadioTuneDirectionRequest in 16.2; `waj` is correct 16.2 sensor class |
 | SensorStartResponseMessage | `vua` | `wbs` | `wbi` | 1/1/1 |
 | SensorTypeEntry | `vub` | `wbt` | `wbj` | 1/1/1 |
 | Speed | `vul` | `wcd` | `wbt` | 3/3/3 |

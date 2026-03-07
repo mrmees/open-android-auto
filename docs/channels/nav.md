@@ -14,7 +14,7 @@
 | NavigationState | Gold | apk_static + cross_version + **wire_verified** | [NavigationStateMessage.audit.yaml](../../oaa/navigation/NavigationStateMessage.audit.yaml) |
 | NavigationFocusRequest | Silver | apk_static + cross_version | [NavigationFocusRequestMessage.audit.yaml](../../oaa/navigation/NavigationFocusRequestMessage.audit.yaml) |
 | NavigationFocusResponse | Silver | apk_static + cross_version | [NavigationFocusResponseMessage.audit.yaml](../../oaa/navigation/NavigationFocusResponseMessage.audit.yaml) |
-| NavigationFocusIndication | Silver | apk_static + cross_version | [NavigationFocusIndicationMessage.audit.yaml](../../oaa/navigation/NavigationFocusIndicationMessage.audit.yaml) |
+| ~~NavigationFocusIndication~~ | **Retracted** | wbg=SensorErrorStatus in 16.2, not a focus message | [NavigationFocusIndicationMessage.audit.yaml](../../oaa/navigation/NavigationFocusIndicationMessage.audit.yaml) |
 | NavigationChannelConfig | Silver | apk_static + cross_version | [NavigationChannelConfigData.audit.yaml](../../oaa/navigation/NavigationChannelConfigData.audit.yaml) |
 | NavigationChannel | Silver | apk_static + cross_version | [NavigationChannelData.audit.yaml](../../oaa/navigation/NavigationChannelData.audit.yaml) |
 | NavigationImageOptions | Silver | apk_static + cross_version | [NavigationImageOptionsData.audit.yaml](../../oaa/navigation/NavigationImageOptionsData.audit.yaml) |
@@ -22,18 +22,18 @@
 | ManeuverType (enum) | Unverified | -- | -- |
 | TurnSide (enum) | Unverified | -- | -- |
 | NavigationType (enum) | Unverified | -- | -- |
-| InstrumentClusterStart | Unverified | -- | -- |
-| InstrumentClusterStop | Unverified | -- | -- |
-| InstrumentClusterInput | Unverified | -- | -- |
+| InstrumentClusterStart | **Gold** | apk_deep_trace (2026-03-06) — direction fixed (HU→Phone) | (0x8001, vze in 16.2) |
+| InstrumentClusterStop | **Gold** | apk_deep_trace (2026-03-06) — direction fixed (HU→Phone) | (0x8002, vzf in 16.2) |
+| ~~InstrumentClusterInput~~ | **Retracted** | Wrong class — vzl is OverlayParameters, not a wire message | See LegacyNavigationTurnEvent (0x8005) |
 | InstrumentClusterAction (enum) | Unverified | -- | -- |
 
 ## Overview
 
 Channel 11 (`NAVIGATION_STATUS`) carries turn-by-turn navigation guidance from the phone to the head unit. When a user starts navigation in Google Maps, Waze, or another navigation app on the phone, this channel delivers real-time turn events, distance updates, and navigation state changes so the HU can display guidance without projecting the full map.
 
-**NavigationTurnEvent** is the primary message, observed firing at ~1Hz during active navigation via DHU 2.1 testing. It contains the next turn's maneuver type, road name, distance, and optionally a turn icon. **NavigationNotification** carries the same information in a richer hierarchical format with multi-step lookahead, lane guidance, and destination/ETA data.
+**NavigationNotification** is the primary message for modern HUs, carrying rich hierarchical turn-by-turn with multi-step lookahead, lane guidance, and destination/ETA data. **NavigationTurnEvent** (0x8004, deprecated in 16.2) and **LegacyNavigationTurnEvent** (0x8005) are simplified flat representations for legacy HUs (CarInfo PDK < 1.6).
 
-The navigation channel also carries distance data via **NavigationNextTurnDistanceEvent** (0x8007) and navigation state transitions via **NavigationState** (active/inactive/ended). Focus negotiation (**NavigationFocusRequest/Response/Indication**) tells the HU when a navigation app is active, separate from audio focus which is negotiated on the audio channels (4/5/6).
+The navigation channel also carries distance data via **NavigationNextTurnDistanceEvent** (0x8007) and navigation state transitions via **NavigationState** (active/inactive/rerouting). Navigation focus negotiation (NavigationFocusRequest/Response) happens on the **control channel** (msg IDs 13/14), not here.
 
 This is the deepest channel in the protocol: 14 proto files, 31 cross-version mappings, and the richest sub-message hierarchy. See [cross-version mapping table](../cross-version/navigation.md) for version stability across 15.9, 16.1, and 16.2.
 
@@ -72,19 +72,18 @@ message NavigationTurnEvent {
 
 | MsgID | Message | Direction | Purpose |
 |-------|---------|-----------|---------|
-| 0x8003 | NavigationState | Phone -> HU | Navigation session active/inactive/ended |
-| -- | NavigationFocusRequest | Phone -> HU | Request nav display focus |
-| -- | NavigationFocusResponse | HU -> Phone | Grant/deny nav focus |
-| -- | NavigationFocusIndication | Phone -> HU | Current focus state indication |
+| 0x8003 | NavigationState | Phone -> HU | Navigation session active/inactive/rerouting |
+
+> **Note:** NavigationFocusRequest (msg 13) and NavigationFocusResponse (msg 14) are on the **control channel** (GAL type 1, `hzh.java`), NOT on this navigation channel. NavigationFocusIndication has been **retracted** — the class `wbg` is actually `SensorErrorStatus` in 16.2, not a focus indication message.
 
 **NavigationStateType** values:
 
 | Value | Name | Meaning |
 |-------|------|---------|
-| 0 | UNKNOWN | Default/unset |
+| 0 | UNAVAILABLE | Navigation not available (was UNKNOWN pre-verification) |
 | 1 | ACTIVE | Navigation in progress |
 | 2 | INACTIVE | Navigation paused or not started |
-| 3 | ENDED | Navigation session completed |
+| 3 | REROUTING | Navigation rerouting (was ENDED pre-verification; suppressed on HUs with CarInfo PDK < 1.6) |
 
 ### Channel Configuration
 
@@ -100,13 +99,14 @@ These messages are exchanged during service discovery to configure the navigatio
 
 ### Instrument Cluster
 
-> Confidence: Unverified -- no audit sidecars exist for InstrumentCluster messages
+> Confidence: InstrumentClusterStart and InstrumentClusterStop are **Gold** [apk_deep_trace — 2026-03-06]; ~~InstrumentClusterInput~~ **retracted** (vzl is OverlayParameters, not a wire message)
 
 | MsgID | Message | Direction | Purpose |
 |-------|---------|-----------|---------|
-| 0x8001 | InstrumentClusterStart | Phone -> HU | Signal cluster display is ready |
-| 0x8002 | InstrumentClusterStop | Phone -> HU | Signal cluster session ended |
-| 0x8005 | InstrumentClusterInput | HU -> Phone | D-pad input from cluster controls |
+| 0x8001 | InstrumentClusterStart | HU -> Phone | Signal cluster display is ready |
+| 0x8002 | InstrumentClusterStop | HU -> Phone | Signal cluster session ended |
+| 0x8005 | LegacyNavigationTurnEvent | Phone -> HU | Simplified turn data for legacy HUs (PDK < 1.6) |
+| 0x8008 | VehicleEnergyForecast | Phone -> HU | EV energy/range forecast (PDK >= 5.1, NEW) |
 
 See [Instrument Cluster](#instrument-cluster-1) section below for details.
 
@@ -166,31 +166,30 @@ Phone                                    Head Unit
   |                                         |
   |  User starts navigation                 |
   |                                         |
-  |--- NavigationFocusRequest ----------->  |  Request nav display focus
-  |<-- NavigationFocusResponse -----------  |  HU grants focus
+  |  (NavigationFocusRequest on CONTROL ch)  |  Focus negotiation is on control channel
+  |  (NavigationFocusResponse on CONTROL ch) |  (msg IDs 13/14), not this channel
   |                                         |
   |--- NavigationState (ACTIVE) --------->  |  Nav session active
   |                                         |
-  |--- NavigationTurnEvent -------------->  |  ~1Hz turn guidance
-  |--- NavigationTurnEvent -------------->  |
-  |--- NavigationNextTurnDistanceEvent -->  |  Distance to next turn
   |--- NavigationNotification ----------->  |  Rich turn-by-turn (periodic)
-  |--- NavigationTurnEvent -------------->  |
+  |--- NavigationNextTurnDistanceEvent -->  |  Distance to next turn
+  |--- NavigationNotification ----------->  |
   |                                         |
   |  User arrives / cancels navigation      |
   |                                         |
-  |--- NavigationState (ENDED) ---------->  |  Nav session ended
-  |--- NavigationFocusIndication -------->  |  Focus released
+  |--- NavigationState (INACTIVE) ------->  |  Nav session ended
   |                                         |
 ```
 
-The phone drives all state transitions. The HU is a passive receiver of navigation data -- it does not initiate navigation or request specific guidance. The only HU-initiated message is NavigationFocusResponse (granting or denying focus) and InstrumentClusterInput (d-pad events).
+The phone drives all state transitions. The HU is a passive receiver of navigation data -- it does not initiate navigation or request specific guidance. The only HU-initiated messages on this channel are InstrumentClusterStart/Stop (0x8001/0x8002). Navigation focus negotiation happens on the control channel (msg IDs 13/14).
 
 ---
 
 ## Focus Model
 
-> Confidence: Silver [apk_static, cross_version] -- NavigationFocusRequest, Response, and Indication all Silver
+> **IMPORTANT:** Navigation focus negotiation happens on the **control channel** (GAL type 1, `hzh.java`), NOT on this navigation channel. NavigationFocusRequest is control msg 13, NavigationFocusResponse is control msg 14.
+
+> ~~NavigationFocusIndication~~ has been **retracted** — the 16.2 class `wbg` is actually `SensorErrorStatus` enum, not a focus indication message. There is no "indication" message in the focus protocol.
 
 Navigation focus tells the HU that a navigation app is active and the HU should display navigation UI (turn cards, distance overlay, etc.). This is separate from audio focus, which is negotiated on channels 4/5/6 for speech/guidance audio.
 
@@ -203,15 +202,13 @@ Navigation focus tells the HU that a navigation app is active and the HU should 
 
 The focus flow:
 
-1. Phone sends **NavigationFocusRequest** with `type = NAV_FOCUS_PROJECTED` when a nav app starts
-2. HU responds with **NavigationFocusResponse** granting focus
-3. Navigation data flows (TurnEvent, Distance, Notification, State)
-4. When navigation ends, phone sends **NavigationFocusIndication** with updated state
+1. Phone sends **NavigationFocusRequest** (control channel msg 13) with `type = NAV_FOCUS_PROJECTED` when a nav app starts
+2. HU responds with **NavigationFocusResponse** (control channel msg 14) granting focus
+3. Navigation data flows (Notification, Distance, State) on this channel
+4. When navigation ends, phone sends **NavigationState (INACTIVE)** on this channel
 5. HU can dismiss navigation UI
 
-**NavigationFocusIndication** carries an opaque `focus_data` bytes field. The exact encoding is not documented beyond the proto structure -- it may contain serialized state or metadata about the current focus holder.
-
-> **Gotcha:** Navigation focus is NOT audio focus. A navigation app holds nav focus on channel 11 and simultaneously requests audio focus on channel 5 (speech audio) for voice prompts. Granting nav focus does not imply granting audio focus or vice versa. The two must be handled independently.
+> **Gotcha:** Navigation focus is NOT audio focus. A navigation app holds nav focus (control channel) and simultaneously requests audio focus on channel 5 (speech audio) for voice prompts. Granting nav focus does not imply granting audio focus or vice versa. The two must be handled independently.
 
 ---
 
@@ -303,31 +300,15 @@ These observations confirm that NavigationTurnEvent fires at approximately 1Hz d
 
 ## Instrument Cluster
 
-> Confidence: Unverified -- InstrumentClusterMessages.proto has no audit sidecar. Structural information derived from APK analysis only.
+> Confidence: **Gold** [apk_deep_trace — 2026-03-06] — InstrumentClusterStart and InstrumentClusterStop verified; ~~InstrumentClusterInput~~ retracted
 
-The instrument cluster is a secondary navigation display, typically behind the steering wheel. These messages manage the cluster session lifecycle, not the navigation data itself -- turn events and state flow through NavigationTurnEvent/NavigationState/NavigationNotification on the same channel.
+The instrument cluster is a secondary navigation display, typically behind the steering wheel. These messages manage the cluster session lifecycle, not the navigation data itself -- turn events and state flow through NavigationNotification/NavigationState on the same channel.
 
-**InstrumentClusterStart** (0x8001) and **InstrumentClusterStop** (0x8002) are empty signal messages -- no payload. On receiving InstrumentClusterStart, the HU reads cached cluster configuration (populated from service discovery) containing:
+**InstrumentClusterStart** (0x8001) and **InstrumentClusterStop** (0x8002) are empty signal messages sent **HU → Phone** -- no payload. On receiving InstrumentClusterStart, the phone begins sending navigation data to the cluster display. The cluster configuration (dimensions, type, interval, color depth) is populated from service discovery, not from these messages.
 
-- `min_interval` -- minimum update interval
-- `cluster_type` -- display type
-- `width`, `height` -- cluster display dimensions
-- `color_depth` -- bits per pixel
+**~~InstrumentClusterInput~~ (0x8005) — RETRACTED:** The class previously assigned here (`vzl`) is actually `OverlayParameters` (a display overlay parameters proto), not a wire message on this channel. The actual 0x8005 is **LegacyNavigationTurnEvent** (`vyx`), a simplified turn data message for legacy HUs with CarInfo PDK < 1.6. It is marked `@Deprecated` in the APK source.
 
-**InstrumentClusterInput** (0x8005) carries user input from steering wheel controls to the phone:
-
-```protobuf
-message InstrumentClusterInput {
-    optional int32 input_source = 1;
-    optional int32 key_code = 2;
-    optional int32 key_action = 3;
-    optional InstrumentClusterAction action_type = 4;  // 0-7 d-pad values
-}
-```
-
-> **Gotcha:** The InstrumentClusterAction enum (values 0-7) is the same d-pad navigation model used by PhoneStatusInput on the phone channel (channel 12). Both use handler log tag `CAR.GAL.INST`. This strongly suggests shared input infrastructure between the instrument cluster and phone status displays. See [phone.md](phone.md) for the phone-side equivalent.
-
-> **Gotcha:** The APK applies a 1-based to 0-based conversion on the action_type: `vzl.f = i4 - 1`. If your HU generates 1-based action values (1-8), the phone expects them stored as 0-based (0-7) in the proto. If you send raw button codes without this offset, the phone will interpret UP as UNKNOWN.
+**VehicleEnergyForecast** (0x8008, NEW) is sent Phone → HU on this channel for HUs with CarInfo PDK >= 5.1. It uses a proto2 wrapper (`waw`) containing a serialized proto3 inner message (`ysl`) with EV energy/range forecast data including energy-at-distance, charging station details, and forecast quality. See [verification report](../../analysis/reports/proto-verification/navigation.md) for full sub-message hierarchy.
 
 ---
 
@@ -369,9 +350,8 @@ void handle_turn_event(const NavigationTurnEvent* event) {
 Track `NavigationState` to know when to show/hide navigation UI:
 
 1. Watch for `NavigationFocusRequest` -- show navigation UI frame
-2. On `NavigationState(ACTIVE)` -- begin processing turn events
-3. On `NavigationState(ENDED)` -- clear guidance display, show idle state
-4. On `NavigationFocusIndication` -- hide navigation UI frame
+2. On `NavigationState(ACTIVE)` -- begin processing navigation notifications
+3. On `NavigationState(INACTIVE)` -- clear guidance display, show idle state (note: `REROUTING` (3) means navigation is recalculating, not ended)
 
 ---
 
@@ -420,6 +400,7 @@ Track `NavigationState` to know when to show/hide navigation UI:
 - [LaneShapeEnum.audit.yaml](../../oaa/navigation/LaneShapeEnum.audit.yaml)
 
 ### Cross-References
+- [Navigation Verification Report](../../analysis/reports/proto-verification/navigation.md) (Gold verification — 2026-03-06)
 - [Navigation Cross-Version Mapping](../cross-version/navigation.md) (31 mappings across v15.9, v16.1, v16.2)
 - [Channel Map](../channel-map.md) (Channel 11: Navigation Status)
 - [Channel Lifecycle](../interactions/04-channel-lifecycle.md) (channel open/close flow)

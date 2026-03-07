@@ -10,8 +10,8 @@
 | UiConfigRequest | `vvb` | `wct` | `wcj` | 1/1/1 |
 | VideoConfig | `vvh` | `wcz` | `wcp` | 11/11/11 |
 | VideoFocusIndication | `vvj` | `wdb` | `wcr` | 2/2/2 |
-| VideoFocusMode | `vvc` | `wcu` | `wck` | 1/1/1 |
-| VideoFocusNotification | `vqm` | `vye` | `vxq` | 1/1/1 |
+| ~~VideoFocusMode~~ → UpdateHuUiConfigResponse | `vvc` | `wcu` | `wck` | 1/1/1 | **RETRACTED** as VideoFocusModeMessage — actually UpdateHuUiConfigResponse |
+| ~~VideoFocusNotification~~ | ~~`vqm`~~ | ~~`vye`~~ | `vxq` | 1/1/1 | **RETRACTED** — actually IntegratedOverlayStartNotification |
 | VideoFocusRequest | `vvl` | `wdd` | `wct` | 2/2/2 |
 | VideoInsets | `vtq` | `wbi` | `way` | 4/4/4 |
 | VideoMarginConfig | `vpl` | `vxd` | `vwp` | 1/1/1 |

@@ -167,6 +167,8 @@ Packet format: `[length:u16_be][msg_id:u16_be][protobuf_payload]`
 
 After stage 5, phone connects via TCP to the IP:port from stage 1.
 
+> **GAL vs RFCOMM:** The WiFi credential exchange above happens over BT RFCOMM (not the GAL wire protocol). Once the TCP connection is established and the AA session begins, there is also a GAL `WifiCredentialsResponse` (0x8002 on WiFi Projection channel, GAL type 17) that delivers credentials over the wire protocol. This is the only GAL message on the WiFi Projection channel — everything else is RFCOMM setup.
+
 ### WifiStartRequest Protobuf
 
 ```protobuf

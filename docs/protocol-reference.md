@@ -737,11 +737,13 @@ Video streaming config, codec negotiation, focus management, AV setup
 - `VIDEO_1280x720` = 2
 - `VIDEO_1920x1080` = 3
 - `VIDEO_2560x1440` = 4
-- `VIDEO_3840x2160` = 5
+- `VIDEO_480x854` = 5
 - `VIDEO_720x1280` = 6
 - `VIDEO_1080x1920` = 7
-- `VIDEO_1440x2560` = 8
-- `VIDEO_2160x3840` = 9
+- `VIDEO_854x480` = 8
+- `VIDEO_1280x720` = 9
+
+> **CORRECTED (2026-03-07):** Values 5-9 were wrong (from aasdk). Full rewrite based on 16.2 APK verification. See [video verification report](analysis/reports/proto-verification/video.md).
 
 **`wda`**
 *Used by: `wdb`*
@@ -921,7 +923,9 @@ GPS, compass, speed, RPM, night mode, driving status, diagnostics
 | 2 | indicator | enum | *AudioStreamType (TELEPHONY=0, SYSTEM_AUDIO=1, MEDIA=3, GUIDANCE=5) — utility class, not proto enum* |
 | 3 | hazard_light_on | bool |  |
 
-### SensorStartRequest (`war`)
+### SensorStartRequest (`war` in 16.1, `waj` in 16.2)
+
+> **Note (2026-03-07):** 16.1 class `war` maps to `RadioTuneDirectionRequest` in 16.2 — obfuscated names shift between versions. The enum shown below (`waq`) is actually `RadioIdentifierType` in 16.2, not a sensor enum.
 
 ***seed***
 
@@ -1103,15 +1107,16 @@ BT pairing requests/responses
 | 2 | pairing_method | enum |  |
 | 3 | phone_name | string |  |
 
-### BluetoothPairingResponse (`xgq`)
+### BluetoothPairingResponse (`vvn` in 16.2, was `xgq` in 16.1)
 
 ***seed***
 
+> **CORRECTED (2026-03-07):** Fields were swapped, wrong class, wrong enum. Class `xgq`/`xgb` is wrong — actual wire class is `vvn` (16.2). Field 3 removed (doesn't exist on wire class).
+
 | # | Name | Type | Notes |
 |---|------|------|-------|
-| 1 | already_paired | bool |  |
-| 2 | status | enum |  |
-| 3 | error_message | string |  |
+| 1 | status | int32 | ProtocolStatus (vyh) — shared 34-value enum, NOT old 3-value BluetoothPairingStatus |
+| 2 | already_paired | bool |  |
 
 ---
 

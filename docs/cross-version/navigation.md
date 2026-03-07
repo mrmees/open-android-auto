@@ -17,7 +17,7 @@
 | NavigationDistanceInfo | `xff` | `xng` | `xmr` | 3/3/3 |
 | NavigationDistanceOneof | `xfd` | `xne` | -- | 1/1/0 |
 | NavigationDistanceValue | `xev` | `xmw` | `xmg` | 3/3/3 |
-| NavigationFocusIndication | `vto` | `wbg` | `waw` | 1/1/1 |
+| ~~NavigationFocusIndication~~ | ~~`vto`~~ | ~~`wbg`~~ | ~~`waw`~~ | ~~1/1/1~~ | **RETRACTED** — wbg=SensorErrorStatus, waw=VehicleEnergyForecast in 16.2 |
 | NavigationFocusRequest | `vri` | `vza` | `vyl` | 1/1/1 |
 | NavigationFocusResponse | `vrh` | `vyz` | `vyk` | 1/1/1 |
 | NavigationImageDimensions | `vry` | `vzq` | `vzc` | 3/3/3 |
