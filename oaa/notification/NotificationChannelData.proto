@@ -3,16 +3,17 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 
 /*
- * Discovered via APK proto decoder (wdh.java, AA v16.1)
- * Generic notification channel descriptor for ChannelDescriptor field 13.
+ * NotificationChannel — SDP channel descriptor for notifications.
+ * APK class: wah (16.2) — 1 bool field (was thought empty in 16.1)
  */
 
 syntax="proto2";
 
 package oaa.proto.data;
 
-// APK class: wah — empty message
-// confidence: bronze [apk_static]
+// APK class: wah (16.2) — notification channel config
+// confidence: gold [deep_trace_verified, 16.2_jadx]
 message NotificationChannel
 {
+    optional bool enabled = 1;  // confidence: gold [deep_trace_verified, 16.2_jadx]
 }

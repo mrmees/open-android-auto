@@ -11,12 +11,13 @@
  * human error, not a decoder bug — descriptor_decoder.py outputs the
  * correct field numbers for wbw.
  *
- * APK class mapping (wbm.java in 16.2, wbw.java in 16.1, confirmed by Codex + wire dump):
- *   1=channel_id, 2=sensor(wbu), 3=av(vys), 4=input(vya),
- *   5=av_input(vyt), 6=bluetooth(vwc), 7=radio(way), 8=navigation(vzr),
- *   9=media_info(o), 10=phone_status(p), 11=media_browser(q),
- *   12=vendor_ext(wcv), 13=notification(r), 14=wifi(wdh), 15=car_control(vwo)
- *   Fields 16-17 exist in APK but are not used by aasdk.
+ * APK class mapping (wbm.java in 16.2, wbw.java in 16.1):
+ *   1=channel_id, 2=sensor(wbk), 3=av(vye), 4=input(vxm),
+ *   5=av_input(vyf), 6=bluetooth(vvo), 7=radio(wap), 8=navigation(vzd),
+ *   9=media_info(vyd), 10=phone_status(vzt), 11=media_browser(vxy),
+ *   12=vendor_ext, 13=notification(wah), 14=wifi(wcx), 15=car_control(vwa),
+ *   16=generic_notification(vwf), 17=voice(vvp)
+ *   (16.2 class names above; 16.1 class names differ)
  *
  * Original aasdk copyright (field names/structure):
  * Copyright (C) 2018 f1x.studio (Michal Szwaj), GPLv3
@@ -38,6 +39,8 @@ import "oaa/media/MediaChannelData.proto";
 import "oaa/phone/PhoneStatusChannelData.proto";
 import "oaa/notification/NotificationChannelData.proto";
 import "oaa/wifi/WifiChannelData.proto";
+import "oaa/carcontrol/CarPropertyData.proto";
+import "oaa/carcontrol/CarControlMessages.proto";
 
 package oaa.proto.data;
 
@@ -50,7 +53,7 @@ message ChannelDescriptor
     optional InputChannel input_channel = 4;  // confidence: gold [deep_trace_verified, 16.2_jadx]
     optional AVInputChannel av_input_channel = 5;  // confidence: gold [deep_trace_verified, 16.2_jadx]
     optional BluetoothChannel bluetooth_channel = 6;  // confidence: gold [deep_trace_verified, 16.2_jadx]
-    optional RadioChannel radio_channel = 7;  // confidence: gold [deep_trace_verified, 16.2_jadx]
+    optional RadioChannelConfig radio_channel = 7;  // 16.2: wap (was RadioChannel/way in 16.1)  // confidence: gold [deep_trace_verified, 16.2_jadx]
     optional NavigationChannel navigation_channel = 8;  // confidence: gold [deep_trace_verified, 16.2_jadx]
     optional MediaInfoChannel media_info_channel = 9;  // confidence: gold [deep_trace_verified, 16.2_jadx]
     optional PhoneStatusChannel phone_status_channel = 10;  // confidence: gold [deep_trace_verified, 16.2_jadx]
@@ -69,10 +72,13 @@ message ChannelDescriptor
 message MediaBrowserChannel {
 }
 
-// APK class: vwa (16.2), vwo (16.1) — 3 fields, structure TBD
-// Placeholder — sub-message structure TBD from wire captures
+// APK class: vwa (16.2), vwo (16.1) — 3 fields
+// References sub-messages from oaa/carcontrol/ (already Gold from GAL verification)
 // confidence: gold [deep_trace_verified, 16.2_jadx]
 message CarControlChannel {
+    repeated CarPropertyConfig property_configs = 1;  // 16.2: vuj  // confidence: gold [deep_trace_verified, 16.2_jadx]
+    repeated CarControl controls = 2;  // 16.2: vvx  // confidence: gold [deep_trace_verified, 16.2_jadx]
+    repeated CarActionEntry action_entries = 3;  // 16.2: vua  // confidence: gold [deep_trace_verified, 16.2_jadx]
 }
 
 // APK class: vwf (16.2), vwt (16.1) — empty message

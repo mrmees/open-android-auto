@@ -3,51 +3,38 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 
 /*
- * RadioChannel — radio channel configuration for ServiceDiscovery.
+ * RadioChannelConfig — radio channel SDP configuration for ServiceDiscovery.
  *
- * APK class: way.java (container) / wax.java (entry) / wbe.java (band)
- * AA v16.1
+ * REWRITTEN for 16.2: Old RadioStation/RadioBand hierarchy (16.1: way/wax/wbe)
+ * completely replaced by RadioChannelConfig/RadioBands/RadioBandGroup (wap/wab/waa).
  *
- * Contains repeated RadioStation entries, each describing a radio
- * tuner capability with supported bands, codec types, and feature flags.
+ * RadioCodecType and RadioRegion enums are NOT used in SDP anymore (only in GAL messages).
  */
 
 syntax = "proto2";
 
-import "oaa/radio/RadioCodecTypeEnum.proto";
 import "oaa/radio/RadioBandTypeEnum.proto";
-import "oaa/radio/RadioRegionEnum.proto";
 
 package oaa.proto.data;
 
-// APK class: way — radio channel config container (1 field)
-// confidence: silver [apk_static, cross_version]
-message RadioChannel {
-    repeated RadioStation stations = 1; // APK: repeated wax  // confidence: silver [apk_static, cross_version]
+// APK class: wap (16.2) — radio channel config container
+// Replaces RadioChannel(way) from 16.1
+// confidence: gold [deep_trace_verified, 16.2_jadx]
+message RadioChannelConfig {
+    optional int32 config_id = 1;  // purpose TBD — possibly config version or tuner ID  // confidence: silver [structure_verified]
+    optional RadioBands bands = 2;  // confidence: gold [deep_trace_verified, 16.2_jadx]
 }
 
-// APK class: wax — individual radio station/tuner descriptor (14 fields)
-// confidence: silver [apk_static, cross_version]
-message RadioStation {
-    optional int32 station_id = 1; // APK: b (int)  // confidence: silver [apk_static, cross_version]
-    optional int32 identifier_type = 2; // APK: c (enum via vyv.r/a.bl, values 0-5) — DB says enum, no suitable enum in proto2 scope  // confidence: silver [apk_static, cross_version]
-    repeated RadioBand bands = 3; // APK: d (repeated wbe)  // confidence: silver [apk_static, cross_version]
-    repeated int32 channel_list = 4; // APK: e — descriptor says repeated int32  // confidence: silver [apk_static, cross_version]
-    optional int32 tuner_type = 5; // APK: (int, from oneof group)  // confidence: silver [apk_static, cross_version]
-    optional bool enabled = 6; // APK: f (bool)  // confidence: silver [apk_static, cross_version]
-    optional enums.RadioCodecType.Enum codec_type = 7; // APK: g (enum via vvs.s/a.bl)  // confidence: silver [apk_static, cross_version]
-    optional enums.RadioBandType.Enum band_type = 8; // APK: h (enum via vyv.s/a.bq)  // confidence: silver [apk_static, cross_version]
-    optional bool supports_rds = 9; // APK: i (bool)  // confidence: silver [apk_static, cross_version]
-    optional bool supports_hd = 10; // APK: j (bool)  // confidence: silver [apk_static, cross_version]
-    optional enums.RadioRegion.Enum region = 11; // APK: k (enum via wck.a/a.bJ)  // confidence: silver [apk_static, cross_version]
-    optional bool dab_capable = 12; // APK: l (bool)  // confidence: silver [apk_static, cross_version]
-    optional bool drm_capable = 13; // APK: m (bool)  // confidence: silver [apk_static, cross_version]
-    optional int32 priority = 14; // APK: n (int)  // confidence: silver [apk_static, cross_version]
+// APK class: wab (16.2) — radio bands container
+// confidence: gold [deep_trace_verified, 16.2_jadx]
+message RadioBands {
+    repeated RadioBandGroup groups = 1;  // confidence: gold [deep_trace_verified, 16.2_jadx]
 }
 
-// APK class: wbe — radio frequency band descriptor (2 fields)
-// confidence: silver [apk_static, cross_version]
-message RadioBand {
-    optional int32 lower_bound = 1; // APK: b (int) — lower frequency limit  // confidence: silver [apk_static, cross_version]
-    optional int32 upper_bound = 2; // APK: c (int) — upper frequency limit  // confidence: silver [apk_static, cross_version]
+// APK class: waa (16.2) — radio band group
+// confidence: gold [deep_trace_verified, 16.2_jadx]
+message RadioBandGroup {
+    repeated enums.RadioBandType.Enum band_types = 1;  // AM=1, FM=2, DAB=3  // confidence: gold [deep_trace_verified, 16.2_jadx]
+    optional bool hide_empty_group = 2;  // confidence: gold [deep_trace_verified, 16.2_jadx]
+    optional string band_scan_action = 3;  // confidence: gold [deep_trace_verified, 16.2_jadx]
 }
