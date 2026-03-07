@@ -2,7 +2,7 @@
 
 The most complete open-source Android Auto protocol reference available. Protocol buffer definitions, protocol documentation, wireless Bluetooth setup guides, decompiled headunit firmware analysis, and APK analysis tools.
 
-**223 `.proto` files** organized into 16 categories covering the full AA protocol surface: session control, audio/video streaming, input, sensors, navigation, Bluetooth, WiFi projection, car control, radio, and more.
+**234 `.proto` files** organized into 17 categories covering the full AA protocol surface: session control, audio/video streaming, input, sensors, navigation, Bluetooth, WiFi projection, car control, radio, and more.
 
 ## Origins
 
@@ -17,21 +17,22 @@ All proto files live under `oaa/`:
 | Category | Files | Description |
 |----------|------:|-------------|
 | `audio` | 10 | Audio channels: focus requests/responses, audio types, config |
-| `av` | 18 | Shared audio/video channel types: setup, start/stop, media ack, codec types |
-| `bluetooth` | 7 | Bluetooth channel: pairing requests/responses, methods, status |
+| `av` | 19 | Shared audio/video channel types: setup, start/stop, media ack, codec types |
+| `bluetooth` | 9 | Bluetooth channel: pairing, authentication, methods, status |
 | `carcontrol` | 3 | Car control: HVAC, door locks, mirrors, vehicle properties |
 | `common` | 12 | Shared enums and base types: status codes, channel types, session info, error codes |
-| `control` | 32 | Session lifecycle: service discovery, channel open/close, ping, auth, shutdown |
+| `control` | 34 | Session lifecycle: service discovery, channel open/close, ping, auth, shutdown |
 | `generic` | 1 | Generic channel message wrapper (channel open acknowledgement) |
-| `input` | 22 | Input channel: touch events, buttons, absolute/relative input, haptics |
-| `media` | 11 | Media status: playback status, metadata, browsing |
-| `navigation` | 16 | Navigation status: turn events, distance, maneuvers, lane guidance |
+| `input` | 23 | Input channel: touch events, buttons, absolute/relative input, haptics |
+| `media` | 12 | Media status: playback status, metadata, browsing, car local media |
+| `mic` | 1 | Microphone channel: mic open response |
+| `navigation` | 17 | Navigation status: turn events, distance, maneuvers, lane guidance, energy forecast |
 | `notification` | 2 | Notification types and channel data |
-| `phone` | 6 | Phone status: call state, capabilities, voice session |
+| `phone` | 3 | Phone status: call state, input actions |
 | `radio` | 5 | Radio channel: tuner control, presets, station metadata, band/codec enums |
 | `sensor` | 43 | Sensor channel: GPS, accel, gyro, speed, RPM, fuel, gear, HVAC, vehicle data |
-| `video` | 13 | Video channel: resolution, FPS, focus negotiation, display config |
-| `wifi` | 22 | WiFi projection: security, connection, version negotiation |
+| `video` | 17 | Video channel: resolution, FPS, focus negotiation, display config, overlays |
+| `wifi` | 23 | WiFi projection: security, connection, version negotiation |
 
 ## Quick Start
 
