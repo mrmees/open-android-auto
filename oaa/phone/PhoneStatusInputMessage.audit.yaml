@@ -1,7 +1,7 @@
 proto: oaa/phone/PhoneStatusInputMessage.proto
 message: PhoneStatusInput
-confidence: silver
-last_updated: '2026-03-03'
+confidence: gold
+last_updated: '2026-03-06'
 evidence:
 - type: apk_static
   method: enum_match
@@ -20,3 +20,12 @@ evidence:
   date: '2026-03-03'
   description: Structural match confirmed across versions 15.9, 16.1, 16.2. Field
     numbers, types, and modifiers are consistent.
+- type: deep_trace
+  method: jadx_source_verification
+  source: iat.java (handler, line 24 msg 0x8002), vzs.java, vxo.java
+  date: '2026-03-06'
+  description: >
+    6-check verification complete. Channel binding (GAL type 13 only), msg ID
+    (0x8002 confirmed at iat.java:24), direction (HU→Phone, was mislabeled),
+    field schema verified (3 fields on vzs, 1 enum field on vxo),
+    cross-references clean, enum values (0-7) confirmed via C0000a.m128bw.

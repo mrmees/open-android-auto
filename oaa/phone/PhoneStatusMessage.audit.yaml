@@ -1,7 +1,7 @@
 proto: oaa/phone/PhoneStatusMessage.proto
 message: PhoneStatusUpdate
-confidence: silver
-last_updated: '2026-03-03'
+confidence: gold
+last_updated: '2026-03-06'
 evidence:
 - type: apk_static
   method: string_const
@@ -20,3 +20,12 @@ evidence:
   date: '2026-03-03'
   description: Structural match confirmed across versions 15.9, 16.1, 16.2. Field
     numbers, types, and modifiers are consistent.
+- type: deep_trace
+  method: jadx_source_verification
+  source: hll.java (sender), iat.java (handler), vzr.java, vzp.java
+  date: '2026-03-06'
+  description: >
+    6-check verification complete. Channel binding (GAL type 13 only), msg ID
+    (0x8001 confirmed at hll.java:188), direction (Phone→HU, was mislabeled),
+    field schema (PhoneCall fields 1-2 corrected optional→required per DB +
+    descriptor), cross-references clean, enum values (0-6) confirmed.

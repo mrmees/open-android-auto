@@ -8,11 +8,11 @@
 
 | Status | Count |
 |--------|-------|
-| Verified (Gold) | 69 |
-| Schema Errors Found & Fixed | 37 |
+| Verified (Gold) | 76 |
+| Schema Errors Found & Fixed | 40 |
 | New Protos Discovered | 3 (MediaPlaybackStatusEvent, VehicleEnergyForecast, InputBindingResponse) |
-| Retracted / Removed | 15 |
-| Relocated (wrong channel) | 2 (BindingRequest/Response → input) |
+| Retracted / Removed | 17 |
+| Relocated (wrong channel) | 4 (BindingRequest/Response → input, CallAvailability/VoiceSession → control) |
 | Pending | remaining channels |
 
 ## Channel Verification Status
@@ -27,7 +27,7 @@
 | 2 | Navigation | CAR.INST | ian/hlj (16.2) | **COMPLETE** | [navigation.md](navigation.md) | 7 Gold msgs, 2 retractions, 1 new proto, enum fixes |
 | 3 | Control (ch 0) | CAR.GAL.GAL | hzh (16.2) | **COMPLETE** | [control.md](control.md) | 18 Gold msgs, 5 Gold enums, 3 retractions, 2 relocated |
 | 4 | Input | CAR.GAL.INPUT | iae/hlg (16.2) | **COMPLETE** | [input.md](input.md) | 4 Gold msgs, 8 sub-msgs, 3 enums, 3 SDP configs, 6 retractions |
-| 5 | Phone | TBD | TBD | PENDING | | Phone status |
+| 5 | Phone | CAR.GAL.INST | iat/hll (16.2) | **COMPLETE** | [phone.md](phone.md) | 2 Gold msgs, 1 enum, 1 sub-msg, 2 relocated to control, 2 retracted |
 | 6 | Video | CAR.GAL.VIDEO | TBD | PENDING | | Video sink |
 | 7 | Audio (media) | CAR.GAL.AUDIO | TBD | PENDING | | Multiple audio channels |
 | 8 | Audio (mic) | CAR.GAL.MIC | TBD | PENDING | | AV input |
@@ -46,7 +46,40 @@
 
 ## Resume Pointer
 
-**Next action:** Begin phone (#5) or video (#6) channel verification.
+**Next action:** Begin video (#6) or audio (#7) channel verification.
+
+## Completed — Phone Channel (Wave 5)
+
+### CAR.GAL.INST (Phone Status, GAL type 13)
+
+| Proto | Msg ID | Direction | 16.2 Class | Confidence | Result |
+|-------|--------|-----------|------------|------------|--------|
+| PhoneStatusUpdate | 0x8001 | Phone->HU | vzr | Gold | Fixed direction (was HU->Phone), PhoneCall fields 1-2 optional→required |
+| PhoneStatusInput | 0x8002 | HU->Phone | vzs | Gold | Fixed direction (was Phone->HU), updated 16.2 class refs |
+
+### Sub-messages & Enums (all Gold)
+
+| Item | 16.2 Class | Fields/Values |
+|------|------------|---------------|
+| PhoneCall | vzp | 6 fields (2 required, 4 optional) |
+| PhoneCallState enum | vzq | 7 values (0-6: UNKNOWN through MUTED) |
+| PhoneInputType | vxo | 1 field (enum) |
+| PhoneInputAction enum | — | 8 values (0-7: UNKNOWN through CALL) |
+
+### Relocated to Control Channel
+
+| Proto | Old Location | Correct Channel | Msg ID | Direction | 16.2 Class |
+|-------|-------------|----------------|--------|-----------|------------|
+| CallAvailabilityStatus | oaa/phone/ | Control (GAL 1) | 24 | HU->Phone | vvt |
+| VoiceSessionRequest | oaa/phone/ | Control (GAL 1) | 17 | Phone->HU | wcu |
+
+### Retracted/Removed
+
+| Proto | Reason |
+|-------|--------|
+| PhoneStatusChannelData | Empty marker, no fields — removed (SDP ChannelDescriptor field 10 has no config) |
+| CallAvailabilityMessage (from phone) | Relocated to control channel |
+| VoiceSessionRequestMessage (from phone) | Relocated to control channel |
 
 ## Completed — Navigation Channel (Wave 2)
 
@@ -156,6 +189,9 @@
 | CarLocalMediaPlaybackEnum | Redundant | Superseded by enum in CarLocalMediaPlaybackStatusMessage.proto |
 | InstrumentClusterInput (vzl) | Wrong class | vzl = display OverlayParameters, not a nav channel message |
 | NavigationFocusIndication (wbg) | Doesn't exist | wbg = SensorStatus enum in 16.2 |
+| PhoneStatusChannelData | Empty marker | No config fields, removed |
+| CallAvailabilityStatus (from phone) | Wrong channel | Control channel msg 24, relocated to oaa/control/ |
+| VoiceSessionRequest (from phone) | Wrong channel | Control channel msg 17, relocated to oaa/control/ |
 
 ## Running Discoveries
 

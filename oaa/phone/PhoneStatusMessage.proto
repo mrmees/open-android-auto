@@ -9,30 +9,29 @@ import "oaa/phone/PhoneCallStateEnum.proto";
 package oaa.proto.messages;
 
 // Phone status update (msgId 0x8001 on Phone Status channel, GAL type 13)
-// Sent by HU to phone to report call state changes.
-// APK class: waf.java (AA v16.1)
-// See also: PhoneStatusInputMessage.proto (msgId 0x8002, wag — phone→HU input)
-// confidence: silver [apk_static, cross_version]
+// Direction: Phone→HU (phone reports call state to head unit display)
+// APK class: vzr (AA v16.2), waf (AA v16.1)
+// Sender: hll.java (CarPhoneStatus → proto conversion, sends via iat channel handler)
+// confidence: gold [deep_trace, 16.2 APK verified 2026-03-06]
 message PhoneStatusUpdate {
     // Active calls (empty = no calls / idle)
-    repeated PhoneCall calls = 1;  // confidence: silver [apk_static, cross_version]
-    optional uint32 signal_strength = 2; // APK: uint32, set from CarPhoneStatus.b  // confidence: silver [apk_static, cross_version]
+    repeated PhoneCall calls = 1;  // confidence: gold [deep_trace]
+    optional uint32 signal_strength = 2;  // confidence: gold [deep_trace]
 }
 
-// APK class: wad.java (AA v16.1)
-// confidence: silver [apk_static, cross_version]
+// APK class: vzp (AA v16.2), wad (AA v16.1)
+// confidence: gold [deep_trace, 16.2 APK verified 2026-03-06]
 message PhoneCall {
-    // APK: required enum wae — see PhoneCallStateEnum.proto
-    optional enums.PhoneCallState.Enum call_state = 1;  // confidence: silver [apk_static, cross_version]
-    // APK: required uint32 — elapsed seconds since call connected
-    // Previously misidentified as "direction" (0 = just connected)
-    optional uint32 call_duration_seconds = 2;  // confidence: silver [apk_static, cross_version]
+    // Call state enum — required in APK (descriptor + DB confirmed)
+    required enums.PhoneCallState.Enum call_state = 1;  // confidence: gold [deep_trace]
+    // Elapsed seconds since call connected (0 = just connected)
+    required uint32 call_duration_seconds = 2;  // confidence: gold [deep_trace]
     // Phone number (e.g. "+1 858-225-7702")
-    optional string phone_number = 3;  // confidence: silver [apk_static, cross_version]
+    optional string phone_number = 3;  // confidence: gold [deep_trace]
     // Caller display name (e.g. "Spam Risk", contact name)
-    optional string display_name = 4;  // confidence: silver [apk_static, cross_version]
+    optional string display_name = 4;  // confidence: gold [deep_trace]
     // Contact ID (empty for unknown contacts)
-    optional string contact_id = 5;  // confidence: silver [apk_static, cross_version]
+    optional string contact_id = 5;  // confidence: gold [deep_trace]
     // Contact photo as PNG image (sent with ACTIVE state)
-    optional bytes contact_photo = 6;  // confidence: silver [apk_static, cross_version]
+    optional bytes contact_photo = 6;  // confidence: gold [deep_trace]
 }

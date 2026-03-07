@@ -1,7 +1,7 @@
 proto: oaa/phone/PhoneCallStateEnum.proto
 message: PhoneCallState
-confidence: silver
-last_updated: '2026-03-03'
+confidence: gold
+last_updated: '2026-03-06'
 evidence:
 - type: apk_static
   method: string_const
@@ -15,3 +15,11 @@ evidence:
   date: '2026-03-03'
   description: Structural match confirmed across versions 15.9, 16.1, 16.2. Field
     numbers, types, and modifiers are consistent.
+- type: deep_trace
+  method: jadx_source_verification
+  source: vzq.java (16.2), m37375b switch confirms 7 values (0-6)
+  date: '2026-03-06'
+  description: >
+    All 7 enum values (UNKNOWN through MUTED, 0-6) verified against vzq.java.
+    m37375b returns null for unknown values, confirming these are exhaustive.
+    Used in PhoneCall field 1 (required) via vym.f74484k validator (index 10).

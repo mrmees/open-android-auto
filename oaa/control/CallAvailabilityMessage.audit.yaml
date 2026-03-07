@@ -1,0 +1,26 @@
+proto: oaa/control/CallAvailabilityMessage.proto
+message: CallAvailabilityStatus
+confidence: gold
+last_updated: '2026-03-06'
+evidence:
+- type: apk_static
+  method: enum_match
+  source: class_mapping.yaml (v15.9:vop, v16.1:vwh, v16.2:vvt)
+  date: '2026-03-03'
+  description: Mapped CallAvailabilityStatus to obfuscated APK class(es) via enum_match
+    analysis.
+- type: cross_version
+  method: structural_comparison
+  source: cross-version checker (15.9, 16.1, 16.2)
+  date: '2026-03-03'
+  description: Structural match confirmed across versions 15.9, 16.1, 16.2.
+- type: deep_trace
+  method: jadx_source_verification
+  source: hzh.java (control handler, msg 24), vvt.java
+  date: '2026-03-06'
+  description: >
+    Relocated from oaa/phone/ to oaa/control/. This is control channel msg 24
+    (not phone channel). hzh.java lines 361-407 handle msg 24 by deserializing
+    vvt and reading boolean field f73699b. Direction: HU→Phone. Dispatches to
+    hzc/hwm (CAR.MSG messaging manager). Also handled by qmg.java (wireless
+    control handler) at lines 320-356.

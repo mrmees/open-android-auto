@@ -5,19 +5,19 @@
 /*
  * PhoneCallState — call state enum for PhoneStatusUpdate.
  *
- * APK class: wae.java (AA v16.1)
+ * APK class: vzq (AA v16.2), wae (AA v16.1)
  * Used in PhoneCall field 1 (required).
- * Telecom state mapping in vuk.java.
+ * Telecom state mapping in vuk.java (16.1).
  */
 
 syntax="proto2";
 
 package oaa.proto.enums;
 
-// confidence: silver [apk_static, cross_version]
+// confidence: gold [deep_trace, 16.2 APK verified 2026-03-06]
 message PhoneCallState
 {
-    // confidence: silver [apk_static, cross_version]
+    // confidence: gold [deep_trace, 16.2 APK verified 2026-03-06]
     enum Enum
     {
         UNKNOWN = 0;
