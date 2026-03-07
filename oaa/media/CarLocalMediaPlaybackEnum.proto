@@ -1,29 +1,18 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
-// Copyright (C) 2024-2026 Open Android Auto contributors
-// Based on works by: f1x.studio (aasdk), opencardev (crankshaft), aa-proxy (aa-proxy-rs)
 
 /*
- * Car local media playback command enum.
+ * REDUNDANT — This standalone enum file has been superseded.
  *
- * Controls for local media playback on the head unit.
+ * The canonical CarLocalMediaPlaybackAction enum is defined in
+ * CarLocalMediaPlaybackStatusMessage.proto (same values, correct syntax).
  *
- * APK enum class: vwp (AA v16.1)
- * Values decoded from enum constants in vwp.java.
+ * This file had multiple errors:
+ *   - Wrong syntax (proto3, should be proto2)
+ *   - Unnecessary message wrapper (vwb is a plain Java enum, not message-wrapped)
+ *   - Different package (oaa.proto.enums vs oaa.proto.messages)
+ *   - Different name (CarLocalMediaPlayback.Enum vs CarLocalMediaPlaybackAction)
+ *
+ * Superseded: 2026-03-06, proto-verification pipeline
  */
-syntax="proto3";
 
-package oaa.proto.enums;
-
-// confidence: bronze [apk_static]
-message CarLocalMediaPlayback
-{
-    // confidence: bronze [apk_static]
-    enum Enum
-    {
-        PLAY = 0;
-        PAUSE = 1;
-        PREVIOUS = 2;
-        NEXT = 3;
-        STOP = 4;
-    }
-}
+// This file is retained as a tombstone. Use CarLocalMediaPlaybackStatusMessage.proto instead.

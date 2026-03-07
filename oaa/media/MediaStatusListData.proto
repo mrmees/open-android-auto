@@ -1,28 +1,31 @@
+// Android Auto Protocol Buffer Definitions
+// https://github.com/mrmees/open-android-auto
 // SPDX-License-Identifier: GPL-3.0-or-later
-// Copyright (C) 2024-2026 Open Android Auto contributors
-// Based on works by: f1x.studio (aasdk), opencardev (crankshaft), aa-proxy (aa-proxy-rs)
 
 /*
- * Media status list data.
+ * RETRACTED — "MediaStatusList" was a fabricated name with no APK evidence.
  *
- * Contains a repeated list of media status entries.
+ * The class mapping was wrong in both APK versions:
  *
- * APK class: vyd (AA v16.1) — 1 field (repeated message)
- * Field numbers decoded from protobuf-lite RawMessageInfo descriptor.
+ *   16.1 vyd = IntegratedOverlayParametersNotification (VIDEO channel 0x800D)
+ *     - 1 field: repeated message (sub-class vzz, 3 fields)
+ *     - Referenced from hum.java (CAR.VIDEO handler) at line 187
+ *     - Method: sendIntegratedOverlayParametersNotification()
+ *     - 16.2 equivalent: vxp (same structure, huz.java video handler)
  *
- * NOTE: Previously mapped to vza (single enum field) — that was incorrect.
- * The correct mapping is vyd per class_mapping.yaml.
+ *   16.2 vyd = MediaInfoChannel (ChannelDescriptor field 9)
+ *     - 0 fields, empty proto2 message
+ *     - Referenced from wbm.java (ChannelDescriptor)
+ *     - Same obfuscated name as 16.1, completely different class
+ *
+ * The BFS triage assigned the name "MediaStatusList" without verifying
+ * the channel handler context. Neither class has anything to do with
+ * media status lists.
+ *
+ * See: IntegratedOverlayParametersNotification should be defined under
+ * oaa/video/ when the video channel is verified.
+ *
+ * Retracted: 2026-03-06, proto-verification pipeline
  */
-syntax="proto2";
 
-package oaa.proto.data;
-
-// Placeholder — sub-message type for media status entries (TBD)
-// confidence: silver [apk_static, cross_version]
-message MediaStatusEntry {}
-
-// confidence: silver [apk_static, cross_version]
-message MediaStatusList
-{
-    repeated MediaStatusEntry entries = 1; // APK: repeated message (type_id=27)  // confidence: silver [apk_static, cross_version]
-}
+// This file is retained as a tombstone. Do not use in implementations.

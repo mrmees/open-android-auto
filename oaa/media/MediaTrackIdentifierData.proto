@@ -3,26 +3,24 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 
 /*
- * Media track identifier — proto3 message for identifying media tracks.
+ * RETRACTED — MediaTrackIdentifier is NOT a wire protocol message.
  *
- * APK class: xma (AA v16.1) — 3 fields (all message type)
- * Previously expected in MediaPlaybackStatusMessage.proto (proto2),
- * but xma is proto3 per APK descriptor.
+ * APK class: xma (16.1) / xll (16.2) — proto3, 3 message-type fields
+ * This is a phone-internal MediaBrowserService structure used for media
+ * queue management. Never referenced from any GAL channel handler.
+ *
+ * Reference chain: oui.java (MediaBrowserService queue) -> xlm.java
+ * (media queue item, field 27 = repeated xll) -> xll (MediaTrackIdentifier)
+ *
+ * The sub-messages are also internal:
+ *   xmf (2 fields: message xmg + int64) — used for fields 1 and 2
+ *   xme (1 field: message xmf at field 13) — used for field 3
+ *   xmg (3 required fields: int64, fixed32, fixed32) — innermost ID
+ *
+ * NOTE: xma in 16.2 is a DIFFERENT proto (2 fields: message + map) —
+ * same obfuscated name as 16.1 but completely different class.
+ *
+ * Retracted: 2026-03-06, proto-verification pipeline
  */
 
-syntax="proto3";
-
-package oaa.proto.messages;
-
-// Placeholder sub-messages for the three message-type fields
-// confidence: silver [apk_static, cross_version]
-message MediaTrackField {}
-
-// APK class: xma — media track identifier (3 message fields)
-// confidence: silver [apk_static, cross_version]
-message MediaTrackIdentifier
-{
-    MediaTrackField track_id = 1; // APK: message (type_id=9)  // confidence: silver [apk_static, cross_version]
-    MediaTrackField track_source = 2; // APK: message (type_id=9)  // confidence: silver [apk_static, cross_version]
-    MediaTrackField track_metadata = 3; // APK: message (type_id=9)  // confidence: silver [apk_static, cross_version]
-}
+// This file is retained as a tombstone. Do not use in implementations.

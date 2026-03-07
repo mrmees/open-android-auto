@@ -26,3 +26,5 @@ evidence:
     All 6 checks pass. vyc created in hvx.mo19832g(), sent via iai.m20106k(0x8001)
     on CAR.GAL.INST (GAL type 11). AIDL params confirm field types. Channel binding,
     msg ID, direction, schema, cross-refs, enums all verified.
+    MediaEventIdWrapper/MediaEventId REMOVED from this file — not wire protocol,
+    phone-internal MediaBrowserService structures (xme/xmf/xmg).

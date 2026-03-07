@@ -41,17 +41,13 @@ enum PlaybackState {
     PLAYBACK_STATE_ERROR = 4;
 }
 
-// APK class: xmu — media event ID wrapper (1 field at high field number)
-// Field 13 is a message sub-type; APK sub_ref is xmv but cross-domain
-// reference suggests shared obfuscated naming rather than actual dependency.
-// confidence: silver [apk_static, cross_version]
-message MediaEventIdWrapper {
-    optional MediaEventId event_id = 13; // APK: message (type_id=9) at field 13  // confidence: silver [apk_static, cross_version]
-}
-
-// Placeholder for MediaEventIdWrapper sub-message
-// confidence: silver [apk_static, cross_version]
-message MediaEventId {}
+// RETRACTED — MediaEventIdWrapper and MediaEventId are NOT wire protocol messages.
+// APK class: xme (16.2) / xmu (16.1) — phone-internal MediaBrowserService structures.
+// Zero references from any GAL channel handler (not in hvx, iai, qnf, or vyc).
+// Used by oui.java (MediaBrowserService queue) -> xlm/xli/xmd/xww/zva.
+// MediaEventId (xmf) has 2 fields (not empty): message xmg + int64.
+// xmg has 3 required fields: int64, fixed32, fixed32.
+// Retracted: 2026-03-06, proto-verification pipeline
 
 // APK class: vyq
 // confidence: silver [apk_static, cross_version]

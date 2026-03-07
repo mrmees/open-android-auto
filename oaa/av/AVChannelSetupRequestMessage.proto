@@ -7,8 +7,19 @@ import "oaa/av/MediaCodecTypeEnum.proto";
 
 package oaa.proto.messages;
 
-// confidence: silver [apk_static, cross_version]
+/*
+ * AV channel setup request (wire msg ID 0x8000 on all AV channels)
+ * Sent by phone when an AV channel (audio or video) is opened, declaring
+ * which codec will be used for streaming.
+ *
+ * APK class: wbs (16.2) / vyw (16.1)
+ * Channels: CAR.GAL.MEDIA (qnf), generic AV endpoint (icv)
+ * Direction: Phone -> HU
+ *
+ * Verified: 2026-03-06, proto-verification pipeline
+ */
+// confidence: gold [apk_deep_trace, 2026-03-06]
 message AVChannelSetupRequest
 {
-    optional enums.MediaCodecType.Enum config_index = 1;  // confidence: silver [apk_static, cross_version]
+    required enums.MediaCodecType.Enum media_codec_type = 1;  // confidence: gold [apk_deep_trace]
 }

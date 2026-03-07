@@ -4,25 +4,27 @@
 
 /*
  * Car local media playback request (msgId 0x8003 on CAR_LOCAL_MEDIA channel)
- * HU -> Phone command to perform a media transport action.
+ * Phone -> HU command to perform a media transport action.
  *
- * APK class: vwr (AA v16.1) — 1 proto field
- * GAL channel type 20 (CAR_LOCAL_MEDIA), handler: hxu.java
+ * APK class: vwr (v16.1) / vwd (v16.2) — 1 proto field
+ * GAL channel type 20 (CAR_LOCAL_MEDIA), handler: hxu.java (16.1) / hyh.java (16.2)
  * SafeParcelable: CarLocalMediaPlaybackRequest (toString: "...{action=N}")
  *
- * Sent by HU via hkv.g() → hxu.k(0x8003, ...). The phone-side handler
- * does NOT process incoming 0x8003 — it logs "Received unexpected car
- * local media message CAR_LOCAL_MEDIA_PLAYBACK_REQUEST" and drops it.
- * This confirms it's outbound-only (HU → Phone).
+ * Sent by phone via hlh.mo18752g() -> hyh.m20106k(32771, ...).
+ * The phone-side handler logs "Received unexpected car local media message
+ * CAR_LOCAL_MEDIA_PLAYBACK_REQUEST" and drops incoming 0x8003, confirming
+ * this is outbound-only (Phone -> HU).
  *
  * Reuses CarLocalMediaPlaybackAction enum from CarLocalMediaPlaybackStatusMessage.
  * The status message (0x8001) advertises available actions, and this request
- * message lets the HU invoke one of them.
+ * message lets the phone invoke one of them.
  *
- * Complete CAR_LOCAL_MEDIA channel:
- *   0x8001 = CarLocalMediaPlaybackStatus    (Phone→HU, vws, 4 fields)
- *   0x8002 = CarLocalMediaPlaybackMetadata  (Phone→HU, vwq, 5 fields)
- *   0x8003 = CarLocalMediaPlaybackRequest   (HU→Phone, vwr, 1 field)
+ * Complete CAR_LOCAL_MEDIA channel (no +1 msg ID offset):
+ *   0x8001 = CarLocalMediaPlaybackStatus    (HU->Phone, vws/vwe, 4 fields)
+ *   0x8002 = CarLocalMediaPlaybackMetadata  (HU->Phone, vwq/vwc, 5 fields)
+ *   0x8003 = CarLocalMediaPlaybackRequest   (Phone->HU, vwr/vwd, 1 field)
+ *
+ * Verified: 2026-03-06, proto-verification pipeline
  */
 
 syntax = "proto2";
@@ -31,10 +33,8 @@ import "oaa/media/CarLocalMediaPlaybackStatusMessage.proto";
 
 package oaa.proto.messages;
 
-// APK class: vwr
-// 0x8003: CarLocalMediaPlaybackRequest (HU→Phone)
-// Command to perform a media transport action (play, pause, skip, stop).
-// confidence: silver [apk_static, cross_version]
+// APK class: vwr (16.1) / vwd (16.2)
+// confidence: gold [apk_deep_trace, 2026-03-06]
 message CarLocalMediaPlaybackRequest {
-    optional CarLocalMediaPlaybackAction action = 1;  // confidence: silver [apk_static, cross_version]
+    optional CarLocalMediaPlaybackAction action = 1;  // confidence: gold [apk_deep_trace]
 }

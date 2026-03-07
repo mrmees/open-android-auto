@@ -1,17 +1,27 @@
 proto: oaa/media/CarLocalMediaPlaybackRequestMessage.proto
 message: CarLocalMediaPlaybackRequest
-confidence: silver
-last_updated: '2026-03-03'
+confidence: gold
+last_updated: '2026-03-06'
 evidence:
 - type: apk_static
   method: string_const
   source: class_mapping.yaml (v15.9:voz, v16.1:vwr, v16.2:vwd)
   date: '2026-03-03'
-  description: Mapped CarLocalMediaPlaybackRequest to obfuscated APK class(es) via
-    string_const analysis.
+  description: Mapped CarLocalMediaPlaybackRequest to obfuscated APK class(es).
 - type: cross_version
   method: structural_comparison
   source: cross-version checker (15.9, 16.1, 16.2)
   date: '2026-03-03'
-  description: Structural match confirmed across versions 15.9, 16.1, 16.2. Field
-    numbers, types, and modifiers are consistent.
+  description: Structural match confirmed across versions.
+- type: apk_deep_trace
+  method: proto_verification_pipeline
+  source: analysis/reports/proto-verification/media.md
+  date: '2026-03-06'
+  description: >
+    All 6 checks pass. GAL type 20, handler hyh.java (16.2), msg ID 0x8003
+    (wire). Direction: Phone -> HU. Phone handler logs "Received unexpected"
+    for incoming 0x8003, confirming outbound-only. 1 optional enum field
+    using CarLocalMediaPlaybackAction (vwb, unobfuscated names).
+  corrections:
+    - "16.2 class: vwd (not vwr)"
+    - "Handler: hyh.java in 16.2 (not hxu.java)"

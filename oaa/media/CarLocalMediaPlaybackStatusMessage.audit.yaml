@@ -1,7 +1,7 @@
 proto: oaa/media/CarLocalMediaPlaybackStatusMessage.proto
 message: CarLocalMediaPlaybackStatus
-confidence: silver
-last_updated: '2026-03-03'
+confidence: gold
+last_updated: '2026-03-06'
 evidence:
 - type: apk_static
   method: string_const
@@ -13,5 +13,19 @@ evidence:
   method: structural_comparison
   source: cross-version checker (15.9, 16.1, 16.2)
   date: '2026-03-03'
-  description: Structural match confirmed across versions 15.9, 16.1, 16.2. Field
-    numbers, types, and modifiers are consistent.
+  description: Structural match confirmed across versions 15.9, 16.1, 16.2.
+- type: apk_deep_trace
+  method: proto_verification_pipeline
+  source: analysis/reports/proto-verification/media.md
+  date: '2026-03-06'
+  description: >
+    All 6 checks pass. GAL type 20 (CAR_LOCAL_MEDIA), handler hyh.java (16.2),
+    msg ID 0x8001 (wire, no +1 offset). Direction: HU -> Phone. CORRECTED:
+    PlaybackState enum is NOT shared with MediaPlaybackStatus — CarLocal uses
+    own enum (values 1-5, C0000a.m83bD). Action enum vwb confirmed with
+    unobfuscated names. SafeParcelable toString confirms field names.
+  corrections:
+    - "Direction: Phone->HU was WRONG, actually HU->Phone"
+    - "PlaybackState: removed shared import, created CarLocalMediaPlaybackState (1-5)"
+    - "16.2 class: vwe (not vws)"
+    - "Handler: hyh.java in 16.2 (not hxu.java)"

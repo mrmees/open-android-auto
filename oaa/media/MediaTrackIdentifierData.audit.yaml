@@ -1,7 +1,7 @@
 proto: oaa/media/MediaTrackIdentifierData.proto
 message: MediaTrackIdentifier
-confidence: silver
-last_updated: '2026-03-03'
+confidence: retracted
+last_updated: '2026-03-06'
 evidence:
 - type: apk_static
   method: bfs_trace
@@ -15,3 +15,12 @@ evidence:
   date: '2026-03-03'
   description: Structural match confirmed across versions 15.9, 16.1, 16.2. Field
     numbers, types, and modifiers are consistent.
+- type: apk_deep_trace
+  method: proto_verification_pipeline
+  source: analysis/reports/proto-verification/media.md
+  date: '2026-03-06'
+  description: >
+    RETRACTED. Not a wire protocol message. Zero references from any GAL channel
+    handler. Used internally by MediaBrowserService queue management (oui -> xlm ->
+    xll). Sub-messages xme/xmf/xmg are also internal. xma in 16.2 is a completely
+    different proto (2 fields vs 3 fields).
