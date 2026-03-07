@@ -20,8 +20,8 @@
 
 | # | Channel | GAL Tag | Handler Class | Status | Report | Notes |
 |---|---------|---------|---------------|--------|--------|-------|
-| 1a | Media Info | CAR.GAL.INST | iai/hvx | **DONE** | [media.md](media.md) | 1 Gold, 1 fail, 1 new discovery |
-| 1b | Media AV Stream | CAR.GAL.MEDIA | qnf | **DONE** | [media.md](media.md) | AV audio endpoint, not status channel |
+| 1a | Media Info | CAR.GAL.INST | iai/hvx | **PARTIAL** | [media.md](media.md) | Core msgs verified; supporting + CarLocal remaining |
+| 1b | Media AV Stream | CAR.GAL.MEDIA | qnf | **PARTIAL** | [media.md](media.md) | Handler msg IDs mapped; AV protos (wbs/vwn/vuw) not schema-checked |
 | 2 | Navigation | TBD | TBD | PENDING | | NavigationDistance reclassified |
 | 3 | Control (ch 0) | CAR.GAL.SERVICE | TBD | PENDING | | Session lifecycle |
 | 4 | Input | CAR.GAL.INPUT | TBD | PENDING | | Touch/button |
@@ -45,7 +45,25 @@
 
 ## Resume Pointer
 
-**Next action:** Fix MediaPlaybackMetadata proto, add MediaPlaybackStatusEvent proto, update docs. Then proceed to navigation channel (#2).
+**Next action:** Finish media channel — verify remaining protos listed below, THEN proceed to navigation (#2).
+
+### Media channel — remaining protos to verify
+
+| Proto | Current Tier | Channel | Notes |
+|-------|-------------|---------|-------|
+| MediaEventIdWrapper | Silver | INST (type 11) | Sub-message at field 13, placeholder internals |
+| MediaEventId | Silver | INST (type 11) | Sub-message of MediaEventIdWrapper |
+| MediaStatusList | Silver | INST (type 11) | Repeated list structure |
+| MediaTrackIdentifier | Silver | INST (type 11) | 3 message-type sub-fields |
+| MediaInfoChannel | Unverified | SDP data | Service discovery marker |
+| wbs (AV setup request) | Unverified | MEDIA (AV) | 0x8000 outbound — need schema check |
+| vwn (AV config response) | Unverified | MEDIA (AV) | 0x8004 inbound — need schema check |
+| vuw (AV ACK) | Unverified | MEDIA (AV) | 0x8005 inbound — need schema check |
+| CarLocalMediaPlaybackStatus | Silver | CAR_LOCAL_MEDIA (type 20) | Need handler trace |
+| CarLocalMediaPlaybackMetadata | Silver | CAR_LOCAL_MEDIA (type 20) | Need handler trace |
+| CarLocalMediaPlaybackRequest | Silver | CAR_LOCAL_MEDIA (type 20) | Need handler trace |
+| CarLocalMediaPlaybackEnum | Bronze | CAR_LOCAL_MEDIA (type 20) | Enum values |
+| BufferedMediaSinkMessage | Unverified | type 21 | Stub channel |
 
 ## Running Discoveries
 
