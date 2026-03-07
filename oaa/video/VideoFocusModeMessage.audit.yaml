@@ -1,16 +1,13 @@
 proto: oaa/video/VideoFocusModeMessage.proto
 message: VideoFocusMode
-confidence: silver
-last_updated: '2026-03-03'
-evidence:
-- type: apk_static
-  method: bfs_trace
-  source: class_mapping.yaml (v15.9:vvc, v16.1:wcu, v16.2:wck)
-  date: '2026-03-03'
-  description: Mapped VideoFocusMode to obfuscated APK class(es) via bfs_trace analysis.
-- type: cross_version
-  method: structural_comparison
-  source: cross-version checker (15.9, 16.1, 16.2)
-  date: '2026-03-03'
-  description: Structural match confirmed across versions 15.9, 16.1, 16.2. Field
-    numbers, types, and modifiers are consistent.
+confidence: retracted
+last_updated: '2026-03-06'
+retracted: true
+retraction_reason: Actually UpdateHuUiConfigResponse (0x8012). Field 1 is ThemingTokensStatus
+  enum (Error/Accepted/Rejected), not VideoFocusMode. vdp name MEDIA_MESSAGE_UPDATE_HU_UI_CONFIG_RESPONSE.
+  16.1 class wcu = VoiceSessionRequest on control channel in 16.2.
+replaced_by: oaa/video/UpdateHuUiConfigResponse.proto
+class_mapping:
+  v15.9: vvc
+  v16.1: wcu
+  v16.2: wck

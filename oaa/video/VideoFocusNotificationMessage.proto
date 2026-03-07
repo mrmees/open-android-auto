@@ -3,20 +3,22 @@
 // Based on works by: f1x.studio (aasdk), opencardev (crankshaft), aa-proxy (aa-proxy-rs)
 
 /*
- * Video focus notification message.
+ * RETRACTED — VideoFocusNotification does not exist.
  *
- * Notification of video focus mode change. The focus_mode value
- * corresponds to VideoFocusMode enum values.
+ * The message at wire 0x800E (vye in 16.1, vxq in 16.2) is actually
+ * IntegratedOverlayStartNotification. Field 1 is a display session ID
+ * passed to overlay callbacks, NOT a VideoFocusMode enum value.
  *
- * APK class: vye (AA v16.1)
- * Field numbers decoded from protobuf-lite RawMessageInfo descriptor.
+ * Replaced by: oaa/video/IntegratedOverlayStartNotification.proto
+ * See: analysis/reports/proto-verification/video.md
  */
 syntax="proto2";
 
 package oaa.proto.messages;
 
-// confidence: silver [apk_static, cross_version]
+// RETRACTED — see IntegratedOverlayStartNotification.proto
+// confidence: retracted [deep_trace, handler_verified]
 message VideoFocusNotification
 {
-    optional int32 focus_mode = 1; // VideoFocusMode enum value  // confidence: silver [apk_static, cross_version]
+    optional int32 focus_mode = 1; // RETRACTED — actually display_session_id
 }

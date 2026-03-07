@@ -5,14 +5,17 @@
 /*
  * AVChannelMediaStats — AV channel media quality statistics.
  *
- * APK class: vyu.java (AA v16.1)
- * Channel: AV (video/audio media channels)
- * Message ID: 0x8014 (32788) — received by phone (inbound, same ID as MediaConfig)
- * Parsed by icg.java line 461-476, logged by ife.java as "MediaStats".
+ * APK class: vyu (16.1) / vyg (16.2)
+ * Channel: Shared across ALL AV channels (video + audio) via icv base class
+ * Wire msg 0x8013, HU->Phone
+ * NOTE: Previously documented as 0x8014 — that was the +1 dispatch value.
+ *       Wire value is 0x8013 (dispatch 32788 via vdp.m36513at = wire 32787).
+ * vdp internal name: MEDIA_MESSAGE_MEDIA_STATS
  *
- * Sent by HU to phone as quality feedback. Contains frame timing,
+ * HU sends rendering quality feedback to phone. Contains frame timing,
  * jitter, pacing delay, and overflow metrics. Each stats bucket
  * uses a StatsEntry sub-message with avg/min/max/count.
+ * Phone stores in queue, dumped via ifr.java diagnostics.
  */
 
 syntax="proto2";
@@ -21,30 +24,30 @@ import "oaa/common/PingConfigurationData.proto";
 
 package oaa.proto.messages;
 
-// APK class: vvo — statistics entry with aggregate values
-// confidence: silver [apk_static, cross_version]
+// APK class: vvo (16.1) / vva (16.2) — statistics entry with aggregate values
+// confidence: gold [deep_trace, handler_verified]
 message StatsEntry {
-    optional int64 average = 1; // APK: b (long)  // confidence: silver [apk_static, cross_version]
-    optional int64 minimum = 2; // APK: c (long)  // confidence: silver [apk_static, cross_version]
-    optional int64 maximum = 3; // APK: d (long)  // confidence: silver [apk_static, cross_version]
-    optional int64 count = 4; // APK: e (long)  // confidence: silver [apk_static, cross_version]
+    optional int64 average = 1;  // confidence: gold [deep_trace]
+    optional int64 minimum = 2;  // confidence: gold [deep_trace]
+    optional int64 maximum = 3;  // confidence: gold [deep_trace]
+    optional int64 count = 4;  // confidence: gold [deep_trace]
 }
 
-// confidence: silver [apk_static, cross_version]
+// confidence: gold [deep_trace, handler_verified]
 message AVChannelMediaStats {
-    optional data.PingConfiguration duration = 1; // APK: b (zyd) — session duration config  // confidence: silver [apk_static, cross_version]
-    optional int64 total_frames = 2; // APK: c (long)  // confidence: silver [apk_static, cross_version]
-    optional int64 rendered_frames = 3; // APK: d (long)  // confidence: silver [apk_static, cross_version]
-    optional int64 dropped_frames = 4; // APK: e (long)  // confidence: silver [apk_static, cross_version]
-    optional StatsEntry video_frame_jitter = 5; // APK: f (vvo)  // confidence: silver [apk_static, cross_version]
-    optional StatsEntry video_pacing_delay = 6; // APK: g (vvo)  // confidence: silver [apk_static, cross_version]
-    optional StatsEntry decode_duration = 7; // APK: h (vvo) — per-frame decode time  // confidence: silver [apk_static, cross_version]
-    optional StatsEntry render_duration = 8; // APK: i (vvo) — per-frame render time  // confidence: silver [apk_static, cross_version]
-    optional int64 too_slow_count = 9; // APK: j (long) — frames that arrived too late  // confidence: silver [apk_static, cross_version]
-    optional int64 too_fast_count = 10; // APK: k (long) — frames that arrived too early  // confidence: silver [apk_static, cross_version]
-    optional StatsEntry overflow_duration = 11; // APK: l (vvo) — buffer overflow stats  // confidence: silver [apk_static, cross_version]
-    optional StatsEntry underflow_duration = 12; // APK: m (vvo) — buffer underflow stats  // confidence: silver [apk_static, cross_version]
-    optional StatsEntry pipeline_latency = 13; // APK: n (vvo) — end-to-end pipeline latency  // confidence: silver [apk_static, cross_version]
-    optional int64 total_bytes = 14; // APK: o (long)  // confidence: silver [apk_static, cross_version]
-    optional int64 session_duration_ns = 15; // APK: p (long) — total session time in ns  // confidence: silver [apk_static, cross_version]
+    optional data.PingConfiguration duration = 1; // zxk/zyd — timestamp wrapper  // confidence: gold [deep_trace]
+    optional int64 total_frames = 2;  // confidence: gold [deep_trace]
+    optional int64 rendered_frames = 3;  // confidence: gold [deep_trace]
+    optional int64 dropped_frames = 4;  // confidence: gold [deep_trace]
+    optional StatsEntry video_frame_jitter = 5; // vva  // confidence: gold [deep_trace]
+    optional StatsEntry video_pacing_delay = 6; // vva  // confidence: gold [deep_trace]
+    optional StatsEntry decode_duration = 7; // vva — per-frame decode time  // confidence: gold [deep_trace]
+    optional StatsEntry render_duration = 8; // vva — per-frame render time  // confidence: gold [deep_trace]
+    optional int64 too_slow_count = 9; // frames that arrived too late  // confidence: gold [deep_trace]
+    optional int64 too_fast_count = 10; // frames that arrived too early  // confidence: gold [deep_trace]
+    optional StatsEntry overflow_duration = 11; // vva — buffer overflow stats  // confidence: gold [deep_trace]
+    optional StatsEntry underflow_duration = 12; // vva — buffer underflow stats  // confidence: gold [deep_trace]
+    optional StatsEntry pipeline_latency = 13; // vva — end-to-end pipeline latency  // confidence: gold [deep_trace]
+    optional int64 total_bytes = 14;  // confidence: gold [deep_trace]
+    optional int64 session_duration_ns = 15; // total session time in ns  // confidence: gold [deep_trace]
 }

@@ -3,13 +3,17 @@
 // Based on works by: f1x.studio (aasdk), opencardev (crankshaft), aa-proxy (aa-proxy-rs)
 
 /*
- * Video focus mode wrapper message.
+ * RETRACTED — VideoFocusModeMessage does not exist as a wire message.
  *
- * Wraps a VideoFocusMode enum value. Used in contexts where the
- * focus mode is passed as a sub-message rather than a bare field.
+ * The message at wire 0x8012 (wcu in 16.1, wck in 16.2) is actually
+ * UpdateHuUiConfigResponse — a response to UiConfigRequest (0x8011).
+ * Field 1 is a 3-value ThemingTokensStatus enum (Error/Accepted/Rejected),
+ * NOT a VideoFocusMode enum.
  *
- * APK class: wcu (AA v16.1)
- * Field numbers decoded from protobuf-lite RawMessageInfo descriptor.
+ * Note: wcu in 16.2 was reassigned to VoiceSessionRequest (control channel).
+ *
+ * Replaced by: oaa/video/UpdateHuUiConfigResponse.proto
+ * See: analysis/reports/proto-verification/video.md
  */
 syntax="proto2";
 
@@ -17,8 +21,9 @@ import "oaa/video/VideoFocusModeEnum.proto";
 
 package oaa.proto.messages;
 
-// confidence: silver [apk_static, cross_version]
+// RETRACTED — see UpdateHuUiConfigResponse.proto
+// confidence: retracted [deep_trace, handler_verified]
 message VideoFocusMode
 {
-    optional enums.VideoFocusMode.Enum focus = 1;  // confidence: silver [apk_static, cross_version]
+    optional enums.VideoFocusMode.Enum focus = 1; // RETRACTED — actually ThemingTokensStatus enum
 }

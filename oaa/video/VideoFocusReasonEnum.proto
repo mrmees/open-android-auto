@@ -5,16 +5,17 @@ syntax="proto3";
 
 package oaa.proto.enums;
 
-// confidence: unverified
+// APK class: wcs (16.2) — 5 values (0-4)
+// confidence: gold [deep_trace, handler_verified]
 message VideoFocusReason
 {
-    // confidence: unverified
+    // confidence: gold [deep_trace]
     enum Enum
     {
         UNKNOWN = 0;
         PHONE_SCREEN_OFF = 1;
         LAUNCH_NATIVE = 2;
-        LAST_MODE = 3;
-        USER_SELECTION = 4;
+        LAST_MODE = 3;  // APK: VIDEO_FOCUS_REASON_LAST_MODE
+        USER_SELECTION = 4;  // APK: VIDEO_FOCUS_REASON_USER_SELECTION
     }
 }

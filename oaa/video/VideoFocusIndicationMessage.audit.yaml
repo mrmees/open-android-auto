@@ -1,17 +1,23 @@
 proto: oaa/video/VideoFocusIndicationMessage.proto
 message: VideoFocusIndication
-confidence: silver
-last_updated: '2026-03-03'
+confidence: gold
+last_updated: '2026-03-06'
+wire_msg_id: 0x8008
+direction: Phone->HU
+channel: video (CAR.GAL.VIDEO)
+handler: ied.java (mo18864a case 32776)
+class_mapping:
+  v15.9: vvj
+  v16.1: wdb
+  v16.2: wcr
 evidence:
+- type: deep_trace
+  method: handler_verified
+  source: ied.java mo18864a case 32776 -> deserialize wcr
+  date: '2026-03-06'
+  description: Field 1 = wcq enum (wcrVar.f75227c), field 2 = bool (wcrVar.f75228d).
+    vdp internal name MEDIA_MESSAGE_VIDEO_FOCUS_NOTIFICATION.
 - type: apk_static
   method: proto_access
   source: class_mapping.yaml (v15.9:vvj, v16.1:wdb, v16.2:wcr)
   date: '2026-03-03'
-  description: Mapped VideoFocusIndication to obfuscated APK class(es) via proto_access
-    analysis.
-- type: cross_version
-  method: structural_comparison
-  source: cross-version checker (15.9, 16.1, 16.2)
-  date: '2026-03-03'
-  description: Structural match confirmed across versions 15.9, 16.1, 16.2. Field
-    numbers, types, and modifiers are consistent.

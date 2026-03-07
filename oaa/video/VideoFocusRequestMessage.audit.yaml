@@ -1,17 +1,27 @@
 proto: oaa/video/VideoFocusRequestMessage.proto
 message: VideoFocusRequest
-confidence: silver
-last_updated: '2026-03-03'
+confidence: gold
+last_updated: '2026-03-06'
+wire_msg_id: 0x8007
+direction: HU->Phone
+channel: video (CAR.GAL.VIDEO)
+handler: ied.java (m20258P)
+class_mapping:
+  v15.9: vvl
+  v16.1: wdd
+  v16.2: wct
 evidence:
+- type: deep_trace
+  method: handler_verified
+  source: ied.java m20258P -> m20106k(32775)
+  date: '2026-03-06'
+  description: Traced send path in video handler. Field 2 = wcq (VideoFocusMode),
+    field 3 = wcs (VideoFocusReason). No field 1.
 - type: apk_static
   method: string_const
   source: class_mapping.yaml (v15.9:vvl, v16.1:wdd, v16.2:wct)
   date: '2026-03-03'
-  description: Mapped VideoFocusRequest to obfuscated APK class(es) via string_const
-    analysis.
 - type: cross_version
   method: structural_comparison
   source: cross-version checker (15.9, 16.1, 16.2)
   date: '2026-03-03'
-  description: Structural match confirmed across versions 15.9, 16.1, 16.2. Field
-    numbers, types, and modifiers are consistent.

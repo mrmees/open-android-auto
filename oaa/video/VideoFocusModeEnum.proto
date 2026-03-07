@@ -5,16 +5,17 @@ syntax="proto3";
 
 package oaa.proto.enums;
 
-// confidence: unverified
+// APK class: wcq (16.2) — 4 wire values (1-4), NONE=0 is proto3 default sentinel only
+// confidence: gold [deep_trace, handler_verified]
 message VideoFocusMode
 {
-    // confidence: unverified
+    // confidence: gold [deep_trace]
     enum Enum
     {
-        NONE = 0;
-        PROJECTED = 1;
-        NATIVE = 2;
-        NATIVE_TRANSIENT = 3;
-        PROJECTED_NO_INPUT_FOCUS = 4;
+        NONE = 0;  // proto3 default only — not defined in APK, m37387b returns null for 0
+        PROJECTED = 1;  // VIDEO_FOCUS_PROJECTED
+        NATIVE = 2;  // VIDEO_FOCUS_NATIVE
+        NATIVE_TRANSIENT = 3;  // VIDEO_FOCUS_NATIVE_TRANSIENT
+        PROJECTED_NO_INPUT_FOCUS = 4;  // VIDEO_FOCUS_PROJECTED_NO_INPUT_FOCUS — input focus stripped, treated as PROJECTED for transitions
     }
 }

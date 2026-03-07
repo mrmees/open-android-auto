@@ -1,0 +1,27 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
+// Copyright (C) 2024-2026 Open Android Auto contributors
+// Based on works by: f1x.studio (aasdk), opencardev (crankshaft), aa-proxy (aa-proxy-rs)
+syntax="proto2";
+
+package oaa.proto.messages;
+
+// APK class: wck (16.2), wcu (16.1 — NOTE: wcu in 16.2 = VoiceSessionRequest on control channel)
+// Wire msg 0x8012, Phone->HU (video channel)
+// vdp internal name: MEDIA_MESSAGE_UPDATE_HU_UI_CONFIG_RESPONSE
+// Response to UiConfigRequest (0x8011). Phone reports whether theming tokens were accepted.
+// Handler: ied.java -> huy.java case 10 -> logs "Theming tokens accepted/rejected/Error"
+// Previously misidentified as VideoFocusModeMessage — field 1 is NOT VideoFocusMode.
+// confidence: gold [deep_trace, handler_verified]
+message UpdateHuUiConfigResponse
+{
+    optional ThemingTokensStatus status = 1;  // wcc.f75121c validator  // confidence: gold [deep_trace]
+}
+
+// Enum values from C0000a.m124bs() + huy.java case 10 log strings
+// confidence: gold [deep_trace]
+enum ThemingTokensStatus
+{
+    THEMING_TOKENS_ERROR = 0;  // "Error providing theming tokens"
+    THEMING_TOKENS_ACCEPTED = 1;  // "Theming tokens accepted"
+    THEMING_TOKENS_REJECTED = 2;  // "Theming tokens rejected"
+}

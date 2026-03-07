@@ -7,9 +7,12 @@ import "oaa/video/VideoFocusModeEnum.proto";
 
 package oaa.proto.messages;
 
-// confidence: silver [apk_static, cross_version]
+// APK class: wdb (16.1) / wcr (16.2) — focus mode + unrequested flag
+// Wire msg 0x8008, Phone->HU (video channel)
+// vdp internal name: MEDIA_MESSAGE_VIDEO_FOCUS_NOTIFICATION
+// confidence: gold [deep_trace, handler_verified]
 message VideoFocusIndication
 {
-    optional enums.VideoFocusMode.Enum focus_mode = 1;  // confidence: silver [apk_static, cross_version]
-    optional bool unrequested = 2;  // confidence: silver [apk_static, cross_version]
+    optional enums.VideoFocusMode.Enum focus_mode = 1;  // wcq enum via wcrVar.f75227c  // confidence: gold [deep_trace]
+    optional bool unrequested = 2;  // wcrVar.f75228d  // confidence: gold [deep_trace]
 }

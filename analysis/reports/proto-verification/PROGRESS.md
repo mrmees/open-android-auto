@@ -8,10 +8,10 @@
 
 | Status | Count |
 |--------|-------|
-| Verified (Gold) | 76 |
-| Schema Errors Found & Fixed | 40 |
-| New Protos Discovered | 3 (MediaPlaybackStatusEvent, VehicleEnergyForecast, InputBindingResponse) |
-| Retracted / Removed | 17 |
+| Verified (Gold) | 90 |
+| Schema Errors Found & Fixed | 47 |
+| New Protos Discovered | 8 (MediaPlaybackStatusEvent, VehicleEnergyForecast, InputBindingResponse, IntegratedOverlayStart/Stop, UpdateHuUiConfigResponse, UpdateUiConfigRequest, AVChannelMediaOptions) |
+| Retracted / Removed | 19 |
 | Relocated (wrong channel) | 4 (BindingRequest/Response → input, CallAvailability/VoiceSession → control) |
 | Pending | remaining channels |
 
@@ -28,7 +28,7 @@
 | 3 | Control (ch 0) | CAR.GAL.GAL | hzh (16.2) | **COMPLETE** | [control.md](control.md) | 18 Gold msgs, 5 Gold enums, 3 retractions, 2 relocated |
 | 4 | Input | CAR.GAL.INPUT | iae/hlg (16.2) | **COMPLETE** | [input.md](input.md) | 4 Gold msgs, 8 sub-msgs, 3 enums, 3 SDP configs, 6 retractions |
 | 5 | Phone | CAR.GAL.INST | iat/hll (16.2) | **COMPLETE** | [phone.md](phone.md) | 2 Gold msgs, 1 enum, 1 sub-msg, 2 relocated to control, 2 retracted |
-| 6 | Video | CAR.GAL.VIDEO | TBD | PENDING | | Video sink |
+| 6 | Video | CAR.GAL.VIDEO | ied/icv (16.2) | **COMPLETE** | [video.md](video.md) | 8 Gold msgs, 2 Gold enums, 1 enum rewrite, 2 retractions, 4 new protos |
 | 7 | Audio (media) | CAR.GAL.AUDIO | TBD | PENDING | | Multiple audio channels |
 | 8 | Audio (mic) | CAR.GAL.MIC | TBD | PENDING | | AV input |
 | 9 | Sensor | CAR.GAL.SENSOR | TBD | PENDING | | Sensor data |
@@ -46,7 +46,55 @@
 
 ## Resume Pointer
 
-**Next action:** Begin video (#6) or audio (#7) channel verification.
+**Next action:** Begin audio (#7) or sensor (#9) channel verification.
+
+## Completed — Video Channel (Wave 6)
+
+### CAR.GAL.VIDEO (Video Sink, ied.java / icv.java)
+
+| Proto | Msg ID | Direction | 16.2 Class | Confidence | Result |
+|-------|--------|-----------|------------|------------|--------|
+| VideoFocusRequest | 0x8007 | HU→Phone | wct | Gold | Updated class refs |
+| VideoFocusIndication | 0x8008 | Phone→HU | wcr | Gold | Confirmed correct |
+| UpdateUiConfigRequest | 0x8009/0x800A | Bidirectional | wci | Gold | NEW — runtime UI config |
+| IntegratedOverlayStartNotification | 0x800E | Phone→HU | vxq | Gold | NEW — was wrongly VideoFocusNotification |
+| IntegratedOverlayStopNotification | 0x800F | Phone→HU | — | Gold | NEW — empty message |
+| UiConfigRequest | 0x8011 | HU→Phone | wcj | Gold | Fixed class refs, added UiConfigValue field |
+| UpdateHuUiConfigResponse | 0x8012 | Phone→HU | wck | Gold | NEW — was wrongly VideoFocusModeMessage |
+| AVChannelMediaStats | 0x8013 | HU→Phone | vyg | Gold | Fixed wire ID (was 0x8014), updated class refs |
+
+### Enums (all Gold)
+
+| Enum | 16.2 Class | Values |
+|------|------------|--------|
+| VideoFocusMode | wcq | 4 values (1-4), NONE=0 is proto3 default only |
+| VideoFocusReason | wcs | 5 values (0-4) |
+| ThemingTokensStatus | — | 3 values (0-2: Error/Accepted/Rejected) |
+| VideoResolution | wco | 9 values (1-9) — FULL REWRITE, values 5-9 changed |
+
+### New Protos
+
+| Proto | Msg ID | Direction | 16.2 Class | Notes |
+|-------|--------|-----------|------------|-------|
+| IntegratedOverlayStartNotification | 0x800E | Phone→HU | vxq | 1 field (int32 display_session_id) |
+| IntegratedOverlayStopNotification | 0x800F | Phone→HU | — | Empty message |
+| UpdateHuUiConfigResponse | 0x8012 | Phone→HU | wck | 1 field (ThemingTokensStatus enum) |
+| UpdateUiConfigRequest | 0x8009/0x800A | Bidirectional | wci | Wraps AdditionalVideoConfig |
+| AVChannelMediaOptions | 0x8014 | Phone→HU | vya | Silver — 13 fields, placeholder |
+
+### Retracted
+
+| Proto | Reason | Replacement |
+|-------|--------|-------------|
+| VideoFocusNotification | Actually IntegratedOverlayStartNotification | IntegratedOverlayStartNotification.proto |
+| VideoFocusModeMessage | Actually UpdateHuUiConfigResponse | UpdateHuUiConfigResponse.proto |
+
+### SDP Data Fixes
+
+| Item | Change |
+|------|--------|
+| VideoResolution enum | Full rewrite — 9 values, explicit resolution naming, values 5-9 changed from aasdk |
+| AdditionalVideoConfig field 6 | Enum validator changed (vvf in 16.2) — deferred to audio pass |
 
 ## Completed — Phone Channel (Wave 5)
 

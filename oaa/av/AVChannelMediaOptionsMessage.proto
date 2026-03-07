@@ -1,0 +1,39 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
+// Copyright (C) 2024-2026 Open Android Auto contributors
+// Based on works by: f1x.studio (aasdk), opencardev (crankshaft), aa-proxy (aa-proxy-rs)
+
+/*
+ * AVChannelMediaOptions — AV channel feature flags/configuration.
+ *
+ * APK class: vya (16.2)
+ * Channel: Shared across ALL AV channels (video + audio) via icv base class
+ * Wire msg 0x8014, Phone->HU
+ * vdp internal name: MEDIA_MESSAGE_MEDIA_OPTIONS
+ *
+ * Phone sends media feature configuration flags to HU. Built from
+ * PhenotypeFlags (server-side config) by hnc.java. Most fields are
+ * zxk (PhenotypeFlag wrappers containing optional values).
+ *
+ * Gating: PDK >= 5.0 (embedded in Start msg), >= 5.1 (standalone on audio),
+ *         >= 6.0 (standalone on video).
+ *
+ * Handler: icv.m20231F sends at m20106k(32788 = 0x8014).
+ *          Received by HU, passed to huy.java case 11 ("MediaOptions").
+ *
+ * NOTE: Field schema is approximate — 13 fields identified, mostly
+ * PhenotypeFlag wrappers (zxk). Full field verification deferred to
+ * audio channel pass since this is a shared AV message.
+ */
+
+syntax="proto2";
+
+package oaa.proto.messages;
+
+// confidence: silver [deep_trace, field_schema_approximate]
+message AVChannelMediaOptions {
+    // 13 fields identified in vya.java
+    // Most are optional zxk (PhenotypeFlag wrapper) sub-messages
+    // 3 fields are bool, 1 is uint32
+    // Full field schema TBD — requires detailed zxk/PhenotypeFlag analysis
+    // Built by hnc.java from PhenotypeFlags feature configuration
+}
