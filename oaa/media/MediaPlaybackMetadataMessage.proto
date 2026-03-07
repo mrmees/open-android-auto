@@ -2,21 +2,39 @@
 // https://github.com/mrmees/open-android-auto
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-syntax="proto3";
+/*
+ * Media playback metadata (msgId 0x8003 on CAR.GAL.INST channel, GAL type 11)
+ * Sent by phone when track changes — includes album art.
+ *
+ * APK class: vyb (AA v16.2) — 7 proto fields
+ * Sent from hvx.mo19831f() via iai.m20106k(0x8003, proto)
+ * AIDL: com.google.android.gms.car.ICarMediaPlaybackStatus, transaction 2
+ * AIDL params: (listener, title, artist, album, albumArt, str5, uint6, int7)
+ *
+ * Verification (2026-03-06, proto-verification pipeline):
+ *   - Fields 1-4 confirmed via AIDL param types and DB
+ *   - Field 5: CORRECTED from bool to string (AIDL param is String str4)
+ *   - Field 6: CORRECTED from string to uint32 (AIDL param is int i)
+ *   - Field 7: ADDED — int32 (AIDL param is int i2)
+ *   - Syntax: CORRECTED from proto3 to proto2
+ *
+ * GMS proxy behavior (pre.java): field 5 always null, field 7 always 0.
+ * These fields are defined in the proto but not populated by the current
+ * GMS car API client. Future versions may populate them.
+ */
+
+syntax="proto2";
 
 package oaa.proto.messages;
 
-// Media playback metadata (msgId 0x8003 on Media channel)
-// Sent by phone when track changes — includes album art
-// confidence: silver [apk_static, cross_version]
+// APK class: vyb
+// confidence: gold [apk_deep_trace, 2026-03-06]
 message MediaPlaybackMetadata {
-    optional string title = 1;  // confidence: silver [apk_static, cross_version]
-    optional string artist = 2;  // confidence: silver [apk_static, cross_version]
-    optional string album = 3;  // confidence: silver [apk_static, cross_version]
-    // Album art as PNG image data
-    optional bytes album_art = 4;  // confidence: silver [apk_static, cross_version]
-
-    // Fields 5-6 discovered via APK proto decoder (nmi.java, AA v16.1)
-    optional bool is_playing = 5; // Whether media is actively playing  // confidence: silver [apk_static, cross_version]
-    optional string album_art_url = 6; // URL for album art (alternative to embedded bytes)  // confidence: silver [apk_static, cross_version]
+    optional string title = 1;       // Track title  // confidence: gold [apk_deep_trace]
+    optional string artist = 2;      // Artist name  // confidence: gold [apk_deep_trace]
+    optional string album = 3;       // Album name  // confidence: gold [apk_deep_trace]
+    optional bytes album_art = 4;    // Album art image data  // confidence: gold [apk_deep_trace]
+    optional string unknown_5 = 5;   // String field — always null from GMS proxy. Semantic name unknown.  // confidence: gold [apk_deep_trace]
+    optional uint32 unknown_6 = 6;   // uint32 field — could be duration, track number, etc.  // confidence: gold [apk_deep_trace]
+    optional int32 unknown_7 = 7;    // int32 field — always 0 from GMS proxy. Semantic name unknown.  // confidence: gold [apk_deep_trace]
 }

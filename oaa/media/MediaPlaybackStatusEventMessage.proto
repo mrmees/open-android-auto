@@ -1,0 +1,44 @@
+// Android Auto Protocol Buffer Definitions
+// https://github.com/mrmees/open-android-auto
+// SPDX-License-Identifier: GPL-3.0-or-later
+
+/*
+ * Media playback status event (msgId 0x8002 on CAR.GAL.INST channel, GAL type 11)
+ * Sent by HU to phone as an input action related to media playback on the
+ * instrument cluster or media info display.
+ *
+ * APK class: vxo (AA v16.2) — 1 proto field
+ * Received in iai.mo18864a(), dispatched to hvx listener via
+ * ICarMediaPlaybackStatusEventListener.onInput(value - 1)
+ *
+ * AIDL callback: com.google.android.gms.car.ICarMediaPlaybackStatusEventListener
+ * Implementation: prj.mo29613e(int) -> prh (proxy) / pri (stub)
+ *
+ * Discovery (2026-03-06, proto-verification pipeline):
+ *   Previously retracted as "MediaPlaybackCommand" — that retraction was
+ *   correct about class vuy (ActionTakenNotification on video channel), but
+ *   INCORRECT about msg ID 0x8002 not existing. This is a different proto
+ *   class (vxo) on a different handler (iai.java, not qnf.java).
+ *
+ * Enum values are not yet determined — the enum verifier index is 17
+ * (vve.f73609r). Semantic meaning of values needs wire capture or further
+ * APK tracing.
+ */
+
+syntax="proto2";
+
+package oaa.proto.messages;
+
+// Enum values TBD — index 17 in proto enum verifier (vve.f73609r)
+// Dispatched as (value - 1) to the listener, so value 1 = action 0, etc.
+// confidence: gold [apk_deep_trace, 2026-03-06] (structure verified, enum values pending)
+enum MediaPlaybackStatusEventType {
+    MEDIA_PLAYBACK_STATUS_EVENT_UNKNOWN = 0;
+    // Additional values TBD — need wire capture or deeper APK trace
+}
+
+// APK class: vxo
+// confidence: gold [apk_deep_trace, 2026-03-06]
+message MediaPlaybackStatusEvent {
+    required MediaPlaybackStatusEventType event_type = 1;  // confidence: gold [apk_deep_trace]
+}

@@ -5,16 +5,20 @@ last_updated: '2026-03-06'
 retraction:
   date: '2026-03-06'
   reason: >
-    Deep APK trace proved this message does not exist. The mapped APK class
-    vuy (16.2) / vvm (16.1) is actually ActionTakenNotification on the video
-    channel (msg ID 0x800D), not a media playback command on channel 10.
-    The phone-side media handler (qnf.java) has no handler for 0x8002.
-    The GAL protocol reference (DHU 2.1) lists no MediaPlaybackCommand.
-    Media control flows through the input channel as KeyEvent button presses.
+    Deep APK trace proved the class vuy is NOT MediaPlaybackCommand. It is
+    ActionTakenNotification on the video channel (msg ID 0x800D). The original
+    retraction also stated that 0x8002 does not exist — that was INCORRECT.
+    Msg ID 0x8002 on CAR.GAL.INST is MediaPlaybackStatusEvent (APK class vxo),
+    a completely different proto. See MediaPlaybackStatusEventMessage.audit.yaml.
   evidence:
     - "huz.java (CAR.VIDEO) line 258-265: only caller of vuy, sends as 0x800D"
-    - "qnf.java (CAR.GAL.MEDIA): only handles 0x8004, 0x8005, 0x800D"
-    - "GAL protocol reference: 196 msg types, no MediaPlaybackCommand"
+    - "qnf.java (CAR.GAL.MEDIA): AV audio endpoint, not media status handler"
+    - "iai.java (CAR.GAL.INST): handles 0x8002 as vxo (MediaPlaybackStatusEvent)"
+  correction_2026_03_06: >
+    Proto verification pipeline revealed qnf.java is the AV audio stream
+    endpoint, not the media status handler. The media status handler is
+    iai.java/hvx.java on CAR.GAL.INST. Also corrected 0x800D to 0x800C
+    in qnf.java msg IDs.
 previous_evidence:
 - type: apk_static
   method: bfs_trace

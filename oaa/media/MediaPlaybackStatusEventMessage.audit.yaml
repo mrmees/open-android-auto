@@ -1,0 +1,18 @@
+proto: oaa/media/MediaPlaybackStatusEventMessage.proto
+message: MediaPlaybackStatusEvent
+confidence: gold
+last_updated: '2026-03-06'
+evidence:
+- type: apk_deep_trace
+  method: proto_verification_pipeline
+  source: analysis/reports/proto-verification/media.md
+  date: '2026-03-06'
+  description: >
+    NEW DISCOVERY. APK class vxo (v16.2), 1 required enum field. Received by
+    iai.mo18864a() on CAR.GAL.INST (GAL type 11), msg ID 0x8002. Dispatched to
+    ICarMediaPlaybackStatusEventListener.onInput(value-1). Direction: HU -> Phone.
+    Enum values TBD (verifier index 17, vve.f73609r).
+notes:
+  - "Previously retracted as MediaPlaybackCommand (vuy) -- that retraction was about a different class"
+  - "vxo is NOT vuy -- different proto, different handler, correct identification"
+  - "Enum values need wire capture or deeper trace to map"

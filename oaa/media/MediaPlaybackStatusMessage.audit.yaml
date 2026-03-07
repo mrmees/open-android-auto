@@ -1,23 +1,28 @@
 proto: oaa/media/MediaPlaybackStatusMessage.proto
 message: MediaPlaybackStatus
-confidence: silver
-last_updated: '2026-03-03'
+confidence: gold
+last_updated: '2026-03-06'
 evidence:
 - type: apk_static
   method: string_const
   source: class_mapping.yaml (v15.9:vqy, v16.1:vyq, v16.2:vyc)
   date: '2026-03-03'
-  description: Mapped MediaPlaybackStatus to obfuscated APK class(es) via string_const
-    analysis.
+  description: Mapped MediaPlaybackStatus to obfuscated APK class(es) via string_const analysis.
 - type: apk_static
   method: bfs_trace
   source: class_mapping.yaml (v15.9:xet, v16.1:xmu, v16.2:xme)
   date: '2026-03-03'
-  description: Mapped MediaEventIdWrapper to obfuscated APK class(es) via bfs_trace
-    analysis.
+  description: Mapped MediaEventIdWrapper to obfuscated APK class(es) via bfs_trace analysis.
 - type: cross_version
   method: structural_comparison
   source: cross-version checker (15.9, 16.1, 16.2)
   date: '2026-03-03'
-  description: Structural match confirmed across versions 15.9, 16.1, 16.2. Field
-    numbers, types, and modifiers are consistent.
+  description: Structural match confirmed across versions 15.9, 16.1, 16.2.
+- type: apk_deep_trace
+  method: proto_verification_pipeline
+  source: analysis/reports/proto-verification/media.md
+  date: '2026-03-06'
+  description: >
+    All 6 checks pass. vyc created in hvx.mo19832g(), sent via iai.m20106k(0x8001)
+    on CAR.GAL.INST (GAL type 11). AIDL params confirm field types. Channel binding,
+    msg ID, direction, schema, cross-refs, enums all verified.

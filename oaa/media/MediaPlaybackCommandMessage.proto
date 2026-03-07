@@ -3,7 +3,11 @@
 // Based on works by: f1x.studio (aasdk), opencardev (crankshaft), aa-proxy (aa-proxy-rs)
 
 /*
- * RETRACTED — This message does not exist in the AA protocol.
+ * RETRACTED — The class vuy is NOT a media playback command.
+ *
+ * However, msg ID 0x8002 on the media-info channel (CAR.GAL.INST) DOES
+ * exist — it is MediaPlaybackStatusEvent (APK class vxo), a different
+ * proto entirely. See MediaPlaybackStatusEventMessage.proto.
  *
  * Previously mapped as "MediaPlaybackCommand" (HU → Phone, 0x8002 on
  * channel 10) based on structural matching of APK class vuy (16.2) /

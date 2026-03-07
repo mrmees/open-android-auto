@@ -4,9 +4,10 @@
 
 | Message | Tier | Evidence | Audit File |
 |---------|------|----------|------------|
-| MediaPlaybackStatus | Silver | apk_static + cross_version | [MediaPlaybackStatusMessage.audit.yaml](../../oaa/media/MediaPlaybackStatusMessage.audit.yaml) |
-| ~~MediaPlaybackCommand~~ | **Retracted** | misidentified — see audit | [MediaPlaybackCommandMessage.audit.yaml](../../oaa/media/MediaPlaybackCommandMessage.audit.yaml) |
-| MediaPlaybackMetadata | Silver | apk_static + cross_version | [MediaPlaybackMetadataMessage.audit.yaml](../../oaa/media/MediaPlaybackMetadataMessage.audit.yaml) |
+| MediaPlaybackStatus | **Gold** | apk_deep_trace (2026-03-06) | [MediaPlaybackStatusMessage.audit.yaml](../../oaa/media/MediaPlaybackStatusMessage.audit.yaml) |
+| MediaPlaybackStatusEvent | **Gold** | apk_deep_trace (2026-03-06) — NEW | [MediaPlaybackStatusEventMessage.audit.yaml](../../oaa/media/MediaPlaybackStatusEventMessage.audit.yaml) |
+| ~~MediaPlaybackCommand~~ | **Retracted** | class vuy misidentified — 0x8002 exists as MediaPlaybackStatusEvent (vxo) | [MediaPlaybackCommandMessage.audit.yaml](../../oaa/media/MediaPlaybackCommandMessage.audit.yaml) |
+| MediaPlaybackMetadata | **Gold** | apk_deep_trace (2026-03-06) — CORRECTED fields 5-7 | [MediaPlaybackMetadataMessage.audit.yaml](../../oaa/media/MediaPlaybackMetadataMessage.audit.yaml) |
 | MediaEventIdWrapper | Silver | apk_static + cross_version | [MediaPlaybackStatusMessage.audit.yaml](../../oaa/media/MediaPlaybackStatusMessage.audit.yaml) |
 | MediaStatusList | Silver | apk_static + cross_version | [MediaStatusListData.audit.yaml](../../oaa/media/MediaStatusListData.audit.yaml) |
 | MediaTrackIdentifier | Silver | apk_static + cross_version | [MediaTrackIdentifierData.audit.yaml](../../oaa/media/MediaTrackIdentifierData.audit.yaml) |
@@ -21,48 +22,68 @@
 
 ## Overview
 
-> Confidence: Silver [apk_static, cross_version] -- core MediaPlaybackStatus has wire verification (1993 messages captured)
+> Confidence: Gold [apk_deep_trace, 2026-03-06] -- core messages verified end-to-end via proto-verification pipeline
 
-Android Auto carries media information on two distinct channels:
+Android Auto carries media information across several channel types. Two are commonly confused:
 
-| Channel | GAL Type | Purpose | Status |
-|---------|----------|---------|--------|
-| Channel 10 | MEDIA_PLAYBACK_STATUS (11) | Phone-sourced media: now-playing state, metadata, controls | Primary -- active in all sessions |
-| (dynamic) | CAR_LOCAL_MEDIA (20) | Car-local media: FM radio, USB, CD -- status and control from HU-side sources | Niche -- most HUs do not implement |
-| (dynamic) | BUFFERED_MEDIA_SINK (21) | Buffered media -- stub channel, not implemented in AA v16.x | Stub -- no runtime messages |
+| GAL Tag | GAL Type | Handler | Purpose | Status |
+|---------|----------|---------|---------|--------|
+| CAR.GAL.INST | 11 | iai.java / hvx.java | **Media info channel** — playback status, metadata, HU input events | Primary — active in all sessions |
+| CAR.GAL.MEDIA | (AV) | qnf.java | **AV audio stream endpoint** — setup, config, ACKs for the audio pipe | AV infrastructure — not media status |
+| CAR.GAL.CAR_LOCAL_MEDIA | 20 | (separate) | Car-local media: FM radio, USB, CD | Niche — most HUs don't implement |
+| (n/a) | 21 | (stub) | Buffered media sink — stub, not implemented in AA v16.x | Inactive |
 
-Channel 10 is the main media channel. It carries phone-sourced playback status and metadata from apps like Spotify, YouTube Music, or any app exposing an Android `MediaBrowserService`. The HU displays this information. **This channel is unidirectional (phone → HU) — the HU does not send commands back on this channel.** Media playback control (pause, play, skip) goes through the input channel (ch 1) as Android KeyEvent button presses (see [input.md](input.md), keycodes 85–88, 126–127).
-
-CarLocalMediaPlayback is a separate channel for head units that have their own media sources (FM tuner, USB playback, CD changer). It uses different proto messages on a different GAL type, despite sharing some concepts with the phone-sourced flow.
-
-BufferedMediaSink (GAL type 21) exists in the protocol definition but is a stub -- the phone-side handler logs receipt and discards all data. Feature-gated behind flag `abey` (834952858). A rich service discovery config exists (audio/video/metadata configs), suggesting future implementation.
+**Important:** `CAR.GAL.MEDIA` is the AV audio streaming endpoint (setup/ACK/config), NOT the media status channel. Media playback status and metadata flow through `CAR.GAL.INST` (GAL type 11). These are distinct channels with different handlers and message catalogs.
 
 ---
 
 ## Message Catalog
 
-### Phone-Sourced Media (Channel 10, GAL Type 11)
+### Media Info Channel (CAR.GAL.INST, GAL Type 11)
 
-> Confidence: Silver [apk_static, cross_version] -- MediaPlaybackStatus wire-verified with 1993 captured messages
+> Confidence: Gold [apk_deep_trace, 2026-03-06]
+> Handler: iai.java (channel endpoint), hvx.java (service implementation)
+> AIDL: com.google.android.gms.car.ICarMediaPlaybackStatus
 
 | Msg ID | Message | Direction | Purpose | Confidence |
 |--------|---------|-----------|---------|:---:|
-| 0x8001 | MediaPlaybackStatus | Phone -> HU | Current playback state, source app, position, shuffle/repeat | Silver |
-| ~~0x8002~~ | ~~MediaPlaybackCommand~~ | ~~HU -> Phone~~ | ~~Playback control~~ | **Retracted** |
-| 0x8003 | MediaPlaybackMetadata | Phone -> HU | Track title, artist, album, album art, is_playing | Silver |
+| 0x8001 | MediaPlaybackStatus | Phone -> HU | Current playback state, source app, position, shuffle/repeat | **Gold** |
+| 0x8002 | MediaPlaybackStatusEvent | HU -> Phone | Input action from HU (instrument cluster interaction) | **Gold** |
+| 0x8003 | MediaPlaybackMetadata | Phone -> HU | Track title, artist, album, album art | **Gold** |
 
-> **RETRACTED (2026-03-06):** `MediaPlaybackCommand` (0x8002) does not exist. The APK class `vuy` was misidentified via structural matching — it is actually `ActionTakenNotification` on the video channel (msg 0x800D). The phone-side media handler (`qnf.java`) has no handler for 0x8002. The GAL protocol reference (196 message types) contains no `MediaPlaybackCommand`. **Media playback control goes through the input channel (ch 1) as button events** — see keycodes MEDIA_PLAY_PAUSE (85), MEDIA_PLAY (126), MEDIA_PAUSE (127), MEDIA_NEXT (87), MEDIA_PREVIOUS (88).
+> **CORRECTED (2026-03-06):** The previous retraction of 0x8002 was partially wrong. The APK class `vuy` was correctly retracted (it is ActionTakenNotification on the video channel). However, msg ID 0x8002 DOES exist on the CAR.GAL.INST channel — it uses a different proto class `vxo` (MediaPlaybackStatusEvent), received by `iai.mo18864a()` and dispatched to `ICarMediaPlaybackStatusEventListener`. This is an HU-to-phone input action, not a playback command.
+>
+> **Media playback control still goes through the input channel (ch 1) as button events** — keycodes MEDIA_PLAY_PAUSE (85), MEDIA_PLAY (126), MEDIA_PAUSE (127), MEDIA_NEXT (87), MEDIA_PREVIOUS (88). The 0x8002 MediaPlaybackStatusEvent is a separate mechanism for instrument cluster interactions.
+
+### AV Audio Stream Endpoint (CAR.GAL.MEDIA)
+
+> Handler: qnf.java (internal name: "AudioEndPoint")
+
+This is the AV audio pipe, not the media status channel. It handles stream setup and flow control.
+
+| Msg ID | Message | Direction | Purpose | Proto Class |
+|--------|---------|-----------|---------|-------------|
+| 0x8000 | AV Setup Request | Phone -> HU | Audio stream setup | wbs |
+| 0x8004 | AV Config Response | HU -> Phone | Configuration / setup response | vwn |
+| 0x8005 | AV ACK | HU -> Phone | Frame acknowledgment (session ID + count) | vuw |
+| 0x800C | AV Signal | HU -> Phone | Signal (no proto, calls qnk.mo29257h()) | (none) |
+
+Invalid msg IDs are logged: `"Received message with invalid type header: %d ch:%d"`.
+
+---
 
 #### MediaPlaybackStatus
 
 ```protobuf
+// APK class: vyc (v16.2)
+// confidence: gold [apk_deep_trace, 2026-03-06]
 message MediaPlaybackStatus {
     optional PlaybackState playback_state = 1;  // UNKNOWN(0), STOPPED(1), PLAYING(2), PAUSED(3), ERROR(4)
     optional string source_app = 2;             // e.g. "YouTube Music", "Spotify"
     optional uint32 position_seconds = 3;       // Elapsed seconds in current track
     optional bool shuffle = 4;
-    optional bool repeat = 5;
-    optional bool repeat_one = 6;
+    optional bool repeat = 5;                   // Note: GMS proxy hardcodes to false
+    optional bool repeat_one = 6;               // Note: GMS proxy hardcodes to false
 }
 ```
 
@@ -78,24 +99,46 @@ The `PlaybackState` enum maps to Android `PlaybackStateCompat` constants:
 | 3 | PAUSED | STATE_PAUSED (2) |
 | 4 | ERROR | STATE_ERROR (7) |
 
-#### ~~MediaPlaybackCommand~~ (RETRACTED)
+#### MediaPlaybackStatusEvent (NEW)
 
-This message was retracted on 2026-03-06. See retraction note above. The proto file is retained as a tombstone.
+```protobuf
+// APK class: vxo (v16.2)
+// confidence: gold [apk_deep_trace, 2026-03-06]
+message MediaPlaybackStatusEvent {
+    required MediaPlaybackStatusEventType event_type = 1;
+}
+```
+
+HU sends this to the phone as an input action related to media playback on the instrument cluster. Received by `iai.mo18864a()`, dispatched to `ICarMediaPlaybackStatusEventListener.onInput(value - 1)`.
+
+The enum values are not yet fully mapped (enum verifier index 17, `vve.f73609r`). Wire capture needed.
 
 #### MediaPlaybackMetadata
 
 ```protobuf
+// APK class: vyb (v16.2)
+// confidence: gold [apk_deep_trace, 2026-03-06]
+// CORRECTED: fields 5-7 fixed, syntax changed to proto2
 message MediaPlaybackMetadata {
     optional string title = 1;
     optional string artist = 2;
     optional string album = 3;
-    optional bytes album_art = 4;        // PNG image data
-    optional bool is_playing = 5;
-    optional string album_art_url = 6;   // URL alternative to embedded bytes
+    optional bytes album_art = 4;      // Image data
+    optional string unknown_5 = 5;     // Always null from GMS proxy
+    optional uint32 unknown_6 = 6;     // Could be duration, track number, etc.
+    optional int32 unknown_7 = 7;      // Always 0 from GMS proxy
 }
 ```
 
-Sent by the phone when the track changes. Fields 5-6 were discovered via APK proto decoder (nmi.java, AA v16.1) -- not present in older aasdk definitions. The `album_art` field contains raw image bytes; `album_art_url` provides a URL alternative (both may be present).
+Sent by the phone when the track changes. Fields 5-7 exist in the proto schema and AIDL interface but are not populated by the current GMS car API client (pre.java hardcodes field 5 = null, field 7 = 0).
+
+> **CORRECTED (2026-03-06):** Previous version had field 5 as `bool is_playing` and field 6 as `string album_art_url`. Deep trace proved field 5 is string, field 6 is uint32, and field 7 (int32) was missing entirely. Syntax was also wrong (proto3 should be proto2).
+
+#### ~~MediaPlaybackCommand~~ (RETRACTED)
+
+This message was retracted on 2026-03-06. The APK class `vuy` was misidentified — it is `ActionTakenNotification` on the video channel (0x800D), not a media playback command. See [MediaPlaybackCommandMessage.audit.yaml](../../oaa/media/MediaPlaybackCommandMessage.audit.yaml). The proto file is retained as a tombstone.
+
+Note: msg ID 0x8002 on the media-info channel does exist as `MediaPlaybackStatusEvent` (above), which is a different proto class (`vxo`) serving a different purpose.
 
 ### Supporting Messages
 
@@ -116,7 +159,7 @@ MediaEventIdWrapper, MediaStatusList, and MediaTrackIdentifier are structurally 
 
 ## State Machine
 
-> Confidence: Silver [apk_static, cross_version]
+> Confidence: Gold [apk_deep_trace, 2026-03-06]
 
 ### Phone-Sourced Media Flow
 
@@ -143,9 +186,15 @@ Phone                                        Head Unit
   |  [Track changes on phone]                   |
   |--- MediaPlaybackMetadata ----------------> |  new title, artist, album, art
   |--- MediaPlaybackStatus ------------------>  |  position_seconds=0, state=PLAYING
+  |                                             |
+  |         [HU instrument cluster interaction] |
+  |<-- MediaPlaybackStatusEvent (0x8002) ------ |  event on CAR.GAL.INST channel
+  |                                             |
 ```
 
 The phone pushes status updates continuously. The HU controls playback by sending button events on the **input channel (ch 1)**, not on the media status channel. There is no request/response handshake -- the phone sends status whenever it changes, and the HU renders it.
+
+The MediaPlaybackStatusEvent (0x8002) is a separate mechanism for instrument cluster interactions, distinct from the input channel button presses.
 
 ---
 
@@ -160,11 +209,11 @@ Android Auto's media channel bridges the phone's `MediaBrowserService` / `MediaS
 | `MediaSession.getPlaybackState()` | `MediaPlaybackStatus` | PlaybackState maps to `PlaybackStateCompat` constants |
 | `MediaSession.getMetadata()` | `MediaPlaybackMetadata` | Title, artist, album, art extracted from `MediaMetadataCompat` |
 | `MediaSession.Callback.onPlay/onPause` | Input ch1 button events | HU sends KEYCODE_MEDIA_PLAY/PAUSE via input channel |
-| `PlaybackStateCompat.getActions()` | Not directly mapped | Action flags are not carried on channel 10 (CarLocalMedia uses them) |
+| `PlaybackStateCompat.getActions()` | Not directly mapped | Action flags are not carried on media-info channel (CarLocalMedia uses them) |
 
-The phone's `MediaBrowserService` controller (log tag `GH.MediaActiveContrConn`) monitors the active media session. When the session state changes, the phone serializes it into `MediaPlaybackStatus` and sends it on channel 10. The HU controls playback by sending button events on the input channel (ch 1), which the phone translates into `MediaSession.Callback` actions on the source app.
+The phone's `MediaBrowserService` controller (log tag `GH.MediaActiveContrConn`) monitors the active media session. When the session state changes, the phone serializes it into `MediaPlaybackStatus` and sends it on the media-info channel. The HU controls playback by sending button events on the input channel (ch 1), which the phone translates into `MediaSession.Callback` actions on the source app.
 
-All media transport controls (play, pause, skip, previous, stop) flow through the input channel as Android KeyEvent button presses. The media status channel is receive-only from the HU's perspective.
+All media transport controls (play, pause, skip, previous, stop) flow through the input channel as Android KeyEvent button presses. The media status channel is receive-only from the HU's perspective (except for 0x8002 MediaPlaybackStatusEvent).
 
 ---
 
@@ -233,9 +282,11 @@ The phone-side handler logs "Received unexpected car local media message CAR_LOC
 
 ## Gotchas
 
-> **Gotcha:** Channel 10 (GAL type 11, MEDIA_PLAYBACK_STATUS) and CarLocalMedia (GAL type 20) **both use msgId 0x8001** for their status messages, but with entirely different proto schemas. MediaPlaybackStatus has 6 fields (state, source, position, 3 booleans). CarLocalMediaPlaybackStatus has 4 fields (state, source, position, repeated actions). Deserializing with the wrong proto will silently produce garbage. Always check the GAL channel type, not just the message ID.
+> **Gotcha:** The media-info channel (`CAR.GAL.INST`, GAL type 11) and `CAR.GAL.MEDIA` are DIFFERENT channels. `CAR.GAL.MEDIA` is the AV audio streaming endpoint (setup/ACK/config). Media playback status and metadata flow through `CAR.GAL.INST`. Do not confuse these.
 
-> **Gotcha:** There is NO outbound media command on channel 10. All media playback control (pause, play, skip, previous, stop) goes through the **input channel (ch 1)** as Android KeyEvent button presses. Your SDP must advertise media keycodes (85, 86, 87, 88, 126, 127) in `supported_keycodes` for the phone to accept them.
+> **Gotcha:** GAL type 11 (media-info) and GAL type 20 (CarLocalMedia) **both use msgId 0x8001** for their status messages, but with entirely different proto schemas. MediaPlaybackStatus has 6 fields (state, source, position, 3 booleans). CarLocalMediaPlaybackStatus has 4 fields (state, source, position, repeated actions). Deserializing with the wrong proto will silently produce garbage. Always check the GAL channel type, not just the message ID.
+
+> **Gotcha:** Media playback control (pause, play, skip) goes through the **input channel (ch 1)** as Android KeyEvent button presses. Your SDP must advertise media keycodes (85, 86, 87, 88, 126, 127) in `supported_keycodes` for the phone to accept them. The 0x8002 MediaPlaybackStatusEvent is for instrument cluster input actions, not general playback control.
 
 > **Gotcha:** `MediaEventIdWrapper` and `MediaTrackIdentifier` are structurally verified (Silver) but their sub-message content is not decoded. `MediaEventIdWrapper` uses field number 13 (unusually high, suggesting it was added later). `MediaTrackIdentifier` has 3 message-type fields whose internal structure is placeholder. Do not assume these sub-messages are empty at runtime -- they contain data, but we cannot yet describe its layout.
 
@@ -247,8 +298,9 @@ The phone-side handler logs "Received unexpected car local media message CAR_LOC
 
 ### Proto Files
 - [MediaPlaybackStatusMessage.proto](../../oaa/media/MediaPlaybackStatusMessage.proto)
+- [MediaPlaybackStatusEventMessage.proto](../../oaa/media/MediaPlaybackStatusEventMessage.proto) **(NEW — 2026-03-06)**
 - [MediaPlaybackCommandMessage.proto](../../oaa/media/MediaPlaybackCommandMessage.proto) **(RETRACTED — tombstone only)**
-- [MediaPlaybackMetadataMessage.proto](../../oaa/media/MediaPlaybackMetadataMessage.proto)
+- [MediaPlaybackMetadataMessage.proto](../../oaa/media/MediaPlaybackMetadataMessage.proto) **(CORRECTED — 2026-03-06)**
 - [MediaStatusListData.proto](../../oaa/media/MediaStatusListData.proto)
 - [MediaTrackIdentifierData.proto](../../oaa/media/MediaTrackIdentifierData.proto)
 - [MediaChannelData.proto](../../oaa/media/MediaChannelData.proto)
@@ -257,6 +309,9 @@ The phone-side handler logs "Received unexpected car local media message CAR_LOC
 - [CarLocalMediaPlaybackRequestMessage.proto](../../oaa/media/CarLocalMediaPlaybackRequestMessage.proto)
 - [CarLocalMediaPlaybackEnum.proto](../../oaa/media/CarLocalMediaPlaybackEnum.proto)
 - [BufferedMediaSinkMessage.proto](../../oaa/media/BufferedMediaSinkMessage.proto)
+
+### Verification Report
+- [Proto Verification: Media Channel](../../analysis/reports/proto-verification/media.md) — full verification trace with handler analysis
 
 ### Cross-References
 - [Media cross-version mapping](../cross-version/media.md) -- APK class mappings across versions 15.9, 16.1, 16.2

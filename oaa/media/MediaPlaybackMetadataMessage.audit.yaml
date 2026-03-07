@@ -1,17 +1,30 @@
 proto: oaa/media/MediaPlaybackMetadataMessage.proto
 message: MediaPlaybackMetadata
-confidence: silver
-last_updated: '2026-03-03'
+confidence: gold
+last_updated: '2026-03-06'
 evidence:
 - type: apk_static
   method: proto_access
   source: class_mapping.yaml (v15.9:nej, v16.1:nmi, v16.2:nlt)
   date: '2026-03-03'
-  description: Mapped MediaPlaybackMetadata to obfuscated APK class(es) via proto_access
-    analysis.
+  description: Mapped MediaPlaybackMetadata to obfuscated APK class(es) via proto_access analysis.
 - type: cross_version
   method: structural_comparison
   source: cross-version checker (15.9, 16.1, 16.2)
   date: '2026-03-03'
-  description: Structural match confirmed across versions 15.9, 16.1, 16.2. Field
-    numbers, types, and modifiers are consistent.
+  description: Structural match confirmed across versions 15.9, 16.1, 16.2.
+- type: apk_deep_trace
+  method: proto_verification_pipeline
+  source: analysis/reports/proto-verification/media.md
+  date: '2026-03-06'
+  description: >
+    CORRECTED: field 5 changed from bool to string, field 6 from string to uint32,
+    field 7 (int32) added, syntax changed from proto3 to proto2. Verified via
+    hvx.mo19831f() AIDL params and DB field types. vyb sent via iai.m20106k(0x8003)
+    on CAR.GAL.INST (GAL type 11). GMS proxy (pre.java) hardcodes field 5=null,
+    field 7=0.
+  corrections:
+    - "field 5: bool -> string"
+    - "field 6: string -> uint32"
+    - "field 7: added int32 (was missing)"
+    - "syntax: proto3 -> proto2"
