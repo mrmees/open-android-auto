@@ -8,12 +8,20 @@
 
 | Status | Count |
 |--------|-------|
-| Verified (Gold) | 194 |
-| Schema Errors Found & Fixed | 75 |
-| New Protos Discovered | 14 (MediaPlaybackStatusEvent, VehicleEnergyForecast, InputBindingResponse, IntegratedOverlayStart/Stop, UpdateHuUiConfigResponse, UpdateUiConfigRequest, AVChannelMediaOptions, MicrophoneOpenResponse, RadioSearchRequest, BluetoothAuthenticationData, BluetoothAuthenticationResult, RegisterCarPropertyListenersRequest, WifiCredentialsResponse) |
-| Retracted / Removed | 29 |
+| Verified (Gold) — GAL messages | 194 |
+| Verified (Gold) — SDP layer | 84 |
+| Schema Errors Found & Fixed | 80 |
+| New Protos Discovered | 17 |
+| Retracted / Removed | 32 |
 | Relocated (wrong channel) | 4 (BindingRequest/Response → input, CallAvailability/VoiceSession → control) |
-| Pending | **0 — ALL CHANNELS COMPLETE** |
+| Pending | **0 — ALL CHANNELS + SDP COMPLETE** |
+
+## SDP Layer Verification
+
+**Report:** [sdp-progress.md](sdp-progress.md)
+**Status:** ALL 9 WAVES COMPLETE
+
+All SDP protobuf schemas verified against 16.2 APK. 84 protos at Gold confidence (8 inherited from GAL + 76 newly verified). Key fixes: PingConfigEntry reduced to 2 fields, Radio SDP fully rewritten (3 old msgs → 3 new), TuningParamsA-D filled (were empty), CarControlChannel/NotificationChannel filled. ConnectedDevices messages remain Bronze (no phone-side implementation found).
 
 ## Channel Verification Status
 
