@@ -3,21 +3,24 @@
 // Based on works by: f1x.studio (aasdk), opencardev (crankshaft), aa-proxy (aa-proxy-rs)
 
 /*
- * Audio focus state message (msg ID 0x8021).
+ * RETRACTED (2026-03-06)
  *
- * Simple boolean indicating whether audio focus is currently held.
- * Distinct from AudioFocusState enum (which enumerates focus types
- * like GAIN, LOSS, etc.) — this is a binary focus indicator.
+ * This message was incorrectly identified as "AudioFocusState" on an audio
+ * channel. It is actually RadioFavoriteToggleRequest (msg ID 0x8021) on the
+ * radio channel (service 15, CAR.GAL.RADIO-EP).
  *
- * APK class: waz (AA v16.1)
- * Field numbers decoded from protobuf-lite RawMessageInfo descriptor.
+ * Evidence: hlr.java (CAR.RADIO) sends waq (16.2) at wire ID 32801 = 0x8021
+ * through ibf.java (radio endpoint). The bool field is "is_favorite", not
+ * "has_focus". Msg ID 0x8021 does NOT appear on any audio channel.
+ *
+ * Correct proto: oaa/radio/RadioMessages.proto — RadioFavoriteToggleRequest
+ * See also: analysis/reports/proto-verification/audio.md
  */
 syntax="proto2";
 
 package oaa.proto.messages;
 
-// confidence: silver [apk_static, cross_version]
-message AudioFocusState
-{
-    optional bool has_focus = 1;  // confidence: silver [apk_static, cross_version]
-}
+// RETRACTED — duplicate of RadioFavoriteToggleRequest on radio channel
+// message AudioFocusState {
+//     optional bool has_focus = 1;
+// }

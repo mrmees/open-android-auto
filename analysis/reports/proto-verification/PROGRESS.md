@@ -8,10 +8,10 @@
 
 | Status | Count |
 |--------|-------|
-| Verified (Gold) | 90 |
+| Verified (Gold) | 91 |
 | Schema Errors Found & Fixed | 47 |
-| New Protos Discovered | 8 (MediaPlaybackStatusEvent, VehicleEnergyForecast, InputBindingResponse, IntegratedOverlayStart/Stop, UpdateHuUiConfigResponse, UpdateUiConfigRequest, AVChannelMediaOptions) |
-| Retracted / Removed | 19 |
+| New Protos Discovered | 10 (MediaPlaybackStatusEvent, VehicleEnergyForecast, InputBindingResponse, IntegratedOverlayStart/Stop, UpdateHuUiConfigResponse, UpdateUiConfigRequest, AVChannelMediaOptions, MicrophoneOpenResponse, RadioSearchRequest) |
+| Retracted / Removed | 22 |
 | Relocated (wrong channel) | 4 (BindingRequest/Response → input, CallAvailability/VoiceSession → control) |
 | Pending | remaining channels |
 
@@ -29,8 +29,8 @@
 | 4 | Input | CAR.GAL.INPUT | iae/hlg (16.2) | **COMPLETE** | [input.md](input.md) | 4 Gold msgs, 8 sub-msgs, 3 enums, 3 SDP configs, 6 retractions |
 | 5 | Phone | CAR.GAL.INST | iat/hll (16.2) | **COMPLETE** | [phone.md](phone.md) | 2 Gold msgs, 1 enum, 1 sub-msg, 2 relocated to control, 2 retracted |
 | 6 | Video | CAR.GAL.VIDEO | ied/icv (16.2) | **COMPLETE** | [video.md](video.md) | 8 Gold msgs, 2 Gold enums, 1 enum rewrite, 2 retractions, 4 new protos |
-| 7 | Audio (media) | CAR.GAL.AUDIO | TBD | PENDING | | Multiple audio channels |
-| 8 | Audio (mic) | CAR.GAL.MIC | TBD | PENDING | | AV input |
+| 7 | Audio (output) | CAR.GAL.MEDIA | qnf (extends qnp) | **COMPLETE** | [audio.md](audio.md) | Shares AV protocol with video — no audio-specific msgs |
+| 8 | Audio (mic) | CAR.GAL.MIC | ict/ial | **COMPLETE** | [audio.md](audio.md) | 1 Gold msg (MicrophoneOpenResponse), 3 retractions |
 | 9 | Sensor | CAR.GAL.SENSOR | TBD | PENDING | | Sensor data |
 | 10 | Bluetooth | CAR.GAL.BT / CAR.BT | TBD | PENDING | | BT pairing |
 
@@ -46,7 +46,40 @@
 
 ## Resume Pointer
 
-**Next action:** Begin audio (#7) or sensor (#9) channel verification.
+**Next action:** Begin sensor (#9) channel verification. Radio channel (#11) partially verified via audio pass — directions fixed, 16.2 class refs updated, RadioSearchRequest (0x8023) added. Full radio verification still needed.
+
+## Completed — Audio Channel (Wave 7)
+
+### Audio AV Output (qnf.java, CAR.GAL.MEDIA)
+
+Uses exact same AV protocol as video (wbs/vwn/vuw). No audio-specific wire messages. **Gold by inheritance.**
+
+### Mic Input (ict/ial, CAR.GAL.MIC)
+
+| Proto | Wire ID | Direction | 16.2 Class | Confidence | Result |
+|-------|---------|-----------|------------|------------|--------|
+| MicrophoneOpenResponse | 0x8006 | HU→Phone | vyj | Gold | NEW — 2 fields (status, session_config) |
+
+Raw audio: wire 0x0000 (HU→Phone), wire 0x0001 (Phone→HU). No proto, raw PCM with 8-byte timestamp.
+
+### Retracted (from oaa/audio/)
+
+| Proto | Reason | Actually Is |
+|-------|--------|-------------|
+| AudioFocusStateMessage (waq) | Wrong channel, wrong name | RadioFavoriteToggleRequest (0x8021 on radio ch 15) |
+| AudioStreamTypeMessage (war) | Wrong channel, wrong name | RadioTuneDirectionRequest (0x8022 on radio ch 15) |
+| AudioStreamTypeEnum | Wrong semantics | RadioTuneDirection (UP=1, DOWN=2, not MEDIA/GUIDANCE) |
+
+### Radio Channel Fixes (bonus from audio trace)
+
+- All 10 message directions CORRECTED (were swapped)
+- 16.2 class references added for all messages
+- RadioSearchRequest (0x8023, wac) added — NEW in 16.2
+- ibf extends iav directly — NO +1 msg ID offset (unlike video/audio AV channels)
+
+### AdditionalVideoConfig Field 6 — RESOLVED
+
+Deferred from video pass. ResizeActionType enum values (0-2) unchanged in 16.2. Only obfuscated validator class name changed (vvn→vve/vuz). No proto changes needed.
 
 ## Completed — Video Channel (Wave 6)
 

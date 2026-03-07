@@ -3,22 +3,24 @@
 // Based on works by: f1x.studio (aasdk), opencardev (crankshaft), aa-proxy (aa-proxy-rs)
 
 /*
- * Audio stream type message (msg ID 0x8022).
+ * RETRACTED (2026-03-06)
  *
- * Indicates the type of audio stream (media vs guidance/navigation).
+ * This message was incorrectly identified as "AudioStreamType" on an audio
+ * channel. It is actually RadioTuneDirectionRequest (msg ID 0x8022) on the
+ * radio channel (service 15, CAR.GAL.RADIO-EP).
  *
- * APK class: wba (AA v16.1)
- * Field numbers decoded from protobuf-lite RawMessageInfo descriptor.
- * Enum validated via viz.M — accepts values 1 and 2 only.
+ * Evidence: hlr.java (CAR.RADIO) sends war (16.2) at wire ID 32802 = 0x8022
+ * through ibf.java (radio endpoint). The enum values (1, 2) represent
+ * tune UP/DOWN, not media/guidance stream type.
+ *
+ * Correct proto: oaa/radio/RadioMessages.proto — RadioTuneDirectionRequest
+ * See also: analysis/reports/proto-verification/audio.md
  */
 syntax="proto2";
 
-import "oaa/audio/AudioStreamTypeEnum.proto";
-
 package oaa.proto.messages;
 
-// confidence: silver [apk_static, cross_version]
-message AudioStreamType
-{
-    optional enums.AudioStreamType.Enum stream_type = 1;  // confidence: silver [apk_static, cross_version]
-}
+// RETRACTED — duplicate of RadioTuneDirectionRequest on radio channel
+// message AudioStreamType {
+//     optional enums.AudioStreamType.Enum stream_type = 1;
+// }

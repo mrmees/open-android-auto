@@ -1,0 +1,25 @@
+proto: oaa/mic/MicrophoneOpenResponse.proto
+message: MicrophoneOpenResponse
+confidence: gold
+last_updated: '2026-03-06'
+wire_id: 0x8006
+channel: mic (CAR.GAL.MIC)
+direction: HU->Phone
+handler: ict.java / ial.java
+evidence:
+- type: apk_deep_trace
+  method: handler_trace
+  source: ict.java mo18864a (16.2)
+  date: '2026-03-06'
+  description: >
+    ict.mo18864a dispatch case 0x8007 (wire 0x8006 after +1 offset) parses
+    vyj proto and calls mo20071h(vyj). ial.mo20071h checks field 1 (status)
+    for non-zero error, stores field 2 in f36646d. Error path logs
+    "onMicrophoneStateChange not ok" and "onOpenMicError()".
+class_mapping:
+  '16.2': vyj
+notes: |
+  Mic channel (service type 6) has only 2 message types:
+  - Wire 0x0000: raw audio data (8-byte timestamp + PCM), no proto
+  - Wire 0x8006: MicrophoneOpenResponse (this proto)
+  Mic sends raw audio to HU via iav.m20112q() at wire 0x0001.

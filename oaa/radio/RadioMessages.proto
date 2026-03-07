@@ -4,33 +4,37 @@
 
 /*
  * Radio channel messages (GAL channel type 15, RADIO)
- * Handler: iaq.java, log tag: CAR.GAL.RADIO-EP
- * Service: hlf.java, log tag: CAR.RADIO
+ * Handler: ibf.java (16.2), log tag: CAR.GAL.RADIO-EP
+ * Service: hlr.java (16.2), log tag: CAR.RADIO
  *
  * Provides broadcast radio control — AM/FM, HD Radio, DAB/DMB.
  * Maps to Android's android.hardware.radio broadcast radio HAL concepts:
  * program selectors with identifier types, station metadata, song info,
  * and control operations (mute, tune, favorites).
  *
- * Message IDs:
- *   0x801A = RadioProgramListNotification     (Phone→HU, wau)
- *   0x801B = RadioProgramInfoNotification     (Phone→HU, wat)
- *   0x801C = RadioMuteRequest                 (HU→Phone, wao)
- *   0x801D = RadioMuteResponse                (Phone→HU, wap)
- *   0x801E = RadioTuneRequest                 (HU→Phone, wbc)
- *   0x801F = RadioTuneResponse                (Phone→HU, wbd)
- *   0x8020 = RadioFavoriteListNotification    (Phone→HU, wal)
- *   0x8021 = RadioFavoriteToggleRequest       (HU→Phone, waz)
- *   0x8022 = RadioTuneDirectionRequest        (HU→Phone, wba)
+ * NOTE: ibf extends iav directly — NO vdp.m36513at() +1 offset.
+ * Wire IDs = switch case values in ibf.mo18864a.
  *
- * Callback interface (ptj): onProgramList, onProgramInfo, onMute,
+ * Message IDs (directions CORRECTED 2026-03-06):
+ *   0x801A = RadioProgramListNotification     (HU→Phone, wam/16.2)
+ *   0x801B = RadioProgramInfoNotification     (HU→Phone, wal/16.2)
+ *   0x801C = RadioMuteRequest                 (Phone→HU, wag/16.2)
+ *   0x801D = RadioMuteResponse                (HU→Phone, wah/16.2)
+ *   0x801E = RadioTuneRequest                 (Phone→HU, wat/16.2)
+ *   0x801F = RadioTuneResponse                (HU→Phone, wau/16.2)
+ *   0x8020 = RadioFavoriteListNotification    (HU→Phone, wad/16.2)
+ *   0x8021 = RadioFavoriteToggleRequest       (Phone→HU, waq/16.2)
+ *   0x8022 = RadioTuneDirectionRequest        (Phone→HU, war/16.2)
+ *   0x8023 = RadioSearchRequest               (Phone→HU, wac/16.2) — NEW
+ *
+ * Callback interface (psq/16.2): onProgramList, onProgramInfo, onMute,
  *   onTune, onFavoriteList
- * Manager interface (ptg): setMute, tuneToProgram, tuneDirection,
- *   toggleFavorite, registerCallback
+ * Manager interface (psn/16.2): setMute, tuneToProgram, tuneDirection,
+ *   toggleFavorite, search, registerCallback
  *
  * Service discovery config: see oaa/control/RadioChannelData.proto
  *
- * APK: AA v16.1
+ * APK: AA v16.1 (originally), v16.2 (verified 2026-03-06)
  */
 
 syntax = "proto2";
@@ -150,17 +154,17 @@ message RadioProgramInfo {
 }
 
 // ============================================================================
-// Top-level messages — Phone → HU (received by handler)
+// Top-level messages — HU → Phone (received by ibf.mo18864a)
 // ============================================================================
 
-// 0x801A: RadioProgramListNotification (APK class: wau)
+// 0x801A: RadioProgramListNotification (16.2: wam, 16.1: wau)
 // Full list of available radio programs.
 // confidence: silver [apk_static, cross_version]
 message RadioProgramListNotification {
     repeated RadioProgramInfo programs = 1;  // confidence: silver [apk_static, cross_version]
 }
 
-// 0x801B: RadioProgramInfoNotification (APK class: wat)
+// 0x801B: RadioProgramInfoNotification (16.2: wal, 16.1: wat)
 // Current program info update (e.g., station changed, metadata updated).
 // confidence: silver [apk_static, cross_version]
 message RadioProgramInfoNotification {
@@ -169,21 +173,21 @@ message RadioProgramInfoNotification {
     optional bool has_audio_focus = 3;  // confidence: silver [apk_static, cross_version]
 }
 
-// 0x801D: RadioMuteResponse (APK class: wap)
+// 0x801D: RadioMuteResponse (16.2: wah, 16.1: wap)
 // Response to mute request.
 // confidence: silver [apk_static, cross_version]
 message RadioMuteResponse {
     optional bool is_muted = 1;  // confidence: silver [apk_static, cross_version]
 }
 
-// 0x801F: RadioTuneResponse (APK class: wbd)
+// 0x801F: RadioTuneResponse (16.2: wau, 16.1: wbd)
 // Response to tune request with status.
 // confidence: silver [apk_static, cross_version]
 message RadioTuneResponse {
     optional RadioTuneStatus status = 1;  // confidence: silver [apk_static, cross_version]
 }
 
-// 0x8020: RadioFavoriteListNotification (APK class: wal)
+// 0x8020: RadioFavoriteListNotification (16.2: wad, 16.1: wal)
 // List of favorite/preset programs.
 // confidence: silver [apk_static, cross_version]
 message RadioFavoriteListNotification {
@@ -191,32 +195,39 @@ message RadioFavoriteListNotification {
 }
 
 // ============================================================================
-// Top-level messages — HU → Phone (sent by service)
+// Top-level messages — Phone → HU (sent by hlr.java via ibf.m20106k)
 // ============================================================================
 
-// 0x801C: RadioMuteRequest (APK class: wao)
+// 0x801C: RadioMuteRequest (16.2: wag, 16.1: wao)
 // confidence: silver [apk_static, cross_version]
 message RadioMuteRequest {
     optional bool mute = 1;  // confidence: silver [apk_static, cross_version]
 }
 
-// 0x801E: RadioTuneRequest (APK class: wbc)
+// 0x801E: RadioTuneRequest (16.2: wat, 16.1: wbc)
 // Tune to a specific program by selector.
 // confidence: silver [apk_static, cross_version]
 message RadioTuneRequest {
     optional RadioProgramSelector program_selector = 1;  // confidence: silver [apk_static, cross_version]
 }
 
-// 0x8021: RadioFavoriteToggleRequest (APK class: waz)
+// 0x8021: RadioFavoriteToggleRequest (16.2: waq, 16.1: waz)
 // Toggle current program as favorite.
 // confidence: silver [apk_static, cross_version]
 message RadioFavoriteToggleRequest {
     optional bool is_favorite = 1;  // confidence: silver [apk_static, cross_version]
 }
 
-// 0x8022: RadioTuneDirectionRequest (APK class: wba)
+// 0x8022: RadioTuneDirectionRequest (16.2: war, 16.1: wba)
 // Seek up/down to next available station.
 // confidence: silver [apk_static, cross_version]
 message RadioTuneDirectionRequest {
     optional RadioTuneDirection direction = 1;  // confidence: silver [apk_static, cross_version]
+}
+
+// 0x8023: RadioSearchRequest (16.2: wac — NEW in 16.2)
+// Search for radio stations by query string.
+// confidence: gold [apk_deep_trace]
+message RadioSearchRequest {
+    optional string query = 1;  // confidence: gold [apk_deep_trace]
 }
