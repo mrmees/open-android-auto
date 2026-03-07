@@ -6,8 +6,10 @@ Tools and indexed data from reverse engineering the Android Auto protocol via AP
 
 | Directory | Version | Contents |
 |-----------|---------|----------|
-| `android_auto_16.2.660604-release_162660604/` | v16.2 | JSON + SQLite index (current) |
-| `database/apk_index.db` | v16.1 | SQLite database (155MB, projection-scope) |
+| `android_auto_16.2.660604-release_162660604/` | v16.2 | JSON + SQLite index (current primary) |
+| `android_auto_16.1.660414-release_161660414/` | v16.1 | JSON + SQLite index |
+| `android_auto_15.9.655104-release_159655104/` | v15.9 | JSON + SQLite index, decompiled source |
+| `database/apk_index.db` | v16.1 | Standalone SQLite database (155MB, projection-scope) |
 
 ### Key tables in apk_index.db
 
@@ -53,6 +55,10 @@ Compares proto definitions across APK versions (v16.1 vs v16.2). Generates diff 
 ### tools/proto_schema_validator/
 
 Validates proto schema definitions against APK class mappings. Two-layer approach: structural schema validation and wire-format verification.
+
+### tools/verify/
+
+Helper scripts for proto verification: `find_references.sh` (trace class references in jadx output), `extract_msg_ids.sh` (extract message ID tables from channel handlers), `db_lookup.sh` (query indexed APK data).
 
 ### tools/interaction_docs/
 
