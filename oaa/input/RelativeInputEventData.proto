@@ -5,9 +5,10 @@ syntax="proto2";
 
 package oaa.proto.data;
 
-// confidence: silver [apk_static, cross_version]
+// APK class: wbb (16.2), wbl (16.1) — single rotary/scroll event
+// confidence: gold [handler_trace, deep_apk]
 message RelativeInputEvent
 {
-    optional uint32 scan_code = 1;  // confidence: silver [apk_static, cross_version]
-    optional int32 delta = 2;  // confidence: silver [apk_static, cross_version]
+    required uint32 scan_code = 1;  // axis identifier (only 65536/ROTARY recognized)
+    required int32 delta = 2;       // signed scroll amount
 }

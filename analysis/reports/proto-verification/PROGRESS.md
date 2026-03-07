@@ -8,10 +8,10 @@
 
 | Status | Count |
 |--------|-------|
-| Verified (Gold) | 51 |
-| Schema Errors Found & Fixed | 22 |
-| New Protos Discovered | 2 (MediaPlaybackStatusEvent, VehicleEnergyForecast) |
-| Retracted / Removed | 9 |
+| Verified (Gold) | 69 |
+| Schema Errors Found & Fixed | 37 |
+| New Protos Discovered | 3 (MediaPlaybackStatusEvent, VehicleEnergyForecast, InputBindingResponse) |
+| Retracted / Removed | 15 |
 | Relocated (wrong channel) | 2 (BindingRequest/Response → input) |
 | Pending | remaining channels |
 
@@ -26,7 +26,7 @@
 | 1c | Car Local Media | CAR.GAL.CAR_LOCAL_MEDIA | hyh (16.2) | **COMPLETE** | [media.md](media.md) | 3 Gold msgs, direction corrected, own PlaybackState enum |
 | 2 | Navigation | CAR.INST | ian/hlj (16.2) | **COMPLETE** | [navigation.md](navigation.md) | 7 Gold msgs, 2 retractions, 1 new proto, enum fixes |
 | 3 | Control (ch 0) | CAR.GAL.GAL | hzh (16.2) | **COMPLETE** | [control.md](control.md) | 18 Gold msgs, 5 Gold enums, 3 retractions, 2 relocated |
-| 4 | Input | CAR.GAL.INPUT | TBD | PENDING | | Touch/button |
+| 4 | Input | CAR.GAL.INPUT | iae/hlg (16.2) | **COMPLETE** | [input.md](input.md) | 4 Gold msgs, 8 sub-msgs, 3 enums, 3 SDP configs, 6 retractions |
 | 5 | Phone | TBD | TBD | PENDING | | Phone status |
 | 6 | Video | CAR.GAL.VIDEO | TBD | PENDING | | Video sink |
 | 7 | Audio (media) | CAR.GAL.AUDIO | TBD | PENDING | | Multiple audio channels |
@@ -46,7 +46,7 @@
 
 ## Resume Pointer
 
-**Next action:** Begin input channel (#4) verification. BindingRequest/Response relocated here from control — need full input handler trace. Also sensor (#9) and phone (#5) channels.
+**Next action:** Begin phone (#5) or video (#6) channel verification.
 
 ## Completed — Navigation Channel (Wave 2)
 

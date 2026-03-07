@@ -1,17 +1,28 @@
 proto: oaa/input/InputBindingNotificationMessage.proto
 message: InputBindingNotification
-confidence: silver
-last_updated: '2026-03-03'
+confidence: gold
+last_updated: '2026-03-06'
+channel: input
+channel_gal_type: 8
+msg_id: 0x8004
+direction: Phone->HU
+class_16_2: vxi
+class_16_1: vxw
+class_15_9: vqe
 evidence:
+- type: handler_trace
+  method: deep_apk
+  source: hlg.java:496-507 (m18746o sends msg 32772 as vxi)
+  date: '2026-03-06'
+  description: >
+    hlg.m18746o looks up HapticFeedbackType via vwy.m37362b(i), sets
+    vxiVar.f73947c = enum value, sends via iaeVar.m20106k(32772, vxi).
+    Enum verified via vve case 12 → vwy.
 - type: apk_static
   method: bfs_trace
   source: class_mapping.yaml (v15.9:vqe, v16.1:vxw, v16.2:vxi)
   date: '2026-03-03'
-  description: Mapped InputBindingNotification to obfuscated APK class(es) via bfs_trace
-    analysis.
-- type: cross_version
-  method: structural_comparison
-  source: cross-version checker (15.9, 16.1, 16.2)
-  date: '2026-03-03'
-  description: Structural match confirmed across versions 15.9, 16.1, 16.2. Field
-    numbers, types, and modifiers are consistent.
+  description: Mapped InputBindingNotification to obfuscated APK class(es) via bfs_trace.
+changes:
+- date: '2026-03-06'
+  description: Updated class refs and comment. Promoted silver→gold.

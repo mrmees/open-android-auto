@@ -1,17 +1,27 @@
 proto: oaa/input/InputChannelConfigData.proto
 message: InputChannelConfig
-confidence: silver
-last_updated: '2026-03-03'
+confidence: gold
+last_updated: '2026-03-06'
+class_16_2: vxm
+class_16_1: vya
+class_15_9: vqi
 evidence:
+- type: handler_trace
+  method: deep_apk
+  source: hlg.java:211-302 (mo18712a processes InputChannelConfig from SDP)
+  date: '2026-03-06'
+  description: >
+    f73981d=supported_keycodes (line 220, xot.m38623Y), f73982e=touch_screen_configs
+    (line 252, vxl list), f73983f=touchpad_configs (line 221, vxk list),
+    f73984g=supported_haptic_types (line 222, vwy enum via vve case 12),
+    f73985h=display_id (line 217-219, matches CarDisplayId.f20666b).
 - type: apk_static
   method: string_const
   source: class_mapping.yaml (v15.9:vqi, v16.1:vya, v16.2:vxm)
   date: '2026-03-03'
-  description: Mapped InputChannelConfig to obfuscated APK class(es) via string_const
-    analysis.
-- type: cross_version
-  method: structural_comparison
-  source: cross-version checker (15.9, 16.1, 16.2)
-  date: '2026-03-03'
-  description: Structural match confirmed across versions 15.9, 16.1, 16.2. Field
-    numbers, types, and modifiers are consistent.
+  description: Mapped InputChannelConfig via string_const.
+changes:
+- date: '2026-03-06'
+  description: >
+    Renamed fields: input_type→supported_keycodes, key_configs→supported_haptic_types,
+    capabilities→display_id. Updated APK class refs. Promoted silver→gold.

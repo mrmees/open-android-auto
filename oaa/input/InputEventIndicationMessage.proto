@@ -10,30 +10,18 @@ import "oaa/input/RelativeInputEventsData.proto";
 
 package oaa.proto.messages;
 
-// APK class: vxx — no field 2 (disp_channel)
-// confidence: silver [apk_static, cross_version]
+// APK class: vxj (16.2), vxx (16.1) — msg 0x8001, HU→Phone
+// No field 2 (skipped in proto numbering)
+// confidence: gold [handler_trace, deep_apk]
 message InputEventIndication
 {
-    optional uint64 timestamp = 1;  // confidence: silver [apk_static, cross_version]
-    optional data.TouchEvent touch_event = 3;  // confidence: silver [apk_static, cross_version]
-    optional data.ButtonEvents button_event = 4;  // confidence: silver [apk_static, cross_version]
-    optional data.AbsoluteInputEvents absolute_input_event = 5;  // confidence: silver [apk_static, cross_version]
-    optional data.RelativeInputEvents relative_input_event = 6;  // confidence: silver [apk_static, cross_version]
-
-    // Discovered via APK proto decoder (vxx.java, AA v16.1)
-    // Second touch event — possibly for multi-display (cluster) input
-    optional data.TouchEvent secondary_touch_event = 7;  // confidence: silver [apk_static, cross_version]
+    optional uint64 timestamp = 1;                                    // elapsedRealtime in microseconds
+    optional data.TouchEvent touch_event = 3;                         // touchscreen input
+    optional data.ButtonEvents button_event = 4;                      // hardware button press/release
+    optional data.AbsoluteInputEvents absolute_input_event = 5;       // touchpad primary click
+    optional data.RelativeInputEvents relative_input_event = 6;       // rotary scroll
+    optional data.TouchEvent touchpad_event = 7;                      // touchpad surface input (same proto as field 3)
 }
 
-// APK class: vvh (proto2) — single absolute input event coordinate
-// confidence: silver [apk_static, cross_version]
-message AbsInputEvent {
-    required uint32 axis = 1; // APK: uint32 (type_id=11), required  // confidence: silver [apk_static, cross_version]
-    required int32 value = 2; // APK: int32 (type_id=4), required  // confidence: silver [apk_static, cross_version]
-}
-
-// APK class: vvi (proto2) — collection of absolute input events
-// confidence: silver [apk_static, cross_version]
-message AbsoluteEvent {
-    repeated AbsInputEvent events = 1; // APK: repeated message (type_id=27)  // confidence: silver [apk_static, cross_version]
-}
+// RETRACTED: AbsInputEvent (was vvh in 16.1) — vvh in 16.2 is a different proto (1 int32 field)
+// RETRACTED: AbsoluteEvent (was vvi in 16.1) — vvi in 16.2 is BatteryStatus (3 scalar fields)

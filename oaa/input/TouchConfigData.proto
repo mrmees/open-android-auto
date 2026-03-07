@@ -1,15 +1,6 @@
-// SPDX-License-Identifier: GPL-3.0-or-later
-// Copyright (C) 2024-2026 Open Android Auto contributors
-// Based on works by: f1x.studio (aasdk), opencardev (crankshaft), aa-proxy (aa-proxy-rs)
-syntax="proto2";
-
-package oaa.proto.data;
-
-// APK class: vxn — 3 fields including bool at field 3
-// confidence: silver [apk_static, cross_version]
-message TouchConfig
-{
-    optional int32 width = 1;  // confidence: silver [apk_static, cross_version]
-    optional int32 height = 2;  // confidence: silver [apk_static, cross_version]
-    optional bool unknown_3 = 3;  // confidence: silver [apk_static, cross_version]
-}
+// RETRACTED — not an input channel proto
+// APK class vwz (16.2) / vxn (16.1) is actually a compass/heading sensor data proto,
+// used in C0000a.m238e → CarSensorEvent type 5.
+// Fields: int32, int32, bool — NOT related to touch screen configuration.
+// For touch screen config, use TouchScreenConfigData.proto (class vxl).
+// For touch pad config, use TouchPadConfigData.proto (class vxk).

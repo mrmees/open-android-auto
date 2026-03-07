@@ -1,27 +1,30 @@
 proto: oaa/input/InputEventIndicationMessage.proto
 message: InputEventIndication
-confidence: silver
-last_updated: '2026-03-03'
+confidence: gold
+last_updated: '2026-03-06'
+channel: input
+channel_gal_type: 8
+msg_id: 0x8001
+direction: HU->Phone
+class_16_2: vxj
+class_16_1: vxx
+class_15_9: vqf
 evidence:
-- type: apk_static
-  method: bfs_trace
-  source: class_mapping.yaml (v15.9:vnp, v16.1:vvh, v16.2:vut)
-  date: '2026-03-03'
-  description: Mapped AbsInputEvent to obfuscated APK class(es) via bfs_trace analysis.
-- type: apk_static
-  method: bfs_trace
-  source: class_mapping.yaml (v15.9:vnq, v16.1:vvi)
-  date: '2026-03-03'
-  description: Mapped AbsoluteEvent to obfuscated APK class(es) via bfs_trace analysis.
+- type: handler_trace
+  method: deep_apk
+  source: iae.java:30,70-72 (msg 32769, parses vxj)
+  date: '2026-03-06'
+  description: >
+    Handler dispatch at line 30 (i != 32769), proto parsed at line 70-72 via vxj.f73948a.
+    Sub-messages confirmed: wbz(3,7), vxv(4), vuu(5), wbc(6). No field 2.
 - type: apk_static
   method: string_const
   source: class_mapping.yaml (v15.9:vqf, v16.1:vxx, v16.2:vxj)
   date: '2026-03-03'
-  description: Mapped InputEventIndication to obfuscated APK class(es) via string_const
-    analysis.
-- type: cross_version
-  method: structural_comparison
-  source: cross-version checker (15.9, 16.1, 16.2)
-  date: '2026-03-03'
-  description: Structural match confirmed across versions 15.9, 16.1, 16.2. Field
-    numbers, types, and modifiers are consistent.
+  description: Mapped InputEventIndication to obfuscated APK class(es) via string_const.
+changes:
+- date: '2026-03-06'
+  description: >
+    Updated class ref vxx→vxj. Renamed secondary_touch_event→touchpad_event.
+    RETRACTED inline AbsInputEvent (vvh reassigned in 16.2) and AbsoluteEvent
+    (vvi=BatteryStatus in 16.2). Promoted silver→gold.

@@ -1,17 +1,23 @@
 proto: oaa/input/RelativeInputEventsData.proto
 message: RelativeInputEvents
-confidence: silver
-last_updated: '2026-03-03'
+confidence: gold
+last_updated: '2026-03-06'
+class_16_2: wbc
+class_16_1: wbm
+class_15_9: vtu
 evidence:
+- type: handler_trace
+  method: deep_apk
+  source: iae.java:181-202 (f73955g→wbc, reads wbc.f74891b as list of wbb)
+  date: '2026-03-06'
+  description: >
+    vxjVar.f73955g = wbc instance. wbcVar.f74891b = repeated list of wbb.
+    Single field: repeated RelativeInputEvent.
 - type: apk_static
   method: enum_match
   source: class_mapping.yaml (v15.9:vtu, v16.1:wbm)
   date: '2026-03-03'
-  description: Mapped RelativeInputEvents to obfuscated APK class(es) via enum_match
-    analysis.
-- type: cross_version
-  method: structural_comparison
-  source: cross-version checker (15.9, 16.1)
-  date: '2026-03-03'
-  description: Structural match confirmed across versions 15.9, 16.1. Field numbers,
-    types, and modifiers are consistent.
+  description: Mapped RelativeInputEvents via enum_match.
+changes:
+- date: '2026-03-06'
+  description: Added 16.2 class wbc (was missing). Promoted silver→gold.

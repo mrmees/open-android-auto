@@ -1,22 +1,6 @@
-// Android Auto Protocol Buffer Definitions
-// https://github.com/mrmees/open-android-auto
-// SPDX-License-Identifier: GPL-3.0-or-later
-
-/*
- * Discovered via APK proto decoder (vvh.java, AA v16.1)
- * Sub-message for keyboard/button key event with scan code.
- */
-
-syntax="proto2";
-
-package oaa.proto.data;
-
-// APK class: vyi — key event with keycode and down/pressed state
-// confidence: silver [apk_static, cross_version]
-message KeyEvent
-{
-    optional uint32 keycode = 1;  // confidence: silver [apk_static, cross_version]
-    optional bool is_pressed = 2;  // confidence: silver [apk_static, cross_version]
-    optional uint32 meta_state = 3;  // confidence: silver [apk_static, cross_version]
-    optional bool long_press = 4;  // confidence: silver [apk_static, cross_version]
-}
+// RETRACTED — duplicate of ButtonEventData.proto
+// Both map to same APK class: vxu (16.2), vyi (16.1)
+// Use ButtonEventData.proto instead (field names keycode/is_pressed/meta_state/long_press)
+//
+// Original proto decoder found this via vvh.java (16.1) but vvh in 16.2 is a different proto.
+// The actual ButtonEvent proto (vxu) is the correct one, verified via iae.java handler trace.

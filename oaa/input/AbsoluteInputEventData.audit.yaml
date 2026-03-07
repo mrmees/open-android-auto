@@ -1,17 +1,24 @@
 proto: oaa/input/AbsoluteInputEventData.proto
 message: AbsoluteInputEvent
-confidence: silver
-last_updated: '2026-03-03'
+confidence: gold
+last_updated: '2026-03-06'
+class_16_2: vut
+class_16_1: vvh
+class_15_9: vnp
 evidence:
-- type: apk_static
-  method: enum_match
-  source: class_mapping.yaml (v15.9:vuq, v16.1:wci, v16.2:wby)
-  date: '2026-03-03'
-  description: Mapped AbsoluteInputEvent to obfuscated APK class(es) via enum_match
-    analysis.
-- type: cross_version
-  method: structural_comparison
-  source: cross-version checker (15.9, 16.1, 16.2)
-  date: '2026-03-03'
-  description: Structural match confirmed across versions 15.9, 16.1, 16.2. Field
-    numbers, types, and modifiers are consistent.
+- type: handler_trace
+  method: deep_apk
+  source: iae.java:222-227 (absolute event processing)
+  date: '2026-03-06'
+  description: >
+    f73531b=axis (line 225, checked ==65541), f73532c=value (line 226, ==1 test).
+    zzq descriptor confirms 2 fields only: uint32(1), int32(2). No field 3.
+changes:
+- date: '2026-03-06'
+  description: >
+    Removed field 3 (pointer_id — doesn't exist in vut). Fixed field 2 type
+    uint32→int32. Changed both fields to required. Fixed 16.2 class from
+    wby (TouchLocation) to vut. Promoted silver→gold.
+note: >
+  Previous audit had wrong 16.2 class mapping: wby is TouchLocation, not AbsoluteInputEvent.
+  Triage tool confused these due to similar field counts.

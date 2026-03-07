@@ -1,16 +1,24 @@
 proto: oaa/input/TouchEventData.proto
 message: TouchEvent
-confidence: silver
-last_updated: '2026-03-03'
+confidence: gold
+last_updated: '2026-03-06'
+class_16_2: wbz
+class_16_1: wcj
+class_15_9: vur
 evidence:
+- type: handler_trace
+  method: deep_apk
+  source: iae.java:74-88 (touchscreen), iae.java:204-215 (touchpad)
+  date: '2026-03-06'
+  description: >
+    Used in InputEventIndication fields 3 (touchscreen) and 7 (touchpad).
+    f75099c = repeated TouchLocation list, f75100d = action_index,
+    f75101e = touch action decoded via vdp.m36509ap. Enum verifier vym.
 - type: apk_static
   method: proto_access
   source: class_mapping.yaml (v15.9:vur, v16.1:wcj, v16.2:wbz)
   date: '2026-03-03'
-  description: Mapped TouchEvent to obfuscated APK class(es) via proto_access analysis.
-- type: cross_version
-  method: structural_comparison
-  source: cross-version checker (15.9, 16.1, 16.2)
-  date: '2026-03-03'
-  description: Structural match confirmed across versions 15.9, 16.1, 16.2. Field
-    numbers, types, and modifiers are consistent.
+  description: Mapped TouchEvent to obfuscated APK class(es) via proto_access.
+changes:
+- date: '2026-03-06'
+  description: Added class comment with 16.2/16.1 names. Promoted silver→gold.

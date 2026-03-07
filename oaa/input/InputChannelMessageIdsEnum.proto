@@ -5,15 +5,15 @@ syntax="proto3";
 
 package oaa.proto.ids;
 
-// confidence: unverified
+// confidence: gold [handler_trace]
 message InputChannelMessage
 {
-    // confidence: unverified
     enum Enum
     {
         NONE = 0x0000;
-        INPUT_EVENT_INDICATION = 0x8001;
-        BINDING_REQUEST = 0x8002;
-        BINDING_RESPONSE = 0x8003;
+        INPUT_EVENT_INDICATION = 0x8001;   // HU→Phone: touch/button/rotary/abs events
+        BINDING_REQUEST = 0x8002;          // Phone→HU: keycode acknowledgment
+        BINDING_RESPONSE = 0x8003;         // HU→Phone: binding status
+        BINDING_NOTIFICATION = 0x8004;     // Phone→HU: haptic feedback request
     }
 }

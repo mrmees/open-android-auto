@@ -3,21 +3,20 @@
 // Based on works by: f1x.studio (aasdk), opencardev (crankshaft), aa-proxy (aa-proxy-rs)
 
 /*
- * Input binding request message.
+ * Input binding request — Phone→HU, msg 0x8002.
  *
- * Requests input binding for a specific display/channel. The display_id
- * identifies the target display surface.
+ * Phone echoes back the supported keycodes from InputChannelConfig
+ * to acknowledge which keycodes it will handle.
  *
- * APK class: wbl (AA v16.1)
- * Field numbers decoded from protobuf-lite RawMessageInfo descriptor.
+ * APK class: vxr (16.2), wbl (16.1)
+ * Sent by hlg.mo18727r after SDP input channel discovery.
  */
 syntax="proto2";
 
 package oaa.proto.messages;
 
-// confidence: silver [apk_static, cross_version]
+// confidence: gold [handler_trace, deep_apk]
 message InputBindingRequest
 {
-    required uint32 display_id = 1;  // confidence: silver [apk_static, cross_version]
-    required int32 binding_type = 2;  // confidence: silver [apk_static, cross_version]
+    repeated int32 keycodes = 1 [packed = true];  // supported keycodes echoed from InputChannelConfig
 }

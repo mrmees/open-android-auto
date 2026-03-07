@@ -1,14 +1,13 @@
-// Android Auto Protocol Buffer Definitions
-// https://github.com/mrmees/open-android-auto
 // SPDX-License-Identifier: GPL-3.0-or-later
+// Copyright (C) 2024-2026 Open Android Auto contributors
+// Based on works by: f1x.studio (aasdk), opencardev (crankshaft), aa-proxy (aa-proxy-rs)
 
 /*
- * Input channel configuration with touch and input device settings.
+ * Input channel configuration — SDP descriptor per display.
  *
- * APK class: vya.java (AA v16.1)
- * Descriptor: version 1, 5 fields
- * Object[] refs: vxz (TouchScreenConfig), vxy (TouchPadConfig), vvs.m (enum verifier)
- * Note: zpn.java is a simpler variant with only 2 fields — vya is the full version.
+ * APK class: vxm (16.2), vya (16.1)
+ * Used in ServiceDiscoveryResponse ChannelDescriptor.
+ * display_id (field 5) matches VideoChannelDescriptor display.
  */
 
 syntax="proto2";
@@ -19,13 +18,12 @@ import "oaa/input/HapticFeedbackTypeEnum.proto";
 
 package oaa.proto.data;
 
-// APK class: vya — full input channel config (5 fields)
-// confidence: silver [apk_static, cross_version]
+// confidence: gold [handler_trace, deep_apk]
 message InputChannelConfig
 {
-    repeated int32 input_type = 1 [packed = true];            // APK: packed int32 (input device types)
-    repeated TouchScreenConfig touch_screen_configs = 2; // APK: vxz.class (repeated message)  // confidence: silver [apk_static, cross_version]
-    repeated TouchPadConfig touchpad_configs = 3; // APK: vxy.class (repeated message)  // confidence: silver [apk_static, cross_version]
-    repeated enums.HapticFeedbackType.Enum key_configs = 4; // APK: repeated enum (vvs.m → vxm/HapticFeedback)  // confidence: silver [apk_static, cross_version]
-    optional uint32 capabilities = 5; // APK: singular uint32  // confidence: silver [apk_static, cross_version]
+    repeated int32 supported_keycodes = 1 [packed = true];           // Android keycodes the HU can send
+    repeated TouchScreenConfig touch_screen_configs = 2;             // touchscreen resolution per display
+    repeated TouchPadConfig touchpad_configs = 3;                    // touchpad config (at most 1)
+    repeated enums.HapticFeedbackType.Enum supported_haptic_types = 4;  // haptic feedback types HU supports
+    optional uint32 display_id = 5;                                  // matches video channel display ID
 }

@@ -5,10 +5,10 @@ syntax="proto2";
 
 package oaa.proto.data;
 
-// confidence: silver [apk_static, cross_version]
+// APK class: vut (16.2), vvh (16.1) — single absolute input axis event
+// confidence: gold [handler_trace, deep_apk]
 message AbsoluteInputEvent
 {
-    optional uint32 scan_code = 1;  // confidence: silver [apk_static, cross_version]
-    optional uint32 value = 2;  // confidence: silver [apk_static, cross_version]
-    optional uint32 pointer_id = 3;  // confidence: silver [apk_static, cross_version]
+    required uint32 axis = 1;   // scan code / axis (only 65541/PRIMARY_BUTTON handled)
+    required int32 value = 2;   // axis value (1 = pressed, 0 = released)
 }

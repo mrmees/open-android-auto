@@ -1,0 +1,21 @@
+proto: oaa/input/InputBindingResponseMessage.proto
+message: InputBindingResponse
+confidence: gold
+last_updated: '2026-03-06'
+channel: input
+channel_gal_type: 8
+msg_id: 0x8003
+direction: HU->Phone
+class_16_2: vxs
+evidence:
+- type: handler_trace
+  method: deep_apk
+  source: iae.java:35-49 (msg 32771, parses vxs)
+  date: '2026-03-06'
+  description: >
+    Handler dispatch at line 31 (i != 32771), proto parsed via vxs.f74009a.
+    Status field logged at line 49: "Key binding response, status = %d" reading f74012c.
+    zzq descriptor confirms 1 field: required int32 at field 1.
+changes:
+- date: '2026-03-06'
+  description: NEW proto file — no previous version existed.

@@ -1,16 +1,26 @@
 proto: oaa/input/ButtonEventData.proto
 message: ButtonEvent
-confidence: silver
-last_updated: '2026-03-03'
+confidence: gold
+last_updated: '2026-03-06'
+class_16_2: vxu
+class_16_1: vyi
+class_15_9: vqq
 evidence:
+- type: handler_trace
+  method: deep_apk
+  source: iae.java:94-178 (full button event processing)
+  date: '2026-03-06'
+  description: >
+    f74297c=keycode (switch stmt line 98), f74298d=is_pressed (line 130),
+    f74299e=meta_state (hlg.m18737i line 139), f74300f=long_press (line 131).
+    Fields 1-3 accessed directly (required), field 4 checked via has-bits (optional).
 - type: apk_static
   method: proto_access
   source: class_mapping.yaml (v15.9:vqq, v16.1:vyi, v16.2:vxu)
   date: '2026-03-03'
-  description: Mapped ButtonEvent to obfuscated APK class(es) via proto_access analysis.
-- type: cross_version
-  method: structural_comparison
-  source: cross-version checker (15.9, 16.1, 16.2)
-  date: '2026-03-03'
-  description: Structural match confirmed across versions 15.9, 16.1, 16.2. Field
-    numbers, types, and modifiers are consistent.
+  description: Mapped ButtonEvent via proto_access.
+changes:
+- date: '2026-03-06'
+  description: >
+    Renamed scan_code→keycode, meta→meta_state. Changed fields 1-3 from
+    optional to required. Promoted silver→gold.

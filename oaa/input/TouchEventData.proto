@@ -8,10 +8,11 @@ import "oaa/input/TouchActionEnum.proto";
 
 package oaa.proto.data;
 
-// confidence: silver [apk_static, cross_version]
+// APK class: wbz (16.2), wcj (16.1) — touch event (shared by touchscreen and touchpad)
+// confidence: gold [handler_trace, deep_apk]
 message TouchEvent
 {
-    repeated data.TouchLocation touch_location = 1;  // confidence: silver [apk_static, cross_version]
-    optional uint32 action_index = 2;  // confidence: silver [apk_static, cross_version]
-    optional enums.TouchAction.Enum touch_action = 3;  // confidence: silver [apk_static, cross_version]
+    repeated data.TouchLocation touch_location = 1;       // one per active pointer
+    optional uint32 action_index = 2;                     // which pointer triggered POINTER_DOWN/UP
+    optional enums.TouchAction.Enum touch_action = 3;     // touch action type
 }

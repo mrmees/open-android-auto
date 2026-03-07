@@ -1,17 +1,23 @@
 proto: oaa/input/AbsoluteInputEventsData.proto
 message: AbsoluteInputEvents
-confidence: silver
-last_updated: '2026-03-03'
+confidence: gold
+last_updated: '2026-03-06'
+class_16_2: vuu
+class_16_1: vvi
+class_15_9: vnq
 evidence:
-- type: apk_static
-  method: string_const
-  source: class_mapping.yaml (v15.9:vur, v16.1:wcj, v16.2:wbz)
-  date: '2026-03-03'
-  description: Mapped AbsoluteInputEvents to obfuscated APK class(es) via string_const
-    analysis.
-- type: cross_version
-  method: structural_comparison
-  source: cross-version checker (15.9, 16.1, 16.2)
-  date: '2026-03-03'
-  description: Structural match confirmed across versions 15.9, 16.1, 16.2. Field
-    numbers, types, and modifiers are consistent.
+- type: handler_trace
+  method: deep_apk
+  source: iae.java:217-222 (f73954f→vuu, reads vuu.f73537b as list of vut)
+  date: '2026-03-06'
+  description: >
+    vxjVar.f73954f = vuu instance. vuuVar.f73537b = repeated list of vut.
+    zzq descriptor confirms 1 field only. Previous fields 2/3 were from wrong class.
+changes:
+- date: '2026-03-06'
+  description: >
+    Removed fields 2 (display_id) and 3 (action) — don't exist in vuu.
+    Fixed 16.2 class from wbz (TouchEvent) to vuu. Removed TouchActionEnum import.
+    Promoted silver→gold.
+note: >
+  Previous audit had wrong 16.2 class mapping: wbz is TouchEvent, not AbsoluteInputEvents.

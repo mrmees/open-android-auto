@@ -7,8 +7,9 @@ import "oaa/input/ButtonEventData.proto";
 
 package oaa.proto.data;
 
-// confidence: silver [apk_static, cross_version]
+// APK class: vxv (16.2), vyj (16.1) — button events container
+// confidence: gold [handler_trace, deep_apk]
 message ButtonEvents
 {
-    repeated ButtonEvent button_events = 1;  // confidence: silver [apk_static, cross_version]
+    repeated ButtonEvent button_events = 1;
 }

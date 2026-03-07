@@ -4,15 +4,13 @@
 syntax="proto2";
 
 import "oaa/input/AbsoluteInputEventData.proto";
-import "oaa/input/TouchActionEnum.proto";
 
 package oaa.proto.data;
 
-// APK class: wcj — absolute input events container (3 fields)
-// confidence: silver [apk_static, cross_version]
+// APK class: vuu (16.2), vvi (16.1) — absolute input events container
+// Only 1 field — previous fields 2 (display_id) and 3 (action) were from wrong class mapping
+// confidence: gold [handler_trace, deep_apk]
 message AbsoluteInputEvents
 {
-    repeated AbsoluteInputEvent absolute_input_events = 1;  // confidence: silver [apk_static, cross_version]
-    optional uint32 display_id = 2;  // confidence: silver [apk_static, cross_version]
-    optional enums.TouchAction.Enum action = 3; // APK: e (enum via vyv.m/vee.P — TouchAction)  // confidence: silver [apk_static, cross_version]
+    repeated AbsoluteInputEvent absolute_input_events = 1;
 }

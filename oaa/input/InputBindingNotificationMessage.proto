@@ -3,14 +3,13 @@
 // Based on works by: f1x.studio (aasdk), opencardev (crankshaft), aa-proxy (aa-proxy-rs)
 
 /*
- * Input binding notification message.
+ * Haptic feedback notification — Phone→HU, msg 0x8004.
  *
- * Notifies of input binding changes. The feedback_type field uses
- * the HapticFeedbackType enum (vxm).
+ * Phone requests haptic feedback from the HU. Only sent if the
+ * haptic type was advertised in InputChannelConfig.supported_haptic_types.
  *
- * APK class: vxw (AA v16.1)
- * Field numbers decoded from protobuf-lite RawMessageInfo descriptor.
- * Enum verified as HapticFeedbackType (vxm) via verifier vvs.m (validator 12).
+ * APK class: vxi (16.2), vxw (16.1)
+ * Sent by hlg.m18746o, enum verified via vve case 12 → vwy.
  */
 syntax="proto2";
 
@@ -18,8 +17,8 @@ import "oaa/input/HapticFeedbackTypeEnum.proto";
 
 package oaa.proto.messages;
 
-// confidence: silver [apk_static, cross_version]
+// confidence: gold [handler_trace, deep_apk]
 message InputBindingNotification
 {
-    optional enums.HapticFeedbackType.Enum feedback_type = 1; // APK: vxm  // confidence: silver [apk_static, cross_version]
+    optional enums.HapticFeedbackType.Enum feedback_type = 1;
 }
