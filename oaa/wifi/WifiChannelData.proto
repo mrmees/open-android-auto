@@ -9,8 +9,11 @@ option optimize_for=SPEED;
 
 package oaa.proto.data;
 
-// confidence: bronze [apk_static]
+// 16.1 class: wdh, 16.2 class: wcx
+// ChannelDescriptor field 14 — WiFi Projection SDP data
+// hmf.java logs: "Car wifi BSSID is %s" (NOT SSID)
+// confidence: gold [deep_trace]
 message WifiChannel
 {
-    optional string ssid = 1;  // confidence: bronze [apk_static]
-} 
+    optional string bssid = 1;  // HU WiFi AP BSSID  // confidence: gold [deep_trace]
+}

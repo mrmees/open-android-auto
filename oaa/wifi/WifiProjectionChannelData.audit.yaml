@@ -1,11 +1,18 @@
 proto: oaa/wifi/WifiProjectionChannelData.proto
 message: WiFiProjectionChannel
-confidence: bronze
-last_updated: '2026-03-03'
+confidence: retracted
+last_updated: '2026-03-07'
 evidence:
 - type: apk_static
   method: string_const
   source: class_mapping.yaml (v16.1:wdh)
   date: '2026-03-03'
-  description: Mapped WiFiProjectionChannel to obfuscated APK class(es) via string_const
-    analysis.
+  description: Original mapping from 16.1 APK class wdh.
+- type: deep_trace
+  method: handler_trace
+  source: hmf.java (16.2) — verified as duplicate of WifiChannelData.proto
+  date: '2026-03-07'
+  description: >
+    RETRACTED — duplicate of WifiChannel (WifiChannelData.proto). Both describe
+    ChannelDescriptor field 14 with identical structure (1 string field = BSSID).
+    Use WifiChannel from WifiChannelData.proto instead.

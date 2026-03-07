@@ -14,9 +14,12 @@ syntax="proto2";
 
 package oaa.proto.data;
 
-// APK class: wdh — 1 field (string at field 1)
-// confidence: bronze [apk_static]
+// RETRACTED — duplicate of WifiChannelData.proto (WifiChannel)
+// Both describe ChannelDescriptor field 14 with identical structure (1 string field).
+// Use WifiChannel from WifiChannelData.proto instead.
+// Field 1 is BSSID, not SSID (confirmed by hmf.java log: "Car wifi BSSID is %s")
+// confidence: retracted
 message WiFiProjectionChannel
 {
-    optional string ssid = 1;  // confidence: bronze [apk_static]
+    optional string bssid = 1;  // confidence: retracted — use WifiChannel.bssid instead
 }

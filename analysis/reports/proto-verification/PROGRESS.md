@@ -8,12 +8,12 @@
 
 | Status | Count |
 |--------|-------|
-| Verified (Gold) | 190 |
-| Schema Errors Found & Fixed | 74 |
-| New Protos Discovered | 13 (MediaPlaybackStatusEvent, VehicleEnergyForecast, InputBindingResponse, IntegratedOverlayStart/Stop, UpdateHuUiConfigResponse, UpdateUiConfigRequest, AVChannelMediaOptions, MicrophoneOpenResponse, RadioSearchRequest, BluetoothAuthenticationData, BluetoothAuthenticationResult, RegisterCarPropertyListenersRequest) |
-| Retracted / Removed | 28 |
+| Verified (Gold) | 194 |
+| Schema Errors Found & Fixed | 75 |
+| New Protos Discovered | 14 (MediaPlaybackStatusEvent, VehicleEnergyForecast, InputBindingResponse, IntegratedOverlayStart/Stop, UpdateHuUiConfigResponse, UpdateUiConfigRequest, AVChannelMediaOptions, MicrophoneOpenResponse, RadioSearchRequest, BluetoothAuthenticationData, BluetoothAuthenticationResult, RegisterCarPropertyListenersRequest, WifiCredentialsResponse) |
+| Retracted / Removed | 29 |
 | Relocated (wrong channel) | 4 (BindingRequest/Response → input, CallAvailability/VoiceSession → control) |
-| Pending | 2 secondary channels |
+| Pending | **0 — ALL CHANNELS COMPLETE** |
 
 ## Channel Verification Status
 
@@ -40,12 +40,37 @@
 | # | Channel | GAL Tag | Handler Class | Status | Report | Notes |
 |---|---------|---------|---------------|--------|--------|-------|
 | 12 | Car Control | CAR.GAL.CAR_CONTROL | hyc (16.2) | **COMPLETE** | [carcontrol.md](carcontrol.md) | 7 Gold msgs, 16 Gold sub-msgs, 7 Gold enums, 8 schema fixes, 2 retractions |
-| 13 | WiFi Projection | CAR.GAL.WIFI_PROJ | TBD | PENDING | | WiFi upgrade |
-| 14 | Vendor Extension | CAR.VENDOR | TBD | PENDING | | Vendor passthrough |
+| 13 | WiFi Projection | CAR.GAL.WIFI_PROJ | ibr (16.2) | **COMPLETE** | [wifi.md](wifi.md) | 1 Gold msg, 1 Gold SDP, 2 Gold enums, 1 new proto, 1 retraction, 1 schema fix |
+| 14 | Vendor Extension | GH.DhuVendorExtension | kaz (16.2) | **COMPLETE** | [vendorext.md](vendorext.md) | NOT a GAL channel — GMS vendor extension API, raw bytes |
 
 ## Resume Pointer
 
-**Next action:** Begin WiFi Projection (#13) channel verification. Vendor Extension (#14) after that. Diagnostics channel removed (no handler found in APK — may be HU-only).
+**ALL 14 CHANNELS COMPLETE.** Proto verification pipeline finished 2026-03-07. Final totals: 194 Gold protos, 29 retractions, 4 relocations, 14 new protos discovered, 75 schema errors fixed across 14 channels.
+
+## Completed — WiFi Projection Channel (Wave 12)
+
+### CAR.GAL.WIFI_PROJ (ibr.java, GAL type 17)
+
+| Proto | Wire ID | Direction | 16.2 Class | Confidence | Result |
+|-------|---------|-----------|------------|------------|--------|
+| WifiCredentialsResponse | 0x8002 | HU→Phone | wcw | Gold | **NEW** — only GAL msg on this channel |
+
+### SDP Data
+| Proto | 16.2 Class | Confidence | Result |
+|-------|------------|------------|--------|
+| WifiChannel (bssid) | wcx | Gold | Field renamed ssid→bssid |
+
+### Key Findings
+1. **Only 1 GAL message** — ibr.java handles only 0x8002 (WifiCredentialsResponse)
+2. **Phone doesn't send** — no send path found for 0x8001 (CREDENTIALS_REQUEST)
+3. **Most WiFi protos are BT RFCOMM** — setup messages dispatched by ngh.java, not GAL
+4. **SDP field name wrong** — was "ssid", actually "bssid" per hmf.java log
+5. **WiFiProjectionChannelData RETRACTED** — duplicate of WifiChannelData
+
+### Vendor Extension — NOT a GAL Channel
+kaz.java uses GMS vendor extension API (`com.google.android.apps.auto.components.dhuvendorextension`), not GAL wire protocol. Raw byte[] passthrough, no proto schema.
+
+### Totals: 1 Gold msg, 1 Gold SDP, 2 Gold enums, 1 new proto, 1 retraction, 1 schema fix
 
 ## Completed — Car Control Channel (Wave 11)
 

@@ -5,14 +5,16 @@ syntax="proto3";
 
 package oaa.proto.ids;
 
-// confidence: unverified
+// GAL handler: ibr.java (service 17, CAR.GAL.WIFI_PROJ)
+// Phone only handles 0x8002 (receive). No send path found for 0x8001.
+// confidence: gold [deep_trace]
 message WifiChannelMessage
 {
-  // confidence: unverified
+  // confidence: gold [deep_trace]
   enum Enum
   {
     NONE = 0x0000;
-    CREDENTIALS_REQUEST = 0x8001;
-    CREDENTIALS_RESPONSE = 0x8002;
+    CREDENTIALS_REQUEST = 0x8001;   // No phone-side handler — may be HU-only or unused
+    CREDENTIALS_RESPONSE = 0x8002;  // wcw — only msg handled by ibr.java
   }
 }

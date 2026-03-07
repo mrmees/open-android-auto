@@ -1,10 +1,19 @@
 proto: oaa/wifi/WifiChannelData.proto
 message: WifiChannel
-confidence: bronze
-last_updated: '2026-03-03'
+confidence: gold
+last_updated: '2026-03-07'
 evidence:
 - type: apk_static
   method: enum_match
   source: class_mapping.yaml (v16.1:wdh)
   date: '2026-03-03'
   description: Mapped WifiChannel to obfuscated APK class(es) via enum_match analysis.
+- type: deep_trace
+  method: handler_trace
+  source: hmf.java (16.2) — WiFi Projection manager (CAR.WIFI_PROJ)
+  date: '2026-03-07'
+  description: >
+    ChannelDescriptor field 14 = wcx (16.2), wdh (16.1). Single string field.
+    hmf.mo18712a() reads wcx.f75256b and logs "Car wifi BSSID is %s",
+    confirming field 1 is BSSID (not SSID as previously assumed).
+    SDP presence checked via bitfield: wbmVar.f74994b & 8192 (bit 13 = field 14).
