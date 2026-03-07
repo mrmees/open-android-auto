@@ -11,14 +11,15 @@ syntax="proto3";
 
 package oaa.proto.enums;
 
-// confidence: unverified
+// APK class: vxg (16.1) / vws (16.2) — 3 values confirmed via ied.java (vws.DISPLAY_TYPE_MAIN)
+// confidence: gold [deep_trace]
 message DisplayType
 {
-    // confidence: unverified
+    // confidence: gold [deep_trace]
     enum Enum
     {
-        MAIN = 0;
-        CLUSTER = 1;
-        AUXILIARY = 2;
+        MAIN = 0;  // DISPLAY_TYPE_MAIN
+        CLUSTER = 1;  // DISPLAY_TYPE_CLUSTER
+        AUXILIARY = 2;  // DISPLAY_TYPE_AUXILIARY
     }
 }
