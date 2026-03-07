@@ -16,14 +16,3 @@
  * See: analysis/reports/proto-verification/video.md
  */
 syntax="proto2";
-
-import "oaa/video/VideoFocusModeEnum.proto";
-
-package oaa.proto.messages;
-
-// RETRACTED — see UpdateHuUiConfigResponse.proto
-// confidence: retracted [deep_trace, handler_verified]
-message VideoFocusMode
-{
-    optional enums.VideoFocusMode.Enum focus = 1; // RETRACTED — actually ThemingTokensStatus enum
-}

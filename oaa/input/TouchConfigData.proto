@@ -1,3 +1,4 @@
+syntax = "proto2";
 // RETRACTED — not an input channel proto
 // APK class vwz (16.2) / vxn (16.1) is actually a compass/heading sensor data proto,
 // used in C0000a.m238e → CarSensorEvent type 5.

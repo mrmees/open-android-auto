@@ -14,7 +14,6 @@ message ButtonCode
 {
     enum Enum
     {
-        option allow_alias = true;
         NONE = 0x00;
         HOME = 0x03;            // KEYCODE_HOME
         BACK = 0x04;            // KEYCODE_BACK

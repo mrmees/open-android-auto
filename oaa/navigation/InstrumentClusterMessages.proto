@@ -33,6 +33,8 @@
 
 syntax = "proto2";
 
+import "oaa/navigation/NavigationTurnEventMessage.proto";
+
 package oaa.proto.messages;
 
 // 0x8001: InstrumentClusterStart

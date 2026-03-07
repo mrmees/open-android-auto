@@ -1,3 +1,4 @@
+syntax = "proto2";
 // RETRACTED — duplicate of InputChannelConfigData.proto
 // Both map to same APK class: vxm (16.2), vya (16.1)
 // This version incorrectly used TouchConfig (vwz, actually compass sensor data)

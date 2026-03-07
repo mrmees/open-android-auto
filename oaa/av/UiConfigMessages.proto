@@ -58,11 +58,9 @@ message UiConfig {
     optional UiTheme ui_theme = 4;  // confidence: silver [apk_static, cross_version]
 }
 
-// 0x800A: UpdateUiConfigRequest (HU->Phone) — APK class: wcs
-// confidence: silver [apk_static, cross_version]
-message UpdateUiConfigRequest {
-    optional UiConfig ui_config = 1;  // confidence: silver [apk_static, cross_version]
-}
+// 0x800A: UpdateUiConfigRequest (HU->Phone)
+// Canonical definition moved to oaa/video/UpdateUiConfigRequestMessage.proto (Gold confidence).
+// Field 1 is AdditionalVideoConfig, NOT UiConfig (deep trace verified).
 
 // 0x800B: UpdateUiConfigReply (Phone->HU)
 // confidence: silver [apk_static, cross_version]
@@ -78,7 +76,5 @@ message UpdateHuUiConfigRequest {
 }
 
 // 0x8013: UpdateHuUiConfigResponse (Phone->HU)
-// confidence: silver [apk_static, cross_version]
-message UpdateHuUiConfigResponse {
-    optional UiConfig ui_config = 1;  // confidence: silver [apk_static, cross_version]
-}
+// Canonical definition moved to oaa/video/UpdateHuUiConfigResponse.proto (Gold confidence).
+// Field 1 is ThemingTokensStatus, NOT UiConfig (deep trace verified).

@@ -29,14 +29,13 @@ option optimize_for=SPEED;
 
 import "oaa/sensor/SensorChannelData.proto";
 import "oaa/av/AVChannelData.proto";
-import "oaa/input/InputChannelData.proto";
+import "oaa/input/InputChannelConfigData.proto";
 import "oaa/av/AVInputChannelData.proto";
 import "oaa/bluetooth/BluetoothChannelData.proto";
 import "oaa/navigation/NavigationChannelData.proto";
 import "oaa/control/RadioChannelData.proto";
 import "oaa/control/VendorExtensionChannelData.proto";
 import "oaa/media/MediaChannelData.proto";
-import "oaa/phone/PhoneStatusChannelData.proto";
 import "oaa/notification/NotificationChannelData.proto";
 import "oaa/wifi/WifiChannelData.proto";
 import "oaa/carcontrol/CarPropertyData.proto";
@@ -50,7 +49,7 @@ message ChannelDescriptor
     optional int32 channel_id = 1;  // confidence: gold [deep_trace_verified, 16.2_jadx]
     optional SensorChannel sensor_channel = 2;  // confidence: gold [deep_trace_verified, 16.2_jadx]
     optional AVChannel av_channel = 3;  // confidence: gold [deep_trace_verified, 16.2_jadx]
-    optional InputChannel input_channel = 4;  // confidence: gold [deep_trace_verified, 16.2_jadx]
+    optional InputChannelConfig input_channel = 4;  // confidence: gold [deep_trace_verified, 16.2_jadx]
     optional AVInputChannel av_input_channel = 5;  // confidence: gold [deep_trace_verified, 16.2_jadx]
     optional BluetoothChannel bluetooth_channel = 6;  // confidence: gold [deep_trace_verified, 16.2_jadx]
     optional RadioChannelConfig radio_channel = 7;  // 16.2: wap (was RadioChannel/way in 16.1)  // confidence: gold [deep_trace_verified, 16.2_jadx]
@@ -66,6 +65,12 @@ message ChannelDescriptor
     optional VoiceChannel voice_channel = 17; // APK: vwd (empty proto)  // confidence: gold [deep_trace_verified, 16.2_jadx]
 }
 
+// APK class: vzt (16.2), wan (16.1) — empty message
+// SDP marker only — phone status channel has no config fields
+// confidence: gold [deep_trace_verified, 16.2_jadx]
+message PhoneStatusChannel {
+}
+
 // APK class: vxy (16.2), vym (16.1) — empty message
 // Placeholder — sub-message structure TBD from wire captures
 // confidence: gold [deep_trace_verified, 16.2_jadx]
@@ -76,9 +81,9 @@ message MediaBrowserChannel {
 // References sub-messages from oaa/carcontrol/ (already Gold from GAL verification)
 // confidence: gold [deep_trace_verified, 16.2_jadx]
 message CarControlChannel {
-    repeated CarPropertyConfig property_configs = 1;  // 16.2: vuj  // confidence: gold [deep_trace_verified, 16.2_jadx]
-    repeated CarControl controls = 2;  // 16.2: vvx  // confidence: gold [deep_trace_verified, 16.2_jadx]
-    repeated CarActionEntry action_entries = 3;  // 16.2: vua  // confidence: gold [deep_trace_verified, 16.2_jadx]
+    repeated oaa.proto.messages.CarPropertyConfig property_configs = 1;  // 16.2: vuj  // confidence: gold [deep_trace_verified, 16.2_jadx]
+    repeated oaa.proto.messages.CarControl controls = 2;  // 16.2: vvx  // confidence: gold [deep_trace_verified, 16.2_jadx]
+    repeated oaa.proto.messages.CarActionEntry action_entries = 3;  // 16.2: vua  // confidence: gold [deep_trace_verified, 16.2_jadx]
 }
 
 // APK class: vwf (16.2), vwt (16.1) — empty message

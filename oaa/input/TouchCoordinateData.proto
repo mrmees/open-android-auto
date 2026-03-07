@@ -1,3 +1,4 @@
+syntax = "proto2";
 // RETRACTED — wrong class mapping
 // Audit claimed class wbl (16.1) / wbb (16.2), but:
 //   - wbl in 16.1 = InputBindingRequest, NOT TouchCoordinate
