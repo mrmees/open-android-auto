@@ -5,24 +5,24 @@
 /*
  * RadioBandType — radio frequency band type.
  *
- * APK verifier: a.bq() via vyv.s (AA v16.1) — accepts values 0, 1, 2.
- * 16.2 runtime enum vzz confirms value 3 = DAB.
- * Used in RadioStation field 8.
+ * 16.2: vzz (runtime enum, 3 values: AM=1, FM=2, DAB=3)
+ * Used in SDP RadioBandGroup (waa) field 1.
+ * 16.1: a.bq() via vyv.s — accepts values 0, 1, 2.
  */
 
 syntax="proto2";
 
 package oaa.proto.enums;
 
-// confidence: silver [apk_static, cross_version]
+// confidence: gold [apk_deep_trace]
 message RadioBandType
 {
-    // confidence: silver [apk_static, cross_version]
+    // confidence: gold [apk_deep_trace]
     enum Enum
     {
         BAND_TYPE_UNKNOWN = 0;
         BAND_TYPE_AM = 1;
         BAND_TYPE_FM = 2;
-        BAND_TYPE_DAB = 3;  // DAB/DAB+/DMB digital radio. Added from 16.2 APK (vzz enum)
+        BAND_TYPE_DAB = 3;  // DAB/DAB+/DMB digital radio
     }
 }

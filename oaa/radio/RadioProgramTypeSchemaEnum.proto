@@ -5,7 +5,8 @@
 /*
  * RadioProgramTypeSchema — classification scheme for radio program types.
  *
- * APK verifier: viz.M() (AA v16.1) — accepts values 1, 2.
+ * 16.2: vdp.m36490W (validator, accepts 1-2), referenced by wao (RadioProgramType)
+ * 16.1: viz.M
  * Used in RadioProgramType field 1.
  */
 
@@ -13,10 +14,10 @@ syntax="proto2";
 
 package oaa.proto.enums;
 
-// confidence: unverified
+// confidence: gold [apk_deep_trace]
 message RadioProgramTypeSchema
 {
-    // confidence: unverified
+    // confidence: gold [apk_deep_trace]
     enum Enum
     {
         SCHEMA_UNKNOWN = 0;

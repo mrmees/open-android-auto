@@ -1,15 +1,23 @@
+// Android Auto Protocol Buffer Definitions
+// https://github.com/mrmees/open-android-auto
 // SPDX-License-Identifier: GPL-3.0-or-later
-// Copyright (C) 2024-2026 Open Android Auto contributors
-// Based on works by: f1x.studio (aasdk), opencardev (crankshaft), aa-proxy (aa-proxy-rs)
-syntax="proto2";
+
+/*
+ * BluetoothChannel — SDP channel descriptor for BT pairing.
+ *
+ * 16.2: vvo, 16.1: vwc
+ * Read by plq.java (BT manager) from ChannelDescriptor.
+ */
+
+syntax = "proto2";
 
 import "oaa/bluetooth/BluetoothPairingMethodEnum.proto";
 
 package oaa.proto.data;
 
-// confidence: silver [apk_static, cross_version]
+// confidence: gold [apk_deep_trace]
 message BluetoothChannel
 {
-    optional string adapter_address = 1;  // confidence: silver [apk_static, cross_version]
-    repeated enums.BluetoothPairingMethod.Enum supported_pairing_methods = 2 [packed=true];
+    required string adapter_address = 1;  // confidence: gold [apk_deep_trace]
+    repeated enums.BluetoothPairingMethod.Enum supported_pairing_methods = 2 [packed=true];  // confidence: gold [apk_deep_trace]
 }

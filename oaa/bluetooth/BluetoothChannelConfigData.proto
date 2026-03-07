@@ -3,19 +3,18 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 
 /*
- * Discovered via APK analysis (vwc.java, AA v16.1)
- * Bluetooth channel configuration in ChannelDescriptor field 6.
+ * SUPERSEDED (2026-03-07)
+ *
+ * This file duplicated BluetoothChannelData.proto (BluetoothChannel message)
+ * with proto3 syntax and int32 instead of enum type for field 2.
+ *
+ * Use BluetoothChannelData.proto (BluetoothChannel, 16.2: vvo) instead.
+ * This file is kept as a tombstone to prevent re-introduction.
  */
 
-syntax="proto3";
+syntax = "proto3";
 
 package oaa.proto.data;
 
-// confidence: unverified
-message BluetoothChannelConfig
-{
-    // BT adapter address (e.g. "DC:A6:32:E7:5A:FE")
-    optional string adapter_address = 1;  // confidence: unverified
-    // Supported BT pairing methods (enum values in APK)
-    repeated int32 supported_pairing_methods = 2;  // confidence: unverified
-}
+// SUPERSEDED — use BluetoothChannel in BluetoothChannelData.proto
+// message BluetoothChannelConfig { ... }

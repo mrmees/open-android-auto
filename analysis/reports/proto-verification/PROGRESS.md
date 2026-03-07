@@ -2,18 +2,18 @@
 
 **Design:** `docs/plans/2026-03-06-proto-verification-design.md`
 **Started:** 2026-03-06
-**Last updated:** 2026-03-06
+**Last updated:** 2026-03-07
 
 ## Summary
 
 | Status | Count |
 |--------|-------|
-| Verified (Gold) | 127 |
-| Schema Errors Found & Fixed | 62 |
-| New Protos Discovered | 10 (MediaPlaybackStatusEvent, VehicleEnergyForecast, InputBindingResponse, IntegratedOverlayStart/Stop, UpdateHuUiConfigResponse, UpdateUiConfigRequest, AVChannelMediaOptions, MicrophoneOpenResponse, RadioSearchRequest) |
-| Retracted / Removed | 23 |
+| Verified (Gold) | 160 |
+| Schema Errors Found & Fixed | 66 |
+| New Protos Discovered | 12 (MediaPlaybackStatusEvent, VehicleEnergyForecast, InputBindingResponse, IntegratedOverlayStart/Stop, UpdateHuUiConfigResponse, UpdateUiConfigRequest, AVChannelMediaOptions, MicrophoneOpenResponse, RadioSearchRequest, BluetoothAuthenticationData, BluetoothAuthenticationResult) |
+| Retracted / Removed | 26 |
 | Relocated (wrong channel) | 4 (BindingRequest/Response → input, CallAvailability/VoiceSession → control) |
-| Pending | remaining channels |
+| Pending | 3 secondary channels |
 
 ## Channel Verification Status
 
@@ -32,21 +32,79 @@
 | 7 | Audio (output) | CAR.GAL.MEDIA | qnf (extends qnp) | **COMPLETE** | [audio.md](audio.md) | Shares AV protocol with video — no audio-specific msgs |
 | 8 | Audio (mic) | CAR.GAL.MIC | ict/ial | **COMPLETE** | [audio.md](audio.md) | 1 Gold msg (MicrophoneOpenResponse), 3 retractions |
 | 9 | Sensor | CAR.GAL.SENSOR | ibi (16.2) | **COMPLETE** | [sensor.md](sensor.md) | 4 Gold msgs, 26 Gold sub-msgs, 4 Gold enums, 2 Gold SDP, 1 retraction |
-| 10 | Bluetooth | CAR.GAL.BT / CAR.BT | TBD | PENDING | | BT pairing |
+| 10 | Bluetooth | CAR.GAL.BT | qlg (16.2) | **COMPLETE** | [bluetooth.md](bluetooth.md) | 4 Gold msgs, 1 Gold enum, 1 Gold SDP, 2 new protos, 3 retractions |
+| 11 | Radio | CAR.GAL.RADIO-EP | ibf (16.2) | **COMPLETE** | [radio.md](radio.md) | 10 Gold msgs, 7 Gold sub-msgs, 5 Gold enums, all schemas correct |
 
 ### Phase 1 — Secondary Channels
 
 | # | Channel | GAL Tag | Handler Class | Status | Report | Notes |
 |---|---------|---------|---------------|--------|--------|-------|
-| 11 | Radio | CAR.RADIO | TBD | PENDING | | Service 15 |
 | 12 | Car Control | CAR.GAL.CAR_CONTROL | TBD | PENDING | | HVAC, doors |
 | 13 | WiFi Projection | CAR.GAL.WIFI_PROJ | TBD | PENDING | | WiFi upgrade |
 | 14 | Vendor Extension | CAR.VENDOR | TBD | PENDING | | Vendor passthrough |
-| 15 | Diagnostics | CAR.GAL.DIAGNOSTICS | TBD | PENDING | | |
 
 ## Resume Pointer
 
-**Next action:** Begin Bluetooth (#10) or Radio (#11) channel verification. Radio partially verified via audio pass — directions fixed, 16.2 class refs updated, RadioSearchRequest (0x8023) added. Full radio sub-message schema verification still needed.
+**Next action:** Begin Car Control (#12) channel verification. WiFi Projection and Vendor Extension are lower priority. Diagnostics channel removed (no handler found in APK — may be HU-only).
+
+## Completed — Radio Channel (Wave 10)
+
+### CAR.GAL.RADIO-EP (ibf.java, GAL type 15)
+
+| Proto | Wire ID | Direction | 16.2 Class | Confidence | Result |
+|-------|---------|-----------|------------|------------|--------|
+| RadioProgramListNotification | 0x801A | HU→Phone | wam | Gold | All schemas correct |
+| RadioProgramInfoNotification | 0x801B | HU→Phone | wal | Gold | All schemas correct |
+| RadioMuteRequest | 0x801C | Phone→HU | wag | Gold | All schemas correct |
+| RadioMuteResponse | 0x801D | HU→Phone | wah | Gold | All schemas correct |
+| RadioTuneRequest | 0x801E | Phone→HU | wat | Gold | All schemas correct |
+| RadioTuneResponse | 0x801F | HU→Phone | wau | Gold | All schemas correct |
+| RadioFavoriteListNotification | 0x8020 | HU→Phone | wad | Gold | All schemas correct |
+| RadioFavoriteToggleRequest | 0x8021 | Phone→HU | waq | Gold | All schemas correct |
+| RadioTuneDirectionRequest | 0x8022 | Phone→HU | war | Gold | All schemas correct |
+| RadioSearchRequest | 0x8023 | Phone→HU | wac | Gold | NEW in 16.2 |
+
+### Sub-messages (7 Gold)
+
+All 7 sub-messages verified: RadioProgramInfo(wak), RadioProgramSelector(wan), RadioProgramIdentifier(waj), RadioMetadata(waf), RadioSongMetadata(was), RadioImage(wae), RadioProgramType(wao).
+
+### Enums (5 Gold, 2 Silver)
+
+RadioIdentifierType(wai), RadioTuneStatus(C0000a.m80bA), RadioTuneDirection(vdp.m36490W), RadioProgramTypeSchema(vdp.m36490W), RadioBandType(vzz) — all Gold. RadioCodecType and RadioRegion remain Silver (not in 16.2 SDP).
+
+### Changes Applied
+
+- All 16.2 class name comments updated (sub-messages had 16.1 names)
+- RadioIdentifierType comment fixed (was `waq`, correct is `wai`)
+- All confidence upgraded silver → gold
+
+## Completed — Bluetooth Channel (Wave 9)
+
+### CAR.GAL.BT (qlg.java, service 9)
+
+| Proto | Wire ID | Direction | 16.2 Class | Confidence | Result |
+|-------|---------|-----------|------------|------------|--------|
+| BluetoothPairingRequest | 0x8001 | HU→Phone | kba | Gold | Correct, upgraded confidence |
+| BluetoothPairingResponse | 0x8002 | HU→Phone | vvn | Gold | **CRITICAL FIX**: fields swapped, wrong class, wrong enum |
+| BluetoothAuthenticationData | 0x8003 | HU→Phone | vvj | Gold | **NEW** — was missing proto file |
+| BluetoothAuthenticationResult | 0x8004 | Phone→HU | vvk | Gold | **NEW** — discovered during verification |
+
+### Enums & SDP
+
+| Item | 16.2 Class | Confidence | Result |
+|------|-----------|------------|--------|
+| BluetoothPairingMethod | vvl | Gold | Correct (5 values, 0-4) |
+| BluetoothPairingStatus | — | RETRACTED | Wrong enum — actual is shared AA StatusCode (vyh) |
+| BluetoothChannelConfig (SDP) | vvo | Gold | field 1 optional→required |
+| BluetoothChannelConfigData | — | SUPERSEDED | Duplicate of BluetoothChannelData |
+
+### Critical Fixes
+
+1. **BluetoothPairingResponse fields SWAPPED**: field 1=status(int32), field 2=already_paired(bool). Was reversed. Field 3 removed (didn't exist on wire class vvn).
+2. **Wrong class mapping**: xgb/xgq → vvn (xgb is a sub-message in xgh, unrelated)
+3. **BluetoothPairingStatusEnum RETRACTED**: old 3-value enum was wrong. Actual status uses shared AA StatusCode (vyh, 30+ values including BT codes -10 to -17)
+4. **BluetoothAuthenticationData NEW**: 1 required string field
+5. **BluetoothAuthenticationResult NEW**: 0x8004, Phone→HU, 1 required int32 status field
 
 ## Completed — Sensor Channel (Wave 8)
 
@@ -352,3 +410,7 @@ Deferred from video pass. ResizeActionType enum values (0-2) unchanged in 16.2. 
 9. **Nav channel has legacy/modern split:** HUs with CarInfo PDK < 1.6 get legacy msgs (0x8005 vyx). Modern HUs get 0x8006/0x8007. VehicleEnergyForecast (0x8008) requires PDK >= 5.1.
 
 10. **Double-encoding pattern:** VehicleEnergyForecast uses proto2 wrapper (waw) containing serialized proto3 inner message (ysl). Watch for this in other channels.
+
+11. **Shared AA StatusCode enum (vyh):** Used across multiple channels — BT pairing response/auth result, sensor start response, and likely others. Has 30+ values including channel-specific codes (BT: -10 to -17, radio: -19 to -22, sensor: -9, input: -18/-20). Not yet a standalone proto — referenced as `int32 status` in individual protos.
+
+12. **Radio SDP config restructured in 16.2:** Old 14-field RadioStation class gone. New 3-level hierarchy: RadioChannelConfig(wap) → RadioBands(wab) → RadioBandGroup(waa). `oaa/control/RadioChannelData.proto` still has 16.1 structure.

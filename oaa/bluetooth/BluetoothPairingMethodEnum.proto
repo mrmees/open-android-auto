@@ -1,23 +1,29 @@
+// Android Auto Protocol Buffer Definitions
+// https://github.com/mrmees/open-android-auto
 // SPDX-License-Identifier: GPL-3.0-or-later
-// Copyright (C) 2024-2026 Open Android Auto contributors
-// Based on works by: f1x.studio (aasdk), opencardev (crankshaft), aa-proxy (aa-proxy-rs)
-syntax="proto3";
+
+/*
+ * BluetoothPairingMethod — BT pairing method types.
+ *
+ * 16.2: vvl (runtime enum), 16.1: vvz
+ * Phone prioritizes: NUMERIC_COMPARISON first, then PIN (plq.java line 26).
+ * Value -1 (BLUETOOTH_PAIRING_UNAVAILABLE) is internal sentinel, never on wire.
+ */
+
+syntax = "proto3";
 
 package oaa.proto.enums;
 
-// APK enum class: vvz.java (AA v16.1) — unobfuscated constant names preserved.
-// Previous values A2DP/HFP were incorrect — those are BT profiles, not pairing methods.
-// APK also defines BLUETOOTH_PAIRING_UNAVAILABLE(-1) as an internal error sentinel.
-// confidence: unverified
+// confidence: gold [apk_deep_trace]
 message BluetoothPairingMethod
 {
-    // confidence: unverified
+    // confidence: gold [apk_deep_trace]
     enum Enum
     {
         NONE = 0;
         OOB = 1;                  // Out-Of-Band pairing
-        NUMERIC_COMPARISON = 2;   // Numeric comparison (was incorrectly "A2DP")
+        NUMERIC_COMPARISON = 2;   // Numeric comparison
         PASSKEY_ENTRY = 3;        // Passkey entry
-        PIN = 4;                  // PIN code (was incorrectly "HFP")
+        PIN = 4;                  // PIN code
     }
 }

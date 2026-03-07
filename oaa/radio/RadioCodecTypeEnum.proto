@@ -5,18 +5,19 @@
 /*
  * RadioCodecType — radio tuner codec type.
  *
- * APK verifier: a.bl() via vvs.s (AA v16.1) — accepts values 0-5.
- * Used in RadioStation field 7.
+ * 16.1: a.bl() via vvs.s — accepts values 0-5.
+ * Not referenced in 16.2 SDP radio config (restructured).
+ * May be used in older RadioStation structures only.
  */
 
 syntax="proto2";
 
 package oaa.proto.enums;
 
-// confidence: unverified
+// confidence: silver [apk_static — not confirmed in 16.2 SDP]
 message RadioCodecType
 {
-    // confidence: unverified
+    // confidence: silver [apk_static]
     enum Enum
     {
         RADIO_CODEC_UNKNOWN = 0;

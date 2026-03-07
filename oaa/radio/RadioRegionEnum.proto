@@ -5,21 +5,22 @@
 /*
  * RadioRegion — radio broadcast region.
  *
- * APK verifier: a.bJ() via wck.a (AA v16.1) — accepts values 0, 1.
- * Used in RadioStation field 11.
+ * 16.1: a.bJ() via wck.a — accepts values 0, 1.
+ * Not referenced in 16.2 SDP radio config (restructured).
+ * May be used in older RadioStation structures only.
  */
 
 syntax="proto2";
 
 package oaa.proto.enums;
 
-// confidence: unverified
+// confidence: silver [apk_static — not confirmed in 16.2 SDP]
 message RadioRegion
 {
-    // confidence: unverified
+    // confidence: silver [apk_static]
     enum Enum
     {
         REGION_UNKNOWN = 0;
-        REGION_ITU_1 = 1;  // confidence: unverified
+        REGION_ITU_1 = 1;
     }
 }
