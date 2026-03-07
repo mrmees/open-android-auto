@@ -5,7 +5,7 @@
 /*
  * PingConfiguration — connection keepalive parameters.
  *
- * APK class: zyd.java (AA v16.1)
+ * APK class: zyd.java (AA v16.1) → aaac.java (AA v16.2)
  * Sub-message of ConnectionConfiguration field 1.
  * Only 2 fields (was incorrectly 4 in previous version).
  */
@@ -14,9 +14,8 @@ syntax="proto3";
 
 package oaa.proto.data;
 
-// confidence: unverified
+// confidence: gold [16.2_db_verified]
 message PingConfiguration {
-    optional int64 ping_interval_ns = 1; // APK: long b — was uint32 timeout_ms  // confidence: unverified
-    optional int32 ping_timeout_ms = 2; // APK: int c  // confidence: unverified
-    // fields 3-4 removed — do not exist in APK zyd.java
+    optional int64 ping_interval_ns = 1; // APK: zyd.b (16.1) → aaac (16.2)  // confidence: gold
+    optional int32 ping_timeout_ms = 2; // APK: zyd.c (16.1) → aaac (16.2)  // confidence: gold
 }

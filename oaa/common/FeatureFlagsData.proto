@@ -12,10 +12,10 @@ syntax="proto2";
 
 package oaa.proto.data;
 
-// APK class: wdq — version feature flag entry (2 fields)
-// confidence: silver [apk_static, cross_version]
+// APK class: wdq (16.1) → aact (16.2) — version feature flag entry (2 fields)
+// confidence: gold [16.2_db_verified]
 message VersionFeatureFlags
 {
-    optional string feature_name = 1;  // confidence: silver [apk_static, cross_version]
-    optional int32 feature_version = 2;  // confidence: silver [apk_static, cross_version]
+    optional string feature_name = 1;  // confidence: gold
+    optional int32 feature_version = 2;  // confidence: gold
 }

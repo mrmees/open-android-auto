@@ -12,22 +12,23 @@ syntax="proto3";
 
 package oaa.proto.data;
 
-// APK class: nll — Google Assistant feature flags (14 bool fields)
-// confidence: silver [apk_static, cross_version]
+// APK class: nll (16.1) → nkw (16.2) — Google Assistant feature flags (14 bool fields)
+// No new fields in 16.2 (still 14 bools, fields 1-14)
+// confidence: gold [16.2_db_verified]
 message AssistantFeatureFlags
 {
-    bool assistant_available = 1;  // confidence: silver [apk_static, cross_version]
-    bool voice_trigger = 2;  // confidence: silver [apk_static, cross_version]
-    bool assistant_shortcuts = 3;  // confidence: silver [apk_static, cross_version]
-    bool continued_conversation = 4;  // confidence: silver [apk_static, cross_version]
-    bool device_assistant = 5;  // confidence: silver [apk_static, cross_version]
-    bool assistant_on_lockscreen = 6;  // confidence: silver [apk_static, cross_version]
-    bool smart_display = 7;  // confidence: silver [apk_static, cross_version]
-    bool routine_suggestions = 8;  // confidence: silver [apk_static, cross_version]
-    bool interpreter_mode = 9;  // confidence: silver [apk_static, cross_version]
-    bool multi_modal = 10;  // confidence: silver [apk_static, cross_version]
-    bool settings_support = 11;  // confidence: silver [apk_static, cross_version]
-    bool field_12 = 12;  // confidence: silver [apk_static, cross_version]
-    bool proactive_suggestions = 13;  // confidence: silver [apk_static, cross_version]
-    bool field_14 = 14;  // confidence: silver [apk_static, cross_version]
+    bool assistant_available = 1;  // confidence: gold
+    bool voice_trigger = 2;  // confidence: gold
+    bool assistant_shortcuts = 3;  // confidence: gold
+    bool continued_conversation = 4;  // confidence: gold
+    bool device_assistant = 5;  // confidence: gold
+    bool assistant_on_lockscreen = 6;  // confidence: gold
+    bool smart_display = 7;  // confidence: gold
+    bool routine_suggestions = 8;  // confidence: gold
+    bool interpreter_mode = 9;  // confidence: gold
+    bool multi_modal = 10;  // confidence: gold
+    bool settings_support = 11;  // confidence: gold
+    bool field_12 = 12;  // confidence: gold
+    bool proactive_suggestions = 13;  // confidence: gold
+    bool field_14 = 14;  // confidence: gold
 }

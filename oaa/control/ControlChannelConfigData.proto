@@ -5,31 +5,30 @@
 /*
  * Control channel configuration messages.
  *
- * Three-layer nesting: Wrapper (wcx) → Config (vxc) → Params (wai).
+ * Three-layer nesting: Wrapper (wcn) → Config (vwo) → Params (vzu).
  * The wrapper is the top-level message exchanged on the control channel.
  * Config holds a reference to the actual parameters.
  * Params contains 4 uint32 configuration values (purpose TBD from wire captures).
  *
- * APK classes: wcx, vxc, wai (AA v16.1)
- * Field numbers decoded from protobuf-lite RawMessageInfo descriptors.
+ * APK classes: wcx/vxc/wai (AA v16.1) → wcn/vwo/vzu (AA v16.2)
  */
 syntax="proto2";
 
 package oaa.proto.data;
 
-// APK class: wai — configuration parameters (4x uint32)
-// confidence: silver [apk_static, cross_version]
+// APK class: wai (16.1) → vzu (16.2) — configuration parameters (4x uint32)
+// confidence: gold [16.2_db_verified]
 message ControlChannelParams
 {
-    optional uint32 param_1 = 1;  // confidence: silver [apk_static, cross_version]
-    optional uint32 param_2 = 2;  // confidence: silver [apk_static, cross_version]
-    optional uint32 param_3 = 3;  // confidence: silver [apk_static, cross_version]
-    optional uint32 param_4 = 4;  // confidence: silver [apk_static, cross_version]
+    optional uint32 param_1 = 1;  // confidence: gold
+    optional uint32 param_2 = 2;  // confidence: gold
+    optional uint32 param_3 = 3;  // confidence: gold
+    optional uint32 param_4 = 4;  // confidence: gold
 }
 
-// APK class: vxc — config container, wraps params
-// confidence: silver [apk_static, cross_version]
+// APK class: vxc (16.1) → vwo (16.2) — config container, wraps params
+// confidence: gold [16.2_db_verified]
 message ControlChannelConfig
 {
-    optional ControlChannelParams params = 1; // APK: wai  // confidence: silver [apk_static, cross_version]
+    optional ControlChannelParams params = 1; // APK: wai (16.1) → vzu (16.2)  // confidence: gold
 }

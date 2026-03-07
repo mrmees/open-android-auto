@@ -8,60 +8,60 @@
  * These are sub-messages referenced by PhoneCapabilities and related
  * capability negotiation. All confirmed proto3 per APK descriptors.
  *
- * APK classes (AA v16.1):
- *   CapabilityConnectionConfig = aahf (2 fields: 2 messages)
- *   InputModelEntry = aafs (4 fields: 3 strings + 1 packed enum)
- *   InputModelDescriptor = aahd (2 fields: string + bytes)
- *   HandwritingInputModelConfig = aahi (5 fields: 2 msgs + string + packed enum + string)
+ * APK classes (AA v16.1 → v16.2):
+ *   CapabilityConnectionConfig = aahf → aagl (2 fields: 2 messages)
+ *   InputModelEntry = aafs → aaey (4 fields: 3 strings + 1 packed enum)
+ *   InputModelDescriptor = aahd → aagj (2 fields: string + bytes)
+ *   HandwritingInputModelConfig = aahi → aago (5 fields: 2 msgs + string + packed enum + string)
  */
 
 syntax="proto3";
 
 package oaa.proto.data;
 
-// APK class: aahf — connection config with two sub-messages
-// confidence: silver [apk_static, cross_version]
+// APK class: aahf (16.1) → aagl (16.2) — connection config with two sub-messages
+// confidence: gold [16.2_db_verified]
 message CapabilityConnectionConfig
 {
-    CapabilityConnectionEntry entry_a = 1;  // confidence: silver [apk_static, cross_version]
-    CapabilityConnectionEntry entry_b = 2;  // confidence: silver [apk_static, cross_version]
+    CapabilityConnectionEntry entry_a = 1;  // confidence: gold
+    CapabilityConnectionEntry entry_b = 2;  // confidence: gold
 }
 
 // Placeholder for CapabilityConnectionConfig sub-message fields
-// confidence: silver [apk_static, cross_version]
+// confidence: gold [16.2_db_verified, confirmed empty]
 message CapabilityConnectionEntry {}
 
-// APK class: aahd — describes an input model (name + serialized descriptor)
-// confidence: silver [apk_static, cross_version]
+// APK class: aahd (16.1) → aagj (16.2) — describes an input model (name + serialized descriptor)
+// confidence: gold [16.2_db_verified]
 message InputModelDescriptor
 {
-    string model_name = 1;  // confidence: silver [apk_static, cross_version]
-    bytes model_data = 2;  // confidence: silver [apk_static, cross_version]
+    string model_name = 1;  // confidence: gold
+    bytes model_data = 2;  // confidence: gold
 }
 
-// APK class: aafs — input model entry (4 fields)
-// confidence: silver [apk_static, cross_version]
+// APK class: aafs (16.1) → aaey (16.2) — input model entry (4 fields)
+// confidence: gold [16.2_db_verified]
 message InputModelEntry
 {
-    string entry_name = 1;  // confidence: silver [apk_static, cross_version]
-    string entry_type = 2;  // confidence: silver [apk_static, cross_version]
-    string entry_value = 3;  // confidence: silver [apk_static, cross_version]
-    repeated InputModelEnum model_flags = 4 [packed = true];
+    string entry_name = 1;  // confidence: gold
+    string entry_type = 2;  // confidence: gold
+    string entry_value = 3;  // confidence: gold
+    repeated InputModelEnum model_flags = 4 [packed = true];  // confidence: gold
 }
 
 // Placeholder enum for InputModelEntry field 4
-// confidence: silver [apk_static, cross_version]
+// confidence: silver [no enum values resolved in 16.2]
 enum InputModelEnum {
     INPUT_MODEL_UNKNOWN = 0;
 }
 
-// APK class: aahi — handwriting input model configuration (5 fields)
-// confidence: silver [apk_static, cross_version]
+// APK class: aahi (16.1) → aago (16.2) — handwriting input model configuration (5 fields)
+// confidence: gold [16.2_db_verified]
 message HandwritingInputModelConfig
 {
-    InputModelDescriptor descriptor = 1; // field 1: message  // confidence: silver [apk_static, cross_version]
-    InputModelDescriptor alt_descriptor = 2; // field 2: message  // confidence: silver [apk_static, cross_version]
-    string config_name = 3; // field 3: string  // confidence: silver [apk_static, cross_version]
-    repeated InputModelEnum config_flags = 4 [packed = true]; // field 4: packed enum
-    string config_value = 5; // field 5: string  // confidence: silver [apk_static, cross_version]
+    InputModelDescriptor descriptor = 1;  // confidence: gold
+    InputModelDescriptor alt_descriptor = 2;  // confidence: gold
+    string config_name = 3;  // confidence: gold
+    repeated InputModelEnum config_flags = 4 [packed = true];  // confidence: gold
+    string config_value = 5;  // confidence: gold
 }
