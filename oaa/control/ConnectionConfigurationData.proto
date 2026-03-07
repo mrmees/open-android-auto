@@ -133,9 +133,12 @@ message TransportSecurityParams {
     repeated TransportSecurityParamEntry entries = 1;  // APK: aaje  // confidence: gold
 }
 
-// APK class: aaje (16.2) — placeholder for security param entries
-// confidence: bronze [fields not decoded]
-message TransportSecurityParamEntry {}
+// APK class: aaje (16.2) — security param key/value pair
+// confidence: gold [16.2_db_verified, jadx_confirmed]
+message TransportSecurityParamEntry {
+    string key = 1;    // confidence: gold
+    string value = 2;  // confidence: gold
+}
 
 // APK class: aajf (16.1) → aail (16.2) — 1 optional message field
 // confidence: gold [16.2_db_verified]
@@ -170,8 +173,15 @@ message TuningEntry {
     string label = 3;                    // confidence: gold
 }
 
-// Placeholder enum for TuningEntry field 1
-// confidence: silver [enum values not decoded]
+// Enum for TuningEntry field 1
+// Wire decoder: C0000a.m131bz() maps wire 0→2, 1→3, 2→4, 3→5, else→0
+// Semantic meaning of values 2-5 unknown (timeout? retry? buffer size?)
+// confidence: gold [16.2_code_traced]
 enum TuningEntryType {
     TUNING_ENTRY_UNKNOWN = 0;
+    // value 1 unused (fallback when decode fails)
+    TUNING_ENTRY_TYPE_A = 2;
+    TUNING_ENTRY_TYPE_B = 3;
+    TUNING_ENTRY_TYPE_C = 4;
+    TUNING_ENTRY_TYPE_D = 5;
 }

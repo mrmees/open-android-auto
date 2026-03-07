@@ -10,10 +10,10 @@
 | Metric | Count |
 |--------|-------|
 | Gold (inherited from GAL) | 8 |
-| Gold (newly verified) | 86 |
-| **Total Gold** | **94** |
-| Schema errors fixed | 8 |
-| New protos added | 10 |
+| Gold (newly verified) | 104 |
+| **Total Gold** | **112** |
+| Schema errors fixed | 12 |
+| New protos added | 24 |
 | Messages retracted | 3 |
 | Bronze (unverified) | ~5 (ConnectedDevices msgs, deepest sub-message placeholders) |
 
@@ -59,16 +59,17 @@ CarControlChannel filled (was empty → 3 repeated fields: CarPropertyConfig, Ca
 2. **TransportCapabilityEntry (aaix)** — 2 string fields (key + value). Filled.
 3. **TransportSecurityEntry/Detail** — Full chain resolved: aajj → aaji → aajh → aajg (5 strings) + aajf (repeated aaje). All Gold.
 4. **CapabilityConnectionEntry (aafl)** — NOT empty! Has oneof with 6 message alternatives. CapabilityConnectionConfig field 2 is actually InputModelDescriptor (not same type as field 1).
-5. **InputModelEnum** — Silver. Enum definition not cleanly resolvable from DB (interface wrapping).
-6. **ConnectedDevices** — Confirmed Bronze. Message IDs registered in vik.java enum but zero proto classes and zero handler code in 16.2 phone APK.
+5. **InputModelEnum** — Gold. Wire encoder m85bF() decoded: values 0, 2-5 valid, value 1 throws. Semantic names unknown.
+6. **ConnectedDevices** — Definitively Bronze. Zero proto classes AND zero handler code in 16.2 phone APK. Message IDs are enum-only stubs.
+7. **TuningEntryType enum** — Gold. Wire decoder m131bz() decoded: values 0, 2-5. Semantic names unknown.
+8. **CapabilityConnectionEntry (aafl)** — Full tree decoded 6 levels deep. 5 different oneof types (aafk empty, aafi 2-msg, aafb bool, aafh complex with nested oneof, aafj empty). Leaf type aaff = enum+uint32+string (same shape as TuningEntry).
+9. **TransportSecurityParamEntry (aaje)** — Gold. 2 string fields (key/value pair).
+10. **CapConnTuningType enum** — Silver. Same shape as TuningEntryType but separate class; values not yet decoded via code trace.
 
-## Remaining Low-Priority
+## Remaining
 
-- **TuningEntryType enum** — values not decoded (Silver)
-- **InputModelEnum** — values not decoded (Silver)
-- **CapabilityConnectionValue/Alt** — sub-message internals not decoded (Bronze)
-- **TransportSecurityParamEntry (aaje)** — fields not decoded (Bronze)
-- **ConnectedDevices** — aa-proxy-rs schemas assumed correct but unverifiable (Bronze)
+- **CapConnTuningType enum** — values not decoded (Silver)
+- **ConnectedDevices** — aa-proxy-rs schemas assumed correct but unverifiable (Bronze, no APK implementation)
 
 ## Key Learnings
 

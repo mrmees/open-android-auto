@@ -29,23 +29,134 @@ message CapabilityConnectionConfig
 }
 
 // APK class: aafl (16.2) — capability connection entry with oneof
-// confidence: gold [16.2_db_verified]
+// Fields 2-6 are 5 DIFFERENT types (not the same message).
+// confidence: gold [16.2_db_verified, jadx_confirmed]
 message CapabilityConnectionEntry {
-    optional CapabilityConnectionValue value = 1;  // confidence: gold
+    optional CapConnValue value = 1;  // APK: aafi  // confidence: gold
 
     oneof connection_type {
-        CapabilityConnectionAlt alt_2 = 2;  // confidence: gold
-        CapabilityConnectionAlt alt_3 = 3;  // confidence: gold
-        CapabilityConnectionAlt alt_4 = 4;  // confidence: gold
-        CapabilityConnectionAlt alt_5 = 5;  // confidence: gold
-        CapabilityConnectionAlt alt_6 = 6;  // confidence: gold
+        CapConnEmpty type_2 = 2;              // APK: aafk (empty)  // confidence: gold
+        CapConnValue type_3 = 3;              // APK: aafi (same as field 1)  // confidence: gold
+        CapConnBool type_4 = 4;               // APK: aafb (1 bool)  // confidence: gold
+        CapConnComplex type_5 = 5;            // APK: aafh (uint32 + 4 oneof msgs)  // confidence: gold
+        CapConnEmpty type_6 = 6;              // APK: aafj (empty)  // confidence: gold
     }
 }
 
-// Placeholder for CapabilityConnectionEntry sub-messages
-// confidence: bronze [fields not decoded]
-message CapabilityConnectionValue {}
-message CapabilityConnectionAlt {}
+// APK class: aafi (16.2) — capability connection value (2 sub-messages)
+// confidence: gold [16.2_db_verified]
+message CapConnValue {
+    CapConnModelList model_list = 1;   // APK: aaga  // confidence: gold
+    CapConnModelTree model_tree = 2;   // APK: aagi  // confidence: gold
+}
+
+// APK class: aaga (16.2) — model list (repeated string + string)
+// confidence: gold [16.2_db_verified]
+message CapConnModelList {
+    repeated string values = 1;  // APK: aafz (repeated string)  // confidence: gold
+    string label = 2;            // confidence: gold
+}
+
+// APK class: aagi (16.2) — model tree container
+// confidence: gold [16.2_db_verified]
+message CapConnModelTree {
+    CapConnModelNode node = 1;  // APK: aagh  // confidence: gold
+}
+
+// APK class: aagh (16.2) — model node (note: field 2, not 1)
+// confidence: gold [16.2_db_verified]
+message CapConnModelNode {
+    CapConnModelDetail detail = 2;  // APK: aagg  // confidence: gold
+}
+
+// APK class: aagg (16.2) — model detail (int + 5 strings + repeated entries)
+// confidence: gold [16.2_db_verified]
+message CapConnModelDetail {
+    int32 id = 1;                          // confidence: gold
+    CapConnModelStrings strings = 2;       // APK: aagf (5 strings)  // confidence: gold
+    repeated CapConnModelPair pairs = 3;   // APK: aage (repeated aagd)  // confidence: gold
+}
+
+// APK class: aagf (16.2) — 5 string fields
+// confidence: gold [16.2_db_verified]
+message CapConnModelStrings {
+    string field_1 = 1;  // confidence: gold
+    string field_2 = 2;  // confidence: gold
+    string field_3 = 3;  // confidence: gold
+    string field_4 = 4;  // confidence: gold
+    string field_5 = 5;  // confidence: gold
+}
+
+// APK class: aagd (16.2) — key/value string pair
+// confidence: gold [16.2_db_verified]
+message CapConnModelPair {
+    string key = 1;    // confidence: gold
+    string value = 2;  // confidence: gold
+}
+
+// APK class: aafk/aafj (16.2) — empty oneof alternatives
+// confidence: gold [16.2_db_verified]
+message CapConnEmpty {}
+
+// APK class: aafb (16.2) — single bool oneof alternative
+// confidence: gold [16.2_db_verified]
+message CapConnBool {
+    bool enabled = 1;  // confidence: gold
+}
+
+// APK class: aafh (16.2) — complex oneof alternative (uint32 + 4-way oneof)
+// confidence: gold [16.2_db_verified]
+message CapConnComplex {
+    uint32 id = 1;  // confidence: gold
+
+    oneof complex_type {
+        CapConnComplexA type_a = 2;  // APK: aafg (int + CapConnTuning)  // confidence: gold
+        CapConnComplexB type_b = 3;  // APK: aafc (repeated CapConnTuning)  // confidence: gold
+        CapConnComplexC type_c = 4;  // APK: aafe (int + CapConnTuning)  // confidence: gold
+        CapConnComplexD type_d = 5;  // APK: aafd (string)  // confidence: gold
+    }
+}
+
+// APK class: aafg (16.2) — int + tuning message
+// confidence: gold [16.2_db_verified]
+message CapConnComplexA {
+    int32 value = 1;              // confidence: gold
+    CapConnTuning tuning = 2;     // APK: aaff  // confidence: gold
+}
+
+// APK class: aafc (16.2) — repeated tuning messages
+// confidence: gold [16.2_db_verified]
+message CapConnComplexB {
+    repeated CapConnTuning tunings = 1;  // APK: aaff  // confidence: gold
+}
+
+// APK class: aafe (16.2) — int + tuning message (same structure as A)
+// confidence: gold [16.2_db_verified]
+message CapConnComplexC {
+    int32 value = 1;              // confidence: gold
+    CapConnTuning tuning = 2;     // APK: aaff  // confidence: gold
+}
+
+// APK class: aafd (16.2) — single string
+// confidence: gold [16.2_db_verified]
+message CapConnComplexD {
+    string value = 1;  // confidence: gold
+}
+
+// APK class: aaff (16.2) — leaf tuning entry (enum + uint32 + string)
+// Same structure as TuningEntry (aaik) in ConnectionConfigurationData.proto
+// confidence: gold [16.2_db_verified]
+message CapConnTuning {
+    CapConnTuningType type = 1;   // enum  // confidence: gold
+    uint32 value = 2;             // confidence: gold
+    string label = 3;             // confidence: gold
+}
+
+// Placeholder enum for CapConnTuning field 1
+// confidence: silver [values not decoded]
+enum CapConnTuningType {
+    CAP_CONN_TUNING_UNKNOWN = 0;
+}
 
 // APK class: aahd (16.1) → aagj (16.2) — describes an input model (name + serialized descriptor)
 // confidence: gold [16.2_db_verified]
@@ -65,10 +176,17 @@ message InputModelEntry
     repeated InputModelEnum model_flags = 4 [packed = true];  // confidence: gold
 }
 
-// Placeholder enum for InputModelEntry field 4
-// confidence: silver [no enum values resolved in 16.2]
+// Enum for InputModelEntry field 4 / HandwritingInputModelConfig field 4
+// Wire encoder: C0000a.m85bF() maps enum→wire as (i - 2), value 1 throws IllegalArgumentException
+// Semantic meaning of values 2-5 unknown (capability flags for input models)
+// confidence: gold [16.2_code_traced]
 enum InputModelEnum {
-    INPUT_MODEL_UNKNOWN = 0;
+    INPUT_MODEL_DEFAULT = 0;
+    // value 1 is INVALID — m85bF() throws "Can't get the number of an unknown enum value"
+    INPUT_MODEL_FLAG_A = 2;
+    INPUT_MODEL_FLAG_B = 3;
+    INPUT_MODEL_FLAG_C = 4;
+    INPUT_MODEL_FLAG_D = 5;
 }
 
 // APK class: aahi (16.1) → aago (16.2) — handwriting input model configuration (5 fields)
