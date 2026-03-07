@@ -8,12 +8,12 @@
 
 | Status | Count |
 |--------|-------|
-| Verified (Gold) | 160 |
-| Schema Errors Found & Fixed | 66 |
-| New Protos Discovered | 12 (MediaPlaybackStatusEvent, VehicleEnergyForecast, InputBindingResponse, IntegratedOverlayStart/Stop, UpdateHuUiConfigResponse, UpdateUiConfigRequest, AVChannelMediaOptions, MicrophoneOpenResponse, RadioSearchRequest, BluetoothAuthenticationData, BluetoothAuthenticationResult) |
-| Retracted / Removed | 26 |
+| Verified (Gold) | 190 |
+| Schema Errors Found & Fixed | 74 |
+| New Protos Discovered | 13 (MediaPlaybackStatusEvent, VehicleEnergyForecast, InputBindingResponse, IntegratedOverlayStart/Stop, UpdateHuUiConfigResponse, UpdateUiConfigRequest, AVChannelMediaOptions, MicrophoneOpenResponse, RadioSearchRequest, BluetoothAuthenticationData, BluetoothAuthenticationResult, RegisterCarPropertyListenersRequest) |
+| Retracted / Removed | 28 |
 | Relocated (wrong channel) | 4 (BindingRequest/Response → input, CallAvailability/VoiceSession → control) |
-| Pending | 3 secondary channels |
+| Pending | 2 secondary channels |
 
 ## Channel Verification Status
 
@@ -39,13 +39,39 @@
 
 | # | Channel | GAL Tag | Handler Class | Status | Report | Notes |
 |---|---------|---------|---------------|--------|--------|-------|
-| 12 | Car Control | CAR.GAL.CAR_CONTROL | TBD | PENDING | | HVAC, doors |
+| 12 | Car Control | CAR.GAL.CAR_CONTROL | hyc (16.2) | **COMPLETE** | [carcontrol.md](carcontrol.md) | 7 Gold msgs, 16 Gold sub-msgs, 7 Gold enums, 8 schema fixes, 2 retractions |
 | 13 | WiFi Projection | CAR.GAL.WIFI_PROJ | TBD | PENDING | | WiFi upgrade |
 | 14 | Vendor Extension | CAR.VENDOR | TBD | PENDING | | Vendor passthrough |
 
 ## Resume Pointer
 
-**Next action:** Begin Car Control (#12) channel verification. WiFi Projection and Vendor Extension are lower priority. Diagnostics channel removed (no handler found in APK — may be HU-only).
+**Next action:** Begin WiFi Projection (#13) channel verification. Vendor Extension (#14) after that. Diagnostics channel removed (no handler found in APK — may be HU-only).
+
+## Completed — Car Control Channel (Wave 11)
+
+### CAR.GAL.CAR_CONTROL (hyc.java, GAL type 19)
+
+| Proto | Wire ID | Direction | 16.2 Class | Confidence | Result |
+|-------|---------|-----------|------------|------------|--------|
+| SetCarPropertyValueRequest | 0x8001 | HU→Phone | wbq | Gold | Correct |
+| SetCarPropertyValueResponse | 0x8002 | Phone→HU | wbr | Gold | Status → vyh (ProtocolStatus) |
+| RegisterCarPropertyListenersRequest | 0x8003 | HU→Phone | waz | Gold | **NEW** — was missing |
+| RegisterCarPropertyListenersResponse | 0x8004 | Phone→HU | wba | Gold | Correct |
+| CarPropertyChangeEvent | 0x8005 | Phone→HU | vwg | Gold | Correct |
+| CarActionNotification | 0x8006 | HU→Phone | vvv | Gold | Correct |
+| CarControlGroupUpdate | 0x8007 | Phone→HU | vvz | Gold | Correct |
+
+### Critical Fixes
+
+1. **CarPropertyId enum values ALL WRONG**: Sequential 1-23 → raw VHAL IDs (e.g., HVAC_TEMPERATURE_SET=358614275)
+2. **CarPropertyValue oneof 6-8**: Empty placeholders → IntValues/LongValues/FloatValues
+3. **CarControlChannelDescriptor field 2**: CarControlGroup → CarControl
+4. **CarPropertyConfig fields 4/7 restructured**: field 4=CarAreaId, field 7=CarPropertyAreaConfig (16.2)
+5. **Status fields → shared ProtocolStatus (vyh)**: CarControlStatus RETRACTED
+6. **CarControlMetadataType**: METADATA_PREFER_STATUS_BAR=2 added
+7. **VehicleAreaSeat**: ROW_3_CENTER (512) removed — not in APK
+
+### Totals: 7 Gold msgs, 16 Gold sub-msgs, 7 Gold enums, 8 Silver enums, 1 new proto, 2 retractions
 
 ## Completed — Radio Channel (Wave 10)
 

@@ -1,76 +1,53 @@
 proto: oaa/carcontrol/CarControlMessages.proto
-message: CarActionControl
-confidence: silver
-last_updated: '2026-03-03'
+message: CarControlMessages (all)
+confidence: gold
+last_updated: '2026-03-07'
 evidence:
-- type: apk_static
-  method: string_const
-  source: class_mapping.yaml (v15.9:voq, v16.1:vwi, v16.2:vvu)
-  date: '2026-03-03'
-  description: Mapped CarActionControl to obfuscated APK class(es) via string_const
-    analysis.
-- type: apk_static
-  method: call_graph
-  source: class_mapping.yaml (v15.9:vor, v16.1:vwj, v16.2:vvv)
-  date: '2026-03-03'
-  description: Mapped CarActionNotification to obfuscated APK class(es) via call_graph
-    analysis.
-- type: apk_static
-  method: string_const
-  source: class_mapping.yaml (v15.9:vot, v16.1:vwl, v16.2:vvx)
-  date: '2026-03-03'
-  description: Mapped CarControl to obfuscated APK class(es) via string_const analysis.
-- type: apk_static
-  method: call_graph
-  source: class_mapping.yaml (v15.9:vow, v16.1:vwo, v16.2:vwa)
-  date: '2026-03-03'
-  description: Mapped CarControlChannelDescriptor to obfuscated APK class(es) via
-    call_graph analysis.
-- type: apk_static
-  method: string_const
-  source: class_mapping.yaml (v15.9:vou, v16.1:vwm, v16.2:vvy)
-  date: '2026-03-03'
-  description: Mapped CarControlGroup to obfuscated APK class(es) via string_const
-    analysis.
-- type: apk_static
-  method: call_graph
-  source: class_mapping.yaml (v15.9:vov, v16.1:vwn, v16.2:vvz)
-  date: '2026-03-03'
-  description: Mapped CarControlGroupUpdate to obfuscated APK class(es) via call_graph
-    analysis.
-- type: apk_static
-  method: call_graph
-  source: class_mapping.yaml (v15.9:vpc, v16.1:vwu, v16.2:vwg)
-  date: '2026-03-03'
-  description: Mapped CarPropertyChangeEvent to obfuscated APK class(es) via call_graph
-    analysis.
-- type: apk_static
-  method: call_graph
-  source: class_mapping.yaml (v15.9:xeg, v16.1:wbk)
-  date: '2026-03-03'
-  description: Mapped RegisterCarPropertyListenersResponse to obfuscated APK class(es)
-    via call_graph analysis.
-- type: apk_static
-  method: call_graph
-  source: class_mapping.yaml (v15.9:vuj, v16.1:wcb, v16.2:wbr)
-  date: '2026-03-03'
-  description: Mapped SetCarPropertyValueResponse to obfuscated APK class(es) via
-    call_graph analysis.
-- type: apk_static
-  method: string_const
-  source: class_mapping.yaml (v15.9:vpd, v16.1:vwv, v16.2:vwh)
-  date: '2026-03-03'
-  description: Mapped SetCarPropertyListenerResult to obfuscated APK class(es) via
-    string_const analysis.
-- type: apk_static
-  method: call_graph
-  source: class_mapping.yaml (v15.9:vui, v16.1:wca, v16.2:wbq)
-  date: '2026-03-03'
-  description: Mapped SetCarPropertyValueRequest to obfuscated APK class(es) via call_graph
-    analysis.
+- type: deep_trace
+  method: handler_dispatch
+  source: hyc.java (16.2), vik.m36844q/m36843p
+  date: '2026-03-07'
+  description: Handler hyc.java (service 19) switch cases verified — 0x8002(wbr),
+    0x8004(wba), 0x8005(vwg), 0x8007(vvz) received. 0x8001(wbq), 0x8003(waz),
+    0x8006(vvv) are send-only. vik.m36844q confirms 7 msg IDs 0x8001-0x8007, no offset.
+- type: deep_trace
+  method: db_schema_verification
+  source: 16.2 proto_classes table
+  date: '2026-03-07'
+  description: All 7 top-level message classes verified in DB — wbq(3 fields),
+    wbr(4 fields), waz(1 field), wba(1 field), vwg(3 fields), vvv(1 field),
+    vvz(1 field). Sub-message refs confirmed (vuh, vup, vvy, vwh, vtz).
+- type: deep_trace
+  method: status_enum_trace
+  source: hyc.java handler, vik.m36848u, hlb.java
+  date: '2026-03-07'
+  description: Status fields in SetCarPropertyValueResponse(wbr field 2) and
+    SetCarPropertyListenerResult(vwh field 2) use shared ProtocolStatus (vyh),
+    NOT a car-control-specific 3-value enum. Confirmed via vyh.m37369b() calls.
+    Old CarControlStatus enum RETRACTED.
+- type: deep_trace
+  method: sdp_descriptor_verification
+  source: vwa.java descriptor, 16.2 DB
+  date: '2026-03-07'
+  description: CarControlChannelDescriptor(vwa) field 2 references vvx(CarControl),
+    NOT vvy(CarControlGroup). Field 1=vuj(CarPropertyConfig), field 3=vua(CarActionEntry).
+- type: deep_trace
+  method: enum_verification
+  source: 16.2 proto_enum_classes table
+  date: '2026-03-07'
+  description: CarControlMetadataType(vug) has 3 values — METADATA_PREFER_STATUS_BAR=2
+    is NEW in 16.2 (was missing from proto).
 - type: cross_version
   method: structural_comparison
   source: cross-version checker (15.9, 16.1, 16.2)
   date: '2026-03-03'
-  description: Structural match confirmed across versions 15.9, 16.1, 16.2. Field
-    numbers, types, and modifiers are consistent.
+  description: Structural match confirmed across versions 15.9, 16.1, 16.2 for most
+    messages. CarControlChannelDescriptor field 2 type changed (CarControlGroup → CarControl).
+changes_applied:
+- RegisterCarPropertyListenersRequest added (was missing from proto, waz 16.2)
+- CarControlStatus enum RETRACTED — status fields use shared ProtocolStatus (vyh)
+- CarControlMetadataType — METADATA_PREFER_STATUS_BAR=2 added
+- CarControlChannelDescriptor field 2 — CarControlGroup → CarControl
+- Handler class updated hxp.java → hyc.java
+- All 16.2 class name comments updated
+- All confidence upgraded silver → gold (handler-traced items)
