@@ -10,12 +10,12 @@
 | Metric | Count |
 |--------|-------|
 | Gold (inherited from GAL) | 8 |
-| Gold (newly verified) | 76 |
-| **Total Gold** | **84** |
-| Schema errors fixed | 5 |
-| New protos added | 3 |
+| Gold (newly verified) | 86 |
+| **Total Gold** | **94** |
+| Schema errors fixed | 8 |
+| New protos added | 10 |
 | Messages retracted | 3 |
-| Bronze (unverified) | ~6 (ConnectedDevices msgs, placeholder sub-messages) |
+| Bronze (unverified) | ~5 (ConnectedDevices msgs, deepest sub-message placeholders) |
 
 ## Wave Summary
 
@@ -53,18 +53,22 @@ CarControlChannel filled (was empty → 3 repeated fields: CarPropertyConfig, Ca
 - **ConnectedDevices:** Bronze — message IDs exist in enum registry but no handler implementation in phone APK.
 - **TransportSecurityEntry/Detail:** 16.2 class names not resolved (Silver/Bronze).
 
-## Remaining TODO
+## Resolved TODOs
 
-These items have correct field schemas but need deeper analysis:
+1. **TuningParamsA/B/C** — All three reference the SAME class (aaik): 3 fields (enum, uint32, string). Consolidated into shared `TuningEntry` message.
+2. **TransportCapabilityEntry (aaix)** — 2 string fields (key + value). Filled.
+3. **TransportSecurityEntry/Detail** — Full chain resolved: aajj → aaji → aajh → aajg (5 strings) + aajf (repeated aaje). All Gold.
+4. **CapabilityConnectionEntry (aafl)** — NOT empty! Has oneof with 6 message alternatives. CapabilityConnectionConfig field 2 is actually InputModelDescriptor (not same type as field 1).
+5. **InputModelEnum** — Silver. Enum definition not cleanly resolvable from DB (interface wrapping).
+6. **ConnectedDevices** — Confirmed Bronze. Message IDs registered in vik.java enum but zero proto classes and zero handler code in 16.2 phone APK.
 
-1. **TuningParamsADetail, TuningParamsBEntry, TuningParamsCDetail** — internal field schemas unknown
-2. **TransportCapabilityEntry** — internal fields unknown
-3. **TransportSecurityEntry/Detail** — 16.2 class names not resolved
-4. **CapabilityConnectionEntry** — confirmed empty placeholder
-5. **InputModelEnum** — only default value 0, full enum values unknown
-6. **ConnectedDevices messages** — schemas from aa-proxy-rs, not independently verified against APK
+## Remaining Low-Priority
 
-These are all low-priority items that would require wire captures or deeper reverse engineering to resolve.
+- **TuningEntryType enum** — values not decoded (Silver)
+- **InputModelEnum** — values not decoded (Silver)
+- **CapabilityConnectionValue/Alt** — sub-message internals not decoded (Bronze)
+- **TransportSecurityParamEntry (aaje)** — fields not decoded (Bronze)
+- **ConnectedDevices** — aa-proxy-rs schemas assumed correct but unverifiable (Bronze)
 
 ## Key Learnings
 

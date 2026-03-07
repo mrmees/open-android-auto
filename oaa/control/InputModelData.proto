@@ -20,16 +20,32 @@ syntax="proto3";
 package oaa.proto.data;
 
 // APK class: aahf (16.1) → aagl (16.2) — connection config with two sub-messages
+// Field 1 and 2 are DIFFERENT types (not the same as previously assumed).
 // confidence: gold [16.2_db_verified]
 message CapabilityConnectionConfig
 {
-    CapabilityConnectionEntry entry_a = 1;  // confidence: gold
-    CapabilityConnectionEntry entry_b = 2;  // confidence: gold
+    CapabilityConnectionEntry entry = 1;  // APK: aafl (oneof with 6 alternatives)  // confidence: gold
+    InputModelDescriptor descriptor = 2;  // APK: aagj (string + bytes)  // confidence: gold
 }
 
-// Placeholder for CapabilityConnectionConfig sub-message fields
-// confidence: gold [16.2_db_verified, confirmed empty]
-message CapabilityConnectionEntry {}
+// APK class: aafl (16.2) — capability connection entry with oneof
+// confidence: gold [16.2_db_verified]
+message CapabilityConnectionEntry {
+    optional CapabilityConnectionValue value = 1;  // confidence: gold
+
+    oneof connection_type {
+        CapabilityConnectionAlt alt_2 = 2;  // confidence: gold
+        CapabilityConnectionAlt alt_3 = 3;  // confidence: gold
+        CapabilityConnectionAlt alt_4 = 4;  // confidence: gold
+        CapabilityConnectionAlt alt_5 = 5;  // confidence: gold
+        CapabilityConnectionAlt alt_6 = 6;  // confidence: gold
+    }
+}
+
+// Placeholder for CapabilityConnectionEntry sub-messages
+// confidence: bronze [fields not decoded]
+message CapabilityConnectionValue {}
+message CapabilityConnectionAlt {}
 
 // APK class: aahd (16.1) → aagj (16.2) — describes an input model (name + serialized descriptor)
 // confidence: gold [16.2_db_verified]

@@ -9,9 +9,9 @@
 | Status | Count |
 |--------|-------|
 | Verified (Gold) — GAL messages | 194 |
-| Verified (Gold) — SDP layer | 84 |
-| Schema Errors Found & Fixed | 80 |
-| New Protos Discovered | 17 |
+| Verified (Gold) — SDP layer | 94 |
+| Schema Errors Found & Fixed | 83 |
+| New Protos Discovered | 24 |
 | Retracted / Removed | 32 |
 | Relocated (wrong channel) | 4 (BindingRequest/Response → input, CallAvailability/VoiceSession → control) |
 | Pending | **0 — ALL CHANNELS + SDP COMPLETE** |

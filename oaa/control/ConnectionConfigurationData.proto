@@ -91,50 +91,87 @@ message TransportCapabilities {
     repeated string supported_protocols = 2;  // confidence: gold
 }
 
-// Placeholder for TransportCapabilities sub-message entries
-// TODO: Resolve 16.2 class and internal fields
-// confidence: bronze
-message TransportCapabilityEntry {}
+// APK class: aaix (16.2) — transport capability entry
+// confidence: gold [16.2_db_verified]
+message TransportCapabilityEntry {
+    string key = 1;    // confidence: gold
+    string value = 2;  // confidence: gold
+}
 
 // APK class: aakd (16.1) → aajj (16.2) — transport security configuration
 // confidence: gold [16.2_db_verified]
 message TransportSecurityConfig {
-    optional TransportSecurityEntry security_entry = 1;  // confidence: silver
+    optional TransportSecurityEntry security_entry = 1;  // confidence: gold
 }
 
-// APK class: aakc (16.1) — 16.2 class not resolved
-// confidence: silver [structure_match]
+// APK class: aakc (16.1) → aaji (16.2) — security entry wrapper
+// confidence: gold [16.2_db_verified]
 message TransportSecurityEntry {
-    optional TransportSecurityDetail detail = 2;  // confidence: silver
+    optional TransportSecurityDetail detail = 2;  // confidence: gold
 }
 
-// APK class: aakb (16.1) — 16.2 class not resolved
-// confidence: bronze
-message TransportSecurityDetail {}
+// APK class: aakb (16.1) → aajh (16.2) — security detail with 2 sub-messages
+// confidence: gold [16.2_db_verified]
+message TransportSecurityDetail {
+    optional TransportSecurityCertChain cert_chain = 1;  // APK: aajg (5 strings)  // confidence: gold
+    optional TransportSecurityParams params = 2;         // APK: aajf (repeated aaje)  // confidence: gold
+}
+
+// APK class: aajg (16.2) — certificate/security strings (5 fields)
+// confidence: gold [16.2_db_verified]
+message TransportSecurityCertChain {
+    string field_1 = 1;  // confidence: gold
+    string field_2 = 2;  // confidence: gold
+    string field_3 = 3;  // confidence: gold
+    string field_4 = 4;  // confidence: gold
+    string field_5 = 5;  // confidence: gold
+}
+
+// APK class: aajf (16.2) — security parameters
+// confidence: gold [16.2_db_verified]
+message TransportSecurityParams {
+    repeated TransportSecurityParamEntry entries = 1;  // APK: aaje  // confidence: gold
+}
+
+// APK class: aaje (16.2) — placeholder for security param entries
+// confidence: bronze [fields not decoded]
+message TransportSecurityParamEntry {}
 
 // APK class: aajf (16.1) → aail (16.2) — 1 optional message field
 // confidence: gold [16.2_db_verified]
 message TuningParamsA {
-    optional TuningParamsADetail detail = 1;  // confidence: gold
+    optional TuningEntry detail = 1;  // APK: aaik  // confidence: gold
 }
-message TuningParamsADetail {}  // TODO: resolve internal fields
 
 // APK class: aajb (16.1) → aaih (16.2) — 1 repeated message field
 // confidence: gold [16.2_db_verified]
 message TuningParamsB {
-    repeated TuningParamsBEntry entries = 1;  // confidence: gold
+    repeated TuningEntry entries = 1;  // APK: aaik  // confidence: gold
 }
-message TuningParamsBEntry {}  // TODO: resolve internal fields
 
 // APK class: aajd (16.1) → aaij (16.2) — 1 optional message field
 // confidence: gold [16.2_db_verified]
 message TuningParamsC {
-    optional TuningParamsCDetail detail = 1;  // confidence: gold
+    optional TuningEntry detail = 1;  // APK: aaik  // confidence: gold
 }
-message TuningParamsCDetail {}  // TODO: resolve internal fields
 
 // APK class: aajc (16.1) → aaii (16.2) — 1 string field
 // confidence: gold [16.2_db_verified]
 message TuningParamsD {
     string value = 1;  // confidence: gold
+}
+
+// APK class: aaik (16.2) — shared tuning entry used by TuningParamsA/B/C
+// All three reference the same APK class.
+// confidence: gold [16.2_db_verified]
+message TuningEntry {
+    optional TuningEntryType type = 1;   // enum  // confidence: gold
+    optional uint32 value = 2;           // confidence: gold
+    string label = 3;                    // confidence: gold
+}
+
+// Placeholder enum for TuningEntry field 1
+// confidence: silver [enum values not decoded]
+enum TuningEntryType {
+    TUNING_ENTRY_UNKNOWN = 0;
 }
