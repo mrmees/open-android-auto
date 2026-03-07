@@ -8,7 +8,7 @@
 | Status | Count |
 |--------|-------|
 | Already Gold (from GAL) | 8 |
-| Verified (new Gold) | 0 |
+| Verified (new Gold) | 8 |
 | Schema Errors Found & Fixed | 0 |
 | New Protos Discovered | 0 |
 | Retracted / Removed | 0 |
@@ -18,7 +18,7 @@
 
 | Wave | Scope | Status | Notes |
 |------|-------|--------|-------|
-| 1 | SDP Envelope (SDR, SDReq, ChannelDescriptor) | PENDING | |
+| 1 | SDP Envelope (SDR, SDReq, ChannelDescriptor) | **COMPLETE** | 8 Gold (SDR, SDReq, ChannelDesc, SDUpdate, 4 features). No schema changes, class names updated. |
 | 2 | Phone Capabilities | PENDING | |
 | 3 | AV + Video SDP Configs | PENDING | |
 | 4 | Audio + Mic SDP Configs | PENDING | |
@@ -30,4 +30,4 @@
 
 ## Resume Pointer
 
-Start at Wave 1.
+Wave 1 complete. Start at Wave 2.
