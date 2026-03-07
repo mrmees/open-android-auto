@@ -40,6 +40,7 @@ def _parse_frame_row(raw: dict[str, Any], line_no: int) -> Frame:
         message_id=int(raw["message_id"]),
         message_name=str(raw["message_name"]),
         payload_hex=str(raw["payload_hex"]),
+        service_type=str(raw.get("service_type", "")),
     )
 
 

@@ -45,7 +45,7 @@ def test_validate_fails_on_diff_and_does_not_write_baseline(tmp_path, monkeypatc
     monkeypatch.setattr(
         run,
         "build_normalized_rows",
-        lambda capture_path, repo_root: [
+        lambda capture_path, repo_root, verbose=False: [
             {
                 "frame_index": 0,
                 "decoded": {"status": "ERROR"},
@@ -72,7 +72,7 @@ def test_bless_writes_updated_baseline(tmp_path, monkeypatch):
     monkeypatch.setattr(
         run,
         "build_normalized_rows",
-        lambda capture_path, repo_root: [
+        lambda capture_path, repo_root, verbose=False: [
             {
                 "frame_index": 0,
                 "decoded": {"minor": 7, "major": 1},

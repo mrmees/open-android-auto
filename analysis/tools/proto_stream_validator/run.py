@@ -46,6 +46,11 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
         type=str,
         help="Required with --bless to document intentional change rationale",
     )
+    parser.add_argument(
+        "--verbose", "-v",
+        action="store_true",
+        help="Print details about skipped frames",
+    )
     return parser.parse_args(argv)
 
 
@@ -65,6 +70,7 @@ def _decode_frame(
             frame.channel_id,
             frame.message_id,
             frame.message_name,
+            frame.service_type,
         )
     except KeyError as exc:
         raise ValueError(f"frame {frame_index}: {exc}") from exc
@@ -85,17 +91,34 @@ def _decode_frame(
     }
 
 
-def build_normalized_rows(capture_path: Path, repo_root: Path) -> list[dict[str, Any]]:
+def build_normalized_rows(
+    capture_path: Path, repo_root: Path, *, verbose: bool = False,
+) -> list[dict[str, Any]]:
     frames = load_capture_jsonl(capture_path)
 
     with tempfile.TemporaryDirectory(prefix="oaa-proto-validator-") as tmp_dir:
         bundle = build_descriptor_bundle(repo_root=repo_root, out_dir=Path(tmp_dir))
 
         rows: list[dict[str, Any]] = []
+        skipped = 0
         for frame_index, frame in enumerate(frames):
             if not is_phase1_non_media(frame):
                 continue
-            rows.append(_decode_frame(frame_index, frame, bundle))
+            try:
+                rows.append(_decode_frame(frame_index, frame, bundle))
+            except ValueError as exc:
+                if "unmapped tuple" in str(exc):
+                    skipped += 1
+                    if verbose:
+                        print(f"skip: {exc}", file=sys.stderr)
+                else:
+                    raise
+
+    if skipped:
+        print(
+            f"note: {skipped} frame(s) skipped (unmapped message types)",
+            file=sys.stderr,
+        )
 
     return normalize_decoded_frames(rows)
 
@@ -130,6 +153,7 @@ def main(argv: list[str] | None = None) -> int:
         actual_rows = build_normalized_rows(
             capture_path=args.capture,
             repo_root=args.repo_root.resolve(),
+            verbose=args.verbose,
         )
     except Exception as exc:
         print(f"error: {exc}", file=sys.stderr)

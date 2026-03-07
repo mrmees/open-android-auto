@@ -12,6 +12,7 @@ class Frame:
     message_id: int
     message_name: str
     payload_hex: str
+    service_type: str = ""
 
 
 @dataclass(frozen=True)
