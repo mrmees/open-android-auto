@@ -6,11 +6,12 @@
 |---------|------|----------|------------|
 | AudioFocusRequest | Silver | apk_static + cross_version | [AudioFocusRequestMessage.audit.yaml](../../oaa/audio/AudioFocusRequestMessage.audit.yaml) |
 | AudioFocusResponse | Silver | apk_static + cross_version | [AudioFocusResponseMessage.audit.yaml](../../oaa/audio/AudioFocusResponseMessage.audit.yaml) |
-| AudioFocusState (message) | Silver | apk_static + cross_version | [AudioFocusStateMessage.audit.yaml](../../oaa/audio/AudioFocusStateMessage.audit.yaml) |
+| ~~AudioFocusState (message)~~ | **Retracted** | Actually RadioFavoriteToggleRequest (0x8021 on radio ch 15) | [AudioFocusStateMessage.audit.yaml](../../oaa/audio/AudioFocusStateMessage.audit.yaml) |
 | AudioConfig | Silver | apk_static + cross_version | [AudioConfigData.audit.yaml](../../oaa/audio/AudioConfigData.audit.yaml) |
-| AudioStreamType (message) | Silver | apk_static + cross_version | [AudioStreamTypeMessage.audit.yaml](../../oaa/audio/AudioStreamTypeMessage.audit.yaml) |
+| ~~AudioStreamType (message)~~ | **Retracted** | Actually RadioTuneDirectionRequest (0x8022 on radio ch 15) | [AudioStreamTypeMessage.audit.yaml](../../oaa/audio/AudioStreamTypeMessage.audit.yaml) |
 | AudioFocusChannel | Bronze | apk_static | [AudioFocusChannelData.audit.yaml](../../oaa/audio/AudioFocusChannelData.audit.yaml) |
-| AudioStreamType (enum) | Bronze | apk_static | [AudioStreamTypeEnum.audit.yaml](../../oaa/audio/AudioStreamTypeEnum.audit.yaml) |
+| ~~AudioStreamType (enum)~~ | **Retracted** | Actually RadioTuneDirection enum on radio ch 15 | [AudioStreamTypeEnum.audit.yaml](../../oaa/audio/AudioStreamTypeEnum.audit.yaml) |
+| MicrophoneOpenResponse | **Gold** | apk_deep_trace (2026-03-06) — NEW | (mic channel, 0x8006) |
 | AudioFocusState (enum) | Unverified | -- | -- |
 | AudioFocusType (enum) | Unverified | -- | -- |
 | AudioType (enum) | Unverified | -- | -- |
@@ -54,12 +55,20 @@ Audio focus is the arbitration mechanism that coordinates between these three ch
 
 ### Audio-Specific Messages (Per-Channel, ch 4/5/6)
 
-> Confidence: Silver [apk_static, cross_version] -- AudioStreamType message is Silver; AudioStreamType enum is Bronze
+> **Both messages retracted (2026-03-06)** — AudioFocusState and AudioStreamType were misidentified radio channel messages. No audio-specific per-channel messages exist beyond the shared AV set.
 
 | Msg ID | Message | Direction | Purpose | Confidence |
 |--------|---------|-----------|---------|:---:|
-| 0x8021 | AudioFocusState | Phone -> HU | Binary focus indicator (has_focus boolean) | Silver |
-| 0x8022 | AudioStreamType | Phone -> HU | Stream type indicator (media vs guidance) | Silver |
+| ~~0x8021~~ | ~~AudioFocusState~~ | — | **RETRACTED** — actually RadioFavoriteToggleRequest on radio channel (service 15) | Retracted |
+| ~~0x8022~~ | ~~AudioStreamType~~ | — | **RETRACTED** — actually RadioTuneDirectionRequest on radio channel (service 15) | Retracted |
+
+### Microphone Input (ch 6, mic direction)
+
+| Msg ID | Message | Direction | Purpose | Confidence |
+|--------|---------|-----------|---------|:---:|
+| 0x8006 | MicrophoneOpenResponse | HU -> Phone | Mic session opened (status + session_config) | **Gold** |
+
+Raw mic audio uses wire IDs 0x0000 (HU→Phone) and 0x0001 (Phone→HU) — raw PCM with 8-byte timestamp header, no protobuf.
 
 ### AV Setup Messages (Per-Channel, ch 4/5/6)
 
@@ -385,12 +394,12 @@ Certain vehicles have force-single-channel (mono) capturing enabled via a hardco
 ### Proto Files
 - [AudioFocusRequestMessage.proto](../../oaa/audio/AudioFocusRequestMessage.proto)
 - [AudioFocusResponseMessage.proto](../../oaa/audio/AudioFocusResponseMessage.proto)
-- [AudioFocusStateMessage.proto](../../oaa/audio/AudioFocusStateMessage.proto)
+- [AudioFocusStateMessage.proto](../../oaa/audio/AudioFocusStateMessage.proto) **(RETRACTED — tombstone only)**
 - [AudioFocusTypeEnum.proto](../../oaa/audio/AudioFocusTypeEnum.proto)
 - [AudioFocusStateEnum.proto](../../oaa/audio/AudioFocusStateEnum.proto)
 - [AudioConfigData.proto](../../oaa/audio/AudioConfigData.proto)
-- [AudioStreamTypeMessage.proto](../../oaa/audio/AudioStreamTypeMessage.proto)
-- [AudioStreamTypeEnum.proto](../../oaa/audio/AudioStreamTypeEnum.proto)
+- [AudioStreamTypeMessage.proto](../../oaa/audio/AudioStreamTypeMessage.proto) **(RETRACTED — tombstone only)**
+- [AudioStreamTypeEnum.proto](../../oaa/audio/AudioStreamTypeEnum.proto) **(RETRACTED — tombstone only)**
 - [AudioTypeEnum.proto](../../oaa/audio/AudioTypeEnum.proto)
 - [AudioFocusChannelData.proto](../../oaa/audio/AudioFocusChannelData.proto)
 
@@ -417,6 +426,9 @@ Certain vehicles have force-single-channel (mono) capturing enabled via a hardco
 - `pli.java` — Car-specific force-mono list (KIA, HYUNDAI, SYNC)
 - `wbs.java` — AVChannelSetupRequest proto (single codec field)
 - `vwn.java` — AVChannelSetupResponse proto (status, max_unacked, configs)
+
+### Verification Report
+- [Proto Verification: Audio Channel](../../analysis/reports/proto-verification/audio.md) — full verification trace with retractions
 
 ### Cross-References
 - [Audio cross-version mapping](../cross-version/audio.md) -- APK class mappings across versions 15.9, 16.1, 16.2

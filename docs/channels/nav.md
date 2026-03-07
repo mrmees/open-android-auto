@@ -4,7 +4,9 @@
 
 | Message | Tier | Evidence | Audit File |
 |---------|------|----------|------------|
-| NavigationTurnEvent | Silver | apk_static + cross_version | [NavigationTurnEventMessage.audit.yaml](../../oaa/navigation/NavigationTurnEventMessage.audit.yaml) |
+| ~~NavigationTurnEvent~~ | **Deprecated** | Removed in 16.2, 16.1 only (0x8004) | [NavigationTurnEventMessage.audit.yaml](../../oaa/navigation/NavigationTurnEventMessage.audit.yaml) |
+| LegacyNavigationTurnEvent | **Gold** | apk_deep_trace (2026-03-06) — NEW | (0x8005, vyx in 16.2) |
+| VehicleEnergyForecast | **Gold** | apk_deep_trace (2026-03-06) — NEW | (0x8008, waw wrapper, PDK >= 5.1) |
 | NavigationNotification | Gold | apk_static + cross_version + **wire_verified** | [NavigationNotificationMessage.audit.yaml](../../oaa/navigation/NavigationNotificationMessage.audit.yaml) |
 | NavigationNextTurnDistanceEvent | Gold | apk_static + cross_version + **wire_verified** | [NavigationTurnEventMessage.audit.yaml](../../oaa/navigation/NavigationTurnEventMessage.audit.yaml) |
 | NavigationDistance | Silver | apk_static + cross_version | [NavigationDistanceMessage.audit.yaml](../../oaa/navigation/NavigationDistanceMessage.audit.yaml) |

@@ -4,7 +4,7 @@
 
 The radio channel (GAL Service 15, log tag `CAR.GAL.RADIO-EP`) enables the phone to control the car's broadcast radio tuner. The HU reports its radio hardware capabilities via the SDP; the phone provides the UI, station lists, metadata display, and user control.
 
-The radio pipeline on the phone: HU advertises `RadioChannel` config in SDP with `RadioStation` entries describing tuner capabilities -> `ibf.java` (`CAR.GAL.RADIO-EP` endpoint) receives Phone->HU messages and dispatches via Handler to -> `hlr.java` (`CAR.RADIO` service) which manages radio state and sends HU->Phone commands -> `RadioMediaBrowserService` (`GH.Radio`) exposes the radio as an Android MediaBrowser for the projection UI.
+The radio pipeline on the phone: HU advertises `RadioChannelConfig` in SDP with band group hierarchy describing tuner capabilities -> `ibf.java` (`CAR.GAL.RADIO-EP` endpoint) receives HU->Phone notifications and dispatches via Handler to -> `hlr.java` (`CAR.RADIO` service) which manages radio state and sends Phone->HU requests -> `RadioMediaBrowserService` (`GH.Radio`) exposes the radio as an Android MediaBrowser for the projection UI.
 
 **Supported bands:** AM, FM (with optional HD Radio / RDS), and DAB/DAB+/DMB. There is **no SiriusXM/satellite radio support** -- the channel covers terrestrial broadcast only.
 
@@ -14,8 +14,8 @@ The radio pipeline on the phone: HU advertises `RadioChannel` config in SDP with
 
 | Component | 16.2 Class | Log Tag | Role |
 |-----------|-----------|---------|------|
-| Endpoint Handler | `ibf.java` | `CAR.GAL.RADIO-EP` | Wire protocol: receives Phone->HU messages, dispatches to service |
-| Radio Service | `hlr.java` | `CAR.RADIO` | Business logic: manages state, sends HU->Phone messages |
+| Endpoint Handler | `ibf.java` | `CAR.GAL.RADIO-EP` | Wire protocol: receives HU->Phone notifications, dispatches to service |
+| Radio Service | `hlr.java` | `CAR.RADIO` | Business logic: manages state, sends Phone->HU requests |
 | Handler Callback | `ibd.java` | -- | Routes handler messages (1-5) to service callbacks |
 | MediaBrowserService | `RadioMediaBrowserService.java` | `GH.Radio` | Exposes radio as Android MediaBrowser for UI integration |
 | ICarRadio (AIDL) | `psn.java` / `psm.java` | -- | `com.google.android.gms.car.ICarRadio` |
@@ -26,27 +26,27 @@ The radio pipeline on the phone: HU advertises `RadioChannel` config in SDP with
 
 ## Message Catalog
 
-### Phone -> HU (5 messages, received by `ibf.mo18864a()`)
+### HU -> Phone (5 notifications, received by `ibf.mo18864a()`)
 
 | Msg ID | Direction | Proto Class (16.2) | Name | Purpose |
 |--------|-----------|-------------------|------|---------|
-| 0x801A | Phone -> HU | `wam` | RadioProgramListNotification | Full list of available stations |
-| 0x801B | Phone -> HU | `wal` | RadioProgramInfoNotification | Current station info, mute state, audio focus |
-| 0x801D | Phone -> HU | `wah` | RadioMuteResponse | Confirms mute state change |
-| 0x801F | Phone -> HU | `wau` | RadioTuneResponse | Tune result status |
-| 0x8020 | Phone -> HU | `wad` | RadioFavoriteListNotification | Full favorites list |
+| 0x801A | HU -> Phone | `wam` | RadioProgramListNotification | Full list of available stations |
+| 0x801B | HU -> Phone | `wal` | RadioProgramInfoNotification | Current station info, mute state, audio focus |
+| 0x801D | HU -> Phone | `wah` | RadioMuteResponse | Confirms mute state change |
+| 0x801F | HU -> Phone | `wau` | RadioTuneResponse | Tune result status |
+| 0x8020 | HU -> Phone | `wad` | RadioFavoriteListNotification | Full favorites list |
 
-### HU -> Phone (5 messages, sent by `hlr.java`)
+### Phone -> HU (5 requests, sent by `hlr.java`)
 
 | Msg ID | Direction | Proto Class (16.2) | Name | Purpose |
 |--------|-----------|-------------------|------|---------|
-| 0x801C | HU -> Phone | `wag` | RadioMuteRequest | Mute/unmute radio |
-| 0x801E | HU -> Phone | `wat` | RadioTuneRequest | Tune to specific station by selector |
-| 0x8021 | HU -> Phone | `waq` | RadioFavoriteToggleRequest | Toggle current station as favorite |
-| 0x8022 | HU -> Phone | `war` | RadioTuneDirectionRequest | Seek up/down to next station |
-| 0x8023 | HU -> Phone | `wac` | RadioCustomActionRequest | Forward MediaBrowser custom action |
+| 0x801C | Phone -> HU | `wag` | RadioMuteRequest | Mute/unmute radio |
+| 0x801E | Phone -> HU | `wat` | RadioTuneRequest | Tune to specific station by selector |
+| 0x8021 | Phone -> HU | `waq` | RadioFavoriteToggleRequest | Toggle current station as favorite |
+| 0x8022 | Phone -> HU | `war` | RadioTuneDirectionRequest | Seek up/down to next station |
+| 0x8023 | Phone -> HU | `wac` | RadioSearchRequest | Radio search (NEW in 16.2) |
 
-**Note:** Message IDs 0x801C (32796) and 0x801E (32798) fall through to the default case in the endpoint handler switch -- they are HU->Phone messages and are never received by the handler.
+**Note:** Message IDs 0x801C (32796) and 0x801E (32798) fall through to the default case in the endpoint handler switch -- they are Phone->HU messages and are never received by the phone-side handler.
 
 ---
 
@@ -178,12 +178,12 @@ Sent by `hlr.mo18793n(int i)`.
 
 ---
 
-## RadioCustomActionRequest (0x8023)
+## RadioSearchRequest (0x8023)
 
-HU forwards a MediaBrowser custom action to the phone's radio service. This was **added in 16.2** and is not present in the 16.1 proto definitions.
+Phone sends a search/custom action to the radio service. This was **added in 16.2** and is not present in the 16.1 proto definitions.
 
 ```protobuf
-message RadioCustomActionRequest {  // APK class: wac (16.2)
+message RadioSearchRequest {  // APK class: wac (16.2)
     optional string action_id = 1;
 }
 ```
@@ -269,7 +269,7 @@ message RadioSongMetadata {  // APK class: was (16.2), wbb (16.1)
 Station icon or album art image data.
 
 ```protobuf
-message RadioImage {  // APK class: wao (16.2), wam (16.1)
+message RadioImage {  // APK class: wae (16.2), wam (16.1)
     optional bytes image_data = 1;
 }
 ```
@@ -279,7 +279,7 @@ message RadioImage {  // APK class: wao (16.2), wam (16.1)
 Program type classification using RDS PTY or ITU schema.
 
 ```protobuf
-message RadioProgramType {  // APK class: waw (16.2)
+message RadioProgramType {  // APK class: wao (16.2)
     optional RadioProgramTypeSchema schema = 1;  // 1=RDS_PTY, 2=ITU
     optional uint32 code = 2;                    // program type code (0-31)
 }
@@ -429,35 +429,25 @@ When a new callback is registered (`hlr.mo18791k()`), the service replays cached
 
 ## Service Discovery (SDP) Configuration
 
-The radio channel's capabilities are declared in the ServiceDiscoveryResponse via `RadioChannel` in `ChannelDescriptorData`:
+The radio channel's capabilities are declared in the ServiceDiscoveryResponse via `RadioChannelConfig` in `ChannelDescriptorData`. The SDP structure was **completely restructured in 16.2** from a flat `RadioStation` list to a 3-level hierarchy:
 
 ```protobuf
-message RadioChannel {             // APK class: way (16.2)
-    repeated RadioStation stations = 1;
+message RadioChannelConfig {       // APK class: wap (16.2)
+    repeated RadioBands bands = 1;
 }
 
-message RadioStation {             // APK class: wax (16.2)
-    optional int32 station_id = 1;
-    optional int32 identifier_type = 2;
-    repeated RadioBand bands = 3;         // frequency ranges
-    repeated int32 channel_list = 4;
-    optional int32 tuner_type = 5;
-    optional bool enabled = 6;
-    optional RadioCodecType codec_type = 7;
-    optional RadioBandType band_type = 8;
-    optional bool supports_rds = 9;
-    optional bool supports_hd = 10;
-    optional RadioRegion region = 11;
-    optional bool dab_capable = 12;
-    optional bool drm_capable = 13;
-    optional int32 priority = 14;
+message RadioBands {               // APK class: wab (16.2)
+    repeated RadioBandGroup band_groups = 1;
 }
 
-message RadioBand {                // APK class: wbe (16.2)
-    optional int32 lower_bound = 1;  // lower frequency limit (kHz)
-    optional int32 upper_bound = 2;  // upper frequency limit (kHz)
+message RadioBandGroup {           // APK class: waa (16.2)
+    repeated int32 band_types = 1;         // RadioBandType values (1=AM, 2=FM, 3=DAB)
+    optional bool hide_empty_group = 2;    // hide browse node if no stations
+    optional string band_scan_action = 3;  // custom action ID for 0x8023
 }
 ```
+
+> **16.1 → 16.2 change:** The old flat `RadioStation` (14 fields including frequency ranges, codec, region) was replaced by this grouped hierarchy. The 16.1 `RadioChannelData.proto` in `oaa/control/` still has the old structure.
 
 The `hlr.mo18712a()` method parses this at channel setup and creates a `RadioConfiguration` containing `RadioBandGroup` entries. Each band group has:
 - List of band type integers (1=AM, 2=FM, 3=DAB)
@@ -497,7 +487,7 @@ Empty band groups can be hidden via the `hideEmptyGroup` flag from RadioConfigur
 
 ### Custom Browser Actions
 
-The RadioMediaBrowserService supports `androidx.media.utils.extras.CUSTOM_BROWSER_ACTION_ROOT_LIST` and per-item `CUSTOM_BROWSER_ACTION_ID_LIST`. These are forwarded to the phone as `RadioCustomActionRequest` (0x8023). The `bandScanAction` string from RadioConfiguration band groups is one such action ID.
+The RadioMediaBrowserService supports `androidx.media.utils.extras.CUSTOM_BROWSER_ACTION_ROOT_LIST` and per-item `CUSTOM_BROWSER_ACTION_ID_LIST`. These are forwarded to the phone as `RadioSearchRequest` (0x8023). The `bandScanAction` string from RadioConfiguration band groups is one such action ID.
 
 ---
 
@@ -531,7 +521,7 @@ Station icons and album art are delivered as raw bytes in `RadioImage.image_data
 
 > **State replay on reconnect:** The radio service caches all state and replays it when a new callback registers. Implementers should expect to receive the full program list, favorites list, and current station info immediately after connection.
 
-> **Custom actions are new in 16.2:** `RadioCustomActionRequest` (0x8023) was added in the 16.2 APK. It is not present in the 16.1 proto definitions. The 16.1 channel only had 9 message types.
+> **Custom actions are new in 16.2:** `RadioSearchRequest` (0x8023) was added in the 16.2 APK. It is not present in the 16.1 proto definitions. The 16.1 channel only had 9 message types.
 
 > **DTS AutoStage:** `RadioMetadata.dts_autostage_enriched` (field 13) indicates DTS audio enhancement is active. This is a post-processing feature, not a radio standard -- it signals that DTS AutoStage is enhancing the audio output.
 
@@ -543,8 +533,8 @@ Station icons and album art are delivered as raw bytes in `RadioImage.image_data
 
 | Class | Role |
 |-------|------|
-| `ibf` | `CAR.GAL.RADIO-EP` -- radio channel endpoint, handles incoming Phone->HU messages |
-| `hlr` | `CAR.RADIO` -- radio service, manages state and sends HU->Phone messages |
+| `ibf` | `CAR.GAL.RADIO-EP` -- radio channel endpoint, receives HU->Phone notifications |
+| `hlr` | `CAR.RADIO` -- radio service, manages state and sends Phone->HU requests |
 | `ibd` | Handler callback -- routes handler messages (1-5) to service callbacks |
 | `RadioMediaBrowserService` | `GH.Radio` -- MediaBrowser integration for radio UI |
 | `psn` / `psm` | `ICarRadio` AIDL interface |
@@ -559,12 +549,14 @@ Station icons and album art are delivered as raw bytes in `RadioImage.image_data
 | `wad` | RadioFavoriteListNotification proto (0x8020) |
 | `waq` | RadioFavoriteToggleRequest proto (0x8021) |
 | `war` | RadioTuneDirectionRequest proto (0x8022) |
-| `wac` | RadioCustomActionRequest proto (0x8023) |
+| `wac` | RadioSearchRequest proto (0x8023, NEW in 16.2) |
 | `wak` | RadioProgramInfo proto |
 | `wan` | RadioProgramSelector proto |
 | `waj` | RadioProgramIdentifier proto |
 | `waf` | RadioMetadata proto |
+| `wae` | RadioImage proto |
 | `was` | RadioSongMetadata proto |
+| `wao` | RadioProgramType proto |
 | `wai` | RadioIdentifierType enum |
 | `vzz` | RadioBandType runtime enum |
 | `ljg` | Frequency/band classification utilities |

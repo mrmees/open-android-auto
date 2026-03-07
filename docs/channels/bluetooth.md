@@ -9,7 +9,7 @@ Call audio during AA projection uses a dual-path architecture:
 - **Signaling (AA protocol):** Phone call state (caller ID, call state, duration, contact photo) flows through the Phone Status channel (GAL type 13) as protobuf messages.
 - **Audio (BT HFP):** Actual voice audio flows through standard Bluetooth HFP over SCO (Synchronous Connection-Oriented), which is an OS-level Bluetooth audio path managed by the Android `BluetoothHeadset` API, completely independent of the AA data connection.
 
-The pairing pipeline: HU advertises BT adapter address in SDP (`BluetoothChannelDescriptor`, field 6) -> phone sends `BluetoothPairingRequest` (0x8001) -> HU responds with `BluetoothPairingResponse` (0x8002) -> HU sends `BluetoothAuthenticationData` (0x8003) -> phone confirms via OS BT stack + sends `BluetoothAuthenticationResult` (0x8004) -> HFP connects at OS level -> steady-state monitoring.
+The pairing pipeline: HU advertises BT adapter address in SDP (`BluetoothChannelDescriptor`, field 6) -> HU sends `BluetoothPairingRequest` (0x8001) to phone -> HU sends `BluetoothPairingResponse` (0x8002) -> HU sends `BluetoothAuthenticationData` (0x8003) -> phone confirms via OS BT stack + sends `BluetoothAuthenticationResult` (0x8004) -> HFP connects at OS level -> steady-state monitoring.
 
 ---
 
@@ -17,7 +17,7 @@ The pairing pipeline: HU advertises BT adapter address in SDP (`BluetoothChannel
 
 | Msg ID | Direction | Proto Class (16.2) | Name | Purpose |
 |--------|-----------|-------------------|------|---------|
-| 0x8001 | Phone -> HU | `vvm` | BluetoothPairingRequest | Phone requests BT pairing with HU |
+| 0x8001 | HU -> Phone | `kba` | BluetoothPairingRequest | HU requests phone to initiate BT pairing |
 | 0x8002 | HU -> Phone | `vvn` | BluetoothPairingResponse | HU accepts/rejects pairing request |
 | 0x8003 | HU -> Phone | `vvj` | BluetoothAuthenticationData | HU sends auth data (PIN or passkey) |
 | 0x8004 | Phone -> HU | `vvk` | BluetoothAuthenticationResult | Phone reports auth success/failure |
@@ -26,17 +26,17 @@ The pairing pipeline: HU advertises BT adapter address in SDP (`BluetoothChannel
 
 ## BluetoothPairingRequest (0x8001)
 
-Sent by the phone to initiate BT pairing with the head unit.
+Sent by the HU to the phone to initiate BT pairing.
 
 ```protobuf
-message BluetoothPairingRequest {   // APK class: vvm
+message BluetoothPairingRequest {   // APK class: kba (16.2)
     required string phone_address    = 1;  // phone's BT MAC address
     required BluetoothPairingMethod pairing_method = 2;  // chosen pairing method
     optional string phone_name       = 3;  // human-readable phone name
 }
 ```
 
-The phone selects the pairing method from the intersection of its capabilities and the HU's `supported_pairing_methods` advertised in the SDP. Priority order is hardcoded: `NUMERIC_COMPARISON` > `PIN`.
+The pairing method is selected from the intersection of capabilities and the HU's `supported_pairing_methods` advertised in the SDP. Priority order is hardcoded: `NUMERIC_COMPARISON` > `PIN`.
 
 ---
 
@@ -45,11 +45,13 @@ The phone selects the pairing method from the intersection of its capabilities a
 HU's response to the pairing request.
 
 ```protobuf
-message BluetoothPairingResponse {  // APK class: vvn
-    required BluetoothPairingStatus status = 1;  // success or error code
+message BluetoothPairingResponse {  // APK class: vvn (16.2)
+    required int32 status            = 1;  // ProtocolStatus (vyh) — shared AA status enum
     optional bool already_paired     = 2;  // true if devices already bonded
 }
 ```
+
+> **Verification fix (2026-03-06):** Fields were previously documented as swapped (field 1=already_paired, field 2=status). The status field uses the shared ProtocolStatus enum (vyh, 34 values), NOT the old 3-value BluetoothPairingStatus which was retracted.
 
 If `already_paired = true`, the phone skips the authentication exchange and proceeds directly to HFP connection.
 
@@ -77,8 +79,8 @@ The phone stores this data and waits for the Android OS `PAIRING_REQUEST` broadc
 Phone reports the outcome of the authentication attempt back to the HU.
 
 ```protobuf
-message BluetoothAuthenticationResult {  // APK class: vvk
-    required BluetoothPairingStatus status = 1;  // success or BT-specific error
+message BluetoothAuthenticationResult {  // APK class: vvk (16.2)
+    required int32 status            = 1;  // ProtocolStatus (vyh) — shared AA status enum
 }
 ```
 
@@ -113,13 +115,16 @@ message BluetoothChannelDescriptor {  // APK class: vvo
 
 | Value | Name | Description |
 |:-----:|------|-------------|
-| -1 | BLUETOOTH_PAIRING_UNAVAILABLE | Sentinel — no valid method available |
+| -1 | BLUETOOTH_PAIRING_UNAVAILABLE | Internal sentinel — not on wire |
+| 0 | BLUETOOTH_PAIRING_NONE | Default/unset |
 | 1 | BLUETOOTH_PAIRING_OOB | Out-Of-Band pairing |
 | 2 | BLUETOOTH_PAIRING_NUMERIC_COMPARISON | Numeric comparison (preferred) |
 | 3 | BLUETOOTH_PAIRING_PASSKEY_ENTRY | Passkey entry |
 | 4 | BLUETOOTH_PAIRING_PIN | Legacy PIN code |
 
-### BluetoothPairingStatus (vyh — BT-specific codes)
+### ProtocolStatus — BT-specific codes (vyh, shared AA status enum)
+
+The BT channel uses the shared ProtocolStatus enum (vyh, 34 values total). BT-specific codes:
 
 | Value | Name | Description |
 |:-----:|------|-------------|
@@ -132,7 +137,7 @@ message BluetoothChannelDescriptor {  // APK class: vvo
 | -16 | STATUS_BLUETOOTH_HFP_ANOTHER_CONNECTION | HFP already connected to another device |
 | -17 | STATUS_BLUETOOTH_HFP_CONNECTION_FAILURE | HFP connection failed |
 
-These codes are from the global `vyh` status enum and appear in `BluetoothPairingResponse` (0x8002) and `BluetoothAuthenticationResult` (0x8004).
+These codes appear in `BluetoothPairingResponse` (0x8002) and `BluetoothAuthenticationResult` (0x8004) as `int32 status` fields. The old 3-value `BluetoothPairingStatus` enum was **retracted** — the wire protocol uses this shared enum instead.
 
 ---
 
@@ -270,9 +275,10 @@ When a phone call starts:
 3. **SDP must include BT descriptor.** The HU must advertise its BT MAC address and supported pairing methods in the `BluetoothChannelDescriptor` at SDP field 6. Without this, the phone will never attempt BT pairing.
 
 4. **Handle the 4-message exchange.** The HU must:
-   - Receive `BluetoothPairingRequest` (0x8001) and respond with `BluetoothPairingResponse` (0x8002)
+   - Send `BluetoothPairingRequest` (0x8001) to the phone with the HU's BT MAC and pairing method
+   - Send `BluetoothPairingResponse` (0x8002) with status
    - Send `BluetoothAuthenticationData` (0x8003) with the correct PIN/passkey from the OS BT stack
-   - Receive `BluetoothAuthenticationResult` (0x8004) to confirm success
+   - Receive `BluetoothAuthenticationResult` (0x8004) from the phone to confirm success
 
 5. **Audio routing is OS-level after pairing.** Once HFP is established, PipeWire/PulseAudio handles SCO audio. The AA BT channel's job is done — it just bootstraps the pairing.
 
@@ -298,7 +304,7 @@ When a phone call starts:
 | `qan` | — | A2DP state receiver |
 | `qaq` | — | UUID discovery receiver |
 | `qas` | — | Key missing receiver (API 35+) |
-| `vvm` | — | BluetoothPairingRequest proto (0x8001) |
+| `kba` | — | BluetoothPairingRequest proto (0x8001) |
 | `vvn` | — | BluetoothPairingResponse proto (0x8002) |
 | `vvj` | — | BluetoothAuthenticationData proto (0x8003) |
 | `vvk` | — | BluetoothAuthenticationResult proto (0x8004) |

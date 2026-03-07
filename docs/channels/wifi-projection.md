@@ -8,6 +8,8 @@ The connection pipeline: BT pair → SDP discovery (UUID `4de17a00-52cb-11e6-bdf
 
 WPP defines 11 message types (3 deprecated) with its own wire format distinct from the normal AA 4-byte header. After the WPP handshake completes and the TCP+TLS socket is established, the protocol transitions to standard AA framing and the rest of the session is identical to USB.
 
+> **GAL vs BT RFCOMM:** This doc primarily covers the **BT RFCOMM-based WPP protocol**, not the GAL WiFi Projection channel. The GAL WiFi Projection channel (service type 17, handler `ibr.java`) carries only **1 message**: `WifiCredentialsResponse` (0x8002, HU→Phone) with fields: `passphrase=1`, `security_mode=2`, `ssid=3`, `status=5`. Note the unusual field ordering (passphrase before SSID). All other WiFi messages listed below are dispatched by `ngh.java` over BT RFCOMM/TCP, not through GAL.
+
 ---
 
 ## Message Catalog

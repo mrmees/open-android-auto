@@ -4,19 +4,19 @@
 
 | Message | Tier | Evidence | Audit File |
 |---------|------|----------|------------|
-| PhoneStatusUpdate | Silver | apk_static + cross_version | [PhoneStatusMessage.audit.yaml](../../oaa/phone/PhoneStatusMessage.audit.yaml) |
-| PhoneCall | Silver | apk_static + cross_version | [PhoneStatusMessage.audit.yaml](../../oaa/phone/PhoneStatusMessage.audit.yaml) |
-| CallAvailabilityStatus | Silver | apk_static + cross_version | [CallAvailabilityMessage.audit.yaml](../../oaa/phone/CallAvailabilityMessage.audit.yaml) |
-| VoiceSessionRequest | Silver | apk_static + cross_version | [VoiceSessionRequestMessage.audit.yaml](../../oaa/phone/VoiceSessionRequestMessage.audit.yaml) |
-| PhoneStatusInput | Silver | apk_static + cross_version | [PhoneStatusInputMessage.audit.yaml](../../oaa/phone/PhoneStatusInputMessage.audit.yaml) |
-| PhoneCallState (enum) | Silver | apk_static + cross_version | [PhoneCallStateEnum.audit.yaml](../../oaa/phone/PhoneCallStateEnum.audit.yaml) |
-| PhoneStatusChannel | Unverified | -- | -- |
+| PhoneStatusUpdate | **Gold** | apk_deep_trace (2026-03-06) | [PhoneStatusMessage.audit.yaml](../../oaa/phone/PhoneStatusMessage.audit.yaml) |
+| PhoneCall | **Gold** | apk_deep_trace (2026-03-06) | [PhoneStatusMessage.audit.yaml](../../oaa/phone/PhoneStatusMessage.audit.yaml) |
+| ~~CallAvailabilityStatus~~ | **Relocated** | Moved to Control channel (msg 24, vvt) | [CallAvailabilityMessage.audit.yaml](../../oaa/control/CallAvailabilityMessage.audit.yaml) |
+| ~~VoiceSessionRequest~~ | **Relocated** | Moved to Control channel (msg 17, wcu) | [VoiceSessionRequestMessage.audit.yaml](../../oaa/control/VoiceSessionRequestMessage.audit.yaml) |
+| PhoneStatusInput | **Gold** | apk_deep_trace (2026-03-06) | [PhoneStatusInputMessage.audit.yaml](../../oaa/phone/PhoneStatusInputMessage.audit.yaml) |
+| PhoneCallState (enum) | **Gold** | apk_deep_trace (2026-03-06) | [PhoneCallStateEnum.audit.yaml](../../oaa/phone/PhoneCallStateEnum.audit.yaml) |
+| ~~PhoneStatusChannel~~ | **Retracted** | Empty proto3 message with no fields, SDP marker only | -- |
 
 ## Overview
 
 Channel 12 (`PHONE_STATUS`) carries call state and availability information from the phone to the head unit. This is a relatively thin channel -- the phone handles actual telephony, and this channel primarily notifies the HU about call state changes for UI display (incoming call banners, active call indicators, signal strength).
 
-The channel has 6 proto files with 5 audit sidecars and 7 cross-version mappings. All message-level protos are Silver confidence. See [cross-version mapping table](../cross-version/phone.md) for version stability across 15.9, 16.1, and 16.2.
+The channel has 3 active proto files (PhoneStatusMessage, PhoneStatusInputMessage, PhoneCallStateEnum) after relocations and retraction. CallAvailabilityStatus and VoiceSessionRequest were relocated to the **Control channel** during verification. See [cross-version mapping table](../cross-version/phone.md) for version stability across 15.9, 16.1, and 16.2.
 
 **Scope boundary:** DTMF tone input and contact synchronization are NOT part of this channel. These functions likely flow through Bluetooth HFP profile and Android's Contacts provider respectively, not the AA wire protocol. See [Evidence Gaps](#evidence-gaps) for details.
 
@@ -29,10 +29,10 @@ The channel has 6 proto files with 5 audit sidecars and 7 cross-version mappings
 | MsgID | Message | Direction | Purpose |
 |-------|---------|-----------|---------|
 | 0x8001 | PhoneStatusUpdate | Phone -> HU | Call state, signal strength, active calls |
-| 0x8002 | PhoneStatusInput | Phone -> HU | D-pad input relayed from phone UI |
-| -- | CallAvailabilityStatus | Phone -> HU | Whether phone calls are currently available |
-| -- | VoiceSessionRequest | HU -> Phone | Trigger voice assistant activation |
-| -- | PhoneStatusChannel | Service Discovery | Empty channel configuration message |
+| 0x8002 | PhoneStatusInput | HU -> Phone | D-pad input from HU to phone |
+| ~~--~~ | ~~CallAvailabilityStatus~~ | — | **RELOCATED** to Control channel (msg 24, HU→Phone) |
+| ~~--~~ | ~~VoiceSessionRequest~~ | — | **RELOCATED** to Control channel (msg 17, Phone→HU) |
+| ~~--~~ | ~~PhoneStatusChannel~~ | — | **RETRACTED** — empty SDP marker, no fields |
 
 ### PhoneStatusUpdate (0x8001)
 
@@ -45,8 +45,8 @@ message PhoneStatusUpdate {
 }
 
 message PhoneCall {
-    optional PhoneCallState.Enum call_state = 1;   // UNKNOWN through MUTED
-    optional uint32 call_duration_seconds = 2;      // Elapsed since connected
+    required PhoneCallState.Enum call_state = 1;   // UNKNOWN through MUTED
+    required uint32 call_duration_seconds = 2;      // Elapsed since connected
     optional string phone_number = 3;               // e.g. "+1 858-225-7702"
     optional string display_name = 4;               // e.g. "Spam Risk", contact name
     optional string contact_id = 5;                 // Empty for unknown contacts
@@ -66,36 +66,13 @@ message PhoneCall {
 | 5 | CONFERENCED | Part of a conference call |
 | 6 | MUTED | Call muted (microphone off) |
 
-### CallAvailabilityStatus
+### CallAvailabilityStatus — RELOCATED
 
-Single boolean indicating whether the phone can make calls.
+> **Relocated to Control channel** (msg 24, class vvt, HU→Phone). See the control channel documentation. This message is NOT on the phone status channel.
 
-```protobuf
-message CallAvailabilityStatus {
-    optional bool call_available = 1;
-}
-```
+### VoiceSessionRequest — RELOCATED
 
-This reflects cellular connectivity -- `false` when out of service, in airplane mode, or when the phone otherwise cannot place calls.
-
-### VoiceSessionRequest
-
-> Confidence: Silver [apk_static, cross_version] -- single enum field, straightforward
-
-Triggers voice assistant activation on the phone. This is an HU-to-phone message -- the user presses a voice button on the HU, and this message tells the phone to start listening.
-
-```protobuf
-message VoiceSessionRequest {
-    optional VoiceSessionType session_type = 1;
-}
-
-enum VoiceSessionType {
-    VOICE_SESSION_START = 1;  // Open microphone, start assistant
-    VOICE_SESSION_STOP = 2;   // End voice session
-}
-```
-
-Note: `VoiceSessionType` value 0 is intentionally absent -- the APK throws null on value 0, indicating it is an invalid/unsupported state.
+> **Relocated to Control channel** (msg 17, class wcu, Phone→HU). See the control channel documentation. This message is NOT on the phone status channel.
 
 ---
 
@@ -217,19 +194,19 @@ void handle_phone_status(const PhoneStatusUpdate* status) {
 
 ### Voice Assistant Button
 
-Map a physical or on-screen microphone button to VoiceSessionRequest:
+Map a physical or on-screen microphone button to VoiceSessionRequest. **Note:** VoiceSessionRequest is sent on the **Control channel** (msg 17), not the Phone Status channel:
 
 ```c
 void on_voice_button_press() {
     VoiceSessionRequest req;
     req.set_session_type(VOICE_SESSION_START);
-    send_phone_channel(req);
+    send_control_channel(req);  // Control channel, NOT phone channel
 }
 
 void on_voice_button_release() {
     VoiceSessionRequest req;
     req.set_session_type(VOICE_SESSION_STOP);
-    send_phone_channel(req);
+    send_control_channel(req);
 }
 ```
 
@@ -249,11 +226,11 @@ void on_voice_button_release() {
 
 ### Proto Files
 - [PhoneStatusMessage.proto](../../oaa/phone/PhoneStatusMessage.proto)
-- [CallAvailabilityMessage.proto](../../oaa/phone/CallAvailabilityMessage.proto)
-- [VoiceSessionRequestMessage.proto](../../oaa/phone/VoiceSessionRequestMessage.proto)
+- [CallAvailabilityMessage.proto](../../oaa/control/CallAvailabilityMessage.proto) **(relocated to oaa/control/)**
+- [VoiceSessionRequestMessage.proto](../../oaa/control/VoiceSessionRequestMessage.proto) **(relocated to oaa/control/)**
 - [PhoneStatusInputMessage.proto](../../oaa/phone/PhoneStatusInputMessage.proto)
 - [PhoneCallStateEnum.proto](../../oaa/phone/PhoneCallStateEnum.proto)
-- [PhoneStatusChannelData.proto](../../oaa/phone/PhoneStatusChannelData.proto)
+- [PhoneStatusChannelData.proto](../../oaa/phone/PhoneStatusChannelData.proto) **(RETRACTED — empty, no fields)**
 
 ### Audit Sidecars
 - [PhoneStatusMessage.audit.yaml](../../oaa/phone/PhoneStatusMessage.audit.yaml)
