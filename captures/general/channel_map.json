@@ -50,7 +50,7 @@
     "config_raw": "08091a0e080110031a080880f70210101802"
   },
   "10": {
-    "service_type": "media_info",
+    "service_type": "navigation",
     "sdp_field": 8,
     "config_raw": "080a420d08f40310011a06086410641810"
   },
@@ -60,7 +60,7 @@
     "config_raw": "080b5200"
   },
   "12": {
-    "service_type": "nav_status",
+    "service_type": "media_info",
     "sdp_field": 9,
     "config_raw": "080c4a00"
   },
