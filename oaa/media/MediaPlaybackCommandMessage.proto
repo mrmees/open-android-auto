@@ -3,30 +3,51 @@
 // Based on works by: f1x.studio (aasdk), opencardev (crankshaft), aa-proxy (aa-proxy-rs)
 
 /*
- * Media playback command message.
+ * RETRACTED — This message does not exist in the AA protocol.
  *
- * Single-field command for media playback control. The enum validator
- * chain (vvs.b → vvn) accepts values 0/1/2, matching the
- * ResizeActionType enum class. This is likely a shared 3-value
- * proto enum with context-dependent semantics.
+ * Previously mapped as "MediaPlaybackCommand" (HU → Phone, 0x8002 on
+ * channel 10) based on structural matching of APK class vuy (16.2) /
+ * vvm (16.1). Deep APK trace (2026-03-06) revealed:
  *
- * APK class: vvm (AA v16.1)
- * Field numbers decoded from protobuf-lite RawMessageInfo descriptor.
+ *   1. vuy is only referenced from huz.java (CAR.VIDEO handler) in
+ *      sendActionTakenNotification(), sent with msg ID 0x800D
+ *      (ACTION_TAKEN on the AV channel) — NOT 0x8002 on media.
+ *
+ *   2. The phone-side media handler (qnf.java, CAR.GAL.MEDIA) only
+ *      processes 0x8004 (ACK), 0x8005 (setup), and 0x800D (action
+ *      taken). All other msg IDs hit the default case and log
+ *      "Received message with invalid type header".
+ *
+ *   3. The GAL protocol reference (DHU 2.1 binary, 196 message types)
+ *      lists MediaPlaybackStatus and MediaPlaybackMetadata but NO
+ *      MediaPlaybackCommand. The media status channel is unidirectional
+ *      phone → HU.
+ *
+ * Media playback control goes through the INPUT channel (ch 1) as
+ * Android KeyEvent button presses:
+ *   KEYCODE_MEDIA_PLAY_PAUSE (85), KEYCODE_MEDIA_PLAY (126),
+ *   KEYCODE_MEDIA_PAUSE (127), KEYCODE_MEDIA_NEXT (87),
+ *   KEYCODE_MEDIA_PREVIOUS (88), KEYCODE_MEDIA_STOP (86).
+ *
+ * This file is retained as a tombstone. Do not use in implementations.
+ * See docs/channels/media.md for the corrected protocol description.
  */
 syntax="proto2";
 
 package oaa.proto.messages;
 
-// Playback command values (APK enum validator: vvs.b → vvn)
-// confidence: silver [apk_static, cross_version]
+// RETRACTED — misidentified enum. Actual class vuy is ActionTakenNotification
+// on the video channel (0x800D), not a media playback command.
+// confidence: retracted [apk_deep_trace, 2026-03-06]
 enum PlaybackCommandType {
     PLAYBACK_COMMAND_UNKNOWN = 0;
     PLAYBACK_COMMAND_PAUSE = 1;
     PLAYBACK_COMMAND_RESUME = 2;
 }
 
-// confidence: silver [apk_static, cross_version]
+// RETRACTED — this message does not exist in the AA protocol.
+// confidence: retracted [apk_deep_trace, 2026-03-06]
 message MediaPlaybackCommand
 {
-    optional PlaybackCommandType command = 1; // 3-value enum (0/1/2), validator: vvn  // confidence: silver [apk_static, cross_version]
+    optional PlaybackCommandType command = 1;
 }

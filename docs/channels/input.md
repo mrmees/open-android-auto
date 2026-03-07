@@ -140,12 +140,24 @@ Normal presses start a long-press timer (`ViewConfiguration.getLongPressTimeout(
 | 79 | HEADSETHOOK | Steering wheel button |
 | 82 | MENU | Menu button |
 | 84 | SEARCH | Search/voice |
-| 85–88 | MEDIA_PLAY_PAUSE/STOP/NEXT/PREVIOUS | Media controls |
-| 126–127 | MEDIA_PLAY/PAUSE | Separate play/pause |
+| **85** | **MEDIA_PLAY_PAUSE** | **Toggle play/pause** |
+| **86** | **MEDIA_STOP** | **Stop playback** |
+| **87** | **MEDIA_NEXT** | **Next track** |
+| **88** | **MEDIA_PREVIOUS** | **Previous track** |
+| **126** | **MEDIA_PLAY** | **Play (explicit)** |
+| **127** | **MEDIA_PAUSE** | **Pause (explicit)** |
 | 164 | VOLUME_MUTE | Mute |
 | 219 | ASSIST | Google Assistant |
 | 231 | VOICE_ASSIST | Voice assist |
 | 260–263 | NAVIGATE_PREVIOUS/NEXT/IN/OUT | UI navigation |
+
+### Media Playback Control
+
+**The input channel is the ONLY way to control media playback.** There is no dedicated media command message on the media status channel (ch 10) — that channel is unidirectional phone → HU. All production head units send media controls as button events on this channel.
+
+To control playback, send a `ButtonEvent` with `is_pressed=true` followed by `is_pressed=false` (press + release pair). The phone routes these keycodes to the active `MediaSession.Callback` (onPlay, onPause, onSkipToNext, etc.).
+
+**SDP requirement:** The HU must advertise the media keycodes (85, 86, 87, 88, 126, 127) in the input channel's `supported_keycodes` in the ServiceDiscoveryResponse. The phone uses this list to determine which keycodes the HU can send.
 
 ### Special Key Handling
 

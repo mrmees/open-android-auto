@@ -5,7 +5,7 @@
 | Message | Tier | Evidence | Audit File |
 |---------|------|----------|------------|
 | MediaPlaybackStatus | Silver | apk_static + cross_version | [MediaPlaybackStatusMessage.audit.yaml](../../oaa/media/MediaPlaybackStatusMessage.audit.yaml) |
-| MediaPlaybackCommand | Silver | apk_static + cross_version | [MediaPlaybackCommandMessage.audit.yaml](../../oaa/media/MediaPlaybackCommandMessage.audit.yaml) |
+| ~~MediaPlaybackCommand~~ | **Retracted** | misidentified — see audit | [MediaPlaybackCommandMessage.audit.yaml](../../oaa/media/MediaPlaybackCommandMessage.audit.yaml) |
 | MediaPlaybackMetadata | Silver | apk_static + cross_version | [MediaPlaybackMetadataMessage.audit.yaml](../../oaa/media/MediaPlaybackMetadataMessage.audit.yaml) |
 | MediaEventIdWrapper | Silver | apk_static + cross_version | [MediaPlaybackStatusMessage.audit.yaml](../../oaa/media/MediaPlaybackStatusMessage.audit.yaml) |
 | MediaStatusList | Silver | apk_static + cross_version | [MediaStatusListData.audit.yaml](../../oaa/media/MediaStatusListData.audit.yaml) |
@@ -31,7 +31,7 @@ Android Auto carries media information on two distinct channels:
 | (dynamic) | CAR_LOCAL_MEDIA (20) | Car-local media: FM radio, USB, CD -- status and control from HU-side sources | Niche -- most HUs do not implement |
 | (dynamic) | BUFFERED_MEDIA_SINK (21) | Buffered media -- stub channel, not implemented in AA v16.x | Stub -- no runtime messages |
 
-Channel 10 is the main media channel. It carries phone-sourced playback status and metadata from apps like Spotify, YouTube Music, or any app exposing an Android `MediaBrowserService`. The HU displays this information and sends playback commands (pause, resume) back to the phone.
+Channel 10 is the main media channel. It carries phone-sourced playback status and metadata from apps like Spotify, YouTube Music, or any app exposing an Android `MediaBrowserService`. The HU displays this information. **This channel is unidirectional (phone → HU) — the HU does not send commands back on this channel.** Media playback control (pause, play, skip) goes through the input channel (ch 1) as Android KeyEvent button presses (see [input.md](input.md), keycodes 85–88, 126–127).
 
 CarLocalMediaPlayback is a separate channel for head units that have their own media sources (FM tuner, USB playback, CD changer). It uses different proto messages on a different GAL type, despite sharing some concepts with the phone-sourced flow.
 
@@ -48,8 +48,10 @@ BufferedMediaSink (GAL type 21) exists in the protocol definition but is a stub 
 | Msg ID | Message | Direction | Purpose | Confidence |
 |--------|---------|-----------|---------|:---:|
 | 0x8001 | MediaPlaybackStatus | Phone -> HU | Current playback state, source app, position, shuffle/repeat | Silver |
-| 0x8002 | MediaPlaybackCommand | HU -> Phone | Playback control (pause, resume) | Silver |
+| ~~0x8002~~ | ~~MediaPlaybackCommand~~ | ~~HU -> Phone~~ | ~~Playback control~~ | **Retracted** |
 | 0x8003 | MediaPlaybackMetadata | Phone -> HU | Track title, artist, album, album art, is_playing | Silver |
+
+> **RETRACTED (2026-03-06):** `MediaPlaybackCommand` (0x8002) does not exist. The APK class `vuy` was misidentified via structural matching — it is actually `ActionTakenNotification` on the video channel (msg 0x800D). The phone-side media handler (`qnf.java`) has no handler for 0x8002. The GAL protocol reference (196 message types) contains no `MediaPlaybackCommand`. **Media playback control goes through the input channel (ch 1) as button events** — see keycodes MEDIA_PLAY_PAUSE (85), MEDIA_PLAY (126), MEDIA_PAUSE (127), MEDIA_NEXT (87), MEDIA_PREVIOUS (88).
 
 #### MediaPlaybackStatus
 
@@ -76,15 +78,9 @@ The `PlaybackState` enum maps to Android `PlaybackStateCompat` constants:
 | 3 | PAUSED | STATE_PAUSED (2) |
 | 4 | ERROR | STATE_ERROR (7) |
 
-#### MediaPlaybackCommand
+#### ~~MediaPlaybackCommand~~ (RETRACTED)
 
-```protobuf
-message MediaPlaybackCommand {
-    optional PlaybackCommandType command = 1;  // UNKNOWN(0), PAUSE(1), RESUME(2)
-}
-```
-
-Sent by the HU when the user taps play/pause controls. The validator accepts values 0, 1, and 2 only.
+This message was retracted on 2026-03-06. See retraction note above. The proto file is retained as a tombstone.
 
 #### MediaPlaybackMetadata
 
@@ -137,11 +133,11 @@ Phone                                        Head Unit
   |--- MediaPlaybackStatus ------------------>  |  (periodic position updates)
   |                                             |
   |                  [User taps pause on HU]    |
-  |<-- MediaPlaybackCommand ------------------- |  command=PAUSE
+  |<-- (Input ch1: KEYCODE_MEDIA_PAUSE=127) --- |  button press via input channel
   |--- MediaPlaybackStatus ------------------>  |  state=PAUSED
   |                                             |
   |                  [User taps play on HU]     |
-  |<-- MediaPlaybackCommand ------------------- |  command=RESUME
+  |<-- (Input ch1: KEYCODE_MEDIA_PLAY=126) ---- |  button press via input channel
   |--- MediaPlaybackStatus ------------------>  |  state=PLAYING
   |                                             |
   |  [Track changes on phone]                   |
@@ -149,7 +145,7 @@ Phone                                        Head Unit
   |--- MediaPlaybackStatus ------------------>  |  position_seconds=0, state=PLAYING
 ```
 
-The phone pushes status updates continuously. The HU only sends `MediaPlaybackCommand` when the user interacts with media controls. There is no request/response handshake -- the phone sends status whenever it changes, and the HU renders it.
+The phone pushes status updates continuously. The HU controls playback by sending button events on the **input channel (ch 1)**, not on the media status channel. There is no request/response handshake -- the phone sends status whenever it changes, and the HU renders it.
 
 ---
 
@@ -163,12 +159,12 @@ Android Auto's media channel bridges the phone's `MediaBrowserService` / `MediaS
 |----------------|-------------|---------|
 | `MediaSession.getPlaybackState()` | `MediaPlaybackStatus` | PlaybackState maps to `PlaybackStateCompat` constants |
 | `MediaSession.getMetadata()` | `MediaPlaybackMetadata` | Title, artist, album, art extracted from `MediaMetadataCompat` |
-| `MediaSession.Callback.onPlay/onPause` | `MediaPlaybackCommand` | HU pause/resume commands trigger these callbacks |
+| `MediaSession.Callback.onPlay/onPause` | Input ch1 button events | HU sends KEYCODE_MEDIA_PLAY/PAUSE via input channel |
 | `PlaybackStateCompat.getActions()` | Not directly mapped | Action flags are not carried on channel 10 (CarLocalMedia uses them) |
 
-The phone's `MediaBrowserService` controller (log tag `GH.MediaActiveContrConn`) monitors the active media session. When the session state changes, the phone serializes it into `MediaPlaybackStatus` and sends it on channel 10. When the HU sends a `MediaPlaybackCommand`, the phone translates it into the corresponding `MediaSession.Callback` action on the source app.
+The phone's `MediaBrowserService` controller (log tag `GH.MediaActiveContrConn`) monitors the active media session. When the session state changes, the phone serializes it into `MediaPlaybackStatus` and sends it on channel 10. The HU controls playback by sending button events on the input channel (ch 1), which the phone translates into `MediaSession.Callback` actions on the source app.
 
-Skip/previous/next controls are notably absent from `MediaPlaybackCommand` (which only has pause and resume). These controls may flow through the input channel (ch 1) as Android `KeyEvent` codes (KEYCODE_MEDIA_NEXT, KEYCODE_MEDIA_PREVIOUS) rather than through the media status channel.
+All media transport controls (play, pause, skip, previous, stop) flow through the input channel as Android KeyEvent button presses. The media status channel is receive-only from the HU's perspective.
 
 ---
 
@@ -239,7 +235,7 @@ The phone-side handler logs "Received unexpected car local media message CAR_LOC
 
 > **Gotcha:** Channel 10 (GAL type 11, MEDIA_PLAYBACK_STATUS) and CarLocalMedia (GAL type 20) **both use msgId 0x8001** for their status messages, but with entirely different proto schemas. MediaPlaybackStatus has 6 fields (state, source, position, 3 booleans). CarLocalMediaPlaybackStatus has 4 fields (state, source, position, repeated actions). Deserializing with the wrong proto will silently produce garbage. Always check the GAL channel type, not just the message ID.
 
-> **Gotcha:** `MediaPlaybackCommand` only supports PAUSE (1) and RESUME (2). There are no skip/previous/next commands on the media status channel. These controls likely flow through the **input channel (ch 1)** as Android KeyEvent codes. If your HU only listens on channel 10 for media transport, the user will not be able to skip tracks.
+> **Gotcha:** There is NO outbound media command on channel 10. All media playback control (pause, play, skip, previous, stop) goes through the **input channel (ch 1)** as Android KeyEvent button presses. Your SDP must advertise media keycodes (85, 86, 87, 88, 126, 127) in `supported_keycodes` for the phone to accept them.
 
 > **Gotcha:** `MediaEventIdWrapper` and `MediaTrackIdentifier` are structurally verified (Silver) but their sub-message content is not decoded. `MediaEventIdWrapper` uses field number 13 (unusually high, suggesting it was added later). `MediaTrackIdentifier` has 3 message-type fields whose internal structure is placeholder. Do not assume these sub-messages are empty at runtime -- they contain data, but we cannot yet describe its layout.
 
@@ -251,7 +247,7 @@ The phone-side handler logs "Received unexpected car local media message CAR_LOC
 
 ### Proto Files
 - [MediaPlaybackStatusMessage.proto](../../oaa/media/MediaPlaybackStatusMessage.proto)
-- [MediaPlaybackCommandMessage.proto](../../oaa/media/MediaPlaybackCommandMessage.proto)
+- [MediaPlaybackCommandMessage.proto](../../oaa/media/MediaPlaybackCommandMessage.proto) **(RETRACTED — tombstone only)**
 - [MediaPlaybackMetadataMessage.proto](../../oaa/media/MediaPlaybackMetadataMessage.proto)
 - [MediaStatusListData.proto](../../oaa/media/MediaStatusListData.proto)
 - [MediaTrackIdentifierData.proto](../../oaa/media/MediaTrackIdentifierData.proto)

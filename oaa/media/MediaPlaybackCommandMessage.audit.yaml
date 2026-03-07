@@ -1,17 +1,33 @@
 proto: oaa/media/MediaPlaybackCommandMessage.proto
 message: MediaPlaybackCommand
-confidence: silver
-last_updated: '2026-03-03'
-evidence:
+confidence: retracted
+last_updated: '2026-03-06'
+retraction:
+  date: '2026-03-06'
+  reason: >
+    Deep APK trace proved this message does not exist. The mapped APK class
+    vuy (16.2) / vvm (16.1) is actually ActionTakenNotification on the video
+    channel (msg ID 0x800D), not a media playback command on channel 10.
+    The phone-side media handler (qnf.java) has no handler for 0x8002.
+    The GAL protocol reference (DHU 2.1) lists no MediaPlaybackCommand.
+    Media control flows through the input channel as KeyEvent button presses.
+  evidence:
+    - "huz.java (CAR.VIDEO) line 258-265: only caller of vuy, sends as 0x800D"
+    - "qnf.java (CAR.GAL.MEDIA): only handles 0x8004, 0x8005, 0x800D"
+    - "GAL protocol reference: 196 msg types, no MediaPlaybackCommand"
+previous_evidence:
 - type: apk_static
   method: bfs_trace
   source: class_mapping.yaml (v15.9:vnu, v16.1:vvm, v16.2:vuy)
   date: '2026-03-03'
-  description: Mapped MediaPlaybackCommand to obfuscated APK class(es) via bfs_trace
-    analysis.
+  description: >
+    Structural match of single-field proto with 3-value enum. Mapping was
+    correct structurally but semantically wrong — the class is
+    ActionTakenNotification, not MediaPlaybackCommand.
 - type: cross_version
   method: structural_comparison
   source: cross-version checker (15.9, 16.1, 16.2)
   date: '2026-03-03'
-  description: Structural match confirmed across versions 15.9, 16.1, 16.2. Field
-    numbers, types, and modifiers are consistent.
+  description: >
+    Structure consistent across versions, but the semantic identification
+    was incorrect. The 3-value enum is action types, not playback commands.
