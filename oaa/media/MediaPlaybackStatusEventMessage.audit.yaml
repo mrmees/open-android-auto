@@ -11,8 +11,17 @@ evidence:
     NEW DISCOVERY. APK class vxo (v16.2), 1 required enum field. Received by
     iai.mo18864a() on CAR.GAL.INST (GAL type 11), msg ID 0x8002. Dispatched to
     ICarMediaPlaybackStatusEventListener.onInput(value-1). Direction: HU -> Phone.
-    Enum values TBD (verifier index 17, vve.f73609r).
+- type: deep_trace
+  method: cross_channel_verification
+  source: phone channel verification (iat.java, vzs.java)
+  date: '2026-03-06'
+  description: >
+    Enum values 0-7 confirmed during phone channel verification. vxo is the
+    SAME proto class used as PhoneInputType on phone channel (GAL 13, wrapped
+    in vzs as field 1). Same enum verifier (index 17, vve.f73609r). C0000a.m128bw
+    validates values 0-7 (d-pad actions: UNKNOWN, UP, DOWN, LEFT, RIGHT, ENTER,
+    BACK, CALL). Previous note "Enum values TBD" is now resolved.
 notes:
-  - "Previously retracted as MediaPlaybackCommand (vuy) -- that retraction was about a different class"
-  - "vxo is NOT vuy -- different proto, different handler, correct identification"
-  - "Enum values need wire capture or deeper trace to map"
+  - "vxo is shared: standalone on media channel, wrapped in vzs on phone channel"
+  - "Both channels dispatch via C0000a.m128bw(value) - 1 to their respective listeners"
+  - "Value 7 (CALL) probably unused in media context but valid per verifier"
