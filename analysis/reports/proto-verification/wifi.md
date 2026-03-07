@@ -36,18 +36,19 @@ The handler rejects any message that isn't 0x8002 with log: `"Wrong Wifi project
 
 | Field | Type | 16.2 Member | Usage |
 |-------|------|-------------|-------|
-| 1 | string | f75249b | SSID (inferred from CarInfoInternal storage pattern) |
+| 1 | string | f75249b | **Passphrase** — DB column "wifipassword" (ijx.java:41) |
 | 2 | enum (0-11) | f75250c | Security mode (12 sequential values, validator `C0000a.m129bx`) |
-| 3 | string | f75251d | Passphrase (inferred from CarInfoInternal storage pattern) |
+| 3 | string | f75251d | **SSID** — DB column "wifissid" (ijx.java:39) |
 | 5 | enum (0-1) | f75252e | Status (0=success, 1=failure; validator `C0000a.m91bL`) |
 
 **Handler logic:**
 - Parses wcw proto from ByteBuffer
-- Extracts SSID (field 1), passphrase (field 3), security mode (field 2), status (field 5)
+- Extracts passphrase (field 1), SSID (field 3), security mode (field 2), status (field 5)
+- NOTE: field ordering is unusual (passphrase=1, ssid=3) — confirmed by ijx.java DB column names
 - If status == 1 (failure) or security mode == 0 (unknown), returns without storing
 - Otherwise stores credentials in `CarInfoInternal` and triggers WiFi connection via executor
 
-**Security mode enum (field 2):** Accepts values 0-11 sequentially. This is a re-indexed version of the WiFi security modes (not the non-sequential WifiSecurityMode enum used in BT RFCOMM messages). Mapping: 0=UNKNOWN, 1=OPEN, 2=WEP_64, 3=WEP_128, 4=WPA_PERSONAL, 5=WPA2_PERSONAL, 6=WPA_WPA2_PERSONAL, 7=WPA_ENTERPRISE, 8=WPA2_ENTERPRISE, 9=WPA_WPA2_ENTERPRISE, 10=WPA3_PERSONAL, 11=WPA2_WPA3_PERSONAL.
+**Security mode enum (field 2):** Accepts values 0-11 sequentially (validator `C0000a.m129bx`). Same 12 security modes as `wdh.java` enum (UNKNOWN_SECURITY_MODE through WPA2_WPA3_PERSONAL), but re-indexed sequentially instead of using `wdh`'s non-sequential values (0,1,2,3,4,8,12,20,24,28,32,40). Stored as raw int in DB column "wifisecurity".
 
 **Status enum (field 5):** 0=SUCCESS (proceed to connect), 1=FAILURE (abort credential storage).
 
