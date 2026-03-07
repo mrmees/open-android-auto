@@ -9,11 +9,11 @@ import "oaa/sensor/EVConnectorTypeEnum.proto";
 
 package oaa.proto.data;
 
-// confidence: silver [apk_static, cross_version]
+// confidence: gold [deep_trace_verified, 16.2_jadx]
 message SensorChannel
 {
-    repeated Sensor sensors = 1;  // confidence: silver [apk_static, cross_version]
-    optional uint32 location_characterization = 2; // APK toString (qmr.java): "locationCharacterization"  // confidence: silver [apk_static, cross_version]
-    repeated enums.FuelType.Enum fuel_types = 3; // APK: vxo.java (was int32)  // confidence: silver [apk_static, cross_version]
-    repeated enums.EVConnectorType.Enum ev_connectors = 4; // APK: vxl.java (was int32)  // confidence: silver [apk_static, cross_version]
+    repeated Sensor sensors = 1;  // confidence: gold [deep_trace_verified, 16.2_jadx]
+    optional uint32 location_characterization = 2; // APK toString (qmr.java): "locationCharacterization"  // confidence: gold [deep_trace_verified, 16.2_jadx]
+    repeated enums.FuelType.Enum fuel_types = 3; // APK: vxo.java (was int32)  // confidence: gold [deep_trace_verified, 16.2_jadx]
+    repeated enums.EVConnectorType.Enum ev_connectors = 4; // APK: vxl.java (was int32)  // confidence: gold [deep_trace_verified, 16.2_jadx]
 }

@@ -13,53 +13,53 @@ syntax="proto2";
 
 package oaa.proto.data;
 
-// APK class: vve — phone device information (9 fields)
-// confidence: silver [apk_static, cross_version]
+// APK class: aaey (16.2), vve (16.1) — phone device information (9 fields)
+// confidence: gold [deep_trace_verified, 16.2_jadx]
 message DeviceInfo
 {
-    optional string manufacturer = 1;  // confidence: silver [apk_static, cross_version]
-    optional string model = 2;  // confidence: silver [apk_static, cross_version]
-    optional string android_version = 3;  // confidence: silver [apk_static, cross_version]
-    optional string build_fingerprint = 4;  // confidence: silver [apk_static, cross_version]
-    optional string field_5 = 5;  // confidence: silver [apk_static, cross_version]
-    optional string field_6 = 6;  // confidence: silver [apk_static, cross_version]
-    optional string field_7 = 7;  // confidence: silver [apk_static, cross_version]
-    optional string field_8 = 8;  // confidence: silver [apk_static, cross_version]
-    optional int32 device_type = 9;  // confidence: silver [apk_static, cross_version]
+    optional string manufacturer = 1;  // confidence: gold [deep_trace_verified, 16.2_jadx]
+    optional string model = 2;  // confidence: gold [deep_trace_verified, 16.2_jadx]
+    optional string android_version = 3;  // confidence: gold [deep_trace_verified, 16.2_jadx]
+    optional string build_fingerprint = 4;  // confidence: gold [deep_trace_verified, 16.2_jadx]
+    optional string field_5 = 5;  // confidence: gold [deep_trace_verified, 16.2_jadx]
+    optional string field_6 = 6;  // confidence: gold [deep_trace_verified, 16.2_jadx]
+    optional string field_7 = 7;  // confidence: gold [deep_trace_verified, 16.2_jadx]
+    optional string field_8 = 8;  // confidence: gold [deep_trace_verified, 16.2_jadx]
+    optional int32 device_type = 9;  // confidence: gold [deep_trace_verified, 16.2_jadx]
 }
 
-// WiFi security mode (APK enum: wdr)
+// WiFi security mode (APK enum: wcc (16.2), wdr (16.1))
 // Used for WiFi Direct connection between phone and HU.
-// confidence: silver [apk_static, cross_version]
+// confidence: gold [deep_trace_verified, 16.2_jadx]
 enum WifiSecurityMode {
     WIFI_SECURITY_UNKNOWN = 0;
     WIFI_SECURITY_OPEN = 1;
-    WIFI_SECURITY_WEP_64 = 2;  // confidence: silver [apk_static, cross_version]
-    WIFI_SECURITY_WEP_128 = 3;  // confidence: silver [apk_static, cross_version]
+    WIFI_SECURITY_WEP_64 = 2;  // confidence: gold [deep_trace_verified, 16.2_jadx]
+    WIFI_SECURITY_WEP_128 = 3;  // confidence: gold [deep_trace_verified, 16.2_jadx]
     WIFI_SECURITY_WPA_PERSONAL = 4;
-    WIFI_SECURITY_WPA2_PERSONAL = 8;  // confidence: silver [apk_static, cross_version]
-    WIFI_SECURITY_WPA_WPA2_PERSONAL = 12;  // confidence: silver [apk_static, cross_version]
+    WIFI_SECURITY_WPA2_PERSONAL = 8;  // confidence: gold [deep_trace_verified, 16.2_jadx]
+    WIFI_SECURITY_WPA_WPA2_PERSONAL = 12;  // confidence: gold [deep_trace_verified, 16.2_jadx]
     WIFI_SECURITY_WPA_ENTERPRISE = 20;
-    WIFI_SECURITY_WPA2_ENTERPRISE = 24;  // confidence: silver [apk_static, cross_version]
-    WIFI_SECURITY_WPA_WPA2_ENTERPRISE = 28;  // confidence: silver [apk_static, cross_version]
-    WIFI_SECURITY_WPA3_PERSONAL = 32;  // confidence: silver [apk_static, cross_version]
-    WIFI_SECURITY_WPA2_WPA3_PERSONAL = 40;  // confidence: silver [apk_static, cross_version]
+    WIFI_SECURITY_WPA2_ENTERPRISE = 24;  // confidence: gold [deep_trace_verified, 16.2_jadx]
+    WIFI_SECURITY_WPA_WPA2_ENTERPRISE = 28;  // confidence: gold [deep_trace_verified, 16.2_jadx]
+    WIFI_SECURITY_WPA3_PERSONAL = 32;  // confidence: gold [deep_trace_verified, 16.2_jadx]
+    WIFI_SECURITY_WPA2_WPA3_PERSONAL = 40;  // confidence: gold [deep_trace_verified, 16.2_jadx]
 }
 
 // WiFi access point type (APK class: wdm, field 5)
-// confidence: silver [apk_static, cross_version]
+// confidence: gold [deep_trace_verified, 16.2_jadx]
 enum WifiAccessPointType {
     WIFI_AP_STATIC = 0;
     WIFI_AP_DYNAMIC = 1;
 }
 
-// APK class: wdm — phone connection config (WiFi info)
-// confidence: silver [apk_static, cross_version]
+// APK class: wdc (16.2, @Deprecated), wdm (16.1) — phone connection config (WiFi info)
+// confidence: gold [deep_trace_verified, 16.2_jadx]
 message PhoneConnectionConfig
 {
-    optional string ssid = 1;  // confidence: silver [apk_static, cross_version]
-    optional string bssid = 2;  // confidence: silver [apk_static, cross_version]
-    optional string passphrase = 3;  // confidence: silver [apk_static, cross_version]
-    optional WifiSecurityMode security_mode = 4;  // confidence: silver [apk_static, cross_version]
-    optional WifiAccessPointType ap_type = 5;  // confidence: silver [apk_static, cross_version]
+    optional string ssid = 1;  // confidence: gold [deep_trace_verified, 16.2_jadx]
+    optional string bssid = 2;  // confidence: gold [deep_trace_verified, 16.2_jadx]
+    optional string passphrase = 3;  // confidence: gold [deep_trace_verified, 16.2_jadx]
+    optional WifiSecurityMode security_mode = 4;  // confidence: gold [deep_trace_verified, 16.2_jadx]
+    optional WifiAccessPointType ap_type = 5;  // confidence: gold [deep_trace_verified, 16.2_jadx]
 }

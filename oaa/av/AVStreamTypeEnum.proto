@@ -5,10 +5,10 @@ syntax="proto3";
 
 package oaa.proto.enums;
 
-// confidence: unverified
+// confidence: gold [deep_trace_verified, 16.2_jadx]
 message AVStreamType
 {
-    // confidence: unverified
+    // confidence: gold [deep_trace_verified, 16.2_jadx]
     enum Enum
     {
         NONE = 0;

@@ -11,65 +11,66 @@ syntax="proto3";
 
 package oaa.proto.data;
 
-// APK class: aagh — boolean flag + name
-// confidence: silver [apk_static, cross_version]
+// APK class: aafn (16.2), aagh (16.1) — boolean flag + name
+// confidence: gold [deep_trace_verified, 16.2_jadx]
 message CapabilityFlag
 {
-    bool enabled = 1;  // confidence: silver [apk_static, cross_version]
-    string name = 2;  // confidence: silver [apk_static, cross_version]
+    bool enabled = 1;  // confidence: gold [deep_trace_verified, 16.2_jadx]
+    string name = 2;  // confidence: gold [deep_trace_verified, 16.2_jadx]
 }
 
-// APK class: aags — boolean pair
-// confidence: silver [apk_static, cross_version]
+// APK class: aafy (16.2), aags (16.1) — boolean pair
+// confidence: gold [deep_trace_verified, 16.2_jadx]
 message CapabilityPair
 {
-    bool value_a = 1;  // confidence: silver [apk_static, cross_version]
-    bool value_b = 2;  // confidence: silver [apk_static, cross_version]
+    bool value_a = 1;  // confidence: gold [deep_trace_verified, 16.2_jadx]
+    bool value_b = 2;  // confidence: gold [deep_trace_verified, 16.2_jadx]
 }
 
-// APK class: aaft — paired ping configurations
-// confidence: silver [apk_static, cross_version]
+// APK class: aaez (16.2), aaft (16.1) — paired ping configurations
+// confidence: gold [deep_trace_verified, 16.2_jadx]
 message PingConfigPair
 {
-    PingConfigEntry phone_to_hu = 1;  // confidence: silver [apk_static, cross_version]
-    PingConfigEntry hu_to_phone = 2;  // confidence: silver [apk_static, cross_version]
+    PingConfigEntry phone_to_hu = 1;  // confidence: gold [deep_trace_verified, 16.2_jadx]
+    PingConfigEntry hu_to_phone = 2;  // confidence: gold [deep_trace_verified, 16.2_jadx]
 }
 
-// Ping configuration entry (matches PingConfiguration structure)
-// confidence: silver [apk_static, cross_version]
+// APK class: zxk (16.2) — ping configuration entry
+// 16.2 has only 2 fields (int64 + int32), NOT the 4 uint32 fields previously assumed
+// confidence: gold [deep_trace_verified, 16.2_jadx]
 message PingConfigEntry
 {
-    uint32 timeout_ms = 1;  // confidence: silver [apk_static, cross_version]
-    uint32 interval_ms = 2;  // confidence: silver [apk_static, cross_version]
-    uint32 high_latency_threshold_ms = 3;  // confidence: silver [apk_static, cross_version]
-    uint32 tracked_ping_count = 4;  // confidence: silver [apk_static, cross_version]
+    int64 timeout_ms = 1;  // 16.2: long (was uint32)  // confidence: gold [deep_trace_verified, 16.2_jadx]
+    int32 interval_ms = 2;  // 16.2: int (was uint32)  // confidence: gold [deep_trace_verified, 16.2_jadx]
+    // fields 3-4 (high_latency_threshold_ms, tracked_ping_count) NOT in 16.2 APK — removed
 }
 
-// APK class: aagv — individual capability entry (10 fields)
+// APK class: aagb (16.2), aagv (16.1) — individual capability entry (10 fields)
 // Fields 4-7 are oneof (capability_value)
-// confidence: silver [apk_static, cross_version]
+// confidence: gold [deep_trace_verified, 16.2_jadx]
 message CapabilityEntry
 {
-    uint32 capability_id = 1;  // confidence: silver [apk_static, cross_version]
-    string capability_name = 2;  // confidence: silver [apk_static, cross_version]
-    CapabilityEnum capability_type = 3;  // confidence: silver [apk_static, cross_version]
+    uint32 capability_id = 1;  // confidence: gold [deep_trace_verified, 16.2_jadx]
+    string capability_name = 2;  // confidence: gold [deep_trace_verified, 16.2_jadx]
+    CapabilityEnum capability_type = 3;  // confidence: gold [deep_trace_verified, 16.2_jadx]
     oneof capability_value {
-        CapabilityValueMsg value_msg_4 = 4;  // confidence: silver [apk_static, cross_version]
-        CapabilityValueMsg value_msg_5 = 5;  // confidence: silver [apk_static, cross_version]
-        CapabilityValueMsg value_msg_6 = 6;  // confidence: silver [apk_static, cross_version]
-        CapabilityValueMsg value_msg_7 = 7;  // confidence: silver [apk_static, cross_version]
+        CapabilityValueMsg value_msg_4 = 4;  // 16.2: aagk  // confidence: gold [deep_trace_verified, 16.2_jadx]
+        CapabilityValueMsg value_msg_5 = 5;  // 16.2: aafv  // confidence: gold [deep_trace_verified, 16.2_jadx]
+        CapabilityValueMsg value_msg_6 = 6;  // 16.2: aagc  // confidence: gold [deep_trace_verified, 16.2_jadx]
+        CapabilityValueMsg value_msg_7 = 7;  // 16.2: aafw  // confidence: gold [deep_trace_verified, 16.2_jadx]
     }
-    bool enabled = 8;  // confidence: silver [apk_static, cross_version]
-    string description = 9;  // confidence: silver [apk_static, cross_version]
-    repeated CapabilityValueMsg sub_entries = 10;  // confidence: silver [apk_static, cross_version]
+    bool enabled = 8;  // confidence: gold [deep_trace_verified, 16.2_jadx]
+    string description = 9;  // confidence: gold [deep_trace_verified, 16.2_jadx]
+    repeated CapabilityValueMsg sub_entries = 10;  // 16.2: aagq  // confidence: gold [deep_trace_verified, 16.2_jadx]
 }
 
 // Placeholder for CapabilityEntry oneof values (sub-message type TBD)
-// confidence: silver [apk_static, cross_version]
+// TODO: oneof variants have distinct 16.2 classes (aagk, aafv, aagc, aafw) — may have different schemas
+// confidence: gold [deep_trace_verified, 16.2_jadx]
 message CapabilityValueMsg {}
 
-// Placeholder enum for capability type (field 3 of aagv)
-// confidence: silver [apk_static, cross_version]
+// Placeholder enum for capability type (field 3 of CapabilityEntry)
+// confidence: gold [deep_trace_verified, 16.2_jadx]
 enum CapabilityEnum {
     CAPABILITY_UNKNOWN = 0;
 }

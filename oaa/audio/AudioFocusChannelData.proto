@@ -16,7 +16,8 @@ syntax="proto2";
 
 package oaa.proto.data;
 
-// confidence: bronze [apk_static]
+// APK class: vxc (16.2), vxq (16.1) — empty presence indicator
+// confidence: gold [deep_trace_verified, 16.2_jadx]
 message AudioFocusChannel
 {
 }

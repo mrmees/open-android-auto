@@ -5,10 +5,10 @@ syntax="proto2";
 
 package oaa.proto.data;
 
-// confidence: silver [apk_static, cross_version]
+// confidence: gold [deep_trace_verified, 16.2_jadx]
 message AudioConfig
 {
-    optional uint32 sample_rate = 1;  // confidence: silver [apk_static, cross_version]
-    optional uint32 bit_depth = 2;  // confidence: silver [apk_static, cross_version]
-    optional uint32 channel_count = 3;  // confidence: silver [apk_static, cross_version]
+    optional uint32 sample_rate = 1;  // confidence: gold [deep_trace_verified, 16.2_jadx]
+    optional uint32 bit_depth = 2;  // confidence: gold [deep_trace_verified, 16.2_jadx]
+    optional uint32 channel_count = 3;  // confidence: gold [deep_trace_verified, 16.2_jadx]
 }

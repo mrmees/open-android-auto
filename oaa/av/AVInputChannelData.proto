@@ -8,10 +8,10 @@ import "oaa/audio/AudioConfigData.proto";
 
 package oaa.proto.data;
 
-// confidence: silver [apk_static, cross_version]
+// confidence: gold [deep_trace_verified, 16.2_jadx]
 message AVInputChannel
 {
-    optional enums.AVStreamType.Enum stream_type = 1;  // confidence: silver [apk_static, cross_version]
-    optional AudioConfig audio_config = 2;  // confidence: silver [apk_static, cross_version]
+    optional enums.AVStreamType.Enum stream_type = 1;  // confidence: gold [deep_trace_verified, 16.2_jadx]
+    optional AudioConfig audio_config = 2;  // confidence: gold [deep_trace_verified, 16.2_jadx]
     // Field 3: APK has uint32 here, not bool. Not present in phone-side proto. Removed.
 }

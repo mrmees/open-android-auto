@@ -7,10 +7,11 @@ import "oaa/navigation/NavigationImageOptionsData.proto";
 
 package oaa.proto.data;
 
-// confidence: silver [apk_static, cross_version]
+// APK class: vzd (16.2), vzr (16.1)
+// confidence: gold [deep_trace_verified, 16.2_jadx]
 message NavigationChannel
 {
-    optional int32 minimum_interval_ms = 1;  // confidence: silver [apk_static, cross_version]
-    optional int32 type = 2; // APK: viz.M(), values 1=TURN_BY_TURN, 2=NEXT_TURN_IMAGE  // confidence: silver [apk_static, cross_version]
-    optional NavigationImageOptions image_options = 3;  // confidence: silver [apk_static, cross_version]
+    optional int32 minimum_interval_ms = 1;  // confidence: gold [deep_trace_verified, 16.2_jadx]
+    optional int32 type = 2; // APK: viz.M(), values 1=TURN_BY_TURN, 2=NEXT_TURN_IMAGE  // confidence: gold [deep_trace_verified, 16.2_jadx]
+    optional NavigationImageOptions image_options = 3;  // confidence: gold [deep_trace_verified, 16.2_jadx]
 }
