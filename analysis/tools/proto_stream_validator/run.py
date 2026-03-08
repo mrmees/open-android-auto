@@ -91,36 +91,115 @@ def _decode_frame(
     }
 
 
+def _classify_excluded_frame(frame: "Frame") -> str:
+    """Classify why a frame was excluded from proto validation."""
+    from analysis.tools.proto_stream_validator.filtering import (
+        _AV_MEDIA_MESSAGE_IDS, _AV_PROTO_MESSAGE_IDS,
+        _NON_PROTO_CONTROL_IDS, _IGNORED_NOISE_MESSAGE_NAMES,
+        _is_av_channel,
+    )
+    if frame.channel_id == 0 and frame.message_id in _NON_PROTO_CONTROL_IDS:
+        return "handshake_tls"
+    if _is_av_channel(frame):
+        if frame.message_id in _AV_MEDIA_MESSAGE_IDS:
+            return "raw_av_media"
+        if frame.message_id not in _AV_PROTO_MESSAGE_IDS:
+            return "av_unknown"
+    if frame.message_name in _IGNORED_NOISE_MESSAGE_NAMES:
+        return "av_media_ack"
+    if frame.message_name.startswith("0x"):
+        return "unresolved"
+    return "other_excluded"
+
+
+class FrameStats:
+    """Tracks frame classification counts for reporting."""
+
+    _LABELS = {
+        "proto_decoded": "Proto decoded",
+        "proto_skipped": "Proto unmapped",
+        "raw_av_media": "Raw AV media (H.264/PCM)",
+        "handshake_tls": "Handshake/TLS",
+        "av_media_ack": "AV media ACK",
+        "av_unknown": "AV non-proto",
+        "unresolved": "Unresolved msg ID",
+        "other_excluded": "Other excluded",
+    }
+
+    def __init__(self) -> None:
+        self.counts: dict[str, int] = {}
+
+    def count(self, category: str) -> None:
+        self.counts[category] = self.counts.get(category, 0) + 1
+
+    @property
+    def total(self) -> int:
+        return sum(self.counts.values())
+
+    def format_report(self) -> str:
+        total = self.total
+        if total == 0:
+            return "  (no frames)"
+
+        decoded = self.counts.get("proto_decoded", 0)
+        skipped = self.counts.get("proto_skipped", 0)
+        proto_total = decoded + skipped
+        excluded = total - proto_total
+
+        lines = [f"  {total} total frames"]
+        lines.append("")
+
+        # Proto section
+        lines.append(f"  Proto messages: {proto_total}")
+        if decoded:
+            lines.append(f"    Decoded:  {decoded:>5}  ({100 * decoded / total:.1f}%)")
+        if skipped:
+            lines.append(f"    Skipped:  {skipped:>5}  (unmapped message types)")
+
+        # Excluded section
+        lines.append(f"  Non-proto frames: {excluded}")
+        for cat in ("raw_av_media", "handshake_tls", "av_media_ack",
+                     "av_unknown", "unresolved", "other_excluded"):
+            c = self.counts.get(cat, 0)
+            if c:
+                label = self._LABELS.get(cat, cat)
+                lines.append(f"    {label + ':':.<30} {c:>5}  ({100 * c / total:.1f}%)")
+
+        # Success rate
+        if proto_total > 0:
+            rate = 100 * decoded / proto_total
+            lines.append("")
+            lines.append(f"  Proto decode rate: {decoded}/{proto_total} ({rate:.0f}%)")
+
+        return "\n".join(lines)
+
+
 def build_normalized_rows(
     capture_path: Path, repo_root: Path, *, verbose: bool = False,
-) -> list[dict[str, Any]]:
+) -> tuple[list[dict[str, Any]], FrameStats]:
     frames = load_capture_jsonl(capture_path)
+    stats = FrameStats()
 
     with tempfile.TemporaryDirectory(prefix="oaa-proto-validator-") as tmp_dir:
         bundle = build_descriptor_bundle(repo_root=repo_root, out_dir=Path(tmp_dir))
 
         rows: list[dict[str, Any]] = []
-        skipped = 0
         for frame_index, frame in enumerate(frames):
             if not is_phase1_non_media(frame):
+                stats.count(_classify_excluded_frame(frame))
                 continue
             try:
                 rows.append(_decode_frame(frame_index, frame, bundle))
+                stats.count("proto_decoded")
             except ValueError as exc:
                 if "unmapped tuple" in str(exc):
-                    skipped += 1
+                    stats.count("proto_skipped")
                     if verbose:
                         print(f"skip: {exc}", file=sys.stderr)
                 else:
                     raise
 
-    if skipped:
-        print(
-            f"note: {skipped} frame(s) skipped (unmapped message types)",
-            file=sys.stderr,
-        )
-
-    return normalize_decoded_frames(rows)
+    return normalize_decoded_frames(rows), stats
 
 
 def _load_baseline(path: Path) -> list[dict[str, Any]]:
@@ -150,7 +229,7 @@ def main(argv: list[str] | None = None) -> int:
         return 2
 
     try:
-        actual_rows = build_normalized_rows(
+        actual_rows, stats = build_normalized_rows(
             capture_path=args.capture,
             repo_root=args.repo_root.resolve(),
             verbose=args.verbose,
@@ -163,6 +242,8 @@ def main(argv: list[str] | None = None) -> int:
         write_normalized_baseline(args.baseline, actual_rows)
         print(f"baseline updated: {args.baseline}")
         print(f"reason: {args.reason}")
+        print()
+        print(stats.format_report())
         return 0
 
     try:
@@ -173,14 +254,17 @@ def main(argv: list[str] | None = None) -> int:
 
     diffs = diff_normalized(expected_rows, actual_rows)
     if diffs:
-        print("validation failed: baseline drift detected", file=sys.stderr)
+        print("FAIL: baseline drift detected", file=sys.stderr)
         for diff in diffs[:50]:
             print(_format_diff(diff), file=sys.stderr)
         if len(diffs) > 50:
             print(f"... {len(diffs) - 50} more diffs", file=sys.stderr)
+        print()
+        print(stats.format_report())
         return 1
 
-    print("validation passed: no baseline diffs")
+    print(f"PASS: {args.capture.name}")
+    print(stats.format_report())
     return 0
 
 
