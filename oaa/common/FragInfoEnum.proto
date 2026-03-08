@@ -10,17 +10,25 @@
  * maximum frame size and must be split across multiple frames.
  * The flags byte in the frame header encodes this information.
  *
+ * Verified 2026-03-07: All 4 values confirmed against aasdk C++ source.
+ *   - aasdk name: FrameType (FrameType.hpp): MIDDLE=0, FIRST=1, LAST=2, BULK=3
+ *   - Maps to bits 0-1 of the flags byte in the 4-byte frame header
+ *   - Full flags byte layout: bits 0-1=FrameType, bit 2=MessageType, bit 3=EncryptionType
+ *   - Not in Java layer — native code only (below JNI boundary)
+ *
  * Source: opencardev/aasdk (GPLv3)
  * Original: aap_protobuf/service/control/message/FragInfo.proto
  *
- * confidence: bronze [external_reference]
+ * confidence: silver [cross_referenced, aasdk_confirmed]
  */
 
 syntax = "proto2";
 
 package oaa.proto.enums;
 
-// confidence: bronze [external_reference]
+// Bits 0-1 of the frame header flags byte
+// aasdk C++ equivalent: FrameType enum (FrameType.hpp)
+// confidence: silver [cross_referenced, aasdk_confirmed]
 enum FragInfo {
     FRAG_CONTINUATION = 0;  // Middle fragment — more to follow
     FRAG_FIRST = 1;         // First fragment of a multi-frame message

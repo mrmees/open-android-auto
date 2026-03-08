@@ -10,17 +10,21 @@
  * channel. These definitions are preserved from the opencardev/aasdk
  * project for historical reference and compatibility with older AA versions.
  *
+ * Verified 2026-03-07: Channel confirmed DEAD in 16.2 APK.
+ *
  * Source: opencardev/aasdk (GPLv3), adapted to oaa conventions
  * Original: aap_protobuf/service/mediabrowser/MediaBrowserMessageId.proto
+ *
+ * confidence: silver [cross_referenced, apk_confirmed_dead]
  */
 
 syntax = "proto2";
 
 package oaa.proto.enums;
 
-// confidence: bronze [external_reference, legacy_channel]
+// confidence: silver [cross_referenced, apk_confirmed_dead]
 message MediaBrowserMessageId {
-    // confidence: bronze [external_reference, legacy_channel]
+    // confidence: silver [cross_referenced, apk_confirmed_dead]
     enum Enum {
         MEDIA_ROOT_NODE = 0x8001;
         MEDIA_SOURCE_NODE = 0x8002;

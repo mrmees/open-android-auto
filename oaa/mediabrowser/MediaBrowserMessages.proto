@@ -23,8 +23,16 @@
  *   HU -> Phone: MediaGetNode (request a path), MediaBrowseInput (cluster nav)
  *   Phone -> HU: MediaRootNode, MediaSourceNode, MediaListNode, MediaSongNode
  *
+ * Verified 2026-03-07: Confirmed DEAD in 16.2 APK.
+ *   - SDP stub class vxy has 0 fields, 0 references
+ *   - Enum value MEDIA_BROWSER=12 in qkn.java exists but is never referenced
+ *   - No handler registered, no message processing, no log tags
+ *   - ChannelDescriptor field 11 present but always empty
+ *
  * Source: opencardev/aasdk (GPLv3), adapted to oaa conventions
  * Original: aap_protobuf/service/mediabrowser/
+ *
+ * confidence: silver [cross_referenced, apk_confirmed_dead]
  */
 
 syntax = "proto2";
@@ -36,7 +44,7 @@ package oaa.proto.messages;
 // ============================================================================
 
 // Media list/collection type
-// confidence: bronze [external_reference, legacy_channel]
+// confidence: silver [cross_referenced, apk_confirmed_dead]
 enum MediaListType {
     MEDIA_LIST_TYPE_UNKNOWN = 0;
     MEDIA_LIST_TYPE_PLAYLIST = 1;
@@ -48,7 +56,7 @@ enum MediaListType {
 
 // Instrument cluster input action for media browsing
 // Used by MediaBrowseInput to navigate the media tree from the cluster display.
-// confidence: bronze [external_reference, legacy_channel]
+// confidence: silver [cross_referenced, apk_confirmed_dead]
 enum InstrumentClusterAction {
     CLUSTER_ACTION_UNKNOWN = 0;
     CLUSTER_ACTION_UP = 1;
@@ -65,7 +73,7 @@ enum InstrumentClusterAction {
 // ============================================================================
 
 // A media source (e.g., Spotify, local music library)
-// confidence: bronze [external_reference, legacy_channel]
+// confidence: silver [cross_referenced, apk_confirmed_dead]
 message MediaSource {
     optional string path = 1;
     optional string name = 2;
@@ -73,7 +81,7 @@ message MediaSource {
 }
 
 // A media list/collection (playlist, album, artist, etc.)
-// confidence: bronze [external_reference, legacy_channel]
+// confidence: silver [cross_referenced, apk_confirmed_dead]
 message MediaList {
     optional string path = 1;
     optional MediaListType type = 2;
@@ -82,7 +90,7 @@ message MediaList {
 }
 
 // A single song/track
-// confidence: bronze [external_reference, legacy_channel]
+// confidence: silver [cross_referenced, apk_confirmed_dead]
 message MediaSong {
     optional string path = 1;
     optional string name = 2;
@@ -96,7 +104,7 @@ message MediaSong {
 
 // 0x8001: MediaRootNode
 // Lists available media sources at the root level.
-// confidence: bronze [external_reference, legacy_channel]
+// confidence: silver [cross_referenced, apk_confirmed_dead]
 message MediaRootNode {
     optional string path = 1;
     repeated MediaSource media_sources = 2;
@@ -104,7 +112,7 @@ message MediaRootNode {
 
 // 0x8002: MediaSourceNode
 // Lists collections within a specific media source (paginated).
-// confidence: bronze [external_reference, legacy_channel]
+// confidence: silver [cross_referenced, apk_confirmed_dead]
 message MediaSourceNode {
     optional MediaSource source = 1;
     optional int32 start = 2;       // Pagination offset
@@ -114,7 +122,7 @@ message MediaSourceNode {
 
 // 0x8003: MediaListNode
 // Lists songs within a specific collection (paginated).
-// confidence: bronze [external_reference, legacy_channel]
+// confidence: silver [cross_referenced, apk_confirmed_dead]
 message MediaListNode {
     optional MediaList list = 1;
     optional int32 start = 2;       // Pagination offset
@@ -124,7 +132,7 @@ message MediaListNode {
 
 // 0x8004: MediaSongNode
 // Detailed info for a single song including album art and duration.
-// confidence: bronze [external_reference, legacy_channel]
+// confidence: silver [cross_referenced, apk_confirmed_dead]
 message MediaSongNode {
     optional MediaSong song = 1;
     optional bytes album_art = 2;
@@ -137,7 +145,7 @@ message MediaSongNode {
 
 // 0x8005: MediaGetNode
 // Request to navigate to a specific path in the media tree.
-// confidence: bronze [external_reference, legacy_channel]
+// confidence: silver [cross_referenced, apk_confirmed_dead]
 message MediaGetNode {
     optional string path = 1;
     optional int32 start = 2;                           // Pagination offset
@@ -146,7 +154,7 @@ message MediaGetNode {
 
 // 0x8006: MediaBrowseInput
 // Cluster display input (rotary/button) for browsing the media tree.
-// confidence: bronze [external_reference, legacy_channel]
+// confidence: silver [cross_referenced, apk_confirmed_dead]
 message MediaBrowseInput {
     optional InstrumentClusterAction action = 1;
     optional string path = 2;   // Current path context for the input

@@ -7,16 +7,22 @@
 // A separate vendor extension channel for diagnostic bug report
 // request/response. Uses message IDs 1-2 (not in the 0x8000+ GAL range).
 //
+// Verified 2026-03-07: DHU-ONLY — not present in 16.2 phone APK.
+//   - No GoogleDiagnostics vendor ext channel registered in phone APK
+//   - Only vendor ext channels: kaz.java (DHU) and lim.java (Remote Car Apps)
+//   - Phone bug reports use BugreportManager API (local), not vendor ext wire protocol
+//   - No token-pattern class match found in APK
+//
 // Source: opencardev/aasdk (GoogleDiagnosticsVendorExtensionMessageId enum,
 //         GoogleDiagnostics* message definitions)
-// Confidence: bronze [external_reference]
+// Confidence: silver [cross_referenced, dhu_only]
 
 syntax = "proto2";
 
 package oaa.proto.messages;
 
 // Message IDs for the Google Diagnostics vendor extension channel.
-// confidence: bronze [external_reference]
+// confidence: silver [cross_referenced, dhu_only]
 enum GoogleDiagnosticsMessageId {
     DIAGNOSTICS_BUG_REPORT_REQUEST  = 1;
     DIAGNOSTICS_BUG_REPORT_RESPONSE = 2;
@@ -24,15 +30,15 @@ enum GoogleDiagnosticsMessageId {
 
 // Requests a bug report. The token identifies the request for correlation
 // with the response.
-// confidence: bronze [external_reference]
+// confidence: silver [cross_referenced, dhu_only]
 message GoogleDiagnosticsBugReportRequest {
-    optional int32 token = 1;  // confidence: bronze [external_reference]
+    optional int32 token = 1;  // confidence: silver [cross_referenced, dhu_only]
 }
 
 // Bug report response. May contain the bug report text and a list of
 // acknowledged request tokens.
-// confidence: bronze [external_reference]
+// confidence: silver [cross_referenced, dhu_only]
 message GoogleDiagnosticsBugReportResponse {
-    optional string bug_report = 1;  // confidence: bronze [external_reference]
-    repeated int32  tokens     = 2;  // confidence: bronze [external_reference]
+    optional string bug_report = 1;  // confidence: silver [cross_referenced, dhu_only]
+    repeated int32  tokens     = 2;  // confidence: silver [cross_referenced, dhu_only]
 }

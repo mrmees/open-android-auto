@@ -10,12 +10,23 @@
  * that hides the clock and battery indicator would send:
  *   UI_CONFIG_HIDE_CLOCK | UI_CONFIG_HIDE_BATTERY_LEVEL = 1 + 4 = 5
  *
- * Referenced by: HeadUnitInfo, ServiceDiscoveryResponse
+ * Referenced by: ServiceDiscoveryResponse field 13 (session_configuration),
+ *   class wbo field f75036n in 16.2.
+ *
+ * Verified 2026-03-07: All 4 values deep-trace confirmed.
+ *   - Bitmask extraction: qtr.java:267-276 reads wbo.f75036n
+ *   - Check function: CarInfoInternal.m11798a(i, i2) = (i & i2) == i2
+ *   - Value 1 → CarInfo.f20439g → hideClock (StatusElementConfig)
+ *   - Value 2 → CarInfo.f20446n → hideCellSignal
+ *   - Value 4 → CarInfo.f20447o → hideBatteryStatus
+ *   - Value 8 → CarInfo.f20445m → canPlayNativeMediaDuringVR
+ *   - NOTE: Field 11 (standalone bool) and bitmask bit 8 are redundant —
+ *     both control canPlayNativeMediaDuringVR
  *
  * Source: opencardev/aasdk (GPLv3), cross-referenced with AA APK
  * Original: aap_protobuf/shared/SessionConfiguration.proto
  *
- * confidence: bronze [external_reference]
+ * confidence: gold [deep_trace, 16.2 verified]
  */
 
 syntax = "proto2";
@@ -23,7 +34,9 @@ syntax = "proto2";
 package oaa.proto.enums;
 
 // Bitmask values — combine with bitwise OR
-// confidence: bronze [external_reference]
+// 16.2: ServiceDiscoveryResponse field 13, class wbo field f75036n
+// Extracted via CarInfoInternal.m11798a() bitwise AND check
+// confidence: gold [deep_trace]
 enum SessionConfiguration {
     SESSION_UI_CONFIG_HIDE_CLOCK = 1;               // Hide clock from AA status bar
     SESSION_UI_CONFIG_HIDE_PHONE_SIGNAL = 2;        // Hide phone signal strength

@@ -15,17 +15,25 @@
  * connections where latency and buffer management are critical for
  * smooth video/audio projection over WiFi.
  *
+ * Verified 2026-03-07: NOT PRESENT in 16.2 APK.
+ *   - ConnectionConfiguration was completely reorganized in 16.2
+ *   - Phone uses hardcoded socket params: setSendBufferSize(16384),
+ *     setSoTimeout(10000ms), setTcpNoDelay(true) in ieb.java/quk.java
+ *   - setReceiveBufferSize() is never called anywhere in the APK
+ *   - Socket tuning now uses Phenotype flags, not proto-based config
+ *
  * Source: opencardev/aasdk (GPLv3)
  * Original: aap_protobuf/service/control/message/WirelessTcpConfiguration.proto
  *
- * confidence: bronze [external_reference]
+ * confidence: bronze [external_reference, legacy_external_only]
  */
 
 syntax = "proto2";
 
 package oaa.proto.data;
 
-// confidence: bronze [external_reference]
+// Not present in 16.2 APK — ConnectionConfig reorganized, socket params hardcoded
+// confidence: bronze [external_reference, legacy_external_only]
 message WirelessTcpConfiguration {
     optional uint32 socket_receive_buffer_size_kb = 1;  // SO_RCVBUF size in KB
     optional uint32 socket_send_buffer_size_kb = 2;     // SO_SNDBUF size in KB

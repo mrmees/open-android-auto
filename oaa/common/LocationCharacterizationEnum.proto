@@ -11,12 +11,15 @@
  * position using gyroscope and wheel speed would be:
  *   GYROSCOPE_FUSION | WHEEL_SPEED_FUSION | DEAD_RECKONED = 2 + 16 + 128 = 146
  *
- * Referenced by: SensorChannel location configuration, HeadUnitInfo
+ * Referenced by: SensorChannelConfig field 2 (location_characterization),
+ *   class wbk in 16.2. Logged as "locationCharacterization=<value>" by
+ *   qlz.java:185 and hyy.java:194. Phone treats as opaque uint32 —
+ *   stores and returns without testing individual bits.
  *
  * Source: opencardev/aasdk (GPLv3), cross-referenced with AA APK
  * Original: aap_protobuf/shared/LocationCharacterization.proto
  *
- * confidence: bronze [external_reference]
+ * confidence: silver [cross_referenced, apk_field_confirmed]
  */
 
 syntax = "proto2";
@@ -24,7 +27,9 @@ syntax = "proto2";
 package oaa.proto.enums;
 
 // Bitmask values — combine with bitwise OR
-// confidence: bronze [external_reference]
+// 16.2: field 2 of wbk (SensorChannelConfig), uint32
+// Phone stores as opaque value — individual bits only meaningful to HU
+// confidence: silver [cross_referenced, apk_field_confirmed]
 enum LocationCharacterization {
     LOCATION_PRIOR_LOCATIONS = 1;           // Uses prior location history
     LOCATION_GYROSCOPE_FUSION = 2;          // Gyroscope-aided positioning

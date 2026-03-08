@@ -21,7 +21,7 @@ package oaa.proto.data;
 message SensorChannelConfig
 {
     repeated SensorTypeEntry supported_sensors = 1; // 16.2: wbj  // confidence: gold
-    optional uint32 update_interval_ms = 2;  // confidence: gold
+    optional uint32 location_characterization = 2;  // 16.2: wbk.f74959e, logged as "locationCharacterization" by qlz.java:185  // confidence: gold
     repeated enums.FuelType.Enum fuel_types = 3; // 16.2: vxa enum  // confidence: gold
     repeated enums.EVConnectorType.Enum ev_connector_types = 4; // 16.2: vwx enum  // confidence: gold
 }

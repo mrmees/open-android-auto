@@ -27,7 +27,13 @@
  * Source: opencardev/aasdk (GPLv3), adapted to oaa conventions
  * Original: aap_protobuf/service/radio/
  *
- * confidence: bronze [external_reference, legacy_api]
+ * Verified 2026-03-07: Confirmed NO ID conflicts with modern radio handler.
+ *   - ibf.java (16.2) only handles 0x801A-0x8023 — zero overlap with 0x8001-0x8019
+ *   - No legacy structures survive as dead code (RadioType, RdsData, HdRadioStationInfo,
+ *     StationPreset, RadioProperties, TrafficIncident all completely absent)
+ *   - XM/Sirius, OIRT, RBDS: zero references in entire APK
+ *
+ * confidence: bronze [external_reference, legacy_api, confirmed_dead_in_16.2]
  */
 
 syntax = "proto2";

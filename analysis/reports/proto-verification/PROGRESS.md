@@ -8,13 +8,14 @@
 
 | Status | Count |
 |--------|-------|
-| Verified (Gold) — GAL messages | 194 |
+| Verified (Gold) — GAL messages | 196 (+2: ChannelCloseNotification, SessionConfiguration) |
 | Verified (Gold) — SDP layer | 112 |
-| Schema Errors Found & Fixed | 87 |
+| Verified (Silver) — cross-referenced | 7 (LocationCharacterization, FragInfo, MediaBrowser×2, GalVerification, GoogleDiagnostics, ConnectedDevices) |
+| Schema Errors Found & Fixed | 88 (+1: SensorChannelConfig field 2 name) |
 | New Protos Discovered | 38 |
 | Retracted / Removed | 32 |
 | Relocated (wrong channel) | 4 (BindingRequest/Response → input, CallAvailability/VoiceSession → control) |
-| Pending | **0 — ALL CHANNELS + SDP COMPLETE** |
+| Pending | **0 — ALL CHANNELS + SDP + CROSS-REFS COMPLETE** |
 
 ## SDP Layer Verification
 
@@ -53,7 +54,33 @@ All SDP protobuf schemas verified against 16.2 APK. 84 protos at Gold confidence
 
 ## Resume Pointer
 
-**ALL 14 CHANNELS COMPLETE.** Proto verification pipeline finished 2026-03-07. Final totals: 194 Gold protos, 29 retractions, 4 relocations, 14 new protos discovered, 75 schema errors fixed across 14 channels.
+**ALL 14 CHANNELS + SDP + CROSS-REFS COMPLETE.** Final totals: 196 Gold protos, 7 Silver cross-refs, 32 retractions, 4 relocations, 38 new protos discovered, 88 schema errors fixed.
+
+## Completed — opencardev/aasdk Cross-Reference Verification
+
+**Plan:** `docs/plans/2026-03-07-opencardev-crossref-verification.md`
+**Executed:** 2026-03-07 — 10 agents in parallel, all 5 waves at once
+
+### Results
+
+| Area | Verdict | New Confidence | Key Finding |
+|------|---------|---------------|-------------|
+| Media Browser (ch 12) | DEAD | silver [apk_confirmed_dead] | SDP stub vxy=0 fields, MEDIA_BROWSER=12 unreferenced, no handler |
+| ChannelCloseNotification (0x0009) | CONFIRMED | **gold** [transport_layer] | Transport-layer frame via icp/ico, not GAL-dispatched. Empty proto correct. |
+| LocationCharacterization | CONFIRMED | silver [apk_field_confirmed] | All 9 bitmask values consistent. wbk field 2, phone treats as opaque uint32. |
+| SessionConfiguration | CONFIRMED | **gold** [deep_trace] | All 4 values traced: qtr.java→CarInfoInternal.m11798a()→CarInfo→StatusElementConfig |
+| FragInfo | CONFIRMED | silver [aasdk_confirmed] | All 4 values match aasdk FrameType.hpp. Bits 0-1 of flags byte. Native only. |
+| WirelessTcpConfiguration | ABSENT | bronze [legacy_external_only] | ConnectionConfig reorganized. Phone hardcodes socket params in ieb.java. |
+| Legacy Radio v1 (0x8001-0x8019) | NO CONFLICTS | bronze [confirmed_dead] | Zero overlap with modern 0x801A-0x8023. All legacy structures gone. |
+| GAL Verification | DHU-ONLY | silver [dhu_only] | Zero references in phone APK. kaz.java is raw byte GMS passthrough. |
+| Google Diagnostics | DHU-ONLY | silver [dhu_only] | Zero references. Phone bug reports via BugreportManager, not vendor ext. |
+| ConnectedDevices | NO UPGRADE | silver [msg_ids_confirmed] | IDs 20,21,22,25 in vik.java enum. Zero handler/proto code in phone or HU. |
+
+### Bonus Findings
+1. **SensorChannelConfigData.proto field 2**: Was misnamed `update_interval_ms`, corrected to `location_characterization` (toString in qlz.java:185 confirms)
+2. **FragInfo flags byte layout**: bits 0-1=FrameType, bit 2=MessageType(0=SPECIFIC,4=CONTROL), bit 3=EncryptionType(0=PLAIN,8=ENCRYPTED)
+3. **Complete control channel msg ID table** from vik.java: IDs 1-26 + 255/4095/57005/65535
+4. **SessionConfiguration redundancy**: Field 11 (bool) and bitmask bit 8 both control canPlayNativeMediaDuringVR
 
 ## Completed — WiFi Projection Channel (Wave 12)
 
