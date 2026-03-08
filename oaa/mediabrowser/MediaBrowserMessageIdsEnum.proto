@@ -1,0 +1,32 @@
+// Android Auto Protocol Buffer Definitions
+// https://github.com/mrmees/open-android-auto
+// SPDX-License-Identifier: GPL-3.0-or-later
+
+/*
+ * Media Browser channel message IDs (GAL channel type 12, MEDIA_BROWSER)
+ *
+ * DEPRECATED: This channel is DEAD in AA v16.1+ (no handler, no message
+ * processing). Media browsing is now rendered via the video projection
+ * channel. These definitions are preserved from the opencardev/aasdk
+ * project for historical reference and compatibility with older AA versions.
+ *
+ * Source: opencardev/aasdk (GPLv3), adapted to oaa conventions
+ * Original: aap_protobuf/service/mediabrowser/MediaBrowserMessageId.proto
+ */
+
+syntax = "proto2";
+
+package oaa.proto.enums;
+
+// confidence: bronze [external_reference, legacy_channel]
+message MediaBrowserMessageId {
+    // confidence: bronze [external_reference, legacy_channel]
+    enum Enum {
+        MEDIA_ROOT_NODE = 0x8001;
+        MEDIA_SOURCE_NODE = 0x8002;
+        MEDIA_LIST_NODE = 0x8003;
+        MEDIA_SONG_NODE = 0x8004;
+        MEDIA_GET_NODE = 0x8005;
+        MEDIA_BROWSE_INPUT = 0x8006;
+    }
+}

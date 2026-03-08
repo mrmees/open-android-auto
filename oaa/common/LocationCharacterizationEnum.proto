@@ -1,0 +1,38 @@
+// Android Auto Protocol Buffer Definitions
+// https://github.com/mrmees/open-android-auto
+// SPDX-License-Identifier: GPL-3.0-or-later
+
+/*
+ * Location characterization bitmask — describes the quality/source of
+ * GPS location data provided by the head unit's sensor channel.
+ *
+ * Used as a bitmask: values can be OR'd together to describe multiple
+ * characteristics of the location fix. For example, a dead-reckoned
+ * position using gyroscope and wheel speed would be:
+ *   GYROSCOPE_FUSION | WHEEL_SPEED_FUSION | DEAD_RECKONED = 2 + 16 + 128 = 146
+ *
+ * Referenced by: SensorChannel location configuration, HeadUnitInfo
+ *
+ * Source: opencardev/aasdk (GPLv3), cross-referenced with AA APK
+ * Original: aap_protobuf/shared/LocationCharacterization.proto
+ *
+ * confidence: bronze [external_reference]
+ */
+
+syntax = "proto2";
+
+package oaa.proto.enums;
+
+// Bitmask values — combine with bitwise OR
+// confidence: bronze [external_reference]
+enum LocationCharacterization {
+    LOCATION_PRIOR_LOCATIONS = 1;           // Uses prior location history
+    LOCATION_GYROSCOPE_FUSION = 2;          // Gyroscope-aided positioning
+    LOCATION_ACCELEROMETER_FUSION = 4;      // Accelerometer-aided positioning
+    LOCATION_COMPASS_FUSION = 8;            // Compass/magnetometer-aided
+    LOCATION_WHEEL_SPEED_FUSION = 16;       // Vehicle wheel speed sensor
+    LOCATION_STEERING_ANGLE_FUSION = 32;    // Steering angle sensor
+    LOCATION_CAR_SPEED_FUSION = 64;         // Vehicle speed (OBD/CAN)
+    LOCATION_DEAD_RECKONED = 128;           // Dead reckoning (no live GPS)
+    LOCATION_RAW_GPS_ONLY = 256;            // Raw GPS with no sensor fusion
+}

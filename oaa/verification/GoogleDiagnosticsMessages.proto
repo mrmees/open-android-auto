@@ -1,0 +1,38 @@
+// Android Auto Protocol Buffer Definitions
+// https://github.com/mrmees/open-android-auto
+// SPDX-License-Identifier: GPL-3.0-or-later
+
+// Google Diagnostics Vendor Extension Messages
+//
+// A separate vendor extension channel for diagnostic bug report
+// request/response. Uses message IDs 1-2 (not in the 0x8000+ GAL range).
+//
+// Source: opencardev/aasdk (GoogleDiagnosticsVendorExtensionMessageId enum,
+//         GoogleDiagnostics* message definitions)
+// Confidence: bronze [external_reference]
+
+syntax = "proto2";
+
+package oaa.proto.messages;
+
+// Message IDs for the Google Diagnostics vendor extension channel.
+// confidence: bronze [external_reference]
+enum GoogleDiagnosticsMessageId {
+    DIAGNOSTICS_BUG_REPORT_REQUEST  = 1;
+    DIAGNOSTICS_BUG_REPORT_RESPONSE = 2;
+}
+
+// Requests a bug report. The token identifies the request for correlation
+// with the response.
+// confidence: bronze [external_reference]
+message GoogleDiagnosticsBugReportRequest {
+    optional int32 token = 1;  // confidence: bronze [external_reference]
+}
+
+// Bug report response. May contain the bug report text and a list of
+// acknowledged request tokens.
+// confidence: bronze [external_reference]
+message GoogleDiagnosticsBugReportResponse {
+    optional string bug_report = 1;  // confidence: bronze [external_reference]
+    repeated int32  tokens     = 2;  // confidence: bronze [external_reference]
+}

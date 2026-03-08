@@ -1,0 +1,153 @@
+// Android Auto Protocol Buffer Definitions
+// https://github.com/mrmees/open-android-auto
+// SPDX-License-Identifier: GPL-3.0-or-later
+
+/*
+ * Media Browser channel messages (GAL channel type 12, MEDIA_BROWSER)
+ *
+ * DEPRECATED: This channel is DEAD in AA v16.1+ (no handler, no message
+ * processing, empty SDP proto). Media browsing is now rendered via the
+ * video projection channel. The SDP field (ChannelDescriptor field 11,
+ * MediaBrowserChannel) exists but is an empty stub in both 16.1 and 16.2.
+ *
+ * These definitions are preserved from the opencardev/aasdk project for
+ * historical reference and compatibility with older AA versions (pre-2020)
+ * where media browsing was a dedicated wire protocol channel.
+ *
+ * The channel provided a hierarchical media browsing API:
+ *   Root -> Sources (e.g., Spotify, local music)
+ *        -> Lists (playlists, albums, artists, stations, genres)
+ *           -> Songs (title, artist, album, path)
+ *
+ * Message flow:
+ *   HU -> Phone: MediaGetNode (request a path), MediaBrowseInput (cluster nav)
+ *   Phone -> HU: MediaRootNode, MediaSourceNode, MediaListNode, MediaSongNode
+ *
+ * Source: opencardev/aasdk (GPLv3), adapted to oaa conventions
+ * Original: aap_protobuf/service/mediabrowser/
+ */
+
+syntax = "proto2";
+
+package oaa.proto.messages;
+
+// ============================================================================
+// Enums
+// ============================================================================
+
+// Media list/collection type
+// confidence: bronze [external_reference, legacy_channel]
+enum MediaListType {
+    MEDIA_LIST_TYPE_UNKNOWN = 0;
+    MEDIA_LIST_TYPE_PLAYLIST = 1;
+    MEDIA_LIST_TYPE_ALBUM = 2;
+    MEDIA_LIST_TYPE_ARTIST = 3;
+    MEDIA_LIST_TYPE_STATION = 4;
+    MEDIA_LIST_TYPE_GENRE = 5;
+}
+
+// Instrument cluster input action for media browsing
+// Used by MediaBrowseInput to navigate the media tree from the cluster display.
+// confidence: bronze [external_reference, legacy_channel]
+enum InstrumentClusterAction {
+    CLUSTER_ACTION_UNKNOWN = 0;
+    CLUSTER_ACTION_UP = 1;
+    CLUSTER_ACTION_DOWN = 2;
+    CLUSTER_ACTION_LEFT = 3;
+    CLUSTER_ACTION_RIGHT = 4;
+    CLUSTER_ACTION_ENTER = 5;
+    CLUSTER_ACTION_BACK = 6;
+    CLUSTER_ACTION_CALL = 7;
+}
+
+// ============================================================================
+// Sub-messages
+// ============================================================================
+
+// A media source (e.g., Spotify, local music library)
+// confidence: bronze [external_reference, legacy_channel]
+message MediaSource {
+    optional string path = 1;
+    optional string name = 2;
+    optional bytes album_art = 3;
+}
+
+// A media list/collection (playlist, album, artist, etc.)
+// confidence: bronze [external_reference, legacy_channel]
+message MediaList {
+    optional string path = 1;
+    optional MediaListType type = 2;
+    optional string name = 3;
+    optional bytes album_art = 4;
+}
+
+// A single song/track
+// confidence: bronze [external_reference, legacy_channel]
+message MediaSong {
+    optional string path = 1;
+    optional string name = 2;
+    optional string artist = 3;
+    optional string album = 4;
+}
+
+// ============================================================================
+// Top-level messages -- Phone -> HU (browse results)
+// ============================================================================
+
+// 0x8001: MediaRootNode
+// Lists available media sources at the root level.
+// confidence: bronze [external_reference, legacy_channel]
+message MediaRootNode {
+    optional string path = 1;
+    repeated MediaSource media_sources = 2;
+}
+
+// 0x8002: MediaSourceNode
+// Lists collections within a specific media source (paginated).
+// confidence: bronze [external_reference, legacy_channel]
+message MediaSourceNode {
+    optional MediaSource source = 1;
+    optional int32 start = 2;       // Pagination offset
+    optional int32 total = 3;       // Total items available
+    repeated MediaList lists = 4;   // Page of lists
+}
+
+// 0x8003: MediaListNode
+// Lists songs within a specific collection (paginated).
+// confidence: bronze [external_reference, legacy_channel]
+message MediaListNode {
+    optional MediaList list = 1;
+    optional int32 start = 2;       // Pagination offset
+    optional int32 total = 3;       // Total items available
+    repeated MediaSong songs = 4;   // Page of songs
+}
+
+// 0x8004: MediaSongNode
+// Detailed info for a single song including album art and duration.
+// confidence: bronze [external_reference, legacy_channel]
+message MediaSongNode {
+    optional MediaSong song = 1;
+    optional bytes album_art = 2;
+    optional uint32 duration_seconds = 3;
+}
+
+// ============================================================================
+// Top-level messages -- HU -> Phone (browse requests)
+// ============================================================================
+
+// 0x8005: MediaGetNode
+// Request to navigate to a specific path in the media tree.
+// confidence: bronze [external_reference, legacy_channel]
+message MediaGetNode {
+    optional string path = 1;
+    optional int32 start = 2;                           // Pagination offset
+    optional bool get_album_art = 3 [default = true];   // Include album art in response
+}
+
+// 0x8006: MediaBrowseInput
+// Cluster display input (rotary/button) for browsing the media tree.
+// confidence: bronze [external_reference, legacy_channel]
+message MediaBrowseInput {
+    optional InstrumentClusterAction action = 1;
+    optional string path = 2;   // Current path context for the input
+}

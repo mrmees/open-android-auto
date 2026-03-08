@@ -1,0 +1,32 @@
+// Android Auto Protocol Buffer Definitions
+// https://github.com/mrmees/open-android-auto
+// SPDX-License-Identifier: GPL-3.0-or-later
+
+/*
+ * Session configuration bitmask — controls visibility of UI elements
+ * and behavioral flags for the AA session.
+ *
+ * Used as a bitmask: values can be OR'd together. For example, a HU
+ * that hides the clock and battery indicator would send:
+ *   UI_CONFIG_HIDE_CLOCK | UI_CONFIG_HIDE_BATTERY_LEVEL = 1 + 4 = 5
+ *
+ * Referenced by: HeadUnitInfo, ServiceDiscoveryResponse
+ *
+ * Source: opencardev/aasdk (GPLv3), cross-referenced with AA APK
+ * Original: aap_protobuf/shared/SessionConfiguration.proto
+ *
+ * confidence: bronze [external_reference]
+ */
+
+syntax = "proto2";
+
+package oaa.proto.enums;
+
+// Bitmask values — combine with bitwise OR
+// confidence: bronze [external_reference]
+enum SessionConfiguration {
+    SESSION_UI_CONFIG_HIDE_CLOCK = 1;               // Hide clock from AA status bar
+    SESSION_UI_CONFIG_HIDE_PHONE_SIGNAL = 2;        // Hide phone signal strength
+    SESSION_UI_CONFIG_HIDE_BATTERY_LEVEL = 4;       // Hide phone battery level
+    SESSION_CAN_PLAY_NATIVE_MEDIA_DURING_VR = 8;    // Allow native media during voice recognition
+}

@@ -1,0 +1,114 @@
+// Android Auto Protocol Buffer Definitions
+// https://github.com/mrmees/open-android-auto
+// SPDX-License-Identifier: GPL-3.0-or-later
+
+// GAL Verification Vendor Extension Messages
+//
+// These messages run on a dedicated vendor extension channel used by Google's
+// internal test harness (DHU testing/verification infrastructure). They allow
+// a test framework to inject inputs, set sensor data, control audio/video
+// focus, capture screenshots, and request bug reports.
+//
+// Source: opencardev/aasdk (GalVerificationVendorExtensionMessageId enum,
+//         GalVerification* message definitions)
+// Confidence: bronze [external_reference]
+// This is testing infrastructure, not production Android Auto protocol.
+
+syntax = "proto2";
+
+package oaa.proto.messages;
+
+import "oaa/audio/AudioFocusStateEnum.proto";
+import "oaa/video/VideoFocusModeEnum.proto";
+
+// Message IDs for the GAL Verification vendor extension channel.
+// All IDs are in the 0x8001-0x800B range.
+// confidence: bronze [external_reference]
+enum GalVerificationMessageId {
+    GAL_VERIFICATION_SET_SENSOR                   = 0x8001;  // 32769
+    GAL_VERIFICATION_MEDIA_SINK_STATUS             = 0x8002;  // 32770
+    GAL_VERIFICATION_VIDEO_FOCUS                   = 0x8003;  // 32771
+    GAL_VERIFICATION_AUDIO_FOCUS                   = 0x8004;  // 32772
+    GAL_VERIFICATION_INJECT_INPUT                  = 0x8005;  // 32773
+    GAL_VERIFICATION_BUG_REPORT_REQUEST            = 0x8006;  // 32774
+    GAL_VERIFICATION_BUG_REPORT_RESPONSE           = 0x8007;  // 32775
+    GAL_VERIFICATION_SCREEN_CAPTURE_REQUEST         = 0x8008;  // 32776
+    GAL_VERIFICATION_SCREEN_CAPTURE_RESPONSE        = 0x8009;  // 32777
+    GAL_VERIFICATION_DISPLAY_INFORMATION_REQUEST    = 0x800A;  // 32778
+    GAL_VERIFICATION_DISPLAY_INFORMATION_RESPONSE   = 0x800B;  // 32779
+}
+
+// Injects sensor data into the DHU for testing.
+// Field 1 is a serialized SensorBatch (oaa/sensor/SensorMessages.proto),
+// passed as raw bytes to avoid cross-package dependency for a test-only channel.
+// confidence: bronze [external_reference]
+message GalVerificationSetSensor {
+    optional bytes sensors = 1;  // serialized SensorBatch
+}
+
+// Reports media sink status for a given channel.
+// Field 2 is the media Config.Status value (int32 rather than importing the
+// media config enum — this is test infrastructure only).
+// confidence: bronze [external_reference]
+message GalVerificationMediaSinkStatus {
+    optional int32 channel = 1;  // confidence: bronze [external_reference]
+    optional int32 status  = 2;  // media Config.Status value; confidence: bronze [external_reference]
+}
+
+// Controls video focus state for testing.
+// confidence: bronze [external_reference]
+message GalVerificationVideoFocus {
+    optional oaa.proto.enums.VideoFocusMode.Enum video_focus_mode = 1;  // confidence: bronze [external_reference]
+    optional bool deny                                             = 2;  // confidence: bronze [external_reference]
+    optional bool unsolicited                                      = 3;  // confidence: bronze [external_reference]
+}
+
+// Controls audio focus state for testing.
+// confidence: bronze [external_reference]
+message GalVerificationAudioFocus {
+    optional oaa.proto.enums.AudioFocusState.Enum audio_focus_state = 1;  // confidence: bronze [external_reference]
+    optional int32 channel                                          = 2;  // confidence: bronze [external_reference]
+    optional bool  unsolicited                                      = 3;  // confidence: bronze [external_reference]
+}
+
+// Injects an input event into the DHU for testing.
+// Field 1 is a serialized InputReport (oaa/input/InputMessages.proto),
+// passed as raw bytes to avoid cross-package dependency for a test-only channel.
+// confidence: bronze [external_reference]
+message GalVerificationInjectInput {
+    optional bytes input = 1;  // serialized InputReport
+}
+
+// Requests a bug report from the DHU.
+// confidence: bronze [external_reference]
+message GalVerificationBugReportRequest {
+}
+
+// Bug report response from the DHU.
+// confidence: bronze [external_reference]
+message GalVerificationBugReportResponse {
+    optional string bug_report = 1;  // confidence: bronze [external_reference]
+}
+
+// Requests a screen capture from the DHU.
+// confidence: bronze [external_reference]
+message GalVerificationScreenCaptureRequest {
+}
+
+// Screen capture response from the DHU (raw image bytes).
+// confidence: bronze [external_reference]
+message GalVerificationScreenCaptureResponse {
+    optional bytes screen_capture = 1;  // confidence: bronze [external_reference]
+}
+
+// Requests display information from the DHU.
+// confidence: bronze [external_reference]
+message GalVerificationDisplayInformationRequest {
+}
+
+// Display information response from the DHU.
+// confidence: bronze [external_reference]
+message GalVerificationDisplayInformationResponse {
+    optional int32 native_width  = 1;  // confidence: bronze [external_reference]
+    optional int32 native_height = 2;  // confidence: bronze [external_reference]
+}

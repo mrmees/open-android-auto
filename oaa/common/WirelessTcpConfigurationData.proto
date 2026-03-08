@@ -1,0 +1,33 @@
+// Android Auto Protocol Buffer Definitions
+// https://github.com/mrmees/open-android-auto
+// SPDX-License-Identifier: GPL-3.0-or-later
+
+/*
+ * Wireless TCP configuration — socket tuning parameters for WiFi
+ * projection connections.
+ *
+ * Sub-message of ConnectionConfiguration in the opencardev/aasdk model.
+ * In our 16.2 APK analysis, ConnectionConfiguration has a richer structure
+ * (see ConnectionConfigurationData.proto) — this data may be embedded
+ * within the transport config or tuning params in the modern protocol.
+ *
+ * These parameters control the TCP socket behavior for wireless AA
+ * connections where latency and buffer management are critical for
+ * smooth video/audio projection over WiFi.
+ *
+ * Source: opencardev/aasdk (GPLv3)
+ * Original: aap_protobuf/service/control/message/WirelessTcpConfiguration.proto
+ *
+ * confidence: bronze [external_reference]
+ */
+
+syntax = "proto2";
+
+package oaa.proto.data;
+
+// confidence: bronze [external_reference]
+message WirelessTcpConfiguration {
+    optional uint32 socket_receive_buffer_size_kb = 1;  // SO_RCVBUF size in KB
+    optional uint32 socket_send_buffer_size_kb = 2;     // SO_SNDBUF size in KB
+    optional uint32 socket_read_timeout_ms = 3;         // SO_TIMEOUT in milliseconds
+}

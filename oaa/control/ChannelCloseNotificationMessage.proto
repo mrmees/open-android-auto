@@ -1,0 +1,24 @@
+// Android Auto Protocol Buffer Definitions
+// https://github.com/mrmees/open-android-auto
+// SPDX-License-Identifier: GPL-3.0-or-later
+
+/*
+ * Channel close notification (msg 0x0009 on Control channel, GAL type 1)
+ * Direction: bidirectional — either side can signal channel teardown.
+ *
+ * Empty message — the channel ID is implicit from the control channel
+ * context. Signals that a previously-opened channel should be closed.
+ *
+ * Cross-referenced: opencardev/aasdk (identical empty message)
+ *
+ * confidence: bronze [external_reference, msg_id_confirmed]
+ */
+
+syntax = "proto2";
+
+package oaa.proto.messages;
+
+// 0x0009: ChannelCloseNotification
+// confidence: bronze [external_reference, msg_id_confirmed]
+message ChannelCloseNotification {
+}
