@@ -6,9 +6,9 @@ syntax="proto2";
 package oaa.proto.messages;
 
 // APK class: wck (16.2), wcu (16.1 — NOTE: wcu in 16.2 = VoiceSessionRequest on control channel)
-// Wire msg 0x8012, Phone->HU (video channel)
+// Wire msg 0x8012, HU->Phone (video channel)
 // vdp internal name: MEDIA_MESSAGE_UPDATE_HU_UI_CONFIG_RESPONSE
-// Response to UiConfigRequest (0x8011). Phone reports whether theming tokens were accepted.
+// Response to UiConfigRequest (0x8011). HU reports whether theming tokens were accepted.
 // Handler: ied.java -> huy.java case 10 -> logs "Theming tokens accepted/rejected/Error"
 // Previously misidentified as VideoFocusModeMessage — field 1 is NOT VideoFocusMode.
 // confidence: gold [deep_trace, handler_verified]

@@ -3,18 +3,28 @@
 // Based on works by: f1x.studio (aasdk), opencardev (crankshaft), aa-proxy (aa-proxy-rs)
 
 /*
- * UI config request message — theming tokens (UiStyle key-value pairs).
+ * UI config request message — Material You theming tokens (UiStyle key-value pairs).
  *
- * Wraps UiConfigData, which carries two lists of Material Design theming
- * token entries. HU->Phone only. Phone responds with UpdateHuUiConfigResponse
- * (0x8012, ThemingTokensStatus).
+ * Phone->HU only. Pushes the phone's Material You color palette to the head unit
+ * so the HU's native UI can match the user's theme. Carries two lists of
+ * UiConfigEntry tokens: light mode (primary_configs) and dark mode (secondary_configs).
+ * HU responds with UpdateHuUiConfigResponse (0x8012, ThemingTokensStatus).
+ *
+ * 16 tokens sent on wire (from jrt.java token definitions, selected in mui.java case 9):
+ *   primary, on-surface, surface, surface-variant, surface-container-low,
+ *   inverse-surface, inverse-on-surface, outline, outline-variant, background,
+ *   text-primary, text-secondary, red, on-red, yellow, on-yellow
+ * Values are ARGB uint32 (e.g., 0xFF6750A4).
+ *
+ * Source chain: GMS CarService UiStyle callback -> jrt token enum extracts colors
+ * from jsl palette -> UiStyleToken Parcelable -> proto conversion in hum/oad/nig
  *
  * Distinct from UpdateUiConfigRequest (wci, 0x8009/0x800A) which handles
  * runtime UI config (margins, theme, element visibility).
  *
  * APK class: wct (16.1) / wcj (16.2) — NOTE: wct in 16.2 = VideoFocusRequest!
  * Sub-messages: wco->wce (UiConfigData), wcq->wcg (UiConfigEntry), wcf (UiConfigValue)
- * Wire msg 0x8011, HU->Phone (video channel)
+ * Wire msg 0x8011, Phone->HU (video channel)
  * vdp internal name: MEDIA_MESSAGE_INTEGRATED_OVERLAY_SESSION_DATA_UPDATE
  * Handler: hum.mo19778c(UiStyle) -> huz.mo19796n(wcj) -> ied.m20106k(32785, wcj)
  */
@@ -45,8 +55,8 @@ message UiConfigEntry
 // confidence: gold [deep_trace, handler_verified]
 message UiConfigData
 {
-    repeated UiConfigEntry primary_configs = 1;  // confidence: gold [deep_trace]
-    repeated UiConfigEntry secondary_configs = 2;  // confidence: gold [deep_trace]
+    repeated UiConfigEntry primary_configs = 1;  // light mode tokens  // confidence: gold [deep_trace]
+    repeated UiConfigEntry secondary_configs = 2;  // dark mode tokens  // confidence: gold [deep_trace]
 }
 
 // APK class: wct (16.1) / wcj (16.2)
