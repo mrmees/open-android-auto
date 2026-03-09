@@ -9,7 +9,7 @@ import "oaa/audio/AudioTypeEnum.proto";
 import "oaa/audio/AudioConfigData.proto";
 import "oaa/video/VideoConfigData.proto";
 import "oaa/video/DisplayTypeEnum.proto";
-import "oaa/video/VideoFocusReasonEnum.proto";
+import "oaa/video/ColorSchemeSupportEnum.proto";
 package oaa.proto.data;
 
 // confidence: gold [deep_trace_verified, 16.2_jadx]
@@ -25,5 +25,5 @@ message AVChannel
     optional uint32 channel_id = 6; // Display/channel identifier (assigned by phone)  // confidence: gold [deep_trace_verified, 16.2_jadx]
     optional enums.DisplayType.Enum display_type = 7; // MAIN, CLUSTER, AUXILIARY  // confidence: gold [deep_trace_verified, 16.2_jadx]
     optional enums.AndroidKeycode.Enum keycode = 8; // Android keycode (APK enum: vyh.java)  // confidence: gold [deep_trace_verified, 16.2_jadx]
-    optional enums.VideoFocusReason.Enum focus_reason = 9; // Why video focus was set  // confidence: gold [deep_trace_verified, 16.2_jadx]
+    optional enums.ColorSchemeSupport.Enum color_scheme_support = 9; // Material You palette version — gates theming (0x8011). Set to 2 for Material You v2.  // confidence: gold [deep_trace, multi-agent verified]
 }
