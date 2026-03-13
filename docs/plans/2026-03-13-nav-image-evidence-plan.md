@@ -41,18 +41,21 @@
 | Q4 | 16.2 has a native image-bearing successor path | Open | |
 | Q5 | `NEXT_TURN_IMAGE` is reachable in 16.2 | Open | |
 | Q6 | `junctionImage` or `lanesImage` reach native nav transport in 16.2 | Open | |
-| Q7 | Cross-version capability gates controlling nav image delivery are understood | Open | |
+| Q7 | Cross-version capability gates controlling nav image delivery are understood | Needs better evidence | 16.1 sender gating is now source-backed: `CarInfo.e` / `f` are `headUnitProtocolMajorVersionNumber` / `headUnitProtocolMinorVersionNumber` (`ijk.java:59`); `hkx.x(carInfo)` treats HU protocol `>= 1.6` as modern (`hkx.java:47-53`); semantic `32774` uses `y(carInfo) = this.e || x(carInfo)` (`hkx.java:55-57`, `hkx.java:304-308`); legacy/image-bearing `32772` uses `z(carInfo) = !x(carInfo)` (`hkx.java:59-60`, `hkx.java:586-592`). `this.e` is injected from clustersim vendor-extension bit `poe.b` (`iny.java:323-333`, `hlw.java:8-37`), so older HUs can still take the semantic branch when that override is true. The exact semantic meaning of `poe.b`, plus the 16.2 equivalent gates, still needs better evidence. |
 | Q8 | Canonical repo docs are updated only after claims close | Open | |
 
 ## Resume Here
 
-- Last completed task: `Task 3 - 16.1 fallback turn-image generation reconfirmed`
-- Last verified claim: `hkx.n(...) synthesizes legacy turn-image bytes from local da_turn_* hwl resources when no app-provided bytes are available`
+- Last completed task: `Task 4 - 16.1 nav delivery gates traced`
+- Last verified claim: `16.1 selects semantic nav for HU protocol >= 1.6 via hkx.x()/y(), selects legacy nav for HU protocol < 1.6 via hkx.z(), and can force the semantic branch on older HUs through clustersim vendor-extension bit poe.b`
 - Evidence files:
   - `/home/matt/claude/personal/openautopro/openauto-prodigy/analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/defpackage/hkx.java`
+  - `/home/matt/claude/personal/openautopro/openauto-prodigy/analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/defpackage/hlw.java`
+  - `/home/matt/claude/personal/openautopro/openauto-prodigy/analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/defpackage/iny.java`
+  - `/home/matt/claude/personal/openautopro/openauto-prodigy/analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/defpackage/ijk.java`
   - `docs/session-handoffs.md`
-- Next unanswered question: `Which 16.1 capability gates decide whether semantic 32774, legacy 32772, or both nav paths are emitted?`
-- Next command to run: `grep -n "if (y(r))" /home/matt/claude/personal/openautopro/openauto-prodigy/analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/defpackage/hkx.java`
+- Next unanswered question: `Does 16.2 still send semantic native nav on 32774, and is that payload still image-free?`
+- Next command to run: `sed -n '360,620p' analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/hlj.java`
 
 ---
 

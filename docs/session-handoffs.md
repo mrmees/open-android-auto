@@ -181,3 +181,37 @@ Next Steps:
 Verification:
 - `nl -ba /home/matt/claude/personal/openautopro/openauto-prodigy/analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/defpackage/hkx.java | sed -n '843,967p'` -> null-image fallback selects concrete `da_turn_*` assets or `hwl.b()` generic bytes
 - `nl -ba /home/matt/claude/personal/openautopro/openauto-prodigy/analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/defpackage/hkx.java | sed -n '1023,1033p'` -> synthesized bytes are serialized into `vzm.f` and sent on `32772`
+
+## 2026-03-13 — 16.1 nav delivery gates checkpoint
+
+Date / Session: 2026-03-13 / nav-image-evidence-task4
+
+What Changed:
+- Reconfirmed that the 16.1 semantic nav path is gated by `y(carInfo)` while the legacy image-bearing path is gated by `z(carInfo)` inside `hkx.h(...)`
+- Closed the 16.1 threshold itself from source: `CarInfo.e` / `f` are the head-unit protocol major/minor version fields, and `hkx.x(carInfo)` treats HU protocol `>= 1.6` as modern
+- Traced the non-version override: `hkx` constructor field `this.e` is populated from clustersim vendor-extension bit `poe.b`, so older HUs can still enter the semantic branch when that override is true
+- Checked [docs/plans/2026-03-13-nav-image-evidence-plan.md](plans/2026-03-13-nav-image-evidence-plan.md) forward so recovery now resumes at Task 5 and the 16.2 semantic sender re-verification
+
+Why:
+- The earlier "dual-send structure" evidence was real but incomplete; this task pins down when 16.1 sends semantic only, legacy only, or both, which is necessary before comparing 16.2 behavior without overstating compatibility claims
+
+Status:
+- Task 4 complete
+- `Q7` is now `Needs better evidence`: the 16.1 gate logic is source-backed, but the exact meaning of clustersim override bit `poe.b` and the 16.2 gate equivalents are still open
+- `hzy.java` did not add new gating logic; it handles nav lifecycle/control messages and emits `32773`, so the semantic-vs-legacy decision remains in `hkx.java`
+
+Next Steps:
+1. Reconfirm the 16.2 semantic native sender in `hlj.mo18762h(...)`
+2. Verify the 16.2 message classes are still image-free on the semantic path
+3. Update `Q3`, refresh `Resume Here`, and commit the Task 5 checkpoint
+
+Verification:
+- `grep -n "if (y(r))" /home/matt/claude/personal/openautopro/openauto-prodigy/analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/defpackage/hkx.java` -> semantic gate occurrences at lines `159` and `304`
+- `grep -n "if (z(carInfo))" /home/matt/claude/personal/openautopro/openauto-prodigy/analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/defpackage/hkx.java` -> legacy gate occurrence at line `586`
+- `nl -ba /home/matt/claude/personal/openautopro/openauto-prodigy/analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/defpackage/hkx.java | sed -n '47,60p'` -> `x(carInfo)` encodes HU protocol threshold `>1` or `1.6+`; `y(carInfo)` is `this.e || x(carInfo)`; `z(carInfo)` is `!x(carInfo)`
+- `nl -ba /home/matt/claude/personal/openautopro/openauto-prodigy/analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/defpackage/hkx.java | sed -n '304,308p'` -> semantic `32774` path is entered under `if (y(r))`
+- `nl -ba /home/matt/claude/personal/openautopro/openauto-prodigy/analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/defpackage/hkx.java | sed -n '586,592p'` -> legacy/image path is entered under `if (z(carInfo))`
+- `nl -ba /home/matt/claude/personal/openautopro/openauto-prodigy/analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/defpackage/ijk.java | sed -n '59,59p'` -> `CarInfo.e` / `f` are populated from `headUnitProtocolMajorVersionNumber` / `headUnitProtocolMinorVersionNumber`
+- `nl -ba /home/matt/claude/personal/openautopro/openauto-prodigy/analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/defpackage/iny.java | sed -n '323,333p'` -> `hkx` receives constructor boolean from clustersim vendor-extension field `poeVar.b`
+- `nl -ba /home/matt/claude/personal/openautopro/openauto-prodigy/analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/defpackage/hlw.java | sed -n '8,37p'` -> `hlw` parses clustersim vendor-extension payload into `poe`
+- `nl -ba /home/matt/claude/personal/openautopro/openauto-prodigy/analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/defpackage/hzy.java | sed -n '15,135p'` -> no semantic/legacy gate logic; file handles `32769`/`32770` receive path and emits `32773`
