@@ -500,7 +500,7 @@ The protocol supports facet switching in the **reverse** direction: an OEM HU ca
 ### Implications for OpenAuto Prodigy
 
 The HU cannot know which facet is active from wire events alone. To infer active content:
-- **Navigation active**: `NavigationTurnEvent` / `NavigationState` messages flowing on nav channel
+- **Navigation active**: `NavigationNotification` / `NavigationState` messages flowing on nav channel, or legacy flat turn-event variants on older HU paths
 - **Media active**: `MediaPlaybackStatus` updates on media channel
 - **Phone active**: `PhoneStatusUpdate` on phone channel
 - **Idle**: No channel actively sending content-specific messages

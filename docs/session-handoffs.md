@@ -427,3 +427,27 @@ Verification:
 - `git -C /home/matt/claude/personal/openautopro/open-android-auto/.worktrees/nav-image-evidence-20260313 diff --check` -> clean (no output)
 - `rg -n "NavigationLane \\| .*vyv|NavigationText \\| .*vyz|NavigationTurnEvent \\| .*vyy|reachable native .*0x8004|Used in NavigationTurnEvent field 3|v16\\.2:vyv|v16\\.2:vyz" /home/matt/claude/personal/openautopro/open-android-auto/.worktrees/nav-image-evidence-20260313/docs/cross-version/navigation.md /home/matt/claude/personal/openautopro/open-android-auto/.worktrees/nav-image-evidence-20260313/oaa/navigation/NavigationNotificationMessage.audit.yaml /home/matt/claude/personal/openautopro/open-android-auto/.worktrees/nav-image-evidence-20260313/oaa/navigation/NavigationTurnEventMessage.audit.yaml /home/matt/claude/personal/openautopro/open-android-auto/.worktrees/nav-image-evidence-20260313/oaa/navigation/TurnSideEnum.proto` -> expected updated mappings, bounded `vyy` note, and corrected field-number comment present
 - `mkdir -p /tmp/oaa_nav_followup_verify && protoc --proto_path=. --cpp_out=/tmp/oaa_nav_followup_verify oaa/navigation/TurnSideEnum.proto oaa/navigation/NavigationTurnEventMessage.proto` -> success
+
+## 2026-03-13 — Sony naming bridge cleanup
+
+Date / Session: 2026-03-13 / nav-image-evidence-followup-sony-names
+
+What Changed:
+- Updated `docs/protocol-cross-reference.md` to keep the Sony-symbol `NavigationNextTurnEvent` terminology but explicitly bridge it to the canonical repo split between deprecated `NavigationTurnEvent`, `LegacyNavigationTurnEvent`, and `NavigationNextTurnDistanceEvent`
+- Updated `docs/channels/coolwalk-layout.md` so the active-navigation inference note no longer implies `NavigationTurnEvent` is the modern default nav signal; it now points at `NavigationNotification` / `NavigationState` plus legacy flat turn-event fallbacks
+
+Why:
+- After the Task 10 and mapping follow-up fixes, these docs still mixed older Sony symbol names with canonical repo names in a way that could mislead readers about which modern nav messages are actually primary
+
+Status:
+- Naming-bridge cleanup complete
+- The touched docs now preserve Sony/source terminology without fighting the bounded canonical nav evidence
+- Remaining open questions are still the same bounded technical ones (`mo18767n(...)` and the override bit), not naming drift
+
+Next Steps:
+1. If you want a full historical consistency sweep, inspect the remaining Sony/Kenwood/Alpine firmware notes for places where symbol names should be explicitly bridged to canonical repo message names
+2. If you want further evidence closure, continue on `Q4` or `Q7` rather than expanding doc cleanup indefinitely
+
+Verification:
+- `git -C /home/matt/claude/personal/openautopro/open-android-auto/.worktrees/nav-image-evidence-20260313 diff --check` -> clean (no output)
+- `rg -n "Sony-symbol terminology|NavigationNextTurnEvent \\| Sony-symbol family|Navigation status \\(10\\) \\| NavigationNextTurnEvent|Navigation active" /home/matt/claude/personal/openautopro/open-android-auto/.worktrees/nav-image-evidence-20260313/docs/protocol-cross-reference.md /home/matt/claude/personal/openautopro/open-android-auto/.worktrees/nav-image-evidence-20260313/docs/channels/coolwalk-layout.md` -> bridging note, updated Sony-name row, updated service summary row, and updated coolwalk navigation-activity note present
