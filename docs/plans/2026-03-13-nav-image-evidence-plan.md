@@ -36,7 +36,7 @@
 | ID | Question | Status | Notes |
 |----|----------|--------|-------|
 | Q1 | 16.1 sends both semantic `32774` and image-bearing `32772` from `NavigationState` | Confirmed | Reconfirmed from 16.1 source: semantic `32774` path runs under `y(r)`, builds `vzu` step entries and `vze` destinations, then emits `this.k.k(32774, ...)` (`hkx.java:304-308`, `hkx.java:313-487`, `hkx.java:497-578`); `vzo` only carries repeated `vzu` + `vze` entries (`vzo.java:7-30`), and `vzu` only exposes maneuver/text/lanes/road-info fields (`vzu.java:7-30`). Legacy/image path: `NavigationStep` stores app turn-image bytes in `byte[] c` and parcels them as field `5` (`NavigationStep.java:8`, `NavigationStep.java:24`, `NavigationStep.java:59-66`); `hkx` passes `navigationStep2.c` or fallback `bArr` into `n(...)` (`hkx.java:748-756`); `n(...)` writes non-null bytes into `vzm.f` and sends `32772` (`hkx.java:1023-1033`; `vzm.java:13-15`, `vzm.java:33-34`). |
-| Q2 | 16.1 synthesizes fallback turn images locally | Confirmed | Fallback input is now bounded from source: when a step lacks `NavigationStep.c`, the legacy path substitutes `bArr` before serializing bytes into `vzm.f` (`hkx.java:748-750`, `hkx.java:1023-1031`; `vzm.java:13-15`, `vzm.java:33-34`). Exact local synthesis of `bArr` is rechecked in Task 3. |
+| Q2 | 16.1 synthesizes fallback turn images locally | Confirmed | Reconfirmed from `hkx.n(...)`: if image delivery is disabled, incoming `bArr` is cleared (`hkx.java:843-845`); when bytes are still null and `this.l` (`hwl`) is present, the legacy path synthesizes fallback bytes from named `da_turn_*` assets via `hwl.a(...)`, `hwl.c.a(...)`, or generic `hwl.b()` fallback, including roundabout angle-specific assets, before serializing the result into `vzm.f` and sending `32772` (`hkx.java:846-967`, `hkx.java:1023-1033`). |
 | Q3 | 16.2 rich native nav sender is semantic-only | Confirmed | Re-verify with exact citations during execution |
 | Q4 | 16.2 has a native image-bearing successor path | Open | |
 | Q5 | `NEXT_TURN_IMAGE` is reachable in 16.2 | Open | |
@@ -46,15 +46,13 @@
 
 ## Resume Here
 
-- Last completed task: `Task 2 - 16.1 legacy 32772 path consumes app turn-image bytes`
-- Last verified claim: `16.1 legacy nav sender reads NavigationStep.c, falls back to bArr when missing, serializes bytes into vzm.f, and emits channel 32772`
+- Last completed task: `Task 3 - 16.1 fallback turn-image generation reconfirmed`
+- Last verified claim: `hkx.n(...) synthesizes legacy turn-image bytes from local da_turn_* hwl resources when no app-provided bytes are available`
 - Evidence files:
-  - `/home/matt/claude/personal/openautopro/openauto-prodigy/analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/gms/car/navigation/NavigationStep.java`
   - `/home/matt/claude/personal/openautopro/openauto-prodigy/analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/defpackage/hkx.java`
-  - `/home/matt/claude/personal/openautopro/openauto-prodigy/analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/defpackage/vzm.java`
   - `docs/session-handoffs.md`
-- Next unanswered question: `How does hkx.n(...) synthesize fallback turn-image bytes locally when the legacy sender has no app-provided image bytes?`
-- Next command to run: `sed -n '838,1035p' /home/matt/claude/personal/openautopro/openauto-prodigy/analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/defpackage/hkx.java`
+- Next unanswered question: `Which 16.1 capability gates decide whether semantic 32774, legacy 32772, or both nav paths are emitted?`
+- Next command to run: `grep -n "if (y(r))" /home/matt/claude/personal/openautopro/openauto-prodigy/analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/defpackage/hkx.java`
 
 ---
 

@@ -155,3 +155,29 @@ Verification:
 - `nl -ba /home/matt/claude/personal/openautopro/openauto-prodigy/analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/defpackage/hkx.java | sed -n '748,756p'` -> legacy caller prefers `navigationStep2.c` and falls back to `bArr` before calling `n(...)`
 - `nl -ba /home/matt/claude/personal/openautopro/openauto-prodigy/analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/defpackage/hkx.java | sed -n '1023,1033p'` -> `n(...)` writes non-null bytes into `vzm.f` and sends `32772`
 - `nl -ba /home/matt/claude/personal/openautopro/openauto-prodigy/analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/defpackage/vzm.java | sed -n '13,34p'` -> `vzm` exposes `zxq f` as the bytes field in its 6-field descriptor
+
+## 2026-03-13 — 16.1 fallback turn-image generation checkpoint
+
+Date / Session: 2026-03-13 / nav-image-evidence-task3
+
+What Changed:
+- Reconfirmed from 16.1 source that `hkx.n(...)` clears incoming image bytes when `!this.g.bp()`, then synthesizes fallback bytes locally when `bArr` is null and `this.l` (`hwl`) is available
+- Captured the concrete resource-selection logic: `da_turn_depart`, `da_turn_straight`, turn-side variants such as `da_turn_right`/`da_turn_ramp_right`/`da_turn_fork_right`, roundabout assets `da_turn_roundabout_1` through `_8`, `da_turn_uturn`, `da_turn_generic_merge`, `da_turn_ferry`, `da_turn_arrive`, plus generic `hwl.b()` fallback
+- Updated [docs/plans/2026-03-13-nav-image-evidence-plan.md](plans/2026-03-13-nav-image-evidence-plan.md) so recovery now resumes at Task 4 and the 16.1 capability-gate question
+
+Why:
+- `Q2` needed a source-backed mechanism, not just a claim that some fallback image "must exist"; the exact asset-selection branch is what makes the legacy behavior defensible
+
+Status:
+- Task 3 complete
+- `Q2` now has exact source citations for local fallback turn-image generation
+- The next open 16.1 question is the capability gating that decides when semantic and legacy paths are emitted
+
+Next Steps:
+1. Trace the `y(r)` and `z(carInfo)` gates in `hkx.java`
+2. Inspect any helper context needed to explain those gates without overstating what they mean
+3. Update `Q7`, refresh `Resume Here`, and commit the Task 4 checkpoint
+
+Verification:
+- `nl -ba /home/matt/claude/personal/openautopro/openauto-prodigy/analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/defpackage/hkx.java | sed -n '843,967p'` -> null-image fallback selects concrete `da_turn_*` assets or `hwl.b()` generic bytes
+- `nl -ba /home/matt/claude/personal/openautopro/openauto-prodigy/analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/defpackage/hkx.java | sed -n '1023,1033p'` -> synthesized bytes are serialized into `vzm.f` and sent on `32772`
