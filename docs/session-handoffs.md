@@ -451,3 +451,33 @@ Next Steps:
 Verification:
 - `git -C /home/matt/claude/personal/openautopro/open-android-auto/.worktrees/nav-image-evidence-20260313 diff --check` -> clean (no output)
 - `rg -n "Sony-symbol terminology|NavigationNextTurnEvent \\| Sony-symbol family|Navigation status \\(10\\) \\| NavigationNextTurnEvent|Navigation active" /home/matt/claude/personal/openautopro/open-android-auto/.worktrees/nav-image-evidence-20260313/docs/protocol-cross-reference.md /home/matt/claude/personal/openautopro/open-android-auto/.worktrees/nav-image-evidence-20260313/docs/channels/coolwalk-layout.md` -> bridging note, updated Sony-name row, updated service summary row, and updated coolwalk navigation-activity note present
+
+## 2026-03-13 — 16.2 legacy 0x8004 recovery correction
+
+Date / Session: 2026-03-13 / nav-image-evidence-followup-q4-recovery
+
+What Changed:
+- Recovered `hlj.mo18767n(...)` from 16.2 `classes.dex` via fallback JADX and confirmed that the legacy `m18759z(carInfo)` branch still synthesizes `da_turn_*` fallback images, builds deprecated `vyy`, and sends native `32772` / `0x8004`
+- Updated canonical/reference docs and proto comments that had been overstated after Task 10: `docs/channels/nav.md`, `oaa/navigation/NavigationTurnEventMessage.proto`, `oaa/navigation/NavigationNotificationMessage.proto`, `oaa/navigation/InstrumentClusterMessages.proto`, `docs/cross-version/navigation.md`, `oaa/navigation/NavigationTurnEventMessage.audit.yaml`, and `docs/protocol-cross-reference.md`
+- Updated the nav-image design/plan artifacts so `Q4` is now confirmed, `Q5`/`Q6` stay rejected for the named successor / lane-junction cases, and the remaining live open question is the meaning of 16.2 override bit `f34211e`
+
+Why:
+- The previous post-Task-10 cleanup reasonably bounded the opaque `mo18767n(...)` method as unresolved, but once fallback JADX exposed the body, the stronger “0x8004 removed in 16.2” language became wrong and had to be corrected immediately
+
+Status:
+- `Q4` is now confirmed: 16.2 still has a native legacy image-bearing path on deprecated `32772` / `0x8004`
+- `Q5` remains rejected: no named `NEXT_TURN_IMAGE` / `NavigationImageOptions` sender path was found; the live legacy send stays on deprecated `0x8004`
+- `Q6` remains rejected for native lane/junction transport: recovered `mo18767n(...)` still only carries one optional turn-image bytes field
+- `Q7` is now the primary remaining gap
+
+Next Steps:
+1. Trace the provenance and semantic meaning of `f34211e` to close the cross-version gate story
+2. Decide whether any older historical/debug docs need explicit “superseded by fallback JADX recovery” notes, or whether the current canonical/reference corrections are enough
+
+Verification:
+- `git -C /home/matt/claude/personal/openautopro/open-android-auto/.worktrees/nav-image-evidence-20260313 diff --check` -> clean (no output)
+- `mkdir -p /tmp/oaa_nav_q4_verify && protoc --proto_path=. --cpp_out=/tmp/oaa_nav_q4_verify oaa/navigation/NavigationTurnEventMessage.proto oaa/navigation/NavigationNotificationMessage.proto oaa/navigation/InstrumentClusterMessages.proto` -> success
+- `jadx --single-class defpackage.hlj --single-class-output /tmp/jadx_hlj_verify --decompilation-mode fallback --no-res /home/matt/claude/personal/openautopro/open-android-auto/analysis/android_auto_16.2.660604-release_162660604/apk-source/resources/classes.dex /home/matt/claude/personal/openautopro/open-android-auto/analysis/android_auto_16.2.660604-release_162660604/apk-source/resources/classes2.dex /home/matt/claude/personal/openautopro/open-android-auto/analysis/android_auto_16.2.660604-release_162660604/apk-source/resources/classes3.dex /home/matt/claude/personal/openautopro/open-android-auto/analysis/android_auto_16.2.660604-release_162660604/apk-source/resources/classes4.dex` -> success; wrote `/tmp/jadx_hlj_verify/hlj.java`
+- `rg -n "bp\\(\\)|da_turn_|vyy|32772" /tmp/jadx_hlj_verify/hlj.java` -> recovered legacy helper clears bytes when image delivery is disabled, synthesizes concrete `da_turn_*` assets, builds `vyy`, and sends `32772`
+- `rg -n "Q4 \\||Q5 \\||Q6 \\||Legacy image-bearing sender|Local fallback image generation|Native-wire lane/junction/turn image payloads|f34211e" /home/matt/claude/personal/openautopro/open-android-auto/.worktrees/nav-image-evidence-20260313/docs/plans/2026-03-13-nav-image-evidence-plan.md /home/matt/claude/personal/openautopro/open-android-auto/.worktrees/nav-image-evidence-20260313/docs/plans/2026-03-13-nav-image-evidence-design.md` -> plan/design artifacts now show `Q4` confirmed, `Q5`/`Q6` rejected, updated matrix rows, and `f34211e` as the next unanswered question
+- `rg -n "legacy image-bearing|vyy @Deprecated|0x8004 / 32772|legacy image-bearing path still source-backed" /home/matt/claude/personal/openautopro/open-android-auto/.worktrees/nav-image-evidence-20260313/docs/channels/nav.md /home/matt/claude/personal/openautopro/open-android-auto/.worktrees/nav-image-evidence-20260313/oaa/navigation/NavigationTurnEventMessage.proto /home/matt/claude/personal/openautopro/open-android-auto/.worktrees/nav-image-evidence-20260313/oaa/navigation/InstrumentClusterMessages.proto /home/matt/claude/personal/openautopro/open-android-auto/.worktrees/nav-image-evidence-20260313/docs/cross-version/navigation.md /home/matt/claude/personal/openautopro/open-android-auto/.worktrees/nav-image-evidence-20260313/docs/protocol-cross-reference.md` -> corrected canonical/reference docs now consistently describe deprecated but live legacy `0x8004` / `32772` in 16.2

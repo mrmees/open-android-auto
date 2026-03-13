@@ -18,6 +18,7 @@
  *   0x8001 = InstrumentClusterStart   (HU→Phone, vze — empty signal)
  *   0x8002 = InstrumentClusterStop    (HU→Phone, vzf — empty signal)
  *   0x8003 = NavigationState          (Phone→HU, vzb — see NavigationStateMessage.proto)
+ *   0x8004 = NavigationTurnEvent      (Phone→HU, vyy @Deprecated — legacy image-bearing turn data)
  *   0x8005 = LegacyNavigationTurnEvent(Phone→HU, vyx @Deprecated — legacy turn data)
  *   0x8006 = NavigationNotification   (Phone→HU, vza — see NavigationNotificationMessage.proto)
  *   0x8007 = NavigationNextTurnDist   (Phone→HU, vyp — see NavigationTurnEventMessage.proto)
@@ -27,10 +28,11 @@
  * (populated from service discovery config) and passes it to
  * listeners: min_interval, cluster_type, width, height, color_depth.
  *
- * 0x8004 existed in 16.1 (NavigationTurnEvent, vzm) and carried the older
- * turn-image-bytes field, but was removed in 16.2. Modern HUs (PDK >= 1.6)
- * use 0x8006/0x8007 instead, and the visible 16.2 legacy 0x8005 fallback is
- * maneuver/distance-only.
+ * 0x8004 existed in 16.1 (NavigationTurnEvent, vzm) and remains present in
+ * 16.2: fallback JADX recovered hlj.mo18767n(...) building deprecated vyy and
+ * sending it with optional turn-image bytes on the legacy z(carInfo) gate.
+ * Alongside it, 0x8005 (vyx) is a second deprecated flat turn message that
+ * stays maneuver/distance-only.
  *
  * APK: AA v16.2 (verified 2026-03-06)
  */
@@ -60,7 +62,8 @@ message InstrumentClusterStop {
 // 0x8005: Legacy NavigationTurnEvent (@Deprecated in 16.2)
 // APK class: vyx (16.2) — 4 fields, proto2
 // Direction: Phone→HU — phone sends turn info to legacy HUs (CarInfo PDK < 1.6);
-// unlike 16.1's 0x8004, this visible 16.2 legacy fallback has no image-bytes field.
+// alongside deprecated 0x8004, this visible 16.2 legacy fallback has no
+// image-bytes field.
 // Handler: ian.m20073h(maneuver, distance, distance_millis, distance_unit)
 // Modern HUs receive 0x8006 (NavigationNotification) instead.
 //

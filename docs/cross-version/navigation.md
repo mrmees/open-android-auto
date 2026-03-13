@@ -36,4 +36,4 @@
 | NavigationTurnDistance | `vro` | `vzg` | `vys` | 3/3/3 |
 | NavigationTurnEvent | `vru` | `vzm` | `vyy` | 6/6/6 |
 
-Note: `NavigationTurnEvent` still has a deprecated 16.2 class match (`vyy`), but source-backed nav sender tracing did not find a reachable native `0x8004` path in 16.2. Treat this row as class-shape continuity, not proof of an active 16.2 wire message.
+Note: `NavigationTurnEvent` still has a deprecated 16.2 class match (`vyy`), and fallback JADX over `classes.dex` recovered `hlj.mo18767n(...)` building `vyy` and sending it on native `0x8004` / `32772`. Modern `32774` delivery remains semantic-only.

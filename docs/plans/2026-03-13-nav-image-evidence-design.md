@@ -50,16 +50,16 @@ These claims are already source-backed enough to shape the plan:
    - Legacy path: the same method reads `NavigationStep.c` image bytes and feeds them into `n(...)`, which builds `vzm` and sends `32772`.
 2. **16.1 can synthesize turn-image bytes locally if the app does not provide them.**
    - `hkx.n(...)` falls back to `hwl` resource-generated turn art before serializing `vzm`.
-3. **16.2 keeps the rich semantic sender path but removes old `0x8004` as a native wire message.**
+3. **16.2 keeps the rich semantic sender path and, as post-plan fallback JADX later confirmed, still retains deprecated `0x8004` / `32772` on the legacy `hlj.mo18767n(...)` path.**
    - `hlj.mo18762h(...)` builds `vza`/`vzg` and sends semantic nav.
-   - The 16.2 `vzm` class is no longer the old image-bearing nav message.
+   - The 16.2 `vzm` class is no longer the old image-bearing nav message, but deprecated successor class `vyy` is still sent on the legacy gate.
 4. **16.2 still retains upstream image-bearing app/UI models.**
    - `NavigationStep.turnImage`
    - AndroidX `Maneuver.icon`
    - AndroidX `Step.lanesImage`
    - AndroidX `RoutingInfo.junctionImage`
 
-The open question is whether any 16.2 native nav transport path still serializes image content under a new message, new gate, or `NavigationType.NEXT_TURN_IMAGE`-controlled mode.
+The remaining open questions are no longer about whether 16.2 can serialize native turn images at all. The live gaps are whether any `NavigationType.NEXT_TURN_IMAGE` path exists beyond the confirmed deprecated `0x8004` sender, and what the exact semantic override-bit meaning is.
 
 ## Evidence Ledger
 
@@ -68,11 +68,11 @@ The open question is whether any 16.2 native nav transport path still serializes
 | Q1 | Does 16.1 send both `32774` semantic nav and `32772` image-bearing legacy nav from one `NavigationState` input? | Confirmed | Sender code + message class evidence |
 | Q2 | Does 16.1 synthesize fallback turn images when app-side bytes are absent? | Confirmed | Sender code showing resource fallback |
 | Q3 | Does 16.2 still send a rich semantic native nav message? | Confirmed | Sender code + message class evidence |
-| Q4 | Does 16.2 have a native image-bearing successor to 16.1 `32772` / old `0x8004`? | Open | Sender or receiver path with exact message class |
-| Q5 | Is `NavigationType.NEXT_TURN_IMAGE` reachable from a real 16.2 sender/receiver path? | Open | Capability gate + transport use site |
-| Q6 | Are `junctionImage` or `lanesImage` ever serialized on the 16.2 native nav wire? | Open | Sender path or explicit exclusion evidence |
-| Q7 | Which 16.1/16.2 capability checks decide whether a HU gets rich semantic nav, legacy nav, or both? | Open | PDK/config gates at sender boundary |
-| Q8 | Which repo docs/proto comments must change once the investigation closes? | Open | Cross-version delta matrix + exact source citations |
+| Q4 | Does 16.2 have a native image-bearing successor to 16.1 `32772` / old `0x8004`? | Confirmed | Fallback JADX recovered `hlj.mo18767n(...)` building `vyy` and sending `32772` |
+| Q5 | Is `NavigationType.NEXT_TURN_IMAGE` reachable from a real 16.2 sender/receiver path? | Rejected | No named sender/config path found; recovered legacy send stays on deprecated `0x8004` instead |
+| Q6 | Are `junctionImage` or `lanesImage` ever serialized on the 16.2 native nav wire? | Rejected | Projected-only `CarIcon` fields; recovered legacy sender only carries one turn-image bytes field |
+| Q7 | Which 16.1/16.2 capability checks decide whether a HU gets rich semantic nav, legacy nav, or both? | Needs better evidence | PDK/config gates are bounded; override-bit meaning still open |
+| Q8 | Which repo docs/proto comments must change once the investigation closes? | Confirmed | Canonical docs updated; follow-up corrections required when new evidence lands |
 
 Allowed statuses:
 

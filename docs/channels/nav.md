@@ -4,7 +4,7 @@
 
 | Message | Tier | Evidence | Audit File |
 |---------|------|----------|------------|
-| ~~NavigationTurnEvent~~ | **Deprecated** | Removed in 16.2, 16.1 only (0x8004) | [NavigationTurnEventMessage.audit.yaml](../../oaa/navigation/NavigationTurnEventMessage.audit.yaml) |
+| NavigationTurnEvent | Silver | Deprecated flat turn event; legacy image-bearing `0x8004` / `32772` path remains source-backed in 16.2 | [NavigationTurnEventMessage.audit.yaml](../../oaa/navigation/NavigationTurnEventMessage.audit.yaml) |
 | LegacyNavigationTurnEvent | **Gold** | apk_deep_trace (2026-03-06) — NEW | (0x8005, vyx in 16.2) |
 | VehicleEnergyForecast | **Gold** | apk_deep_trace (2026-03-06) — NEW | (0x8008, waw wrapper, PDK >= 5.1) |
 | NavigationNotification | Gold | apk_static + cross_version + **wire_verified** | [NavigationNotificationMessage.audit.yaml](../../oaa/navigation/NavigationNotificationMessage.audit.yaml) |
@@ -31,7 +31,7 @@
 
 Channel 11 (`NAVIGATION_STATUS`) carries turn-by-turn navigation guidance from the phone to the head unit. When a user starts navigation in Google Maps, Waze, or another navigation app on the phone, this channel delivers real-time turn events, distance updates, and navigation state changes so the HU can display guidance without projecting the full map.
 
-**NavigationNotification** is the primary message for modern HUs, carrying rich hierarchical turn-by-turn with multi-step lookahead, lane guidance, and destination/ETA data. **NavigationTurnEvent** (0x8004, deprecated in 16.2) and **LegacyNavigationTurnEvent** (0x8005) are simplified flat representations for legacy HUs (CarInfo PDK < 1.6).
+**NavigationNotification** is the primary message for modern HUs, carrying rich hierarchical turn-by-turn with multi-step lookahead, lane guidance, and destination/ETA data. **NavigationTurnEvent** (0x8004, deprecated but still source-backed on the legacy `32772` path in 16.2) and **LegacyNavigationTurnEvent** (0x8005) are simplified flat representations for legacy HUs (CarInfo PDK < 1.6).
 
 The navigation channel also carries distance data via **NavigationNextTurnDistanceEvent** (0x8007) and navigation state transitions via **NavigationState** (active/inactive/rerouting). Navigation focus negotiation (NavigationFocusRequest/Response) happens on the **control channel** (msg IDs 13/14), not here.
 
@@ -47,7 +47,7 @@ This is the deepest channel in the protocol: 14 proto files, 31 cross-version ma
 
 | MsgID | Message | Direction | Purpose |
 |-------|---------|-----------|---------|
-| 0x8004 | NavigationTurnEvent | Phone -> HU | Next turn: maneuver type, road name, distance, optional legacy turn-image bytes (16.1 only) |
+| 0x8004 | NavigationTurnEvent | Phone -> HU | Next turn: maneuver type, road name, distance, optional legacy turn-image bytes |
 | 0x8006 | NavigationNotification | Phone -> HU | Rich turn-by-turn with steps, lanes, destinations, ETA |
 | 0x8007 | NavigationNextTurnDistanceEvent | Phone -> HU | Distance to next turn with display text and unit |
 
@@ -58,7 +58,7 @@ message NavigationTurnEvent {
     optional string road_name = 1;
     optional ManeuverType.Enum maneuver_type = 2;
     optional TurnSide.Enum turn_direction = 3;
-    optional bytes turn_icon = 4;           // 16.1 legacy turn-image bytes
+    optional bytes turn_icon = 4;           // legacy turn-image bytes on deprecated native 0x8004 / 32772 path
     optional int32 distance_meters = 5;
     optional int32 distance_unit = 6;       // DistanceDisplayUnit enum
 }
@@ -66,7 +66,7 @@ message NavigationTurnEvent {
 
 **NavigationNotification** carries the full hierarchical version with multi-step lookahead. See [Message Hierarchy](#message-hierarchy) below for the nesting relationship.
 
-Source-backed note: native `NavigationNotification` / `32774` remains semantic-only in both 16.1 and 16.2. The 16.2 projected models expose `Maneuver.icon`, `Step.lanesImage`, and `RoutingInfo.junctionImage`, but those `CarIcon` assets feed projected UI rendering, not the native nav-wire payload.
+Source-backed note: native `NavigationNotification` / `32774` remains semantic-only in both 16.1 and 16.2. Separately, fallback JADX over 16.2 `classes.dex` recovered `hlj.mo18767n(...)`, which still builds deprecated `vyy` and sends `NavigationTurnEvent` on `32772` / `0x8004` under the legacy `z(carInfo)` gate. The 16.2 projected models expose `Maneuver.icon`, `Step.lanesImage`, and `RoutingInfo.junctionImage`, but those `CarIcon` assets feed projected UI rendering, not the native nav-wire payload.
 
 ### Navigation State
 
@@ -155,7 +155,7 @@ NavigationNotification
               |-- max_power_kw: int32
 ```
 
-**NavigationTurnEvent vs NavigationNotification:** NavigationTurnEvent is the flat legacy representation containing a single turn's maneuver type, road name, distance, and optional image bytes. NavigationNotification carries the same conceptual data in a hierarchical form with multi-step lookahead, lane-level guidance, and destination details including EV charging station information. They share the channel, but they are not a blanket "phone always sends both" pair: 16.1 source shows a gated native `32774` semantic path plus a separate `32772` legacy image-bearing path, while 16.2 keeps the native `32774` path semantic-only and removes `0x8004`.
+**NavigationTurnEvent vs NavigationNotification:** NavigationTurnEvent is the flat legacy representation containing a single turn's maneuver type, road name, distance, and optional image bytes. NavigationNotification carries the same conceptual data in a hierarchical form with multi-step lookahead, lane-level guidance, and destination details including EV charging station information. They share the channel, but they are not a blanket "phone always sends both" pair: 16.1 source shows a gated native `32774` semantic path plus a separate `32772` legacy image-bearing path, while 16.2 keeps the native `32774` path semantic-only and still routes deprecated `32772` / `0x8004` through recovered `mo18767n(...)`; `32773` / `0x8005` remains the separate simplified flat event.
 
 > **Gotcha:** Do not confuse NavigationTurnEvent (flat, 6 fields, ~1Hz) with NavigationNotification (hierarchical, multi-step). A minimal HU implementation can ignore NavigationNotification entirely and render guidance from NavigationTurnEvent alone. The richer hierarchy is for HUs that want lane guidance, multi-step lookahead, and destination details.
 
@@ -323,7 +323,7 @@ NavigationTurnEvent is the most common navigation message and the minimum viable
 1. **Extract maneuver type** -- map `ManeuverType.Enum` to a turn icon or text description
 2. **Display road name** -- the `road_name` field contains the target road (the road you're turning onto)
 3. **Show distance** -- `distance_meters` with `distance_unit` for formatting
-4. **Render optional legacy image bytes** -- if `turn_icon` is present on deprecated `0x8004` / `32772`, treat it as a 16.1 compatibility path; modern native `32774` delivery is semantic-only
+4. **Render optional legacy image bytes** -- if `turn_icon` is present on deprecated `0x8004` / `32772`, treat it as a legacy gated path that remains source-backed in 16.2; modern native `32774` delivery is still semantic-only
 
 ```c
 // Minimal NavigationTurnEvent handler

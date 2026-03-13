@@ -15,7 +15,8 @@ package oaa.proto.messages;
 // maneuver/text/lanes/road-info plus destinations, with no raw turn-image bytes.
 // APK class: vza (16.2), vzo (16.1)
 // Handler: hlj.mo18762h() → ian.m20106k(32774, vza)
-// Modern HUs only (CarInfo PDK >= 1.6). Replaces legacy 0x8004/0x8005.
+// Modern HUs only (CarInfo PDK >= 1.6); legacy 0x8004/0x8005 flat-turn paths
+// remain available behind older-HU gates.
 // confidence: gold [apk_deep_trace]
 message NavigationNotification {
     repeated NavigationStep steps = 1; // APK: repeated vzg (16.2), vzu (16.1)  // confidence: gold [apk_deep_trace]
