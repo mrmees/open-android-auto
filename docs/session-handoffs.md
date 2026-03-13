@@ -281,3 +281,36 @@ Verification:
 - `nl -ba /home/matt/claude/personal/openautopro/open-android-auto/analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/hlj.java | sed -n '361,545p'` -> semantic sender consumes maneuver/text/lanes/road-info fields and never references `f20729c`
 - `nl -ba /home/matt/claude/personal/openautopro/open-android-auto/analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/hlj.java | sed -n '643,815p'` -> legacy branch is gated by `m18759z(carInfo)` and passes `navigationStep2.f20729c` into `mo18767n(...)`
 - `nl -ba /home/matt/claude/personal/openautopro/open-android-auto/analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/hlj.java | sed -n '929,934p'` -> `mo18767n(...)` exists with a `byte[]` parameter, but its body is unavailable in this decompiled source dump
+
+## 2026-03-13 — 16.2 NEXT_TURN_IMAGE search checkpoint
+
+Date / Session: 2026-03-13 / nav-image-evidence-task7
+
+What Changed:
+- Searched the 16.2 `p000/*.java` tree for `NEXT_TURN_IMAGE`, `NavigationImageOptions`, `colour_depth`, `turnImage`, and `nextTurnImage`, then bounded the hits to the actual nav sender stack
+- Reconfirmed that the visible 16.2 nav sender still exposes `32773` from `ian` and `32774` / `32775` / `32776` from `hlj`, with no named image-negotiation message or config path in source
+- Updated [docs/plans/2026-03-13-nav-image-evidence-plan.md](plans/2026-03-13-nav-image-evidence-plan.md) so recovery now resumes at Task 8 and the projected-UI image asset question
+
+Why:
+- The investigation needed to stop hand-waving around `NEXT_TURN_IMAGE` and either find a real 16.2 sender path or kill that claim with an explicit, source-backed search trail
+
+Status:
+- Task 7 complete
+- `Q5` is now `Rejected`: no reachable 16.2 `NEXT_TURN_IMAGE` / `NavigationImageOptions` path was found in source
+- `Q4` stays `Needs better evidence`: the named successor path is gone, but the undecompiled `mo18767n(...)` body still prevents a full negative proof about any opaque legacy image send
+
+Next Steps:
+1. Verify that 16.2 `Maneuver.icon`, `Step.lanesImage`, and `RoutingInfo.junctionImage` exist as projected `CarIcon` fields
+2. Verify that `jbl.java` consumes those images in projected UI rendering
+3. Update `Q6`, refresh `Resume Here`, and commit the Task 8 checkpoint
+
+Verification:
+- `rg -n "NEXT_TURN_IMAGE|NavigationImageOptions|colour_depth|turnImage|nextTurnImage" /home/matt/claude/personal/openautopro/open-android-auto/analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000 -g '*.java'` -> only `turnImage` / `nextTurnImage` hits in `ggf.java`, `ggj.java`, and `ggo.java`; no `NEXT_TURN_IMAGE`, `NavigationImageOptions`, or `colour_depth` references
+- `rg -n "32772|32773|32774|32775|32776|0x8004|0x8005|0x8006|0x8007|0x8008" /home/matt/claude/personal/openautopro/open-android-auto/analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000 -g '*.java'` -> nav-stack sender hits remain `hlj.java` and `ian.java`; extra `hlg.java` / `hlb.java` hits were investigated and excluded as input/control channels
+- `nl -ba /home/matt/claude/personal/openautopro/open-android-auto/analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/hlj.java | sed -n '96,110p;300,322p;635,645p;929,954p'` -> `m18758y(carInfo)` and `m18759z(carInfo)` remain the branch points; `hlj` visibly sends `32775`, `32774`, and `32776`, while `mo18767n(...)` stays undecompiled
+- `nl -ba /home/matt/claude/personal/openautopro/open-android-auto/analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/ian.java | sed -n '118,148p'` -> `ian.m20073h(...)` emits `32773`
+- `nl -ba /home/matt/claude/personal/openautopro/open-android-auto/analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/ggf.java | sed -n '1,60p'` -> `ExpandedTurnCardUiModel` carries `laneImage`, `turnImage`, `junctionImage`, and `nextTurnImage` as UI-model fields
+- `nl -ba /home/matt/claude/personal/openautopro/open-android-auto/analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/ggj.java | sed -n '1,64p'` -> `MinimizedTurnCardUiModel` carries `laneImage` / `turnImage` UI-model fields
+- `nl -ba /home/matt/claude/personal/openautopro/open-android-auto/analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/ggo.java | sed -n '71,77p'` -> `TurnCardStyle` still refers to `laneImageSize` / `turnImageSize` styling only
+- `sed -n '1,220p' oaa/navigation/NavigationTypeEnum.proto` -> repo proto still defines `NEXT_TURN_IMAGE = 2`, but Task 7 found no 16.2 sender usage
+- `sed -n '1,220p' oaa/navigation/NavigationImageOptionsData.proto` -> repo proto still defines `NavigationImageOptions`, but Task 7 found no 16.2 sender usage
