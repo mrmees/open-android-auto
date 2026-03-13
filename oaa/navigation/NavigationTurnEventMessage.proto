@@ -11,10 +11,16 @@
  * to an unrelated overlay parameter class (2 fields: int + float).
  *
  * Legacy replacement: 0x8005 (vyx, @Deprecated, 4 fields — see InstrumentClusterMessages.proto)
- * Modern replacement: 0x8006 NavigationNotification (vza) for modern HUs (PDK >= 1.6)
+ * Modern replacement: 0x8006 NavigationNotification (vza) for modern HUs (PDK >= 1.6),
+ * whose source-backed 16.1/16.2 native sender traces remain semantic-only.
  *
  * The sub-messages below (NavigationNextTurnDistanceEvent at 0x8007, etc.)
  * ARE still active and verified on the wire.
+ *
+ * In 16.1, field 4 carried legacy turn-image bytes sourced from app
+ * NavigationStep.turnImage or locally synthesized fallback assets. Current 16.2
+ * source work found no reachable native NEXT_TURN_IMAGE / NavigationImageOptions
+ * successor path, so do not project this field forward past 0x8004.
  *
  * DHU 2.1 logcat (2026-02-28) showed NavigationTurnEvent at ~1Hz during nav,
  * but that was the GMS Car App Library TurnEvent, not this wire message.
@@ -36,7 +42,7 @@ message NavigationTurnEvent {
     optional string road_name = 1; // APK: vzm.b (16.1)  // confidence: silver [apk_static]
     optional oaa.proto.enums.ManeuverType.Enum maneuver_type = 2; // APK: vzm.c (16.1)  // confidence: silver [apk_static]
     optional oaa.proto.enums.TurnSide.Enum turn_direction = 3; // APK: vzm.d (16.1)  // confidence: silver [apk_static]
-    optional bytes turn_icon = 4; // APK: vzm.e (16.1)  // confidence: silver [apk_static]
+    optional bytes turn_icon = 4; // APK: vzm.e (16.1) — legacy turn-image bytes on deprecated 0x8004  // confidence: silver [apk_static]
     optional int32 distance_meters = 5; // APK: vzm.f (16.1)  // confidence: silver [apk_static]
     optional int32 distance_unit = 6; // APK: vzm.g (16.1)  // confidence: silver [apk_static]
 }

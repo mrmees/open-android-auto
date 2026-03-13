@@ -373,3 +373,30 @@ Verification:
 - `sed -n '34,95p' /home/matt/claude/personal/openautopro/open-android-auto/.worktrees/nav-image-evidence-20260313/docs/plans/2026-03-13-nav-image-evidence-plan.md` -> ledger, `Resume Here`, and new `Cross-Version Matrix` section are all present and aligned
 - `rg -n "Q[1-8] |Cross-Version Matrix|Task 9 - cross-version nav image evidence matrix|Task 10" /home/matt/claude/personal/openautopro/open-android-auto/.worktrees/nav-image-evidence-20260313/docs/plans/2026-03-13-nav-image-evidence-plan.md` -> final statuses, matrix section, and Task 10 recovery target are present
 - `rg -n "nav-image-evidence-task9|Q8|Task 10" /home/matt/claude/personal/openautopro/open-android-auto/.worktrees/nav-image-evidence-20260313/docs/session-handoffs.md /home/matt/claude/personal/openautopro/open-android-auto/.worktrees/nav-image-evidence-20260313/docs/plans/2026-03-13-nav-image-evidence-plan.md` -> handoff entry, confirmed `Q8`, and Task 10 `Resume Here` marker are present
+
+## 2026-03-13 — Canonical nav image evidence update
+
+Date / Session: 2026-03-13 / nav-image-evidence-task10
+
+What Changed:
+- Updated `docs/channels/nav.md` to bound `turn_icon` to the deprecated 16.1 `0x8004` / `32772` path, mark native `NavigationNotification` / `32774` as semantic-only, and call out `Maneuver.icon`, `Step.lanesImage`, and `RoutingInfo.junctionImage` as projected-UI-only evidence rather than native-wire payloads
+- Updated `oaa/navigation/NavigationTurnEventMessage.proto`, `oaa/navigation/NavigationNotificationMessage.proto`, and `oaa/navigation/InstrumentClusterMessages.proto` comments to match the closed claims and stop presenting `NEXT_TURN_IMAGE` / `NavigationImageOptions` as a proven live 16.2 sender path
+- Left the placeholder `NEXT_TURN_IMAGE` definitions in `oaa/navigation/NavigationChannelData.proto` and `oaa/navigation/NavigationTypeEnum.proto` untouched because Task 10 closed only the absence of a reachable 16.2 sender path, not the existence of those proto placeholders
+
+Why:
+- Task 9 finally bounded the evidence tightly enough to update canonical docs without smuggling in assumptions about the opaque `mo18767n(...)` path or the unresolved semantic override bit
+
+Status:
+- Task 10 complete
+- Canonical docs now reflect the closed claims: `Q5` rejected, `Q6` rejected, `Q8` confirmed
+- Still bounded: `Q4` needs better evidence because `mo18767n(...)` remains opaque; `Q7` needs better evidence because the semantic override bit meaning/provenance is not yet source-closed
+
+Next Steps:
+1. Recover or decompile the 16.2 `mo18767n(...)` body if you want to close whether any native legacy image sender survived beyond the visible `byte[]` plumbing
+2. Trace the provenance and semantic meaning of 16.2 `f34211e` if you want the cross-version gate story fully closed
+3. Revisit the placeholder `NEXT_TURN_IMAGE` proto definitions only if new source evidence shows they are live rather than dead-end config surfaces
+
+Verification:
+- `git -C /home/matt/claude/personal/openautopro/open-android-auto/.worktrees/nav-image-evidence-20260313 diff --check` -> clean (no output)
+- `rg -n "NEXT_TURN_IMAGE|turn_icon|junctionImage|lanesImage|32772|32774" /home/matt/claude/personal/openautopro/open-android-auto/.worktrees/nav-image-evidence-20260313/docs/channels/nav.md /home/matt/claude/personal/openautopro/open-android-auto/.worktrees/nav-image-evidence-20260313/oaa/navigation` -> updated canonical docs show bounded `turn_icon` / `32772` / `32774` claims plus projected-only `junctionImage` / `lanesImage` notes; remaining `NEXT_TURN_IMAGE` hits are the untouched placeholder definitions in `NavigationChannelData.proto` and `NavigationTypeEnum.proto`
+- `mkdir -p /tmp/oaa_nav_task10_verify && protoc --proto_path=. --cpp_out=/tmp/oaa_nav_task10_verify oaa/navigation/NavigationTurnEventMessage.proto oaa/navigation/NavigationNotificationMessage.proto oaa/navigation/InstrumentClusterMessages.proto` -> success

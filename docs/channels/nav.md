@@ -47,7 +47,7 @@ This is the deepest channel in the protocol: 14 proto files, 31 cross-version ma
 
 | MsgID | Message | Direction | Purpose |
 |-------|---------|-----------|---------|
-| 0x8004 | NavigationTurnEvent | Phone -> HU | Next turn: maneuver type, road name, distance, turn icon |
+| 0x8004 | NavigationTurnEvent | Phone -> HU | Next turn: maneuver type, road name, distance, optional legacy turn-image bytes (16.1 only) |
 | 0x8006 | NavigationNotification | Phone -> HU | Rich turn-by-turn with steps, lanes, destinations, ETA |
 | 0x8007 | NavigationNextTurnDistanceEvent | Phone -> HU | Distance to next turn with display text and unit |
 
@@ -58,13 +58,15 @@ message NavigationTurnEvent {
     optional string road_name = 1;
     optional ManeuverType.Enum maneuver_type = 2;
     optional TurnSide.Enum turn_direction = 3;
-    optional bytes turn_icon = 4;           // PNG image data
+    optional bytes turn_icon = 4;           // 16.1 legacy turn-image bytes
     optional int32 distance_meters = 5;
     optional int32 distance_unit = 6;       // DistanceDisplayUnit enum
 }
 ```
 
 **NavigationNotification** carries the full hierarchical version with multi-step lookahead. See [Message Hierarchy](#message-hierarchy) below for the nesting relationship.
+
+Source-backed note: native `NavigationNotification` / `32774` remains semantic-only in both 16.1 and 16.2. The 16.2 projected models expose `Maneuver.icon`, `Step.lanesImage`, and `RoutingInfo.junctionImage`, but those `CarIcon` assets feed projected UI rendering, not the native nav-wire payload.
 
 ### Navigation State
 
@@ -91,11 +93,11 @@ message NavigationTurnEvent {
 
 | Message | Direction | Purpose |
 |---------|-----------|---------|
-| NavigationChannel | Service Discovery | Channel config: interval, type, image options |
+| NavigationChannel | Service Discovery | Channel config: interval, type, proto-defined image option hooks |
 | NavigationChannelConfig | Service Discovery | Alt config: interval, type, image dimensions |
-| NavigationImageOptions | Service Discovery | Turn icon size constraints (width, height, color depth) |
+| NavigationImageOptions | Service Discovery | Proto-defined turn-image size/depth hints; live 16.2 use remains unproven |
 
-These messages are exchanged during service discovery to configure the navigation channel. `NavigationImageOptions` tells the phone what icon dimensions the HU supports, which affects the `turn_icon` bytes in NavigationTurnEvent.
+These protos exist in service discovery, but current 16.2 source work did not find a reachable `NEXT_TURN_IMAGE`, `NavigationImageOptions`, or `colour_depth` sender path in the native nav stack. Treat them as proto-defined config surfaces, not proof that modern native nav delivery negotiates live turn-image payloads.
 
 ### Instrument Cluster
 
@@ -153,7 +155,7 @@ NavigationNotification
               |-- max_power_kw: int32
 ```
 
-**NavigationTurnEvent vs NavigationNotification:** NavigationTurnEvent is the flat, simplified representation containing a single turn's maneuver type, road name, distance, and icon. NavigationNotification carries the same conceptual data in a hierarchical form with multi-step lookahead, lane-level guidance, and destination details including EV charging station information. Both messages are sent on the same channel -- the phone sends both, and the HU can use whichever level of detail it supports.
+**NavigationTurnEvent vs NavigationNotification:** NavigationTurnEvent is the flat legacy representation containing a single turn's maneuver type, road name, distance, and optional image bytes. NavigationNotification carries the same conceptual data in a hierarchical form with multi-step lookahead, lane-level guidance, and destination details including EV charging station information. They share the channel, but they are not a blanket "phone always sends both" pair: 16.1 source shows a gated native `32774` semantic path plus a separate `32772` legacy image-bearing path, while 16.2 keeps the native `32774` path semantic-only and removes `0x8004`.
 
 > **Gotcha:** Do not confuse NavigationTurnEvent (flat, 6 fields, ~1Hz) with NavigationNotification (hierarchical, multi-step). A minimal HU implementation can ignore NavigationNotification entirely and render guidance from NavigationTurnEvent alone. The richer hierarchy is for HUs that want lane guidance, multi-step lookahead, and destination details.
 
@@ -304,7 +306,7 @@ These observations confirm that NavigationTurnEvent fires at approximately 1Hz d
 
 The instrument cluster is a secondary navigation display, typically behind the steering wheel. These messages manage the cluster session lifecycle, not the navigation data itself -- turn events and state flow through NavigationNotification/NavigationState on the same channel.
 
-**InstrumentClusterStart** (0x8001) and **InstrumentClusterStop** (0x8002) are empty signal messages sent **HU → Phone** -- no payload. On receiving InstrumentClusterStart, the phone begins sending navigation data to the cluster display. The cluster configuration (dimensions, type, interval, color depth) is populated from service discovery, not from these messages.
+**InstrumentClusterStart** (0x8001) and **InstrumentClusterStop** (0x8002) are empty signal messages sent **HU → Phone** -- no payload. On receiving InstrumentClusterStart, the phone begins sending navigation data to the cluster display. The cluster configuration (dimensions, type, interval, and proto-defined image options) is populated from service discovery, not from these messages; current 16.2 source work does not prove that those image-option protos drive live native icon delivery.
 
 **~~InstrumentClusterInput~~ (0x8005) — RETRACTED:** The class previously assigned here (`vzl`) is actually `OverlayParameters` (a display overlay parameters proto), not a wire message on this channel. The actual 0x8005 is **LegacyNavigationTurnEvent** (`vyx`), a simplified turn data message for legacy HUs with CarInfo PDK < 1.6. It is marked `@Deprecated` in the APK source.
 
@@ -321,7 +323,7 @@ NavigationTurnEvent is the most common navigation message and the minimum viable
 1. **Extract maneuver type** -- map `ManeuverType.Enum` to a turn icon or text description
 2. **Display road name** -- the `road_name` field contains the target road (the road you're turning onto)
 3. **Show distance** -- `distance_meters` with `distance_unit` for formatting
-4. **Render turn icon** -- if `turn_icon` (bytes) is present, decode as PNG image. Size is constrained by `NavigationImageOptions` negotiated during service discovery
+4. **Render optional legacy image bytes** -- if `turn_icon` is present on deprecated `0x8004` / `32772`, treat it as a 16.1 compatibility path; modern native `32774` delivery is semantic-only
 
 ```c
 // Minimal NavigationTurnEvent handler
@@ -338,7 +340,7 @@ void handle_turn_event(const NavigationTurnEvent* event) {
         ui_set_distance(event->distance_meters(), unit);
     }
 
-    // Optional: render phone-provided turn icon
+    // Optional 16.1 compatibility path: render legacy turn-image bytes
     if (event->has_turn_icon())
         ui_set_turn_image(event->turn_icon().data(),
                           event->turn_icon().size());
@@ -357,7 +359,7 @@ Track `NavigationState` to know when to show/hide navigation UI:
 
 ## Gotchas
 
-> **Gotcha:** NavigationImageOptionsData specifies width, height, and colour_depth_bits for turn icons. If you don't report these in service discovery, the phone may send icons at a default size that doesn't match your display. Always populate NavigationImageOptions in your service discovery response.
+> **Gotcha:** `NavigationImageOptionsData` still defines width, height, and `colour_depth_bits`, but current 16.2 source work did not find a reachable `NEXT_TURN_IMAGE` / `NavigationImageOptions` sender path. Treat these fields as unclosed service-discovery metadata, not proven live native icon negotiation.
 
 > **Gotcha:** ManeuverType `UNKNOWN` (0) is the default value. If the phone can't determine the maneuver type, it sends 0. Your icon mapping must handle this case -- don't crash or show a blank on UNKNOWN. A generic "continue" arrow is the standard fallback.
 
