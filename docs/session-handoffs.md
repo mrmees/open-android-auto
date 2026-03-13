@@ -400,3 +400,30 @@ Verification:
 - `git -C /home/matt/claude/personal/openautopro/open-android-auto/.worktrees/nav-image-evidence-20260313 diff --check` -> clean (no output)
 - `rg -n "NEXT_TURN_IMAGE|turn_icon|junctionImage|lanesImage|32772|32774" /home/matt/claude/personal/openautopro/open-android-auto/.worktrees/nav-image-evidence-20260313/docs/channels/nav.md /home/matt/claude/personal/openautopro/open-android-auto/.worktrees/nav-image-evidence-20260313/oaa/navigation` -> updated canonical docs show bounded `turn_icon` / `32772` / `32774` claims plus projected-only `junctionImage` / `lanesImage` notes; remaining `NEXT_TURN_IMAGE` hits are the untouched placeholder definitions in `NavigationChannelData.proto` and `NavigationTypeEnum.proto`
 - `mkdir -p /tmp/oaa_nav_task10_verify && protoc --proto_path=. --cpp_out=/tmp/oaa_nav_task10_verify oaa/navigation/NavigationTurnEventMessage.proto oaa/navigation/NavigationNotificationMessage.proto oaa/navigation/InstrumentClusterMessages.proto` -> success
+
+## 2026-03-13 — Nav mapping follow-up cleanup
+
+Date / Session: 2026-03-13 / nav-image-evidence-followup-mappings
+
+What Changed:
+- Updated `docs/cross-version/navigation.md` so the 16.2 rows for `NavigationLane` and `NavigationText` now point to `vyv` and `vyz`, matching the semantic `32774` sender evidence
+- Added a bounded note to the same cross-version table clarifying that the deprecated 16.2 `vyy` class is only class-shape continuity for `NavigationTurnEvent`, not proof of a reachable native `0x8004` sender path
+- Updated `oaa/navigation/NavigationNotificationMessage.audit.yaml` and `oaa/navigation/NavigationTurnEventMessage.audit.yaml` to reflect those class mappings and the bounded 16.2 `vyy` status, and corrected the `TurnSideEnum.proto` header comment to reference NavigationTurnEvent field `3`
+
+Why:
+- Task 10 fixed the canonical nav docs, but a follow-up sweep found stale mapping/reference artifacts that now contradicted the source-backed evidence, especially around 16.2 semantic-nav submessages and the deprecated `vyy` class
+
+Status:
+- Follow-up reference cleanup complete
+- Canonical nav docs, cross-version table, and the touched nav audit sidecars now agree on the bounded 16.2 story
+- Still intentionally unresolved: whether undecompiled `mo18767n(...)` hides any native legacy image send, and what the 16.2 semantic override bit exactly means
+
+Next Steps:
+1. If you want a wider consistency pass, inspect historical/debug docs such as `docs/phone-side-debug.md` and any generated reference artifacts for pre-Task-10 TurnEvent assumptions
+2. If you want to close `Q4`, recover or decompile the 16.2 `mo18767n(...)` body
+3. If you want to close `Q7`, trace the provenance and semantic meaning of `f34211e`
+
+Verification:
+- `git -C /home/matt/claude/personal/openautopro/open-android-auto/.worktrees/nav-image-evidence-20260313 diff --check` -> clean (no output)
+- `rg -n "NavigationLane \\| .*vyv|NavigationText \\| .*vyz|NavigationTurnEvent \\| .*vyy|reachable native .*0x8004|Used in NavigationTurnEvent field 3|v16\\.2:vyv|v16\\.2:vyz" /home/matt/claude/personal/openautopro/open-android-auto/.worktrees/nav-image-evidence-20260313/docs/cross-version/navigation.md /home/matt/claude/personal/openautopro/open-android-auto/.worktrees/nav-image-evidence-20260313/oaa/navigation/NavigationNotificationMessage.audit.yaml /home/matt/claude/personal/openautopro/open-android-auto/.worktrees/nav-image-evidence-20260313/oaa/navigation/NavigationTurnEventMessage.audit.yaml /home/matt/claude/personal/openautopro/open-android-auto/.worktrees/nav-image-evidence-20260313/oaa/navigation/TurnSideEnum.proto` -> expected updated mappings, bounded `vyy` note, and corrected field-number comment present
+- `mkdir -p /tmp/oaa_nav_followup_verify && protoc --proto_path=. --cpp_out=/tmp/oaa_nav_followup_verify oaa/navigation/TurnSideEnum.proto oaa/navigation/NavigationTurnEventMessage.proto` -> success

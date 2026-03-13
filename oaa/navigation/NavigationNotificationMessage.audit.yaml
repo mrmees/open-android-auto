@@ -1,7 +1,7 @@
 proto: oaa/navigation/NavigationNotificationMessage.proto
 message: NavigationNotification
 confidence: silver
-last_updated: '2026-03-03'
+last_updated: '2026-03-13'
 evidence:
 - type: apk_static
   method: string_const
@@ -17,7 +17,7 @@ evidence:
     analysis.
 - type: apk_static
   method: string_const
-  source: class_mapping.yaml (v15.9:vst, v16.1:vzj)
+  source: class_mapping.yaml (v15.9:vst, v16.1:vzj, v16.2:vyv)
   date: '2026-03-03'
   description: Mapped NavigationLane to obfuscated APK class(es) via string_const
     analysis.
@@ -53,7 +53,7 @@ evidence:
     analysis.
 - type: apk_static
   method: string_const
-  source: class_mapping.yaml (v16.1:vzn)
+  source: class_mapping.yaml (v16.1:vzn, v16.2:vyz)
   date: '2026-03-03'
   description: Mapped NavigationText to obfuscated APK class(es) via string_const
     analysis.

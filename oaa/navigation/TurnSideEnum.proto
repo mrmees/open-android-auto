@@ -7,7 +7,7 @@
  *
  * APK validator: viz.M() (AA v16.1)
  * Maps: 1→LEFT, 2→RIGHT, else→0 (unknown).
- * Used in NavigationTurnEvent field 4.
+ * Used in NavigationTurnEvent field 3.
  */
 
 syntax = "proto3";
