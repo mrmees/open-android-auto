@@ -38,7 +38,7 @@
 | Q1 | 16.1 sends both semantic `32774` and image-bearing `32772` from `NavigationState` | Confirmed | Reconfirmed from 16.1 source: semantic `32774` path runs under `y(r)`, builds `vzu` step entries and `vze` destinations, then emits `this.k.k(32774, ...)` (`hkx.java:304-308`, `hkx.java:313-487`, `hkx.java:497-578`); `vzo` only carries repeated `vzu` + `vze` entries (`vzo.java:7-30`), and `vzu` only exposes maneuver/text/lanes/road-info fields (`vzu.java:7-30`). Legacy/image path: `NavigationStep` stores app turn-image bytes in `byte[] c` and parcels them as field `5` (`NavigationStep.java:8`, `NavigationStep.java:24`, `NavigationStep.java:59-66`); `hkx` passes `navigationStep2.c` or fallback `bArr` into `n(...)` (`hkx.java:748-756`); `n(...)` writes non-null bytes into `vzm.f` and sends `32772` (`hkx.java:1023-1033`; `vzm.java:13-15`, `vzm.java:33-34`). |
 | Q2 | 16.1 synthesizes fallback turn images locally | Confirmed | Reconfirmed from `hkx.n(...)`: if image delivery is disabled, incoming `bArr` is cleared (`hkx.java:843-845`); when bytes are still null and `this.l` (`hwl`) is present, the legacy path synthesizes fallback bytes from named `da_turn_*` assets via `hwl.a(...)`, `hwl.c.a(...)`, or generic `hwl.b()` fallback, including roundabout angle-specific assets, before serializing the result into `vzm.f` and sending `32772` (`hkx.java:846-967`, `hkx.java:1023-1033`). |
 | Q3 | 16.2 rich native nav sender is semantic-only | Confirmed | Reconfirmed from 16.2 source: semantic `32774` path runs under `m18758y(mo19019r)` and builds `vza` step + destination entries before `this.f34217k.m20106k(32774, ...)` (`hlj.java:361-365`, `hlj.java:372-635`); `vza` only carries repeated `vzg` + `vyq` entries (`vza.java:12-16`, `vza.java:38-39`); `vzg` only exposes maneuver `vyw`, text `vyz`, repeated lane entries `vyv`, and road-info `vyo`, with no raw image-bytes field (`vzg.java:13-25`, `vzg.java:44-45`). |
-| Q4 | 16.2 has a native image-bearing successor path | Open | |
+| Q4 | 16.2 has a native image-bearing successor path | Needs better evidence | 16.2 still keeps app-side `turnImage` bytes on `NavigationStep.f20729c` and parcels them as field `5` (`NavigationStep.java:25`, `NavigationStep.java:45`, `NavigationStep.java:82-88`), but the semantic `32774` builder never reads that field and only copies maneuver/text/lanes/road-info data into `vzg` (`hlj.java:361-545`). The legacy branch under `m18759z(carInfo)` still forwards `navigationStep2.f20729c` or fallback `bArr` into `mo18767n(...)` (`hlj.java:643-645`, `hlj.java:805-813`), yet `mo18767n(...)` is not decompiled in this dump (`hlj.java:929-934`). That proves retained legacy image plumbing, not a closed 16.2 native image-bearing sender graph. |
 | Q5 | `NEXT_TURN_IMAGE` is reachable in 16.2 | Open | |
 | Q6 | `junctionImage` or `lanesImage` reach native nav transport in 16.2 | Open | |
 | Q7 | Cross-version capability gates controlling nav image delivery are understood | Needs better evidence | 16.1 sender gating is now source-backed: `CarInfo.e` / `f` are `headUnitProtocolMajorVersionNumber` / `headUnitProtocolMinorVersionNumber` (`ijk.java:59`); `hkx.x(carInfo)` treats HU protocol `>= 1.6` as modern (`hkx.java:47-53`); semantic `32774` uses `y(carInfo) = this.e || x(carInfo)` (`hkx.java:55-57`, `hkx.java:304-308`); legacy/image-bearing `32772` uses `z(carInfo) = !x(carInfo)` (`hkx.java:59-60`, `hkx.java:586-592`). `this.e` is injected from clustersim vendor-extension bit `poe.b` (`iny.java:323-333`, `hlw.java:8-37`), so older HUs can still take the semantic branch when that override is true. The exact semantic meaning of `poe.b`, plus the 16.2 equivalent gates, still needs better evidence. |
@@ -46,15 +46,14 @@
 
 ## Resume Here
 
-- Last completed task: `Task 5 - 16.2 semantic native sender reconfirmed`
-- Last verified claim: `16.2 still emits native semantic nav on 32774 via hlj.mo18762h(...), and that payload remains image-free because vza/vzg only carry step/destination, maneuver, text, lane, and road-info fields`
+- Last completed task: `Task 6 - 16.2 app-side turn-image path traced`
+- Last verified claim: `16.2 keeps app-side NavigationStep.turnImage bytes and still feeds them into legacy helper mo18767n(...) on the m18759z(carInfo) branch, but the semantic 32774 path does not serialize those bytes`
 - Evidence files:
+  - `/home/matt/claude/personal/openautopro/open-android-auto/analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/com/google/android/gms/car/navigation/NavigationStep.java`
   - `/home/matt/claude/personal/openautopro/open-android-auto/analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/hlj.java`
-  - `/home/matt/claude/personal/openautopro/open-android-auto/analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/vza.java`
-  - `/home/matt/claude/personal/openautopro/open-android-auto/analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/vzg.java`
   - `docs/session-handoffs.md`
-- Next unanswered question: `Does 16.2 still feed app-side turnImage bytes into any native sender, and if so is that a reachable wire path or just legacy plumbing?`
-- Next command to run: `sed -n '1,90p' /home/matt/claude/personal/openautopro/open-android-auto/analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/com/google/android/gms/car/navigation/NavigationStep.java`
+- Next unanswered question: `Is any 16.2 NEXT_TURN_IMAGE or other image-negotiation path still reachable as a native nav sender, or are only dead-end / legacy references left?`
+- Next command to run: `rg -n "NEXT_TURN_IMAGE|NavigationImageOptions|colour_depth|turnImage|nextTurnImage" /home/matt/claude/personal/openautopro/open-android-auto/analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000 -g '*.java'`
 
 ---
 

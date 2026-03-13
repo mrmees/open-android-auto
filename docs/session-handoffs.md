@@ -248,3 +248,36 @@ Verification:
 - `nl -ba /home/matt/claude/personal/openautopro/open-android-auto/analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/hlj.java | sed -n '375,635p'` -> semantic sender builds `vzg` entries from maneuver/text/lanes/road-info and adds destinations before `m20106k(32774, ...)`
 - `nl -ba /home/matt/claude/personal/openautopro/open-android-auto/analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/vza.java | sed -n '12,40p'` -> `vza` is repeated `vzg` + repeated `vyq`
 - `nl -ba /home/matt/claude/personal/openautopro/open-android-auto/analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/vzg.java | sed -n '13,45p'` -> `vzg` fields remain maneuver, text, repeated lanes, and road-info only
+
+## 2026-03-13 — 16.2 app-side turn-image path checkpoint
+
+Date / Session: 2026-03-13 / nav-image-evidence-task6
+
+What Changed:
+- Reconfirmed from 16.2 source that `NavigationStep` still carries app-provided `turnImage` bytes in `byte[] f20729c` and parcels them as field `5`
+- Reconfirmed that the semantic `32774` sender path in `hlj.mo18762h(...)` does not read `f20729c`; it only serializes maneuver, text, lane, and road-info data into `vzg`
+- Reconfirmed that the legacy branch under `m18759z(carInfo)` still reads `navigationStep2.f20729c`, falls back to `bArr` when null, and passes the bytes into `mo18767n(...)`
+- Updated [docs/plans/2026-03-13-nav-image-evidence-plan.md](plans/2026-03-13-nav-image-evidence-plan.md) so recovery now resumes at Task 7 and the explicit `NEXT_TURN_IMAGE` / image-negotiation search
+
+Why:
+- This task separates two claims that are easy to blur together: "the app model still has turn-image bytes" versus "16.2 still has a reachable native image-bearing wire sender." The source only proves the first claim cleanly and leaves the second open.
+
+Status:
+- Task 6 complete
+- `Q4` is now `Needs better evidence`: retained legacy byte plumbing exists, but the image-bearing sender graph is not closed because `mo18767n(...)` is not decompiled in this source dump
+- The next open question is whether explicit `NEXT_TURN_IMAGE` / image-negotiation references expose a reachable sender or just dead-end leftovers
+
+Next Steps:
+1. Search 16.2 `p000/*.java` for `NEXT_TURN_IMAGE`, `NavigationImageOptions`, `turnImage`, and related image-negotiation symbols
+2. Search the 16.2 nav stack for message IDs around the old image-bearing path
+3. Update `Q4` / `Q5`, refresh `Resume Here`, and commit the Task 7 checkpoint
+
+Verification:
+- `sed -n '1,90p' /home/matt/claude/personal/openautopro/open-android-auto/analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/com/google/android/gms/car/navigation/NavigationStep.java` -> `NavigationStep` still defines `byte[] f20729c` and parcels it as field `5`
+- `sed -n '360,545p' /home/matt/claude/personal/openautopro/open-android-auto/analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/hlj.java` -> semantic path builds `vzg` from maneuver/text/lanes/road-info only
+- `sed -n '790,815p' /home/matt/claude/personal/openautopro/open-android-auto/analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/hlj.java` -> legacy branch forwards `navigationStep2.f20729c` or fallback `bArr` into `mo18767n(...)`
+- `rg -n "f20729c|mo18767n\\(|m18759z\\(|32772|32773|32774" /home/matt/claude/personal/openautopro/open-android-auto/analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/hlj.java /home/matt/claude/personal/openautopro/open-android-auto/analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/com/google/android/gms/car/navigation/NavigationStep.java` -> `f20729c` appears only in `NavigationStep` and the legacy `hlj` branch; semantic `32774` send remains separate
+- `nl -ba /home/matt/claude/personal/openautopro/open-android-auto/analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/com/google/android/gms/car/navigation/NavigationStep.java | sed -n '24,88p'` -> `f20729c` assignment, `turnImage` stringification, and parcel field `5`
+- `nl -ba /home/matt/claude/personal/openautopro/open-android-auto/analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/hlj.java | sed -n '361,545p'` -> semantic sender consumes maneuver/text/lanes/road-info fields and never references `f20729c`
+- `nl -ba /home/matt/claude/personal/openautopro/open-android-auto/analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/hlj.java | sed -n '643,815p'` -> legacy branch is gated by `m18759z(carInfo)` and passes `navigationStep2.f20729c` into `mo18767n(...)`
+- `nl -ba /home/matt/claude/personal/openautopro/open-android-auto/analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/hlj.java | sed -n '929,934p'` -> `mo18767n(...)` exists with a `byte[]` parameter, but its body is unavailable in this decompiled source dump
