@@ -314,3 +314,35 @@ Verification:
 - `nl -ba /home/matt/claude/personal/openautopro/open-android-auto/analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/ggo.java | sed -n '71,77p'` -> `TurnCardStyle` still refers to `laneImageSize` / `turnImageSize` styling only
 - `sed -n '1,220p' oaa/navigation/NavigationTypeEnum.proto` -> repo proto still defines `NEXT_TURN_IMAGE = 2`, but Task 7 found no 16.2 sender usage
 - `sed -n '1,220p' oaa/navigation/NavigationImageOptionsData.proto` -> repo proto still defines `NavigationImageOptions`, but Task 7 found no 16.2 sender usage
+
+## 2026-03-13 — Projected UI image assets vs native wire checkpoint
+
+Date / Session: 2026-03-13 / nav-image-evidence-task8
+
+What Changed:
+- Reconfirmed from the 16.2 AndroidX projected navigation models that maneuver icons, lane images, and junction images exist as `CarIcon` fields on `Maneuver`, `Step`, and `RoutingInfo`
+- Reconfirmed from `jbl.java` that those `CarIcon` assets are rendered into projected turn-card UI widgets rather than fed into the native nav sender
+- Updated [docs/plans/2026-03-13-nav-image-evidence-plan.md](plans/2026-03-13-nav-image-evidence-plan.md) so recovery now resumes at Task 9 and the cross-version delta matrix
+
+Why:
+- `Q6` needed a clean split between "image exists in app-side projected UI models" and "image reaches the native nav wire"; without that split, it is too easy to mix projected templates with cluster/native transport claims
+
+Status:
+- Task 8 complete
+- `Q6` is now `Rejected` for native transport: the source only proves projected-UI `CarIcon` usage for `junctionImage`, `lanesImage`, and maneuver icons
+- The next step is to normalize the cross-version story in one matrix before touching canonical docs
+
+Next Steps:
+1. Add the 16.1 vs 16.2 matrix to the plan
+2. Set final statuses for `Q1` through `Q8` without forcing weak closures
+3. Refresh `Resume Here`, append the Task 9 handoff, and commit
+
+Verification:
+- `sed -n '55,120p' /home/matt/claude/personal/openautopro/open-android-auto/analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/androidx/car/app/navigation/model/Maneuver.java` -> `Maneuver` stores `CarIcon mIcon` and exposes it via `getIcon()`
+- `sed -n '1,90p' /home/matt/claude/personal/openautopro/open-android-auto/analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/androidx/car/app/navigation/model/Step.java` -> `Step` stores `CarIcon mLanesImage` and exposes it via `getLanesImage()`
+- `sed -n '1,80p' /home/matt/claude/personal/openautopro/open-android-auto/analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/androidx/car/app/navigation/model/RoutingInfo.java` -> `RoutingInfo` stores `CarIcon mJunctionImage` and exposes it via `getJunctionImage()`
+- `sed -n '540,600p' /home/matt/claude/personal/openautopro/open-android-auto/analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/jbl.java` -> projected UI consumes `junctionImage`, maneuver icons, and `lanesImage` when rendering current/next steps
+- `nl -ba /home/matt/claude/personal/openautopro/open-android-auto/analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/androidx/car/app/navigation/model/Maneuver.java | sed -n '60,101p'` -> exact `mIcon` field and getter lines
+- `nl -ba /home/matt/claude/personal/openautopro/open-android-auto/analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/androidx/car/app/navigation/model/Step.java | sed -n '15,54p'` -> exact `mLanesImage` field/getter lines
+- `nl -ba /home/matt/claude/personal/openautopro/open-android-auto/analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/androidx/car/app/navigation/model/RoutingInfo.java | sed -n '13,56p'` -> exact `mJunctionImage` field/getter lines
+- `nl -ba /home/matt/claude/personal/openautopro/open-android-auto/analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/jbl.java | sed -n '548,606p'` -> projected renderer reads `getJunctionImage()`, `getIcon()`, and `getLanesImage()`
