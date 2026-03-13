@@ -481,3 +481,73 @@ Verification:
 - `rg -n "bp\\(\\)|da_turn_|vyy|32772" /tmp/jadx_hlj_verify/hlj.java` -> recovered legacy helper clears bytes when image delivery is disabled, synthesizes concrete `da_turn_*` assets, builds `vyy`, and sends `32772`
 - `rg -n "Q4 \\||Q5 \\||Q6 \\||Legacy image-bearing sender|Local fallback image generation|Native-wire lane/junction/turn image payloads|f34211e" /home/matt/claude/personal/openautopro/open-android-auto/.worktrees/nav-image-evidence-20260313/docs/plans/2026-03-13-nav-image-evidence-plan.md /home/matt/claude/personal/openautopro/open-android-auto/.worktrees/nav-image-evidence-20260313/docs/plans/2026-03-13-nav-image-evidence-design.md` -> plan/design artifacts now show `Q4` confirmed, `Q5`/`Q6` rejected, updated matrix rows, and `f34211e` as the next unanswered question
 - `rg -n "legacy image-bearing|vyy @Deprecated|0x8004 / 32772|legacy image-bearing path still source-backed" /home/matt/claude/personal/openautopro/open-android-auto/.worktrees/nav-image-evidence-20260313/docs/channels/nav.md /home/matt/claude/personal/openautopro/open-android-auto/.worktrees/nav-image-evidence-20260313/oaa/navigation/NavigationTurnEventMessage.proto /home/matt/claude/personal/openautopro/open-android-auto/.worktrees/nav-image-evidence-20260313/oaa/navigation/InstrumentClusterMessages.proto /home/matt/claude/personal/openautopro/open-android-auto/.worktrees/nav-image-evidence-20260313/docs/cross-version/navigation.md /home/matt/claude/personal/openautopro/open-android-auto/.worktrees/nav-image-evidence-20260313/docs/protocol-cross-reference.md` -> corrected canonical/reference docs now consistently describe deprecated but live legacy `0x8004` / `32772` in 16.2
+
+## 2026-03-13 — Nav image evidence recovery rebaseline
+
+Date / Session: 2026-03-13 / nav-image-evidence-recovery-rebaseline
+
+What Changed:
+- Rebased the recovery state after a crash review and confirmed the older "resume Task 10" prompt is stale relative to the branch head
+- Verified the isolated worktree already contains Task 10 plus the later corrections through commit `00013e2` (`docs(nav): correct 16.2 legacy turn-event path`)
+- Traced the remaining 16.2 override-bit provenance further: `hlj` receives `f34211e` from `pnl.f57495b`, `hmi` parses `pnl` from the `com.google.android.projection.clustersim` vendor extension, and `ilf` writes the same bit on the producer side during service-discovery munging
+- Narrowed the remaining open question: `Q7` is no longer "where does the override bit come from?" so much as "what does that bit actually mean?"
+
+Why:
+- The previous restart prompt would have sent the next session backward into already-completed Task 10 work and pre-correction assumptions about `Q4`
+- A fresh handoff needed to reflect the real branch state so the next session can focus only on the still-live `f34211e` semantics question
+
+Status:
+- Worktree is clean on branch `nav-image-evidence-20260313`
+- Canonical nav docs and proto comments are already updated and corrected for the recovered 16.2 legacy `0x8004` / `32772` path
+- `Q4` is confirmed, `Q5` and `Q6` remain rejected, and `Q7` is the only meaningful remaining investigation target
+- Current source-backed provenance chain for `Q7`: `iom.java` -> `new hlj(..., pnlVar.f57495b)`; `hmi.java` parses `pnl`; `pnl.java` exposes a single boolean field; `ilf.java` writes that field from local variable `z5`; 16.1 mirrors the same shape via `iny.java` / `poe.b` / `iks.java`
+
+Next Steps:
+1. Trace how `z5` / `z3` are derived in `analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/ilf.java` and compare that logic with `openauto-prodigy/.../defpackage/iks.java`
+2. Inspect `analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/ile.java` and the 16.1 analog `openauto-prodigy/.../defpackage/ikr.java` to see whether the bit maps to a named pass-through/filtering behavior
+3. If the producer-side semantics stay opaque, tighten `Q7` to "provenance closed, semantic meaning still unproven" rather than guessing
+
+Verification:
+- `git -C /home/matt/claude/personal/openautopro/open-android-auto/.worktrees/nav-image-evidence-20260313 status --short --branch` -> clean branch `nav-image-evidence-20260313`
+- `git -C /home/matt/claude/personal/openautopro/open-android-auto/.worktrees/nav-image-evidence-20260313 log --oneline --decorate -10` -> head is `00013e2 docs(nav): correct 16.2 legacy turn-event path`; older Task 10 commit `0025f40` is already behind it
+- `nl -ba /home/matt/claude/personal/openautopro/open-android-auto/analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/iom.java | sed -n '360,376p'` -> `hlj` constructed with `pnlVar.f57495b`
+- `nl -ba /home/matt/claude/personal/openautopro/open-android-auto/analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/hmi.java | sed -n '15,46p'` -> `hmi` parses `pnl` from `com.google.android.projection.clustersim`
+- `nl -ba /home/matt/claude/personal/openautopro/open-android-auto/analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/pnl.java | sed -n '4,34p'` -> `pnl` carries boolean field `f57495b`
+- `nl -ba /home/matt/claude/personal/openautopro/open-android-auto/analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/ilf.java | sed -n '377,383p'` -> producer-side service-discovery munger writes `((pnl) ...).f57495b = z5`
+- `nl -ba /home/matt/claude/personal/openautopro/openauto-prodigy/analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/defpackage/iks.java | sed -n '364,370p'` -> 16.1 producer-side path writes mirrored `poe.b = z5`
+
+## 2026-03-13 — Q7 capability gate closure
+
+Date / Session: 2026-03-13 / nav-image-evidence-q7-closure
+
+What Changed:
+- Closed `Q7` in the nav-image plan/design artifacts with a source-backed meaning for the 16.1 `poe.b` / 16.2 `pnl.f57495b` override bit
+- Documented that the override becomes true only when the clustersim SDR munger has to inject a missing instrument-cluster descriptor (`wbw` / `wbm` bit `128` carrying `vzr` / `vzd` image options) and that `hkx` / `hlj` then use that bit to force the rich-semantic nav gate
+- Refreshed the plan `Resume Here` block so the evidence ledger no longer points at a dead `f34211e` question
+
+Why:
+- `Q7` was the last live investigation target after Task 10 and the later nav-document corrections
+- Direct APK source closed provenance but not the hidden branch in `iks` / `ilf`, so simple JADX recovery was needed to prove the bit's runtime meaning without guessing
+
+Status:
+- `Q7` is now confirmed
+- The cross-version gate story is source-backed end-to-end: protocol `>= 1.6` still drives the default threshold, and the clustersim vendor bit is a synthetic-instrument-cluster override rather than a second HU-version field
+- No canonical nav doc changes were needed in this pass; only the plan/design/handoff layer changed
+
+Next Steps:
+1. Optional: sweep historical/debug docs for stale text that still says the override-bit meaning is open
+2. Otherwise this nav-image evidence track is ready for review
+
+Verification:
+- `git -C /home/matt/claude/personal/openautopro/open-android-auto/.worktrees/nav-image-evidence-20260313 diff --check` -> clean (no output)
+- `nl -ba /home/matt/claude/personal/openautopro/open-android-auto/analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/hlj.java | sed -n '116,152p'` -> `(wbmVar.f74994b & 128)` marks the instrument-cluster descriptor and `vzd` carries image-option data
+- `nl -ba /home/matt/claude/personal/openautopro/openauto-prodigy/analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/defpackage/hkx.java | sed -n '70,125p'` -> 16.1 mirrors the same `wbw.b & 128` instrument-cluster descriptor and `vzr` image-option handling
+- `mkdir -p /tmp/jadx_ilf_verify && jadx --show-bad-code --comments-level debug --decompilation-mode simple --single-class defpackage.ilf --single-class-output /tmp/jadx_ilf_verify /home/matt/claude/personal/openautopro/open-android-auto/analysis/android_auto_16.2.660604-release_162660604/apk-source/resources/classes.dex` -> success; wrote `/tmp/jadx_ilf_verify/ilf.java`
+- `rg -n "if \\(i2 >= 0\\)|wbmVar3\\.b \\|= 128|new ile|z5 = false" /tmp/jadx_ilf_verify/ilf.java` -> recovered branch injects missing `wbm.j` / bit-`128` descriptor, otherwise forces `z5 = false`, then passes `z5` into `new ile(...)`
+- `mkdir -p /tmp/jadx_ile_verify && jadx --show-bad-code --comments-level debug --decompilation-mode simple --single-class defpackage.ile --single-class-output /tmp/jadx_ile_verify /home/matt/claude/personal/openautopro/open-android-auto/analysis/android_auto_16.2.660604-release_162660604/apk-source/resources/classes.dex` -> success; wrote `/tmp/jadx_ile_verify/ile.java`
+- `rg -n "int\\[\\] iArr = \\{i\\}|iArr = new int\\[0\\]|if \\(this\\.e == false\\)|return null;" /tmp/jadx_ile_verify/ile.java` -> when the override is true, `ile` registers the synthetic channel and swallows returned nav messages (`return null`) instead of passing them through
+- `mkdir -p /tmp/jadx_iks_verify && jadx --show-bad-code --comments-level debug --decompilation-mode simple --single-class defpackage.iks --single-class-output /tmp/jadx_iks_verify /home/matt/claude/personal/openautopro/openauto-prodigy/analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/resources/classes.dex` -> success; wrote `/tmp/jadx_iks_verify/iks.java`
+- `rg -n "if \\(i2 >= 0\\)|wbwVar3\\.b \\|= 128|new ikr|z5 = false" /tmp/jadx_iks_verify/iks.java` -> 16.1 recovered branch matches 16.2: inject missing `wbw.j` / bit-`128` descriptor, otherwise force `z5 = false`, then pass `z5` into `new ikr(...)`
+- `mkdir -p /tmp/jadx_ikr_verify && jadx --show-bad-code --comments-level debug --decompilation-mode simple --single-class defpackage.ikr --single-class-output /tmp/jadx_ikr_verify /home/matt/claude/personal/openautopro/openauto-prodigy/analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/resources/classes.dex` -> success; wrote `/tmp/jadx_ikr_verify/ikr.java`
+- `rg -n "int\\[\\] iArr = \\{i\\}|iArr = new int\\[0\\]|if \\(this\\.e == false\\)|return null;" /tmp/jadx_ikr_verify/ikr.java` -> 16.1 `ikr` uses the same override-controlled synthetic-channel / swallow behavior as 16.2 `ile`
+- `rg -n "Q7 \\| .*Confirmed|synthetic instrument-cluster descriptor|rich-nav capability override" /home/matt/claude/personal/openautopro/open-android-auto/.worktrees/nav-image-evidence-20260313/docs/plans/2026-03-13-nav-image-evidence-plan.md /home/matt/claude/personal/openautopro/open-android-auto/.worktrees/nav-image-evidence-20260313/docs/plans/2026-03-13-nav-image-evidence-design.md /home/matt/claude/personal/openautopro/open-android-auto/.worktrees/nav-image-evidence-20260313/docs/session-handoffs.md` -> plan/design/handoff artifacts now show `Q7` confirmed and describe the override as synthetic instrument-cluster injection

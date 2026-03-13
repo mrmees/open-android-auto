@@ -71,7 +71,7 @@ The remaining open questions are no longer about whether 16.2 can serialize nati
 | Q4 | Does 16.2 have a native image-bearing successor to 16.1 `32772` / old `0x8004`? | Confirmed | Fallback JADX recovered `hlj.mo18767n(...)` building `vyy` and sending `32772` |
 | Q5 | Is `NavigationType.NEXT_TURN_IMAGE` reachable from a real 16.2 sender/receiver path? | Rejected | No named sender/config path found; recovered legacy send stays on deprecated `0x8004` instead |
 | Q6 | Are `junctionImage` or `lanesImage` ever serialized on the 16.2 native nav wire? | Rejected | Projected-only `CarIcon` fields; recovered legacy sender only carries one turn-image bytes field |
-| Q7 | Which 16.1/16.2 capability checks decide whether a HU gets rich semantic nav, legacy nav, or both? | Needs better evidence | PDK/config gates are bounded; override-bit meaning still open |
+| Q7 | Which 16.1/16.2 capability checks decide whether a HU gets rich semantic nav, legacy nav, or both? | Confirmed | Protocol threshold and clustersim override are source-backed; the override bit becomes true only when the SDR munger injects a synthetic instrument-cluster descriptor and uses that to force the rich-nav gate |
 | Q8 | Which repo docs/proto comments must change once the investigation closes? | Confirmed | Canonical docs updated; follow-up corrections required when new evidence lands |
 
 Allowed statuses:
