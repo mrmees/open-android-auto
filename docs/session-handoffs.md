@@ -346,3 +346,30 @@ Verification:
 - `nl -ba /home/matt/claude/personal/openautopro/open-android-auto/analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/androidx/car/app/navigation/model/Step.java | sed -n '15,54p'` -> exact `mLanesImage` field/getter lines
 - `nl -ba /home/matt/claude/personal/openautopro/open-android-auto/analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/androidx/car/app/navigation/model/RoutingInfo.java | sed -n '13,56p'` -> exact `mJunctionImage` field/getter lines
 - `nl -ba /home/matt/claude/personal/openautopro/open-android-auto/analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/jbl.java | sed -n '548,606p'` -> projected renderer reads `getJunctionImage()`, `getIcon()`, and `getLanesImage()`
+
+## 2026-03-13 — Cross-version nav image evidence matrix checkpoint
+
+Date / Session: 2026-03-13 / nav-image-evidence-task9
+
+What Changed:
+- Added a 16.1 vs 16.2 matrix to [docs/plans/2026-03-13-nav-image-evidence-plan.md](plans/2026-03-13-nav-image-evidence-plan.md) covering app-side turn-image bytes, semantic senders, legacy image-bearing senders, fallback generation, `NEXT_TURN_IMAGE`, projected-only `CarIcon` assets, and native-wire image payloads
+- Normalized the ledger so `Q1`-`Q8` now reflect the current evidence boundary: `Q5`/`Q6` rejected, `Q4`/`Q7` still bounded-but-open, and `Q8` confirmed as a workflow checkpoint
+- Moved `Resume Here` forward to Task 10, where canonical docs/proto comments can now be updated minimally from the closed claims
+
+Why:
+- By Task 8 the raw evidence was there, but the repo still needed a single cross-version view that makes the remaining uncertainty obvious before any canonical docs are touched
+
+Status:
+- Task 9 complete
+- The 16.1 vs 16.2 evidence story is now normalized enough for canonical doc updates
+- Remaining uncertainty is intentionally narrow: the opaque 16.2 `mo18767n(...)` body and the exact meaning/provenance of the semantic override bit
+
+Next Steps:
+1. Search canonical nav docs/proto comments for the now-stale `NEXT_TURN_IMAGE` / image-payload claims
+2. Apply only the source-backed claim changes
+3. Run Task 10 verification and append the final handoff
+
+Verification:
+- `sed -n '34,95p' /home/matt/claude/personal/openautopro/open-android-auto/.worktrees/nav-image-evidence-20260313/docs/plans/2026-03-13-nav-image-evidence-plan.md` -> ledger, `Resume Here`, and new `Cross-Version Matrix` section are all present and aligned
+- `rg -n "Q[1-8] |Cross-Version Matrix|Task 9 - cross-version nav image evidence matrix|Task 10" /home/matt/claude/personal/openautopro/open-android-auto/.worktrees/nav-image-evidence-20260313/docs/plans/2026-03-13-nav-image-evidence-plan.md` -> final statuses, matrix section, and Task 10 recovery target are present
+- `rg -n "nav-image-evidence-task9|Q8|Task 10" /home/matt/claude/personal/openautopro/open-android-auto/.worktrees/nav-image-evidence-20260313/docs/session-handoffs.md /home/matt/claude/personal/openautopro/open-android-auto/.worktrees/nav-image-evidence-20260313/docs/plans/2026-03-13-nav-image-evidence-plan.md` -> handoff entry, confirmed `Q8`, and Task 10 `Resume Here` marker are present
