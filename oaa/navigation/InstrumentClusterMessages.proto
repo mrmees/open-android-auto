@@ -9,13 +9,16 @@
  *
  * This channel manages the instrument cluster display — a secondary
  * navigation display (e.g., behind the steering wheel). The cluster
- * configuration (dimensions, type, color depth) is negotiated during
- * service discovery via NavigationChannel config.
+ * configuration (dimensions, type, and proto-defined image options) is
+ * advertised during service discovery via NavigationChannel config, but
+ * current 16.2 source work does not prove a reachable NEXT_TURN_IMAGE /
+ * NavigationImageOptions sender path for live native nav icons.
  *
  * Message IDs (from ian.java handler):
  *   0x8001 = InstrumentClusterStart   (HU→Phone, vze — empty signal)
  *   0x8002 = InstrumentClusterStop    (HU→Phone, vzf — empty signal)
  *   0x8003 = NavigationState          (Phone→HU, vzb — see NavigationStateMessage.proto)
+ *   0x8004 = NavigationTurnEvent      (Phone→HU, vyy @Deprecated — legacy image-bearing turn data)
  *   0x8005 = LegacyNavigationTurnEvent(Phone→HU, vyx @Deprecated — legacy turn data)
  *   0x8006 = NavigationNotification   (Phone→HU, vza — see NavigationNotificationMessage.proto)
  *   0x8007 = NavigationNextTurnDist   (Phone→HU, vyp — see NavigationTurnEventMessage.proto)
@@ -25,8 +28,11 @@
  * (populated from service discovery config) and passes it to
  * listeners: min_interval, cluster_type, width, height, color_depth.
  *
- * 0x8004 existed in 16.1 (NavigationTurnEvent, vzm) but was removed in 16.2.
- * Modern HUs (PDK >= 1.6) use 0x8006/0x8007 instead.
+ * 0x8004 existed in 16.1 (NavigationTurnEvent, vzm) and remains present in
+ * 16.2: fallback JADX recovered hlj.mo18767n(...) building deprecated vyy and
+ * sending it with optional turn-image bytes on the legacy z(carInfo) gate.
+ * Alongside it, 0x8005 (vyx) is a second deprecated flat turn message that
+ * stays maneuver/distance-only.
  *
  * APK: AA v16.2 (verified 2026-03-06)
  */
@@ -55,7 +61,9 @@ message InstrumentClusterStop {
 
 // 0x8005: Legacy NavigationTurnEvent (@Deprecated in 16.2)
 // APK class: vyx (16.2) — 4 fields, proto2
-// Direction: Phone→HU — phone sends turn info to legacy HUs (CarInfo PDK < 1.6)
+// Direction: Phone→HU — phone sends turn info to legacy HUs (CarInfo PDK < 1.6);
+// alongside deprecated 0x8004, this visible 16.2 legacy fallback has no
+// image-bytes field.
 // Handler: ian.m20073h(maneuver, distance, distance_millis, distance_unit)
 // Modern HUs receive 0x8006 (NavigationNotification) instead.
 //

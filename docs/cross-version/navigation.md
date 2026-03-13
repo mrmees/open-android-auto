@@ -22,7 +22,7 @@
 | NavigationFocusResponse | `vrh` | `vyz` | `vyk` | 1/1/1 |
 | NavigationImageDimensions | `vry` | `vzq` | `vzc` | 3/3/3 |
 | NavigationImageOptions | `vry` | `vzq` | `vzc` | 3/3/3 |
-| NavigationLane | `vst` | `vzj` | -- | 1/1/0 |
+| NavigationLane | `vst` | `vzj` | `vyv` | 1/1/1 |
 | NavigationLaneDirection | `vrq` | `vzi` | `vyu` | 2/2/2 |
 | NavigationManeuver | `vrs` | `vzk` | `vyw` | 3/3/3 |
 | NavigationNextTurnDistanceEvent | `vrl` | `vzd` | `vyp` | 3/3/3 |
@@ -32,6 +32,8 @@
 | NavigationState | `vrx` | `vzp` | `vzb` | 1/1/1 |
 | NavigationStep | `vsc` | `vzu` | `vzg` | 4/4/4 |
 | NavigationStepDistance | `xeu` | `xmv` | `xmf` | 2/2/2 |
-| NavigationText | -- | `vzn` | -- | 0/1/0 |
+| NavigationText | -- | `vzn` | `vyz` | 0/1/1 |
 | NavigationTurnDistance | `vro` | `vzg` | `vys` | 3/3/3 |
 | NavigationTurnEvent | `vru` | `vzm` | `vyy` | 6/6/6 |
+
+Note: `NavigationTurnEvent` still has a deprecated 16.2 class match (`vyy`), and fallback JADX over `classes.dex` recovered `hlj.mo18767n(...)` building `vyy` and sending it on native `0x8004` / `32772`. Modern `32774` delivery remains semantic-only.

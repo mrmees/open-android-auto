@@ -68,3 +68,486 @@ Next Steps:
 Verification:
 - `PYTHONPATH=. python3 analysis/tools/proto_stream_validator/run.py --capture analysis/captures/non_media/2026-02-28-s25-cleanbuild.jsonl --baseline analysis/baselines/non_media/2026-02-28-s25-cleanbuild.normalized.json` -> validation passed
 - `find oaa -name '*.proto' | sort | xargs protoc --proto_path=. --cpp_out=/tmp/oaa_verify` -> clean (0 errors, 0 warnings)
+
+## 2026-03-13 — Nav image evidence design and execution plan
+
+Date / Session: 2026-03-13 / nav-image-evidence-planning
+
+What Changed:
+- Added [docs/plans/2026-03-13-nav-image-evidence-design.md](plans/2026-03-13-nav-image-evidence-design.md), an approved design for a source-first, version-paired investigation of native nav-channel image delivery
+- Added [docs/plans/2026-03-13-nav-image-evidence-plan.md](plans/2026-03-13-nav-image-evidence-plan.md), a crash-tolerant execution plan with explicit checkpoints, `Resume Here` state, and per-task handoff requirements
+- Captured the crucial evidence-source split in the plan: 16.2 source lives in this repo, while the full 16.1 decompiled source currently lives in the sibling `openauto-prodigy/analysis-projection` tree and must be treated as primary evidence during execution
+
+Why:
+- The nav-image investigation is getting interrupted by compaction/session crashes, so chat-only continuity is not reliable enough
+- The open question is not "what do our docs say" but "what do the 16.1 and 16.2 APKs actually serialize on the native nav wire", especially around `turnImage`, `lanesImage`, `junctionImage`, and `NEXT_TURN_IMAGE`
+- A durable plan is needed so the next recovery session can restart from repo files alone instead of re-deriving context from memory
+
+Status:
+- Planning complete; execution has not started yet
+- The design explicitly keeps scope limited to protocol/evidence work
+- The first execution task is to reconfirm the 16.1 dual-send structure (`32774` semantic + `32772` image-bearing) from source and start recording exact citations in the plan ledger
+
+Next Steps:
+1. Execute Task 1 from [docs/plans/2026-03-13-nav-image-evidence-plan.md](plans/2026-03-13-nav-image-evidence-plan.md) using `executing-plans`
+2. After each meaningful claim closure, update the plan's `Resume Here` block and append a fresh handoff entry before moving on
+3. Do not update canonical nav docs/proto comments until the 16.1/16.2 delta matrix closes the relevant evidence questions
+
+Verification:
+- `test -f docs/plans/2026-03-13-nav-image-evidence-design.md && echo design_present` -> `design_present`
+- `test -f docs/plans/2026-03-13-nav-image-evidence-plan.md && echo plan_present` -> `plan_present`
+- `test -d /home/matt/claude/personal/openautopro/openauto-prodigy/analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources && echo ext_16_1_source_present` -> `ext_16_1_source_present`
+- `rg -n "Evidence Ledger|Resume Here|NEXT_TURN_IMAGE|32772|32774" docs/plans/2026-03-13-nav-image-evidence-design.md docs/plans/2026-03-13-nav-image-evidence-plan.md` -> expected investigation/checkpoint markers present
+- `git diff --check` -> clean
+
+## 2026-03-13 — 16.1 semantic nav sender checkpoint
+
+Date / Session: 2026-03-13 / nav-image-evidence-task1
+
+What Changed:
+- Reconfirmed from 16.1 source that `hkx.h(...)` takes the semantic rich-nav branch under `y(r)`, builds `vzu` step entries from maneuver, lane, text, and road-info data, appends destination entries, and emits `this.k.k(32774, (vzo) o.q())`
+- Reconfirmed from the 16.1 message classes that `vzo` only contains repeated `vzu` step entries plus repeated `vze` destinations, while `vzu` exposes maneuver/text/lanes/road-info fields and no raw image-bytes field
+- Updated [docs/plans/2026-03-13-nav-image-evidence-plan.md](plans/2026-03-13-nav-image-evidence-plan.md) so recovery now resumes at Task 2 and the app-side image-byte origin question
+
+Why:
+- The semantic half of the 16.1 dual-send claim needed exact source citations before the investigation could safely talk about whether images are sent separately or embedded in the rich payload
+
+Status:
+- Task 1 complete
+- `Q1` now has exact citations for the semantic `32774` half of the claim
+- The legacy/image-bearing `32772` half is still the next thing to re-verify from source
+
+Next Steps:
+1. Verify that 16.1 `NavigationStep` stores app-provided turn-image bytes in `byte[] c` and parcels them as field `5`
+2. Verify that the legacy sender path in `hkx.java` passes `navigationStep2.c` into the image-bearing serializer
+3. Verify that `vzm` contains the on-wire bytes field before tightening `Q1`/`Q2`
+
+Verification:
+- `nl -ba /home/matt/claude/personal/openautopro/openauto-prodigy/analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/defpackage/hkx.java | sed -n '302,578p'` -> `y(r)` rich-nav gate, `vzu`/`vzo` builders, destination append, and `this.k.k(32774, (vzo) o.q())` at line `578`
+- `nl -ba /home/matt/claude/personal/openautopro/openauto-prodigy/analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/defpackage/vzo.java | sed -n '7,30p'` -> descriptor only exposes repeated `vzu` (`b`) and repeated `vze` (`c`)
+- `nl -ba /home/matt/claude/personal/openautopro/openauto-prodigy/analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/defpackage/vzu.java | sed -n '7,30p'` -> fields are `vzk`, `vzn`, repeated `vzj`, and `vzc`; no bytes field present
+
+## 2026-03-13 — 16.1 legacy image-bearing nav path checkpoint
+
+Date / Session: 2026-03-13 / nav-image-evidence-task2
+
+What Changed:
+- Reconfirmed from 16.1 source that `NavigationStep` stores app-provided turn-image bytes in `byte[] c` and writes them to parcel field `5`
+- Reconfirmed that the legacy path in `hkx.java` reads `navigationStep2.c`, substitutes fallback `bArr` when the step image is null, and passes the resulting bytes into `n(...)`
+- Reconfirmed inside `hkx.n(...)` plus `vzm.java` that non-null bytes are serialized into `vzm.f` and the legacy nav payload is emitted on `32772`
+- Updated [docs/plans/2026-03-13-nav-image-evidence-plan.md](plans/2026-03-13-nav-image-evidence-plan.md) so recovery now resumes at Task 3 and the fallback-image generation question
+
+Why:
+- The dual-send claim needed exact source evidence that the legacy path carries raw image bytes from the app-side model all the way into the wire serializer, not just a vague "image-bearing" label
+
+Status:
+- Task 2 complete
+- `Q1` now has exact citations for both the semantic `32774` path and the legacy/image-bearing `32772` path
+- `Q2` now has the fallback input boundary (`NavigationStep.c` or `bArr`), but the exact local synthesis of `bArr` remains the next source trace
+
+Next Steps:
+1. Trace `hkx.n(...)` through the fallback branch to identify the local resource-based turn-image synthesis
+2. Update `Q2` with exact fallback-generation citations and refresh `Resume Here`
+3. Commit the fallback-image checkpoint from Task 3
+
+Verification:
+- `nl -ba /home/matt/claude/personal/openautopro/openauto-prodigy/analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/gms/car/navigation/NavigationStep.java | sed -n '4,66p'` -> `byte[] c` at line `8`, assignment at line `24`, parcel write `defpackage.rjc.y(parcel, 5, this.c)` at line `65`
+- `nl -ba /home/matt/claude/personal/openautopro/openauto-prodigy/analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/defpackage/hkx.java | sed -n '748,756p'` -> legacy caller prefers `navigationStep2.c` and falls back to `bArr` before calling `n(...)`
+- `nl -ba /home/matt/claude/personal/openautopro/openauto-prodigy/analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/defpackage/hkx.java | sed -n '1023,1033p'` -> `n(...)` writes non-null bytes into `vzm.f` and sends `32772`
+- `nl -ba /home/matt/claude/personal/openautopro/openauto-prodigy/analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/defpackage/vzm.java | sed -n '13,34p'` -> `vzm` exposes `zxq f` as the bytes field in its 6-field descriptor
+
+## 2026-03-13 — 16.1 fallback turn-image generation checkpoint
+
+Date / Session: 2026-03-13 / nav-image-evidence-task3
+
+What Changed:
+- Reconfirmed from 16.1 source that `hkx.n(...)` clears incoming image bytes when `!this.g.bp()`, then synthesizes fallback bytes locally when `bArr` is null and `this.l` (`hwl`) is available
+- Captured the concrete resource-selection logic: `da_turn_depart`, `da_turn_straight`, turn-side variants such as `da_turn_right`/`da_turn_ramp_right`/`da_turn_fork_right`, roundabout assets `da_turn_roundabout_1` through `_8`, `da_turn_uturn`, `da_turn_generic_merge`, `da_turn_ferry`, `da_turn_arrive`, plus generic `hwl.b()` fallback
+- Updated [docs/plans/2026-03-13-nav-image-evidence-plan.md](plans/2026-03-13-nav-image-evidence-plan.md) so recovery now resumes at Task 4 and the 16.1 capability-gate question
+
+Why:
+- `Q2` needed a source-backed mechanism, not just a claim that some fallback image "must exist"; the exact asset-selection branch is what makes the legacy behavior defensible
+
+Status:
+- Task 3 complete
+- `Q2` now has exact source citations for local fallback turn-image generation
+- The next open 16.1 question is the capability gating that decides when semantic and legacy paths are emitted
+
+Next Steps:
+1. Trace the `y(r)` and `z(carInfo)` gates in `hkx.java`
+2. Inspect any helper context needed to explain those gates without overstating what they mean
+3. Update `Q7`, refresh `Resume Here`, and commit the Task 4 checkpoint
+
+Verification:
+- `nl -ba /home/matt/claude/personal/openautopro/openauto-prodigy/analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/defpackage/hkx.java | sed -n '843,967p'` -> null-image fallback selects concrete `da_turn_*` assets or `hwl.b()` generic bytes
+- `nl -ba /home/matt/claude/personal/openautopro/openauto-prodigy/analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/defpackage/hkx.java | sed -n '1023,1033p'` -> synthesized bytes are serialized into `vzm.f` and sent on `32772`
+
+## 2026-03-13 — 16.1 nav delivery gates checkpoint
+
+Date / Session: 2026-03-13 / nav-image-evidence-task4
+
+What Changed:
+- Reconfirmed that the 16.1 semantic nav path is gated by `y(carInfo)` while the legacy image-bearing path is gated by `z(carInfo)` inside `hkx.h(...)`
+- Closed the 16.1 threshold itself from source: `CarInfo.e` / `f` are the head-unit protocol major/minor version fields, and `hkx.x(carInfo)` treats HU protocol `>= 1.6` as modern
+- Traced the non-version override: `hkx` constructor field `this.e` is populated from clustersim vendor-extension bit `poe.b`, so older HUs can still enter the semantic branch when that override is true
+- Checked [docs/plans/2026-03-13-nav-image-evidence-plan.md](plans/2026-03-13-nav-image-evidence-plan.md) forward so recovery now resumes at Task 5 and the 16.2 semantic sender re-verification
+
+Why:
+- The earlier "dual-send structure" evidence was real but incomplete; this task pins down when 16.1 sends semantic only, legacy only, or both, which is necessary before comparing 16.2 behavior without overstating compatibility claims
+
+Status:
+- Task 4 complete
+- `Q7` is now `Needs better evidence`: the 16.1 gate logic is source-backed, but the exact meaning of clustersim override bit `poe.b` and the 16.2 gate equivalents are still open
+- `hzy.java` did not add new gating logic; it handles nav lifecycle/control messages and emits `32773`, so the semantic-vs-legacy decision remains in `hkx.java`
+
+Next Steps:
+1. Reconfirm the 16.2 semantic native sender in `hlj.mo18762h(...)`
+2. Verify the 16.2 message classes are still image-free on the semantic path
+3. Update `Q3`, refresh `Resume Here`, and commit the Task 5 checkpoint
+
+Verification:
+- `grep -n "if (y(r))" /home/matt/claude/personal/openautopro/openauto-prodigy/analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/defpackage/hkx.java` -> semantic gate occurrences at lines `159` and `304`
+- `grep -n "if (z(carInfo))" /home/matt/claude/personal/openautopro/openauto-prodigy/analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/defpackage/hkx.java` -> legacy gate occurrence at line `586`
+- `nl -ba /home/matt/claude/personal/openautopro/openauto-prodigy/analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/defpackage/hkx.java | sed -n '47,60p'` -> `x(carInfo)` encodes HU protocol threshold `>1` or `1.6+`; `y(carInfo)` is `this.e || x(carInfo)`; `z(carInfo)` is `!x(carInfo)`
+- `nl -ba /home/matt/claude/personal/openautopro/openauto-prodigy/analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/defpackage/hkx.java | sed -n '304,308p'` -> semantic `32774` path is entered under `if (y(r))`
+- `nl -ba /home/matt/claude/personal/openautopro/openauto-prodigy/analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/defpackage/hkx.java | sed -n '586,592p'` -> legacy/image path is entered under `if (z(carInfo))`
+- `nl -ba /home/matt/claude/personal/openautopro/openauto-prodigy/analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/defpackage/ijk.java | sed -n '59,59p'` -> `CarInfo.e` / `f` are populated from `headUnitProtocolMajorVersionNumber` / `headUnitProtocolMinorVersionNumber`
+- `nl -ba /home/matt/claude/personal/openautopro/openauto-prodigy/analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/defpackage/iny.java | sed -n '323,333p'` -> `hkx` receives constructor boolean from clustersim vendor-extension field `poeVar.b`
+- `nl -ba /home/matt/claude/personal/openautopro/openauto-prodigy/analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/defpackage/hlw.java | sed -n '8,37p'` -> `hlw` parses clustersim vendor-extension payload into `poe`
+- `nl -ba /home/matt/claude/personal/openautopro/openauto-prodigy/analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/defpackage/hzy.java | sed -n '15,135p'` -> no semantic/legacy gate logic; file handles `32769`/`32770` receive path and emits `32773`
+
+## 2026-03-13 — 16.2 semantic nav sender checkpoint
+
+Date / Session: 2026-03-13 / nav-image-evidence-task5
+
+What Changed:
+- Reconfirmed from 16.2 source that `hlj.mo18762h(...)` still builds the semantic native nav payload and emits it on `32774`
+- Reconfirmed that the semantic payload remains image-free: `vza` only contains repeated step + destination entries, and `vzg` only contains maneuver, text, lane, and road-info fields
+- Updated [docs/plans/2026-03-13-nav-image-evidence-plan.md](plans/2026-03-13-nav-image-evidence-plan.md) so recovery now resumes at Task 6 and the 16.2 app-side turn-image question
+- Recorded the source-location workaround: this worktree has the 16.2 `apk-index` tree but not the decompiled `apk-source`, so Task 5 used the main checkout's read-only `analysis/.../apk-source` path as evidence
+
+Why:
+- `Q3` was already believed to be true, but this investigation only counts what the actual sender and message classes still do in 16.2, with line-backed proof instead of inherited assumptions
+
+Status:
+- Task 5 complete
+- `Q3` now has exact 16.2 citations for the semantic sender and its image-free wire shape
+- The next open question is whether 16.2 still routes `NavigationStep.turnImage` bytes into any native sender path
+
+Next Steps:
+1. Verify that 16.2 `NavigationStep` still carries app-side `turnImage` bytes
+2. Check whether `hlj`'s semantic path ignores those bytes while any legacy helper still accepts them
+3. Update `Q4`, refresh `Resume Here`, and commit the Task 6 checkpoint
+
+Verification:
+- `sed -n '360,620p' /home/matt/claude/personal/openautopro/open-android-auto/analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/hlj.java` -> semantic builder populates maneuver, text, lanes, road info, destinations, then continues toward `32774`
+- `sed -n '1,220p' /home/matt/claude/personal/openautopro/open-android-auto/analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/vza.java` -> descriptor only exposes repeated `vzg` step entries and repeated `vyq` destinations
+- `sed -n '1,220p' /home/matt/claude/personal/openautopro/open-android-auto/analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/vzg.java` -> fields are `vyw`, `vyz`, repeated `vyv`, and `vyo`; no bytes field present
+- `rg -n "32774|m18758y\\(|if \\(m18758y\\(mo19019r\\)\\)" /home/matt/claude/personal/openautopro/open-android-auto/analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/hlj.java` -> semantic gate occurrences at lines `215` and `361`; `32774` send at line `635`
+- `nl -ba /home/matt/claude/personal/openautopro/open-android-auto/analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/hlj.java | sed -n '96,110p'` -> 16.2 still uses `m18758y(carInfo) = this.f34211e || m18757x(carInfo)` with the same protocol-threshold helper structure
+- `nl -ba /home/matt/claude/personal/openautopro/open-android-auto/analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/hlj.java | sed -n '375,635p'` -> semantic sender builds `vzg` entries from maneuver/text/lanes/road-info and adds destinations before `m20106k(32774, ...)`
+- `nl -ba /home/matt/claude/personal/openautopro/open-android-auto/analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/vza.java | sed -n '12,40p'` -> `vza` is repeated `vzg` + repeated `vyq`
+- `nl -ba /home/matt/claude/personal/openautopro/open-android-auto/analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/vzg.java | sed -n '13,45p'` -> `vzg` fields remain maneuver, text, repeated lanes, and road-info only
+
+## 2026-03-13 — 16.2 app-side turn-image path checkpoint
+
+Date / Session: 2026-03-13 / nav-image-evidence-task6
+
+What Changed:
+- Reconfirmed from 16.2 source that `NavigationStep` still carries app-provided `turnImage` bytes in `byte[] f20729c` and parcels them as field `5`
+- Reconfirmed that the semantic `32774` sender path in `hlj.mo18762h(...)` does not read `f20729c`; it only serializes maneuver, text, lane, and road-info data into `vzg`
+- Reconfirmed that the legacy branch under `m18759z(carInfo)` still reads `navigationStep2.f20729c`, falls back to `bArr` when null, and passes the bytes into `mo18767n(...)`
+- Updated [docs/plans/2026-03-13-nav-image-evidence-plan.md](plans/2026-03-13-nav-image-evidence-plan.md) so recovery now resumes at Task 7 and the explicit `NEXT_TURN_IMAGE` / image-negotiation search
+
+Why:
+- This task separates two claims that are easy to blur together: "the app model still has turn-image bytes" versus "16.2 still has a reachable native image-bearing wire sender." The source only proves the first claim cleanly and leaves the second open.
+
+Status:
+- Task 6 complete
+- `Q4` is now `Needs better evidence`: retained legacy byte plumbing exists, but the image-bearing sender graph is not closed because `mo18767n(...)` is not decompiled in this source dump
+- The next open question is whether explicit `NEXT_TURN_IMAGE` / image-negotiation references expose a reachable sender or just dead-end leftovers
+
+Next Steps:
+1. Search 16.2 `p000/*.java` for `NEXT_TURN_IMAGE`, `NavigationImageOptions`, `turnImage`, and related image-negotiation symbols
+2. Search the 16.2 nav stack for message IDs around the old image-bearing path
+3. Update `Q4` / `Q5`, refresh `Resume Here`, and commit the Task 7 checkpoint
+
+Verification:
+- `sed -n '1,90p' /home/matt/claude/personal/openautopro/open-android-auto/analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/com/google/android/gms/car/navigation/NavigationStep.java` -> `NavigationStep` still defines `byte[] f20729c` and parcels it as field `5`
+- `sed -n '360,545p' /home/matt/claude/personal/openautopro/open-android-auto/analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/hlj.java` -> semantic path builds `vzg` from maneuver/text/lanes/road-info only
+- `sed -n '790,815p' /home/matt/claude/personal/openautopro/open-android-auto/analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/hlj.java` -> legacy branch forwards `navigationStep2.f20729c` or fallback `bArr` into `mo18767n(...)`
+- `rg -n "f20729c|mo18767n\\(|m18759z\\(|32772|32773|32774" /home/matt/claude/personal/openautopro/open-android-auto/analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/hlj.java /home/matt/claude/personal/openautopro/open-android-auto/analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/com/google/android/gms/car/navigation/NavigationStep.java` -> `f20729c` appears only in `NavigationStep` and the legacy `hlj` branch; semantic `32774` send remains separate
+- `nl -ba /home/matt/claude/personal/openautopro/open-android-auto/analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/com/google/android/gms/car/navigation/NavigationStep.java | sed -n '24,88p'` -> `f20729c` assignment, `turnImage` stringification, and parcel field `5`
+- `nl -ba /home/matt/claude/personal/openautopro/open-android-auto/analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/hlj.java | sed -n '361,545p'` -> semantic sender consumes maneuver/text/lanes/road-info fields and never references `f20729c`
+- `nl -ba /home/matt/claude/personal/openautopro/open-android-auto/analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/hlj.java | sed -n '643,815p'` -> legacy branch is gated by `m18759z(carInfo)` and passes `navigationStep2.f20729c` into `mo18767n(...)`
+- `nl -ba /home/matt/claude/personal/openautopro/open-android-auto/analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/hlj.java | sed -n '929,934p'` -> `mo18767n(...)` exists with a `byte[]` parameter, but its body is unavailable in this decompiled source dump
+
+## 2026-03-13 — 16.2 NEXT_TURN_IMAGE search checkpoint
+
+Date / Session: 2026-03-13 / nav-image-evidence-task7
+
+What Changed:
+- Searched the 16.2 `p000/*.java` tree for `NEXT_TURN_IMAGE`, `NavigationImageOptions`, `colour_depth`, `turnImage`, and `nextTurnImage`, then bounded the hits to the actual nav sender stack
+- Reconfirmed that the visible 16.2 nav sender still exposes `32773` from `ian` and `32774` / `32775` / `32776` from `hlj`, with no named image-negotiation message or config path in source
+- Updated [docs/plans/2026-03-13-nav-image-evidence-plan.md](plans/2026-03-13-nav-image-evidence-plan.md) so recovery now resumes at Task 8 and the projected-UI image asset question
+
+Why:
+- The investigation needed to stop hand-waving around `NEXT_TURN_IMAGE` and either find a real 16.2 sender path or kill that claim with an explicit, source-backed search trail
+
+Status:
+- Task 7 complete
+- `Q5` is now `Rejected`: no reachable 16.2 `NEXT_TURN_IMAGE` / `NavigationImageOptions` path was found in source
+- `Q4` stays `Needs better evidence`: the named successor path is gone, but the undecompiled `mo18767n(...)` body still prevents a full negative proof about any opaque legacy image send
+
+Next Steps:
+1. Verify that 16.2 `Maneuver.icon`, `Step.lanesImage`, and `RoutingInfo.junctionImage` exist as projected `CarIcon` fields
+2. Verify that `jbl.java` consumes those images in projected UI rendering
+3. Update `Q6`, refresh `Resume Here`, and commit the Task 8 checkpoint
+
+Verification:
+- `rg -n "NEXT_TURN_IMAGE|NavigationImageOptions|colour_depth|turnImage|nextTurnImage" /home/matt/claude/personal/openautopro/open-android-auto/analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000 -g '*.java'` -> only `turnImage` / `nextTurnImage` hits in `ggf.java`, `ggj.java`, and `ggo.java`; no `NEXT_TURN_IMAGE`, `NavigationImageOptions`, or `colour_depth` references
+- `rg -n "32772|32773|32774|32775|32776|0x8004|0x8005|0x8006|0x8007|0x8008" /home/matt/claude/personal/openautopro/open-android-auto/analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000 -g '*.java'` -> nav-stack sender hits remain `hlj.java` and `ian.java`; extra `hlg.java` / `hlb.java` hits were investigated and excluded as input/control channels
+- `nl -ba /home/matt/claude/personal/openautopro/open-android-auto/analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/hlj.java | sed -n '96,110p;300,322p;635,645p;929,954p'` -> `m18758y(carInfo)` and `m18759z(carInfo)` remain the branch points; `hlj` visibly sends `32775`, `32774`, and `32776`, while `mo18767n(...)` stays undecompiled
+- `nl -ba /home/matt/claude/personal/openautopro/open-android-auto/analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/ian.java | sed -n '118,148p'` -> `ian.m20073h(...)` emits `32773`
+- `nl -ba /home/matt/claude/personal/openautopro/open-android-auto/analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/ggf.java | sed -n '1,60p'` -> `ExpandedTurnCardUiModel` carries `laneImage`, `turnImage`, `junctionImage`, and `nextTurnImage` as UI-model fields
+- `nl -ba /home/matt/claude/personal/openautopro/open-android-auto/analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/ggj.java | sed -n '1,64p'` -> `MinimizedTurnCardUiModel` carries `laneImage` / `turnImage` UI-model fields
+- `nl -ba /home/matt/claude/personal/openautopro/open-android-auto/analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/ggo.java | sed -n '71,77p'` -> `TurnCardStyle` still refers to `laneImageSize` / `turnImageSize` styling only
+- `sed -n '1,220p' oaa/navigation/NavigationTypeEnum.proto` -> repo proto still defines `NEXT_TURN_IMAGE = 2`, but Task 7 found no 16.2 sender usage
+- `sed -n '1,220p' oaa/navigation/NavigationImageOptionsData.proto` -> repo proto still defines `NavigationImageOptions`, but Task 7 found no 16.2 sender usage
+
+## 2026-03-13 — Projected UI image assets vs native wire checkpoint
+
+Date / Session: 2026-03-13 / nav-image-evidence-task8
+
+What Changed:
+- Reconfirmed from the 16.2 AndroidX projected navigation models that maneuver icons, lane images, and junction images exist as `CarIcon` fields on `Maneuver`, `Step`, and `RoutingInfo`
+- Reconfirmed from `jbl.java` that those `CarIcon` assets are rendered into projected turn-card UI widgets rather than fed into the native nav sender
+- Updated [docs/plans/2026-03-13-nav-image-evidence-plan.md](plans/2026-03-13-nav-image-evidence-plan.md) so recovery now resumes at Task 9 and the cross-version delta matrix
+
+Why:
+- `Q6` needed a clean split between "image exists in app-side projected UI models" and "image reaches the native nav wire"; without that split, it is too easy to mix projected templates with cluster/native transport claims
+
+Status:
+- Task 8 complete
+- `Q6` is now `Rejected` for native transport: the source only proves projected-UI `CarIcon` usage for `junctionImage`, `lanesImage`, and maneuver icons
+- The next step is to normalize the cross-version story in one matrix before touching canonical docs
+
+Next Steps:
+1. Add the 16.1 vs 16.2 matrix to the plan
+2. Set final statuses for `Q1` through `Q8` without forcing weak closures
+3. Refresh `Resume Here`, append the Task 9 handoff, and commit
+
+Verification:
+- `sed -n '55,120p' /home/matt/claude/personal/openautopro/open-android-auto/analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/androidx/car/app/navigation/model/Maneuver.java` -> `Maneuver` stores `CarIcon mIcon` and exposes it via `getIcon()`
+- `sed -n '1,90p' /home/matt/claude/personal/openautopro/open-android-auto/analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/androidx/car/app/navigation/model/Step.java` -> `Step` stores `CarIcon mLanesImage` and exposes it via `getLanesImage()`
+- `sed -n '1,80p' /home/matt/claude/personal/openautopro/open-android-auto/analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/androidx/car/app/navigation/model/RoutingInfo.java` -> `RoutingInfo` stores `CarIcon mJunctionImage` and exposes it via `getJunctionImage()`
+- `sed -n '540,600p' /home/matt/claude/personal/openautopro/open-android-auto/analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/jbl.java` -> projected UI consumes `junctionImage`, maneuver icons, and `lanesImage` when rendering current/next steps
+- `nl -ba /home/matt/claude/personal/openautopro/open-android-auto/analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/androidx/car/app/navigation/model/Maneuver.java | sed -n '60,101p'` -> exact `mIcon` field and getter lines
+- `nl -ba /home/matt/claude/personal/openautopro/open-android-auto/analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/androidx/car/app/navigation/model/Step.java | sed -n '15,54p'` -> exact `mLanesImage` field/getter lines
+- `nl -ba /home/matt/claude/personal/openautopro/open-android-auto/analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/androidx/car/app/navigation/model/RoutingInfo.java | sed -n '13,56p'` -> exact `mJunctionImage` field/getter lines
+- `nl -ba /home/matt/claude/personal/openautopro/open-android-auto/analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/jbl.java | sed -n '548,606p'` -> projected renderer reads `getJunctionImage()`, `getIcon()`, and `getLanesImage()`
+
+## 2026-03-13 — Cross-version nav image evidence matrix checkpoint
+
+Date / Session: 2026-03-13 / nav-image-evidence-task9
+
+What Changed:
+- Added a 16.1 vs 16.2 matrix to [docs/plans/2026-03-13-nav-image-evidence-plan.md](plans/2026-03-13-nav-image-evidence-plan.md) covering app-side turn-image bytes, semantic senders, legacy image-bearing senders, fallback generation, `NEXT_TURN_IMAGE`, projected-only `CarIcon` assets, and native-wire image payloads
+- Normalized the ledger so `Q1`-`Q8` now reflect the current evidence boundary: `Q5`/`Q6` rejected, `Q4`/`Q7` still bounded-but-open, and `Q8` confirmed as a workflow checkpoint
+- Moved `Resume Here` forward to Task 10, where canonical docs/proto comments can now be updated minimally from the closed claims
+
+Why:
+- By Task 8 the raw evidence was there, but the repo still needed a single cross-version view that makes the remaining uncertainty obvious before any canonical docs are touched
+
+Status:
+- Task 9 complete
+- The 16.1 vs 16.2 evidence story is now normalized enough for canonical doc updates
+- Remaining uncertainty is intentionally narrow: the opaque 16.2 `mo18767n(...)` body and the exact meaning/provenance of the semantic override bit
+
+Next Steps:
+1. Search canonical nav docs/proto comments for the now-stale `NEXT_TURN_IMAGE` / image-payload claims
+2. Apply only the source-backed claim changes
+3. Run Task 10 verification and append the final handoff
+
+Verification:
+- `sed -n '34,95p' /home/matt/claude/personal/openautopro/open-android-auto/.worktrees/nav-image-evidence-20260313/docs/plans/2026-03-13-nav-image-evidence-plan.md` -> ledger, `Resume Here`, and new `Cross-Version Matrix` section are all present and aligned
+- `rg -n "Q[1-8] |Cross-Version Matrix|Task 9 - cross-version nav image evidence matrix|Task 10" /home/matt/claude/personal/openautopro/open-android-auto/.worktrees/nav-image-evidence-20260313/docs/plans/2026-03-13-nav-image-evidence-plan.md` -> final statuses, matrix section, and Task 10 recovery target are present
+- `rg -n "nav-image-evidence-task9|Q8|Task 10" /home/matt/claude/personal/openautopro/open-android-auto/.worktrees/nav-image-evidence-20260313/docs/session-handoffs.md /home/matt/claude/personal/openautopro/open-android-auto/.worktrees/nav-image-evidence-20260313/docs/plans/2026-03-13-nav-image-evidence-plan.md` -> handoff entry, confirmed `Q8`, and Task 10 `Resume Here` marker are present
+
+## 2026-03-13 — Canonical nav image evidence update
+
+Date / Session: 2026-03-13 / nav-image-evidence-task10
+
+What Changed:
+- Updated `docs/channels/nav.md` to bound `turn_icon` to the deprecated 16.1 `0x8004` / `32772` path, mark native `NavigationNotification` / `32774` as semantic-only, and call out `Maneuver.icon`, `Step.lanesImage`, and `RoutingInfo.junctionImage` as projected-UI-only evidence rather than native-wire payloads
+- Updated `oaa/navigation/NavigationTurnEventMessage.proto`, `oaa/navigation/NavigationNotificationMessage.proto`, and `oaa/navigation/InstrumentClusterMessages.proto` comments to match the closed claims and stop presenting `NEXT_TURN_IMAGE` / `NavigationImageOptions` as a proven live 16.2 sender path
+- Left the placeholder `NEXT_TURN_IMAGE` definitions in `oaa/navigation/NavigationChannelData.proto` and `oaa/navigation/NavigationTypeEnum.proto` untouched because Task 10 closed only the absence of a reachable 16.2 sender path, not the existence of those proto placeholders
+
+Why:
+- Task 9 finally bounded the evidence tightly enough to update canonical docs without smuggling in assumptions about the opaque `mo18767n(...)` path or the unresolved semantic override bit
+
+Status:
+- Task 10 complete
+- Canonical docs now reflect the closed claims: `Q5` rejected, `Q6` rejected, `Q8` confirmed
+- Still bounded: `Q4` needs better evidence because `mo18767n(...)` remains opaque; `Q7` needs better evidence because the semantic override bit meaning/provenance is not yet source-closed
+
+Next Steps:
+1. Recover or decompile the 16.2 `mo18767n(...)` body if you want to close whether any native legacy image sender survived beyond the visible `byte[]` plumbing
+2. Trace the provenance and semantic meaning of 16.2 `f34211e` if you want the cross-version gate story fully closed
+3. Revisit the placeholder `NEXT_TURN_IMAGE` proto definitions only if new source evidence shows they are live rather than dead-end config surfaces
+
+Verification:
+- `git -C /home/matt/claude/personal/openautopro/open-android-auto/.worktrees/nav-image-evidence-20260313 diff --check` -> clean (no output)
+- `rg -n "NEXT_TURN_IMAGE|turn_icon|junctionImage|lanesImage|32772|32774" /home/matt/claude/personal/openautopro/open-android-auto/.worktrees/nav-image-evidence-20260313/docs/channels/nav.md /home/matt/claude/personal/openautopro/open-android-auto/.worktrees/nav-image-evidence-20260313/oaa/navigation` -> updated canonical docs show bounded `turn_icon` / `32772` / `32774` claims plus projected-only `junctionImage` / `lanesImage` notes; remaining `NEXT_TURN_IMAGE` hits are the untouched placeholder definitions in `NavigationChannelData.proto` and `NavigationTypeEnum.proto`
+- `mkdir -p /tmp/oaa_nav_task10_verify && protoc --proto_path=. --cpp_out=/tmp/oaa_nav_task10_verify oaa/navigation/NavigationTurnEventMessage.proto oaa/navigation/NavigationNotificationMessage.proto oaa/navigation/InstrumentClusterMessages.proto` -> success
+
+## 2026-03-13 — Nav mapping follow-up cleanup
+
+Date / Session: 2026-03-13 / nav-image-evidence-followup-mappings
+
+What Changed:
+- Updated `docs/cross-version/navigation.md` so the 16.2 rows for `NavigationLane` and `NavigationText` now point to `vyv` and `vyz`, matching the semantic `32774` sender evidence
+- Added a bounded note to the same cross-version table clarifying that the deprecated 16.2 `vyy` class is only class-shape continuity for `NavigationTurnEvent`, not proof of a reachable native `0x8004` sender path
+- Updated `oaa/navigation/NavigationNotificationMessage.audit.yaml` and `oaa/navigation/NavigationTurnEventMessage.audit.yaml` to reflect those class mappings and the bounded 16.2 `vyy` status, and corrected the `TurnSideEnum.proto` header comment to reference NavigationTurnEvent field `3`
+
+Why:
+- Task 10 fixed the canonical nav docs, but a follow-up sweep found stale mapping/reference artifacts that now contradicted the source-backed evidence, especially around 16.2 semantic-nav submessages and the deprecated `vyy` class
+
+Status:
+- Follow-up reference cleanup complete
+- Canonical nav docs, cross-version table, and the touched nav audit sidecars now agree on the bounded 16.2 story
+- Still intentionally unresolved: whether undecompiled `mo18767n(...)` hides any native legacy image send, and what the 16.2 semantic override bit exactly means
+
+Next Steps:
+1. If you want a wider consistency pass, inspect historical/debug docs such as `docs/phone-side-debug.md` and any generated reference artifacts for pre-Task-10 TurnEvent assumptions
+2. If you want to close `Q4`, recover or decompile the 16.2 `mo18767n(...)` body
+3. If you want to close `Q7`, trace the provenance and semantic meaning of `f34211e`
+
+Verification:
+- `git -C /home/matt/claude/personal/openautopro/open-android-auto/.worktrees/nav-image-evidence-20260313 diff --check` -> clean (no output)
+- `rg -n "NavigationLane \\| .*vyv|NavigationText \\| .*vyz|NavigationTurnEvent \\| .*vyy|reachable native .*0x8004|Used in NavigationTurnEvent field 3|v16\\.2:vyv|v16\\.2:vyz" /home/matt/claude/personal/openautopro/open-android-auto/.worktrees/nav-image-evidence-20260313/docs/cross-version/navigation.md /home/matt/claude/personal/openautopro/open-android-auto/.worktrees/nav-image-evidence-20260313/oaa/navigation/NavigationNotificationMessage.audit.yaml /home/matt/claude/personal/openautopro/open-android-auto/.worktrees/nav-image-evidence-20260313/oaa/navigation/NavigationTurnEventMessage.audit.yaml /home/matt/claude/personal/openautopro/open-android-auto/.worktrees/nav-image-evidence-20260313/oaa/navigation/TurnSideEnum.proto` -> expected updated mappings, bounded `vyy` note, and corrected field-number comment present
+- `mkdir -p /tmp/oaa_nav_followup_verify && protoc --proto_path=. --cpp_out=/tmp/oaa_nav_followup_verify oaa/navigation/TurnSideEnum.proto oaa/navigation/NavigationTurnEventMessage.proto` -> success
+
+## 2026-03-13 — Sony naming bridge cleanup
+
+Date / Session: 2026-03-13 / nav-image-evidence-followup-sony-names
+
+What Changed:
+- Updated `docs/protocol-cross-reference.md` to keep the Sony-symbol `NavigationNextTurnEvent` terminology but explicitly bridge it to the canonical repo split between deprecated `NavigationTurnEvent`, `LegacyNavigationTurnEvent`, and `NavigationNextTurnDistanceEvent`
+- Updated `docs/channels/coolwalk-layout.md` so the active-navigation inference note no longer implies `NavigationTurnEvent` is the modern default nav signal; it now points at `NavigationNotification` / `NavigationState` plus legacy flat turn-event fallbacks
+
+Why:
+- After the Task 10 and mapping follow-up fixes, these docs still mixed older Sony symbol names with canonical repo names in a way that could mislead readers about which modern nav messages are actually primary
+
+Status:
+- Naming-bridge cleanup complete
+- The touched docs now preserve Sony/source terminology without fighting the bounded canonical nav evidence
+- Remaining open questions are still the same bounded technical ones (`mo18767n(...)` and the override bit), not naming drift
+
+Next Steps:
+1. If you want a full historical consistency sweep, inspect the remaining Sony/Kenwood/Alpine firmware notes for places where symbol names should be explicitly bridged to canonical repo message names
+2. If you want further evidence closure, continue on `Q4` or `Q7` rather than expanding doc cleanup indefinitely
+
+Verification:
+- `git -C /home/matt/claude/personal/openautopro/open-android-auto/.worktrees/nav-image-evidence-20260313 diff --check` -> clean (no output)
+- `rg -n "Sony-symbol terminology|NavigationNextTurnEvent \\| Sony-symbol family|Navigation status \\(10\\) \\| NavigationNextTurnEvent|Navigation active" /home/matt/claude/personal/openautopro/open-android-auto/.worktrees/nav-image-evidence-20260313/docs/protocol-cross-reference.md /home/matt/claude/personal/openautopro/open-android-auto/.worktrees/nav-image-evidence-20260313/docs/channels/coolwalk-layout.md` -> bridging note, updated Sony-name row, updated service summary row, and updated coolwalk navigation-activity note present
+
+## 2026-03-13 — 16.2 legacy 0x8004 recovery correction
+
+Date / Session: 2026-03-13 / nav-image-evidence-followup-q4-recovery
+
+What Changed:
+- Recovered `hlj.mo18767n(...)` from 16.2 `classes.dex` via fallback JADX and confirmed that the legacy `m18759z(carInfo)` branch still synthesizes `da_turn_*` fallback images, builds deprecated `vyy`, and sends native `32772` / `0x8004`
+- Updated canonical/reference docs and proto comments that had been overstated after Task 10: `docs/channels/nav.md`, `oaa/navigation/NavigationTurnEventMessage.proto`, `oaa/navigation/NavigationNotificationMessage.proto`, `oaa/navigation/InstrumentClusterMessages.proto`, `docs/cross-version/navigation.md`, `oaa/navigation/NavigationTurnEventMessage.audit.yaml`, and `docs/protocol-cross-reference.md`
+- Updated the nav-image design/plan artifacts so `Q4` is now confirmed, `Q5`/`Q6` stay rejected for the named successor / lane-junction cases, and the remaining live open question is the meaning of 16.2 override bit `f34211e`
+
+Why:
+- The previous post-Task-10 cleanup reasonably bounded the opaque `mo18767n(...)` method as unresolved, but once fallback JADX exposed the body, the stronger “0x8004 removed in 16.2” language became wrong and had to be corrected immediately
+
+Status:
+- `Q4` is now confirmed: 16.2 still has a native legacy image-bearing path on deprecated `32772` / `0x8004`
+- `Q5` remains rejected: no named `NEXT_TURN_IMAGE` / `NavigationImageOptions` sender path was found; the live legacy send stays on deprecated `0x8004`
+- `Q6` remains rejected for native lane/junction transport: recovered `mo18767n(...)` still only carries one optional turn-image bytes field
+- `Q7` is now the primary remaining gap
+
+Next Steps:
+1. Trace the provenance and semantic meaning of `f34211e` to close the cross-version gate story
+2. Decide whether any older historical/debug docs need explicit “superseded by fallback JADX recovery” notes, or whether the current canonical/reference corrections are enough
+
+Verification:
+- `git -C /home/matt/claude/personal/openautopro/open-android-auto/.worktrees/nav-image-evidence-20260313 diff --check` -> clean (no output)
+- `mkdir -p /tmp/oaa_nav_q4_verify && protoc --proto_path=. --cpp_out=/tmp/oaa_nav_q4_verify oaa/navigation/NavigationTurnEventMessage.proto oaa/navigation/NavigationNotificationMessage.proto oaa/navigation/InstrumentClusterMessages.proto` -> success
+- `jadx --single-class defpackage.hlj --single-class-output /tmp/jadx_hlj_verify --decompilation-mode fallback --no-res /home/matt/claude/personal/openautopro/open-android-auto/analysis/android_auto_16.2.660604-release_162660604/apk-source/resources/classes.dex /home/matt/claude/personal/openautopro/open-android-auto/analysis/android_auto_16.2.660604-release_162660604/apk-source/resources/classes2.dex /home/matt/claude/personal/openautopro/open-android-auto/analysis/android_auto_16.2.660604-release_162660604/apk-source/resources/classes3.dex /home/matt/claude/personal/openautopro/open-android-auto/analysis/android_auto_16.2.660604-release_162660604/apk-source/resources/classes4.dex` -> success; wrote `/tmp/jadx_hlj_verify/hlj.java`
+- `rg -n "bp\\(\\)|da_turn_|vyy|32772" /tmp/jadx_hlj_verify/hlj.java` -> recovered legacy helper clears bytes when image delivery is disabled, synthesizes concrete `da_turn_*` assets, builds `vyy`, and sends `32772`
+- `rg -n "Q4 \\||Q5 \\||Q6 \\||Legacy image-bearing sender|Local fallback image generation|Native-wire lane/junction/turn image payloads|f34211e" /home/matt/claude/personal/openautopro/open-android-auto/.worktrees/nav-image-evidence-20260313/docs/plans/2026-03-13-nav-image-evidence-plan.md /home/matt/claude/personal/openautopro/open-android-auto/.worktrees/nav-image-evidence-20260313/docs/plans/2026-03-13-nav-image-evidence-design.md` -> plan/design artifacts now show `Q4` confirmed, `Q5`/`Q6` rejected, updated matrix rows, and `f34211e` as the next unanswered question
+- `rg -n "legacy image-bearing|vyy @Deprecated|0x8004 / 32772|legacy image-bearing path still source-backed" /home/matt/claude/personal/openautopro/open-android-auto/.worktrees/nav-image-evidence-20260313/docs/channels/nav.md /home/matt/claude/personal/openautopro/open-android-auto/.worktrees/nav-image-evidence-20260313/oaa/navigation/NavigationTurnEventMessage.proto /home/matt/claude/personal/openautopro/open-android-auto/.worktrees/nav-image-evidence-20260313/oaa/navigation/InstrumentClusterMessages.proto /home/matt/claude/personal/openautopro/open-android-auto/.worktrees/nav-image-evidence-20260313/docs/cross-version/navigation.md /home/matt/claude/personal/openautopro/open-android-auto/.worktrees/nav-image-evidence-20260313/docs/protocol-cross-reference.md` -> corrected canonical/reference docs now consistently describe deprecated but live legacy `0x8004` / `32772` in 16.2
+
+## 2026-03-13 — Nav image evidence recovery rebaseline
+
+Date / Session: 2026-03-13 / nav-image-evidence-recovery-rebaseline
+
+What Changed:
+- Rebased the recovery state after a crash review and confirmed the older "resume Task 10" prompt is stale relative to the branch head
+- Verified the isolated worktree already contains Task 10 plus the later corrections through commit `00013e2` (`docs(nav): correct 16.2 legacy turn-event path`)
+- Traced the remaining 16.2 override-bit provenance further: `hlj` receives `f34211e` from `pnl.f57495b`, `hmi` parses `pnl` from the `com.google.android.projection.clustersim` vendor extension, and `ilf` writes the same bit on the producer side during service-discovery munging
+- Narrowed the remaining open question: `Q7` is no longer "where does the override bit come from?" so much as "what does that bit actually mean?"
+
+Why:
+- The previous restart prompt would have sent the next session backward into already-completed Task 10 work and pre-correction assumptions about `Q4`
+- A fresh handoff needed to reflect the real branch state so the next session can focus only on the still-live `f34211e` semantics question
+
+Status:
+- Worktree is clean on branch `nav-image-evidence-20260313`
+- Canonical nav docs and proto comments are already updated and corrected for the recovered 16.2 legacy `0x8004` / `32772` path
+- `Q4` is confirmed, `Q5` and `Q6` remain rejected, and `Q7` is the only meaningful remaining investigation target
+- Current source-backed provenance chain for `Q7`: `iom.java` -> `new hlj(..., pnlVar.f57495b)`; `hmi.java` parses `pnl`; `pnl.java` exposes a single boolean field; `ilf.java` writes that field from local variable `z5`; 16.1 mirrors the same shape via `iny.java` / `poe.b` / `iks.java`
+
+Next Steps:
+1. Trace how `z5` / `z3` are derived in `analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/ilf.java` and compare that logic with `openauto-prodigy/.../defpackage/iks.java`
+2. Inspect `analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/ile.java` and the 16.1 analog `openauto-prodigy/.../defpackage/ikr.java` to see whether the bit maps to a named pass-through/filtering behavior
+3. If the producer-side semantics stay opaque, tighten `Q7` to "provenance closed, semantic meaning still unproven" rather than guessing
+
+Verification:
+- `git -C /home/matt/claude/personal/openautopro/open-android-auto/.worktrees/nav-image-evidence-20260313 status --short --branch` -> clean branch `nav-image-evidence-20260313`
+- `git -C /home/matt/claude/personal/openautopro/open-android-auto/.worktrees/nav-image-evidence-20260313 log --oneline --decorate -10` -> head is `00013e2 docs(nav): correct 16.2 legacy turn-event path`; older Task 10 commit `0025f40` is already behind it
+- `nl -ba /home/matt/claude/personal/openautopro/open-android-auto/analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/iom.java | sed -n '360,376p'` -> `hlj` constructed with `pnlVar.f57495b`
+- `nl -ba /home/matt/claude/personal/openautopro/open-android-auto/analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/hmi.java | sed -n '15,46p'` -> `hmi` parses `pnl` from `com.google.android.projection.clustersim`
+- `nl -ba /home/matt/claude/personal/openautopro/open-android-auto/analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/pnl.java | sed -n '4,34p'` -> `pnl` carries boolean field `f57495b`
+- `nl -ba /home/matt/claude/personal/openautopro/open-android-auto/analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/ilf.java | sed -n '377,383p'` -> producer-side service-discovery munger writes `((pnl) ...).f57495b = z5`
+- `nl -ba /home/matt/claude/personal/openautopro/openauto-prodigy/analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/defpackage/iks.java | sed -n '364,370p'` -> 16.1 producer-side path writes mirrored `poe.b = z5`
+
+## 2026-03-13 — Q7 capability gate closure
+
+Date / Session: 2026-03-13 / nav-image-evidence-q7-closure
+
+What Changed:
+- Closed `Q7` in the nav-image plan/design artifacts with a source-backed meaning for the 16.1 `poe.b` / 16.2 `pnl.f57495b` override bit
+- Documented that the override becomes true only when the clustersim SDR munger has to inject a missing instrument-cluster descriptor (`wbw` / `wbm` bit `128` carrying `vzr` / `vzd` image options) and that `hkx` / `hlj` then use that bit to force the rich-semantic nav gate
+- Refreshed the plan `Resume Here` block so the evidence ledger no longer points at a dead `f34211e` question
+
+Why:
+- `Q7` was the last live investigation target after Task 10 and the later nav-document corrections
+- Direct APK source closed provenance but not the hidden branch in `iks` / `ilf`, so simple JADX recovery was needed to prove the bit's runtime meaning without guessing
+
+Status:
+- `Q7` is now confirmed
+- The cross-version gate story is source-backed end-to-end: protocol `>= 1.6` still drives the default threshold, and the clustersim vendor bit is a synthetic-instrument-cluster override rather than a second HU-version field
+- No canonical nav doc changes were needed in this pass; only the plan/design/handoff layer changed
+
+Next Steps:
+1. Optional: sweep historical/debug docs for stale text that still says the override-bit meaning is open
+2. Otherwise this nav-image evidence track is ready for review
+
+Verification:
+- `git -C /home/matt/claude/personal/openautopro/open-android-auto/.worktrees/nav-image-evidence-20260313 diff --check` -> clean (no output)
+- `nl -ba /home/matt/claude/personal/openautopro/open-android-auto/analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/hlj.java | sed -n '116,152p'` -> `(wbmVar.f74994b & 128)` marks the instrument-cluster descriptor and `vzd` carries image-option data
+- `nl -ba /home/matt/claude/personal/openautopro/openauto-prodigy/analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/defpackage/hkx.java | sed -n '70,125p'` -> 16.1 mirrors the same `wbw.b & 128` instrument-cluster descriptor and `vzr` image-option handling
+- `mkdir -p /tmp/jadx_ilf_verify && jadx --show-bad-code --comments-level debug --decompilation-mode simple --single-class defpackage.ilf --single-class-output /tmp/jadx_ilf_verify /home/matt/claude/personal/openautopro/open-android-auto/analysis/android_auto_16.2.660604-release_162660604/apk-source/resources/classes.dex` -> success; wrote `/tmp/jadx_ilf_verify/ilf.java`
+- `rg -n "if \\(i2 >= 0\\)|wbmVar3\\.b \\|= 128|new ile|z5 = false" /tmp/jadx_ilf_verify/ilf.java` -> recovered branch injects missing `wbm.j` / bit-`128` descriptor, otherwise forces `z5 = false`, then passes `z5` into `new ile(...)`
+- `mkdir -p /tmp/jadx_ile_verify && jadx --show-bad-code --comments-level debug --decompilation-mode simple --single-class defpackage.ile --single-class-output /tmp/jadx_ile_verify /home/matt/claude/personal/openautopro/open-android-auto/analysis/android_auto_16.2.660604-release_162660604/apk-source/resources/classes.dex` -> success; wrote `/tmp/jadx_ile_verify/ile.java`
+- `rg -n "int\\[\\] iArr = \\{i\\}|iArr = new int\\[0\\]|if \\(this\\.e == false\\)|return null;" /tmp/jadx_ile_verify/ile.java` -> when the override is true, `ile` registers the synthetic channel and swallows returned nav messages (`return null`) instead of passing them through
+- `mkdir -p /tmp/jadx_iks_verify && jadx --show-bad-code --comments-level debug --decompilation-mode simple --single-class defpackage.iks --single-class-output /tmp/jadx_iks_verify /home/matt/claude/personal/openautopro/openauto-prodigy/analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/resources/classes.dex` -> success; wrote `/tmp/jadx_iks_verify/iks.java`
+- `rg -n "if \\(i2 >= 0\\)|wbwVar3\\.b \\|= 128|new ikr|z5 = false" /tmp/jadx_iks_verify/iks.java` -> 16.1 recovered branch matches 16.2: inject missing `wbw.j` / bit-`128` descriptor, otherwise force `z5 = false`, then pass `z5` into `new ikr(...)`
+- `mkdir -p /tmp/jadx_ikr_verify && jadx --show-bad-code --comments-level debug --decompilation-mode simple --single-class defpackage.ikr --single-class-output /tmp/jadx_ikr_verify /home/matt/claude/personal/openautopro/openauto-prodigy/analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/resources/classes.dex` -> success; wrote `/tmp/jadx_ikr_verify/ikr.java`
+- `rg -n "int\\[\\] iArr = \\{i\\}|iArr = new int\\[0\\]|if \\(this\\.e == false\\)|return null;" /tmp/jadx_ikr_verify/ikr.java` -> 16.1 `ikr` uses the same override-controlled synthetic-channel / swallow behavior as 16.2 `ile`
+- `rg -n "Q7 \\| .*Confirmed|synthetic instrument-cluster descriptor|rich-nav capability override" /home/matt/claude/personal/openautopro/open-android-auto/.worktrees/nav-image-evidence-20260313/docs/plans/2026-03-13-nav-image-evidence-plan.md /home/matt/claude/personal/openautopro/open-android-auto/.worktrees/nav-image-evidence-20260313/docs/plans/2026-03-13-nav-image-evidence-design.md /home/matt/claude/personal/openautopro/open-android-auto/.worktrees/nav-image-evidence-20260313/docs/session-handoffs.md` -> plan/design/handoff artifacts now show `Q7` confirmed and describe the override as synthetic instrument-cluster injection

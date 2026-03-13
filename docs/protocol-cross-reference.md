@@ -30,6 +30,8 @@ The Sony firmware implements services 1-16 (via protobuf types in `accessory_ser
 | 8 | INPUT_SOURCE | Yes | Yes | Yes | InputSourceService, InputReport, InputFeedback, TouchEvent, KeyEvent |
 | 9 | BLUETOOTH | Yes | Yes | Yes | BluetoothService, BluetoothPairingRequest/Response, BluetoothAuthenticationData |
 | 10 | NAVIGATION_STATUS | Yes | Yes | No | NavigationStatusService, NavigationStatus, NavigationNextTurnEvent/DistanceEvent, NavFocus* |
+
+Note: in this document, `NavigationNextTurnEvent` is Sony-symbol terminology. The canonical repo now distinguishes deprecated `NavigationTurnEvent` (`0x8004`, legacy image-bearing path still source-backed in 16.2), `LegacyNavigationTurnEvent` (`0x8005` in 16.2), and `NavigationNextTurnDistanceEvent` (`0x8007`).
 | 11 | MEDIA_PLAYBACK_STATUS | Yes | Yes | No | MediaPlaybackStatusService, MediaPlaybackStatus, MediaPlaybackMetadata |
 | 12 | MEDIA_BROWSER | Yes | Yes | No | MediaBrowserService, MediaBrowserInput, MediaGetNode, MediaList/Song/Root/SourceNode |
 | 13 | PHONE_STATUS | Yes | Yes | No | PhoneStatusService, PhoneStatus, PhoneStatus_Call, PhoneStatusInput |
@@ -164,7 +166,7 @@ Sony implements sensors 1-21. The APK adds 22-26 (EV-specific sensors added afte
 | NavigationStatus | Current nav state (native/projected) |
 | NavigationStatusStart | Begin nav status updates |
 | NavigationStatusStop | End nav status updates |
-| NavigationNextTurnEvent | Turn type, turn side, road name, icon |
+| NavigationNextTurnEvent | Sony-symbol family for flat next-turn guidance; canonical repo splits this into deprecated `NavigationTurnEvent` (`0x8004`, legacy image-bearing path still source-backed in 16.2) and `LegacyNavigationTurnEvent` (`0x8005` in 16.2) |
 | NavigationNextTurnDistanceEvent | Distance to turn, distance units |
 | NavFocusNotification | Nav focus state (Car→Phone) |
 | NavFocusRequestNotification | Nav focus request (Phone→Car) |
@@ -564,7 +566,7 @@ Based on the cross-referenced data, prioritized by impact:
 
 | Service | Protobuf Names (Sony) | Value |
 |---------|----------------------|-------|
-| Navigation status (10) | NavigationNextTurnEvent, NavigationNextTurnDistanceEvent | Turn-by-turn in native UI |
+| Navigation status (10) | NavigationNextTurnEvent, NavigationNextTurnDistanceEvent | Turn-by-turn in native UI (Sony naming; canonical repo further splits flat turn events into deprecated `NavigationTurnEvent` and `LegacyNavigationTurnEvent`, both still present on legacy 16.2 paths) |
 | Media playback (11) | MediaPlaybackStatus, MediaPlaybackMetadata | Now-playing in launcher |
 | Phone status (13) | PhoneStatus, PhoneStatus_Call | Incoming call display |
 | Notifications (14) | GenericNotificationMessage | Phone notifications on HU |
