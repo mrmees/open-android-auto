@@ -37,7 +37,7 @@
 |----|----------|--------|-------|
 | Q1 | 16.1 sends both semantic `32774` and image-bearing `32772` from `NavigationState` | Confirmed | Reconfirmed from 16.1 source: semantic `32774` path runs under `y(r)`, builds `vzu` step entries and `vze` destinations, then emits `this.k.k(32774, ...)` (`hkx.java:304-308`, `hkx.java:313-487`, `hkx.java:497-578`); `vzo` only carries repeated `vzu` + `vze` entries (`vzo.java:7-30`), and `vzu` only exposes maneuver/text/lanes/road-info fields (`vzu.java:7-30`). Legacy/image path: `NavigationStep` stores app turn-image bytes in `byte[] c` and parcels them as field `5` (`NavigationStep.java:8`, `NavigationStep.java:24`, `NavigationStep.java:59-66`); `hkx` passes `navigationStep2.c` or fallback `bArr` into `n(...)` (`hkx.java:748-756`); `n(...)` writes non-null bytes into `vzm.f` and sends `32772` (`hkx.java:1023-1033`; `vzm.java:13-15`, `vzm.java:33-34`). |
 | Q2 | 16.1 synthesizes fallback turn images locally | Confirmed | Reconfirmed from `hkx.n(...)`: if image delivery is disabled, incoming `bArr` is cleared (`hkx.java:843-845`); when bytes are still null and `this.l` (`hwl`) is present, the legacy path synthesizes fallback bytes from named `da_turn_*` assets via `hwl.a(...)`, `hwl.c.a(...)`, or generic `hwl.b()` fallback, including roundabout angle-specific assets, before serializing the result into `vzm.f` and sending `32772` (`hkx.java:846-967`, `hkx.java:1023-1033`). |
-| Q3 | 16.2 rich native nav sender is semantic-only | Confirmed | Re-verify with exact citations during execution |
+| Q3 | 16.2 rich native nav sender is semantic-only | Confirmed | Reconfirmed from 16.2 source: semantic `32774` path runs under `m18758y(mo19019r)` and builds `vza` step + destination entries before `this.f34217k.m20106k(32774, ...)` (`hlj.java:361-365`, `hlj.java:372-635`); `vza` only carries repeated `vzg` + `vyq` entries (`vza.java:12-16`, `vza.java:38-39`); `vzg` only exposes maneuver `vyw`, text `vyz`, repeated lane entries `vyv`, and road-info `vyo`, with no raw image-bytes field (`vzg.java:13-25`, `vzg.java:44-45`). |
 | Q4 | 16.2 has a native image-bearing successor path | Open | |
 | Q5 | `NEXT_TURN_IMAGE` is reachable in 16.2 | Open | |
 | Q6 | `junctionImage` or `lanesImage` reach native nav transport in 16.2 | Open | |
@@ -46,16 +46,15 @@
 
 ## Resume Here
 
-- Last completed task: `Task 4 - 16.1 nav delivery gates traced`
-- Last verified claim: `16.1 selects semantic nav for HU protocol >= 1.6 via hkx.x()/y(), selects legacy nav for HU protocol < 1.6 via hkx.z(), and can force the semantic branch on older HUs through clustersim vendor-extension bit poe.b`
+- Last completed task: `Task 5 - 16.2 semantic native sender reconfirmed`
+- Last verified claim: `16.2 still emits native semantic nav on 32774 via hlj.mo18762h(...), and that payload remains image-free because vza/vzg only carry step/destination, maneuver, text, lane, and road-info fields`
 - Evidence files:
-  - `/home/matt/claude/personal/openautopro/openauto-prodigy/analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/defpackage/hkx.java`
-  - `/home/matt/claude/personal/openautopro/openauto-prodigy/analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/defpackage/hlw.java`
-  - `/home/matt/claude/personal/openautopro/openauto-prodigy/analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/defpackage/iny.java`
-  - `/home/matt/claude/personal/openautopro/openauto-prodigy/analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/defpackage/ijk.java`
+  - `/home/matt/claude/personal/openautopro/open-android-auto/analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/hlj.java`
+  - `/home/matt/claude/personal/openautopro/open-android-auto/analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/vza.java`
+  - `/home/matt/claude/personal/openautopro/open-android-auto/analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/vzg.java`
   - `docs/session-handoffs.md`
-- Next unanswered question: `Does 16.2 still send semantic native nav on 32774, and is that payload still image-free?`
-- Next command to run: `sed -n '360,620p' analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/hlj.java`
+- Next unanswered question: `Does 16.2 still feed app-side turnImage bytes into any native sender, and if so is that a reachable wire path or just legacy plumbing?`
+- Next command to run: `sed -n '1,90p' /home/matt/claude/personal/openautopro/open-android-auto/analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/com/google/android/gms/car/navigation/NavigationStep.java`
 
 ---
 

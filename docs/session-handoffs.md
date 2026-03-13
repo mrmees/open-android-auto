@@ -215,3 +215,36 @@ Verification:
 - `nl -ba /home/matt/claude/personal/openautopro/openauto-prodigy/analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/defpackage/iny.java | sed -n '323,333p'` -> `hkx` receives constructor boolean from clustersim vendor-extension field `poeVar.b`
 - `nl -ba /home/matt/claude/personal/openautopro/openauto-prodigy/analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/defpackage/hlw.java | sed -n '8,37p'` -> `hlw` parses clustersim vendor-extension payload into `poe`
 - `nl -ba /home/matt/claude/personal/openautopro/openauto-prodigy/analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/defpackage/hzy.java | sed -n '15,135p'` -> no semantic/legacy gate logic; file handles `32769`/`32770` receive path and emits `32773`
+
+## 2026-03-13 — 16.2 semantic nav sender checkpoint
+
+Date / Session: 2026-03-13 / nav-image-evidence-task5
+
+What Changed:
+- Reconfirmed from 16.2 source that `hlj.mo18762h(...)` still builds the semantic native nav payload and emits it on `32774`
+- Reconfirmed that the semantic payload remains image-free: `vza` only contains repeated step + destination entries, and `vzg` only contains maneuver, text, lane, and road-info fields
+- Updated [docs/plans/2026-03-13-nav-image-evidence-plan.md](plans/2026-03-13-nav-image-evidence-plan.md) so recovery now resumes at Task 6 and the 16.2 app-side turn-image question
+- Recorded the source-location workaround: this worktree has the 16.2 `apk-index` tree but not the decompiled `apk-source`, so Task 5 used the main checkout's read-only `analysis/.../apk-source` path as evidence
+
+Why:
+- `Q3` was already believed to be true, but this investigation only counts what the actual sender and message classes still do in 16.2, with line-backed proof instead of inherited assumptions
+
+Status:
+- Task 5 complete
+- `Q3` now has exact 16.2 citations for the semantic sender and its image-free wire shape
+- The next open question is whether 16.2 still routes `NavigationStep.turnImage` bytes into any native sender path
+
+Next Steps:
+1. Verify that 16.2 `NavigationStep` still carries app-side `turnImage` bytes
+2. Check whether `hlj`'s semantic path ignores those bytes while any legacy helper still accepts them
+3. Update `Q4`, refresh `Resume Here`, and commit the Task 6 checkpoint
+
+Verification:
+- `sed -n '360,620p' /home/matt/claude/personal/openautopro/open-android-auto/analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/hlj.java` -> semantic builder populates maneuver, text, lanes, road info, destinations, then continues toward `32774`
+- `sed -n '1,220p' /home/matt/claude/personal/openautopro/open-android-auto/analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/vza.java` -> descriptor only exposes repeated `vzg` step entries and repeated `vyq` destinations
+- `sed -n '1,220p' /home/matt/claude/personal/openautopro/open-android-auto/analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/vzg.java` -> fields are `vyw`, `vyz`, repeated `vyv`, and `vyo`; no bytes field present
+- `rg -n "32774|m18758y\\(|if \\(m18758y\\(mo19019r\\)\\)" /home/matt/claude/personal/openautopro/open-android-auto/analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/hlj.java` -> semantic gate occurrences at lines `215` and `361`; `32774` send at line `635`
+- `nl -ba /home/matt/claude/personal/openautopro/open-android-auto/analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/hlj.java | sed -n '96,110p'` -> 16.2 still uses `m18758y(carInfo) = this.f34211e || m18757x(carInfo)` with the same protocol-threshold helper structure
+- `nl -ba /home/matt/claude/personal/openautopro/open-android-auto/analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/hlj.java | sed -n '375,635p'` -> semantic sender builds `vzg` entries from maneuver/text/lanes/road-info and adds destinations before `m20106k(32774, ...)`
+- `nl -ba /home/matt/claude/personal/openautopro/open-android-auto/analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/vza.java | sed -n '12,40p'` -> `vza` is repeated `vzg` + repeated `vyq`
+- `nl -ba /home/matt/claude/personal/openautopro/open-android-auto/analysis/android_auto_16.2.660604-release_162660604/apk-source/sources/p000/vzg.java | sed -n '13,45p'` -> `vzg` fields remain maneuver, text, repeated lanes, and road-info only
