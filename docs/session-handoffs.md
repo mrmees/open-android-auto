@@ -126,3 +126,32 @@ Verification:
 - `nl -ba /home/matt/claude/personal/openautopro/openauto-prodigy/analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/defpackage/hkx.java | sed -n '302,578p'` -> `y(r)` rich-nav gate, `vzu`/`vzo` builders, destination append, and `this.k.k(32774, (vzo) o.q())` at line `578`
 - `nl -ba /home/matt/claude/personal/openautopro/openauto-prodigy/analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/defpackage/vzo.java | sed -n '7,30p'` -> descriptor only exposes repeated `vzu` (`b`) and repeated `vze` (`c`)
 - `nl -ba /home/matt/claude/personal/openautopro/openauto-prodigy/analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/defpackage/vzu.java | sed -n '7,30p'` -> fields are `vzk`, `vzn`, repeated `vzj`, and `vzc`; no bytes field present
+
+## 2026-03-13 — 16.1 legacy image-bearing nav path checkpoint
+
+Date / Session: 2026-03-13 / nav-image-evidence-task2
+
+What Changed:
+- Reconfirmed from 16.1 source that `NavigationStep` stores app-provided turn-image bytes in `byte[] c` and writes them to parcel field `5`
+- Reconfirmed that the legacy path in `hkx.java` reads `navigationStep2.c`, substitutes fallback `bArr` when the step image is null, and passes the resulting bytes into `n(...)`
+- Reconfirmed inside `hkx.n(...)` plus `vzm.java` that non-null bytes are serialized into `vzm.f` and the legacy nav payload is emitted on `32772`
+- Updated [docs/plans/2026-03-13-nav-image-evidence-plan.md](plans/2026-03-13-nav-image-evidence-plan.md) so recovery now resumes at Task 3 and the fallback-image generation question
+
+Why:
+- The dual-send claim needed exact source evidence that the legacy path carries raw image bytes from the app-side model all the way into the wire serializer, not just a vague "image-bearing" label
+
+Status:
+- Task 2 complete
+- `Q1` now has exact citations for both the semantic `32774` path and the legacy/image-bearing `32772` path
+- `Q2` now has the fallback input boundary (`NavigationStep.c` or `bArr`), but the exact local synthesis of `bArr` remains the next source trace
+
+Next Steps:
+1. Trace `hkx.n(...)` through the fallback branch to identify the local resource-based turn-image synthesis
+2. Update `Q2` with exact fallback-generation citations and refresh `Resume Here`
+3. Commit the fallback-image checkpoint from Task 3
+
+Verification:
+- `nl -ba /home/matt/claude/personal/openautopro/openauto-prodigy/analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/com/google/android/gms/car/navigation/NavigationStep.java | sed -n '4,66p'` -> `byte[] c` at line `8`, assignment at line `24`, parcel write `defpackage.rjc.y(parcel, 5, this.c)` at line `65`
+- `nl -ba /home/matt/claude/personal/openautopro/openauto-prodigy/analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/defpackage/hkx.java | sed -n '748,756p'` -> legacy caller prefers `navigationStep2.c` and falls back to `bArr` before calling `n(...)`
+- `nl -ba /home/matt/claude/personal/openautopro/openauto-prodigy/analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/defpackage/hkx.java | sed -n '1023,1033p'` -> `n(...)` writes non-null bytes into `vzm.f` and sends `32772`
+- `nl -ba /home/matt/claude/personal/openautopro/openauto-prodigy/analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/defpackage/vzm.java | sed -n '13,34p'` -> `vzm` exposes `zxq f` as the bytes field in its 6-field descriptor
