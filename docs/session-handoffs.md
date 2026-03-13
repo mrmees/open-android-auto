@@ -68,3 +68,61 @@ Next Steps:
 Verification:
 - `PYTHONPATH=. python3 analysis/tools/proto_stream_validator/run.py --capture analysis/captures/non_media/2026-02-28-s25-cleanbuild.jsonl --baseline analysis/baselines/non_media/2026-02-28-s25-cleanbuild.normalized.json` -> validation passed
 - `find oaa -name '*.proto' | sort | xargs protoc --proto_path=. --cpp_out=/tmp/oaa_verify` -> clean (0 errors, 0 warnings)
+
+## 2026-03-13 — Nav image evidence design and execution plan
+
+Date / Session: 2026-03-13 / nav-image-evidence-planning
+
+What Changed:
+- Added [docs/plans/2026-03-13-nav-image-evidence-design.md](plans/2026-03-13-nav-image-evidence-design.md), an approved design for a source-first, version-paired investigation of native nav-channel image delivery
+- Added [docs/plans/2026-03-13-nav-image-evidence-plan.md](plans/2026-03-13-nav-image-evidence-plan.md), a crash-tolerant execution plan with explicit checkpoints, `Resume Here` state, and per-task handoff requirements
+- Captured the crucial evidence-source split in the plan: 16.2 source lives in this repo, while the full 16.1 decompiled source currently lives in the sibling `openauto-prodigy/analysis-projection` tree and must be treated as primary evidence during execution
+
+Why:
+- The nav-image investigation is getting interrupted by compaction/session crashes, so chat-only continuity is not reliable enough
+- The open question is not "what do our docs say" but "what do the 16.1 and 16.2 APKs actually serialize on the native nav wire", especially around `turnImage`, `lanesImage`, `junctionImage`, and `NEXT_TURN_IMAGE`
+- A durable plan is needed so the next recovery session can restart from repo files alone instead of re-deriving context from memory
+
+Status:
+- Planning complete; execution has not started yet
+- The design explicitly keeps scope limited to protocol/evidence work
+- The first execution task is to reconfirm the 16.1 dual-send structure (`32774` semantic + `32772` image-bearing) from source and start recording exact citations in the plan ledger
+
+Next Steps:
+1. Execute Task 1 from [docs/plans/2026-03-13-nav-image-evidence-plan.md](plans/2026-03-13-nav-image-evidence-plan.md) using `executing-plans`
+2. After each meaningful claim closure, update the plan's `Resume Here` block and append a fresh handoff entry before moving on
+3. Do not update canonical nav docs/proto comments until the 16.1/16.2 delta matrix closes the relevant evidence questions
+
+Verification:
+- `test -f docs/plans/2026-03-13-nav-image-evidence-design.md && echo design_present` -> `design_present`
+- `test -f docs/plans/2026-03-13-nav-image-evidence-plan.md && echo plan_present` -> `plan_present`
+- `test -d /home/matt/claude/personal/openautopro/openauto-prodigy/analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources && echo ext_16_1_source_present` -> `ext_16_1_source_present`
+- `rg -n "Evidence Ledger|Resume Here|NEXT_TURN_IMAGE|32772|32774" docs/plans/2026-03-13-nav-image-evidence-design.md docs/plans/2026-03-13-nav-image-evidence-plan.md` -> expected investigation/checkpoint markers present
+- `git diff --check` -> clean
+
+## 2026-03-13 — 16.1 semantic nav sender checkpoint
+
+Date / Session: 2026-03-13 / nav-image-evidence-task1
+
+What Changed:
+- Reconfirmed from 16.1 source that `hkx.h(...)` takes the semantic rich-nav branch under `y(r)`, builds `vzu` step entries from maneuver, lane, text, and road-info data, appends destination entries, and emits `this.k.k(32774, (vzo) o.q())`
+- Reconfirmed from the 16.1 message classes that `vzo` only contains repeated `vzu` step entries plus repeated `vze` destinations, while `vzu` exposes maneuver/text/lanes/road-info fields and no raw image-bytes field
+- Updated [docs/plans/2026-03-13-nav-image-evidence-plan.md](plans/2026-03-13-nav-image-evidence-plan.md) so recovery now resumes at Task 2 and the app-side image-byte origin question
+
+Why:
+- The semantic half of the 16.1 dual-send claim needed exact source citations before the investigation could safely talk about whether images are sent separately or embedded in the rich payload
+
+Status:
+- Task 1 complete
+- `Q1` now has exact citations for the semantic `32774` half of the claim
+- The legacy/image-bearing `32772` half is still the next thing to re-verify from source
+
+Next Steps:
+1. Verify that 16.1 `NavigationStep` stores app-provided turn-image bytes in `byte[] c` and parcels them as field `5`
+2. Verify that the legacy sender path in `hkx.java` passes `navigationStep2.c` into the image-bearing serializer
+3. Verify that `vzm` contains the on-wire bytes field before tightening `Q1`/`Q2`
+
+Verification:
+- `nl -ba /home/matt/claude/personal/openautopro/openauto-prodigy/analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/defpackage/hkx.java | sed -n '302,578p'` -> `y(r)` rich-nav gate, `vzu`/`vzo` builders, destination append, and `this.k.k(32774, (vzo) o.q())` at line `578`
+- `nl -ba /home/matt/claude/personal/openautopro/openauto-prodigy/analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/defpackage/vzo.java | sed -n '7,30p'` -> descriptor only exposes repeated `vzu` (`b`) and repeated `vze` (`c`)
+- `nl -ba /home/matt/claude/personal/openautopro/openauto-prodigy/analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/sources/defpackage/vzu.java | sed -n '7,30p'` -> fields are `vzk`, `vzn`, repeated `vzj`, and `vzc`; no bytes field present
