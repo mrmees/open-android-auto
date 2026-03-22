@@ -1,0 +1,7 @@
+syntax = "proto2";
+// RETRACTED — duplicate of ButtonEventData.proto
+// Both map to same APK class: vxu (16.2), vyi (16.1)
+// Use ButtonEventData.proto instead (field names keycode/is_pressed/meta_state/long_press)
+//
+// Original proto decoder found this via vvh.java (16.1) but vvh in 16.2 is a different proto.
+// The actual ButtonEvent proto (vxu) is the correct one, verified via iae.java handler trace.

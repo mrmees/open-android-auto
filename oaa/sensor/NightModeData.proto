@@ -1,0 +1,18 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
+// Copyright (C) 2024-2026 Open Android Auto contributors
+// Based on works by: f1x.studio (aasdk), opencardev (crankshaft), aa-proxy (aa-proxy-rs)
+syntax="proto2";
+
+package oaa.proto.data;
+
+// VERIFIED via DHU 2.1 injection + logcat (2026-02-28).
+// Full pipeline: CAR.SENSOR.LITE (raw event) → CAR.SENSOR (getDayNightModeUserSetting)
+// → updateDayNightMode(source=SENSOR) → CAR.SYS (setting night mode) → CAR.WM (video config update).
+// Night mode also triggers generic "sensor event while no listener, sensor:10" path
+// in addition to the dedicated processing pipeline.
+// APK class: vzi (AA v16.2)
+// confidence: gold [deep_trace, 16.2 DB verified]
+message NightMode
+{
+    optional bool is_night = 1;  // confidence: gold
+}

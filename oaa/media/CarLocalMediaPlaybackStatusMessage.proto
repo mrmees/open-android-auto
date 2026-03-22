@@ -1,0 +1,70 @@
+// Android Auto Protocol Buffer Definitions
+// https://github.com/mrmees/open-android-auto
+// SPDX-License-Identifier: GPL-3.0-or-later
+
+/*
+ * Car local media playback status (msgId 0x8001 on CAR_LOCAL_MEDIA channel)
+ * Sent by HU to phone — the car reports what's playing on local media
+ * (FM radio, USB, CD) and the phone displays it.
+ *
+ * APK class: vws (v16.1) / vwe (v16.2) — 4 proto fields
+ * GAL channel type 20 (CAR_LOCAL_MEDIA), handler: hxu.java (16.1) / hyh.java (16.2)
+ * Deserialized into CarLocalMediaPlaybackStatus SafeParcelable (unobfuscated).
+ *
+ * SafeParcelable toString confirms field names:
+ *   "CarLocalMediaPlaybackStatus{state=N, mediaSource='...', playbackPosition=N, actions=[...]}"
+ *
+ * Playback state enum uses its OWN values (1-5), NOT shared with MediaPlaybackStatus (0-4).
+ * Enum verifier: C0000a.m83bD (16.2) validates 1-5, defaults to 1 (STOPPED).
+ *
+ * Actions enum (vwp/vwb) maps to PlaybackStateCompat.ACTION_* flags
+ * via qbw.java/qbe.java (0=ACTION_PLAY, 1=ACTION_PAUSE, 2=ACTION_SKIP_TO_PREVIOUS,
+ * 3=ACTION_SKIP_TO_NEXT, 4=ACTION_STOP).
+ *
+ * Complete CAR_LOCAL_MEDIA channel (no +1 msg ID offset — iav reads wire IDs directly):
+ *   0x8001 = CarLocalMediaPlaybackStatus    (HU->Phone, vws/vwe, 4 fields)
+ *   0x8002 = CarLocalMediaPlaybackMetadata  (HU->Phone, vwq/vwc, 5 fields)
+ *   0x8003 = CarLocalMediaPlaybackRequest   (Phone->HU, vwr/vwd, 1 field)
+ *
+ * Verified: 2026-03-06, proto-verification pipeline
+ */
+
+syntax = "proto2";
+
+package oaa.proto.messages;
+
+// Car local media playback state (APK enum verifier: C0000a.m83bD, values 1-5)
+// This is a SEPARATE enum from MediaPlaybackStatus's PlaybackState (values 0-4).
+// Invalid values (including 0) default to 1 (STOPPED).
+// confidence: gold [apk_deep_trace, 2026-03-06] (value range confirmed, semantic labels silver)
+enum CarLocalMediaPlaybackState {
+    CAR_LOCAL_PLAYBACK_STOPPED = 1;   // Default value
+    CAR_LOCAL_PLAYBACK_PLAYING = 2;
+    CAR_LOCAL_PLAYBACK_PAUSED = 3;
+    CAR_LOCAL_PLAYBACK_ERROR = 4;
+    CAR_LOCAL_PLAYBACK_UNKNOWN_5 = 5; // Semantic name TBD — needs wire capture
+}
+
+// Available transport actions (APK enum: vwp (16.1) / vwb (16.2), UNOBFUSCATED)
+// Mapped to Android PlaybackStateCompat.ACTION_* flags in qbw/qbe.java
+// confidence: gold [apk_deep_trace, 2026-03-06]
+enum CarLocalMediaPlaybackAction {
+    CAR_LOCAL_MEDIA_PLAYBACK_PLAY = 0;       // ACTION_PLAY (4L)
+    CAR_LOCAL_MEDIA_PLAYBACK_PAUSE = 1;      // ACTION_PAUSE (2L)
+    CAR_LOCAL_MEDIA_PLAYBACK_PREVIOUS = 2;   // ACTION_SKIP_TO_PREVIOUS (16L)
+    CAR_LOCAL_MEDIA_PLAYBACK_NEXT = 3;       // ACTION_SKIP_TO_NEXT (32L)
+    CAR_LOCAL_MEDIA_PLAYBACK_STOP = 4;       // ACTION_STOP (1L)
+}
+
+// APK class: vws (16.1) / vwe (16.2)
+// confidence: gold [apk_deep_trace, 2026-03-06]
+message CarLocalMediaPlaybackStatus {
+    // Current playback state (own enum, NOT shared with MediaPlaybackStatus)
+    optional CarLocalMediaPlaybackState playback_state = 1;  // confidence: gold [apk_deep_trace]
+    // Source application name (e.g. "YouTube Music", "Spotify")
+    optional string media_source = 2;  // confidence: gold [apk_deep_trace]
+    // Elapsed seconds in current track (converted to Duration.ofSeconds on phone)
+    optional int32 playback_position = 3;  // confidence: gold [apk_deep_trace]
+    // Currently available transport actions
+    repeated CarLocalMediaPlaybackAction actions = 4;  // confidence: gold [apk_deep_trace]
+}

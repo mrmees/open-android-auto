@@ -1,0 +1,85 @@
+// Android Auto Protocol Buffer Definitions
+// https://github.com/mrmees/open-android-auto
+// SPDX-License-Identifier: GPL-3.0-or-later
+
+/*
+ * VehicleEnergyForecast — EV energy/range forecast for navigation.
+ *
+ * Message ID: 0x8008 (32776) on Navigation channel (GAL type 10)
+ * Direction: Phone→HU
+ * APK wrapper class: waw (16.2) — proto2, 1 bytes field
+ * APK inner class: ysl (16.2) — proto3, 6 fields
+ *
+ * Handler: hlj.mo18768o() → ian.m20106k(32776, waw)
+ * Only sent when CarInfo PDK >= 5.1 (f20437e > 5 || (f20437e == 5 && f20438f > 0))
+ *
+ * The wire message is a proto2 wrapper (waw) containing the serialized
+ * bytes of a proto3 inner message (ysl). This is the same double-encoding
+ * pattern used by other modern nav channel messages.
+ *
+ * Conversion: GMS VehicleEnergyForecast → hxb/hww → ysl → serialize → waw.f74859c
+ */
+
+syntax = "proto2";
+
+package oaa.proto.messages;
+
+// Wire message wrapper — sent as msg 0x8008 on nav channel
+// APK class: waw (16.2) — proto2
+// confidence: gold [apk_deep_trace]
+message VehicleEnergyForecastMessage {
+    optional bytes vehicle_energy_forecast = 1; // serialized VehicleEnergyForecast (ysl)  // confidence: gold [apk_deep_trace]
+}
+
+// Inner message — deserialized from the bytes field above
+// APK class: ysl (16.2) — proto3
+// confidence: gold [apk_deep_trace]
+message VehicleEnergyForecast {
+    optional EnergyAtDistance energy_at_next_stop = 1;   // APK: f86701c  // confidence: gold [apk_deep_trace]
+    optional EnergyAtDistance distance_to_empty = 2;     // APK: f86702d  // confidence: gold [apk_deep_trace]
+    optional ForecastQuality forecast_quality = 3;       // APK: f86703e  // confidence: gold [apk_deep_trace]
+    optional EnergyChargingStationDetails next_charging_stop = 4; // APK: f86704f  // confidence: gold [apk_deep_trace]
+    repeated StopDetails stop_details = 5;               // APK: f86705g  // confidence: gold [apk_deep_trace]
+    repeated DataAuthorization data_authorizations = 6;  // APK: f86706h  // confidence: gold [apk_deep_trace]
+}
+
+// APK class: ysh (16.2) — energy level at a given distance
+// Note: field 3 is skipped/reserved
+// confidence: gold [apk_deep_trace]
+message EnergyAtDistance {
+    optional int32 distance_meters = 1;             // APK: f86682b  // confidence: gold [apk_deep_trace]
+    optional int32 arrival_battery_energy_wh = 2;   // APK: f86683c  // confidence: gold [apk_deep_trace]
+    // field 3 reserved
+    optional int32 time_to_arrival_seconds = 4;     // APK: f86684d  // confidence: gold [apk_deep_trace]
+}
+
+// APK class: ysf (16.2) — charging station details for EV
+// confidence: gold [apk_deep_trace]
+message EnergyChargingStationDetails {
+    optional int32 min_departure_energy_wh = 1;          // APK: f86674b  // confidence: gold [apk_deep_trace]
+    optional int32 max_rated_power_watts = 2;            // APK: f86675c  // confidence: gold [apk_deep_trace]
+    optional int32 estimated_charging_time_seconds = 3;  // APK: f86676d  // confidence: gold [apk_deep_trace]
+}
+
+// APK class: ysk (16.2) — stop details along route
+// confidence: gold [apk_deep_trace]
+message StopDetails {
+    optional EnergyAtDistance expected_arrival_energy = 1; // APK: f86696c, type ysh  // confidence: gold [apk_deep_trace]
+    optional EnergyChargingStationDetails charging_info = 2; // APK: f86697d, type ysf  // confidence: gold [apk_deep_trace]
+}
+
+// APK class: ysg (16.2) — data authorization identifier
+// confidence: gold [apk_deep_trace]
+message DataAuthorization {
+    optional string id = 1; // APK: f86679b  // confidence: gold [apk_deep_trace]
+}
+
+// Forecast quality enum for VehicleEnergyForecast.forecast_quality
+// Validator: C0000a.m125bt → C0000a.m86bG
+// GMS values: 0→UNKNOWN, 1→LOW, 2→HIGH
+// confidence: gold [apk_deep_trace]
+enum ForecastQuality {
+    FORECAST_QUALITY_UNKNOWN = 0;
+    FORECAST_QUALITY_LOW = 1;
+    FORECAST_QUALITY_HIGH = 2;
+}

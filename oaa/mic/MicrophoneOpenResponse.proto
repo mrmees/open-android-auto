@@ -1,0 +1,26 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
+// Copyright (C) 2024-2026 Open Android Auto contributors
+
+/*
+ * MicrophoneOpenResponse (msg ID 0x8006 on mic channel).
+ *
+ * HU responds to mic open with status and optional session config.
+ * Status 0 = success; non-zero = error (triggers onOpenMicError).
+ *
+ * APK class: vyj (16.2)
+ * Handler: ict.java (extends iav, service type 6, CAR.GAL.MIC)
+ * Concrete handler: ial.java — mo20071h(vyj)
+ * Direction: HU->Phone
+ *
+ * Note: vdp.m36513at() +1 offset applies (wire 0x8006 -> dispatch 0x8007).
+ * Raw audio data uses wire 0x0000 (no proto, raw PCM with 8-byte timestamp).
+ */
+syntax = "proto2";
+
+package oaa.proto.messages;
+
+// confidence: gold [apk_deep_trace]
+message MicrophoneOpenResponse {
+    required int32 status = 1;         // 0 = success, non-zero = error  // confidence: gold [apk_deep_trace]
+    optional int32 session_config = 2; // stored in ict.f36646d  // confidence: gold [apk_deep_trace]
+}

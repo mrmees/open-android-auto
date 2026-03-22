@@ -1,0 +1,46 @@
+// Android Auto Protocol Buffer Definitions
+// https://github.com/mrmees/open-android-auto
+// SPDX-License-Identifier: GPL-3.0-or-later
+
+/*
+ * Media playback status event (msgId 0x8002 on CAR.GAL.INST channel, GAL type 11)
+ * Sent by HU to phone as a d-pad input action for navigating the media info
+ * display on the instrument cluster.
+ *
+ * APK class: vxo (AA v16.2) — 1 proto field
+ * Received in iai.mo18864a(), dispatched to hvx listener via
+ * ICarMediaPlaybackStatusEventListener.onInput(value - 1)
+ *
+ * AIDL callback: com.google.android.gms.car.ICarMediaPlaybackStatusEventListener
+ * Implementation: prj.mo29613e(int) -> prh (proxy) / pri (stub)
+ *
+ * IMPORTANT: vxo is the SAME proto class used as PhoneInputType on the phone
+ * channel (GAL 13), where it's wrapped inside PhoneStatusInput (vzs) as field 1.
+ * Both channels use the same enum verifier (index 17, vve.f73609r) with values
+ * 0-7 representing d-pad navigation actions.
+ */
+
+syntax="proto2";
+
+package oaa.proto.messages;
+
+// D-pad input actions — shared with PhoneInputAction (same APK class vxo)
+// Values confirmed via C0000a.m128bw switch (0-7 valid, default=0)
+// Dispatched as (value - 1) to the listener, so value 1 = action 0, etc.
+// confidence: gold [deep_trace, 16.2 APK verified 2026-03-06]
+enum MediaPlaybackStatusEventType {
+    MEDIA_EVENT_UNKNOWN = 0;
+    MEDIA_EVENT_UP = 1;
+    MEDIA_EVENT_DOWN = 2;
+    MEDIA_EVENT_LEFT = 3;
+    MEDIA_EVENT_RIGHT = 4;
+    MEDIA_EVENT_ENTER = 5;
+    MEDIA_EVENT_BACK = 6;
+    MEDIA_EVENT_CALL = 7;  // likely unused in media context
+}
+
+// APK class: vxo (shared with PhoneInputType — same class, different channel context)
+// confidence: gold [deep_trace, 16.2 APK verified 2026-03-06]
+message MediaPlaybackStatusEvent {
+    required MediaPlaybackStatusEventType event_type = 1;  // confidence: gold [deep_trace]
+}

@@ -1,0 +1,22 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
+// Copyright (C) 2024-2026 Open Android Auto contributors
+
+/*
+ * RETRACTED — NavigationFocusIndication does not exist.
+ *
+ * Previous mapping: wbg (16.1) — claimed as single bytes field.
+ * In 16.2, wbg is SensorStatus enum (SENSOR_OK=1, SENSOR_ERROR_TRANSIENT=2,
+ * SENSOR_ERROR_PERMANENT=3) — completely unrelated.
+ *
+ * The NavigationFocus protocol uses only two messages:
+ *   - NavigationFocusRequest  (msg 13, Phone→HU) — see NavigationFocusRequestMessage.proto
+ *   - NavigationFocusResponse (msg 14, HU→Phone) — see NavigationFocusResponseMessage.proto
+ * Both are on the CONTROL channel (GAL service type 1, hzh.java), NOT the navigation channel.
+ *
+ * There is no third "indication" message in the protocol.
+ * Retracted 2026-03-06 based on control channel handler trace.
+ */
+
+// File kept for documentation. No wire message.
+syntax="proto2";
+package oaa.proto.messages;

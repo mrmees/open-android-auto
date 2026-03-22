@@ -1,0 +1,15 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
+// Copyright (C) 2024-2026 Open Android Auto contributors
+// Based on works by: f1x.studio (aasdk), opencardev (crankshaft), aa-proxy (aa-proxy-rs)
+syntax="proto2";
+
+package oaa.proto.data;
+
+// APK class: vwq (AA v16.2) — DEAD_RECKONING sensor type (14)
+// Contains steering angle + wheel speed ticks for dead reckoning navigation
+// confidence: gold [deep_trace, 16.2 DB verified]
+message SteeringWheel
+{
+    optional int32 steering_angle = 1;  // confidence: gold
+    repeated int32 wheel_speed = 2;  // confidence: gold
+}

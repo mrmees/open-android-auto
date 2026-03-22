@@ -1,0 +1,15 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
+// Copyright (C) 2024-2026 Open Android Auto contributors
+// Based on works by: f1x.studio (aasdk), opencardev (crankshaft), aa-proxy (aa-proxy-rs)
+syntax="proto2";
+
+import "oaa/input/ButtonEventData.proto";
+
+package oaa.proto.data;
+
+// APK class: vxv (16.2), vyj (16.1) — button events container
+// confidence: gold [handler_trace, deep_apk]
+message ButtonEvents
+{
+    repeated ButtonEvent button_events = 1;
+}

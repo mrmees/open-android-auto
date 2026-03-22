@@ -1,0 +1,27 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
+// Copyright (C) 2024-2026 Open Android Auto contributors
+// Based on works by: f1x.studio (aasdk), opencardev (crankshaft), aa-proxy (aa-proxy-rs)
+syntax="proto2";
+
+import "oaa/input/TouchEventData.proto";
+import "oaa/input/ButtonEventsData.proto";
+import "oaa/input/AbsoluteInputEventsData.proto";
+import "oaa/input/RelativeInputEventsData.proto";
+
+package oaa.proto.messages;
+
+// APK class: vxj (16.2), vxx (16.1) — msg 0x8001, HU→Phone
+// No field 2 (skipped in proto numbering)
+// confidence: gold [handler_trace, deep_apk]
+message InputEventIndication
+{
+    optional uint64 timestamp = 1;                                    // elapsedRealtime in microseconds
+    optional data.TouchEvent touch_event = 3;                         // touchscreen input
+    optional data.ButtonEvents button_event = 4;                      // hardware button press/release
+    optional data.AbsoluteInputEvents absolute_input_event = 5;       // touchpad primary click
+    optional data.RelativeInputEvents relative_input_event = 6;       // rotary scroll
+    optional data.TouchEvent touchpad_event = 7;                      // touchpad surface input (same proto as field 3)
+}
+
+// RETRACTED: AbsInputEvent (was vvh in 16.1) — vvh in 16.2 is a different proto (1 int32 field)
+// RETRACTED: AbsoluteEvent (was vvi in 16.1) — vvi in 16.2 is BatteryStatus (3 scalar fields)

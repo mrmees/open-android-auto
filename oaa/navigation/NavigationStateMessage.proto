@@ -1,0 +1,30 @@
+// Android Auto Protocol Buffer Definitions
+// https://github.com/mrmees/open-android-auto
+// SPDX-License-Identifier: GPL-3.0-or-later
+
+syntax="proto2";
+
+package oaa.proto.messages;
+
+// Navigation state values
+// APK class: vzb (16.2), validator C0000a.m130by
+// Proto wire values 0-3 map to internal 1-4 via m130by().
+// Consumer (efn.java): checks internal==2 (ACTIVE) and ==4 (REROUTING) to show nav.
+// Log strings confirm names: "Using UNAVAILABLE", "Suppressing REROUTING".
+// confidence: gold [apk_deep_trace, wire_verified]
+enum NavigationStateType {
+    NAV_STATE_UNAVAILABLE = 0; // Log: "Using UNAVAILABLE for unknown NavigationStatusEnum value"
+    NAV_STATE_ACTIVE = 1;
+    NAV_STATE_INACTIVE = 2;
+    NAV_STATE_REROUTING = 3; // Suppressed on HUs with CarInfo PDK < 1.6
+}
+
+// Navigation state notification (msgId 0x8003 on Nav channel, GAL type 10)
+// Sent by phone when navigation state changes
+// APK class: vzb (16.2), 1 field (enum), proto2
+// Handler: hlj.mo18763i() → ian.m20106k(32771, vzb)
+// SDK path: NavigationSummary → lad.m24734h() → hlj.mo18763i()
+// confidence: gold [apk_deep_trace]
+message NavigationState {
+    optional NavigationStateType state = 1;  // confidence: gold [apk_deep_trace]
+}

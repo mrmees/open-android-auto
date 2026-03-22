@@ -1,0 +1,30 @@
+// Android Auto Protocol Buffer Definitions
+// https://github.com/mrmees/open-android-auto
+// SPDX-License-Identifier: GPL-3.0-or-later
+
+/*
+*  Discovered via APK proto decoder (wbb.java, AA v16.1).
+*  Sub-message of WifiSecurityResponse field 6.
+*  Contains WiFi Direct connection parameters.
+*/
+
+syntax="proto2";
+
+package oaa.proto.data;
+
+// confidence: silver [apk_static, cross_version]
+message WifiDirectConfig
+{
+    optional string device_name = 1; // WiFi Direct device name  // confidence: silver [apk_static, cross_version]
+    optional string device_address = 2; // WiFi Direct device MAC  // confidence: silver [apk_static, cross_version]
+    optional string ssid = 3; // WiFi Direct SSID (if different from AP)  // confidence: silver [apk_static, cross_version]
+    optional string passphrase = 4; // WiFi Direct passphrase  // confidence: silver [apk_static, cross_version]
+    optional GroupOwnerInfo group_owner_info = 5; // APK class: wam  // confidence: silver [apk_static, cross_version]
+    optional uint64 frequency = 6; // Operating frequency in MHz  // confidence: silver [apk_static, cross_version]
+}
+
+// APK class: wam — WiFi Direct group owner info
+// Placeholder — sub-message structure TBD from wire captures
+// confidence: silver [apk_static, cross_version]
+message GroupOwnerInfo {
+}

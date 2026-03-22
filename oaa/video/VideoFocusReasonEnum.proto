@@ -1,0 +1,21 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
+// Copyright (C) 2024-2026 Open Android Auto contributors
+// Based on works by: f1x.studio (aasdk), opencardev (crankshaft), aa-proxy (aa-proxy-rs)
+syntax="proto3";
+
+package oaa.proto.enums;
+
+// APK class: wcs (16.2) — 5 values (0-4)
+// confidence: gold [deep_trace, handler_verified]
+message VideoFocusReason
+{
+    // confidence: gold [deep_trace]
+    enum Enum
+    {
+        UNKNOWN = 0;
+        PHONE_SCREEN_OFF = 1;
+        LAUNCH_NATIVE = 2;
+        LAST_MODE = 3;  // APK: VIDEO_FOCUS_REASON_LAST_MODE
+        USER_SELECTION = 4;  // APK: VIDEO_FOCUS_REASON_USER_SELECTION
+    }
+}

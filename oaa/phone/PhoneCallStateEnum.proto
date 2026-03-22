@@ -1,0 +1,31 @@
+// Android Auto Protocol Buffer Definitions
+// https://github.com/mrmees/open-android-auto
+// SPDX-License-Identifier: GPL-3.0-or-later
+
+/*
+ * PhoneCallState — call state enum for PhoneStatusUpdate.
+ *
+ * APK class: vzq (AA v16.2), wae (AA v16.1)
+ * Used in PhoneCall field 1 (required).
+ * Telecom state mapping in vuk.java (16.1).
+ */
+
+syntax="proto2";
+
+package oaa.proto.enums;
+
+// confidence: gold [deep_trace, 16.2 APK verified 2026-03-06]
+message PhoneCallState
+{
+    // confidence: gold [deep_trace, 16.2 APK verified 2026-03-06]
+    enum Enum
+    {
+        UNKNOWN = 0;
+        IN_CALL = 1;
+        ON_HOLD = 2;
+        INACTIVE = 3;
+        INCOMING = 4;
+        CONFERENCED = 5;
+        MUTED = 6;
+    }
+}

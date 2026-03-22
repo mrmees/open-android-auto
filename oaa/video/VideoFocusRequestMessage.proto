@@ -1,0 +1,18 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
+// Copyright (C) 2024-2026 Open Android Auto contributors
+// Based on works by: f1x.studio (aasdk), opencardev (crankshaft), aa-proxy (aa-proxy-rs)
+syntax="proto2";
+
+import "oaa/video/VideoFocusModeEnum.proto";
+import "oaa/video/VideoFocusReasonEnum.proto";
+
+package oaa.proto.messages;
+
+// APK class: wdd (16.1) / wct (16.2) — field 2 = focus_mode enum, field 3 = focus_reason enum, no field 1
+// Wire msg 0x8007, HU->Phone (video channel)
+// confidence: gold [deep_trace, handler_verified]
+message VideoFocusRequest
+{
+    optional enums.VideoFocusMode.Enum focus_mode = 2;  // wcq enum  // confidence: gold [deep_trace]
+    optional enums.VideoFocusReason.Enum focus_reason = 3;  // wcs enum  // confidence: gold [deep_trace]
+}

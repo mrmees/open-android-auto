@@ -1,0 +1,34 @@
+// Android Auto Protocol Buffer Definitions
+// https://github.com/mrmees/open-android-auto
+// SPDX-License-Identifier: GPL-3.0-or-later
+
+/*
+ * Channel close notification (msg 0x0009 on Control channel, GAL type 1)
+ * Direction: bidirectional — either side can signal channel teardown.
+ *
+ * TRANSPORT-LAYER message — NOT dispatched through GAL handler (hzh.java).
+ * Handled at the transport layer by icp.java (send) and ico.java (receive).
+ * The close reason is carried in the transport control sub-message (pnv),
+ * not in this proto body.
+ *
+ * Transport details (16.2):
+ *   - Send: icp.java builds pnw wrapper with pnv.f57535c=2 (CLOSE)
+ *   - Receive: ico.java checks pnv control type, calls icj.mo20205e()
+ *   - Close reasons: CHANNEL_CLOSE_REQUESTED(200), CHANNEL_CLOSED_DUE_TO_PROTOCOL_ERROR(201)
+ *   - Msg ID 9 registered in vik.java as MESSAGE_CHANNEL_CLOSE_NOTIFICATION
+ *
+ * Cross-referenced: opencardev/aasdk (identical empty message)
+ *
+ * confidence: gold [deep_trace, transport_layer, 16.2 verified]
+ */
+
+syntax = "proto2";
+
+package oaa.proto.messages;
+
+// 0x0009: ChannelCloseNotification (transport-layer, not GAL-dispatched)
+// 16.2: vik.java msg ID 9 = MESSAGE_CHANNEL_CLOSE_NOTIFICATION
+// 16.2: icp.java (send), ico.java (receive), icj interface (callback)
+// confidence: gold [deep_trace, transport_layer]
+message ChannelCloseNotification {
+}

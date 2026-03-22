@@ -1,0 +1,24 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
+// Copyright (C) 2024-2026 Open Android Auto contributors
+// Based on works by: f1x.studio (aasdk), opencardev (crankshaft), aa-proxy (aa-proxy-rs)
+
+/*
+ * RETRACTED — VideoFocusNotification does not exist.
+ *
+ * The message at wire 0x800E (vye in 16.1, vxq in 16.2) is actually
+ * IntegratedOverlayStartNotification. Field 1 is a display session ID
+ * passed to overlay callbacks, NOT a VideoFocusMode enum value.
+ *
+ * Replaced by: oaa/video/IntegratedOverlayStartNotification.proto
+ * See: analysis/reports/proto-verification/video.md
+ */
+syntax="proto2";
+
+package oaa.proto.messages;
+
+// RETRACTED — see IntegratedOverlayStartNotification.proto
+// confidence: retracted [deep_trace, handler_verified]
+message VideoFocusNotification
+{
+    optional int32 focus_mode = 1; // RETRACTED — actually display_session_id
+}

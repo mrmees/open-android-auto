@@ -1,0 +1,7 @@
+syntax = "proto2";
+// RETRACTED — not an input channel proto
+// APK class vwz (16.2) / vxn (16.1) is actually a compass/heading sensor data proto,
+// used in C0000a.m238e → CarSensorEvent type 5.
+// Fields: int32, int32, bool — NOT related to touch screen configuration.
+// For touch screen config, use TouchScreenConfigData.proto (class vxl).
+// For touch pad config, use TouchPadConfigData.proto (class vxk).

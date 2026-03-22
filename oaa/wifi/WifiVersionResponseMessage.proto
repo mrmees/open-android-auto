@@ -1,0 +1,33 @@
+// Android Auto Protocol Buffer Definitions
+// https://github.com/mrmees/open-android-auto
+// SPDX-License-Identifier: GPL-3.0-or-later
+
+/*
+ * WifiVersionResponse — BT WiFi version negotiation response.
+ *
+ * APK class: wdw.java (AA v16.1)
+ * BT RFCOMM message type: ordinal 4 (MESSAGE_WIFI_VERSION_RESPONSE_BT)
+ * Dispatched by ngh.java line 541.
+ * Logged at ngh.java lines 593-603 with field names:
+ *   majorVersion, minorVersion, deviceSerial, versionStatus, selectedWifiChannelType
+ *
+ * Sent by phone in response to WifiVersionRequest.
+ */
+
+syntax="proto2";
+
+import "oaa/common/SessionInfoData.proto";
+import "oaa/wifi/WifiChannelTypeEnum.proto";
+
+package oaa.proto.messages;
+
+// confidence: silver [apk_static, cross_version]
+message WifiVersionResponse {
+    optional int32 major_version = 1; // APK: b (int)  // confidence: silver [apk_static, cross_version]
+    optional int32 minor_version = 2; // APK: c (int)  // confidence: silver [apk_static, cross_version]
+    optional string device_serial = 3; // APK: e (String)  // confidence: silver [apk_static, cross_version]
+    optional int32 version_status = 4; // APK: f (enum via wck.p/viz.au — WifiVersionStatus)  // confidence: silver [apk_static, cross_version]
+    optional enums.WifiChannelType.Enum selected_wifi_channel_type = 5; // APK: g (enum via wck.r/a.bw)  // confidence: silver [apk_static, cross_version]
+    optional data.SessionInfo session_info = 6; // APK: h (vvf)  // confidence: silver [apk_static, cross_version]
+    optional bytes extra_data = 7; // APK: i (zxq/ByteString)  // confidence: silver [apk_static, cross_version]
+}

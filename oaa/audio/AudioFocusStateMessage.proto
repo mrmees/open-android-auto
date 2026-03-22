@@ -1,0 +1,26 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
+// Copyright (C) 2024-2026 Open Android Auto contributors
+// Based on works by: f1x.studio (aasdk), opencardev (crankshaft), aa-proxy (aa-proxy-rs)
+
+/*
+ * RETRACTED (2026-03-06)
+ *
+ * This message was incorrectly identified as "AudioFocusState" on an audio
+ * channel. It is actually RadioFavoriteToggleRequest (msg ID 0x8021) on the
+ * radio channel (service 15, CAR.GAL.RADIO-EP).
+ *
+ * Evidence: hlr.java (CAR.RADIO) sends waq (16.2) at wire ID 32801 = 0x8021
+ * through ibf.java (radio endpoint). The bool field is "is_favorite", not
+ * "has_focus". Msg ID 0x8021 does NOT appear on any audio channel.
+ *
+ * Correct proto: oaa/radio/RadioMessages.proto — RadioFavoriteToggleRequest
+ * See also: analysis/reports/proto-verification/audio.md
+ */
+syntax="proto2";
+
+package oaa.proto.messages;
+
+// RETRACTED — duplicate of RadioFavoriteToggleRequest on radio channel
+// message AudioFocusState {
+//     optional bool has_focus = 1;
+// }

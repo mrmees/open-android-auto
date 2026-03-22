@@ -1,0 +1,41 @@
+// Android Auto Protocol Buffer Definitions
+// https://github.com/mrmees/open-android-auto
+// SPDX-License-Identifier: GPL-3.0-or-later
+
+/*
+ * Buffered Media Sink channel (GAL channel type 21, BUFFERED_MEDIA_SINK)
+ * Handler: ibh.java, log tag: CAR.MEDIA.BUFFERED
+ *
+ * STUB CHANNEL — the handler logs "onMessageReceived" and discards all data.
+ * No proto deserialization occurs. Feature-gated behind flag abey (834952858)
+ * and service discovery bit 0x10000 in the wbw bitmask.
+ *
+ * Despite the stub handler, a rich service discovery config proto exists
+ * (vwo, field 18 in ServiceDiscovery) describing audio content configs,
+ * video content configs with oneofs, and content metadata. This suggests
+ * the protocol design was complete but the phone-side implementation was
+ * not wired up in AA v16.1.
+ *
+ * NOT related to AV1/H265 codec support — those codecs (vyn enum values 6,7)
+ * belong to the standard MediaSink/MediaSource service discovery configs
+ * (vys/vyt), not this channel.
+ *
+ * Service discovery config proto: vwo (BufferedMediaSinkConfig)
+ *   field 1: repeated AudioContentConfig (vux)
+ *   field 2: repeated VideoContentConfig (vwl — uses oneof)
+ *   field 3: repeated ContentMetadataConfig (vuo)
+ *
+ * No wire-level messages to define — this file documents the channel's
+ * existence and stub status for protocol completeness.
+ *
+ * APK: AA v16.1
+ */
+
+syntax = "proto3";
+
+package oaa.proto.messages;
+
+// Placeholder — no runtime messages defined.
+// BufferedMediaSinkConfig (vwo) for service discovery is noted above.
+// If this channel becomes active in a future APK version, message
+// definitions should be added here.

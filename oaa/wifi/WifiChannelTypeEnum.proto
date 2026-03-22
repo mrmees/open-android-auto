@@ -1,0 +1,27 @@
+// Android Auto Protocol Buffer Definitions
+// https://github.com/mrmees/open-android-auto
+// SPDX-License-Identifier: GPL-3.0-or-later
+
+/*
+ * WifiChannelType — WiFi channel band preference.
+ *
+ * APK verifier: a.bw() (AA v16.1) — accepts values 0-3.
+ * Used in WifiVersionRequest field 3, WifiVersionResponse field 5.
+ */
+
+syntax="proto2";
+
+package oaa.proto.enums;
+
+// confidence: unverified
+message WifiChannelType
+{
+    // confidence: unverified
+    enum Enum
+    {
+        CHANNEL_TYPE_UNKNOWN = 0;
+        CHANNEL_TYPE_5GHZ_ONLY = 1;  // confidence: unverified
+        CHANNEL_TYPE_24GHZ_ONLY = 2;  // confidence: unverified
+        CHANNEL_TYPE_DUAL_BAND = 3;
+    }
+}

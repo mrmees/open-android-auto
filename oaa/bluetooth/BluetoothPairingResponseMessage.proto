@@ -1,0 +1,33 @@
+// Android Auto Protocol Buffer Definitions
+// https://github.com/mrmees/open-android-auto
+// SPDX-License-Identifier: GPL-3.0-or-later
+
+/*
+ * BluetoothPairingResponse — HU→Phone response to pairing request.
+ *
+ * Wire ID: 0x8002 on BT channel (service 9, CAR.GAL.BT)
+ * Handler: qlg.java mo30512d, case 32770
+ * 16.2 class: vvn (NOT xgb — xgb is a sub-message in xgh, unrelated)
+ *
+ * CRITICAL FIX (2026-03-07): Fields were swapped. Field 1 = status (enum),
+ * field 2 = already_paired (bool). Old proto had them reversed with a
+ * phantom field 3. The status field uses the shared AA StatusCode enum (vyh),
+ * NOT the old 3-value BluetoothPairingStatus.
+ */
+
+syntax = "proto2";
+
+package oaa.proto.messages;
+
+// confidence: gold [apk_deep_trace]
+message BluetoothPairingResponse
+{
+    // Status code from shared AA StatusCode enum (vyh).
+    // BT-relevant values: 0=SUCCESS, 1=UNSOLICITED, -10=DELAYED,
+    // -11=UNAVAILABLE, -12=INVALID_ADDRESS, -13=INVALID_PAIRING_METHOD,
+    // -14=INVALID_AUTH_DATA, -15=AUTH_DATA_MISMATCH,
+    // -16=HFP_ANOTHER_CONNECTION, -17=HFP_CONNECTION_FAILURE
+    required int32 status = 1;  // confidence: gold [apk_deep_trace]
+
+    required bool already_paired = 2;  // confidence: gold [apk_deep_trace]
+}

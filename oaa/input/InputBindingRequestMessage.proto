@@ -1,0 +1,22 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
+// Copyright (C) 2024-2026 Open Android Auto contributors
+// Based on works by: f1x.studio (aasdk), opencardev (crankshaft), aa-proxy (aa-proxy-rs)
+
+/*
+ * Input binding request — Phone→HU, msg 0x8002.
+ *
+ * Phone echoes back the supported keycodes from InputChannelConfig
+ * to acknowledge which keycodes it will handle.
+ *
+ * APK class: vxr (16.2), wbl (16.1)
+ * Sent by hlg.mo18727r after SDP input channel discovery.
+ */
+syntax="proto2";
+
+package oaa.proto.messages;
+
+// confidence: gold [handler_trace, deep_apk]
+message InputBindingRequest
+{
+    repeated int32 keycodes = 1 [packed = true];  // supported keycodes echoed from InputChannelConfig
+}

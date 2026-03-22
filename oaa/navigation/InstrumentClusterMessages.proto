@@ -1,0 +1,77 @@
+// Android Auto Protocol Buffer Definitions
+// https://github.com/mrmees/open-android-auto
+// SPDX-License-Identifier: GPL-3.0-or-later
+
+/*
+ * Instrument Cluster messages (GAL channel type 10, NAVIGATION_STATUS)
+ * Endpoint: ian.java (16.2), GAL type 10, log tag: CAR.INST
+ * Service: hlj.java (16.2), log tag: CAR.INST
+ *
+ * This channel manages the instrument cluster display — a secondary
+ * navigation display (e.g., behind the steering wheel). The cluster
+ * configuration (dimensions, type, color depth) is negotiated during
+ * service discovery via NavigationChannel config.
+ *
+ * Message IDs (from ian.java handler):
+ *   0x8001 = InstrumentClusterStart   (HU→Phone, vze — empty signal)
+ *   0x8002 = InstrumentClusterStop    (HU→Phone, vzf — empty signal)
+ *   0x8003 = NavigationState          (Phone→HU, vzb — see NavigationStateMessage.proto)
+ *   0x8005 = LegacyNavigationTurnEvent(Phone→HU, vyx @Deprecated — legacy turn data)
+ *   0x8006 = NavigationNotification   (Phone→HU, vza — see NavigationNotificationMessage.proto)
+ *   0x8007 = NavigationNextTurnDist   (Phone→HU, vyp — see NavigationTurnEventMessage.proto)
+ *   0x8008 = VehicleEnergyForecast    (Phone→HU, waw — see VehicleEnergyForecastMessage.proto)
+ *
+ * On 0x8001, the phone reads cached CarInstrumentClusterInfo
+ * (populated from service discovery config) and passes it to
+ * listeners: min_interval, cluster_type, width, height, color_depth.
+ *
+ * 0x8004 existed in 16.1 (NavigationTurnEvent, vzm) but was removed in 16.2.
+ * Modern HUs (PDK >= 1.6) use 0x8006/0x8007 instead.
+ *
+ * APK: AA v16.2 (verified 2026-03-06)
+ */
+
+syntax = "proto2";
+
+import "oaa/navigation/NavigationTurnEventMessage.proto";
+
+package oaa.proto.messages;
+
+// 0x8001: InstrumentClusterStart
+// APK class: vze (16.2), vzs (16.1) — empty message, proto2
+// Direction: HU→Phone — HU tells phone the cluster display is available
+// Handler: ian.mo18864a() case 32769 → calls mo29617e() (onStart)
+// confidence: gold [apk_deep_trace]
+message InstrumentClusterStart {
+}
+
+// 0x8002: InstrumentClusterStop
+// APK class: vzf (16.2), vzt (16.1) — empty message, proto2
+// Direction: HU→Phone — HU tells phone the cluster display is no longer available
+// Handler: ian.mo18864a() case 32770 → calls mo29618f() (onStop)
+// confidence: gold [apk_deep_trace]
+message InstrumentClusterStop {
+}
+
+// 0x8005: Legacy NavigationTurnEvent (@Deprecated in 16.2)
+// APK class: vyx (16.2) — 4 fields, proto2
+// Direction: Phone→HU — phone sends turn info to legacy HUs (CarInfo PDK < 1.6)
+// Handler: ian.m20073h(maneuver, distance, distance_millis, distance_unit)
+// Modern HUs receive 0x8006 (NavigationNotification) instead.
+//
+// NOTE: Our previous proto had InstrumentClusterInput (vzl) at 0x8005.
+// That was WRONG — vzl is a display overlay parameters proto (OverlayParameters),
+// not a wire message on this channel. The actual 0x8005 is vyx.
+// confidence: gold [apk_deep_trace]
+message LegacyNavigationTurnEvent {
+    optional int32 maneuver_type = 1;     // APK: f74555c — maneuver type constant  // confidence: gold [apk_deep_trace]
+    optional int32 turn_number = 2;       // APK: f74556d — distance value  // confidence: gold [apk_deep_trace]
+    optional int32 turn_distance = 3;     // APK: f74557e — distance in millis  // confidence: gold [apk_deep_trace]
+    optional DistanceDisplayUnit distance_unit = 4; // APK: f74558f — enum via vym, stored as value-1  // confidence: gold [apk_deep_trace]
+}
+
+// Distance display unit enum (shared with NavigationTurnEventMessage.proto)
+// Validator: C0000a.m128bw (maps 0-7 → 1-8, default 0)
+// confidence: gold [apk_deep_trace]
+// Note: Canonical definition in NavigationTurnEventMessage.proto.
+// Duplicated here for LegacyNavigationTurnEvent reference.

@@ -1,0 +1,55 @@
+// Android Auto Protocol Buffer Definitions
+// https://github.com/mrmees/open-android-auto
+// SPDX-License-Identifier: GPL-3.0-or-later
+
+/*
+ * Vendor Extension channel (GAL channel type 16, VENDOR_EXTENSION)
+ * Handler: iba.java (active) / hlv.java (stub)
+ * Service: hls.java (CarVendorExtensionManager), log tag: CAR.VENDOR
+ *
+ * RAW BYTE PIPE — not a protobuf message-based channel.
+ * Unlike all other GAL channels, this one does NOT parse message type
+ * headers or protobuf payloads. It overrides T(ByteBuffer) directly
+ * and throws RuntimeException from the standard a(int, ByteBuffer)
+ * message dispatch method.
+ *
+ * Data flows as opaque byte arrays through ParcelFileDescriptor pipes
+ * between the head unit and registered Android app clients via Binder.
+ *
+ * Data flow:
+ *   HU → AA transport → iba.T(ByteBuffer) → hls queue → PFD pipe → Android App
+ *   Android App → PFD pipe → hls.notifyDataChunkWritten → iba → AA transport → HU
+ *
+ * Binder service interface (ICarVendorExtension):
+ *   registerClient / unregisterClient
+ *   getName → extension name string
+ *   getDescriptor → opaque metadata bytes
+ *   getOutputFileDescriptor → FD for app to write TO the HU
+ *   getInputFileDescriptor → FD for app to read FROM the HU
+ *   prepareSending(totalLength) → allocate receive buffer
+ *   notifyDataChunkWritten(chunkLength) → signal chunk ready
+ *   notifyReadyToReadNextDataChunk(chunkLength) → flow control
+ *
+ * Service discovery config (wcv):
+ *   field 1: string name (extension identifier)
+ *   field 2: repeated string allowed_packages
+ *   field 3: bytes descriptor (opaque metadata)
+ *
+ * Known consumer: DHU vendor extension (kax.java)
+ *   Only activates for manufacturer="Google", model="Desktop Head Unit"
+ *   Parses a DhuVendorExtensionMessage proto containing launch intents:
+ *     message DhuLaunchIntent { string package_name, enum action_type, string query_or_uri }
+ *     action_type: 2=MEDIA (MEDIA_PLAY_FROM_SEARCH), 3=NAVIGATION (VIEW with URI)
+ *
+ * For implementations: a stub that acknowledges channel open and drops
+ * data is sufficient unless third-party car app extensions are needed.
+ *
+ * APK: AA v16.1
+ */
+
+syntax = "proto3";
+
+package oaa.proto.messages;
+
+// No runtime messages — raw byte pipe.
+// See header comment for architecture and Binder interface details.

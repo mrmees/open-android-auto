@@ -1,0 +1,18 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
+// Copyright (C) 2024-2026 Open Android Auto contributors
+// Based on works by: f1x.studio (aasdk), opencardev (crankshaft), aa-proxy (aa-proxy-rs)
+
+/*
+ * RETRACTED — VideoFocusModeMessage does not exist as a wire message.
+ *
+ * The message at wire 0x8012 (wcu in 16.1, wck in 16.2) is actually
+ * UpdateHuUiConfigResponse — a response to UiConfigRequest (0x8011).
+ * Field 1 is a 3-value ThemingTokensStatus enum (Error/Accepted/Rejected),
+ * NOT a VideoFocusMode enum.
+ *
+ * Note: wcu in 16.2 was reassigned to VoiceSessionRequest (control channel).
+ *
+ * Replaced by: oaa/video/UpdateHuUiConfigResponse.proto
+ * See: analysis/reports/proto-verification/video.md
+ */
+syntax="proto2";

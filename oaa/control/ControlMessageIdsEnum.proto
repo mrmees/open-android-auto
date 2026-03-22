@@ -1,0 +1,41 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
+// Copyright (C) 2024-2026 Open Android Auto contributors
+// Based on works by: f1x.studio (aasdk), opencardev (crankshaft), aa-proxy (aa-proxy-rs)
+syntax="proto3";
+
+package oaa.proto.ids;
+
+// confidence: unverified
+message ControlMessage
+{
+    // confidence: unverified
+    enum Enum
+    {
+        NONE = 0x0000;
+        VERSION_REQUEST = 0x0001;
+        VERSION_RESPONSE = 0x0002;
+        SSL_HANDSHAKE = 0x0003;
+        AUTH_COMPLETE = 0x0004;
+        SERVICE_DISCOVERY_REQUEST = 0x0005;
+        SERVICE_DISCOVERY_RESPONSE = 0x0006;
+        CHANNEL_OPEN_REQUEST = 0x0007;
+        CHANNEL_OPEN_RESPONSE = 0x0008;
+        PING_REQUEST = 0x000b;
+        PING_RESPONSE = 0x000c;
+        NAVIGATION_FOCUS_REQUEST = 0x000d;
+        NAVIGATION_FOCUS_RESPONSE = 0x000e;
+        SHUTDOWN_REQUEST = 0x000f;
+        SHUTDOWN_RESPONSE = 0x0010;
+        VOICE_SESSION_REQUEST = 0x0011;
+        AUDIO_FOCUS_REQUEST = 0x0012;
+        AUDIO_FOCUS_RESPONSE = 0x0013;
+        CAR_CONNECTED_DEVICES_REQUEST = 0x0014;
+        CAR_CONNECTED_DEVICES_RESPONSE = 0x0015;
+        USER_SWITCH_REQUEST = 0x0016;
+        BATTERY_STATUS_NOTIFICATION = 0x0017;
+        CALL_AVAILABILITY_STATUS = 0x0018;
+        USER_SWITCH_RESPONSE = 0x0019;
+        SERVICE_DISCOVERY_UPDATE = 0x001a;
+        CHANNEL_CLOSE_NOTIFICATION = 0x0009;
+    }
+}

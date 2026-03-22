@@ -1,0 +1,29 @@
+// Android Auto Protocol Buffer Definitions
+// https://github.com/mrmees/open-android-auto
+// SPDX-License-Identifier: GPL-3.0-or-later
+
+/*
+ * NavigationFocusResponse — HU confirms/denies navigation focus.
+ *
+ * IMPORTANT: This is a CONTROL CHANNEL message (GAL service type 1, hzh.java),
+ * NOT a navigation channel message. Message ID = 14.
+ *
+ * APK class: vyk (16.2)
+ * Received in hzh.java case 14: parses vyk, extracts vyn enum.
+ * Logs: "Navigation focus is now: %s"
+ * Calls hzcVar2.mo19876c(isFocusProjected) to notify CarMessageService.
+ */
+
+syntax="proto2";
+
+import "oaa/navigation/NavigationFocusRequestMessage.proto";
+
+package oaa.proto.messages;
+
+// Message ID: 14 on Control channel (GAL type 1)
+// Direction: HU→Phone
+// confidence: gold [apk_deep_trace]
+message NavigationFocusResponse
+{
+    optional NavigationFocusType type = 1;  // confidence: gold [apk_deep_trace]
+}

@@ -1,0 +1,27 @@
+// Android Auto Protocol Buffer Definitions
+// https://github.com/mrmees/open-android-auto
+// SPDX-License-Identifier: GPL-3.0-or-later
+
+/*
+ * RadioProgramTypeSchema — classification scheme for radio program types.
+ *
+ * 16.2: vdp.m36490W (validator, accepts 1-2), referenced by wao (RadioProgramType)
+ * 16.1: viz.M
+ * Used in RadioProgramType field 1.
+ */
+
+syntax="proto2";
+
+package oaa.proto.enums;
+
+// confidence: gold [apk_deep_trace]
+message RadioProgramTypeSchema
+{
+    // confidence: gold [apk_deep_trace]
+    enum Enum
+    {
+        SCHEMA_UNKNOWN = 0;
+        SCHEMA_RDS_PTY = 1;
+        SCHEMA_ITU = 2;
+    }
+}

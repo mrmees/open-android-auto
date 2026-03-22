@@ -1,0 +1,11 @@
+// RETRACTED — Duplicate of ByeByeResponseMessage.proto
+//
+// ShutdownResponse and ByeByeResponse are the SAME wire message (msg ID 16).
+// APK log strings say "ByeByeResponse". Class vvs is proto2, not proto3.
+// This file had proto3 syntax and no audit trail.
+//
+// Use ByeByeResponseMessage.proto instead.
+// Retracted: 2026-03-06, control channel verification
+syntax="proto2";
+package oaa.proto.messages;
+// RETRACTED — see ByeByeResponseMessage.proto

@@ -1,0 +1,19 @@
+syntax = "proto2";
+// SPDX-License-Identifier: GPL-3.0-or-later
+
+/*
+ * REDUNDANT — This standalone enum file has been superseded.
+ *
+ * The canonical CarLocalMediaPlaybackAction enum is defined in
+ * CarLocalMediaPlaybackStatusMessage.proto (same values, correct syntax).
+ *
+ * This file had multiple errors:
+ *   - Wrong syntax (proto3, should be proto2)
+ *   - Unnecessary message wrapper (vwb is a plain Java enum, not message-wrapped)
+ *   - Different package (oaa.proto.enums vs oaa.proto.messages)
+ *   - Different name (CarLocalMediaPlayback.Enum vs CarLocalMediaPlaybackAction)
+ *
+ * Superseded: 2026-03-06, proto-verification pipeline
+ */
+
+// This file is retained as a tombstone. Use CarLocalMediaPlaybackStatusMessage.proto instead.

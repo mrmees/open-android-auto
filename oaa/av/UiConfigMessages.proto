@@ -1,0 +1,80 @@
+// Android Auto Protocol Buffer Definitions
+// https://github.com/mrmees/open-android-auto
+// SPDX-License-Identifier: GPL-3.0-or-later
+
+/*
+ * UI Config messages (AV channels — Video/Audio)
+ * Flows on video channel alongside media data.
+ *
+ * Controls display margins, content insets, and theme (light/dark/auto)
+ * for the projected AA UI. Two pairs exist:
+ *
+ * Message IDs (on AV channel):
+ *   0x800A = UpdateUiConfigRequest        (HU->Phone)
+ *   0x800B = UpdateUiConfigReply          (Phone->HU)
+ *   0x8012 = UpdateHuUiConfigRequest      (HU->Phone, HU-initiated push)
+ *   0x8013 = UpdateHuUiConfigResponse     (Phone->HU)
+ *
+ * The regular pair (0x800A/B) may be phone-initiated config negotiation.
+ * The HU pair (0x8012/13) is for the head unit to proactively push
+ * UI config changes (e.g., day/night mode switch).
+ *
+ * Related: VideoConfigData.proto field 11 (additional_config) is likely
+ * a UiConfig sub-message in the service discovery video config.
+ *
+ * Source: aa-proxy-rs protos, confirmed against AVChannelMessageIdsEnum.
+ * Proto2 per APK class wcs (UpdateUiConfigRequest).
+ *
+ * APK: AA v16.1
+ */
+
+syntax = "proto2";
+
+package oaa.proto.messages;
+
+// UI theme mode
+// confidence: silver [apk_static, cross_version]
+enum UiTheme {
+    UI_THEME_AUTOMATIC = 0;
+    UI_THEME_LIGHT = 1;
+    UI_THEME_DARK = 2;
+}
+
+// Display area insets (pixels from edge)
+// confidence: silver [apk_static, cross_version]
+message Insets {
+    optional uint32 top = 1;  // confidence: silver [apk_static, cross_version]
+    optional uint32 bottom = 2;  // confidence: silver [apk_static, cross_version]
+    optional uint32 left = 3;  // confidence: silver [apk_static, cross_version]
+    optional uint32 right = 4;  // confidence: silver [apk_static, cross_version]
+}
+
+// UI configuration — margins, content area, theme
+// confidence: silver [apk_static, cross_version]
+message UiConfig {
+    optional Insets margins = 1;  // confidence: silver [apk_static, cross_version]
+    optional Insets content_insets = 2;  // confidence: silver [apk_static, cross_version]
+    optional Insets stable_content_insets = 3;  // confidence: silver [apk_static, cross_version]
+    optional UiTheme ui_theme = 4;  // confidence: silver [apk_static, cross_version]
+}
+
+// 0x800A: UpdateUiConfigRequest (HU->Phone)
+// Canonical definition moved to oaa/video/UpdateUiConfigRequestMessage.proto (Gold confidence).
+// Field 1 is AdditionalVideoConfig, NOT UiConfig (deep trace verified).
+
+// 0x800B: UpdateUiConfigReply (Phone->HU)
+// confidence: silver [apk_static, cross_version]
+message UpdateUiConfigReply {
+    optional UiConfig ui_config = 1;  // confidence: silver [apk_static, cross_version]
+}
+
+// 0x8012: UpdateHuUiConfigRequest (HU->Phone)
+// HU proactively pushes UI config changes (e.g., day/night switch).
+// confidence: silver [apk_static, cross_version]
+message UpdateHuUiConfigRequest {
+    optional UiConfig ui_config = 1;  // confidence: silver [apk_static, cross_version]
+}
+
+// 0x8013: UpdateHuUiConfigResponse (Phone->HU)
+// Canonical definition moved to oaa/video/UpdateHuUiConfigResponse.proto (Gold confidence).
+// Field 1 is ThemingTokensStatus, NOT UiConfig (deep trace verified).

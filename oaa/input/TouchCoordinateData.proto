@@ -1,0 +1,7 @@
+syntax = "proto2";
+// RETRACTED — wrong class mapping
+// Audit claimed class wbl (16.1) / wbb (16.2), but:
+//   - wbl in 16.1 = InputBindingRequest, NOT TouchCoordinate
+//   - wbb in 16.2 = RelativeInputEvent (rotary scroll)
+// The actual touch coordinate proto is TouchLocationData.proto (class wby)
+// with required uint32 fields: x(1), y(2), pointer_id(3)

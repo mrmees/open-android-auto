@@ -1,0 +1,27 @@
+// Android Auto Protocol Buffer Definitions
+// https://github.com/mrmees/open-android-auto
+// SPDX-License-Identifier: GPL-3.0-or-later
+
+/*
+ * BluetoothPairingRequest — HU→Phone request to initiate BT pairing.
+ *
+ * Wire ID: 0x8001 on BT channel (service 9, CAR.GAL.BT)
+ * 16.2 class: kba, 16.1 class: kay
+ *
+ * Consumed phone-side (not by qlg handler directly).
+ * Phone responds with BluetoothPairingResponse (0x8002).
+ */
+
+syntax = "proto3";
+
+import "oaa/bluetooth/BluetoothPairingMethodEnum.proto";
+
+package oaa.proto.messages;
+
+// confidence: gold [apk_deep_trace]
+message BluetoothPairingRequest
+{
+    optional string phone_address = 1;  // confidence: gold [apk_deep_trace]
+    optional enums.BluetoothPairingMethod.Enum pairing_method = 2;  // confidence: gold [apk_deep_trace]
+    optional string phone_name = 3; // Human-readable phone name  // confidence: gold [apk_deep_trace]
+}

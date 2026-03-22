@@ -1,0 +1,25 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
+// Copyright (C) 2024-2026 Open Android Auto contributors
+// Based on works by: f1x.studio (aasdk), opencardev (crankshaft), aa-proxy (aa-proxy-rs)
+
+/*
+ * Sensor error status codes.
+ *
+ * APK class: wbq (AA v16.1), wbg (AA v16.2)
+ * Values verified from wbg.java and handler usage in ibi.java.
+ */
+syntax="proto2";
+
+package oaa.proto.enums;
+
+// confidence: gold [deep_trace, 16.2 wbg.java]
+message SensorErrorStatus
+{
+    // confidence: gold
+    enum Enum
+    {
+        SENSOR_OK = 1;
+        SENSOR_ERROR_TRANSIENT = 2;
+        SENSOR_ERROR_PERMANENT = 3;
+    }
+}

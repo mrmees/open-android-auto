@@ -1,0 +1,33 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
+// Copyright (C) 2024-2026 Open Android Auto contributors
+// Based on works by: f1x.studio (aasdk), opencardev (crankshaft), aa-proxy (aa-proxy-rs)
+syntax="proto2";
+
+import "oaa/video/AdditionalVideoConfigData.proto";
+
+package oaa.proto.messages;
+
+/*
+ * Runtime UI configuration update — margins, theme, element visibility.
+ *
+ * APK class: wci (16.2)
+ * Wire msg 0x8009 Phone->HU (inbound), 0x800A HU->Phone (outbound) — bidirectional
+ * vdp internal name: MEDIA_MESSAGE_UPDATE_UI_CONFIG
+ *
+ * Wraps AdditionalVideoConfig (wcb/wcm), which is the same data structure
+ * used in VideoConfig field 11 for initial setup. This message is used for
+ * runtime updates (e.g., night mode change, margin adjustment).
+ *
+ * Distinct from UiConfigRequest (wcj, 0x8011) which sends theming tokens.
+ *
+ * Handler: ied.java
+ *   Inbound: mo18864a case 32777 (0x8009) -> deserialize wci -> huz.mo19808w(wci)
+ *   Outbound: m20260J(wcb) -> build wci -> m20106k(32778 = 0x800A)
+ * Validation: field 1 must be present or PROTOCOL_WRONG_MESSAGE / INVALID_UI_CONFIG
+ *
+ * confidence: gold [deep_trace, handler_verified]
+ */
+message UpdateUiConfigRequest
+{
+    optional oaa.proto.data.AdditionalVideoConfig config = 1;  // wcb (16.2) / wcm (16.1)  // confidence: gold [deep_trace]
+}

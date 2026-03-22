@@ -1,0 +1,21 @@
+// Android Auto Protocol Buffer Definitions
+// https://github.com/mrmees/open-android-auto
+// SPDX-License-Identifier: GPL-3.0-or-later
+
+/*
+ * WifiConnectionRejection — phone rejects WiFi connection.
+ *
+ * APK class: wdk.java (AA v16.1)
+ * BT RFCOMM message type: ordinal 9 (MESSAGE_WIFI_CONNECTION_REJECTION_BT)
+ */
+
+syntax="proto2";
+
+import "oaa/wifi/WifiConnectionRejectionReasonEnum.proto";
+
+package oaa.proto.messages;
+
+// confidence: silver [apk_static, cross_version]
+message WifiConnectionRejection {
+    optional enums.WifiConnectionRejectionReason.Enum reason = 1; // APK: b (enum via wck.o/a.bW)  // confidence: silver [apk_static, cross_version]
+}

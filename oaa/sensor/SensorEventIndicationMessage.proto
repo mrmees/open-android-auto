@@ -1,0 +1,80 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
+// Copyright (C) 2024-2026 Open Android Auto contributors
+// Based on works by: f1x.studio (aasdk), opencardev (crankshaft), aa-proxy (aa-proxy-rs)
+
+/*
+ * Sensor event indication message (msg ID 0x8003).
+ *
+ * Sent by the phone to deliver sensor data to the head unit.
+ * Field numbers match SensorType enum values (field 1 = LOCATION = 1, etc.).
+ * All fields are repeated messages — each batch can contain multiple readings.
+ *
+ * APK class: wbo (AA v16.1), wbe (AA v16.2)
+ * Handler: ibi.java (16.2) dispatches all 26 fields via m20130u().
+ *
+ * DHU 2.1 verification status (2026-02-28):
+ *   Fields 1,3,6: functionally confirmed (affect phone behavior), silent in logcat
+ *   Field 9: enum numbering verified via "no listener" log referencing sensor:9
+ *   Field 10: fully verified — complete processing pipeline traced in logcat
+ */
+syntax="proto2";
+
+import "oaa/sensor/GPSLocationData.proto";
+import "oaa/sensor/CompassData.proto";
+import "oaa/sensor/SpeedData.proto";
+import "oaa/sensor/RPMData.proto";
+import "oaa/sensor/OdometerData.proto";
+import "oaa/sensor/FuelLevelData.proto";
+import "oaa/sensor/ParkingBrakeData.proto";
+import "oaa/sensor/GearData.proto";
+import "oaa/common/DiagnosticsData.proto";
+import "oaa/sensor/NightModeData.proto";
+import "oaa/sensor/EnvironmentData.proto";
+import "oaa/sensor/HVACData.proto";
+import "oaa/sensor/DrivingStatusData.proto";
+import "oaa/sensor/SteeringWheelData.proto";
+import "oaa/sensor/PassengerData.proto";
+import "oaa/sensor/DoorData.proto";
+import "oaa/sensor/LightData.proto";
+import "oaa/sensor/TirePressureData.proto";
+import "oaa/sensor/AccelData.proto";
+import "oaa/sensor/GyroData.proto";
+import "oaa/sensor/GpsSatelliteData.proto";
+import "oaa/sensor/TollCardData.proto";
+import "oaa/sensor/VehicleEnergyModelData.proto";
+import "oaa/sensor/TrailerData.proto";
+import "oaa/sensor/RawVehicleEnergyModelData.proto";
+import "oaa/sensor/RawEvTripSettingsData.proto";
+
+package oaa.proto.messages;
+
+// confidence: gold [deep_trace, 16.2 handler ibi.java + wbe.java zzq descriptor]
+message SensorEventIndication
+{
+    repeated data.GPSLocation gps_location = 1;         // LOCATION — 16.2: vxx  // confidence: gold
+    repeated data.Compass compass = 2;                   // COMPASS — 16.2: vwm  // confidence: gold
+    repeated data.Speed speed = 3;                       // CAR_SPEED — 16.2: wbt  // confidence: gold
+    repeated data.RPM rpm = 4;                           // RPM — 16.2: wbd  // confidence: gold
+    repeated data.Odometer odometer = 5;                 // ODOMETER — 16.2: vzj  // confidence: gold
+    repeated data.FuelLevel fuel_level = 6;              // FUEL_LEVEL — 16.2: vwz  // confidence: gold
+    repeated data.ParkingBrake parking_brake = 7;        // PARKING_BRAKE — 16.2: vzn  // confidence: gold
+    repeated data.Gear gear = 8;                         // GEAR — 16.2: vxb  // confidence: gold
+    repeated data.Diagnostics diagnostics = 9;           // DIAGNOSTICS — 16.2: vwr  // confidence: gold
+    repeated data.NightMode night_mode = 10;             // NIGHT_DATA — 16.2: vzi  // confidence: gold
+    repeated data.Environment enviorment = 11;           // ENVIRONMENT — 16.2: vww  // confidence: gold
+    repeated data.HVAC hvac = 12;                        // HVAC — 16.2: vxh  // confidence: gold
+    repeated data.DrivingStatus driving_status = 13;     // DRIVING_STATUS — 16.2: vwv  // confidence: gold
+    repeated data.SteeringWheel steering_wheel = 14;     // DEAD_RECKONING — 16.2: vwq  // confidence: gold
+    repeated data.Passenger passenger = 15;              // PASSENGER — 16.2: vzo  // confidence: gold
+    repeated data.Door door = 16;                        // DOOR — 16.2: vwt  // confidence: gold
+    repeated data.Light light = 17;                      // LIGHT — 16.2: vxw  // confidence: gold
+    repeated data.TirePressure tire_pressure = 18;       // TIRE_PRESSURE — 16.2: wbw  // confidence: gold
+    repeated data.Accel accel = 19;                      // ACCELEROMETER — 16.2: vuv  // confidence: gold
+    repeated data.Gyro gyro = 20;                        // GYROSCOPE — 16.2: vxf  // confidence: gold
+    repeated data.GpsSatelliteData gps_satellite = 21;   // GPS_SATELLITE — 16.2: vxe  // confidence: gold
+    repeated data.TollCardData toll_card = 22;           // TOLL_CARD — 16.2: wbx  // confidence: gold
+    repeated data.VehicleEnergyModelData vehicle_energy_model = 23;  // VEHICLE_ENERGY_MODEL — 16.2: vus  // confidence: gold
+    repeated data.TrailerData trailer = 24;              // TRAILER — 16.2: wca  // confidence: gold
+    repeated data.RawVehicleEnergyModel raw_vehicle_energy_model = 25;  // RAW_VEHICLE_ENERGY_MODEL — 16.2: wax  // confidence: gold
+    repeated data.RawEvTripSettings raw_ev_trip_settings = 26;  // RAW_EV_TRIP_SETTINGS — 16.2: wav  // confidence: gold
+}

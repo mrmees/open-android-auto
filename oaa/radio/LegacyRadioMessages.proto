@@ -1,0 +1,481 @@
+// Android Auto Protocol Buffer Definitions
+// https://github.com/mrmees/open-android-auto
+// SPDX-License-Identifier: GPL-3.0-or-later
+
+/*
+ * Legacy Radio v1 channel messages (pre-2020 AA versions)
+ *
+ * SUPERSEDED: These definitions are from the original broadcast radio API
+ * which used channel/frequency-based tuning, individual request/response
+ * pairs for each operation, and detailed HD Radio/RDS metadata structures.
+ *
+ * The modern radio API (RadioMessages.proto, AA v16.1+) uses:
+ *   - ProgramSelector/ProgramIdentifier addressing (broadcastradio@2.0)
+ *   - Unified RadioMetadata with inline HD/DAB fields
+ *   - 10 messages (0x801A-0x8023) vs 25 messages (0x8001-0x8019)
+ *   - Simpler surface: Tune, TuneDirection, Mute, FavoriteToggle, Search
+ *
+ * Key differences from modern API:
+ *   - RadioType enum (AM/FM/HD/DAB/XM) vs RadioIdentifierType
+ *   - Separate RdsData + HdRadioStationInfo vs unified RadioMetadata
+ *   - Explicit StepChannel/SeekStation/ScanStations vs TuneDirection
+ *   - Station presets management vs favorites list
+ *   - Traffic incident data (not present in v2)
+ *   - Channel spacing configuration (not present in v2)
+ *   - Radio source enable/disable (not present in v2)
+ *
+ * Source: opencardev/aasdk (GPLv3), adapted to oaa conventions
+ * Original: aap_protobuf/service/radio/
+ *
+ * Verified 2026-03-07: Confirmed NO ID conflicts with modern radio handler.
+ *   - ibf.java (16.2) only handles 0x801A-0x8023 — zero overlap with 0x8001-0x8019
+ *   - No legacy structures survive as dead code (RadioType, RdsData, HdRadioStationInfo,
+ *     StationPreset, RadioProperties, TrafficIncident all completely absent)
+ *   - XM/Sirius, OIRT, RBDS: zero references in entire APK
+ *
+ * confidence: bronze [external_reference, legacy_api, confirmed_dead_in_16.2]
+ */
+
+syntax = "proto2";
+
+package oaa.proto.messages;
+
+// ============================================================================
+// Enums
+// ============================================================================
+
+// Legacy radio type — superseded by RadioIdentifierType in v2
+// confidence: bronze [external_reference, legacy_api]
+enum LegacyRadioType {
+    LEGACY_RADIO_AM = 0;
+    LEGACY_RADIO_FM = 1;
+    LEGACY_RADIO_AM_HD = 2;
+    LEGACY_RADIO_FM_HD = 3;
+    LEGACY_RADIO_DAB = 4;
+    LEGACY_RADIO_XM = 5;       // XM/Sirius — not present in v2 API
+}
+
+// ITU region for radio band allocation
+// Compare: our RadioRegionEnum has only UNKNOWN/ITU_1;
+// this legacy version has more granularity.
+// confidence: bronze [external_reference, legacy_api]
+enum LegacyItuRegion {
+    LEGACY_REGION_NONE = 0;
+    LEGACY_REGION_ITU_1 = 1;   // Europe, Africa, Middle East, former USSR
+    LEGACY_REGION_ITU_2 = 2;   // Americas
+    LEGACY_REGION_OIRT = 3;    // Eastern Europe (legacy FM band 65-74 MHz)
+    LEGACY_REGION_JAPAN = 4;   // Japan (76-95 MHz FM)
+    LEGACY_REGION_KOREA = 5;   // South Korea
+}
+
+// RDS (Radio Data System) implementation type
+// confidence: bronze [external_reference, legacy_api]
+enum LegacyRdsType {
+    LEGACY_RDS_NONE = 0;
+    LEGACY_RDS_RDS = 1;       // European RDS
+    LEGACY_RDS_RBDS = 2;      // North American RBDS
+}
+
+// HD Radio acquisition state
+// confidence: bronze [external_reference, legacy_api]
+enum LegacyHdAcquisitionState {
+    LEGACY_HD_ANALOG = 0;         // Receiving analog only
+    LEGACY_HD_ACQUIRING = 1;      // HD signal detected, acquiring
+    LEGACY_HD_ACQUIRED = 2;       // HD digital signal locked
+}
+
+// Traffic service type
+// confidence: bronze [external_reference, legacy_api]
+enum LegacyTrafficServiceType {
+    LEGACY_TRAFFIC_NONE = 0;
+    LEGACY_TRAFFIC_TMC = 1;       // Traffic Message Channel (RDS-TMC)
+}
+
+// ============================================================================
+// Legacy message IDs (0x8001-0x8019, 25 messages)
+// ============================================================================
+
+// confidence: bronze [external_reference, legacy_api]
+enum LegacyRadioMessageId {
+    LEGACY_RADIO_ACTIVE_NOTIFICATION = 0x8001;
+    LEGACY_RADIO_SELECT_ACTIVE_REQUEST = 0x8002;
+    LEGACY_RADIO_STEP_CHANNEL_REQUEST = 0x8003;
+    LEGACY_RADIO_STEP_CHANNEL_RESPONSE = 0x8004;
+    LEGACY_RADIO_SEEK_STATION_REQUEST = 0x8005;
+    LEGACY_RADIO_SEEK_STATION_RESPONSE = 0x8006;
+    LEGACY_RADIO_SCAN_STATIONS_REQUEST = 0x8007;
+    LEGACY_RADIO_SCAN_STATIONS_RESPONSE = 0x8008;
+    LEGACY_RADIO_TUNE_TO_STATION_REQUEST = 0x8009;
+    LEGACY_RADIO_TUNE_TO_STATION_RESPONSE = 0x800A;
+    LEGACY_RADIO_GET_PROGRAM_LIST_REQUEST = 0x800B;
+    LEGACY_RADIO_GET_PROGRAM_LIST_RESPONSE = 0x800C;
+    LEGACY_RADIO_STATION_PRESETS_NOTIFICATION = 0x800D;
+    LEGACY_RADIO_CANCEL_OPERATIONS_REQUEST = 0x800E;
+    LEGACY_RADIO_CANCEL_OPERATIONS_RESPONSE = 0x800F;
+    LEGACY_RADIO_CONFIGURE_SPACING_REQUEST = 0x8010;
+    LEGACY_RADIO_CONFIGURE_SPACING_RESPONSE = 0x8011;
+    LEGACY_RADIO_STATION_INFO_NOTIFICATION = 0x8012;
+    LEGACY_RADIO_MUTE_REQUEST = 0x8013;
+    LEGACY_RADIO_MUTE_RESPONSE = 0x8014;
+    LEGACY_RADIO_GET_TRAFFIC_REQUEST = 0x8015;
+    LEGACY_RADIO_GET_TRAFFIC_RESPONSE = 0x8016;
+    LEGACY_RADIO_SOURCE_REQUEST = 0x8017;
+    LEGACY_RADIO_SOURCE_RESPONSE = 0x8018;
+    LEGACY_RADIO_STATE_NOTIFICATION = 0x8019;
+}
+
+// ============================================================================
+// Sub-messages — Station identification
+// ============================================================================
+
+// Frequency range for a radio band
+// confidence: bronze [external_reference, legacy_api]
+message LegacyRadioRange {
+    optional int32 min = 1;    // Minimum frequency (Hz or channel number)
+    optional int32 max = 2;    // Maximum frequency
+}
+
+// Geographic location (used by HD Radio SIS and traffic)
+// confidence: bronze [external_reference, legacy_api]
+message LegacyRadioLocation {
+    optional double longitude = 1;
+    optional double latitude = 2;
+}
+
+// Radio tuner hardware properties (part of SDP/service discovery)
+// confidence: bronze [external_reference, legacy_api]
+message LegacyRadioProperties {
+    optional int32 radio_id = 1;
+    optional LegacyRadioType type = 2;
+    repeated LegacyRadioRange channel_range = 3;
+    repeated int32 channel_spacings = 4;           // Available spacing values (kHz)
+    optional int32 channel_spacing = 5;            // Current spacing
+    optional bool background_tuner = 6;            // Can tune in background
+    optional LegacyItuRegion region = 7;
+    optional LegacyRdsType rds = 8;
+    optional bool af_switch = 9;                   // RDS AF (Alternative Frequency) switching
+    optional bool ta = 10;                         // RDS TA (Traffic Announcement) support
+    optional LegacyTrafficServiceType traffic_service = 11;
+    optional bool audio_loopback = 12;
+    optional bool mute_capability = 13;
+    optional int32 station_presets_access = 14;    // Preset bank access flags
+}
+
+// ============================================================================
+// Sub-messages — Station metadata
+// ============================================================================
+
+// RDS (Radio Data System) data from FM broadcast
+// confidence: bronze [external_reference, legacy_api]
+message LegacyRdsData {
+    repeated int32 alternative_frequencies = 1;    // AF list (frequency values)
+    optional int32 program_id = 2;                 // RDS PI code
+    optional int32 music_speech_switch = 3;        // M/S flag
+    optional string program_service_name = 4;      // RDS PS (8 chars)
+    optional int32 program_type = 5;               // RDS PTY code
+    optional string program_type_name = 6;         // PTY as string
+    optional string radio_text = 7;                // RDS RT (RadioText)
+    optional bool traffic_program_flag = 8;        // RDS TP flag
+    optional bool traffic_announcement_flag = 9;   // RDS TA flag
+}
+
+// HD Radio PSD (Program Service Data) — song/program info
+// confidence: bronze [external_reference, legacy_api]
+message LegacyHdRadioPsdData {
+    optional string title = 1;
+    optional string artist = 2;
+    optional string album = 3;
+    optional string genre = 4;
+    optional LegacyHdRadioComment comment = 5;
+    optional LegacyHdRadioCommercial commercial = 6;
+    optional LegacyHdRadioArtistExperience artist_experience = 7;
+}
+
+// HD Radio SIS (Station Information Service) — station identity
+// confidence: bronze [external_reference, legacy_api]
+message LegacyHdRadioSisData {
+    optional int32 station_id = 1;
+    optional string station_name_short = 2;
+    optional string station_name_long = 3;
+    optional LegacyRadioLocation station_location = 4;
+    optional string station_message = 5;
+    optional string service_info_message = 6;
+    optional string universal_short_station_name_slogan = 7;
+}
+
+// HD Radio comment data
+// confidence: bronze [external_reference, legacy_api]
+message LegacyHdRadioComment {
+    optional string description = 1;
+    optional string text = 2;
+}
+
+// HD Radio commercial/advertising data
+// confidence: bronze [external_reference, legacy_api]
+message LegacyHdRadioCommercial {
+    optional int32 encoding = 1;
+    optional string price = 2;
+    optional string valid = 3;       // Validity/expiration
+    optional string url = 4;
+    optional int32 received = 5;     // Timestamp
+    optional string seller = 6;
+    optional string description = 7;
+}
+
+// HD Radio Artist Experience — album art via HD Radio
+// confidence: bronze [external_reference, legacy_api]
+message LegacyHdRadioArtistExperience {
+    optional bytes image = 1;        // Station logo or album art
+}
+
+// HD Radio combined station info
+// confidence: bronze [external_reference, legacy_api]
+message LegacyHdRadioStationInfo {
+    optional LegacyHdAcquisitionState acquisition_state = 1;
+    optional int32 digital_signal_strength = 2;
+    optional LegacyHdRadioPsdData psd = 3;
+    optional LegacyHdRadioSisData sis = 4;
+}
+
+// Station metadata — audio quality + RDS + HD Radio
+// confidence: bronze [external_reference, legacy_api]
+message LegacyRadioStationMetaData {
+    optional int32 audio_channels = 1;         // Mono/stereo
+    optional int32 signal_quality = 2;         // Signal strength indicator
+    optional LegacyRdsData rds = 3;
+    optional LegacyHdRadioStationInfo hd_station_info = 4;
+}
+
+// Station identification — type + channel + metadata
+// confidence: bronze [external_reference, legacy_api]
+message LegacyRadioStationInfo {
+    optional LegacyRadioType type = 1;
+    optional int32 channel = 2;                // Frequency (Hz) or channel number
+    optional int32 sub_channel = 3;            // HD Radio sub-channel
+    optional LegacyRadioStationMetaData meta_data = 4;
+}
+
+// ============================================================================
+// Sub-messages — Station presets
+// ============================================================================
+
+// A saved station preset
+// confidence: bronze [external_reference, legacy_api]
+message LegacyStationPreset {
+    optional LegacyRadioType type = 1;
+    optional int32 channel = 2;
+    optional int32 sub_channel = 3;
+}
+
+// A named list of presets (e.g., "FM Favorites")
+// confidence: bronze [external_reference, legacy_api]
+message LegacyStationPresetList {
+    optional string name = 1;
+    repeated int32 restricted_station_types = 2;   // RadioType values allowed
+    repeated LegacyStationPreset presets = 3;
+}
+
+// Traffic incident report
+// confidence: bronze [external_reference, legacy_api]
+message LegacyTrafficIncident {
+    optional int32 event_code = 1;                 // TMC event code
+    optional LegacyRadioLocation location = 2;
+    optional int32 expected_incident_duration = 3; // Duration in seconds
+}
+
+// ============================================================================
+// Top-level messages — Notifications (Phone <- HU, unsolicited updates)
+// ============================================================================
+
+// 0x8001: ActiveRadioNotification
+// Current active radio and its station info.
+// confidence: bronze [external_reference, legacy_api]
+message LegacyActiveRadioNotification {
+    optional int32 status = 1;     // MessageStatus enum value
+    optional int32 radio_id = 2;
+    optional LegacyRadioStationInfo station_info = 3;
+}
+
+// 0x800D: StationPresetsNotification
+// Updated preset lists from the HU.
+// NOTE: Field numbering starts at 2 (no field 1) per opencardev source.
+// confidence: bronze [external_reference, legacy_api]
+message LegacyStationPresetsNotification {
+    repeated LegacyStationPresetList preset_lists = 2;
+}
+
+// 0x8012: RadioStationInfoNotification
+// Station info update for a specific radio.
+// confidence: bronze [external_reference, legacy_api]
+message LegacyRadioStationInfoNotification {
+    optional int32 radio_id = 1;
+    optional LegacyRadioStationInfo station_info = 2;
+}
+
+// 0x8019: RadioStateNotification
+// Full radio state snapshot — source, mute, active radio, stations, presets.
+// confidence: bronze [external_reference, legacy_api]
+message LegacyRadioStateNotification {
+    optional bool radio_source_enabled = 1;
+    optional bool radio_muted = 2;
+    optional int32 active_radio_id = 3;
+    optional LegacyRadioStationInfo station_info = 4;
+    repeated LegacyRadioStationInfo program_list = 5;
+    repeated LegacyStationPresetList station_preset_lists = 6;
+}
+
+// ============================================================================
+// Top-level messages — Requests & Responses
+// ============================================================================
+
+// 0x8002: SelectActiveRadioRequest (Phone->HU)
+// confidence: bronze [external_reference, legacy_api]
+message LegacySelectActiveRadioRequest {
+    optional int32 radio_id = 1;
+}
+
+// 0x8003: StepChannelRequest (Phone->HU) — step one channel increment
+// confidence: bronze [external_reference, legacy_api]
+message LegacyStepChannelRequest {
+    optional int32 radio_id = 1;
+    optional bool up = 2;                  // Step direction
+    optional bool skip_sub_channel = 3;    // Skip HD sub-channels
+}
+
+// 0x8004: StepChannelResponse (HU->Phone)
+// confidence: bronze [external_reference, legacy_api]
+message LegacyStepChannelResponse {
+    optional int32 status = 1;     // MessageStatus
+    optional int32 radio_id = 2;
+}
+
+// 0x8005: SeekStationRequest (Phone->HU) — seek to next station with signal
+// confidence: bronze [external_reference, legacy_api]
+message LegacySeekStationRequest {
+    optional int32 radio_id = 1;
+    optional bool up = 2;
+    optional bool skip_sub_channel = 3;
+}
+
+// 0x8006: SeekStationResponse (HU->Phone)
+// confidence: bronze [external_reference, legacy_api]
+message LegacySeekStationResponse {
+    optional int32 status = 1;     // MessageStatus
+    optional int32 radio_id = 2;
+}
+
+// 0x8007: ScanStationsRequest (Phone->HU) — scan all stations
+// confidence: bronze [external_reference, legacy_api]
+message LegacyScanStationsRequest {
+    optional int32 radio_id = 1;
+    optional bool start = 2;               // Start/stop scan
+    optional bool up = 3;                  // Scan direction
+    optional bool skip_sub_channel = 4;
+}
+
+// 0x8008: ScanStationsResponse (HU->Phone)
+// confidence: bronze [external_reference, legacy_api]
+message LegacyScanStationsResponse {
+    optional int32 status = 1;     // MessageStatus
+    optional int32 radio_id = 2;
+    optional bool started = 3;
+}
+
+// 0x8009: TuneToStationRequest (Phone->HU) — tune to specific frequency
+// confidence: bronze [external_reference, legacy_api]
+message LegacyTuneToStationRequest {
+    optional int32 radio_id = 1;
+    optional int32 channel = 2;            // Target frequency
+    optional int32 sub_channel = 3;        // HD sub-channel
+}
+
+// 0x800A: TuneToStationResponse (HU->Phone)
+// confidence: bronze [external_reference, legacy_api]
+message LegacyTuneToStationResponse {
+    optional int32 status = 1;     // MessageStatus
+    optional int32 radio_id = 2;
+}
+
+// 0x800B: GetProgramListRequest (Phone->HU) — request available stations
+// confidence: bronze [external_reference, legacy_api]
+message LegacyGetProgramListRequest {
+    optional int32 radio_id = 1;
+}
+
+// 0x800C: GetProgramListResponse (HU->Phone)
+// confidence: bronze [external_reference, legacy_api]
+message LegacyGetProgramListResponse {
+    optional int32 status = 1;     // MessageStatus
+    optional int32 radio_id = 2;
+    optional bool completed = 3;           // Full list or partial
+    repeated LegacyRadioStationInfo program_list = 4;
+}
+
+// 0x800E: CancelRadioOperationsRequest (Phone->HU) — cancel seek/scan
+// confidence: bronze [external_reference, legacy_api]
+message LegacyCancelRadioOperationsRequest {
+    optional int32 radio_id = 1;
+}
+
+// 0x800F: CancelRadioOperationsResponse (HU->Phone)
+// confidence: bronze [external_reference, legacy_api]
+message LegacyCancelRadioOperationsResponse {
+    optional int32 status = 1;     // MessageStatus
+    optional int32 radio_id = 2;
+}
+
+// 0x8010: ConfigureChannelSpacingRequest (Phone->HU)
+// confidence: bronze [external_reference, legacy_api]
+message LegacyConfigureChannelSpacingRequest {
+    optional int32 radio_id = 1;
+    optional int32 channel_spacing = 2;    // Spacing in kHz
+}
+
+// 0x8011: ConfigureChannelSpacingResponse (HU->Phone)
+// confidence: bronze [external_reference, legacy_api]
+message LegacyConfigureChannelSpacingResponse {
+    optional int32 status = 1;     // MessageStatus
+    optional int32 radio_id = 2;
+    optional int32 channel_spacing = 3;
+}
+
+// 0x8013: MuteRadioRequest (Phone->HU)
+// confidence: bronze [external_reference, legacy_api]
+message LegacyMuteRadioRequest {
+    optional int32 radio_id = 1;
+    optional bool mute = 2;
+}
+
+// 0x8014: MuteRadioResponse (HU->Phone)
+// confidence: bronze [external_reference, legacy_api]
+message LegacyMuteRadioResponse {
+    optional int32 status = 1;     // MessageStatus
+    optional int32 radio_id = 2;
+    optional bool muted = 3;
+}
+
+// 0x8015: GetTrafficUpdateRequest (Phone->HU) — request TMC traffic data
+// confidence: bronze [external_reference, legacy_api]
+message LegacyGetTrafficUpdateRequest {
+    optional int32 radio_id = 1;
+}
+
+// 0x8016: GetTrafficUpdateResponse (HU->Phone)
+// confidence: bronze [external_reference, legacy_api]
+message LegacyGetTrafficUpdateResponse {
+    optional int32 status = 1;     // MessageStatus
+    optional int32 radio_id = 2;
+    repeated LegacyTrafficIncident incidents = 3;
+}
+
+// 0x8017: RadioSourceRequest (Phone->HU) — query radio source state
+// confidence: bronze [external_reference, legacy_api]
+message LegacyRadioSourceRequest {
+}
+
+// 0x8018: RadioSourceResponse (HU->Phone)
+// confidence: bronze [external_reference, legacy_api]
+message LegacyRadioSourceResponse {
+    optional int32 status = 1;     // MessageStatus
+    optional bool radio_source_enabled = 2;
+}

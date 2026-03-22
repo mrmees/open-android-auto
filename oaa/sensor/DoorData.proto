@@ -1,0 +1,15 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
+// Copyright (C) 2024-2026 Open Android Auto contributors
+// Based on works by: f1x.studio (aasdk), opencardev (crankshaft), aa-proxy (aa-proxy-rs)
+syntax="proto2";
+
+package oaa.proto.data;
+
+// APK class: vwt (AA v16.2)
+// confidence: gold [deep_trace, 16.2 DB verified]
+message Door
+{
+    optional bool hood_open = 1;  // confidence: gold
+    optional bool boot_open = 2;  // confidence: gold
+    repeated bool door_open = 3;  // confidence: gold
+}

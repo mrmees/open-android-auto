@@ -1,0 +1,20 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
+// Copyright (C) 2024-2026 Open Android Auto contributors
+// Based on works by: f1x.studio (aasdk), opencardev (crankshaft), aa-proxy (aa-proxy-rs)
+syntax="proto3";
+
+package oaa.proto.ids;
+
+// GAL handler: ibr.java (service 17, CAR.GAL.WIFI_PROJ)
+// Phone only handles 0x8002 (receive). No send path found for 0x8001.
+// confidence: gold [deep_trace]
+message WifiChannelMessage
+{
+  // confidence: gold [deep_trace]
+  enum Enum
+  {
+    NONE = 0x0000;
+    CREDENTIALS_REQUEST = 0x8001;   // No phone-side handler — may be HU-only or unused
+    CREDENTIALS_RESPONSE = 0x8002;  // wcw — only msg handled by ibr.java
+  }
+}

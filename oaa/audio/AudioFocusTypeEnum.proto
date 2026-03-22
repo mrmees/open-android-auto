@@ -1,0 +1,30 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
+// Copyright (C) 2024-2026 Open Android Auto contributors
+// Based on works by: f1x.studio (aasdk), opencardev (crankshaft), aa-proxy (aa-proxy-rs)
+
+/*
+ * Audio focus type enum — used in AudioFocusRequest (msg 18).
+ *
+ * APK class: vvf (16.2)
+ * No value 0 exists in APK — NONE is synthetic for proto3 compat.
+ * Value 3 was incorrectly named GAIN_NAVI (from upstream aasdk).
+ * APK name: AUDIO_FOCUS_GAIN_TRANSIENT_MAY_DUCK (Android semantics).
+ * Sent in AudioFocusRequest (vvd) on control channel.
+ */
+syntax="proto3";
+
+package oaa.proto.enums;
+
+// confidence: gold [apk_deep_trace]
+message AudioFocusType
+{
+    // confidence: gold [apk_deep_trace]
+    enum Enum
+    {
+        NONE = 0;  // synthetic — not in APK (no value 0 exists)
+        GAIN = 1;
+        GAIN_TRANSIENT = 2;
+        GAIN_TRANSIENT_MAY_DUCK = 3;  // was GAIN_NAVI — actually Android AUDIOFOCUS_GAIN_TRANSIENT_MAY_DUCK
+        RELEASE = 4;
+    }
+}

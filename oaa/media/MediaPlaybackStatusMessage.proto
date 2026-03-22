@@ -1,0 +1,66 @@
+// Android Auto Protocol Buffer Definitions
+// https://github.com/mrmees/open-android-auto
+// SPDX-License-Identifier: GPL-3.0-or-later
+
+/*
+ * Media playback status update (msgId 0x8001 on MEDIA_PLAYBACK_STATUS channel)
+ * Sent by phone during media playback.
+ *
+ * APK class: vyq (AA v16.1) — 6 proto fields
+ * GAL channel type 11 (MEDIA_PLAYBACK_STATUS), handler: hzt.java
+ * Runtime channel ID assigned during service discovery (field 9 = media_info_channel).
+ *
+ * Wire-verified from capture (1993 messages):
+ *   0802 120d596f7554756265204d75736963 1850 2000 2800 3000
+ *   Field 1: varint=2 (PLAYING), Field 2: string="YouTube Music",
+ *   Field 3: varint=80 (position), Fields 4-6: varint=0 (booleans, all false)
+ *
+ * NOTE: Previous version incorrectly matched APK class ahdz (memory diagnostics
+ * proto with 23 int/long fields). That was a false positive from the proto decoder.
+ * Field 2 was wrongly typed as int32 — wire data proves it's a string.
+ *
+ * See also: CarLocalMediaPlaybackStatus (vws, msgId 0x8001 on CAR_LOCAL_MEDIA
+ * channel type 20) — a separate GMS car API layer with 4 fields including
+ * packed repeated enum actions. Different channel, different proto.
+ */
+
+syntax="proto2";
+
+package oaa.proto.messages;
+
+// Playback state values (APK enum verifier: vyv.b → a.ce, values 0-4)
+// Mapped to Android PlaybackStateCompat constants in qbw.java:
+//   1 → STATE_STOPPED(1), 2 → STATE_PLAYING(3),
+//   3 → STATE_PAUSED(2), 4 → STATE_ERROR(7), else → STATE_NONE(0)
+// confidence: gold [apk_deep_trace, 2026-03-06]
+enum PlaybackState {
+    PLAYBACK_STATE_UNKNOWN = 0;
+    PLAYBACK_STATE_STOPPED = 1;
+    PLAYBACK_STATE_PLAYING = 2;
+    PLAYBACK_STATE_PAUSED = 3;
+    PLAYBACK_STATE_ERROR = 4;
+}
+
+// RETRACTED — MediaEventIdWrapper and MediaEventId are NOT wire protocol messages.
+// APK class: xme (16.2) / xmu (16.1) — phone-internal MediaBrowserService structures.
+// Zero references from any GAL channel handler (not in hvx, iai, qnf, or vyc).
+// Used by oui.java (MediaBrowserService queue) -> xlm/xli/xmd/xww/zva.
+// MediaEventId (xmf) has 2 fields (not empty): message xmg + int64.
+// xmg has 3 required fields: int64, fixed32, fixed32.
+// Retracted: 2026-03-06, proto-verification pipeline
+
+// APK class: vyq
+// confidence: gold [apk_deep_trace, 2026-03-06]
+message MediaPlaybackStatus {
+    // Current playback state
+    optional PlaybackState playback_state = 1;  // confidence: gold [apk_deep_trace, 2026-03-06]
+    // Source application name (e.g. "YouTube Music", "Spotify")
+    optional string source_app = 2;  // confidence: gold [apk_deep_trace, 2026-03-06]
+    // Elapsed seconds in current track (resets to 0 on track change)
+    optional uint32 position_seconds = 3;  // confidence: gold [apk_deep_trace, 2026-03-06]
+    // Playback mode flags (confirmed via aa-proxy-rs protos and
+    // AIDL interface prz.java method g() — 3 trailing boolean params)
+    optional bool shuffle = 4;  // confidence: gold [apk_deep_trace, 2026-03-06]
+    optional bool repeat = 5;  // confidence: gold [apk_deep_trace, 2026-03-06]
+    optional bool repeat_one = 6;  // confidence: gold [apk_deep_trace, 2026-03-06]
+}

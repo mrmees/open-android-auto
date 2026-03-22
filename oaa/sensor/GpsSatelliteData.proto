@@ -1,0 +1,35 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
+// Copyright (C) 2024-2026 Open Android Auto contributors
+// Based on works by: f1x.studio (aasdk), opencardev (crankshaft), aa-proxy (aa-proxy-rs)
+
+/*
+ * GPS satellite data (sensor type 21 = GPS).
+ *
+ * Carries satellite constellation information.
+ *
+ * APK class: vxs (AA v16.1), vxe (AA v16.2)
+ * Sub-message class: vxd (AA v16.2) — 5 fields per satellite
+ */
+syntax="proto2";
+
+package oaa.proto.data;
+
+// Per-satellite information
+// APK class: vxd (AA v16.2) — 5 fields
+// confidence: gold [deep_trace, 16.2 DB verified]
+message GpsSatelliteInfo
+{
+    required int32 prn = 1;              // Satellite PRN/ID  // confidence: gold
+    required int32 snr = 2;              // Signal-to-noise ratio  // confidence: gold
+    required bool in_use = 3;            // Whether satellite is used in fix  // confidence: gold
+    optional int32 azimuth = 4;          // Azimuth in degrees  // confidence: gold
+    optional int32 elevation = 5;        // Elevation in degrees  // confidence: gold
+}
+
+// confidence: gold [deep_trace, 16.2 vxe.java DB verified]
+message GpsSatelliteData
+{
+    required int32 satellite_count = 1;  // confidence: gold
+    optional int32 satellites_used = 2;  // confidence: gold
+    repeated GpsSatelliteInfo satellites = 3;  // confidence: gold
+}

@@ -1,0 +1,23 @@
+// Android Auto Protocol Buffer Definitions
+// https://github.com/mrmees/open-android-auto
+// SPDX-License-Identifier: GPL-3.0-or-later
+
+/*
+ * WifiConnectStatus — WiFi connection status update (DEPRECATED).
+ *
+ * APK class: wdj.java (AA v16.1) — marked @Deprecated
+ * BT RFCOMM message type: ordinal 5 (MESSAGE_WIFI_CONNECT_STATUS_BT)
+ */
+
+syntax="proto2";
+
+package oaa.proto.messages;
+
+// Deprecated in APK — kept for protocol completeness.
+// NOTE: state uses WifiVersionStatus values (can be negative).
+// See WifiVersionStatusEnum.proto for value mapping.
+// confidence: silver [apk_static, cross_version]
+message WifiConnectStatus {
+    optional int32 state = 1; // APK: b (int, enum via wck.p/viz.au — WifiVersionStatus)  // confidence: silver [apk_static, cross_version]
+    optional string status_text = 2; // APK: d (String) — descriptor says string  // confidence: silver [apk_static, cross_version]
+}

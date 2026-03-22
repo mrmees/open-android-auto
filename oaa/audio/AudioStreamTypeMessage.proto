@@ -1,0 +1,26 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
+// Copyright (C) 2024-2026 Open Android Auto contributors
+// Based on works by: f1x.studio (aasdk), opencardev (crankshaft), aa-proxy (aa-proxy-rs)
+
+/*
+ * RETRACTED (2026-03-06)
+ *
+ * This message was incorrectly identified as "AudioStreamType" on an audio
+ * channel. It is actually RadioTuneDirectionRequest (msg ID 0x8022) on the
+ * radio channel (service 15, CAR.GAL.RADIO-EP).
+ *
+ * Evidence: hlr.java (CAR.RADIO) sends war (16.2) at wire ID 32802 = 0x8022
+ * through ibf.java (radio endpoint). The enum values (1, 2) represent
+ * tune UP/DOWN, not media/guidance stream type.
+ *
+ * Correct proto: oaa/radio/RadioMessages.proto — RadioTuneDirectionRequest
+ * See also: analysis/reports/proto-verification/audio.md
+ */
+syntax="proto2";
+
+package oaa.proto.messages;
+
+// RETRACTED — duplicate of RadioTuneDirectionRequest on radio channel
+// message AudioStreamType {
+//     optional enums.AudioStreamType.Enum stream_type = 1;
+// }

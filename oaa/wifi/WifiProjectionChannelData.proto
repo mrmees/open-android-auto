@@ -1,0 +1,25 @@
+// Android Auto Protocol Buffer Definitions
+// https://github.com/mrmees/open-android-auto
+// SPDX-License-Identifier: GPL-3.0-or-later
+
+/*
+ * WiFiProjectionChannel — WiFi projection capability for AA v16.1+.
+ *
+ * APK class: wdh.java (AA v16.1)
+ * WiFi projection SSID — single string field.
+ * Note: way.java is RadioChannel (repeated RadioStation), not this class.
+ */
+
+syntax="proto2";
+
+package oaa.proto.data;
+
+// RETRACTED — duplicate of WifiChannelData.proto (WifiChannel)
+// Both describe ChannelDescriptor field 14 with identical structure (1 string field).
+// Use WifiChannel from WifiChannelData.proto instead.
+// Field 1 is BSSID, not SSID (confirmed by hmf.java log: "Car wifi BSSID is %s")
+// confidence: retracted
+message WiFiProjectionChannel
+{
+    optional string bssid = 1;  // confidence: retracted — use WifiChannel.bssid instead
+}

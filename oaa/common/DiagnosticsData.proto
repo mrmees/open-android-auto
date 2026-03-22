@@ -1,0 +1,13 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
+// Copyright (C) 2024-2026 Open Android Auto contributors
+// Based on works by: f1x.studio (aasdk), opencardev (crankshaft), aa-proxy (aa-proxy-rs)
+syntax="proto2";
+
+package oaa.proto.data;
+
+// APK class: vxf (AA v16.1), vwr (AA v16.2) — 1 field only (field 1 bytes)
+// confidence: gold [deep_trace, 16.2 DB verified]
+message Diagnostics
+{
+    optional bytes diagnostics = 1;  // confidence: gold
+}

@@ -1,0 +1,13 @@
+// RETRACTED — Duplicate of PingRequestMessage.proto
+//
+// GalPingRequest and PingRequest are the SAME wire message (msg ID 11).
+// The confusion arose from obfuscated class name reuse:
+//   16.1: waj = PingRequest
+//   16.2: waj = radio program identifier (DIFFERENT proto!)
+//   16.2: vzv = PingRequest (renamed from waj)
+//
+// Use PingRequestMessage.proto instead.
+// Retracted: 2026-03-06, control channel verification
+syntax="proto2";
+package oaa.proto.messages;
+// RETRACTED — see PingRequestMessage.proto

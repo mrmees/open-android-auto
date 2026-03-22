@@ -1,0 +1,15 @@
+// Android Auto Protocol Buffer Definitions
+// https://github.com/mrmees/open-android-auto
+// SPDX-License-Identifier: GPL-3.0-or-later
+
+syntax="proto2";
+package oaa.proto.messages;
+
+// Call availability status (msg 24 on Control channel, GAL type 1)
+// Direction: HU→Phone (head unit tells phone whether calls are available)
+// APK class: vvt (AA v16.2)
+// Handler: hzh.java (control), dispatches to hzc/hwm (CAR.MSG)
+// confidence: gold [deep_trace, 16.2 APK verified 2026-03-06]
+message CallAvailabilityStatus {
+    optional bool call_available = 1;  // confidence: gold [deep_trace]
+}

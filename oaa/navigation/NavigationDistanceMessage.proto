@@ -1,0 +1,58 @@
+// Android Auto Protocol Buffer Definitions
+// https://github.com/mrmees/open-android-auto
+// SPDX-License-Identifier: GPL-3.0-or-later
+
+syntax = "proto2";
+
+package oaa.proto.messages;
+
+import "oaa/navigation/NavigationDistanceDisplayData.proto";
+
+// APK class: xnb (v16.1) / xmm (v16.2) — Navigation distance/ETA structure
+//
+// NOT A WIRE MESSAGE. This proto is never dispatched on any GAL channel.
+// In both v16.1 and v16.2, the nav channel handler (hkx/hlj) dispatches exactly
+// 4 message types (0x8003, 0x8006, 0x8007, 0x8008) — none of which use this class.
+// The only external reference to xmm is from ahdy, a phone-internal config proto
+// embedded inside aheo (navigation state management). This proto exists for
+// phone-side state tracking, not head-unit communication.
+//
+// Previously misattributed to message ID 0x8007 — wire capture (2026-03-04) proved
+// that 0x8007 is NavigationNextTurnDistanceEvent (vzd/vyp), defined in
+// NavigationTurnEventMessage.proto. APK call graph analysis (2026-03-04) confirmed
+// xmm has zero references from any channel handler class.
+//
+// If you need distance data from the wire, use NavigationNextTurnDistanceEvent
+// (0x8007) which has all optional fields and works correctly when stationary.
+//
+// confidence: silver [apk_static, cross_version]
+message NavigationDistance {
+    required data.NavigationDistanceValue distance = 1; // APK: xmw — required per descriptor  // confidence: silver [apk_static, cross_version]
+    required string eta_text = 2; // APK: required  // confidence: silver [apk_static, cross_version]
+    required int32 eta_seconds = 3; // APK: required  // confidence: silver [apk_static, cross_version]
+    optional NavigationDistanceInfo info = 8; // APK: xng  // confidence: silver [apk_static, cross_version]
+}
+
+// APK class: xng — groups distance displays and alternates
+// confidence: silver [apk_static, cross_version]
+message NavigationDistanceInfo {
+    optional data.NavigationDistanceDisplay display = 1; // APK: xnd  // confidence: silver [apk_static, cross_version]
+    repeated data.NavigationDistanceDisplay alternate_display = 2; // APK: repeated xnd  // confidence: silver [apk_static, cross_version]
+    oneof oneof_display_wrapper {
+        NavigationDistanceOneof oneof_display = 4; // APK: xne (oneof)  // confidence: silver [apk_static, cross_version]
+    }
+}
+
+// APK class: xne — wrapper for repeated distance entries
+// confidence: silver [apk_static, cross_version]
+message NavigationDistanceOneof {
+    repeated NavigationDistanceEntry entries = 1; // APK: repeated xnf  // confidence: silver [apk_static, cross_version]
+}
+
+// APK class: xnf — single distance entry (display + metadata)
+// confidence: silver [apk_static, cross_version]
+message NavigationDistanceEntry {
+    optional data.NavigationDistanceDisplay display = 1; // APK: xnd  // confidence: silver [apk_static, cross_version]
+    optional int32 value = 2;  // confidence: silver [apk_static, cross_version]
+    repeated int32 metadata = 3 [packed = true];
+}

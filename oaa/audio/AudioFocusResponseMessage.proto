@@ -1,0 +1,25 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
+// Copyright (C) 2024-2026 Open Android Auto contributors
+// Based on works by: f1x.studio (aasdk), opencardev (crankshaft), aa-proxy (aa-proxy-rs)
+
+/*
+ * Audio focus response (msg ID 19 = AUDIO_FOCUS_RESPONSE on control channel).
+ *
+ * HU tells phone the current audio focus state.
+ *
+ * APK class: vvc (16.2)
+ * Handler: hzh.java case 19 — logs "Got audio focus state from car:%s"
+ * Direction: HU->Phone
+ */
+syntax="proto2";
+
+import "oaa/audio/AudioFocusStateEnum.proto";
+
+package oaa.proto.messages;
+
+// confidence: gold [apk_deep_trace]
+message AudioFocusResponse
+{
+    required enums.AudioFocusState.Enum audio_focus_state = 1;  // confidence: gold [apk_deep_trace]
+    optional bool granted = 2;  // confidence: gold [apk_deep_trace]
+}

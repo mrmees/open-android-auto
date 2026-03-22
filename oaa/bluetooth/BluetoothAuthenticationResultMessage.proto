@@ -1,0 +1,31 @@
+// Android Auto Protocol Buffer Definitions
+// https://github.com/mrmees/open-android-auto
+// SPDX-License-Identifier: GPL-3.0-or-later
+
+/*
+ * BluetoothAuthenticationResult — Phone→HU result of auth data processing.
+ *
+ * Wire ID: 0x8004 on BT channel (service 9, CAR.GAL.BT)
+ * Sender: qav.java line 280 via qlg.m30600l(32772, ...)
+ * 16.2 class: vvk
+ *
+ * NEW — discovered during 2026-03-07 deep trace verification.
+ *
+ * Status values used in code (qav.java lines 239-278):
+ *   0  = STATUS_SUCCESS — pairing succeeded
+ *   1  = STATUS_UNSOLICITED_MESSAGE — fallback/default
+ *  -13 = STATUS_BLUETOOTH_INVALID_PAIRING_METHOD
+ *  -14 = STATUS_BLUETOOTH_INVALID_AUTH_DATA
+ *  -15 = STATUS_BLUETOOTH_AUTH_DATA_MISMATCH
+ */
+
+syntax = "proto2";
+
+package oaa.proto.messages;
+
+// confidence: gold [apk_deep_trace]
+message BluetoothAuthenticationResult
+{
+    // Shared AA StatusCode enum (vyh)
+    required int32 status = 1;  // confidence: gold [apk_deep_trace]
+}

@@ -1,0 +1,24 @@
+// Android Auto Protocol Buffer Definitions
+// https://github.com/mrmees/open-android-auto
+// SPDX-License-Identifier: GPL-3.0-or-later
+
+/*
+ * WifiStartResponse — phone acknowledges WiFi start.
+ *
+ * APK class: wdu.java (AA v16.1)
+ * BT RFCOMM message type: ordinal 6 (MESSAGE_WIFI_RESPONSE_START_BT)
+ * Dispatched by ngh.java.
+ */
+
+syntax="proto2";
+
+package oaa.proto.messages;
+
+// NOTE: status uses WifiVersionStatus values (can be negative).
+// See WifiVersionStatusEnum.proto for value mapping.
+// confidence: silver [apk_static, cross_version]
+message WifiStartResponse {
+    optional string ip_address = 1; // APK: b — descriptor says string  // confidence: silver [apk_static, cross_version]
+    optional int32 port = 2; // APK: c — descriptor says int32  // confidence: silver [apk_static, cross_version]
+    optional int32 status = 3; // APK: d (enum via viz.au/wck.p — WifiVersionStatus)  // confidence: silver [apk_static, cross_version]
+}

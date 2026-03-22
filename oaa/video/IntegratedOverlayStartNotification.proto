@@ -1,0 +1,18 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
+// Copyright (C) 2024-2026 Open Android Auto contributors
+// Based on works by: f1x.studio (aasdk), opencardev (crankshaft), aa-proxy (aa-proxy-rs)
+syntax="proto2";
+
+package oaa.proto.messages;
+
+// APK class: vye (16.1) / vxq (16.2)
+// Wire msg 0x800E, Phone->HU (video channel)
+// vdp internal name: MEDIA_MESSAGE_INTEGRATED_OVERLAY_START_NOTIFICATION
+// Notifies HU that integrated overlay projection has started.
+// Field 1 passed to qdd.mo30156e(int) display callback (com.google.android.gms.car.display).
+// Previously misidentified as VideoFocusNotification — field 1 is NOT a focus mode.
+// confidence: gold [deep_trace, handler_verified]
+message IntegratedOverlayStartNotification
+{
+    optional int32 display_session_id = 1;  // confidence: gold [deep_trace]
+}

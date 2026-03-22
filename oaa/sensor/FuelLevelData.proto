@@ -1,0 +1,15 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
+// Copyright (C) 2024-2026 Open Android Auto contributors
+// Based on works by: f1x.studio (aasdk), opencardev (crankshaft), aa-proxy (aa-proxy-rs)
+syntax="proto2";
+
+package oaa.proto.data;
+
+// APK class: vwz (AA v16.2)
+// confidence: gold [deep_trace, 16.2 DB verified]
+message FuelLevel
+{
+    optional int32 fuel_level = 1;  // confidence: gold
+    optional int32 range = 2;  // confidence: gold
+    optional bool low_fuel = 3;  // confidence: gold
+}

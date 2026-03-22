@@ -1,0 +1,58 @@
+// Android Auto Protocol Buffer Definitions
+// https://github.com/mrmees/open-android-auto
+// SPDX-License-Identifier: GPL-3.0-or-later
+
+/*
+ * Phone status input (msgId 0x8002 on Phone Status channel, GAL type 13)
+ * Direction: HU→Phone (head unit sends d-pad/call input to phone)
+ *
+ * APK class: vzs (AA v16.2), wag (AA v16.1)
+ * Handler: iat.java (16.2), iae.java (16.1), log tag: CAR.GAL.INST
+ *
+ * Despite the log tag suggesting "Instrument Cluster", this is
+ * the GAL type 13 (PHONE_STATUS) channel. It relays phone call status
+ * to instrument cluster displays and receives user input back.
+ *
+ * Data flow in handler (iat.java, 16.2):
+ *   vzs.f74681b (sub-message vxo) → vxo.f73997c (enum, 0-7) → C0000a.m128bw()
+ *   vzs.f74682c (string) → caller_id
+ *   vzs.f74683d (string) → display_name
+ *   → CarPhoneStatusEventListener.onInput(callerId, displayName, action)
+ */
+
+syntax = "proto2";
+
+package oaa.proto.messages;
+
+// Input action type (APK: vxo.f73997c in 16.2, vyc.c in 16.1, values 0-7)
+// Same d-pad navigation enum as InstrumentClusterAction (confirmed via
+// aa-proxy-rs: PhoneStatusInput embeds InstrumentClusterInput directly).
+// Used for navigating phone status UI on the instrument cluster display.
+// confidence: gold [deep_trace, 16.2 APK verified 2026-03-06]
+enum PhoneInputAction {
+    PHONE_INPUT_UNKNOWN = 0;
+    PHONE_INPUT_UP = 1;
+    PHONE_INPUT_DOWN = 2;
+    PHONE_INPUT_LEFT = 3;
+    PHONE_INPUT_RIGHT = 4;
+    PHONE_INPUT_ENTER = 5;
+    PHONE_INPUT_BACK = 6;
+    PHONE_INPUT_CALL = 7;
+}
+
+// APK class: vxo (16.2), vyc (16.1) — sub-message carrying the action type
+// confidence: gold [deep_trace, 16.2 APK verified 2026-03-06]
+message PhoneInputType {
+    optional PhoneInputAction action = 1;  // confidence: gold [deep_trace]
+}
+
+// APK class: vzs (16.2), wag (16.1) — HU input relayed to phone (0x8002)
+// confidence: gold [deep_trace, 16.2 APK verified 2026-03-06]
+message PhoneStatusInput {
+    // D-pad action type from the head unit
+    optional PhoneInputType input_type = 1;  // confidence: gold [deep_trace]
+    // Phone number or caller identifier
+    optional string caller_id = 2;  // confidence: gold [deep_trace]
+    // Display name or contact label
+    optional string display_name = 3;  // confidence: gold [deep_trace]
+}

@@ -1,0 +1,15 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
+// Copyright (C) 2024-2026 Open Android Auto contributors
+// Based on works by: f1x.studio (aasdk), opencardev (crankshaft), aa-proxy (aa-proxy-rs)
+syntax="proto2";
+
+import "oaa/input/RelativeInputEventData.proto";
+
+package oaa.proto.data;
+
+// APK class: wbc (16.2), wbm (16.1) — rotary/scroll events container
+// confidence: gold [handler_trace, deep_apk]
+message RelativeInputEvents
+{
+    repeated RelativeInputEvent relative_input_events = 1;
+}

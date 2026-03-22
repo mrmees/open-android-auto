@@ -1,0 +1,18 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
+// Copyright (C) 2024-2026 Open Android Auto contributors
+// Based on works by: f1x.studio (aasdk), opencardev (crankshaft), aa-proxy (aa-proxy-rs)
+syntax="proto2";
+
+import "oaa/control/ShutdownReasonEnum.proto";
+
+package oaa.proto.messages;
+
+// APK class: vvr (16.2)
+// Msg ID: 15 (SHUTDOWN_REQUEST / ByeByeRequest) on control channel
+// Direction: Bidirectional — both HU and phone can send
+// Handler: hzh.java case 15 (receive), mo20031c (send)
+// confidence: gold [apk_deep_trace]
+message ShutdownRequest
+{
+    required enums.ShutdownReason.Enum reason = 1;  // confidence: gold [apk_deep_trace]
+}

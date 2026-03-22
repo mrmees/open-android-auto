@@ -1,0 +1,9 @@
+syntax = "proto2";
+// RETRACTED — duplicate of InputChannelConfigData.proto
+// Both map to same APK class: vxm (16.2), vya (16.1)
+// This version incorrectly used TouchConfig (vwz, actually compass sensor data)
+// for fields 2 and 3. The correct sub-messages are:
+//   field 2: TouchScreenConfig (vxl) — width, height, display_type
+//   field 3: TouchPadConfig (vxk) — 8 fields incl. ui_navigation, sensitivity
+// Field 5 was incorrectly named max_touchscreen_pointers — actually display_id.
+// Use InputChannelConfigData.proto instead.

@@ -1,0 +1,13 @@
+// RETRACTED — Duplicate of PingResponseMessage.proto
+//
+// GalPingResponse and PingResponse are the SAME wire message (msg ID 12).
+// The confusion arose from obfuscated class name reuse:
+//   16.1: wak = PingResponse
+//   16.2: wak = radio-related message container (DIFFERENT proto!)
+//   16.2: vzw = PingResponse (renamed from wak)
+//
+// Use PingResponseMessage.proto instead.
+// Retracted: 2026-03-06, control channel verification
+syntax="proto2";
+package oaa.proto.messages;
+// RETRACTED — see PingResponseMessage.proto

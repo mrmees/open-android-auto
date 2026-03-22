@@ -1,0 +1,187 @@
+// Android Auto Protocol Buffer Definitions
+// https://github.com/mrmees/open-android-auto
+// SPDX-License-Identifier: GPL-3.0-or-later
+
+/*
+ * ConnectionConfiguration — connection setup parameters.
+ *
+ * APK class: aajk.java (AA v16.1) → aaiq.java (AA v16.2)
+ * Embedded in ServiceDiscoveryResponse field 16.
+ * Fields 2-6 form a oneof (previously decoded as flat fields at 1/2/4/60).
+ *
+ * NOTE: TransportSecurityEntry/Detail sub-messages not fully resolved in 16.2.
+ * TuningParamsA-D have 1 field each in 16.2 (decoded from DB).
+ */
+
+syntax="proto3";
+
+import "oaa/common/PingConfigurationData.proto";
+
+package oaa.proto.data;
+
+// confidence: gold [16.2_db_verified]
+message ConnectionConfiguration {
+    optional PingConfiguration ping_configuration = 1; // APK: zyd (16.1) → zxk (16.2)  // confidence: gold
+
+    oneof config_type {
+        ConnectionSecurityConfig security_config = 2; // APK: aajj (16.1) → aaip (16.2)  // confidence: gold
+        ConnectionTransportConfig transport_config = 3; // APK: aajh (16.1) → aain (16.2)  // confidence: gold
+        ConnectionFeatureFlags feature_flags = 4; // APK: aaja (16.1) → aaig (16.2)  // confidence: gold
+        ConnectionTuningConfig tuning_config = 5; // APK: aajg (16.1) → aaim (16.2)  // confidence: gold
+        ConnectionReservedConfig reserved_config = 6; // APK: aaji (16.1) → aaio (16.2, empty)  // confidence: gold
+    }
+}
+
+// Connection security mode for the AA protocol link
+// APK class: aajj (16.1) → aaip (16.2)
+// confidence: gold [16.2_db_verified]
+enum ConnectionSecurityMode {
+    CONNECTION_SECURITY_UNKNOWN = 0;
+    CONNECTION_SECURITY_ENCRYPTED = 1;
+}
+
+// APK class: aajj (16.1) → aaip (16.2) — 1 enum field
+// confidence: gold [16.2_db_verified]
+message ConnectionSecurityConfig {
+    optional ConnectionSecurityMode security_mode = 1;  // confidence: gold
+}
+
+// APK class: aajh (16.1) → aain (16.2) — 2 sub-message fields (fields 2-3, no field 1)
+// confidence: gold [16.2_db_verified]
+message ConnectionTransportConfig {
+    optional TransportMetadata transport_metadata = 2; // APK: aajt (16.1) → aaiz (16.2)  // confidence: gold
+    optional TransportSecurityConfig transport_security = 3; // APK: aakd (16.1) → aajj (16.2)  // confidence: gold
+}
+
+// APK class: aaja (16.1) → aaig (16.2) — single bool
+// confidence: gold [16.2_db_verified]
+message ConnectionFeatureFlags {
+    optional bool enabled = 1;  // confidence: gold
+}
+
+// APK class: aajg (16.1) → aaim (16.2) — uint32 + oneof with 4 sub-messages
+// confidence: gold [16.2_db_verified]
+message ConnectionTuningConfig {
+    optional uint32 timeout_ms = 1;  // confidence: gold
+
+    oneof tuning_params {
+        TuningParamsA tuning_a = 2; // APK: aajf (16.1) → aail (16.2)  // confidence: gold
+        TuningParamsB tuning_b = 3; // APK: aajb (16.1) → aaih (16.2)  // confidence: gold
+        TuningParamsC tuning_c = 4; // APK: aajd (16.1) → aaij (16.2)  // confidence: gold
+        TuningParamsD tuning_d = 5; // APK: aajc (16.1) → aaii (16.2)  // confidence: gold
+    }
+}
+
+// APK class: aaji (16.1) → aaio (16.2) — empty message
+// confidence: gold [16.2_db_verified]
+message ConnectionReservedConfig {
+}
+
+// APK class: aajt (16.1) → aaiz (16.2) — transport metadata
+// confidence: gold [16.2_db_verified]
+message TransportMetadata {
+    optional TransportCapabilities capabilities = 1; // APK: aajs (16.1) → aaiy (16.2)  // confidence: gold
+    string transport_name = 2;  // confidence: gold
+}
+
+// APK class: aajs (16.1) → aaiy (16.2) — transport capability details
+// confidence: gold [16.2_db_verified]
+message TransportCapabilities {
+    repeated TransportCapabilityEntry entries = 1;  // confidence: gold
+    repeated string supported_protocols = 2;  // confidence: gold
+}
+
+// APK class: aaix (16.2) — transport capability entry
+// confidence: gold [16.2_db_verified]
+message TransportCapabilityEntry {
+    string key = 1;    // confidence: gold
+    string value = 2;  // confidence: gold
+}
+
+// APK class: aakd (16.1) → aajj (16.2) — transport security configuration
+// confidence: gold [16.2_db_verified]
+message TransportSecurityConfig {
+    optional TransportSecurityEntry security_entry = 1;  // confidence: gold
+}
+
+// APK class: aakc (16.1) → aaji (16.2) — security entry wrapper
+// confidence: gold [16.2_db_verified]
+message TransportSecurityEntry {
+    optional TransportSecurityDetail detail = 2;  // confidence: gold
+}
+
+// APK class: aakb (16.1) → aajh (16.2) — security detail with 2 sub-messages
+// confidence: gold [16.2_db_verified]
+message TransportSecurityDetail {
+    optional TransportSecurityCertChain cert_chain = 1;  // APK: aajg (5 strings)  // confidence: gold
+    optional TransportSecurityParams params = 2;         // APK: aajf (repeated aaje)  // confidence: gold
+}
+
+// APK class: aajg (16.2) — certificate/security strings (5 fields)
+// confidence: gold [16.2_db_verified]
+message TransportSecurityCertChain {
+    string field_1 = 1;  // confidence: gold
+    string field_2 = 2;  // confidence: gold
+    string field_3 = 3;  // confidence: gold
+    string field_4 = 4;  // confidence: gold
+    string field_5 = 5;  // confidence: gold
+}
+
+// APK class: aajf (16.2) — security parameters
+// confidence: gold [16.2_db_verified]
+message TransportSecurityParams {
+    repeated TransportSecurityParamEntry entries = 1;  // APK: aaje  // confidence: gold
+}
+
+// APK class: aaje (16.2) — security param key/value pair
+// confidence: gold [16.2_db_verified, jadx_confirmed]
+message TransportSecurityParamEntry {
+    string key = 1;    // confidence: gold
+    string value = 2;  // confidence: gold
+}
+
+// APK class: aajf (16.1) → aail (16.2) — 1 optional message field
+// confidence: gold [16.2_db_verified]
+message TuningParamsA {
+    optional TuningEntry detail = 1;  // APK: aaik  // confidence: gold
+}
+
+// APK class: aajb (16.1) → aaih (16.2) — 1 repeated message field
+// confidence: gold [16.2_db_verified]
+message TuningParamsB {
+    repeated TuningEntry entries = 1;  // APK: aaik  // confidence: gold
+}
+
+// APK class: aajd (16.1) → aaij (16.2) — 1 optional message field
+// confidence: gold [16.2_db_verified]
+message TuningParamsC {
+    optional TuningEntry detail = 1;  // APK: aaik  // confidence: gold
+}
+
+// APK class: aajc (16.1) → aaii (16.2) — 1 string field
+// confidence: gold [16.2_db_verified]
+message TuningParamsD {
+    string value = 1;  // confidence: gold
+}
+
+// APK class: aaik (16.2) — shared tuning entry used by TuningParamsA/B/C
+// All three reference the same APK class.
+// confidence: gold [16.2_db_verified]
+message TuningEntry {
+    optional TuningEntryType type = 1;   // enum  // confidence: gold
+    optional uint32 value = 2;           // confidence: gold
+    string label = 3;                    // confidence: gold
+}
+
+// Enum for TuningEntry field 1
+// Wire decoder: C0000a.m131bz() maps wire 0→2, 1→3, 2→4, 3→5, else→0
+// Semantic meaning of values 2-5 unknown (timeout? retry? buffer size?)
+// confidence: gold [16.2_code_traced]
+enum TuningEntryType {
+    TUNING_ENTRY_UNKNOWN = 0;
+    // value 1 unused (fallback when decode fails)
+    TUNING_ENTRY_TYPE_A = 2;
+    TUNING_ENTRY_TYPE_B = 3;
+    TUNING_ENTRY_TYPE_C = 4;
+    TUNING_ENTRY_TYPE_D = 5;
+}

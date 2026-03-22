@@ -1,0 +1,19 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
+// Copyright (C) 2024-2026 Open Android Auto contributors
+// Based on works by: f1x.studio (aasdk), opencardev (crankshaft), aa-proxy (aa-proxy-rs)
+syntax="proto2";
+
+package oaa.proto.data;
+
+// APK class: vyl (AA v16.1), vxx (AA v16.2) — GPS location data (6 fields, fields 2-7)
+// NOTE: No field 1 (timestamp) in APK. Fields 8-22 belong to ahdz, not vxx.
+// confidence: gold [deep_trace, 16.2 vxx.java DB verified]
+message GPSLocation
+{
+    required int32 latitude = 2;  // confidence: gold
+    required int32 longitude = 3;  // confidence: gold
+    optional uint32 accuracy = 4;  // confidence: gold
+    optional int32 altitude = 5;  // confidence: gold
+    optional int32 speed = 6;  // confidence: gold
+    optional int32 bearing = 7;  // confidence: gold
+}

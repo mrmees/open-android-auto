@@ -1,0 +1,24 @@
+// Android Auto Protocol Buffer Definitions
+// https://github.com/mrmees/open-android-auto
+// SPDX-License-Identifier: GPL-3.0-or-later
+
+syntax="proto2";
+
+package oaa.proto.messages;
+
+// Voice session request (msg 17 on Control channel, GAL type 1)
+// Direction: Phone→HU (phone requests voice session start/stop)
+// APK class: wcu (AA v16.2), wde (AA v16.1)
+// Handler: hzh.java (control), method mo20034f
+// Value 0 is invalid (throws null in APK). Only 1 (START) and 2 (STOP) are valid.
+// confidence: gold [deep_trace, 16.2 APK verified 2026-03-06]
+enum VoiceSessionType {
+    VOICE_SESSION_START = 1;
+    VOICE_SESSION_STOP = 2;
+}
+
+// confidence: gold [deep_trace, 16.2 APK verified 2026-03-06]
+message VoiceSessionRequest
+{
+    optional VoiceSessionType session_type = 1;  // confidence: gold [deep_trace]
+}

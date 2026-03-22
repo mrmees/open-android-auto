@@ -1,0 +1,78 @@
+// Android Auto Protocol Buffer Definitions
+// https://github.com/mrmees/open-android-auto
+// SPDX-License-Identifier: GPL-3.0-or-later
+
+syntax = "proto2";
+
+import "oaa/navigation/ManeuverTypeEnum.proto";
+import "oaa/navigation/LaneShapeEnum.proto";
+
+package oaa.proto.messages;
+
+// Navigation notification (msgId 0x8006 on Nav channel, GAL type 10)
+// Sent by phone with turn-by-turn instructions and destination info
+// APK class: vza (16.2), vzo (16.1)
+// Handler: hlj.mo18762h() → ian.m20106k(32774, vza)
+// Modern HUs only (CarInfo PDK >= 1.6). Replaces legacy 0x8004/0x8005.
+// confidence: gold [apk_deep_trace]
+message NavigationNotification {
+    repeated NavigationStep steps = 1; // APK: repeated vzg (16.2), vzu (16.1)  // confidence: gold [apk_deep_trace]
+    repeated NavigationDestination destinations = 2; // APK: repeated vyq (16.2), vze (16.1)  // confidence: gold [apk_deep_trace]
+}
+
+// APK class: vzg (16.2), vzu (16.1)
+// confidence: gold [apk_deep_trace]
+message NavigationStep {
+    optional NavigationManeuver maneuver = 1; // APK: vyw (16.2)  // confidence: gold [apk_deep_trace]
+    optional NavigationText instruction = 2; // APK: vyz (16.2)  // confidence: gold [apk_deep_trace]
+    repeated NavigationLane lanes = 3; // APK: repeated vyv (16.2)  // confidence: gold [apk_deep_trace]
+    optional NavigationRoadInfo road_info = 4; // APK: vyo (16.2)  // confidence: gold [apk_deep_trace]
+}
+
+// APK class: vyw (16.2), vzk (16.1) — maneuver type with roundabout parameters
+// confidence: gold [apk_deep_trace]
+message NavigationManeuver {
+    optional enums.ManeuverType.Enum type = 1; // APK: enum via vym/vdp.m36511ar  // confidence: gold [apk_deep_trace]
+    optional int32 roundabout_exit_number = 2; // APK: f74550d  // confidence: gold [apk_deep_trace]
+    optional int32 roundabout_turn_angle = 3; // APK: f74551e  // confidence: gold [apk_deep_trace]
+}
+
+// APK class: vyz (16.2), vzn (16.1)
+// confidence: gold [apk_deep_trace]
+message NavigationText {
+    optional string text = 1;  // confidence: gold [apk_deep_trace]
+}
+
+// APK class: vyv (16.2), vzj (16.1) — lane guidance
+// confidence: gold [apk_deep_trace]
+message NavigationLane {
+    repeated NavigationLaneDirection directions = 1; // APK: repeated vyu (16.2)  // confidence: gold [apk_deep_trace]
+}
+
+// APK class: vyu (16.2), vzi (16.1) — individual lane direction
+// confidence: gold [apk_deep_trace]
+message NavigationLaneDirection {
+    optional enums.LaneShape.Enum shape = 1; // APK: enum vyt (16.2) via vym  // confidence: gold [apk_deep_trace]
+    optional bool is_recommended = 2;  // confidence: gold [apk_deep_trace]
+}
+
+// APK class: vyo (16.2), vzc (16.1) — road name segments
+// confidence: gold [apk_deep_trace]
+message NavigationRoadInfo {
+    repeated string road_names = 1;  // confidence: gold [apk_deep_trace]
+}
+
+// APK class: vyq (16.2), vze (16.1) — destination with optional EV charging info
+// confidence: gold [apk_deep_trace]
+message NavigationDestination {
+    optional string address = 1;  // confidence: gold [apk_deep_trace]
+    optional ChargingStationDetails charging_station = 2; // APK: vwl (16.2)  // confidence: gold [apk_deep_trace]
+}
+
+// APK class: vwl (16.2), vwz (16.1) — EV charging station details
+// confidence: gold [apk_deep_trace]
+message ChargingStationDetails {
+    optional int32 connector_count = 1; // APK: f73793c  // confidence: gold [apk_deep_trace]
+    optional int32 available_count = 2; // APK: f73794d  // confidence: gold [apk_deep_trace]
+    optional int32 max_power_kw = 3; // APK: f73795e  // confidence: gold [apk_deep_trace]
+}

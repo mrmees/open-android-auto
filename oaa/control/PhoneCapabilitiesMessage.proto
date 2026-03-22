@@ -1,0 +1,40 @@
+// Android Auto Protocol Buffer Definitions
+// https://github.com/mrmees/open-android-auto
+// SPDX-License-Identifier: GPL-3.0-or-later
+
+/*
+ * PhoneCapabilities — proto3 top-level message from ServiceDiscoveryRequest field 2.
+ *
+ * APK class: aafx (16.2), aagr (16.1)
+ * Describes phone capabilities, device info, and connection preferences.
+ *
+ * Proto3 per APK descriptor. Sub-messages DeviceInfo/PhoneConnectionConfig
+ * are proto2 (imported from PhoneCapabilitiesData.proto). Capability types
+ * are proto3 (imported from CapabilityData.proto).
+ */
+
+syntax="proto3";
+
+import "oaa/control/CapabilityData.proto";
+import "oaa/control/PhoneCapabilitiesData.proto";
+
+package oaa.proto.data;
+
+// APK enum for phone_identifier field (field 7, packed repeated)
+// Actual enum values TBD — APK uses type_id=44 (packed enum).
+// confidence: gold [deep_trace_verified, 16.2_jadx]
+enum PhoneIdentifierType {
+    PHONE_IDENTIFIER_UNKNOWN = 0;
+}
+
+// confidence: gold [deep_trace_verified, 16.2_jadx]
+message PhoneCapabilities
+{
+    CapabilityFlag feature_flags = 1;  // 16.2: aafn  // confidence: gold [deep_trace_verified, 16.2_jadx]
+    DeviceInfo device_info = 2;  // 16.2: aaey  // confidence: gold [deep_trace_verified, 16.2_jadx]
+    PhoneConnectionConfig connection_config = 3;  // 16.2: aafa  // confidence: gold [deep_trace_verified, 16.2_jadx]
+    CapabilityPair display_capabilities = 4;  // 16.2: aafy  // confidence: gold [deep_trace_verified, 16.2_jadx]
+    repeated CapabilityEntry capabilities = 5;  // 16.2: aagb  // confidence: gold [deep_trace_verified, 16.2_jadx]
+    // field 6: absent in both 16.1 and 16.2
+    repeated PhoneIdentifierType phone_identifier = 7 [packed = true];  // confidence: gold [deep_trace_verified, 16.2_jadx]
+}

@@ -1,0 +1,24 @@
+// Android Auto Protocol Buffer Definitions
+// https://github.com/mrmees/open-android-auto
+// SPDX-License-Identifier: GPL-3.0-or-later
+
+/*
+ * WifiPingRequest / WifiPingResponse — BT WiFi keepalive ping.
+ *
+ * APK classes: wdo.java / wdp.java (AA v16.1)
+ * BT RFCOMM message types: ordinal 7 (PING_REQUEST), ordinal 8 (PING_RESPONSE)
+ */
+
+syntax = "proto3";
+
+package oaa.proto.messages;
+
+// confidence: unverified
+message WifiPingRequest {
+    optional int64 timestamp_ns = 1; // APK: b — descriptor says int64 (1 field only)  // confidence: unverified
+}
+
+// confidence: unverified
+message WifiPingResponse {
+    optional int64 timestamp_ns = 1; // APK: b (long)  // confidence: unverified
+}

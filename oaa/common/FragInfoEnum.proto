@@ -1,0 +1,37 @@
+// Android Auto Protocol Buffer Definitions
+// https://github.com/mrmees/open-android-auto
+// SPDX-License-Identifier: GPL-3.0-or-later
+
+/*
+ * Frame fragmentation info — indicates the position of a message
+ * fragment within a multi-frame sequence.
+ *
+ * Used in the AA wire protocol when a protobuf message exceeds the
+ * maximum frame size and must be split across multiple frames.
+ * The flags byte in the frame header encodes this information.
+ *
+ * Verified 2026-03-07: All 4 values confirmed against aasdk C++ source.
+ *   - aasdk name: FrameType (FrameType.hpp): MIDDLE=0, FIRST=1, LAST=2, BULK=3
+ *   - Maps to bits 0-1 of the flags byte in the 4-byte frame header
+ *   - Full flags byte layout: bits 0-1=FrameType, bit 2=MessageType, bit 3=EncryptionType
+ *   - Not in Java layer — native code only (below JNI boundary)
+ *
+ * Source: opencardev/aasdk (GPLv3)
+ * Original: aap_protobuf/service/control/message/FragInfo.proto
+ *
+ * confidence: silver [cross_referenced, aasdk_confirmed]
+ */
+
+syntax = "proto2";
+
+package oaa.proto.enums;
+
+// Bits 0-1 of the frame header flags byte
+// aasdk C++ equivalent: FrameType enum (FrameType.hpp)
+// confidence: silver [cross_referenced, aasdk_confirmed]
+enum FragInfo {
+    FRAG_CONTINUATION = 0;  // Middle fragment — more to follow
+    FRAG_FIRST = 1;         // First fragment of a multi-frame message
+    FRAG_LAST = 2;          // Last fragment — message complete after this
+    FRAG_UNFRAGMENTED = 3;  // Single-frame message, no fragmentation
+}

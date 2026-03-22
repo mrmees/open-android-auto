@@ -1,0 +1,20 @@
+// Android Auto Protocol Buffer Definitions
+// https://github.com/mrmees/open-android-auto
+// SPDX-License-Identifier: GPL-3.0-or-later
+
+/*
+ * SUPERSEDED (2026-03-07)
+ *
+ * This file duplicated BluetoothChannelData.proto (BluetoothChannel message)
+ * with proto3 syntax and int32 instead of enum type for field 2.
+ *
+ * Use BluetoothChannelData.proto (BluetoothChannel, 16.2: vvo) instead.
+ * This file is kept as a tombstone to prevent re-introduction.
+ */
+
+syntax = "proto3";
+
+package oaa.proto.data;
+
+// SUPERSEDED — use BluetoothChannel in BluetoothChannelData.proto
+// message BluetoothChannelConfig { ... }

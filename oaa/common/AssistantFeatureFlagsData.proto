@@ -1,0 +1,34 @@
+// Android Auto Protocol Buffer Definitions
+// https://github.com/mrmees/open-android-auto
+// SPDX-License-Identifier: GPL-3.0-or-later
+
+/*
+ * Discovered via APK proto decoder (nll.java, AA v16.1)
+ * Google Assistant feature flags — capabilities negotiation.
+ * Split from FeatureFlagsData.proto because the APK compiles this as proto3.
+ */
+
+syntax="proto3";
+
+package oaa.proto.data;
+
+// APK class: nll (16.1) → nkw (16.2) — Google Assistant feature flags (14 bool fields)
+// No new fields in 16.2 (still 14 bools, fields 1-14)
+// confidence: gold [16.2_db_verified]
+message AssistantFeatureFlags
+{
+    bool assistant_available = 1;  // confidence: gold
+    bool voice_trigger = 2;  // confidence: gold
+    bool assistant_shortcuts = 3;  // confidence: gold
+    bool continued_conversation = 4;  // confidence: gold
+    bool device_assistant = 5;  // confidence: gold
+    bool assistant_on_lockscreen = 6;  // confidence: gold
+    bool smart_display = 7;  // confidence: gold
+    bool routine_suggestions = 8;  // confidence: gold
+    bool interpreter_mode = 9;  // confidence: gold
+    bool multi_modal = 10;  // confidence: gold
+    bool settings_support = 11;  // confidence: gold
+    bool field_12 = 12;  // confidence: gold
+    bool proactive_suggestions = 13;  // confidence: gold
+    bool field_14 = 14;  // confidence: gold
+}

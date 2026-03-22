@@ -1,0 +1,32 @@
+// Android Auto Protocol Buffer Definitions
+// https://github.com/mrmees/open-android-auto
+// SPDX-License-Identifier: GPL-3.0-or-later
+
+/*
+ * WifiVersionRequest — BT WiFi version negotiation request.
+ *
+ * APK class: wdv.java (AA v16.1)
+ * BT RFCOMM message type: ordinal 3 (MESSAGE_WIFI_VERSION_REQUEST_BT)
+ * Dispatched by ngh.java line 539.
+ *
+ * Sent by the HU to the phone during BT WiFi setup to negotiate
+ * protocol version and announce supported WiFi channels.
+ */
+
+syntax="proto2";
+
+import "oaa/control/PhoneCapabilitiesData.proto";
+import "oaa/common/FeatureFlagsData.proto";
+import "oaa/wifi/WifiChannelTypeEnum.proto";
+
+package oaa.proto.messages;
+
+// confidence: silver [apk_static, cross_version]
+message WifiVersionRequest {
+    optional int32 major_version = 1; // APK: b (int)  // confidence: silver [apk_static, cross_version]
+    optional int32 minor_version = 2; // APK: c (int)  // confidence: silver [apk_static, cross_version]
+    optional enums.WifiChannelType.Enum wifi_channel_preference = 3; // APK: d (enum via wck.r/a.bw)  // confidence: silver [apk_static, cross_version]
+    repeated int32 supported_channels = 4; // APK: e — descriptor says repeated int32  // confidence: silver [apk_static, cross_version]
+    optional data.DeviceInfo device_info = 5; // APK: g (vve)  // confidence: silver [apk_static, cross_version]
+    optional data.VersionFeatureFlags feature_flags = 6; // APK: h (wdq)  // confidence: silver [apk_static, cross_version]
+}

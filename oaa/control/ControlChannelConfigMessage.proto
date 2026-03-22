@@ -1,0 +1,25 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
+// Copyright (C) 2024-2026 Open Android Auto contributors
+// Based on works by: f1x.studio (aasdk), opencardev (crankshaft), aa-proxy (aa-proxy-rs)
+
+/*
+ * Control channel configuration wrapper message.
+ *
+ * Top-level wrapper that carries ControlChannelConfig on the control channel.
+ *
+ * APK class: wcx (AA v16.1) → wcn (AA v16.2)
+ * NOTE: wcx in 16.2 = WifiProjectionData (different proto — name collision!)
+ * Used in VERSION_RESPONSE when protocol >= 1.6.
+ * Three-layer nesting confirmed: Wrapper(wcn) → Config(vwo) → Params(vzu).
+ */
+syntax="proto2";
+
+import "oaa/control/ControlChannelConfigData.proto";
+
+package oaa.proto.messages;
+
+// confidence: gold [16.2_db_verified]
+message ControlChannelConfigWrapper
+{
+    optional data.ControlChannelConfig config = 1; // APK: vxc (16.1) → vwo (16.2)  // confidence: gold
+}

@@ -1,0 +1,24 @@
+// Android Auto Protocol Buffer Definitions
+// https://github.com/mrmees/open-android-auto
+// SPDX-License-Identifier: GPL-3.0-or-later
+
+/*
+ * BluetoothAuthenticationData — HU→Phone authentication data for BT pairing.
+ *
+ * Wire ID: 0x8003 on BT channel (service 9, CAR.GAL.BT)
+ * Handler: qlg.java mo30512d, case 32771
+ * 16.2 class: vvj
+ *
+ * Contains authentication data (e.g. numeric comparison value, passkey)
+ * as a string. Handler hex-encodes via vik.m36829ay() for logging.
+ */
+
+syntax = "proto2";
+
+package oaa.proto.messages;
+
+// confidence: gold [apk_deep_trace]
+message BluetoothAuthenticationData
+{
+    required string auth_data = 1;  // confidence: gold [apk_deep_trace]
+}

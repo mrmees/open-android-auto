@@ -1,0 +1,21 @@
+// Android Auto Protocol Buffer Definitions
+// https://github.com/mrmees/open-android-auto
+// SPDX-License-Identifier: GPL-3.0-or-later
+
+/*
+ * Discovered via APK proto decoder (nlq.java, AA v16.1)
+ * Version feature flags — per-feature version tracking.
+ * AssistantFeatureFlags (proto3) split to AssistantFeatureFlagsData.proto.
+ */
+
+syntax="proto2";
+
+package oaa.proto.data;
+
+// APK class: wdq (16.1) → aact (16.2) — version feature flag entry (2 fields)
+// confidence: gold [16.2_db_verified]
+message VersionFeatureFlags
+{
+    optional string feature_name = 1;  // confidence: gold
+    optional int32 feature_version = 2;  // confidence: gold
+}

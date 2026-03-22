@@ -1,0 +1,26 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
+// Copyright (C) 2024-2026 Open Android Auto contributors
+// Based on works by: f1x.studio (aasdk), opencardev (crankshaft), aa-proxy (aa-proxy-rs)
+
+/*
+ * RETRACTED — Duplicate of SensorRequestMessage.proto.
+ *
+ * This was the aasdk-era name for the same message. The 16.2 APK confirms:
+ * - Field 1 is required (not optional)
+ * - Field 2 is int64 (not uint64)
+ *
+ * Use SensorRequestMessage.proto instead.
+ */
+syntax="proto2";
+
+import "oaa/sensor/SensorTypeEnum.proto";
+
+package oaa.proto.messages;
+
+// RETRACTED: Use SensorRequestMessage (SensorRequest) instead
+// confidence: retracted [duplicate of SensorRequestMessage with wrong field modifiers]
+message SensorStartRequestMessage
+{
+    optional enums.SensorType.Enum sensor_type = 1;  // WRONG: should be required
+    optional uint64 refresh_interval = 2;  // WRONG: should be required int64
+}

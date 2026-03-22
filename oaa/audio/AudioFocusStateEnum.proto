@@ -1,0 +1,32 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
+// Copyright (C) 2024-2026 Open Android Auto contributors
+// Based on works by: f1x.studio (aasdk), opencardev (crankshaft), aa-proxy (aa-proxy-rs)
+
+/*
+ * Audio focus state enum — used in AudioFocusResponse (msg 19).
+ *
+ * APK class: vvg (16.2)
+ * Value 0 = AUDIO_FOCUS_STATE_INVALID in APK (our NONE maps to this).
+ * Handler: hzh.java case 19 — vvg.m37354b() resolves int to enum.
+ * Fallback: AUDIO_FOCUS_STATE_INVALID for unknown values.
+ */
+syntax="proto3";
+
+package oaa.proto.enums;
+
+// confidence: gold [apk_deep_trace]
+message AudioFocusState
+{
+    // confidence: gold [apk_deep_trace]
+    enum Enum
+    {
+        INVALID = 0;  // APK: AUDIO_FOCUS_STATE_INVALID
+        GAIN = 1;
+        GAIN_TRANSIENT = 2;
+        LOSS = 3;
+        LOSS_TRANSIENT_CAN_DUCK = 4;
+        LOSS_TRANSIENT = 5;
+        GAIN_MEDIA_ONLY = 6;
+        GAIN_TRANSIENT_GUIDANCE_ONLY = 7;
+    }
+}

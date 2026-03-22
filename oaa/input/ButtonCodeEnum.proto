@@ -1,0 +1,58 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
+// Copyright (C) 2024-2026 Open Android Auto contributors
+// Based on works by: f1x.studio (aasdk), opencardev (crankshaft), aa-proxy (aa-proxy-rs)
+syntax="proto3";
+
+package oaa.proto.enums;
+
+// Reference enum — NOT a wire protocol enum.
+// ButtonEvent.keycode uses raw Android keycode integers directly.
+// This enum is a convenience reference for commonly used keycodes.
+// APK class: vxt (16.2) — enum used in hlg.java for DPAD detection
+// confidence: gold [handler_trace] (AA custom codes verified, standard codes are Android constants)
+message ButtonCode
+{
+    enum Enum
+    {
+        NONE = 0x00;
+        HOME = 0x03;            // KEYCODE_HOME
+        BACK = 0x04;            // KEYCODE_BACK
+        CALL = 0x05;            // KEYCODE_CALL
+        ENDCALL = 0x06;         // KEYCODE_ENDCALL
+        DPAD_UP = 0x13;         // KEYCODE_DPAD_UP
+        DPAD_DOWN = 0x14;       // KEYCODE_DPAD_DOWN
+        DPAD_LEFT = 0x15;       // KEYCODE_DPAD_LEFT
+        DPAD_RIGHT = 0x16;      // KEYCODE_DPAD_RIGHT
+        DPAD_CENTER = 0x17;     // KEYCODE_DPAD_CENTER
+        VOLUME_UP = 0x18;       // KEYCODE_VOLUME_UP
+        VOLUME_DOWN = 0x19;     // KEYCODE_VOLUME_DOWN
+        HEADSETHOOK = 0x4F;     // KEYCODE_HEADSETHOOK
+        MENU = 0x52;            // KEYCODE_MENU
+        SEARCH = 0x54;          // KEYCODE_SEARCH
+        MEDIA_PLAY_PAUSE = 0x55; // KEYCODE_MEDIA_PLAY_PAUSE
+        MEDIA_STOP = 0x56;      // KEYCODE_MEDIA_STOP
+        MEDIA_NEXT = 0x57;      // KEYCODE_MEDIA_NEXT
+        MEDIA_PREVIOUS = 0x58;  // KEYCODE_MEDIA_PREVIOUS
+        MEDIA_PLAY = 0x7E;      // KEYCODE_MEDIA_PLAY
+        MEDIA_PAUSE = 0x7F;     // KEYCODE_MEDIA_PAUSE
+        VOLUME_MUTE = 0xA4;     // KEYCODE_VOLUME_MUTE
+        MUSIC = 0xD1;           // KEYCODE_MUSIC
+        ASSIST = 0xDB;          // KEYCODE_ASSIST
+        VOICE_ASSIST = 0xE7;    // KEYCODE_VOICE_ASSIST
+        NAVIGATE_PREVIOUS = 0x104;  // KEYCODE_NAVIGATE_PREVIOUS
+        NAVIGATE_NEXT = 0x105;      // KEYCODE_NAVIGATE_NEXT
+        NAVIGATE_IN = 0x106;        // KEYCODE_NAVIGATE_IN
+        NAVIGATE_OUT = 0x107;       // KEYCODE_NAVIGATE_OUT
+        // AA-specific custom keycodes (not standard Android)
+        SENTINEL = 0xFFFF;
+        SCROLL_WHEEL = 0x10000;     // Rotary controller
+        MEDIA = 0x10001;            // Media app shortcut
+        NAVIGATION = 0x10002;       // Nav app shortcut
+        RADIO = 0x10003;            // Radio app shortcut
+        TEL = 0x10004;              // Phone app shortcut
+        PRIMARY_BUTTON = 0x10005;   // Touchpad click
+        SECONDARY_BUTTON = 0x10006; // Secondary click
+        TERTIARY_BUTTON = 0x10007;  // Tertiary click
+        TURN_CARD = 0x10008;        // Turn card display
+    }
+}
