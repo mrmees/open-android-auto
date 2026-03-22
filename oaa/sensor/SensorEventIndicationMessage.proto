@@ -5,9 +5,10 @@
 /*
  * Sensor event indication message (msg ID 0x8003).
  *
- * Sent by the phone to deliver sensor data to the head unit.
+ * Sent by the head unit to deliver sensor data to the phone.
  * Field numbers match SensorType enum values (field 1 = LOCATION = 1, etc.).
  * All fields are repeated messages — each batch can contain multiple readings.
+ * Direction: HU -> Phone.
  *
  * APK class: wbo (AA v16.1), wbe (AA v16.2)
  * Handler: ibi.java (16.2) dispatches all 26 fields via m20130u().

@@ -6,7 +6,7 @@
  * Sensor error message (msg ID 0x8004).
  *
  * Sent when a sensor request fails or a sensor becomes unavailable.
- * Direction: Phone -> HU.
+ * Direction: HU -> Phone.
  *
  * APK class: wbp (AA v16.1), wbf (AA v16.2)
  * Handler: ibi.java (16.2) logs sensor type (wbl) + error code (wbg).

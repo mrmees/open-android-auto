@@ -5,8 +5,8 @@
 /*
  * GAL-level sensor request message (msg ID 0x8001).
  *
- * Sent by the head unit to request sensor data at a given refresh interval.
- * Direction: HU -> Phone.
+ * Sent by the phone to request sensor data at a given refresh interval.
+ * Direction: Phone -> HU.
  *
  * APK class: wbr (AA v16.1), wbh (AA v16.2)
  * Handler: ibi.java (16.2) builds and sends via m20133s().

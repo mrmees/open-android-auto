@@ -5,8 +5,8 @@
 /*
  * Sensor start response message (msg ID 0x8002).
  *
- * Sent by the phone to acknowledge a sensor subscription request.
- * Direction: Phone -> HU.
+ * Sent by the head unit to acknowledge a sensor subscription request.
+ * Direction: HU -> Phone.
  *
  * APK class: wbi (AA v16.2)
  * Handler: ibi.java (16.2) checks vyh status in mo18864a().
