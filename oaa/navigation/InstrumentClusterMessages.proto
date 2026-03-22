@@ -75,7 +75,7 @@ message LegacyNavigationTurnEvent {
     optional int32 maneuver_type = 1;     // APK: f74555c — maneuver type constant  // confidence: gold [apk_deep_trace]
     optional int32 turn_number = 2;       // APK: f74556d — distance value  // confidence: gold [apk_deep_trace]
     optional int32 turn_distance = 3;     // APK: f74557e — distance in millis  // confidence: gold [apk_deep_trace]
-    optional DistanceDisplayUnit distance_unit = 4; // APK: f74558f — enum via vym, stored as value-1  // confidence: gold [apk_deep_trace]
+    optional DistanceDisplayUnit distance_unit = 4; // APK: f74558f — same 0-7 nav Distance.displayUnit codes as 0x8007, stored via proto-lite value-1  // confidence: gold [apk_deep_trace]
 }
 
 // Distance display unit enum (shared with NavigationTurnEventMessage.proto)

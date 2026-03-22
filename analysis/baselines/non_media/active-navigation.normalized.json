@@ -2452,7 +2452,7 @@
       "remaining_distance": {
         "distance": {
           "display_text": "0",
-          "distance_unit": "DISTANCE_UNIT_UNKNOWN_6"
+          "distance_unit": "DISTANCE_UNIT_FEET"
         }
       }
     },
@@ -5842,7 +5842,7 @@
       "remaining_distance": {
         "distance": {
           "display_text": "0",
-          "distance_unit": "DISTANCE_UNIT_UNKNOWN_6"
+          "distance_unit": "DISTANCE_UNIT_FEET"
         }
       }
     },
@@ -6962,7 +6962,7 @@
       "remaining_distance": {
         "distance": {
           "display_text": "0",
-          "distance_unit": "DISTANCE_UNIT_UNKNOWN_6"
+          "distance_unit": "DISTANCE_UNIT_FEET"
         }
       }
     },
@@ -9087,7 +9087,7 @@
       "remaining_distance": {
         "distance": {
           "display_text": "0",
-          "distance_unit": "DISTANCE_UNIT_UNKNOWN_6"
+          "distance_unit": "DISTANCE_UNIT_FEET"
         }
       }
     },
@@ -10305,7 +10305,7 @@
       "remaining_distance": {
         "distance": {
           "display_text": "0",
-          "distance_unit": "DISTANCE_UNIT_UNKNOWN_6"
+          "distance_unit": "DISTANCE_UNIT_FEET"
         }
       }
     },
@@ -11748,7 +11748,7 @@
       "remaining_distance": {
         "distance": {
           "display_text": "0",
-          "distance_unit": "DISTANCE_UNIT_UNKNOWN_6"
+          "distance_unit": "DISTANCE_UNIT_FEET"
         }
       }
     },
@@ -13178,7 +13178,7 @@
       "remaining_distance": {
         "distance": {
           "display_text": "0",
-          "distance_unit": "DISTANCE_UNIT_UNKNOWN_6"
+          "distance_unit": "DISTANCE_UNIT_FEET"
         }
       }
     },
@@ -15002,7 +15002,7 @@
       "remaining_distance": {
         "distance": {
           "display_text": "0",
-          "distance_unit": "DISTANCE_UNIT_UNKNOWN_6"
+          "distance_unit": "DISTANCE_UNIT_FEET"
         }
       }
     },
@@ -20288,7 +20288,7 @@
       "remaining_distance": {
         "distance": {
           "display_text": "0",
-          "distance_unit": "DISTANCE_UNIT_UNKNOWN_6"
+          "distance_unit": "DISTANCE_UNIT_FEET"
         }
       }
     },
@@ -26063,7 +26063,7 @@
       "remaining_distance": {
         "distance": {
           "display_text": "0",
-          "distance_unit": "DISTANCE_UNIT_UNKNOWN_6"
+          "distance_unit": "DISTANCE_UNIT_FEET"
         }
       }
     },
@@ -31024,7 +31024,7 @@
       "remaining_distance": {
         "distance": {
           "display_text": "0",
-          "distance_unit": "DISTANCE_UNIT_UNKNOWN_6"
+          "distance_unit": "DISTANCE_UNIT_FEET"
         }
       }
     },
@@ -37221,7 +37221,7 @@
       "remaining_distance": {
         "distance": {
           "display_text": "0",
-          "distance_unit": "DISTANCE_UNIT_UNKNOWN_6"
+          "distance_unit": "DISTANCE_UNIT_FEET"
         }
       }
     },
@@ -38613,7 +38613,7 @@
       "remaining_distance": {
         "distance": {
           "display_text": "0",
-          "distance_unit": "DISTANCE_UNIT_UNKNOWN_6"
+          "distance_unit": "DISTANCE_UNIT_FEET"
         }
       }
     },
@@ -41330,7 +41330,7 @@
       "remaining_distance": {
         "distance": {
           "display_text": "0",
-          "distance_unit": "DISTANCE_UNIT_UNKNOWN_6"
+          "distance_unit": "DISTANCE_UNIT_FEET"
         }
       }
     },
@@ -42934,7 +42934,7 @@
       "remaining_distance": {
         "distance": {
           "display_text": "0",
-          "distance_unit": "DISTANCE_UNIT_UNKNOWN_6"
+          "distance_unit": "DISTANCE_UNIT_FEET"
         }
       }
     },
@@ -44375,7 +44375,7 @@
       "remaining_distance": {
         "distance": {
           "display_text": "0",
-          "distance_unit": "DISTANCE_UNIT_UNKNOWN_6"
+          "distance_unit": "DISTANCE_UNIT_FEET"
         }
       }
     },
@@ -45609,7 +45609,7 @@
       "remaining_distance": {
         "distance": {
           "display_text": "0",
-          "distance_unit": "DISTANCE_UNIT_UNKNOWN_6"
+          "distance_unit": "DISTANCE_UNIT_FEET"
         }
       }
     },
@@ -46508,7 +46508,7 @@
       "remaining_distance": {
         "distance": {
           "display_text": "0",
-          "distance_unit": "DISTANCE_UNIT_UNKNOWN_6"
+          "distance_unit": "DISTANCE_UNIT_FEET"
         }
       }
     },

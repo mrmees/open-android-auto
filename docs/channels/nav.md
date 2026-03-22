@@ -122,9 +122,28 @@ See [Instrument Cluster](#instrument-cluster-1) section below for details.
 | TurnSide | 3 values (0-2) | NavigationTurnEvent |
 | LaneShape | 10 values (0-9) | NavigationLaneDirection |
 | NavigationType | 3 values (0-2) | NavigationChannel config |
-| DistanceDisplayUnit | 7 values (0-6) | NavigationTurnEvent, NavigationNextTurnDistanceEvent |
+| DistanceDisplayUnit | 8 values (0-7) | NavigationTurnEvent, LegacyNavigationTurnEvent, NavigationNextTurnDistanceEvent |
 
 See [ManeuverType Reference](#maneuvertype-reference) and [LaneShape Reference](#laneshape-reference) for grouped summaries.
+
+---
+
+## DistanceDisplayUnit Reference
+
+`DistanceDisplayUnit` mirrors the nav `Distance.displayUnit` codes used inside AA before serialization. Values `3` and `5` are precision variants, not separate physical units: they render kilometers or miles with one decimal place.
+
+| Value | Name | Render As | Notes |
+|-------|------|-----------|-------|
+| 0 | UNKNOWN | -- | Unset / unknown |
+| 1 | METERS | `m` | Whole-unit display |
+| 2 | KILOMETERS | `km` | Whole-unit display |
+| 3 | KILOMETERS_P1 | `km` | One-decimal display variant |
+| 4 | MILES | `mi` | Whole-unit display |
+| 5 | MILES_P1 | `mi` | One-decimal display variant |
+| 6 | FEET | `ft` | Previously mislabeled as unknown in this repo |
+| 7 | YARDS | `yd` | Validated by APK-side unit formatter |
+
+Evidence for this mapping comes from the 16.2 APK distance formatters: AndroidX `Distance` defines the constants, Gearhead groups `2/3` as kilometers and `4/5` as miles, and formats only `3` and `5` with one decimal place.
 
 ---
 
@@ -363,7 +382,7 @@ Track `NavigationState` to know when to show/hide navigation UI:
 
 > **Gotcha:** ManeuverType `UNKNOWN` (0) is the default value. If the phone can't determine the maneuver type, it sends 0. Your icon mapping must handle this case -- don't crash or show a blank on UNKNOWN. A generic "continue" arrow is the standard fallback.
 
-> **Gotcha:** NavigationNextTurnDistanceEvent (0x8007) and NavigationTurnEvent (0x8004) both contain distance information but in different formats. NavigationTurnEvent has a simple `distance_meters` int, while NavigationNextTurnDistanceEvent carries `NavigationRemainingDistance` with display text and a `DistanceDisplayUnit` enum for localized formatting. Use NavigationTurnEvent for basic distance display; use NavigationNextTurnDistanceEvent for pre-formatted distance strings. **Note:** NavigationDistance (APK class xnb) was previously assigned to 0x8007 but wire capture analysis (2026-03-04) proved this wrong — NavigationDistance's field 1 expects int64, but wire data has a nested submessage matching NavigationNextTurnDistanceEvent. NavigationDistance's actual message ID is unknown; it may not be sent on the nav channel at all.
+> **Gotcha:** NavigationNextTurnDistanceEvent (0x8007) and NavigationTurnEvent (0x8004) both contain distance information but in different formats. NavigationTurnEvent has a simple `distance_meters` int, while NavigationNextTurnDistanceEvent carries `NavigationRemainingDistance` with display text and a `DistanceDisplayUnit` enum for localized formatting. Use NavigationTurnEvent for basic distance display; use NavigationNextTurnDistanceEvent for pre-formatted distance strings. When rendering units, group `2/3` as kilometers and `4/5` as miles — values `3` and `5` are one-decimal precision variants, not distinct units. **Note:** NavigationDistance (APK class xnb) was previously assigned to 0x8007 but wire capture analysis (2026-03-04) proved this wrong — NavigationDistance's field 1 expects int64, but wire data has a nested submessage matching NavigationNextTurnDistanceEvent. NavigationDistance's actual message ID is unknown; it may not be sent on the nav channel at all.
 
 ---
 
