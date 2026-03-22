@@ -585,3 +585,33 @@ Verification:
 - `GIT_TERMINAL_PROMPT=0 git -c credential.helper= ls-remote --heads https://github.com/mrmees/open-android-auto.git main dist` -> both remote heads resolved successfully
 - `GIT_TERMINAL_PROMPT=0 timeout 180s git -c credential.helper= -c protocol.version=2 clone --single-branch --no-tags --depth 1 -b main https://github.com/mrmees/open-android-auto.git <tmp>` -> success; `in-pack: 2415`, `.git/objects: 57M`
 - `GIT_TERMINAL_PROMPT=0 timeout 60s git -c credential.helper= -c protocol.version=2 clone --single-branch --no-tags --depth 1 -b dist https://github.com/mrmees/open-android-auto.git <tmp>` -> success; `in-pack: 269`, `.git/objects: 196K`
+
+## 2026-03-22 — Presync salvage extraction
+
+Date / Session: 2026-03-22 / salvage-presync-corrections
+
+What Changed:
+- Recovered the sensor direction corrections from the preserved `wip/root-main-presync-20260322` branch into current `main` lineage: `SensorRequest` is now documented as Phone -> HU, while `SensorStartResponse`, `SensorEventIndication`, and `SensorError` are documented as HU -> Phone in the canonical protos and docs
+- Recovered the nav distance-unit correction slice: `DistanceDisplayUnit` now reflects the 0-7 mapping with `KILOMETERS_P1`, `MILES_P1`, `FEET`, and `YARDS`, and the checked-in non-media baselines no longer label value `6` as `DISTANCE_UNIT_UNKNOWN_6`
+- Added [docs/plans/2026-03-22-salvage-presync-corrections.md](plans/2026-03-22-salvage-presync-corrections.md) to document the salvage plan and verification steps
+
+Why:
+- The preserved presync branch mixed a few valid corrections with several bad regressions, including deleting the live dist-publish workflow and rewinding later nav-image evidence conclusions
+- Pulling that branch wholesale would have damaged current `main`; extracting the two defensible slices preserves the useful work without reintroducing stale conclusions
+
+Status:
+- Sensor-direction docs/proto comments are corrected on the salvage branch
+- Nav distance-unit enum/docs/baselines are corrected on the salvage branch
+- The broader presync branch remains intentionally unmerged because it also reverts current `main` truths
+
+Next Steps:
+1. Review the two salvage commits and fast-forward or cherry-pick them onto `main` if they still look right
+2. Leave the rest of `wip/root-main-presync-20260322` unmerged unless a future pass identifies another narrowly extractable slice with fresh verification
+3. If merged, consider deleting the `wip/root-main-presync-20260322` branch after confirming nothing else in it is needed
+
+Verification:
+- `mkdir -p /tmp/oaa_sensor_verify && protoc --proto_path=. --cpp_out=/tmp/oaa_sensor_verify oaa/sensor/SensorRequestMessage.proto oaa/sensor/SensorStartResponseMessage.proto oaa/sensor/SensorEventIndicationMessage.proto oaa/sensor/SensorErrorMessage.proto` -> success
+- `rg -n "Sent by the phone to request sensor data|Sent by the head unit to acknowledge a sensor subscription request|Sent by the head unit to deliver sensor data to the phone|Direction: HU -> Phone\\.|SensorRequest \\| Phone -> HU|SensorStartResponse \\| HU -> Phone|SensorEventIndication \\| HU -> Phone|SensorError \\| HU -> Phone" oaa/sensor docs/channels/sensor.md docs/channel-map.md` -> corrected direction markers present
+- `mkdir -p /tmp/oaa_nav_verify && protoc --proto_path=. --cpp_out=/tmp/oaa_nav_verify oaa/navigation/NavigationTurnEventMessage.proto oaa/navigation/InstrumentClusterMessages.proto` -> success
+- `rg -n "DISTANCE_UNIT_UNKNOWN_6|7 values \\(0-6\\)" oaa/navigation docs/channels/nav.md analysis/baselines/non_media/{active-navigation,general}.normalized.json` -> no matches
+- `rg -n "KILOMETERS_P1|MILES_P1|DISTANCE_UNIT_FEET|DISTANCE_UNIT_YARDS" oaa/navigation/NavigationTurnEventMessage.proto docs/channels/nav.md analysis/baselines/non_media/{active-navigation,general}.normalized.json` -> corrected names present
