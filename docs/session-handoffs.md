@@ -582,6 +582,6 @@ Verification:
 - `git -C /home/matt/claude/personal/openautopro/open-android-auto/.worktrees/dist-output ls-tree -r --name-only dist | sed -n '1,20p'` -> only root metadata plus `oaa/*.proto` paths listed
 - `find /home/matt/claude/personal/openautopro/open-android-auto/.worktrees/dist-output/oaa -type f ! -name '*.proto'` -> no output
 - `git -C /home/matt/claude/personal/openautopro/open-android-auto/.worktrees/dist-output push -u origin dist` -> success
-- `GIT_TERMINAL_PROMPT=0 git -c credential.helper= ls-remote --heads https://github.com/mrmees/open-android-auto.git main dist` -> `main` at `42b5b64...`, `dist` at `313c1f8...`
+- `GIT_TERMINAL_PROMPT=0 git -c credential.helper= ls-remote --heads https://github.com/mrmees/open-android-auto.git main dist` -> both remote heads resolved successfully
 - `GIT_TERMINAL_PROMPT=0 timeout 180s git -c credential.helper= -c protocol.version=2 clone --single-branch --no-tags --depth 1 -b main https://github.com/mrmees/open-android-auto.git <tmp>` -> success; `in-pack: 2415`, `.git/objects: 57M`
 - `GIT_TERMINAL_PROMPT=0 timeout 60s git -c credential.helper= -c protocol.version=2 clone --single-branch --no-tags --depth 1 -b dist https://github.com/mrmees/open-android-auto.git <tmp>` -> success; `in-pack: 269`, `.git/objects: 196K`
