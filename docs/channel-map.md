@@ -63,10 +63,10 @@ All use `MessageType::Specific`.
 
 | Message | Direction | Purpose |
 |---------|-----------|---------|
-| `SensorRequest` | HU -> Phone | Subscribe to specific sensor types |
-| `SensorStartResponse` | Phone -> HU | Acknowledge sensor subscription |
-| `SensorEventIndication` | Phone -> HU | Sensor data payload (GPS, speed, RPM, etc.) |
-| `SensorError` | Phone -> HU | Sensor error notification |
+| `SensorRequest` | Phone -> HU | Subscribe to specific sensor types |
+| `SensorStartResponse` | HU -> Phone | Acknowledge sensor subscription |
+| `SensorEventIndication` | HU -> Phone | Sensor data payload (GPS, speed, RPM, etc.) |
+| `SensorError` | HU -> Phone | Sensor error notification |
 
 ### Channel 3: Video (GAL type 3)
 
@@ -74,7 +74,7 @@ All use `MessageType::Specific`.
 |---------|-----------|---------|
 | `AVChannelSetupRequest` | Phone -> HU | Select video codec and resolution |
 | `AVChannelSetupResponse` | HU -> Phone | Accept/reject setup |
-| `AVChannelStartIndication` | Bidirectional | Begin video stream |
+| `AVChannelStartIndication` | Phone -> HU | Begin video stream |
 | `AVChannelStopIndication` | Phone -> HU | Pause/stop video stream |
 | `AVMediaAckIndication` | HU -> Phone | Flow control acknowledgment |
 | `VideoFocusRequest` | HU -> Phone | Request video focus change |

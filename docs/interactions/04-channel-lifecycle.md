@@ -176,8 +176,8 @@ All AV channels (video ch 3, audio ch 4/5/6, mic ch 7) share the same message ID
 | 0x8004 | AV_MEDIA_ACK_INDICATION | HU -> Phone |
 | 0x8005 | AV_INPUT_OPEN_REQUEST | Phone -> HU |
 | 0x8006 | AV_INPUT_OPEN_RESPONSE | HU -> Phone |
-| 0x8007 | VIDEO_FOCUS_REQUEST | Phone -> HU |
-| 0x8008 | VIDEO_FOCUS_INDICATION | HU -> Phone |
+| 0x8007 | VIDEO_FOCUS_REQUEST | HU -> Phone |
+| 0x8008 | VIDEO_FOCUS_INDICATION | Phone -> HU |
 | 0x800B | AUDIO_UNDERFLOW | HU -> Phone |
 | 0x8013 | MEDIA_STATS | Phone -> HU |
 
@@ -381,9 +381,14 @@ message AudioFocusResponse {
 
 > Confidence: Silver [apk_static + cross_version] -- see [VideoFocusIndicationMessage.audit.yaml](../../oaa/video/VideoFocusIndicationMessage.audit.yaml)
 
-### VideoFocusIndication (0x8008) -- HU -> Phone
+### Video Focus (0x8007 / 0x8008)
 
 ```protobuf
+message VideoFocusRequest {
+    optional VideoFocusMode focus_mode = 2;
+    optional VideoFocusReason focus_reason = 3;
+}
+
 message VideoFocusIndication {
     optional VideoFocusMode focus_mode = 1;
     optional bool unrequested = 2;
@@ -399,7 +404,7 @@ message VideoFocusIndication {
 | 3 | VIDEO_FOCUS_NATIVE_TRANSIENT | Temporary native UI (e.g. reverse camera) |
 | 4 | VIDEO_FOCUS_PROJECTED_NO_INPUT_FOCUS | AA visible but input goes to native UI |
 
-The HU sends this to tell the phone whether AA is currently displayed. The phone adjusts encoding accordingly (may pause video when not focused).
+The HU sends `VideoFocusRequest` to ask for a display ownership change. The phone answers with `VideoFocusIndication`, reporting the resulting focus state and whether the indication was unsolicited.
 
 ---
 
@@ -409,7 +414,7 @@ These channels have no AV-style setup. Data flows immediately after channel open
 
 ### Sensor Channel (ch 2)
 
-Phone may send `SensorStartRequest` to subscribe to specific sensor types. HU sends `SensorEventIndication` with sensor data. See [03-service-discovery](03-service-discovery.md) for sensor types.
+Phone sends `SensorRequest` to subscribe to specific sensor types. The HU responds with `SensorStartResponse`, then streams `SensorEventIndication` updates and `SensorError` notifications. See [03-service-discovery](03-service-discovery.md) for sensor types.
 
 ### Input Channel (ch 1)
 

@@ -193,7 +193,7 @@ This was a **known blocker under the old aasdk stack** (as of 2026-02-23). The p
 - Moto G Play 2024 → YUVJ420P; Samsung S25 Ultra → YUV420P
 
 **No video frames at all:**
-1. Check `VIDEO_FOCUS_INDICATION(FOCUSED)` was sent after `AV_SETUP_RESPONSE`
+1. Check video focus negotiation happened after `AV_SETUP_RESPONSE` (`VideoFocusRequest(PROJECTED)` followed by `VideoFocusIndication(PROJECTED)`)
 2. Check `max_unacked` in video flow control (should be ≥10)
 3. Check protocol log for `AV_MEDIA_INDICATION` on channel 3 (video)
 4. Verify video resolution config: 720p is default, 1080p works but may need more CPU
@@ -203,8 +203,8 @@ This was a **known blocker under the old aasdk stack** (as of 2026-02-23). The p
 - Check CPU usage: `top -bn1 | head -5`
 
 **Video focus gotcha:**
-- Phone aggressively re-requests `VIDEO_FOCUS_INDICATION(FOCUSED)`
-- Sending `UNFOCUSED` is treated as an exit signal — don't suppress focus requests
+- Phone may aggressively reassert projected focus via `VideoFocusIndication(..., unrequested=true)`
+- Forcing native focus immediately back without honoring negotiation is treated as an exit signal
 
 ### Audio Issues
 
@@ -310,7 +310,7 @@ TIME    SOURCE          CHANNEL    MESSAGE              PAYLOAD
 - `SERVICE_DISCOVERY_REQUEST/RESPONSE` — capability exchange
 - `CHANNEL_OPEN_REQUEST/RESPONSE` — per-channel setup
 - `AV_SETUP_REQUEST/RESPONSE` — audio/video stream config
-- `VIDEO_FOCUS_INDICATION` — video projection state
+- `VideoFocusRequest` / `VideoFocusIndication` — video projection state negotiation
 - `PING_REQUEST/RESPONSE` — keepalive (should be regular)
 - `SHUTDOWN_REQUEST/RESPONSE` — graceful disconnect
 
@@ -419,7 +419,7 @@ Under the old aasdk stack, the phone completed the entire handshake (VERSION →
 **Protocol fixes applied during aasdk Pi validation:**
 - MessageType: ch0 → Specific(0x00), non-zero → Control(0x04)
 - AASession: auto-respond audio/nav focus, intercept CHANNEL_OPEN_REQUEST on non-zero channels
-- VideoChannelHandler: VIDEO_FOCUS_INDICATION(FOCUSED) after AV_SETUP_RESPONSE, max_unacked=10
+- VideoChannelHandler: projected video focus negotiated after `AV_SETUP_RESPONSE`, `max_unacked=10`
 - TCPTransport: hex dump logging for writes
 
 **Open questions (carry forward to open-androidauto testing):**

@@ -40,9 +40,11 @@ The sensor channel delivers vehicle and environmental data from the head unit to
 | Msg ID Offset | None -- raw wire IDs used directly |
 | Wire Messages | 4 (0x8001-0x8004) |
 | Sensor Types | 26 |
-| Direction | Primarily HU-initiated (request) with phone responses |
+| Direction | Phone subscribes; HU supplies sensor data |
 
-The protocol is subscription-based. The HU sends a `SensorRequest` for each sensor type it wants, specifying a refresh interval. The phone acknowledges with `SensorStartResponse`, then delivers periodic `SensorEventIndication` messages containing the requested data. If a sensor is unavailable or fails, the phone sends `SensorError` instead.
+The protocol is subscription-based. The phone sends a `SensorRequest` for each sensor type it wants, specifying a refresh interval. The HU acknowledges with `SensorStartResponse`, then delivers periodic `SensorEventIndication` messages containing the requested data. If a sensor is unavailable or fails, the HU sends `SensorError` instead.
+
+This direction is supported by the phone-side sensor endpoint (`qnz.java` / `ibi.java`) issuing `sendSensorRequest(...)` and handling `SensorStartResponse`, `SensorEventIndication`, and `SensorError` as inbound messages. DHU injection evidence also shows HU-provided `LOCATION` moves Maps on the phone.
 
 All 26 sensor types share the same wire protocol -- the sensor type is identified by which field is populated in `SensorEventIndication`, where field numbers correspond directly to `SensorType` enum values (field 1 = LOCATION, field 2 = COMPASS, etc.).
 
@@ -54,23 +56,23 @@ All 26 sensor types share the same wire protocol -- the sensor type is identifie
 
 | Msg ID | Message | Direction | Purpose | Confidence |
 |--------|---------|-----------|---------|:---:|
-| 0x8001 | SensorRequest | HU -> Phone | Subscribe to a sensor at a given refresh interval | **Gold** |
-| 0x8002 | SensorStartResponse | Phone -> HU | Acknowledge sensor subscription (status) | **Gold** |
-| 0x8003 | SensorEventIndication | Phone -> HU | Deliver sensor data (one or more sensor types per message) | **Gold** |
-| 0x8004 | SensorError | Phone -> HU | Report sensor failure or unavailability | **Gold** |
+| 0x8001 | SensorRequest | Phone -> HU | Subscribe to a sensor at a given refresh interval | **Gold** |
+| 0x8002 | SensorStartResponse | HU -> Phone | Acknowledge sensor subscription (status) | **Gold** |
+| 0x8003 | SensorEventIndication | HU -> Phone | Deliver sensor data (one or more sensor types per message) | **Gold** |
+| 0x8004 | SensorError | HU -> Phone | Report sensor failure or unavailability | **Gold** |
 
-### SensorRequest (0x8001, HU -> Phone)
+### SensorRequest (0x8001, Phone -> HU)
 
-The HU sends one request per sensor type it wants to subscribe to. Sent after channel setup during session initialization.
+The phone sends one request per sensor type it wants to subscribe to. Sent after channel setup during session initialization.
 
 | Field | Type | Modifier | Description |
 |:---:|------|----------|-------------|
 | 1 | enum SensorType | required | Which sensor to subscribe to |
 | 2 | int64 | required | Refresh interval in milliseconds |
 
-### SensorStartResponse (0x8002, Phone -> HU)
+### SensorStartResponse (0x8002, HU -> Phone)
 
-Acknowledgment from the phone indicating whether the requested sensor subscription was accepted.
+Acknowledgment from the HU indicating whether the requested sensor subscription was accepted.
 
 | Field | Type | Modifier | Description |
 |:---:|------|----------|-------------|
@@ -78,15 +80,15 @@ Acknowledgment from the phone indicating whether the requested sensor subscripti
 
 The status field uses the shared `ProtocolStatus` enum (`vyh`), the same enum used across bluetooth, radio, and other channels. For sensor responses, the relevant values are typically OK or the appropriate error code.
 
-### SensorEventIndication (0x8003, Phone -> HU)
+### SensorEventIndication (0x8003, HU -> Phone)
 
 The main data-carrying message. Contains 26 repeated message fields, one per sensor type. Field numbers map directly to `SensorType` enum values. Each field is `repeated` to allow batching multiple readings in a single message.
 
-A single `SensorEventIndication` can carry data for multiple sensor types simultaneously -- the phone may bundle readings that share the same polling cycle.
+A single `SensorEventIndication` can carry data for multiple sensor types simultaneously -- the HU may bundle readings that share the same polling cycle.
 
-### SensorError (0x8004, Phone -> HU)
+### SensorError (0x8004, HU -> Phone)
 
-Sent when a sensor request fails or a previously-working sensor becomes unavailable.
+Sent by the HU when a sensor request fails or a previously-working sensor becomes unavailable.
 
 | Field | Type | Modifier | Description |
 |:---:|------|----------|-------------|
@@ -430,37 +432,37 @@ Note the gap: values 12-13 are not defined. NACS (value 14) was likely added lat
 ### Sensor Subscription Flow
 
 ```
-Head Unit                                    Phone
+Phone                                        Head Unit
   |                                            |
   |--- SensorRequest (LOCATION, 1000ms) -----> |  Subscribe to GPS at 1Hz
-  |<-- SensorStartResponse (OK) -------------- |  Phone accepts
+  |<-- SensorStartResponse (OK) -------------- |  HU accepts
   |                                            |
   |--- SensorRequest (CAR_SPEED, 500ms) -----> |  Subscribe to speed at 2Hz
-  |<-- SensorStartResponse (OK) -------------- |  Phone accepts
+  |<-- SensorStartResponse (OK) -------------- |  HU accepts
   |                                            |
   |--- SensorRequest (NIGHT_DATA, 0ms) ------> |  Subscribe to night mode (event-driven)
-  |<-- SensorStartResponse (OK) -------------- |  Phone accepts
+  |<-- SensorStartResponse (OK) -------------- |  HU accepts
   |                                            |
   |  ... sensors running ...                   |
   |                                            |
-  |<-- SensorEventIndication {                 |
-  |      gps_location: [lat, lon, ...]         |  Batched sensor data
-  |      speed: [85]                           |
-  |    } ------------------------------------ |
+  |<---------------- SensorEventIndication {   |
+  |             gps_location: [lat, lon, ...]  |  Batched sensor data
+  |             speed: [85]                    |
+  |  } -------------------------------------- |
   |                                            |
-  |<-- SensorEventIndication {                 |
-  |      night_mode: [is_night: true]          |  Event-driven update
-  |    } ------------------------------------ |
+  |<---------------- SensorEventIndication {   |
+  |             night_mode: [is_night: true]   |  Event-driven update
+  |  } -------------------------------------- |
   |                                            |
-  |<-- SensorError (GPS, TRANSIENT) ---------- |  GPS lost signal
+  |<---------- SensorError (GPS, TRANSIENT) -- |  GPS lost signal
   |                                            |
-  |<-- SensorError (GPS, OK) ----------------- |  GPS recovered
+  |<----------------- SensorError (GPS, OK) -- |  GPS recovered
 ```
 
-### Building SensorRequest Messages (HU Side)
+### Building SensorRequest Messages (Phone Side)
 
 ```c
-// Subscribe to all sensors the HU supports.
+// Subscribe to the HU sensors Android Auto wants.
 // Called after channel setup completes.
 
 void subscribe_sensors(int channel_id) {
@@ -480,7 +482,7 @@ void subscribe_sensors(int channel_id) {
 }
 ```
 
-### Handling SensorEventIndication (HU Side)
+### Handling SensorEventIndication (Phone Side)
 
 ```c
 // Process incoming sensor data.
@@ -518,7 +520,7 @@ void handle_sensor_event(SensorEventIndication *msg) {
 }
 ```
 
-### Handling SensorError (HU Side)
+### Handling SensorError (Phone Side)
 
 ```c
 void handle_sensor_error(SensorError *msg) {
