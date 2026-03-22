@@ -5,16 +5,26 @@
 /*
  * NavigationTurnEvent — turn-by-turn navigation detail.
  *
- * DEPRECATED in 16.2: Message ID 0x8004 existed in 16.1 (APK class vzm,
- * 6 fields: road_name, maneuver_type, turn_direction, turn_icon, distance_meters,
- * distance_unit). In 16.2, 0x8004 was removed entirely and vzm was reassigned
- * to an unrelated overlay parameter class (2 fields: int + float).
+ * DEPRECATED flat turn-by-turn navigation detail.
  *
- * Legacy replacement: 0x8005 (vyx, @Deprecated, 4 fields — see InstrumentClusterMessages.proto)
- * Modern replacement: 0x8006 NavigationNotification (vza) for modern HUs (PDK >= 1.6)
+ * 16.1 uses APK class vzm (6 fields: road_name, maneuver_type, turn_direction,
+ * turn_icon, distance_meters, distance_unit). In 16.2, fallback JADX over
+ * classes.dex recovered hlj.mo18767n(...) building deprecated class vyy and
+ * sending it on 0x8004 / 32772 under the legacy z(carInfo) gate.
+ *
+ * Additional legacy flat message: 0x8005 (vyx, @Deprecated, 4 fields — see
+ * InstrumentClusterMessages.proto). Modern semantic path: 0x8006
+ * NavigationNotification (vza) for modern HUs (PDK >= 1.6), whose source-backed
+ * 16.1/16.2 native sender traces remain semantic-only.
  *
  * The sub-messages below (NavigationNextTurnDistanceEvent at 0x8007, etc.)
  * ARE still active and verified on the wire.
+ *
+ * In both 16.1 and the recovered 16.2 legacy path, field 4 carries legacy
+ * turn-image bytes sourced from app NavigationStep.turnImage or locally
+ * synthesized fallback assets. Current 16.2 source work still found no
+ * reachable native NEXT_TURN_IMAGE / NavigationImageOptions successor path;
+ * legacy image delivery remains on deprecated 0x8004 instead.
  *
  * DHU 2.1 logcat (2026-02-28) showed NavigationTurnEvent at ~1Hz during nav,
  * but that was the GMS Car App Library TurnEvent, not this wire message.
@@ -28,15 +38,16 @@ import "oaa/navigation/NavigationDistanceDisplayData.proto";
 
 package oaa.proto.messages;
 
-// DEPRECATED — 16.1 only (msg ID 0x8004, APK class vzm)
-// Removed in 16.2. Modern HUs use NavigationNotification (0x8006) instead.
-// Kept for reference and 16.1 compatibility.
-// confidence: silver [apk_static, 16.1_only]
+// DEPRECATED — legacy native image-bearing turn event (msg ID 0x8004 / 32772).
+// Source-backed in 16.1 (vzm) and still present in 16.2 legacy sender path
+// (vyy via hlj.mo18767n(...)). Modern semantic HUs primarily use
+// NavigationNotification (0x8006).
+// confidence: silver [apk_static, cross_version]
 message NavigationTurnEvent {
     optional string road_name = 1; // APK: vzm.b (16.1)  // confidence: silver [apk_static]
     optional oaa.proto.enums.ManeuverType.Enum maneuver_type = 2; // APK: vzm.c (16.1)  // confidence: silver [apk_static]
     optional oaa.proto.enums.TurnSide.Enum turn_direction = 3; // APK: vzm.d (16.1)  // confidence: silver [apk_static]
-    optional bytes turn_icon = 4; // APK: vzm.e (16.1)  // confidence: silver [apk_static]
+    optional bytes turn_icon = 4; // APK: vzm.e (16.1), vyy.f (16.2 legacy) — legacy turn-image bytes on deprecated native 0x8004 / 32772 path  // confidence: silver [apk_static]
     optional int32 distance_meters = 5; // APK: vzm.f (16.1)  // confidence: silver [apk_static]
     optional int32 distance_unit = 6; // APK: vzm.g (16.1)  // confidence: silver [apk_static]
 }

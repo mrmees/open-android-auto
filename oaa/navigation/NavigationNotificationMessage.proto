@@ -9,11 +9,14 @@ import "oaa/navigation/LaneShapeEnum.proto";
 
 package oaa.proto.messages;
 
-// Navigation notification (msgId 0x8006 on Nav channel, GAL type 10)
-// Sent by phone with turn-by-turn instructions and destination info
+// Navigation notification (msgId 0x8006 / 32774 on Nav channel, GAL type 10)
+// Sent by phone with turn-by-turn instructions and destination info.
+// Source-backed 16.1/16.2 native traces keep this payload semantic-only:
+// maneuver/text/lanes/road-info plus destinations, with no raw turn-image bytes.
 // APK class: vza (16.2), vzo (16.1)
 // Handler: hlj.mo18762h() → ian.m20106k(32774, vza)
-// Modern HUs only (CarInfo PDK >= 1.6). Replaces legacy 0x8004/0x8005.
+// Modern HUs only (CarInfo PDK >= 1.6); legacy 0x8004/0x8005 flat-turn paths
+// remain available behind older-HU gates.
 // confidence: gold [apk_deep_trace]
 message NavigationNotification {
     repeated NavigationStep steps = 1; // APK: repeated vzg (16.2), vzu (16.1)  // confidence: gold [apk_deep_trace]
@@ -21,6 +24,8 @@ message NavigationNotification {
 }
 
 // APK class: vzg (16.2), vzu (16.1)
+// Projected-UI-only CarIcon fields such as maneuver icon, Step.lanesImage,
+// and RoutingInfo.junctionImage are not serialized into this native-wire step.
 // confidence: gold [apk_deep_trace]
 message NavigationStep {
     optional NavigationManeuver maneuver = 1; // APK: vyw (16.2)  // confidence: gold [apk_deep_trace]
