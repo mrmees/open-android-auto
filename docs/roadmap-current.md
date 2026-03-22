@@ -18,6 +18,7 @@
 
 - Documentation cleanup and accuracy sweep (this task).
 - Consolidate remaining session-specific notes into permanent docs.
+- Publish a minimal `dist` branch for downstream proto consumers without the research archive.
 
 ## Next
 
@@ -37,4 +38,4 @@
 - Prioritize protocol definitions, protocol docs, and analysis tooling only.
 - Defer cross-repo product planning to the primary application repository.
 
-Last Updated: 2026-03-07
+Last Updated: 2026-03-22

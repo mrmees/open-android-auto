@@ -551,3 +551,34 @@ Verification:
 - `mkdir -p /tmp/jadx_ikr_verify && jadx --show-bad-code --comments-level debug --decompilation-mode simple --single-class defpackage.ikr --single-class-output /tmp/jadx_ikr_verify /home/matt/claude/personal/openautopro/openauto-prodigy/analysis-projection/android_auto_16.1.660414-release_161660414/apk-source/resources/classes.dex` -> success; wrote `/tmp/jadx_ikr_verify/ikr.java`
 - `rg -n "int\\[\\] iArr = \\{i\\}|iArr = new int\\[0\\]|if \\(this\\.e == false\\)|return null;" /tmp/jadx_ikr_verify/ikr.java` -> 16.1 `ikr` uses the same override-controlled synthetic-channel / swallow behavior as 16.2 `ile`
 - `rg -n "Q7 \\| .*Confirmed|synthetic instrument-cluster descriptor|rich-nav capability override" /home/matt/claude/personal/openautopro/open-android-auto/.worktrees/nav-image-evidence-20260313/docs/plans/2026-03-13-nav-image-evidence-plan.md /home/matt/claude/personal/openautopro/open-android-auto/.worktrees/nav-image-evidence-20260313/docs/plans/2026-03-13-nav-image-evidence-design.md /home/matt/claude/personal/openautopro/open-android-auto/.worktrees/nav-image-evidence-20260313/docs/session-handoffs.md` -> plan/design/handoff artifacts now show `Q7` confirmed and describe the override as synthetic instrument-cluster injection
+
+## 2026-03-22 — Dist branch publication workflow
+
+Date / Session: 2026-03-22 / dist-branch-publish
+
+What Changed:
+- Created and pushed an orphan `dist` branch containing only `README.md`, `LICENSE`, and `oaa/**/*.proto`
+- Added [publish-dist.yml](../.github/workflows/publish-dist.yml) so release tags (`v*`) reconstruct and publish the `dist` branch from `main`
+- Added planning docs at [docs/plans/2026-03-22-dist-branch-design.md](plans/2026-03-22-dist-branch-design.md) and [docs/plans/2026-03-22-dist-branch-publish.md](plans/2026-03-22-dist-branch-publish.md)
+- Updated [docs/roadmap-current.md](roadmap-current.md) to reflect the downstream-consumer distribution cleanup
+
+Why:
+- Downstream consumers only need the canonical proto definitions and should not have to clone research archives and analysis artifacts from `main`
+- An orphan `dist` branch provides a small, stable clone target while preserving `main` as the full protocol-reference branch
+- Automating publication on release tags keeps `dist` synchronized without manual curation
+
+Status:
+- Remote branch `origin/dist` exists with only consumable deliverables
+- The feature branch contains the workflow needed to refresh `dist` on future `v*` tags
+- No files were removed from `main`
+
+Next Steps:
+1. Merge the workflow and context docs to `main`
+2. Push the next release tag (`v*`) after proto updates so GitHub Actions republishes `dist`
+3. Update downstream consumers to clone `-b dist` when they only need protobuf sources
+
+Verification:
+- `find oaa -name '*.proto' | sort | xargs protoc --proto_path=. --cpp_out=/tmp/oaa_baseline_verify` -> success in clean feature worktree
+- `git -C /home/matt/claude/personal/openautopro/open-android-auto/.worktrees/dist-output ls-tree -r --name-only dist | sed -n '1,20p'` -> only root metadata plus `oaa/*.proto` paths listed
+- `find /home/matt/claude/personal/openautopro/open-android-auto/.worktrees/dist-output/oaa -type f ! -name '*.proto'` -> no output
+- `git -C /home/matt/claude/personal/openautopro/open-android-auto/.worktrees/dist-output push -u origin dist` -> success

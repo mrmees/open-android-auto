@@ -1,0 +1,67 @@
+name: Publish Dist Branch
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  publish-dist:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out main
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Check out dist
+        uses: actions/checkout@v4
+        with:
+          ref: dist
+          path: dist-branch
+          fetch-depth: 1
+
+      - name: Sync dist contents from main
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          main_root="$GITHUB_WORKSPACE"
+          dist_root="$GITHUB_WORKSPACE/dist-branch"
+
+          find "$dist_root" -mindepth 1 -maxdepth 1 ! -name .git -exec rm -rf {} +
+          mkdir -p "$dist_root/oaa"
+
+          if [[ -f "$main_root/README.md" ]]; then
+            cp "$main_root/README.md" "$dist_root/README.md"
+          fi
+
+          if [[ -f "$main_root/LICENSE" ]]; then
+            cp "$main_root/LICENSE" "$dist_root/LICENSE"
+          fi
+
+          while IFS= read -r proto_file; do
+            mkdir -p "$dist_root/$(dirname "$proto_file")"
+            cp "$main_root/$proto_file" "$dist_root/$proto_file"
+          done < <(cd "$main_root" && find oaa -type f -name '*.proto' | sort)
+
+      - name: Commit dist update if needed
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          git -C dist-branch config user.name "github-actions[bot]"
+          git -C dist-branch config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git -C dist-branch add -A
+
+          if git -C dist-branch diff --cached --quiet; then
+            echo "No dist changes to publish."
+            exit 0
+          fi
+
+          git -C dist-branch commit -m "dist: publish from ${GITHUB_REF_NAME}"
+          git -C dist-branch push origin HEAD:dist
