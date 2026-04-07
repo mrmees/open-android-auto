@@ -8,6 +8,18 @@ A proto-first, systematically verified public reference for the Android Auto pro
 
 Every published proto definition and protocol claim carries explicit verification evidence and confidence level — this is what distinguishes this from scattered reverse-engineering notes.
 
+## Current Milestone: v1.5 OEM Evidence & Gold-Tier Promotion
+
+**Goal:** Use the first OEM head unit capture (VW MIB3 OI 2024) to unblock Gold-tier confidence in the proto reference, extend cross-version validation to include APK 16.4, and finish the documentation surface area v1.0 didn't cover.
+
+**Target features:**
+- VW MIB3 OI capture analysis — extract every signal, identify novel messages, build divergence report against DHU baselines (analysis only; tooling decisions deferred until analysis tells us what's needed)
+- 16.4 cross-version validation — fold the imported 16.4 apk-index into the consistency matrix, identify deltas, promote eligible protos to Silver
+- OEM evidence promotion — extend audit sidecar schema for OEM evidence type, walk every Silver proto, promote to Gold where the VW capture matches
+- Channel architecture reference doc — multiplexing model, service ID assignments, capability negotiation flow, with concrete VW vs DHU examples
+- Audit report generator — coverage dashboard reading the audit trail, surfacing Bronze/Silver/Gold counts per channel
+- Bookkeeping: retroactively log v1.1–v1.4 patch work in MILESTONES.md (channel verification, SDP layer verification, validator overhaul, nav image evidence)
+
 ## Requirements
 
 ### Validated
@@ -25,14 +37,20 @@ Every published proto definition and protocol claim carries explicit verificatio
 - ✓ Cross-version consistency checker for automated proto comparison — v1.0
 - ✓ Step-by-step verification procedures for each evidence type — v1.0
 - ✓ Source provenance rules (APK, DHU, OEM captures, official Google docs only) — v1.0
+- ✓ Sensor channel documentation (26 types, message formats, delivery patterns) — v1.x patch (`docs/channels/sensor.md`, 639 lines)
+- ✓ Radio channel documentation (Service 15, 10 message types) — v1.x patch (`docs/channels/radio.md`)
+- ✓ Car Control channel documentation (Service 19, HVAC, doors, mirrors) — v1.x patch (`docs/channels/carcontrol.md`)
+- ✓ All-channel proto verification (14 channels, 196 Gold protos, 112 Gold SDP) — v1.x patch
+- ✓ SDP layer verification (Waves 1-9) — v1.x patch
+- ✓ Validator capture pipeline (8% → 100% proto decode rate) — v1.x patch
 
 ### Active
 
+- [ ] VW MIB3 OI capture analysis (first OEM evidence source)
+- [ ] 16.4 cross-version validation (extend matrix to 4 APK versions)
+- [ ] OEM evidence integration into audit trail and proto sidecars
+- [ ] Gold-tier promotion of Silver protos that match OEM capture
 - [ ] Channel architecture reference (multiplexing, service IDs, capability negotiation)
-- [ ] Sensor channel documentation (26 types, message formats, delivery patterns)
-- [ ] Radio channel documentation (Service 15, 10 message types)
-- [ ] Car Control channel documentation (Service 19, HVAC, doors, mirrors)
-- [ ] OEM wire capture workflow and tooling
 - [ ] Audit report generator (coverage dashboard from audit trail)
 
 ### Out of Scope
@@ -49,14 +67,16 @@ Every published proto definition and protocol claim carries explicit verificatio
 Shipped v1.0 with ~20K LOC proto files (223 files, 156 audit sidecars) and ~15K LOC documentation.
 Tech stack: protobuf, Python (analysis tools), YAML (audit sidecars), JSON Schema (validation).
 143 of 220 eligible sidecars promoted to Silver tier via cross-version validation.
-8 tech debt items carried forward — mostly empty SUMMARY frontmatter and honestly documented evidence gaps (DTMF, contact sync, some Unverified protos).
+
+Post-v1.0 patch work (v1.1–v1.4, ~79 commits): completed all 14 channel verifications (196 Gold protos), full SDP layer verification across 9 waves (112 Gold SDP), validator decode rate 8% → 100%, Material You theming discovery, nav image evidence cross-version matrix, dist-branch publishing pipeline.
 
 ### Verification Environment
 
-- **APK versions available**: 15.9, 16.1, 16.2 (decompiled, indexed)
+- **APK versions available**: 15.9, 16.1, 16.2, 16.4 (decompiled, indexed)
 - **DHU**: 2.1 on MINIMEES, phone via USB AOA, logcat via wireless ADB
-- **OEM captures**: Hardware available, systematic capture workflow needed
-- **Phone**: Samsung S24 Ultra, Android 16 (SDK 36)
+- **OEM captures**: First capture acquired — 2024 Volkswagen MIB3 OI cockpit (`captures/oem-vw-mib3oi-2026-04-06/`, 7,954 messages, plaintext via on-phone Frida hook)
+- **Phone (DHU)**: Samsung S25 Ultra, Android 16 (SDK 36)
+- **Phone (OEM capture)**: Pixel 8, Android 16, AA 16.4.661034
 - **aa-logcat tool**: Exists but logcat capture broken on Android 13+ (Shizuku fix needed)
 
 ## Constraints
@@ -82,4 +102,4 @@ Tech stack: protobuf, Python (analysis tools), YAML (audit sidecars), JSON Schem
 | Evidence gaps documented transparently | DTMF, contact sync, some sub-messages documented as protocol boundary gaps, not failures | ✓ Good — honest documentation |
 
 ---
-*Last updated: 2026-03-04 after v1.0 milestone*
+*Last updated: 2026-04-07 after v1.5 milestone start*
