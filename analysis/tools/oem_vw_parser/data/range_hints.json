@@ -1,0 +1,85 @@
+{
+  "preflight_performed_at": "2026-04-07",
+  "preflight_against_capture": "captures/oem-vw-mib3oi-2026-04-06",
+  "vw_declared_channel_kinds": [
+    "av_channel",
+    "av_input_channel",
+    "bluetooth_channel",
+    "input_channel",
+    "media_info_channel",
+    "navigation_channel",
+    "phone_status_channel",
+    "sensor_channel",
+    "wifi_channel"
+  ],
+  "hypotheses_checked": [
+    {
+      "hypothesis_id": "radio_range",
+      "range_lo": 32794,
+      "range_hi": 32803,
+      "range_hex": "0x801A-0x8023",
+      "claimed_service": "radio_channel",
+      "claimed_source": "Prodigy 16.2 ibf.java GAL service 15 (10 messages 0x801A-0x8023)",
+      "vw_declares_service": false,
+      "observed_count_in_range": 0,
+      "verdict": "dropped_no_declared_service",
+      "evidence": "VW SDP does not declare radio_channel; 0 records observed in this range in the VW capture. The Prodigy hypothesis cannot be applied to a session that has no radio service at all."
+    },
+    {
+      "hypothesis_id": "car_control_range",
+      "range_lo": 32769,
+      "range_hi": 32775,
+      "range_hex": "0x8001-0x8007",
+      "claimed_service": "car_control_channel",
+      "claimed_source": "Prodigy 16.2 hyc.java GAL service 19 (7 messages 0x8001-0x8007)",
+      "vw_declares_service": false,
+      "observed_count_in_range": 3880,
+      "verdict": "dropped_no_declared_service",
+      "evidence": "VW SDP does not declare car_control_channel, but 3,880 records fall in this msg_type range. Per CONTEXT.md, channel-scoped IDs (0x8000+) are PER-CHANNEL namespaces; the same numeric ID means different things on different channels. The traffic in this range belongs to other declared services (sensor_channel 0x8001-0x8004, navigation/av on 0x8006-0x8007), NOT car_control. Applying the Prodigy car_control range hint would mis-attribute every sensor and nav record to a non-existent service."
+    },
+    {
+      "hypothesis_id": "sensor_range",
+      "range_lo": 32769,
+      "range_hi": 32772,
+      "range_hex": "0x8001-0x8004",
+      "claimed_service": "sensor_channel",
+      "claimed_source": "Prodigy 16.2 sensor handler",
+      "vw_declares_service": true,
+      "observed_count_in_range": 3788,
+      "verdict": "dropped_ambiguous",
+      "evidence": "VW DOES declare sensor_channel and 3,788 records (95% of all 0x8001-0x8007 traffic) fall in this narrower range. However, channel-scoped msg_type IDs are per-channel namespaces — the SAME 0x8001-0x8004 range is used by input_source, media_sink, and other services in the validator message_map. The Prodigy hypothesis is consistent with VW reality but cannot be applied as a tiebreaker without overcommitting attribution. SDP narrowing via structural fingerprinting (Task 3) handles this correctly without needing a range hint."
+    },
+    {
+      "hypothesis_id": "navigation_range",
+      "range_lo": 32774,
+      "range_hi": 32775,
+      "range_hex": "0x8006-0x8007",
+      "claimed_service": "navigation_channel",
+      "claimed_source": "Prodigy GH.NDirector traces",
+      "vw_declares_service": true,
+      "observed_count_in_range": 92,
+      "verdict": "dropped_ambiguous",
+      "evidence": "VW DOES declare navigation_channel and 92 records (46 + 46 in opposite directions on 0x8006/0x8007) fall in this range. The Prodigy hypothesis is consistent. However, the same IDs are also used by media_sink/AVInputOpenRequest in the validator message_map — applying this as a range hint would conflict with AV channel attribution. Structural fingerprinting via SDP narrowing (Task 3) is the correct approach."
+    },
+    {
+      "hypothesis_id": "msg_type_0x8004_open_question",
+      "range_lo": 32772,
+      "range_hi": 32772,
+      "range_hex": "0x8004",
+      "claimed_service": null,
+      "claimed_source": "07-RESEARCH.md observation: 0x8004 is the dominant HU->phone stream (2,752 records) but is not in the 16.2 validator message_map for any service",
+      "vw_declares_service": null,
+      "observed_count_in_range": 2752,
+      "verdict": "open_question_documented",
+      "evidence": "0x8004 is the largest single (msg_type, direction) bucket in the entire VW capture (2,752 records, 35% of all traffic). The Prodigy 16.2 validator has no entry for ('sensor_source', 0x8004). It is possibly SensorEventIndication (which the Prodigy map binds to 0x8003) but the binding can NOT be forced via range hint alone. Documented here so the attribution pipeline knows to leave it as Tier B sdp_narrowed (or sdp_candidates) rather than falsely claiming deterministic attribution."
+    }
+  ],
+  "surviving_hints": [],
+  "dropped_hints": [
+    "radio_range",
+    "car_control_range",
+    "sensor_range",
+    "navigation_range"
+  ],
+  "notes": "Range hints are a TIEBREAKER ONLY per 07-CONTEXT.md. They never override SDP narrowing or descriptor matches. For the VW MIB3 OI 2026-04-06 capture, every Prodigy-derived range hint is either inapplicable (radio, car_control — services VW doesn't declare) or ambiguous (sensor, navigation — IDs collide with other declared services). The attribution pipeline (attribution.py) reads this file at module load time and respects the empty surviving_hints list — falling back to pure structural fingerprint matching against SDP-declared services. If a future capture surfaces a clean range that VW didn't, this file gets re-derived via the same pre-flight script."
+}
