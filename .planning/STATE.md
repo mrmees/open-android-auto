@@ -3,15 +3,15 @@ gsd_state_version: 1.0
 milestone: v1.5
 milestone_name: OEM Evidence & Gold-Tier Promotion
 status: in_progress
-stopped_at: Phase 6 complete -- v1.1-v1.4 entries appended to MILESTONES.md
-last_updated: "2026-04-07"
-last_activity: 2026-04-07 -- Phase 6 plan 01 complete (HIST-01 satisfied)
+stopped_at: Phase 7 plan 01 complete -- OEM-01 satisfied
+last_updated: "2026-04-07T23:50:00Z"
+last_activity: 2026-04-07 -- Phase 7 plan 01 complete (OEM-01 satisfied)
 progress:
   total_phases: 7
   completed_phases: 1
   total_plans: 12
-  completed_plans: 1
-  percent: 8
+  completed_plans: 2
+  percent: 17
 ---
 
 # Project State
@@ -21,16 +21,16 @@ progress:
 See: .planning/PROJECT.md (updated 2026-04-07)
 
 **Core value:** Every published proto definition and protocol claim carries explicit verification evidence and confidence level
-**Current focus:** Phase 6 complete (HIST-01 satisfied); Phase 7 (VW Capture Analysis) is next
+**Current focus:** Phase 7 plan 01 complete (OEM-01 satisfied); Phase 7 plan 02 (OEM-02, OEM-03, OEM-05) is next
 
 ## Current Position
 
-Phase: 6 (Historical Bookkeeping) -- COMPLETE
-Plan: 06-01 -- COMPLETE
-Status: Phase 6 done. Phase 7 (VW Capture Analysis, OEM-01..03/05) is the next actionable work.
-Last activity: 2026-04-07 — appended v1.1-v1.4 entries to MILESTONES.md
+Phase: 7 (VW Capture Analysis) -- IN PROGRESS
+Plan: 07-01 -- COMPLETE; 07-02 -- PENDING
+Status: Phase 7 plan 01 done. OEM-01 (fragment classification) satisfied. Plan 07-02 (SDP values, coverage manifest, candidate OEM-only msg_types) is the next actionable work.
+Last activity: 2026-04-07 -- Phase 7 plan 01 complete (oem_vw_parser package + msg-type-classification reports under analysis/reports/oem-vw/)
 
-Progress: [█░░░░░░░░░] 8% (1/12 v1.5 plans complete)
+Progress: [██░░░░░░░░] 17% (2/12 v1.5 plans complete)
 
 ## Accumulated Context
 
@@ -60,9 +60,17 @@ Phase 6 execution decisions (2026-04-07):
 - Material You theming placed in v1.4 alongside nav image evidence (it's a discovery, not a channel verification) per ROADMAP success criteria
 - Grouping proposal preserved at .planning/phases/06-historical-bookkeeping/grouping-proposal.md as decision trail
 
+Phase 7 plan 01 execution decisions (2026-04-07):
+- msg_type=0 demotion fires on payload-size signal alone (>32 bytes), not the freq>=100 backstop, because the size signal is already decisive — a non-empty msg_type=0 record cannot be ServiceDiscoveryFeatureA regardless of how many times it appears
+- Frequency threshold knee detection scans from N=3 instead of N=2 because freq=1 is the noise floor (1,032 distinct singletons on the live capture); the 1→2 drop is dominated by garbage and is not the real signaling boundary
+- Wire walker treats `field_num==0` during tag decoding as a clean padding-bail sentinel rather than a wire-walk failure (verified on real PingRequest seq=58 from the VW capture: `000b08e7c9dccace6a100000`)
+- `build_descriptor_bundle` is called with explicit `repo_root` + `out_dir` arguments in conftest.py to match the existing `proto_stream_validator/tests/test_decode.py` shape (the plan's no-arg snippet was wrong about the actual signature)
+- Histogram snapshot test allows ±1 absolute slack on Tier B (and ±1% on Tier A/C) to tolerate descriptor-map edge boundary cases without false-failing on legitimate ±1 record drift
+- Live capture results: 7,954 records → A=267, B=3,890, C=3,797; standalone=4,147, probable_first=3, continuation_or_garbage=3,804; reassembled=0, unattributed=0; msg_type=0 demoted=2,751; empirical freq threshold=3
+
 ### Pending Todos
 
-None at milestone level. Phase 7 (VW Capture Analysis) is the next actionable work.
+- Phase 7 plan 02 (OEM-02 SDP values, OEM-03 coverage manifest, OEM-05 candidate OEM-only msg_types). Reusable assets from 07-01: the oem_vw_parser package, all test fixtures, the descriptor bundle pattern, and the classification reports under analysis/reports/oem-vw/. 07-02 extends run.py and adds sdp_decode.py, coverage.py, and candidates.py as siblings.
 
 ### Blockers/Concerns
 
@@ -73,6 +81,6 @@ None at milestone level. Phase 7 (VW Capture Analysis) is the next actionable wo
 
 ## Session Continuity
 
-Last session: 2026-04-07
-Stopped at: Phase 6 plan 01 complete -- MILESTONES.md updated with v1.1-v1.4 retroactive entries
-Resume file: None
+Last session: 2026-04-07T23:50:00Z
+Stopped at: Phase 7 plan 01 complete -- 50 tests passing, msg-type-classification.md/json on disk, OEM-01 satisfied
+Resume file: .planning/phases/07-vw-capture-analysis/07-02-PLAN.md
