@@ -1,0 +1,77 @@
+{
+  "0": {
+    "service_type": "control",
+    "sdp_field": 0,
+    "config_raw": ""
+  },
+  "1": {
+    "service_type": "sensor_source",
+    "sdp_field": 2,
+    "config_raw": "0801123d0a0208010a0208020a0208030a0208050a0208060a0208070a0208080a02080a0a02080d0a0208130a0208140a0208150a0208161080021801180a2008"
+  },
+  "2": {
+    "service_type": "media_sink",
+    "sdp_field": 3,
+    "config_raw": "08021a33222d08011002189003205028a001300038f40340904e48a00150035a120a0a0828102818c80120c80112001a00200030023801"
+  },
+  "3": {
+    "service_type": "input_source",
+    "sdp_field": 4,
+    "config_raw": "080322080a04178080042802"
+  },
+  "4": {
+    "service_type": "media_sink",
+    "sdp_field": 3,
+    "config_raw": "08041a37222d0801100218ba03200028a001300038f40340904e48a00150035a120a0a0800100018dd0120dd0112001a0020003001380240828004"
+  },
+  "5": {
+    "service_type": "input_source",
+    "sdp_field": 4,
+    "config_raw": "080522022801"
+  },
+  "6": {
+    "service_type": "media_sink",
+    "sdp_field": 3,
+    "config_raw": "08061a30222a080210021800200028a001300038f40340904e48a00150035a100a08080010001800200012001a00200030003800"
+  },
+  "7": {
+    "service_type": "input_source",
+    "sdp_field": 4,
+    "config_raw": "0807225f0a3b0102030405060708090a0b0c0d0e0f101112131415161751545557587e7f8c028d028e028f02808004818004828004848004858004868004878004120a08800a10d005180220001a1208f00110f0011801203728373000380140052800"
+  },
+  "8": {
+    "service_type": "media_sink",
+    "sdp_field": 3,
+    "config_raw": "08081a17080110011a0708807d101018011a080880f70210101801"
+  },
+  "9": {
+    "service_type": "media_sink",
+    "sdp_field": 3,
+    "config_raw": "08091a0e080110031a080880f70210101802"
+  },
+  "10": {
+    "service_type": "navigation",
+    "sdp_field": 8,
+    "config_raw": "080a420d08f40310011a06086410641810"
+  },
+  "11": {
+    "service_type": "phone_status",
+    "sdp_field": 10,
+    "config_raw": "080b5200"
+  },
+  "12": {
+    "service_type": "media_info",
+    "sdp_field": 9,
+    "config_raw": "080c4a00"
+  },
+  "13": {
+    "service_type": "vendor_extension",
+    "sdp_field": 12,
+    "config_raw": "080d62550a3b636f6d2e6578616d706c652e616e64726f69642e70726f6a656374696f6e2e70726f746f636f6c2e4563686f56656e646f72457874656e73696f6e1216636f6d2e6578616d706c652e6563686f76656e646f72"
+  },
+  "14": {
+    "service_type": "sensor",
+    "sdp_field": 5,
+    "config_raw": "080e2a0b0801120708807d10101801"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "capture_path": "captures/oem-vw-mib3oi-2026-04-06",
+  "captured_at": "2026-04-07",
+  "total_records": 7954,
+  "tier_counts_pre_demotion": {"A": 3019, "B": 3889, "C": 1046},
+  "tier_counts_post_demotion": {"A": 268, "B": 3889, "C": 3797},
+  "msg_type_zero_demotion_count": 2751,
+  "distinct_msg_types_by_tier": {"A": 12, "B": 12, "C": 1032},
+  "freq_threshold_derived": 3,
+  "top_msg_types": [
+    {"msg_type": 32772, "hex": "0x8004", "tier": "B", "count": 2752, "in": 2752, "out": 0},
+    {"msg_type": 0,     "hex": "0x0000", "tier": "A", "count": 2751, "in": 0,    "out": 2751},
+    {"msg_type": 32771, "hex": "0x8003", "tier": "B", "count": 948,  "in": 946,  "out": 2},
+    {"msg_type": 11,    "hex": "0x000B", "tier": "A", "count": 119,  "in": 59,   "out": 60},
+    {"msg_type": 12,    "hex": "0x000C", "tier": "A", "count": 119,  "in": 60,   "out": 59},
+    {"msg_type": 32769, "hex": "0x8001", "tier": "B", "count": 75,   "in": 0,    "out": 75},
+    {"msg_type": 32774, "hex": "0x8006", "tier": "B", "count": 46,   "in": 0,    "out": 46},
+    {"msg_type": 32775, "hex": "0x8007", "tier": "B", "count": 46,   "in": 0,    "out": 46},
+    {"msg_type": 32770, "hex": "0x8002", "tier": "B", "count": 13,   "in": 11,   "out": 2},
+    {"msg_type": 7,     "hex": "0x0007", "tier": "A", "count": 11,   "in": 0,    "out": 11},
+    {"msg_type": 8,     "hex": "0x0008", "tier": "A", "count": 11,   "in": 11,   "out": 0}
+  ],
+  "source": "07-RESEARCH.md Histogram Ground Truth section"
+}
