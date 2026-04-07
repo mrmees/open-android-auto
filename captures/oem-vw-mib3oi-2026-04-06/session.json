@@ -1,0 +1,17 @@
+{
+  "capture_version": 5,
+  "capture_tool": "aa-capture-app",
+  "capture_method": "native_interceptor_regnatives",
+  "status": "complete",
+  "started_at": "2026-04-06T14:49:06.668Z",
+  "ended_at": "2026-04-06T14:50:06.712Z",
+  "duration_s": 60,
+  "message_count": 7954,
+  "skipped_media_frames": 0,
+  "skipped_media_bytes": 0,
+  "dropped_messages": 0,
+  "queue_high_watermark": 257,
+  "hook_discovery": {
+    "method": "native_interceptor_regnatives"
+  }
+}
