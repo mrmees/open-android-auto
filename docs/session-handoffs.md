@@ -615,3 +615,37 @@ Verification:
 - `mkdir -p /tmp/oaa_nav_verify && protoc --proto_path=. --cpp_out=/tmp/oaa_nav_verify oaa/navigation/NavigationTurnEventMessage.proto oaa/navigation/InstrumentClusterMessages.proto` -> success
 - `rg -n "DISTANCE_UNIT_UNKNOWN_6|7 values \\(0-6\\)" oaa/navigation docs/channels/nav.md analysis/baselines/non_media/{active-navigation,general}.normalized.json` -> no matches
 - `rg -n "KILOMETERS_P1|MILES_P1|DISTANCE_UNIT_FEET|DISTANCE_UNIT_YARDS" oaa/navigation/NavigationTurnEventMessage.proto docs/channels/nav.md analysis/baselines/non_media/{active-navigation,general}.normalized.json` -> corrected names present
+
+## 2026-03-29 — 16.4 manual JADX salvage checkpoint
+
+Date / Session: 2026-03-29 / manual-jadx-16-4-salvage
+
+What Changed:
+- Created `analysis/aa_apk_16.4.661034_apkm/manual-jadx/`
+- Copied recovered single-class decompiles for `rcp`, `rco`, `rdt`, `red`, and `rcn` into `analysis/aa_apk_16.4.661034_apkm/manual-jadx/defpackage/`
+- Added `analysis/aa_apk_16.4.661034_apkm/manual-jadx/PROVENANCE.md` documenting the source APK tree, the interrupted-session `/tmp/jadx-*` origins, and the current reproduction gap
+
+Why:
+- The normal bulk tree under `analysis/aa_apk_16.4.661034_apkm/jadx-output/sources/defpackage/` leaves key methods stubbed or partially lost for these classes
+- The stronger recoveries were sitting only in `/tmp`, which is not durable or repo-local
+- Preserving them under a version-scoped path makes later protocol analysis reproducible enough to resume from the repo, even though the exact JADX argv is not yet closed
+
+Status:
+- Stable repo-local copies now exist for the recovered 16.4 classes
+- The preserved files materially improve on the bulk checked-in JADX output for `rcp`, `rcn`, and `red`, and remove the bulk-tree method-dump stubs for `rcp`, `red`, `rcn`, and `rco.write(...)`
+- Exact generator provenance is still incomplete: fresh local `jadx --single-class ...` attempts against the correct dex files did not byte-match these preserved copies
+
+Next Steps:
+1. If these classes become evidence-bearing for docs or proto work, cite the new `manual-jadx` paths instead of transient `/tmp` paths
+2. If exact reproducibility matters, keep investigating which JADX mode/version produced the stronger `goto`-style recoveries
+3. Consider whether any analysis notes should explicitly link to this salvage tree now that the paths are stable
+
+Verification:
+- `find analysis/aa_apk_16.4.661034_apkm/manual-jadx -maxdepth 2 -type f | sort` -> expected six files present (`PROVENANCE.md` plus five recovered classes)
+- `rg -n "UnsupportedOperationException|Method dump skipped" analysis/aa_apk_16.4.661034_apkm/jadx-output/sources/defpackage/{rcp,rco,rdt,red,rcn}.java` -> bulk tree still shows skipped-method / stub evidence for all five classes
+- `rg -n "UnsupportedOperationException|Method dump skipped" analysis/aa_apk_16.4.661034_apkm/manual-jadx/defpackage/{rcp,rco,rdt,red,rcn}.java` -> only expected `isOpen()` stub in `rco` plus the domain-level `Non-suspendable service` throw in `rdt`; recovered method-dump stubs are gone
+- `git diff --check -- analysis/aa_apk_16.4.661034_apkm/manual-jadx` -> clean
+- `jadx --single-class defpackage.red --single-class-output <tmp> analysis/aa_apk_16.4.661034_apkm/jadx-output/resources/classes.dex` -> completed, but output differed from preserved `manual-jadx/defpackage/red.java`
+- `jadx --single-class defpackage.rcn --single-class-output <tmp> analysis/aa_apk_16.4.661034_apkm/jadx-output/resources/classes2.dex` -> completed, but output differed from preserved `manual-jadx/defpackage/rcn.java`
+- `jadx --single-class defpackage.rdt --single-class-output <tmp> analysis/aa_apk_16.4.661034_apkm/jadx-output/resources/classes.dex` -> completed, but output differed from preserved `manual-jadx/defpackage/rdt.java`
+- `jadx --show-bad-code --comments-level debug --decompilation-mode simple --single-class defpackage.red --single-class-output <tmp> analysis/aa_apk_16.4.661034_apkm/jadx-output/resources/classes.dex` -> completed, but output still differed from preserved `manual-jadx/defpackage/red.java`
