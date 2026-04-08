@@ -157,3 +157,47 @@ class FrequencyProfile:
     threshold: int
     histogram: dict[tuple[int, str], int]  # (msg_type, direction) → count
     source: str  # justification string for the manifest
+
+
+# ---------------------------------------------------------------------------
+# Attribution dataclass (added in 07-02 Task 3).
+#
+# The attribution pipeline produces one AttributedRecord per ClassifiedRecord.
+# The 5-row attribution taxonomy (07-CONTEXT.md § "Service attribution") is
+# enforced by the `attribution_method` literal set. The taxonomy is NEVER
+# flattened to a single field — `service`, `candidate_services`, and
+# `message_identity` are separate slots.
+# ---------------------------------------------------------------------------
+
+
+@dataclass(frozen=True)
+class AttributedRecord:
+    """A ClassifiedRecord plus its service attribution + confidence.
+
+    The `service` field carries the SERVICE binding (e.g., "control",
+    "sensor_channel", "navigation_channel"). The `message_identity` field
+    carries the MESSAGE TYPE name (e.g., "ServiceDiscoveryRequest", "PingRequest").
+
+    Mixing these in one field muddles the attribution taxonomy. For
+    control-plane records (msg_type 0x0000-0x001F), the (msg_type → message
+    name) mapping is deterministic via the validator's message_map, so we
+    populate `message_identity`. For channel-scoped records (0x8000+),
+    msg_type alone does not uniquely identify a proto message (the same
+    msg_id can mean different things on different channels), so
+    `message_identity` stays None.
+    """
+
+    classified: "ClassifiedRecord"
+    service: str | None
+    candidate_services: tuple[str, ...]
+    attribution_method: Literal[
+        "deterministic",
+        "inferred_by_schema",
+        "sdp_narrowed",
+        "sdp_candidates",
+        "inferred_by_range",
+        "unattributed",
+    ]
+    confidence: Literal["high", "medium", "low", "none"]
+    attribution_notes: tuple[str, ...]
+    message_identity: str | None
