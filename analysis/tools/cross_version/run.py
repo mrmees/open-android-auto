@@ -15,6 +15,7 @@ if __package__ in (None, ""):
         sys.path.insert(0, str(_root))
 
 from analysis.tools.cross_version.compare import run_comparison
+from analysis.tools.cross_version.delta_report import generate_delta_report
 from analysis.tools.cross_version.promote import promote_sidecars
 from analysis.tools.cross_version.report import generate_report
 from analysis.tools.cross_version.tables import generate_tables
@@ -74,6 +75,12 @@ def build_parser() -> argparse.ArgumentParser:
         type=Path,
         default=_REPO_ROOT / "docs" / "cross-version",
         help="Output directory for markdown files (default: docs/cross-version/)",
+    )
+    parser.add_argument(
+        "--skip-delta-report",
+        action="store_true",
+        default=False,
+        help="Skip generating the 16.4 delta report (useful for 3-version-only runs)",
     )
     return parser
 
@@ -150,10 +157,24 @@ def main(argv: list[str] | None = None) -> int:
         print(f"Promotion skipped (dry-run). {eligible} sidecars eligible. "
               f"Use --promote to enable.")
 
-    # Generate report
+    # Generate 3-version consistency report (existing output)
     report_path = args.output_dir / "consistency-report.md"
     exit_code = generate_report(results, report_path, promotion_count)
     print(f"Report written to {report_path}")
+
+    # Generate 16.4 delta report (XVER-02) when 16.4 is in play
+    if "16.4" in db_paths and not args.skip_delta_report:
+        delta_dir = _REPO_ROOT / "analysis" / "reports" / "cross-version"
+        candidates_path = delta_dir / "16-4-mapping-candidates.md"
+        generate_delta_report(
+            results=results,
+            db_paths=db_paths,
+            all_mappings_results=results,
+            mapping_candidates_md=candidates_path if candidates_path.exists() else None,
+            output_dir=delta_dir,
+        )
+        print(f"16.4 delta report written to {delta_dir}/16-4-delta-report.md")
+        print(f"16.4 delta JSON sidecar written to {delta_dir}/16-4-delta-report.json")
 
     if exit_code == 0:
         print("Result: All mappings consistent (no suspicious discrepancies)")

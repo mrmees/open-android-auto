@@ -1,21 +1,17 @@
 """Tests for the 16.4 delta report generator.
 
-Wave 0 stubs: xfail-marked tests for the 8 locked sections, JSON schema,
-spurious enum suppression, and baseline reproduction hashes.
-Task 4 will unxfail these.
+XVER-02 — validates the 8 locked sections, JSON schema, spurious-enum
+suppression, and baseline reproduction sha256 hashes.
 """
 from __future__ import annotations
 
 import json
 from pathlib import Path
 
-import pytest
-
 REPO_ROOT = Path(__file__).resolve().parents[4]
 REPORT_DIR = REPO_ROOT / "analysis" / "reports" / "cross-version"
 
 
-@pytest.mark.xfail(strict=True, reason="Pending Task 4 — delta report generator")
 def test_section_structure() -> None:
     """16-4-delta-report.md contains all 8 locked sections in order."""
     md = (REPORT_DIR / "16-4-delta-report.md").read_text()
@@ -36,7 +32,6 @@ def test_section_structure() -> None:
         last_idx = idx
 
 
-@pytest.mark.xfail(strict=True, reason="Pending Task 4 — delta report JSON sidecar")
 def test_json_schema() -> None:
     """16-4-delta-report.json exposes the contract keys Phase 9 will consume."""
     data = json.loads((REPORT_DIR / "16-4-delta-report.json").read_text())
@@ -54,7 +49,6 @@ def test_json_schema() -> None:
         assert key in data, f"Missing top-level key: {key}"
 
 
-@pytest.mark.xfail(strict=True, reason="Pending Task 4 — spurious enum suppression")
 def test_spurious_enum_suppression() -> None:
     """The 4 known spurious enum drifts are suppressed from schema_changes and moved
     to known_indexer_artifacts.
@@ -71,7 +65,6 @@ def test_spurious_enum_suppression() -> None:
     )
 
 
-@pytest.mark.xfail(strict=True, reason="Pending Task 4 — baseline reproduction hashes")
 def test_baseline_hashes() -> None:
     data = json.loads((REPORT_DIR / "16-4-delta-report.json").read_text())
     hashes = data["baseline_reproduction"]["db_sha256"]

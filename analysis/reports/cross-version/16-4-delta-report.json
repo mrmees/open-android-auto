@@ -1,0 +1,1349 @@
+{
+  "generated_date": "2026-04-08",
+  "canonical_build": "16.4.661014",
+  "reproducibility_gap_build": "16.4.661034",
+  "reproducibility_gap_doc": "analysis/reports/cross-version/manual-jadx-reproducibility-gap.md",
+  "summary": {
+    "total": 240,
+    "eligible": 220,
+    "consistent": 220,
+    "with_drift": 0,
+    "all_six_pairs_clean": 94,
+    "with_16_4_pair": 96
+  },
+  "new_in_16_4": [],
+  "removed_in_16_4": [
+    {
+      "proto_message": "AudioConfig",
+      "last_present_in": "16.2",
+      "note": "Either removed from 16.4 or unresolved by the auto-matcher \u2014 see 16-4-mapping-candidates.md"
+    },
+    {
+      "proto_message": "AudioFocusState",
+      "last_present_in": "16.2",
+      "note": "Either removed from 16.4 or unresolved by the auto-matcher \u2014 see 16-4-mapping-candidates.md"
+    },
+    {
+      "proto_message": "AudioStreamType",
+      "last_present_in": "16.2",
+      "note": "Either removed from 16.4 or unresolved by the auto-matcher \u2014 see 16-4-mapping-candidates.md"
+    },
+    {
+      "proto_message": "AudioFocusChannel",
+      "last_present_in": "16.2",
+      "note": "Either removed from 16.4 or unresolved by the auto-matcher \u2014 see 16-4-mapping-candidates.md"
+    },
+    {
+      "proto_message": "AudioFocusRequest",
+      "last_present_in": "16.2",
+      "note": "Either removed from 16.4 or unresolved by the auto-matcher \u2014 see 16-4-mapping-candidates.md"
+    },
+    {
+      "proto_message": "AudioFocusResponse",
+      "last_present_in": "16.2",
+      "note": "Either removed from 16.4 or unresolved by the auto-matcher \u2014 see 16-4-mapping-candidates.md"
+    },
+    {
+      "proto_message": "AVChannelSetupRequest",
+      "last_present_in": "16.2",
+      "note": "Either removed from 16.4 or unresolved by the auto-matcher \u2014 see 16-4-mapping-candidates.md"
+    },
+    {
+      "proto_message": "AVInputChannel",
+      "last_present_in": "16.2",
+      "note": "Either removed from 16.4 or unresolved by the auto-matcher \u2014 see 16-4-mapping-candidates.md"
+    },
+    {
+      "proto_message": "AVInputOpenResponse",
+      "last_present_in": "16.2",
+      "note": "Either removed from 16.4 or unresolved by the auto-matcher \u2014 see 16-4-mapping-candidates.md"
+    },
+    {
+      "proto_message": "BluetoothChannel",
+      "last_present_in": "16.2",
+      "note": "Either removed from 16.4 or unresolved by the auto-matcher \u2014 see 16-4-mapping-candidates.md"
+    },
+    {
+      "proto_message": "CarAction",
+      "last_present_in": "16.2",
+      "note": "Either removed from 16.4 or unresolved by the auto-matcher \u2014 see 16-4-mapping-candidates.md"
+    },
+    {
+      "proto_message": "CarActionEntry",
+      "last_present_in": "16.2",
+      "note": "Either removed from 16.4 or unresolved by the auto-matcher \u2014 see 16-4-mapping-candidates.md"
+    },
+    {
+      "proto_message": "CarActionControl",
+      "last_present_in": "16.2",
+      "note": "Either removed from 16.4 or unresolved by the auto-matcher \u2014 see 16-4-mapping-candidates.md"
+    },
+    {
+      "proto_message": "CarActionNotification",
+      "last_present_in": "16.2",
+      "note": "Either removed from 16.4 or unresolved by the auto-matcher \u2014 see 16-4-mapping-candidates.md"
+    },
+    {
+      "proto_message": "CarControlChannelDescriptor",
+      "last_present_in": "16.2",
+      "note": "Either removed from 16.4 or unresolved by the auto-matcher \u2014 see 16-4-mapping-candidates.md"
+    },
+    {
+      "proto_message": "CarControlGroup",
+      "last_present_in": "16.2",
+      "note": "Either removed from 16.4 or unresolved by the auto-matcher \u2014 see 16-4-mapping-candidates.md"
+    },
+    {
+      "proto_message": "CarControlGroupUpdate",
+      "last_present_in": "16.2",
+      "note": "Either removed from 16.4 or unresolved by the auto-matcher \u2014 see 16-4-mapping-candidates.md"
+    },
+    {
+      "proto_message": "RegisterCarPropertyListenersResponse",
+      "last_present_in": "16.1",
+      "note": "Either removed from 16.4 or unresolved by the auto-matcher \u2014 see 16-4-mapping-candidates.md"
+    },
+    {
+      "proto_message": "FloatValues",
+      "last_present_in": "16.2",
+      "note": "Either removed from 16.4 or unresolved by the auto-matcher \u2014 see 16-4-mapping-candidates.md"
+    },
+    {
+      "proto_message": "IntValues",
+      "last_present_in": "16.2",
+      "note": "Either removed from 16.4 or unresolved by the auto-matcher \u2014 see 16-4-mapping-candidates.md"
+    },
+    {
+      "proto_message": "LongValues",
+      "last_present_in": "16.2",
+      "note": "Either removed from 16.4 or unresolved by the auto-matcher \u2014 see 16-4-mapping-candidates.md"
+    },
+    {
+      "proto_message": "Diagnostics",
+      "last_present_in": "16.2",
+      "note": "Either removed from 16.4 or unresolved by the auto-matcher \u2014 see 16-4-mapping-candidates.md"
+    },
+    {
+      "proto_message": "DriverPosition",
+      "last_present_in": "16.2",
+      "note": "Either removed from 16.4 or unresolved by the auto-matcher \u2014 see 16-4-mapping-candidates.md"
+    },
+    {
+      "proto_message": "VersionFeatureFlags",
+      "last_present_in": "16.2",
+      "note": "Either removed from 16.4 or unresolved by the auto-matcher \u2014 see 16-4-mapping-candidates.md"
+    },
+    {
+      "proto_message": "PingConfiguration",
+      "last_present_in": "16.2",
+      "note": "Either removed from 16.4 or unresolved by the auto-matcher \u2014 see 16-4-mapping-candidates.md"
+    },
+    {
+      "proto_message": "AuthCompleteIndication",
+      "last_present_in": "16.2",
+      "note": "Either removed from 16.4 or unresolved by the auto-matcher \u2014 see 16-4-mapping-candidates.md"
+    },
+    {
+      "proto_message": "ByeByeResponse",
+      "last_present_in": "16.2",
+      "note": "Either removed from 16.4 or unresolved by the auto-matcher \u2014 see 16-4-mapping-candidates.md"
+    },
+    {
+      "proto_message": "BindingRequest",
+      "last_present_in": "16.2",
+      "note": "Either removed from 16.4 or unresolved by the auto-matcher \u2014 see 16-4-mapping-candidates.md"
+    },
+    {
+      "proto_message": "BindingResponse",
+      "last_present_in": "16.2",
+      "note": "Either removed from 16.4 or unresolved by the auto-matcher \u2014 see 16-4-mapping-candidates.md"
+    },
+    {
+      "proto_message": "ChannelOpenAck",
+      "last_present_in": "16.2",
+      "note": "Either removed from 16.4 or unresolved by the auto-matcher \u2014 see 16-4-mapping-candidates.md"
+    },
+    {
+      "proto_message": "ChannelOpenResponse",
+      "last_present_in": "16.2",
+      "note": "Either removed from 16.4 or unresolved by the auto-matcher \u2014 see 16-4-mapping-candidates.md"
+    },
+    {
+      "proto_message": "ConnectionConfiguration",
+      "last_present_in": "16.2",
+      "note": "Either removed from 16.4 or unresolved by the auto-matcher \u2014 see 16-4-mapping-candidates.md"
+    },
+    {
+      "proto_message": "ConnectionFeatureFlags",
+      "last_present_in": "16.2",
+      "note": "Either removed from 16.4 or unresolved by the auto-matcher \u2014 see 16-4-mapping-candidates.md"
+    },
+    {
+      "proto_message": "ConnectionReservedConfig",
+      "last_present_in": "16.1",
+      "note": "Either removed from 16.4 or unresolved by the auto-matcher \u2014 see 16-4-mapping-candidates.md"
+    },
+    {
+      "proto_message": "ConnectionSecurityConfig",
+      "last_present_in": "16.2",
+      "note": "Either removed from 16.4 or unresolved by the auto-matcher \u2014 see 16-4-mapping-candidates.md"
+    },
+    {
+      "proto_message": "ConnectionTransportConfig",
+      "last_present_in": "16.2",
+      "note": "Either removed from 16.4 or unresolved by the auto-matcher \u2014 see 16-4-mapping-candidates.md"
+    },
+    {
+      "proto_message": "ConnectionTuningConfig",
+      "last_present_in": "16.2",
+      "note": "Either removed from 16.4 or unresolved by the auto-matcher \u2014 see 16-4-mapping-candidates.md"
+    },
+    {
+      "proto_message": "CapabilityFlag",
+      "last_present_in": "16.2",
+      "note": "Either removed from 16.4 or unresolved by the auto-matcher \u2014 see 16-4-mapping-candidates.md"
+    },
+    {
+      "proto_message": "CapabilityPair",
+      "last_present_in": "16.2",
+      "note": "Either removed from 16.4 or unresolved by the auto-matcher \u2014 see 16-4-mapping-candidates.md"
+    },
+    {
+      "proto_message": "CapabilityConnectionConfig",
+      "last_present_in": "16.2",
+      "note": "Either removed from 16.4 or unresolved by the auto-matcher \u2014 see 16-4-mapping-candidates.md"
+    },
+    {
+      "proto_message": "InputModelEntry",
+      "last_present_in": "16.2",
+      "note": "Either removed from 16.4 or unresolved by the auto-matcher \u2014 see 16-4-mapping-candidates.md"
+    },
+    {
+      "proto_message": "InputModelDescriptor",
+      "last_present_in": "16.2",
+      "note": "Either removed from 16.4 or unresolved by the auto-matcher \u2014 see 16-4-mapping-candidates.md"
+    },
+    {
+      "proto_message": "PingConfigPair",
+      "last_present_in": "16.2",
+      "note": "Either removed from 16.4 or unresolved by the auto-matcher \u2014 see 16-4-mapping-candidates.md"
+    },
+    {
+      "proto_message": "PingRequest",
+      "last_present_in": "16.2",
+      "note": "Either removed from 16.4 or unresolved by the auto-matcher \u2014 see 16-4-mapping-candidates.md"
+    },
+    {
+      "proto_message": "PingResponse",
+      "last_present_in": "16.2",
+      "note": "Either removed from 16.4 or unresolved by the auto-matcher \u2014 see 16-4-mapping-candidates.md"
+    },
+    {
+      "proto_message": "GalPingResponse",
+      "last_present_in": "16.2",
+      "note": "Either removed from 16.4 or unresolved by the auto-matcher \u2014 see 16-4-mapping-candidates.md"
+    },
+    {
+      "proto_message": "RadioBand",
+      "last_present_in": "16.2",
+      "note": "Either removed from 16.4 or unresolved by the auto-matcher \u2014 see 16-4-mapping-candidates.md"
+    },
+    {
+      "proto_message": "RadioChannel",
+      "last_present_in": "16.1",
+      "note": "Either removed from 16.4 or unresolved by the auto-matcher \u2014 see 16-4-mapping-candidates.md"
+    },
+    {
+      "proto_message": "RadioStation",
+      "last_present_in": "16.1",
+      "note": "Either removed from 16.4 or unresolved by the auto-matcher \u2014 see 16-4-mapping-candidates.md"
+    },
+    {
+      "proto_message": "ControlChannelParams",
+      "last_present_in": "16.2",
+      "note": "Either removed from 16.4 or unresolved by the auto-matcher \u2014 see 16-4-mapping-candidates.md"
+    },
+    {
+      "proto_message": "ControlChannelConfig",
+      "last_present_in": "16.2",
+      "note": "Either removed from 16.4 or unresolved by the auto-matcher \u2014 see 16-4-mapping-candidates.md"
+    },
+    {
+      "proto_message": "ControlChannelConfigWrapper",
+      "last_present_in": "16.2",
+      "note": "Either removed from 16.4 or unresolved by the auto-matcher \u2014 see 16-4-mapping-candidates.md"
+    },
+    {
+      "proto_message": "ServiceDiscoveryFeatureA",
+      "last_present_in": "16.2",
+      "note": "Either removed from 16.4 or unresolved by the auto-matcher \u2014 see 16-4-mapping-candidates.md"
+    },
+    {
+      "proto_message": "ServiceDiscoveryFeatureB",
+      "last_present_in": "16.2",
+      "note": "Either removed from 16.4 or unresolved by the auto-matcher \u2014 see 16-4-mapping-candidates.md"
+    },
+    {
+      "proto_message": "ServiceDiscoveryFeatureC",
+      "last_present_in": "16.2",
+      "note": "Either removed from 16.4 or unresolved by the auto-matcher \u2014 see 16-4-mapping-candidates.md"
+    },
+    {
+      "proto_message": "ServiceDiscoveryFeatureD",
+      "last_present_in": "16.2",
+      "note": "Either removed from 16.4 or unresolved by the auto-matcher \u2014 see 16-4-mapping-candidates.md"
+    },
+    {
+      "proto_message": "ShutdownRequest",
+      "last_present_in": "16.2",
+      "note": "Either removed from 16.4 or unresolved by the auto-matcher \u2014 see 16-4-mapping-candidates.md"
+    },
+    {
+      "proto_message": "AbsInputEvent",
+      "last_present_in": "16.2",
+      "note": "Either removed from 16.4 or unresolved by the auto-matcher \u2014 see 16-4-mapping-candidates.md"
+    },
+    {
+      "proto_message": "AbsoluteEvent",
+      "last_present_in": "16.1",
+      "note": "Either removed from 16.4 or unresolved by the auto-matcher \u2014 see 16-4-mapping-candidates.md"
+    },
+    {
+      "proto_message": "AbsoluteInputEvent",
+      "last_present_in": "16.2",
+      "note": "Either removed from 16.4 or unresolved by the auto-matcher \u2014 see 16-4-mapping-candidates.md"
+    },
+    {
+      "proto_message": "ButtonEvents",
+      "last_present_in": "16.1",
+      "note": "Either removed from 16.4 or unresolved by the auto-matcher \u2014 see 16-4-mapping-candidates.md"
+    },
+    {
+      "proto_message": "HapticFeedbackType",
+      "last_present_in": "16.2",
+      "note": "Either removed from 16.4 or unresolved by the auto-matcher \u2014 see 16-4-mapping-candidates.md"
+    },
+    {
+      "proto_message": "RelativeInputEvent",
+      "last_present_in": "16.2",
+      "note": "Either removed from 16.4 or unresolved by the auto-matcher \u2014 see 16-4-mapping-candidates.md"
+    },
+    {
+      "proto_message": "InputBindingNotification",
+      "last_present_in": "16.2",
+      "note": "Either removed from 16.4 or unresolved by the auto-matcher \u2014 see 16-4-mapping-candidates.md"
+    },
+    {
+      "proto_message": "InputBindingRequest",
+      "last_present_in": "16.2",
+      "note": "Either removed from 16.4 or unresolved by the auto-matcher \u2014 see 16-4-mapping-candidates.md"
+    },
+    {
+      "proto_message": "RelativeInputEvents",
+      "last_present_in": "16.1",
+      "note": "Either removed from 16.4 or unresolved by the auto-matcher \u2014 see 16-4-mapping-candidates.md"
+    },
+    {
+      "proto_message": "TouchCoordinate",
+      "last_present_in": "16.2",
+      "note": "Either removed from 16.4 or unresolved by the auto-matcher \u2014 see 16-4-mapping-candidates.md"
+    },
+    {
+      "proto_message": "TouchLocation",
+      "last_present_in": "16.2",
+      "note": "Either removed from 16.4 or unresolved by the auto-matcher \u2014 see 16-4-mapping-candidates.md"
+    },
+    {
+      "proto_message": "CarLocalMediaPlaybackRequest",
+      "last_present_in": "16.2",
+      "note": "Either removed from 16.4 or unresolved by the auto-matcher \u2014 see 16-4-mapping-candidates.md"
+    },
+    {
+      "proto_message": "MediaPlaybackCommand",
+      "last_present_in": "16.2",
+      "note": "Either removed from 16.4 or unresolved by the auto-matcher \u2014 see 16-4-mapping-candidates.md"
+    },
+    {
+      "proto_message": "MediaStatusList",
+      "last_present_in": "16.1",
+      "note": "Either removed from 16.4 or unresolved by the auto-matcher \u2014 see 16-4-mapping-candidates.md"
+    },
+    {
+      "proto_message": "MediaTrackIdentifier",
+      "last_present_in": "16.2",
+      "note": "Either removed from 16.4 or unresolved by the auto-matcher \u2014 see 16-4-mapping-candidates.md"
+    },
+    {
+      "proto_message": "MediaEventIdWrapper",
+      "last_present_in": "16.2",
+      "note": "Either removed from 16.4 or unresolved by the auto-matcher \u2014 see 16-4-mapping-candidates.md"
+    },
+    {
+      "proto_message": "NavigationImageDimensions",
+      "last_present_in": "16.2",
+      "note": "Either removed from 16.4 or unresolved by the auto-matcher \u2014 see 16-4-mapping-candidates.md"
+    },
+    {
+      "proto_message": "NavigationChannel",
+      "last_present_in": "16.2",
+      "note": "Either removed from 16.4 or unresolved by the auto-matcher \u2014 see 16-4-mapping-candidates.md"
+    },
+    {
+      "proto_message": "NavigationDistanceOneof",
+      "last_present_in": "16.1",
+      "note": "Either removed from 16.4 or unresolved by the auto-matcher \u2014 see 16-4-mapping-candidates.md"
+    },
+    {
+      "proto_message": "NavigationFocusRequest",
+      "last_present_in": "16.2",
+      "note": "Either removed from 16.4 or unresolved by the auto-matcher \u2014 see 16-4-mapping-candidates.md"
+    },
+    {
+      "proto_message": "NavigationFocusIndication",
+      "last_present_in": "16.2",
+      "note": "Either removed from 16.4 or unresolved by the auto-matcher \u2014 see 16-4-mapping-candidates.md"
+    },
+    {
+      "proto_message": "NavigationFocusResponse",
+      "last_present_in": "16.2",
+      "note": "Either removed from 16.4 or unresolved by the auto-matcher \u2014 see 16-4-mapping-candidates.md"
+    },
+    {
+      "proto_message": "NavigationImageOptions",
+      "last_present_in": "16.2",
+      "note": "Either removed from 16.4 or unresolved by the auto-matcher \u2014 see 16-4-mapping-candidates.md"
+    },
+    {
+      "proto_message": "ChargingStationDetails",
+      "last_present_in": "16.2",
+      "note": "Either removed from 16.4 or unresolved by the auto-matcher \u2014 see 16-4-mapping-candidates.md"
+    },
+    {
+      "proto_message": "NavigationDestination",
+      "last_present_in": "16.2",
+      "note": "Either removed from 16.4 or unresolved by the auto-matcher \u2014 see 16-4-mapping-candidates.md"
+    },
+    {
+      "proto_message": "NavigationLane",
+      "last_present_in": "16.1",
+      "note": "Either removed from 16.4 or unresolved by the auto-matcher \u2014 see 16-4-mapping-candidates.md"
+    },
+    {
+      "proto_message": "NavigationLaneDirection",
+      "last_present_in": "16.2",
+      "note": "Either removed from 16.4 or unresolved by the auto-matcher \u2014 see 16-4-mapping-candidates.md"
+    },
+    {
+      "proto_message": "NavigationManeuver",
+      "last_present_in": "16.2",
+      "note": "Either removed from 16.4 or unresolved by the auto-matcher \u2014 see 16-4-mapping-candidates.md"
+    },
+    {
+      "proto_message": "NavigationNextTurnDistanceEvent",
+      "last_present_in": "16.2",
+      "note": "Either removed from 16.4 or unresolved by the auto-matcher \u2014 see 16-4-mapping-candidates.md"
+    },
+    {
+      "proto_message": "NavigationNotification",
+      "last_present_in": "16.2",
+      "note": "Either removed from 16.4 or unresolved by the auto-matcher \u2014 see 16-4-mapping-candidates.md"
+    },
+    {
+      "proto_message": "NavigationRoadInfo",
+      "last_present_in": "16.2",
+      "note": "Either removed from 16.4 or unresolved by the auto-matcher \u2014 see 16-4-mapping-candidates.md"
+    },
+    {
+      "proto_message": "NavigationStep",
+      "last_present_in": "16.2",
+      "note": "Either removed from 16.4 or unresolved by the auto-matcher \u2014 see 16-4-mapping-candidates.md"
+    },
+    {
+      "proto_message": "NavigationText",
+      "last_present_in": "16.1",
+      "note": "Either removed from 16.4 or unresolved by the auto-matcher \u2014 see 16-4-mapping-candidates.md"
+    },
+    {
+      "proto_message": "NavigationState",
+      "last_present_in": "16.2",
+      "note": "Either removed from 16.4 or unresolved by the auto-matcher \u2014 see 16-4-mapping-candidates.md"
+    },
+    {
+      "proto_message": "NotificationChannel",
+      "last_present_in": "16.2",
+      "note": "Either removed from 16.4 or unresolved by the auto-matcher \u2014 see 16-4-mapping-candidates.md"
+    },
+    {
+      "proto_message": "CallAvailabilityStatus",
+      "last_present_in": "16.2",
+      "note": "Either removed from 16.4 or unresolved by the auto-matcher \u2014 see 16-4-mapping-candidates.md"
+    },
+    {
+      "proto_message": "PhoneInputType",
+      "last_present_in": "16.2",
+      "note": "Either removed from 16.4 or unresolved by the auto-matcher \u2014 see 16-4-mapping-candidates.md"
+    },
+    {
+      "proto_message": "VoiceSessionRequest",
+      "last_present_in": "16.2",
+      "note": "Either removed from 16.4 or unresolved by the auto-matcher \u2014 see 16-4-mapping-candidates.md"
+    },
+    {
+      "proto_message": "RadioImage",
+      "last_present_in": "16.2",
+      "note": "Either removed from 16.4 or unresolved by the auto-matcher \u2014 see 16-4-mapping-candidates.md"
+    },
+    {
+      "proto_message": "Accel",
+      "last_present_in": "16.2",
+      "note": "Either removed from 16.4 or unresolved by the auto-matcher \u2014 see 16-4-mapping-candidates.md"
+    },
+    {
+      "proto_message": "Compass",
+      "last_present_in": "16.2",
+      "note": "Either removed from 16.4 or unresolved by the auto-matcher \u2014 see 16-4-mapping-candidates.md"
+    },
+    {
+      "proto_message": "Door",
+      "last_present_in": "16.2",
+      "note": "Either removed from 16.4 or unresolved by the auto-matcher \u2014 see 16-4-mapping-candidates.md"
+    },
+    {
+      "proto_message": "DrivingStatus",
+      "last_present_in": "16.2",
+      "note": "Either removed from 16.4 or unresolved by the auto-matcher \u2014 see 16-4-mapping-candidates.md"
+    },
+    {
+      "proto_message": "Environment",
+      "last_present_in": "16.2",
+      "note": "Either removed from 16.4 or unresolved by the auto-matcher \u2014 see 16-4-mapping-candidates.md"
+    },
+    {
+      "proto_message": "Gear",
+      "last_present_in": "16.2",
+      "note": "Either removed from 16.4 or unresolved by the auto-matcher \u2014 see 16-4-mapping-candidates.md"
+    },
+    {
+      "proto_message": "GpsSatelliteData",
+      "last_present_in": "16.2",
+      "note": "Either removed from 16.4 or unresolved by the auto-matcher \u2014 see 16-4-mapping-candidates.md"
+    },
+    {
+      "proto_message": "Gyro",
+      "last_present_in": "16.2",
+      "note": "Either removed from 16.4 or unresolved by the auto-matcher \u2014 see 16-4-mapping-candidates.md"
+    },
+    {
+      "proto_message": "HVAC",
+      "last_present_in": "16.2",
+      "note": "Either removed from 16.4 or unresolved by the auto-matcher \u2014 see 16-4-mapping-candidates.md"
+    },
+    {
+      "proto_message": "NightMode",
+      "last_present_in": "16.2",
+      "note": "Either removed from 16.4 or unresolved by the auto-matcher \u2014 see 16-4-mapping-candidates.md"
+    },
+    {
+      "proto_message": "Odometer",
+      "last_present_in": "16.2",
+      "note": "Either removed from 16.4 or unresolved by the auto-matcher \u2014 see 16-4-mapping-candidates.md"
+    },
+    {
+      "proto_message": "ParkingBrake",
+      "last_present_in": "16.2",
+      "note": "Either removed from 16.4 or unresolved by the auto-matcher \u2014 see 16-4-mapping-candidates.md"
+    },
+    {
+      "proto_message": "Passenger",
+      "last_present_in": "16.2",
+      "note": "Either removed from 16.4 or unresolved by the auto-matcher \u2014 see 16-4-mapping-candidates.md"
+    },
+    {
+      "proto_message": "RPM",
+      "last_present_in": "16.2",
+      "note": "Either removed from 16.4 or unresolved by the auto-matcher \u2014 see 16-4-mapping-candidates.md"
+    },
+    {
+      "proto_message": "SensorTypeEntry",
+      "last_present_in": "16.2",
+      "note": "Either removed from 16.4 or unresolved by the auto-matcher \u2014 see 16-4-mapping-candidates.md"
+    },
+    {
+      "proto_message": "Sensor",
+      "last_present_in": "16.2",
+      "note": "Either removed from 16.4 or unresolved by the auto-matcher \u2014 see 16-4-mapping-candidates.md"
+    },
+    {
+      "proto_message": "SensorEventFloat",
+      "last_present_in": "16.2",
+      "note": "Either removed from 16.4 or unresolved by the auto-matcher \u2014 see 16-4-mapping-candidates.md"
+    },
+    {
+      "proto_message": "SensorStartResponseMessage",
+      "last_present_in": "16.2",
+      "note": "Either removed from 16.4 or unresolved by the auto-matcher \u2014 see 16-4-mapping-candidates.md"
+    },
+    {
+      "proto_message": "SensorErrorStatus",
+      "last_present_in": "16.2",
+      "note": "Either removed from 16.4 or unresolved by the auto-matcher \u2014 see 16-4-mapping-candidates.md"
+    },
+    {
+      "proto_message": "SensorError",
+      "last_present_in": "16.2",
+      "note": "Either removed from 16.4 or unresolved by the auto-matcher \u2014 see 16-4-mapping-candidates.md"
+    },
+    {
+      "proto_message": "RawEvTripSettings",
+      "last_present_in": "16.2",
+      "note": "Either removed from 16.4 or unresolved by the auto-matcher \u2014 see 16-4-mapping-candidates.md"
+    },
+    {
+      "proto_message": "RawVehicleEnergyModel",
+      "last_present_in": "16.2",
+      "note": "Either removed from 16.4 or unresolved by the auto-matcher \u2014 see 16-4-mapping-candidates.md"
+    },
+    {
+      "proto_message": "VehicleEnergyModelData",
+      "last_present_in": "16.2",
+      "note": "Either removed from 16.4 or unresolved by the auto-matcher \u2014 see 16-4-mapping-candidates.md"
+    },
+    {
+      "proto_message": "TrailerData",
+      "last_present_in": "16.2",
+      "note": "Either removed from 16.4 or unresolved by the auto-matcher \u2014 see 16-4-mapping-candidates.md"
+    },
+    {
+      "proto_message": "SteeringWheel",
+      "last_present_in": "16.2",
+      "note": "Either removed from 16.4 or unresolved by the auto-matcher \u2014 see 16-4-mapping-candidates.md"
+    },
+    {
+      "proto_message": "TirePressure",
+      "last_present_in": "16.2",
+      "note": "Either removed from 16.4 or unresolved by the auto-matcher \u2014 see 16-4-mapping-candidates.md"
+    },
+    {
+      "proto_message": "CarLocalMediaPlayback",
+      "last_present_in": "16.2",
+      "note": "Either removed from 16.4 or unresolved by the auto-matcher \u2014 see 16-4-mapping-candidates.md"
+    },
+    {
+      "proto_message": "UiConfigData",
+      "last_present_in": "16.2",
+      "note": "Either removed from 16.4 or unresolved by the auto-matcher \u2014 see 16-4-mapping-candidates.md"
+    },
+    {
+      "proto_message": "UiConfigEntry",
+      "last_present_in": "16.2",
+      "note": "Either removed from 16.4 or unresolved by the auto-matcher \u2014 see 16-4-mapping-candidates.md"
+    },
+    {
+      "proto_message": "TollCardData",
+      "last_present_in": "16.2",
+      "note": "Either removed from 16.4 or unresolved by the auto-matcher \u2014 see 16-4-mapping-candidates.md"
+    },
+    {
+      "proto_message": "TransportMetadata",
+      "last_present_in": "16.2",
+      "note": "Either removed from 16.4 or unresolved by the auto-matcher \u2014 see 16-4-mapping-candidates.md"
+    },
+    {
+      "proto_message": "TransportSecurityConfig",
+      "last_present_in": "16.2",
+      "note": "Either removed from 16.4 or unresolved by the auto-matcher \u2014 see 16-4-mapping-candidates.md"
+    },
+    {
+      "proto_message": "VideoInsets",
+      "last_present_in": "16.2",
+      "note": "Either removed from 16.4 or unresolved by the auto-matcher \u2014 see 16-4-mapping-candidates.md"
+    },
+    {
+      "proto_message": "VideoMarginConfig",
+      "last_present_in": "16.2",
+      "note": "Either removed from 16.4 or unresolved by the auto-matcher \u2014 see 16-4-mapping-candidates.md"
+    },
+    {
+      "proto_message": "VideoResizeAction",
+      "last_present_in": "16.2",
+      "note": "Either removed from 16.4 or unresolved by the auto-matcher \u2014 see 16-4-mapping-candidates.md"
+    },
+    {
+      "proto_message": "VideoResolutionRange",
+      "last_present_in": "16.2",
+      "note": "Either removed from 16.4 or unresolved by the auto-matcher \u2014 see 16-4-mapping-candidates.md"
+    },
+    {
+      "proto_message": "UiConfigRequest",
+      "last_present_in": "16.2",
+      "note": "Either removed from 16.4 or unresolved by the auto-matcher \u2014 see 16-4-mapping-candidates.md"
+    },
+    {
+      "proto_message": "VideoFocusMode",
+      "last_present_in": "16.2",
+      "note": "Either removed from 16.4 or unresolved by the auto-matcher \u2014 see 16-4-mapping-candidates.md"
+    },
+    {
+      "proto_message": "VideoFocusNotification",
+      "last_present_in": "16.2",
+      "note": "Either removed from 16.4 or unresolved by the auto-matcher \u2014 see 16-4-mapping-candidates.md"
+    },
+    {
+      "proto_message": "VideoMargins",
+      "last_present_in": "16.2",
+      "note": "Either removed from 16.4 or unresolved by the auto-matcher \u2014 see 16-4-mapping-candidates.md"
+    },
+    {
+      "proto_message": "VideoFocusIndication",
+      "last_present_in": "16.2",
+      "note": "Either removed from 16.4 or unresolved by the auto-matcher \u2014 see 16-4-mapping-candidates.md"
+    },
+    {
+      "proto_message": "WifiChannel",
+      "last_present_in": "16.1",
+      "note": "Either removed from 16.4 or unresolved by the auto-matcher \u2014 see 16-4-mapping-candidates.md"
+    },
+    {
+      "proto_message": "WifiConnectStatus",
+      "last_present_in": "16.2",
+      "note": "Either removed from 16.4 or unresolved by the auto-matcher \u2014 see 16-4-mapping-candidates.md"
+    },
+    {
+      "proto_message": "WifiConnectionRejection",
+      "last_present_in": "16.2",
+      "note": "Either removed from 16.4 or unresolved by the auto-matcher \u2014 see 16-4-mapping-candidates.md"
+    },
+    {
+      "proto_message": "WifiInfoRequest",
+      "last_present_in": "16.2",
+      "note": "Either removed from 16.4 or unresolved by the auto-matcher \u2014 see 16-4-mapping-candidates.md"
+    },
+    {
+      "proto_message": "WiFiProjectionChannel",
+      "last_present_in": "16.1",
+      "note": "Either removed from 16.4 or unresolved by the auto-matcher \u2014 see 16-4-mapping-candidates.md"
+    },
+    {
+      "proto_message": "WifiStartResponse",
+      "last_present_in": "16.2",
+      "note": "Either removed from 16.4 or unresolved by the auto-matcher \u2014 see 16-4-mapping-candidates.md"
+    }
+  ],
+  "schema_changes": [],
+  "promoted_bronze_to_silver": [],
+  "drifted_silver_gold": [],
+  "unmappable": [
+    {
+      "proto_message": "AudioConfig",
+      "proto_file": "oaa/audio/AudioConfigData.proto"
+    },
+    {
+      "proto_message": "AudioFocusState",
+      "proto_file": "oaa/audio/AudioFocusStateMessage.proto"
+    },
+    {
+      "proto_message": "AudioStreamType",
+      "proto_file": "oaa/audio/AudioStreamTypeMessage.proto"
+    },
+    {
+      "proto_message": "AudioStreamTypeEnum",
+      "proto_file": "oaa/audio/AudioStreamTypeEnum.proto"
+    },
+    {
+      "proto_message": "AudioFocusChannel",
+      "proto_file": "oaa/audio/AudioFocusChannelData.proto"
+    },
+    {
+      "proto_message": "AudioFocusRequest",
+      "proto_file": "oaa/audio/AudioFocusRequestMessage.proto"
+    },
+    {
+      "proto_message": "AudioFocusResponse",
+      "proto_file": "oaa/audio/AudioFocusResponseMessage.proto"
+    },
+    {
+      "proto_message": "AVChannelSetupRequest",
+      "proto_file": "oaa/av/AVChannelSetupRequestMessage.proto"
+    },
+    {
+      "proto_message": "AVInputChannel",
+      "proto_file": "oaa/av/AVInputChannelData.proto"
+    },
+    {
+      "proto_message": "AVInputOpenResponse",
+      "proto_file": "oaa/av/AVInputOpenResponseMessage.proto"
+    },
+    {
+      "proto_message": "BluetoothChannel",
+      "proto_file": "oaa/bluetooth/BluetoothChannelData.proto"
+    },
+    {
+      "proto_message": "CarAction",
+      "proto_file": "oaa/carcontrol/CarPropertyData.proto"
+    },
+    {
+      "proto_message": "CarActionEntry",
+      "proto_file": "oaa/carcontrol/CarPropertyData.proto"
+    },
+    {
+      "proto_message": "CarActionControl",
+      "proto_file": "oaa/carcontrol/CarControlMessages.proto"
+    },
+    {
+      "proto_message": "CarActionNotification",
+      "proto_file": "oaa/carcontrol/CarControlMessages.proto"
+    },
+    {
+      "proto_message": "CarControlChannelDescriptor",
+      "proto_file": "oaa/carcontrol/CarControlMessages.proto"
+    },
+    {
+      "proto_message": "CarControlGroup",
+      "proto_file": "oaa/carcontrol/CarControlMessages.proto"
+    },
+    {
+      "proto_message": "CarControlGroupUpdate",
+      "proto_file": "oaa/carcontrol/CarControlMessages.proto"
+    },
+    {
+      "proto_message": "RegisterCarPropertyListenersResponse",
+      "proto_file": "oaa/carcontrol/CarControlMessages.proto"
+    },
+    {
+      "proto_message": "FloatValues",
+      "proto_file": "oaa/carcontrol/CarPropertyData.proto"
+    },
+    {
+      "proto_message": "IntValues",
+      "proto_file": "oaa/carcontrol/CarPropertyData.proto"
+    },
+    {
+      "proto_message": "LongValues",
+      "proto_file": "oaa/carcontrol/CarPropertyData.proto"
+    },
+    {
+      "proto_message": "Diagnostics",
+      "proto_file": "oaa/common/DiagnosticsData.proto"
+    },
+    {
+      "proto_message": "DriverPosition",
+      "proto_file": "oaa/common/DriverPositionEnum.proto"
+    },
+    {
+      "proto_message": "VersionFeatureFlags",
+      "proto_file": "oaa/common/FeatureFlagsData.proto"
+    },
+    {
+      "proto_message": "PingConfiguration",
+      "proto_file": "oaa/common/PingConfigurationData.proto"
+    },
+    {
+      "proto_message": "AuthCompleteIndication",
+      "proto_file": "oaa/control/AuthCompleteIndicationMessage.proto"
+    },
+    {
+      "proto_message": "ByeByeResponse",
+      "proto_file": "oaa/control/ByeByeResponseMessage.proto"
+    },
+    {
+      "proto_message": "BindingRequest",
+      "proto_file": "oaa/control/BindingRequestMessage.proto"
+    },
+    {
+      "proto_message": "BindingResponse",
+      "proto_file": "oaa/control/BindingResponseMessage.proto"
+    },
+    {
+      "proto_message": "ChannelOpenAck",
+      "proto_file": "oaa/generic/ChannelOpenAckMessage.proto"
+    },
+    {
+      "proto_message": "ChannelOpenResponse",
+      "proto_file": "oaa/control/ChannelOpenResponseMessage.proto"
+    },
+    {
+      "proto_message": "ConnectionConfiguration",
+      "proto_file": "oaa/control/ConnectionConfigurationData.proto"
+    },
+    {
+      "proto_message": "ConnectionFeatureFlags",
+      "proto_file": "oaa/control/ConnectionConfigurationData.proto"
+    },
+    {
+      "proto_message": "ConnectionReservedConfig",
+      "proto_file": "oaa/control/ConnectionConfigurationData.proto"
+    },
+    {
+      "proto_message": "ConnectionSecurityConfig",
+      "proto_file": "oaa/control/ConnectionConfigurationData.proto"
+    },
+    {
+      "proto_message": "ConnectionTransportConfig",
+      "proto_file": "oaa/control/ConnectionConfigurationData.proto"
+    },
+    {
+      "proto_message": "ConnectionTuningConfig",
+      "proto_file": "oaa/control/ConnectionConfigurationData.proto"
+    },
+    {
+      "proto_message": "CapabilityFlag",
+      "proto_file": "oaa/control/CapabilityData.proto"
+    },
+    {
+      "proto_message": "CapabilityPair",
+      "proto_file": "oaa/control/CapabilityData.proto"
+    },
+    {
+      "proto_message": "CapabilityConnectionConfig",
+      "proto_file": "oaa/control/InputModelData.proto"
+    },
+    {
+      "proto_message": "InputModelEntry",
+      "proto_file": "oaa/control/InputModelData.proto"
+    },
+    {
+      "proto_message": "InputModelDescriptor",
+      "proto_file": "oaa/control/InputModelData.proto"
+    },
+    {
+      "proto_message": "PingConfigPair",
+      "proto_file": "oaa/control/CapabilityData.proto"
+    },
+    {
+      "proto_message": "PingRequest",
+      "proto_file": "oaa/control/PingRequestMessage.proto"
+    },
+    {
+      "proto_message": "PingResponse",
+      "proto_file": "oaa/control/PingResponseMessage.proto"
+    },
+    {
+      "proto_message": "GalPingResponse",
+      "proto_file": "oaa/control/GalPingResponseMessage.proto"
+    },
+    {
+      "proto_message": "RadioBand",
+      "proto_file": "oaa/control/RadioChannelData.proto"
+    },
+    {
+      "proto_message": "RadioChannel",
+      "proto_file": "oaa/control/RadioChannelData.proto"
+    },
+    {
+      "proto_message": "RadioStation",
+      "proto_file": "oaa/control/RadioChannelData.proto"
+    },
+    {
+      "proto_message": "ControlChannelParams",
+      "proto_file": "oaa/control/ControlChannelConfigData.proto"
+    },
+    {
+      "proto_message": "ControlChannelConfig",
+      "proto_file": "oaa/control/ControlChannelConfigData.proto"
+    },
+    {
+      "proto_message": "ControlChannelConfigWrapper",
+      "proto_file": "oaa/control/ControlChannelConfigMessage.proto"
+    },
+    {
+      "proto_message": "ServiceDiscoveryFeatureA",
+      "proto_file": "oaa/control/ServiceDiscoveryResponseMessage.proto"
+    },
+    {
+      "proto_message": "ServiceDiscoveryFeatureB",
+      "proto_file": "oaa/control/ServiceDiscoveryResponseMessage.proto"
+    },
+    {
+      "proto_message": "ServiceDiscoveryFeatureC",
+      "proto_file": "oaa/control/ServiceDiscoveryResponseMessage.proto"
+    },
+    {
+      "proto_message": "ServiceDiscoveryFeatureD",
+      "proto_file": "oaa/control/ServiceDiscoveryResponseMessage.proto"
+    },
+    {
+      "proto_message": "ShutdownRequest",
+      "proto_file": "oaa/control/ShutdownRequestMessage.proto"
+    },
+    {
+      "proto_message": "AbsInputEvent",
+      "proto_file": "oaa/input/InputEventIndicationMessage.proto"
+    },
+    {
+      "proto_message": "AbsoluteEvent",
+      "proto_file": "oaa/input/InputEventIndicationMessage.proto"
+    },
+    {
+      "proto_message": "AbsoluteInputEvent",
+      "proto_file": "oaa/input/AbsoluteInputEventData.proto"
+    },
+    {
+      "proto_message": "ButtonEvents",
+      "proto_file": "oaa/input/ButtonEventsData.proto"
+    },
+    {
+      "proto_message": "HapticFeedbackType",
+      "proto_file": "oaa/input/HapticFeedbackTypeEnum.proto"
+    },
+    {
+      "proto_message": "RelativeInputEvent",
+      "proto_file": "oaa/input/RelativeInputEventData.proto"
+    },
+    {
+      "proto_message": "InputBindingNotification",
+      "proto_file": "oaa/input/InputBindingNotificationMessage.proto"
+    },
+    {
+      "proto_message": "InputBindingRequest",
+      "proto_file": "oaa/input/InputBindingRequestMessage.proto"
+    },
+    {
+      "proto_message": "RelativeInputEvents",
+      "proto_file": "oaa/input/RelativeInputEventsData.proto"
+    },
+    {
+      "proto_message": "TouchCoordinate",
+      "proto_file": "oaa/input/TouchCoordinateData.proto"
+    },
+    {
+      "proto_message": "TouchLocation",
+      "proto_file": "oaa/input/TouchLocationData.proto"
+    },
+    {
+      "proto_message": "CarLocalMediaPlaybackRequest",
+      "proto_file": "oaa/media/CarLocalMediaPlaybackRequestMessage.proto"
+    },
+    {
+      "proto_message": "MediaPlaybackCommand",
+      "proto_file": "oaa/media/MediaPlaybackCommandMessage.proto"
+    },
+    {
+      "proto_message": "MediaStatusList",
+      "proto_file": "oaa/media/MediaStatusListData.proto"
+    },
+    {
+      "proto_message": "MediaTrackIdentifier",
+      "proto_file": "oaa/media/MediaTrackIdentifierData.proto"
+    },
+    {
+      "proto_message": "MediaEventIdWrapper",
+      "proto_file": "oaa/media/MediaPlaybackStatusMessage.proto"
+    },
+    {
+      "proto_message": "NavigationImageDimensions",
+      "proto_file": "oaa/navigation/NavigationChannelConfigData.proto"
+    },
+    {
+      "proto_message": "NavigationChannel",
+      "proto_file": "oaa/navigation/NavigationChannelData.proto"
+    },
+    {
+      "proto_message": "NavigationDistanceOneof",
+      "proto_file": "oaa/navigation/NavigationDistanceMessage.proto"
+    },
+    {
+      "proto_message": "NavigationFocusRequest",
+      "proto_file": "oaa/navigation/NavigationFocusRequestMessage.proto"
+    },
+    {
+      "proto_message": "NavigationFocusIndication",
+      "proto_file": "oaa/navigation/NavigationFocusIndicationMessage.proto"
+    },
+    {
+      "proto_message": "NavigationFocusResponse",
+      "proto_file": "oaa/navigation/NavigationFocusResponseMessage.proto"
+    },
+    {
+      "proto_message": "NavigationImageOptions",
+      "proto_file": "oaa/navigation/NavigationImageOptionsData.proto"
+    },
+    {
+      "proto_message": "ChargingStationDetails",
+      "proto_file": "oaa/navigation/NavigationNotificationMessage.proto"
+    },
+    {
+      "proto_message": "NavigationDestination",
+      "proto_file": "oaa/navigation/NavigationNotificationMessage.proto"
+    },
+    {
+      "proto_message": "NavigationLane",
+      "proto_file": "oaa/navigation/NavigationNotificationMessage.proto"
+    },
+    {
+      "proto_message": "NavigationLaneDirection",
+      "proto_file": "oaa/navigation/NavigationNotificationMessage.proto"
+    },
+    {
+      "proto_message": "NavigationManeuver",
+      "proto_file": "oaa/navigation/NavigationNotificationMessage.proto"
+    },
+    {
+      "proto_message": "NavigationNextTurnDistanceEvent",
+      "proto_file": "oaa/navigation/NavigationTurnEventMessage.proto"
+    },
+    {
+      "proto_message": "NavigationNotification",
+      "proto_file": "oaa/navigation/NavigationNotificationMessage.proto"
+    },
+    {
+      "proto_message": "NavigationRoadInfo",
+      "proto_file": "oaa/navigation/NavigationNotificationMessage.proto"
+    },
+    {
+      "proto_message": "NavigationStep",
+      "proto_file": "oaa/navigation/NavigationNotificationMessage.proto"
+    },
+    {
+      "proto_message": "NavigationText",
+      "proto_file": "oaa/navigation/NavigationNotificationMessage.proto"
+    },
+    {
+      "proto_message": "NavigationState",
+      "proto_file": "oaa/navigation/NavigationStateMessage.proto"
+    },
+    {
+      "proto_message": "NotificationChannel",
+      "proto_file": "oaa/notification/NotificationChannelData.proto"
+    },
+    {
+      "proto_message": "CallAvailabilityStatus",
+      "proto_file": "oaa/phone/CallAvailabilityMessage.proto"
+    },
+    {
+      "proto_message": "PhoneInputType",
+      "proto_file": "oaa/phone/PhoneStatusInputMessage.proto"
+    },
+    {
+      "proto_message": "VoiceSessionRequest",
+      "proto_file": "oaa/phone/VoiceSessionRequestMessage.proto"
+    },
+    {
+      "proto_message": "RadioImage",
+      "proto_file": "oaa/radio/RadioMessages.proto"
+    },
+    {
+      "proto_message": "Accel",
+      "proto_file": "oaa/sensor/AccelData.proto"
+    },
+    {
+      "proto_message": "Compass",
+      "proto_file": "oaa/sensor/CompassData.proto"
+    },
+    {
+      "proto_message": "Door",
+      "proto_file": "oaa/sensor/DoorData.proto"
+    },
+    {
+      "proto_message": "DrivingStatus",
+      "proto_file": "oaa/sensor/DrivingStatusData.proto"
+    },
+    {
+      "proto_message": "Environment",
+      "proto_file": "oaa/sensor/EnvironmentData.proto"
+    },
+    {
+      "proto_message": "Gear",
+      "proto_file": "oaa/sensor/GearData.proto"
+    },
+    {
+      "proto_message": "GpsSatelliteData",
+      "proto_file": "oaa/sensor/GpsSatelliteData.proto"
+    },
+    {
+      "proto_message": "Gyro",
+      "proto_file": "oaa/sensor/GyroData.proto"
+    },
+    {
+      "proto_message": "HVAC",
+      "proto_file": "oaa/sensor/HVACData.proto"
+    },
+    {
+      "proto_message": "NightMode",
+      "proto_file": "oaa/sensor/NightModeData.proto"
+    },
+    {
+      "proto_message": "Odometer",
+      "proto_file": "oaa/sensor/OdometerData.proto"
+    },
+    {
+      "proto_message": "ParkingBrake",
+      "proto_file": "oaa/sensor/ParkingBrakeData.proto"
+    },
+    {
+      "proto_message": "Passenger",
+      "proto_file": "oaa/sensor/PassengerData.proto"
+    },
+    {
+      "proto_message": "RPM",
+      "proto_file": "oaa/sensor/RPMData.proto"
+    },
+    {
+      "proto_message": "SensorTypeEntry",
+      "proto_file": "oaa/sensor/SensorChannelConfigData.proto"
+    },
+    {
+      "proto_message": "Sensor",
+      "proto_file": "oaa/sensor/SensorData.proto"
+    },
+    {
+      "proto_message": "SensorEventFloat",
+      "proto_file": "oaa/sensor/SensorEventFloatData.proto"
+    },
+    {
+      "proto_message": "SensorStartResponseMessage",
+      "proto_file": "oaa/sensor/SensorStartResponseMessage.proto"
+    },
+    {
+      "proto_message": "SensorErrorStatus",
+      "proto_file": "oaa/sensor/SensorErrorStatusEnum.proto"
+    },
+    {
+      "proto_message": "SensorError",
+      "proto_file": "oaa/sensor/SensorErrorMessage.proto"
+    },
+    {
+      "proto_message": "RawEvTripSettings",
+      "proto_file": "oaa/sensor/RawEvTripSettingsData.proto"
+    },
+    {
+      "proto_message": "RawVehicleEnergyModel",
+      "proto_file": "oaa/sensor/RawVehicleEnergyModelData.proto"
+    },
+    {
+      "proto_message": "VehicleEnergyModelData",
+      "proto_file": "oaa/sensor/VehicleEnergyModelData.proto"
+    },
+    {
+      "proto_message": "TrailerData",
+      "proto_file": "oaa/sensor/TrailerData.proto"
+    },
+    {
+      "proto_message": "SteeringWheel",
+      "proto_file": "oaa/sensor/SteeringWheelData.proto"
+    },
+    {
+      "proto_message": "TirePressure",
+      "proto_file": "oaa/sensor/TirePressureData.proto"
+    },
+    {
+      "proto_message": "CarLocalMediaPlayback",
+      "proto_file": "oaa/media/CarLocalMediaPlaybackEnum.proto"
+    },
+    {
+      "proto_message": "UiConfigData",
+      "proto_file": "oaa/video/UiConfigRequestMessage.proto"
+    },
+    {
+      "proto_message": "UiConfigEntry",
+      "proto_file": "oaa/video/UiConfigRequestMessage.proto"
+    },
+    {
+      "proto_message": "TollCardData",
+      "proto_file": "oaa/sensor/TollCardData.proto"
+    },
+    {
+      "proto_message": "TransportMetadata",
+      "proto_file": "oaa/control/ConnectionConfigurationData.proto"
+    },
+    {
+      "proto_message": "TransportSecurityConfig",
+      "proto_file": "oaa/control/ConnectionConfigurationData.proto"
+    },
+    {
+      "proto_message": "VideoInsets",
+      "proto_file": "oaa/video/AdditionalVideoConfigData.proto"
+    },
+    {
+      "proto_message": "VideoMarginConfig",
+      "proto_file": "oaa/video/AdditionalVideoConfigData.proto"
+    },
+    {
+      "proto_message": "VideoResizeAction",
+      "proto_file": "oaa/video/AdditionalVideoConfigData.proto"
+    },
+    {
+      "proto_message": "VideoResolutionRange",
+      "proto_file": "oaa/video/AdditionalVideoConfigData.proto"
+    },
+    {
+      "proto_message": "UiConfigRequest",
+      "proto_file": "oaa/video/UiConfigRequestMessage.proto"
+    },
+    {
+      "proto_message": "VideoFocusMode",
+      "proto_file": "oaa/video/VideoFocusModeMessage.proto"
+    },
+    {
+      "proto_message": "VideoFocusNotification",
+      "proto_file": "oaa/video/VideoFocusNotificationMessage.proto"
+    },
+    {
+      "proto_message": "VideoMargins",
+      "proto_file": "oaa/video/VideoMarginsData.proto"
+    },
+    {
+      "proto_message": "VideoFocusIndication",
+      "proto_file": "oaa/video/VideoFocusIndicationMessage.proto"
+    },
+    {
+      "proto_message": "WifiChannel",
+      "proto_file": "oaa/wifi/WifiChannelData.proto"
+    },
+    {
+      "proto_message": "WifiConnectStatus",
+      "proto_file": "oaa/wifi/WifiConnectStatusMessage.proto"
+    },
+    {
+      "proto_message": "WifiConnectionRejection",
+      "proto_file": "oaa/wifi/WifiConnectionRejectionMessage.proto"
+    },
+    {
+      "proto_message": "WifiInfoRequest",
+      "proto_file": "oaa/wifi/WifiInfoRequestMessage.proto"
+    },
+    {
+      "proto_message": "WiFiProjectionChannel",
+      "proto_file": "oaa/wifi/WifiProjectionChannelData.proto"
+    },
+    {
+      "proto_message": "WifiStartResponse",
+      "proto_file": "oaa/wifi/WifiStartResponseMessage.proto"
+    }
+  ],
+  "baseline_reproduction": {
+    "command": "PYTHONPATH=. python3 -m analysis.tools.cross_version.run",
+    "run_date": "2026-04-08",
+    "db_sha256": {
+      "15.9": "e2f03f39a64e8ee4a8671bb93ccc5a4c6ba27059dea20556598271ce992ad9ab",
+      "16.1": "3aa7fd840579d65c6b57a69600ea1ba23b2b9ac5df3dc94dc1a78cb9a99517c5",
+      "16.2": "ca3198ed6775920e73a88cef6ac7668f8f8621b7f8b2ea6680baa9668ef62345",
+      "16.4": "37e9c019452dd5b16ec85eefc647d59c3771f43d7eac4e675487012bf693ec10"
+    }
+  },
+  "known_indexer_artifacts": [
+    {
+      "proto_message": "DriverPosition",
+      "proto_file": "oaa/common/DriverPositionEnum.proto",
+      "reason": "proto_enum_classes table absent in 16.1/16.2 but present in 15.9/16.4 \u2014 drift is a data-layer artifact, not a real 16.4 delta.",
+      "suppressed_issues": 8
+    },
+    {
+      "proto_message": "HapticFeedbackType",
+      "proto_file": "oaa/input/HapticFeedbackTypeEnum.proto",
+      "reason": "proto_enum_classes table absent in 16.1/16.2 but present in 15.9/16.4 \u2014 drift is a data-layer artifact, not a real 16.4 delta.",
+      "suppressed_issues": 10
+    },
+    {
+      "proto_message": "SensorErrorStatus",
+      "proto_file": "oaa/sensor/SensorErrorStatusEnum.proto",
+      "reason": "proto_enum_classes table absent in 16.1/16.2 but present in 15.9/16.4 \u2014 drift is a data-layer artifact, not a real 16.4 delta.",
+      "suppressed_issues": 6
+    },
+    {
+      "proto_message": "CarLocalMediaPlayback",
+      "proto_file": "oaa/media/CarLocalMediaPlaybackEnum.proto",
+      "reason": "proto_enum_classes table absent in 16.1/16.2 but present in 15.9/16.4 \u2014 drift is a data-layer artifact, not a real 16.4 delta.",
+      "suppressed_issues": 10
+    }
+  ]
+}
