@@ -1,15 +1,15 @@
 ---
 gsd_state_version: 1.0
-milestone: v1.5
-milestone_name: OEM Evidence & Gold-Tier Promotion
-status: in_progress
-stopped_at: Completed 07-02-PLAN.md -- Phase 7 done (74 tests, 8 reports, OEM-01/02/03/05 satisfied)
-last_updated: "2026-04-08T00:19:31.074Z"
+milestone: v1.0
+milestone_name: milestone
+status: completed
+stopped_at: Completed 07-02-PLAN.md
+last_updated: "2026-04-08T00:31:42.494Z"
 last_activity: 2026-04-08 -- Phase 7 plan 02 complete (SDP decoder + attribution pipeline + coverage manifest + OEM-only candidate diff; 6 new reports + 21 files; 74 tests passing)
 progress:
   total_phases: 7
   completed_phases: 2
-  total_plans: 12
+  total_plans: 3
   completed_plans: 3
   percent: 25
 ---
