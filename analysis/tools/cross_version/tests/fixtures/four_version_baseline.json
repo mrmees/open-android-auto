@@ -1,0 +1,13 @@
+{
+  "total": 240,
+  "eligible": 224,
+  "consistent": 9,
+  "with_issues": 215,
+  "by_pairs_count": {
+    "1": 9,
+    "3": 6,
+    "6": 209
+  },
+  "generated_date": "2026-04-08",
+  "note": "Shape-only baseline. 16.4 values are stub copies of 16.2 \u2014 the real matcher snapshot lives in match_snapshot.json."
+}

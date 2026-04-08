@@ -1,0 +1,45 @@
+{
+  "note": "Snapshot of the 4 spurious enum drift ComparisonResults emitted by the existing 3-version checker today. These fire because proto_enum_classes is present in 15.9 and 16.4 DBs but ABSENT in 16.1 and 16.2 DBs. The 15.9 fallback returns enum values; the 16.1 / 16.2 fallback returns None; compare.py interprets the empty list as 'all fields removed' — a spurious signal, not a real delta.",
+  "generated_date": "2026-04-08",
+  "source_baseline": "PYTHONPATH=. python3 -m analysis.tools.cross_version.run (live 3-version run, 4 discrepancies / 28 FIELD_REMOVED issues)",
+  "spurious_drifts": [
+    {
+      "proto_message": "DriverPosition",
+      "proto_file": "oaa/common/DriverPositionEnum.proto",
+      "pairs_compared": [["15.9", "16.1"], ["15.9", "16.2"]],
+      "issues": [
+        {"kind": "FIELD_REMOVED", "field_number": 0, "severity": "error", "detail": "enum value LEFT removed"},
+        {"kind": "FIELD_REMOVED", "field_number": 1, "severity": "error", "detail": "enum value RIGHT removed"},
+        {"kind": "FIELD_REMOVED", "field_number": 2, "severity": "error", "detail": "enum value CENTER removed"}
+      ],
+      "root_cause": "proto_enum_classes table absent in 16.1 / 16.2 DB"
+    },
+    {
+      "proto_message": "HapticFeedbackType",
+      "proto_file": "oaa/input/HapticFeedbackTypeEnum.proto",
+      "pairs_compared": [["15.9", "16.1"], ["15.9", "16.2"]],
+      "issues": [
+        {"kind": "FIELD_REMOVED", "field_number": 0, "severity": "error", "detail": "enum value NONE removed"}
+      ],
+      "root_cause": "proto_enum_classes table absent in 16.1 / 16.2 DB"
+    },
+    {
+      "proto_message": "SensorErrorStatus",
+      "proto_file": "oaa/sensor/SensorErrorStatusEnum.proto",
+      "pairs_compared": [["15.9", "16.1"], ["15.9", "16.2"]],
+      "issues": [
+        {"kind": "FIELD_REMOVED", "field_number": 0, "severity": "error", "detail": "enum value OK removed"}
+      ],
+      "root_cause": "proto_enum_classes table absent in 16.1 / 16.2 DB"
+    },
+    {
+      "proto_message": "CarLocalMediaPlayback",
+      "proto_file": "oaa/media/CarLocalMediaPlayback.proto",
+      "pairs_compared": [["15.9", "16.1"], ["15.9", "16.2"]],
+      "issues": [
+        {"kind": "FIELD_REMOVED", "field_number": 0, "severity": "error", "detail": "enum value STOPPED removed"}
+      ],
+      "root_cause": "proto_enum_classes table absent in 16.1 / 16.2 DB"
+    }
+  ]
+}

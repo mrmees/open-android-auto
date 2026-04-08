@@ -3,6 +3,8 @@ from __future__ import annotations
 
 from pathlib import Path
 
+import pytest
+
 from analysis.tools.proto_schema_validator.models import IssueKind, ProtoMapping
 from analysis.tools.cross_version.compare import run_comparison
 
@@ -85,3 +87,49 @@ def test_consistent_match(mock_db_v1: Path, mock_db_v2: Path):
     r = results[0]
     assert len(r.issues) == 0, f"Expected no issues, got {r.issues}"
     assert r.is_consistent, "Identical fields should be marked consistent"
+
+
+def test_four_version_pairs(
+    mock_db_v1: Path,
+    mock_db_v2: Path,
+    mock_db_v3: Path,
+    mock_db_v4: Path,
+    sample_mappings_4v,
+):
+    """4 versions → C(4,2) = 6 pairwise comparisons per mapping with all classes populated.
+
+    Note: this test already passes against the existing version-agnostic run_comparison().
+    It locks the 6-pair expansion contract so Task 2's CLI wiring can't silently drop it.
+    """
+    db_paths = {
+        "15.9": mock_db_v1,
+        "16.1": mock_db_v2,
+        "16.2": mock_db_v3,
+        "16.4": mock_db_v4,
+    }
+    # sample_mappings_4v uses '15.9' / '16.1' / '16.2' / '16.4' keys;
+    # but mock_db_v1 / mock_db_v2 were designed around 'v1' / 'v2' key names
+    # with classes vnx / voa (v1) and wab / wbc (v2). Re-key them.
+    # sample_mappings has: SensorData {'15.9': 'vnx', '16.1': 'vnx', '16.2': 'voa'}
+    #                      SimpleMessage {'15.9': 'wab', '16.1': 'wab', '16.2': 'wbc'}
+    # sample_mappings_4v added '16.2'='vob' and '16.4'='wqs' — but that overwrites 16.2.
+    # Since mock_db_v1 has vnx/wab and mock_db_v2 has voa/wbc, the 15.9 and 16.1 slots
+    # should match the v1 content (vnx/wab), 16.2 should match v3 (vob/wbd) since that's
+    # what db_paths['16.2'] points to, and 16.4 should match v4 (wqs/wwb).
+    # sample_mappings_4v already sets '16.2' = 'vob' / 'wbd' and '16.4' = 'wqs' / 'wwb'.
+    # We need to ensure 15.9 and 16.1 point into mock_db_v1's classes.
+    for m in sample_mappings_4v:
+        if m.proto_message == "SensorData":
+            m.apk_classes["15.9"] = "vnx"
+            m.apk_classes["16.1"] = "vnx"
+        elif m.proto_message == "SimpleMessage":
+            m.apk_classes["15.9"] = "wab"
+            m.apk_classes["16.1"] = "wab"
+
+    results = run_comparison(db_paths, sample_mappings_4v)
+    # At least one mapping should have all 6 pairs compared successfully
+    six_pair_results = [r for r in results if len(r.pairs_compared) == 6]
+    assert len(six_pair_results) >= 1, (
+        f"Expected ≥1 mapping with 6 pairs; got pairs_compared counts: "
+        f"{[len(r.pairs_compared) for r in results]}"
+    )

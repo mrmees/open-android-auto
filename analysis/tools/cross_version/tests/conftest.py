@@ -190,6 +190,162 @@ def sample_mappings() -> list[ProtoMapping]:
     ]
 
 
+def _create_mock_schema(conn: sqlite3.Connection, with_proto_enum_classes: bool = True) -> None:
+    """Create the canonical mock APK-index schema on a sqlite connection."""
+    conn.execute("""
+        CREATE TABLE proto_fields (
+            class_name TEXT,
+            field_number INTEGER,
+            name TEXT DEFAULT '',
+            base_type TEXT,
+            is_repeated INTEGER DEFAULT 0,
+            is_packed INTEGER DEFAULT 0,
+            is_oneof INTEGER DEFAULT 0,
+            is_map INTEGER DEFAULT 0,
+            optional INTEGER DEFAULT 0,
+            required INTEGER DEFAULT 0,
+            oneof_index INTEGER,
+            enum_closed INTEGER DEFAULT 0
+        )
+    """)
+    conn.execute("""
+        CREATE TABLE proto_classes (
+            class_name TEXT PRIMARY KEY,
+            field_count INTEGER DEFAULT 0,
+            proto_syntax TEXT,
+            sub_message_refs TEXT DEFAULT '[]'
+        )
+    """)
+    conn.execute("""
+        CREATE TABLE enum_maps (
+            enum_class TEXT,
+            int_value INTEGER,
+            enum_name TEXT
+        )
+    """)
+    if with_proto_enum_classes:
+        conn.execute("""
+            CREATE TABLE proto_enum_classes (
+                class_name TEXT PRIMARY KEY,
+                "values" TEXT
+            )
+        """)
+
+
+@pytest.fixture
+def mock_db_v3(tmp_path: Path) -> Path:
+    """Mock 16.2-equivalent APK index DB for 4-version pairwise tests.
+
+    Contains:
+    - SensorData-equivalent class 'vob' with same 5-field shape as mock_db_v2's voa.
+    - SimpleMessage-equivalent class 'wbd' with same 2-field shape as mock_db_v2's wbc.
+    """
+    db_path = tmp_path / "v3.db"
+    conn = sqlite3.connect(str(db_path))
+    _create_mock_schema(conn, with_proto_enum_classes=False)
+
+    # SensorData in 16.2-equivalent: same fields as mock_db_v2.voa but under class 'vob'
+    fields_v3 = [
+        ("vob", 1, "timestamp", "int64", 0, 0),
+        ("vob", 2, "value", "float", 0, 0),
+        ("vob", 3, "sensor_type", "int32", 0, 0),
+        ("vob", 4, "status", "int32", 0, 0),
+        ("vob", 6, "extra", "string", 0, 0),
+    ]
+    for cls, fn, name, bt, rep, pack in fields_v3:
+        conn.execute(
+            "INSERT INTO proto_fields (class_name, field_number, name, base_type, is_repeated, is_packed) "
+            "VALUES (?, ?, ?, ?, ?, ?)",
+            (cls, fn, name, bt, rep, pack),
+        )
+    conn.execute("INSERT INTO proto_classes (class_name, field_count) VALUES ('vob', 5)")
+
+    # SimpleMessage in 16.2-equivalent: identical to mock_db_v2
+    fields_v3b = [
+        ("wbd", 1, "id", "int32", 0, 0),
+        ("wbd", 2, "name", "string", 0, 0),
+    ]
+    for cls, fn, name, bt, rep, pack in fields_v3b:
+        conn.execute(
+            "INSERT INTO proto_fields (class_name, field_number, name, base_type, is_repeated, is_packed) "
+            "VALUES (?, ?, ?, ?, ?, ?)",
+            (cls, fn, name, bt, rep, pack),
+        )
+    conn.execute("INSERT INTO proto_classes (class_name, field_count) VALUES ('wbd', 2)")
+
+    conn.commit()
+    conn.close()
+    return db_path
+
+
+@pytest.fixture
+def mock_db_v4(tmp_path: Path) -> Path:
+    """Mock 16.4-equivalent APK index DB for 4-version pairwise tests.
+
+    Includes proto_enum_classes table (the real 16.4 DB has it; 16.1 / 16.2 do not).
+    Contains:
+    - SensorData-equivalent class 'wqs' with same 5-field shape as mock_db_v3's vob.
+    - SimpleMessage-equivalent class 'wwb' with same 2-field shape as mock_db_v3's wbd.
+    """
+    db_path = tmp_path / "v4.db"
+    conn = sqlite3.connect(str(db_path))
+    _create_mock_schema(conn, with_proto_enum_classes=True)
+
+    fields_v4 = [
+        ("wqs", 1, "timestamp", "int64", 0, 0),
+        ("wqs", 2, "value", "float", 0, 0),
+        ("wqs", 3, "sensor_type", "int32", 0, 0),
+        ("wqs", 4, "status", "int32", 0, 0),
+        ("wqs", 6, "extra", "string", 0, 0),
+    ]
+    for cls, fn, name, bt, rep, pack in fields_v4:
+        conn.execute(
+            "INSERT INTO proto_fields (class_name, field_number, name, base_type, is_repeated, is_packed) "
+            "VALUES (?, ?, ?, ?, ?, ?)",
+            (cls, fn, name, bt, rep, pack),
+        )
+    conn.execute("INSERT INTO proto_classes (class_name, field_count) VALUES ('wqs', 5)")
+
+    fields_v4b = [
+        ("wwb", 1, "id", "int32", 0, 0),
+        ("wwb", 2, "name", "string", 0, 0),
+    ]
+    for cls, fn, name, bt, rep, pack in fields_v4b:
+        conn.execute(
+            "INSERT INTO proto_fields (class_name, field_number, name, base_type, is_repeated, is_packed) "
+            "VALUES (?, ?, ?, ?, ?, ?)",
+            (cls, fn, name, bt, rep, pack),
+        )
+    conn.execute("INSERT INTO proto_classes (class_name, field_count) VALUES ('wwb', 2)")
+
+    conn.commit()
+    conn.close()
+    return db_path
+
+
+@pytest.fixture
+def sample_mappings_4v(sample_mappings: list[ProtoMapping]) -> list[ProtoMapping]:
+    """sample_mappings extended with '16.2' and '16.4' keys for 4-version pairwise tests.
+
+    Note: the existing sample_mappings fixture uses version keys '15.9' / '16.1' / '16.2',
+    but the 4-version tests pass db_paths keyed as '15.9' / '16.1' / '16.2' / '16.4'.
+    This fixture mutates in place so that:
+    - 15.9 -> existing 15.9 value
+    - 16.1 -> existing 16.1 value
+    - 16.2 -> maps to the mock_db_v3 class (vob / wbd)
+    - 16.4 -> maps to the mock_db_v4 class (wqs / wwb)
+    """
+    # SensorData
+    if sample_mappings[0].proto_message == "SensorData":
+        sample_mappings[0].apk_classes["16.2"] = "vob"
+        sample_mappings[0].apk_classes["16.4"] = "wqs"
+    # SimpleMessage
+    if sample_mappings[1].proto_message == "SimpleMessage":
+        sample_mappings[1].apk_classes["16.2"] = "wbd"
+        sample_mappings[1].apk_classes["16.4"] = "wwb"
+    return sample_mappings
+
+
 @pytest.fixture
 def tmp_sidecar(tmp_path: Path) -> Path:
     """Create a temporary bronze-tier audit YAML sidecar."""
