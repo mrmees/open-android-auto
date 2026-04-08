@@ -334,6 +334,9 @@ def _build_comparative_gaps(
     # Map service_type values from DHU records to channel_kind names. The
     # validator's service_type strings include "radio_source", "car_control",
     # "media_sink", etc. — translate the obvious ones, leave the rest as-is.
+    # `control` is the universal control channel — every capture has it, it
+    # is NOT a per-channel channel_kind, so it never appears as a comparative
+    # gap. Filtered out below.
     _service_type_to_kind = {
         "sensor_source": "sensor_channel",
         "radio_source": "radio_channel",
@@ -346,9 +349,14 @@ def _build_comparative_gaps(
         "media_info": "media_info_channel",
         "sensor": "wifi_channel",
     }
+    # Service_types that are universal / not per-channel and never count as
+    # comparative gaps. `control` lives on channel_id 0 in every capture by
+    # construction. Filter it out before the absence check.
+    _UNIVERSAL_SERVICES = frozenset({"control"})
+
     seen_kinds_in_dhu: dict[str, set[str]] = defaultdict(set)
     for r in dhu_records:
-        if r.service_type:
+        if r.service_type and r.service_type not in _UNIVERSAL_SERVICES:
             kind = _service_type_to_kind.get(r.service_type, r.service_type)
             seen_kinds_in_dhu[kind].add(r.capture_id)
 

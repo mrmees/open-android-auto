@@ -1,0 +1,212 @@
+{
+  "candidates_by_msg_type": {
+    "11": {
+      "attribution_method": "deterministic",
+      "count": 59,
+      "tier": "A"
+    },
+    "12": {
+      "attribution_method": "deterministic",
+      "count": 59,
+      "tier": "A"
+    },
+    "13": {
+      "attribution_method": "deterministic",
+      "count": 1,
+      "tier": "A"
+    },
+    "14": {
+      "attribution_method": "deterministic",
+      "count": 1,
+      "tier": "A"
+    },
+    "18": {
+      "attribution_method": "deterministic",
+      "count": 2,
+      "tier": "A"
+    },
+    "19": {
+      "attribution_method": "deterministic",
+      "count": 1,
+      "tier": "A"
+    },
+    "32768": {
+      "attribution_method": "sdp_candidates",
+      "count": 3,
+      "tier": "B"
+    },
+    "32772": {
+      "attribution_method": "sdp_candidates",
+      "count": 2752,
+      "tier": "B"
+    },
+    "32774": {
+      "attribution_method": "sdp_candidates",
+      "count": 46,
+      "tier": "B"
+    },
+    "32775": {
+      "attribution_method": "sdp_candidates",
+      "count": 46,
+      "tier": "B"
+    },
+    "32776": {
+      "attribution_method": "sdp_candidates",
+      "count": 2,
+      "tier": "B"
+    },
+    "32821": {
+      "attribution_method": "unattributed",
+      "count": 1,
+      "tier": "B"
+    },
+    "32865": {
+      "attribution_method": "sdp_narrowed",
+      "count": 1,
+      "tier": "B"
+    },
+    "5": {
+      "attribution_method": "deterministic",
+      "count": 1,
+      "tier": "A"
+    },
+    "6": {
+      "attribution_method": "deterministic",
+      "count": 1,
+      "tier": "A"
+    },
+    "7": {
+      "attribution_method": "deterministic",
+      "count": 11,
+      "tier": "A"
+    },
+    "8": {
+      "attribution_method": "deterministic",
+      "count": 11,
+      "tier": "A"
+    }
+  },
+  "candidates_by_msg_type_direction": [
+    {
+      "attribution_method": "deterministic",
+      "count": 1,
+      "direction": "out",
+      "msg_type": 5,
+      "tier": "A"
+    },
+    {
+      "attribution_method": "deterministic",
+      "count": 1,
+      "direction": "in",
+      "msg_type": 6,
+      "tier": "A"
+    },
+    {
+      "attribution_method": "deterministic",
+      "count": 11,
+      "direction": "out",
+      "msg_type": 7,
+      "tier": "A"
+    },
+    {
+      "attribution_method": "deterministic",
+      "count": 11,
+      "direction": "in",
+      "msg_type": 8,
+      "tier": "A"
+    },
+    {
+      "attribution_method": "deterministic",
+      "count": 59,
+      "direction": "in",
+      "msg_type": 11,
+      "tier": "A"
+    },
+    {
+      "attribution_method": "deterministic",
+      "count": 59,
+      "direction": "out",
+      "msg_type": 12,
+      "tier": "A"
+    },
+    {
+      "attribution_method": "deterministic",
+      "count": 1,
+      "direction": "out",
+      "msg_type": 13,
+      "tier": "A"
+    },
+    {
+      "attribution_method": "deterministic",
+      "count": 1,
+      "direction": "in",
+      "msg_type": 14,
+      "tier": "A"
+    },
+    {
+      "attribution_method": "deterministic",
+      "count": 2,
+      "direction": "out",
+      "msg_type": 18,
+      "tier": "A"
+    },
+    {
+      "attribution_method": "deterministic",
+      "count": 1,
+      "direction": "in",
+      "msg_type": 19,
+      "tier": "A"
+    },
+    {
+      "attribution_method": "sdp_candidates",
+      "count": 3,
+      "direction": "out",
+      "msg_type": 32768,
+      "tier": "B"
+    },
+    {
+      "attribution_method": "sdp_candidates",
+      "count": 2752,
+      "direction": "in",
+      "msg_type": 32772,
+      "tier": "B"
+    },
+    {
+      "attribution_method": "sdp_candidates",
+      "count": 46,
+      "direction": "out",
+      "msg_type": 32774,
+      "tier": "B"
+    },
+    {
+      "attribution_method": "sdp_candidates",
+      "count": 46,
+      "direction": "out",
+      "msg_type": 32775,
+      "tier": "B"
+    },
+    {
+      "attribution_method": "sdp_candidates",
+      "count": 2,
+      "direction": "in",
+      "msg_type": 32776,
+      "tier": "B"
+    },
+    {
+      "attribution_method": "unattributed",
+      "count": 1,
+      "direction": "out",
+      "msg_type": 32821,
+      "tier": "B"
+    },
+    {
+      "attribution_method": "sdp_narrowed",
+      "count": 1,
+      "direction": "out",
+      "msg_type": 32865,
+      "tier": "B"
+    }
+  ],
+  "label": "candidate",
+  "note": "Every entry is a CANDIDATE, not a CONFIRMED OEM-only msg_type. Filtered through OEM-01 fragment classification. Continuation fragments NEVER appear in this list."
+}

@@ -39,8 +39,8 @@ against a Pixel 8 with Android Auto 16.4.661034.
 | File | Bytes | Notes |
 |---|---|---|
 | `messages.jsonl` | 50,307,502 | 7,954 plaintext AA messages (one JSON per line) |
-| `sdp_request.bin` | 877 | Service Discovery Request from VW HU → phone |
-| `sdp_response.bin` | 610 | Service Discovery Response from phone → VW HU |
+| `sdp_request.bin` | 877 | Service Discovery Request from phone → VW HU |
+| `sdp_response.bin` | 610 | Service Discovery Response from VW HU → phone |
 | `session.json` | 456 | Capture metadata (start/end, count, queue stats) |
 
 Capture stats from `session.json`:
@@ -140,3 +140,19 @@ as a v1.0 carryover blocker. This capture is the unblock:
   `captures/idle-baseline/`, `captures/music-playback/`,
   `captures/active-navigation/`
 - Project blocker note: `.planning/STATE.md` — "Blockers/Concerns" section
+
+
+## Analysis Outputs
+
+Phase 7 analysis artifacts live under `analysis/reports/oem-vw/`:
+
+- [`sdp-values.md`](../../analysis/reports/oem-vw/sdp-values.md) — production SDP values (HeadUnitInfo, 13 channels)
+- [`sdp-values.json`](../../analysis/reports/oem-vw/sdp-values.json) — machine-readable SDP values
+- [`msg-type-classification.md`](../../analysis/reports/oem-vw/msg-type-classification.md) — per-msg-type fragment classification (from plan 07-01)
+- [`msg-type-classification.json`](../../analysis/reports/oem-vw/msg-type-classification.json) — machine-readable classification
+- [`coverage-manifest.md`](../../analysis/reports/oem-vw/coverage-manifest.md) — VW session coverage (observed / intrinsic gaps / comparative gaps / anomalies)
+- [`coverage.json`](../../analysis/reports/oem-vw/coverage.json) — machine-readable coverage manifest with `baseline_snapshot_hash`
+- [`candidate-oem-only-msg-types.md`](../../analysis/reports/oem-vw/candidate-oem-only-msg-types.md) — msg_types seen in VW but not DHU baselines (filtered through fragment classification, labeled `candidate`)
+- [`candidate-oem-only-msg-types.json`](../../analysis/reports/oem-vw/candidate-oem-only-msg-types.json) — machine-readable candidate list
+
+**Correction applied 2026-04-07:** the SDP direction labels in the file table above were swapped. Plan 07-02 verified by direct decode that `sdp_request.bin` is phone→HU and `sdp_response.bin` is HU→phone, and fixed the table in a targeted one-line edit.

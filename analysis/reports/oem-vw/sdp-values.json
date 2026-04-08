@@ -1,0 +1,299 @@
+{
+  "directions": {
+    "sdp_request.bin": "phone -> HU",
+    "sdp_response.bin": "HU -> phone"
+  },
+  "request": {
+    "device_brand": "Google Pixel 8",
+    "device_name": "Android",
+    "icons": {
+      "large": {
+        "present": true,
+        "size_bytes": 411
+      },
+      "medium": {
+        "present": true,
+        "size_bytes": 240
+      },
+      "small": {
+        "present": true,
+        "size_bytes": 152
+      }
+    },
+    "session_uuid": "ba64e7d4-6347-47cd-9234-fb3cc41c5249"
+  },
+  "response": {
+    "can_play_native_media_during_vr": null,
+    "car_model": "VW3363",
+    "car_serial": "092f7b7ed5024eb0",
+    "car_year": "2024",
+    "channels": [
+      {
+        "channel_id": 1,
+        "channel_kind": "av_channel",
+        "config": {
+          "channel_id": 0,
+          "display_type": "MAIN",
+          "video_configs": [
+            {
+              "additional_config": {
+                "min_resolution": {
+                  "density": 0,
+                  "fps": 0,
+                  "height": 120,
+                  "width": 120
+                },
+                "ui_theme": "UI_THEME_AUTOMATIC"
+              },
+              "codec": "MEDIA_CODEC_VIDEO_H264_BP",
+              "decoder_additional_depth": 1,
+              "dpi": 213,
+              "margin_height": 240,
+              "margin_width": 0,
+              "pixel_aspect_ratio_e4": 10000,
+              "real_density": 171,
+              "video_fps": "_60",
+              "video_resolution": "VIDEO_1920x1080",
+              "viewing_distance": 900
+            },
+            {
+              "additional_config": {
+                "min_resolution": {
+                  "density": 0,
+                  "fps": 0,
+                  "height": 80,
+                  "width": 80
+                },
+                "ui_theme": "UI_THEME_AUTOMATIC"
+              },
+              "codec": "MEDIA_CODEC_VIDEO_H264_BP",
+              "decoder_additional_depth": 1,
+              "dpi": 142,
+              "margin_height": 160,
+              "margin_width": 0,
+              "pixel_aspect_ratio_e4": 10000,
+              "real_density": 114,
+              "video_fps": "_60",
+              "video_resolution": "VIDEO_1280x720",
+              "viewing_distance": 900
+            },
+            {
+              "additional_config": {
+                "min_resolution": {
+                  "density": 0,
+                  "fps": 0,
+                  "height": 65,
+                  "width": 65
+                },
+                "ui_theme": "UI_THEME_AUTOMATIC"
+              },
+              "codec": "MEDIA_CODEC_VIDEO_H264_BP",
+              "decoder_additional_depth": 1,
+              "dpi": 89,
+              "margin_height": 130,
+              "margin_width": 0,
+              "pixel_aspect_ratio_e4": 10000,
+              "real_density": 71,
+              "video_fps": "_60",
+              "video_resolution": "VIDEO_800x480",
+              "viewing_distance": 900
+            }
+          ]
+        }
+      },
+      {
+        "channel_id": 2,
+        "channel_kind": "input_channel",
+        "config": {
+          "display_id": 0,
+          "supported_keycodes": [
+            84,
+            85,
+            87,
+            88,
+            126,
+            127,
+            65537
+          ],
+          "touch_screen_configs": [
+            {
+              "display_type": "CLUSTER",
+              "height": 0,
+              "width": 0
+            }
+          ]
+        }
+      },
+      {
+        "channel_id": 3,
+        "channel_kind": "av_channel",
+        "config": {
+          "audio_configs": [
+            {
+              "bit_depth": 16,
+              "channel_count": 2,
+              "sample_rate": 48000
+            }
+          ],
+          "audio_type": "MEDIA",
+          "stream_type": 4
+        }
+      },
+      {
+        "channel_id": 4,
+        "channel_kind": "av_channel",
+        "config": {
+          "audio_configs": [
+            {
+              "bit_depth": 16,
+              "channel_count": 1,
+              "sample_rate": 48000
+            }
+          ],
+          "audio_type": "SPEECH",
+          "stream_type": 4
+        }
+      },
+      {
+        "channel_id": 5,
+        "channel_kind": "av_channel",
+        "config": {
+          "audio_configs": [
+            {
+              "bit_depth": 16,
+              "channel_count": 2,
+              "sample_rate": 48000
+            }
+          ],
+          "audio_type": "MEDIA",
+          "stream_type": "AUDIO"
+        }
+      },
+      {
+        "channel_id": 6,
+        "channel_kind": "av_channel",
+        "config": {
+          "audio_configs": [
+            {
+              "bit_depth": 16,
+              "channel_count": 1,
+              "sample_rate": 48000
+            }
+          ],
+          "audio_type": "SPEECH",
+          "stream_type": "AUDIO"
+        }
+      },
+      {
+        "channel_id": 7,
+        "channel_kind": "av_input_channel",
+        "config": {
+          "audio_config": {
+            "bit_depth": 16,
+            "channel_count": 1,
+            "sample_rate": 16000
+          },
+          "stream_type": "AUDIO"
+        }
+      },
+      {
+        "channel_id": 8,
+        "channel_kind": "sensor_channel",
+        "config": {
+          "fuel_types": [
+            "UNLEADED"
+          ],
+          "location_characterization": 256,
+          "sensors": [
+            {
+              "type": "LOCATION"
+            },
+            {
+              "type": "CAR_SPEED"
+            },
+            {
+              "type": "FUEL_LEVEL"
+            },
+            {
+              "type": "PARKING_BRAKE"
+            },
+            {
+              "type": "GEAR"
+            },
+            {
+              "type": "NIGHT_DATA"
+            },
+            {
+              "type": "DRIVING_STATUS"
+            },
+            {
+              "type": "ACCEL"
+            },
+            {
+              "type": "GYRO"
+            },
+            {
+              "type": "GPS"
+            }
+          ]
+        }
+      },
+      {
+        "channel_id": 9,
+        "channel_kind": "bluetooth_channel",
+        "config": {
+          "adapter_address": "84:96:90:8C:34:0B",
+          "supported_pairing_methods": [
+            "OOB",
+            "NUMERIC_COMPARISON",
+            "PIN"
+          ]
+        }
+      },
+      {
+        "channel_id": 10,
+        "channel_kind": "media_info_channel",
+        "config": {}
+      },
+      {
+        "channel_id": 11,
+        "channel_kind": "phone_status_channel",
+        "config": {}
+      },
+      {
+        "channel_id": 12,
+        "channel_kind": "navigation_channel",
+        "config": {
+          "minimum_interval_ms": 1000,
+          "type": 2
+        }
+      },
+      {
+        "channel_id": 13,
+        "channel_kind": "wifi_channel",
+        "config": {
+          "bssid": "86:96:90:8C:77:EF"
+        }
+      }
+    ],
+    "display_name": "Volkswagen",
+    "driver_position": 0,
+    "head_unit_info": {
+      "head_unit_make": "LGE",
+      "head_unit_model": "COCKPIT_MIB3OI_GP",
+      "head_unit_software_build": "C sample",
+      "head_unit_software_version": "2756.04",
+      "make": "Volkswagen",
+      "model": "VW3363",
+      "vehicle_id": "092f7b7ed5024eb0",
+      "year": "2024"
+    },
+    "head_unit_name": "Volkswagen",
+    "headunit_manufacturer": "LGE",
+    "headunit_model": "COCKPIT_MIB3OI_GP",
+    "probe_for_support": false,
+    "session_configuration": 1,
+    "sw_build": "C sample",
+    "sw_version": "2756.04"
+  }
+}
