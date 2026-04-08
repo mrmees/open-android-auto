@@ -36,7 +36,7 @@ Phase numbering continues from v1.0 (which shipped Phases 1-5). Decimal phases a
 **v1.5 OEM Evidence & Gold-Tier Promotion:**
 
 - [x] **Phase 6: Historical Bookkeeping** — Retroactively log v1.1–v1.4 patch work in MILESTONES.md so the ledger reflects reality before the milestone proper begins (completed 2026-04-07)
-- [ ] **Phase 7: VW Capture Analysis** (1/2 plans complete) — Parse the VW capture into per-msg-type / per-direction tables with fragment classification, extract production SDP values, build the coverage manifest that scopes later promotion work, and flag candidate OEM-only msg_types
+- [x] **Phase 7: VW Capture Analysis** (2/2 plans complete) — Parse the VW capture into per-msg-type / per-direction tables with fragment classification, extract production SDP values, build the coverage manifest that scopes later promotion work, and flag candidate OEM-only msg_types — completed 2026-04-08
 - [ ] **Phase 8: 16.4 Cross-Version Validation** — Extend the consistency checker to 4 APK versions, fold 16.4 into sidecars, promote Bronze-across-4 to Silver, and document the manual-JADX reproducibility gap
 - [ ] **Phase 9: OEM Methodology & Divergence Report** — Extend audit sidecar schema for `oem_evidence`, split Gold into a visible scope dimension, publish the OEM match policy, document the VW capture's non-claim boundary, and produce the VW-vs-DHU divergence report
 - [ ] **Phase 10: Gold-Tier Promotion Walk** — Walk every Silver proto in services observed by the VW capture, promote/retract/mark-unmatched per the match policy, and leave unobserved-service Silver protos untouched
@@ -70,11 +70,11 @@ Plans:
   3. Coverage manifest exists listing which services, channels, and features the 60s VW session actually exercised — and explicitly, which it did NOT — so Phase 10 can scope promotion claims honestly
   4. Candidate OEM-only msg_types list exists (msg_types seen in VW but not in DHU baselines), with every entry filtered through OEM-01 fragment classification and labeled `candidate` until repeat observation or successful parse confirms them
   5. All outputs live under `analysis/reports/oem-vw/` (or equivalent) and are referenced from the main capture README
-**Plans:** 1/2 plans complete
+**Plans:** 2/2 plans complete
 
 Plans:
 - [x] 07-01-PLAN.md — VW capture parser, per-msg-type tables, fragment classification (OEM-01) — completed 2026-04-07
-- [ ] 07-02-PLAN.md — Production SDP values, coverage manifest, candidate OEM-only msg_types (OEM-02, OEM-03, OEM-05)
+- [x] 07-02-PLAN.md — Production SDP values, coverage manifest, candidate OEM-only msg_types (OEM-02, OEM-03, OEM-05) — completed 2026-04-08
 
 ### Phase 8: 16.4 Cross-Version Validation
 **Goal**: APK 16.4 joins the cross-version consistency matrix as a first-class version, 16.4-specific deltas are documented in sidecars, Bronze-across-4-versions gets promoted to Silver (growing the pool Phase 10 will walk), and the manual-JADX reproducibility gap is stated explicitly so no one overclaims off salvaged classes
@@ -170,7 +170,7 @@ Plans:
 | 4. Connection Lifecycle | v1.0 | 2/2 | Complete | 2026-03-04 |
 | 5. Feature Channel Documentation | v1.0 | 2/2 | Complete | 2026-03-04 |
 | 6. Historical Bookkeeping | v1.5 | 1/1 | Complete | 2026-04-07 |
-| 7. VW Capture Analysis | v1.5 | 0/2 | Not started | — |
+| 7. VW Capture Analysis | v1.5 | 2/2 | Complete | 2026-04-08 |
 | 8. 16.4 Cross-Version Validation | v1.5 | 0/2 | Not started | — |
 | 9. OEM Methodology & Divergence Report | v1.5 | 0/2 | Not started | — |
 | 10. Gold-Tier Promotion Walk | v1.5 | 0/2 | Not started | — |

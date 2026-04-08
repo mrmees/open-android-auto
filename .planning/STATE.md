@@ -3,15 +3,15 @@ gsd_state_version: 1.0
 milestone: v1.5
 milestone_name: OEM Evidence & Gold-Tier Promotion
 status: in_progress
-stopped_at: Phase 7 plan 01 complete -- OEM-01 satisfied
-last_updated: "2026-04-07T23:50:00Z"
-last_activity: 2026-04-07 -- Phase 7 plan 01 complete (OEM-01 satisfied)
+stopped_at: Completed 07-02-PLAN.md -- Phase 7 done (74 tests, 8 reports, OEM-01/02/03/05 satisfied)
+last_updated: "2026-04-08T00:19:31.074Z"
+last_activity: 2026-04-08 -- Phase 7 plan 02 complete (SDP decoder + attribution pipeline + coverage manifest + OEM-only candidate diff; 6 new reports + 21 files; 74 tests passing)
 progress:
   total_phases: 7
-  completed_phases: 1
+  completed_phases: 2
   total_plans: 12
-  completed_plans: 2
-  percent: 17
+  completed_plans: 3
+  percent: 25
 ---
 
 # Project State
@@ -21,16 +21,16 @@ progress:
 See: .planning/PROJECT.md (updated 2026-04-07)
 
 **Core value:** Every published proto definition and protocol claim carries explicit verification evidence and confidence level
-**Current focus:** Phase 7 plan 01 complete (OEM-01 satisfied); Phase 7 plan 02 (OEM-02, OEM-03, OEM-05) is next
+**Current focus:** Phase 7 COMPLETE (OEM-01/02/03/05 all satisfied); Phase 8 (cross-version analysis) is the next critical path; Phase 8 and Phase 9 are the remaining v1.5 work
 
 ## Current Position
 
-Phase: 7 (VW Capture Analysis) -- IN PROGRESS
-Plan: 07-01 -- COMPLETE; 07-02 -- PENDING
-Status: Phase 7 plan 01 done. OEM-01 (fragment classification) satisfied. Plan 07-02 (SDP values, coverage manifest, candidate OEM-only msg_types) is the next actionable work.
-Last activity: 2026-04-07 -- Phase 7 plan 01 complete (oem_vw_parser package + msg-type-classification reports under analysis/reports/oem-vw/)
+Phase: 7 (VW Capture Analysis) -- COMPLETE
+Plan: 07-01 -- COMPLETE; 07-02 -- COMPLETE
+Status: Phase 7 done. OEM-01 (fragment classification), OEM-02 (production SDP values), OEM-03 (coverage manifest), and OEM-05 (candidate OEM-only msg_types) all satisfied. 8 deliverables shipped under analysis/reports/oem-vw/. The capture README has been surgically fixed (direction table swap + Analysis Outputs section). Next actionable work is Phase 8 (cross-version analysis) which is independent of Phase 7 outputs.
+Last activity: 2026-04-08 -- Phase 7 plan 02 complete (SDP decoder + attribution pipeline + coverage manifest + OEM-only candidate diff; 6 new reports + 21 files; 74 tests passing)
 
-Progress: [██░░░░░░░░] 17% (2/12 v1.5 plans complete)
+Progress: [███░░░░░░░] 25% (3/12 v1.5 plans complete)
 
 ## Accumulated Context
 
@@ -68,9 +68,21 @@ Phase 7 plan 01 execution decisions (2026-04-07):
 - Histogram snapshot test allows ±1 absolute slack on Tier B (and ±1% on Tier A/C) to tolerate descriptor-map edge boundary cases without false-failing on legitimate ±1 record drift
 - Live capture results: 7,954 records → A=267, B=3,890, C=3,797; standalone=4,147, probable_first=3, continuation_or_garbage=3,804; reassembled=0, unattributed=0; msg_type=0 demoted=2,751; empirical freq threshold=3
 
+Phase 7 plan 02 execution decisions (2026-04-08):
+- Direction by decode (not by file name) — the SDP request/response direction resolver tries both proto types and picks the one that decodes non-trivially. Locks the corrected direction permanently; anyone who "fixes" the README and breaks the decoder fails test_direction_resolution.
+- Pre-flight Prodigy range cross-check: all 4 hypotheses dropped for VW (radio + car_control inapplicable, sensor + navigation ambiguous due to per-channel namespace collisions). surviving_hints = []. Range matching is dormant for VW; SDP narrowing is the primary signal.
+- Strict 5-row attribution taxonomy preserved despite making observed[] thin: most VW Tier B records get sdp_candidates (multiple shape predicates match) → service=None → not in observed[]. The records exist in per_msg_type with service=null. Documented as locked behavior, not a bug.
+- Comparative gaps filter out service_type='control' as a universal service (every capture has it on channel_id 0; not a per-channel kind). Result: comparative gaps = ['vendor_extension'] only.
+- _discover_dhu_files() handles both canonical (aa_messages.jsonl) and suffixed (aa_messages_<scenario>.jsonl) DHU baseline naming — only captures/general uses the canonical pair.
+- _fix_capture_readme() uses defensive single+double-space variants for the swap literal — the plan snippet had double space but the actual README uses single space. Idempotent ('right variant already present' guard).
+- test_oem_only_diff garbage check loosened to 'every key in diff has at least one non-garbage record' — the plan's strict check was contradictory (a single (msg_type, direction) key can map to both garbage and non-garbage classified records).
+- Live coverage results: 5 observed channels (5 av_channels), 8 intrinsic gaps, 1 comparative gap (vendor_extension), 1 anomaly.unattributed (msg_type=0x8035 out, single record), 17 OEM-only candidates by msg_type, 1,061 per_msg_type entries, baseline_snapshot_hash=ffb074e4f1...
+
 ### Pending Todos
 
-- Phase 7 plan 02 (OEM-02 SDP values, OEM-03 coverage manifest, OEM-05 candidate OEM-only msg_types). Reusable assets from 07-01: the oem_vw_parser package, all test fixtures, the descriptor bundle pattern, and the classification reports under analysis/reports/oem-vw/. 07-02 extends run.py and adds sdp_decode.py, coverage.py, and candidates.py as siblings.
+- Phase 8 (cross-version analysis) — independent of Phase 7, ready to start. Uses APK indexes for 16.1 vs 16.2 schema diffs, not the VW capture.
+- Phase 9 (divergence report) — REQUIRES BOTH Phase 7 and Phase 8 outputs. Reads analysis/reports/oem-vw/coverage.json + sdp-values.json + candidate-oem-only-msg-types.json from Phase 7.
+- Phase 10 (Gold promotion walk, TIER-04) — gated on Phase 9. Reads coverage.json.observed[] to scope which Silver protos can be promoted. Override mechanism enforced via coverage.validate_override().
 
 ### Blockers/Concerns
 
@@ -81,6 +93,6 @@ Phase 7 plan 01 execution decisions (2026-04-07):
 
 ## Session Continuity
 
-Last session: 2026-04-07T23:50:00Z
-Stopped at: Phase 7 plan 01 complete -- 50 tests passing, msg-type-classification.md/json on disk, OEM-01 satisfied
-Resume file: .planning/phases/07-vw-capture-analysis/07-02-PLAN.md
+Last session: 2026-04-08T00:19:31.071Z
+Stopped at: Completed 07-02-PLAN.md
+Resume file: None
