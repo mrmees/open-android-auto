@@ -2,16 +2,16 @@
 gsd_state_version: 1.0
 milestone: v1.5
 milestone_name: milestone
-status: in_progress
-stopped_at: Phase 8 plan 01 complete — 16.4 matcher, delta report, XVER-05 non-claim doc shipped
-last_updated: "2026-04-08T19:13:00.000Z"
-last_activity: 2026-04-08 -- Phase 8 plan 01 complete (two-pass 16.4 matcher 96/240 mappings; delta report with 0 real drift; XVER-01/02/05 satisfied)
+status: Phase 8 COMPLETE. Plan 08-02 shipped XVER-03 + XVER-04 via the append-only sidecar walker + strict 'all 6 pairs clean' promotion rule. Schema migration landed first (audit-schema.json allows optional status + drift_issues). Walker touched 120 sidecars (48 consistent, 72 unmappable_16_4, 0 drift_detected), zero Bronze promotions as expected. Walker is bit-idempotent on the real oaa/ tree. test_promoted_sidecars.py still green. Phase 9 (divergence) and Phase 10 (Gold promotion) are next -- both ready to consume Phase 8 outputs.
+stopped_at: "Phase 8 complete (plans 08-01 and 08-02). Next: Phase 9 divergence report."
+last_updated: "2026-04-08T19:37:17.000Z"
+last_activity: 2026-04-08 -- Phase 8 plan 02 complete (sidecar_walker.py + schema migration + strict promotion rule; 120 sidecars updated; 0 Bronze promoted; idempotent on real tree)
 progress:
   total_phases: 7
-  completed_phases: 2
+  completed_phases: 3
   total_plans: 12
-  completed_plans: 4
-  percent: 33
+  completed_plans: 5
+  percent: 42
 ---
 
 # Project State
@@ -25,12 +25,12 @@ See: .planning/PROJECT.md (updated 2026-04-07)
 
 ## Current Position
 
-Phase: 8 (16.4 Cross-Version Validation) -- IN PROGRESS
-Plan: 08-01 -- COMPLETE; 08-02 -- PENDING
-Status: Plan 08-01 shipped XVER-01, XVER-02, XVER-05 via the two-pass 16.4 class matcher, 4-version delta report generator, and manual-JADX reproducibility-gap doc. Matcher auto-committed 96/240 mappings (5 enums + 78 unique-fingerprint + 13 topology-anchored); 144 remain ambiguous/no-candidate and are listed in analysis/reports/cross-version/16-4-mapping-candidates.md for future human review. Delta report shows ZERO real structural drift from 16.2 to 16.4 across every matched mapping — 16.4 is a proto-layer patch release. Plan 08-02 (audit sidecar walker + Bronze→Silver promotion rule + schema migration for status/drift_issues fields) is next.
-Last activity: 2026-04-08 -- Phase 8 plan 01 complete (match_16_4.py + delta_report.py + manual-jadx-reproducibility-gap.md; 17 new files; 14 new passing tests; 0 real 16.4 drift detected)
+Phase: 8 (16.4 Cross-Version Validation) -- COMPLETE
+Plan: 08-01 -- COMPLETE; 08-02 -- COMPLETE
+Status: Phase 8 COMPLETE. Plan 08-02 shipped XVER-03 and XVER-04 via the append-only sidecar walker (sidecar_walker.py) and the strict 'all 6 pairs clean' promotion rule (promote.py). Schema migration landed first: audit-schema.json evidence_entry now allows optional status + drift_issues with additionalProperties: false preserved. Walker is append-only / idempotent / non-blocking; content_hash excludes the date field. End-to-end walk touched 120 of 160 sidecars (48 consistent, 72 unmappable_16_4, 0 drift_detected, 0 unmappable_marker); 40 sidecars skipped (35 pre-existing schema violations, 7 orphans, 1 malformed) all logged to skipped-sidecars.md. 0 Bronze promotions -- expected headline per 08-RESEARCH.md 'Bronze Promotion Reality Check'. All 10 Bronze sidecars fall into stayed_bronze_no_164 because the 16.4 matcher found no candidate, not because they're 0-field markers. Walker is bit-idempotent on the real tree (second run produces zero git diff across the entire repo). test_promoted_sidecars.py still green (334 pass, 1 pre-existing baseline failure). Phase 9 (divergence) and Phase 10 (Gold promotion) are next -- both now have the data they need from Phase 8.
+Last activity: 2026-04-08 -- Phase 8 plan 02 complete (sidecar_walker.py + schema migration + strict promotion rule; 120 sidecars updated; 40 logged; 0 Bronze promoted; bit-idempotent on real tree)
 
-Progress: [███░░░░░░░] 33% (4/12 v1.5 plans complete)
+Progress: [█████░░░░░] 42% (5/12 v1.5 plans complete)
 
 ## Accumulated Context
 
@@ -88,12 +88,25 @@ Phase 7 plan 02 execution decisions (2026-04-08):
 - _fix_capture_readme() uses defensive single+double-space variants for the swap literal — the plan snippet had double space but the actual README uses single space. Idempotent ('right variant already present' guard).
 - test_oem_only_diff garbage check loosened to 'every key in diff has at least one non-garbage record' — the plan's strict check was contradictory (a single (msg_type, direction) key can map to both garbage and non-garbage classified records).
 - Live coverage results: 5 observed channels (5 av_channels), 8 intrinsic gaps, 1 comparative gap (vendor_extension), 1 anomaly.unattributed (msg_type=0x8035 out, single record), 17 OEM-only candidates by msg_type, 1,061 per_msg_type entries, baseline_snapshot_hash=ffb074e4f1...
+- [Phase 08-16-4-cross-version-validation]: Phase 8 Plan 02: audit-schema.json whitelists optional status + drift_issues (additionalProperties stays false); walker is append-only with content-hash dedupe excluding date; strict all-6-pairs-clean rule yields 0 Bronze promotions (expected); 120 sidecars updated with 48 consistent + 72 unmappable_16_4 entries; walker is bit-idempotent on the real oaa/ tree; 40 skipped sidecars logged (35 pre-existing schema, 7 orphan, 1 malformed)
+
+Phase 8 plan 02 execution decisions (2026-04-08):
+- Schema migration whitelists new fields explicitly rather than relaxing additionalProperties: false — preserves the audit-schema contract so future drift is caught loudly. Adding status and drift_issues as optional keeps pre-Phase-8 entries valid without retroactive edits.
+- drift_issues.kind enum uses lowercase values (field_added / field_removed / field_type_changed) to match the Python IssueKind model — the plan snippet used uppercase spec text but the real Python enum values are lowercase. Schema now matches the code so cross-version evidence can be queried / serialized without translation.
+- content_hash explicitly excludes the date field (signature: type, method, source, description, status, drift_issues). Without this exclusion, re-running the walker on a different day would create false "new" entries every day, breaking the locked idempotency contract (PITFALL #6 in 08-RESEARCH.md).
+- promote_eligible reads current tier from disk (not from ProtoMapping.confidence). The 240 ProtoMapping.confidence fields in class_mapping.yaml are stale seed-import defaults; the real current tier lives in the sidecar's confidence: field on disk.
+- test_live_promotion_snapshot filters to actually-Bronze sidecars (reads confidence from disk). An early test iteration classified every mapping as if it were Bronze and returned 80 "promoted" — because 80 Silver sidecars have clean all-6-pairs but the rule only promotes them if they're currently Bronze. Filtering to current_tier == "bronze" gives the real 0-promotions headline.
+- Legacy 3-version generate_report now suppresses the 4 known spurious enum drifts (consistent with delta_report.py). Rule 2 auto-fix: without this, run.py --promote exits non-zero from the 4 spurious drifts and breaks the acceptance pipeline's && chain.
+- Walker skips invalid sidecars rather than rewriting them. 35 pre-existing sidecars (changes_applied, class_15_9/16_1/16_2, msg_id, deep_trace method, superseded confidence) don't conform to the current schema. The walker logs them and moves on rather than (a) silently breaking the append-only contract with a rewrite or (b) halting the walk.
+- All 10 Bronze sidecars classify as stayed_bronze_no_164 (not stayed_bronze_marker). The Research doc framed the gap as 0-field markers; the live result is that those 10 also happen to have null 16.4 entries, so they're flagged as unmappable rather than marker-class-trivial. Semantically the same outcome (stay Bronze), but the reason is slightly different. The stayed_bronze_marker outcome exists in the classifier for future cases but is currently empty.
+- Walker end-to-end stats: 160 sidecars → 120 updated (75%), 40 skipped (25%). Of 120 updated: 48 status=consistent, 72 status=unmappable_16_4, 0 drift_detected, 0 unmappable_marker. Of 40 skipped: 35 schema_validation_failed (pre-existing), 7 orphan_no_mapping, 1 malformed.
+- Test suite baseline improved slightly: 528 passed / 170 failed → 568 passed / 168 failed. The -2 is incidental (parametric test collection shifted slightly); no regressions introduced.
 
 ### Pending Todos
 
-- Phase 8 Plan 08-02 — audit sidecar walker + Bronze→Silver promotion + schema migration for status/drift_issues fields. REQUIRES the class_mapping.yaml extension this plan just shipped. The walker will fail every silver sidecar under oaa/ until the audit-schema.json is extended (Research Correction #4). Bronze 0-field marker promotion is still an open question; Plan 08-02 should document zero-promotion honestly per the strict rule.
-- Phase 9 (divergence report) — REQUIRES BOTH Phase 7 and Phase 8 outputs. Reads analysis/reports/oem-vw/coverage.json + sdp-values.json + candidate-oem-only-msg-types.json from Phase 7 AND analysis/reports/cross-version/16-4-delta-report.json from Phase 8 Plan 08-01.
-- Phase 10 (Gold promotion walk, TIER-04) — gated on Phase 9. Reads coverage.json.observed[] to scope which Silver protos can be promoted. Override mechanism enforced via coverage.validate_override(). Needs the expanded Silver pool that Plan 08-02 will produce.
+- Phase 9 (divergence report) — REQUIRES BOTH Phase 7 and Phase 8 outputs. Reads analysis/reports/oem-vw/coverage.json + sdp-values.json + candidate-oem-only-msg-types.json from Phase 7 AND analysis/reports/cross-version/16-4-delta-report.json from Phase 8 (now with the populated promoted_bronze_to_silver key). Schema migration in Plan 08-02 lets Phase 9 add oem_evidence fields using the same "explicit whitelist under additionalProperties: false" pattern.
+- Phase 10 (Gold promotion walk, TIER-04) — gated on Phase 9. Reads coverage.json.observed[] to scope which Silver protos can be promoted. Override mechanism enforced via coverage.validate_override(). Silver pool is unchanged at 111 after Phase 8 (expected — the headline 0-promotion result stands). The strict is_eligible_for_silver rule from Plan 08-02 is reusable as a template for is_eligible_for_gold.
+- Housekeeping (deferred, not blocking): clean up 35 pre-existing schema-invalid sidecars under oaa/ (changes_applied, class_15_9/class_16_1/class_16_2, msg_id, deep_trace method, superseded confidence — logged to analysis/reports/cross-version/skipped-sidecars.md). Not in scope for Phase 9 or 10 unless the schema evolves to accept these fields.
 
 ### Blockers/Concerns
 
@@ -104,6 +117,6 @@ Phase 7 plan 02 execution decisions (2026-04-08):
 
 ## Session Continuity
 
-Last session: 2026-04-08T19:13:00.000Z
-Stopped at: Phase 8 plan 01 complete — 16.4 matcher + delta report + reproducibility-gap doc shipped
-Resume file: .planning/phases/08-16-4-cross-version-validation/08-02-PLAN.md (next plan)
+Last session: 2026-04-08T19:40:08.550Z
+Stopped at: Completed 08-02-PLAN.md -- Phase 8 complete: walker + strict promotion rule + 0 Bronze promotions as expected
+Resume file: None

@@ -37,7 +37,7 @@ Phase numbering continues from v1.0 (which shipped Phases 1-5). Decimal phases a
 
 - [x] **Phase 6: Historical Bookkeeping** — Retroactively log v1.1–v1.4 patch work in MILESTONES.md so the ledger reflects reality before the milestone proper begins (completed 2026-04-07)
 - [x] **Phase 7: VW Capture Analysis** (2/2 plans complete) — Parse the VW capture into per-msg-type / per-direction tables with fragment classification, extract production SDP values, build the coverage manifest that scopes later promotion work, and flag candidate OEM-only msg_types — completed 2026-04-08
-- [ ] **Phase 8: 16.4 Cross-Version Validation** — Extend the consistency checker to 4 APK versions, fold 16.4 into sidecars, promote Bronze-across-4 to Silver, and document the manual-JADX reproducibility gap
+- [x] **Phase 8: 16.4 Cross-Version Validation** — Extend the consistency checker to 4 APK versions, fold 16.4 into sidecars, promote Bronze-across-4 to Silver, and document the manual-JADX reproducibility gap (completed 2026-04-08)
 - [ ] **Phase 9: OEM Methodology & Divergence Report** — Extend audit sidecar schema for `oem_evidence`, split Gold into a visible scope dimension, publish the OEM match policy, document the VW capture's non-claim boundary, and produce the VW-vs-DHU divergence report
 - [ ] **Phase 10: Gold-Tier Promotion Walk** — Walk every Silver proto in services observed by the VW capture, promote/retract/mark-unmatched per the match policy, and leave unobserved-service Silver protos untouched
 - [ ] **Phase 11: Channel Architecture Reference** — Publish the multiplexing/framing/service-binding/capability-negotiation reference doc with concrete VW vs DHU examples drawn from actual captures
@@ -86,7 +86,7 @@ Plans:
   3. Audit sidecars are updated to include 16.4 evidence where the proto holds across the new version
   4. Every Bronze proto that holds structurally across 4 versions has been promoted to Silver in its sidecar
   5. Reproducibility-gap documentation exists for the 5 manual-JADX salvaged classes (`rcn`, `rco`, `rcp`, `rdt`, `red`) — explicit statement of what CANNOT be concluded because bulk JADX stubbed them and the exact JADX argv is unknown
-**Plans:** 1/2 plans executed
+**Plans:** 2/2 plans complete
 
 Plans:
 - [x] 08-01-PLAN.md — Consistency checker 16.4 extension, delta report, reproducibility-gap doc (XVER-01, XVER-02, XVER-05) — completed 2026-04-08
@@ -171,7 +171,7 @@ Plans:
 | 5. Feature Channel Documentation | v1.0 | 2/2 | Complete | 2026-03-04 |
 | 6. Historical Bookkeeping | v1.5 | 1/1 | Complete | 2026-04-07 |
 | 7. VW Capture Analysis | v1.5 | 2/2 | Complete | 2026-04-08 |
-| 8. 16.4 Cross-Version Validation | v1.5 | 1/2 | In Progress | — |
+| 8. 16.4 Cross-Version Validation | 2/2 | Complete   | 2026-04-08 | — |
 | 9. OEM Methodology & Divergence Report | v1.5 | 0/2 | Not started | — |
 | 10. Gold-Tier Promotion Walk | v1.5 | 0/2 | Not started | — |
 | 11. Channel Architecture Reference | v1.5 | 0/2 | Not started | — |
