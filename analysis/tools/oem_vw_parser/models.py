@@ -170,6 +170,53 @@ class FrequencyProfile:
 # ---------------------------------------------------------------------------
 
 
+# ---------------------------------------------------------------------------
+# Coverage manifest dataclasses (added in 07-02 Task 4).
+#
+# Per 07-CONTEXT.md § "Coverage manifest (OEM-03)" — msg_type-level granularity
+# is the floor; the schema is extensible to field-level later without
+# breakage. The three-part absence model (observed / gaps.intrinsic /
+# gaps.comparative + anomalies) is keyed by (channel_id, channel_kind)
+# tuples for the intrinsic side. The top-level channel_kind_summary slot
+# preserves kind-level aggregation for consumers that want it.
+# ---------------------------------------------------------------------------
+
+
+@dataclass(frozen=True)
+class MsgTypeCoverageEntry:
+    """Per-(service, msg_type, direction) coverage entry with temporal profile."""
+
+    service: str | None
+    msg_type: int
+    direction: str
+    count: int
+    bytes: int
+    first_seen_ts_ms: int
+    last_seen_ts_ms: int
+    mean_rate_per_sec: float
+    observation_span_s: float
+    duty_cycle: float
+    burstiness: Literal["steady", "bursty", "singleton", "unknown"]
+    confidence_distribution: dict
+    fields_observed: None  # Phase 7 leaves this None; Phase 9 may populate.
+
+
+@dataclass(frozen=True)
+class CoverageManifest:
+    """Aggregated coverage manifest for a single VW capture session."""
+
+    capture_id: str
+    capture_duration_s: float
+    observed: tuple[dict, ...]                      # entries keyed by (channel_id, channel_kind)
+    gaps_intrinsic: tuple[dict, ...]                # entries keyed by (channel_id, channel_kind)
+    gaps_comparative: tuple[dict, ...]              # entries keyed by channel_kind only
+    anomalies_service_not_declared: tuple[dict, ...]
+    anomalies_unattributed: tuple[dict, ...]
+    gap_analysis: dict                              # { compared_against_baselines, baseline_snapshot_hash }
+    per_msg_type: tuple[MsgTypeCoverageEntry, ...]
+    channel_kind_summary: dict                      # {channel_kind: {declared, observed, silent}}
+
+
 @dataclass(frozen=True)
 class AttributedRecord:
     """A ClassifiedRecord plus its service attribution + confidence.
