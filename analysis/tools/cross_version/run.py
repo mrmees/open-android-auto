@@ -58,6 +58,12 @@ def build_parser() -> argparse.ArgumentParser:
         help="Path to 16.2 APK index DB (auto-detected if omitted)",
     )
     parser.add_argument(
+        "--db-16_4",
+        type=Path,
+        default=None,
+        help="Path to 16.4 APK index DB (auto-detected if omitted, canonical build 661014)",
+    )
+    parser.add_argument(
         "--promote",
         action="store_true",
         default=False,
@@ -96,6 +102,12 @@ def main(argv: list[str] | None = None) -> int:
         db_paths["16.2"] = db_162
     else:
         print("WARNING: 16.2 DB not found, proceeding without it", file=sys.stderr)
+
+    db_164 = args.db_16_4 or _find_db("16.4")
+    if db_164:
+        db_paths["16.4"] = db_164
+    else:
+        print("WARNING: 16.4 DB not found, proceeding without it", file=sys.stderr)
 
     if len(db_paths) < 2:
         print("ERROR: Need at least 2 version DBs for comparison", file=sys.stderr)

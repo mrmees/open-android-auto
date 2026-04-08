@@ -1,15 +1,12 @@
 """Tests for the cross_version.run CLI entry point.
 
-Wave 0 stubs: xfail-marked tests for --db-16_4 flag wiring that Task 2 will unxfail.
+XVER-01: --db-16_4 flag wiring and _find_db canonical-build lock.
 """
 from __future__ import annotations
 
 from pathlib import Path
 
-import pytest
 
-
-@pytest.mark.xfail(strict=True, reason="Pending Task 2 — --db-16_4 flag wiring")
 def test_db_16_4_flag(tmp_path: Path) -> None:
     """build_parser() must accept --db-16_4 and store it at args.db_16_4."""
     from analysis.tools.cross_version.run import build_parser
