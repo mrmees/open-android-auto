@@ -1,0 +1,7 @@
+proto: oaa/test_fixture/BrokenMessage.proto
+message: BrokenMessage
+confidence: bronze
+evidence:
+  - type: apk_static
+    source: "unclosed string
+    description: This YAML is intentionally broken for the non-blocking test

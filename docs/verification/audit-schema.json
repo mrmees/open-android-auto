@@ -76,6 +76,39 @@
           "type": "string",
           "minLength": 1,
           "description": "What was found and how. Should be self-contained."
+        },
+        "status": {
+          "type": "string",
+          "enum": ["consistent", "drift_detected", "unmappable_16_4", "unmappable_marker"],
+          "description": "Phase 8+ — status for cross-version evidence entries. Optional; omitted for pre-Phase-8 entries."
+        },
+        "drift_issues": {
+          "type": "array",
+          "description": "Phase 8+ — list of specific drift issues for drift_detected entries. Optional.",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["pair", "kind", "severity"],
+            "properties": {
+              "pair": {
+                "type": "string",
+                "description": "Version pair identifier, e.g. '16.2_vs_16.4'."
+              },
+              "kind": {
+                "type": "string",
+                "enum": ["field_added", "field_removed", "field_type_changed"],
+                "description": "Drift issue kind matching IssueKind enum value."
+              },
+              "field": {
+                "type": ["integer", "string"],
+                "description": "Field number (int) or field name (string) affected."
+              },
+              "severity": {
+                "type": "string",
+                "enum": ["info", "warning", "error"]
+              }
+            }
+          }
         }
       }
     },

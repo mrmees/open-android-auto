@@ -1,0 +1,10 @@
+proto: oaa/test_fixture/OrphanMessage.proto
+message: OrphanMessage
+confidence: bronze
+last_updated: '2026-03-01'
+evidence:
+  - type: apk_static
+    method: schema_extraction
+    source: seed_import
+    date: '2026-03-01'
+    description: Orphan sidecar — intentionally NOT registered in class_mapping.yaml
