@@ -86,10 +86,10 @@ Plans:
   3. Audit sidecars are updated to include 16.4 evidence where the proto holds across the new version
   4. Every Bronze proto that holds structurally across 4 versions has been promoted to Silver in its sidecar
   5. Reproducibility-gap documentation exists for the 5 manual-JADX salvaged classes (`rcn`, `rco`, `rcp`, `rdt`, `red`) — explicit statement of what CANNOT be concluded because bulk JADX stubbed them and the exact JADX argv is unknown
-**Plans:** 2 plans
+**Plans:** 1/2 plans executed
 
 Plans:
-- [ ] 08-01-PLAN.md — Consistency checker 16.4 extension, delta report, reproducibility-gap doc (XVER-01, XVER-02, XVER-05)
+- [x] 08-01-PLAN.md — Consistency checker 16.4 extension, delta report, reproducibility-gap doc (XVER-01, XVER-02, XVER-05) — completed 2026-04-08
 - [ ] 08-02-PLAN.md — Sidecar 16.4 evidence updates and Bronze→Silver promotion walk (XVER-03, XVER-04)
 
 ### Phase 9: OEM Methodology & Divergence Report
@@ -171,7 +171,7 @@ Plans:
 | 5. Feature Channel Documentation | v1.0 | 2/2 | Complete | 2026-03-04 |
 | 6. Historical Bookkeeping | v1.5 | 1/1 | Complete | 2026-04-07 |
 | 7. VW Capture Analysis | v1.5 | 2/2 | Complete | 2026-04-08 |
-| 8. 16.4 Cross-Version Validation | v1.5 | 0/2 | Not started | — |
+| 8. 16.4 Cross-Version Validation | v1.5 | 1/2 | In Progress | — |
 | 9. OEM Methodology & Divergence Report | v1.5 | 0/2 | Not started | — |
 | 10. Gold-Tier Promotion Walk | v1.5 | 0/2 | Not started | — |
 | 11. Channel Architecture Reference | v1.5 | 0/2 | Not started | — |
