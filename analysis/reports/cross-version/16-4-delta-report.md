@@ -74,7 +74,15 @@ The following enum mappings appear to drift but are spurious — they are artifa
 
 ## 5. Promoted Bronze → Silver
 
-_Populated by Plan 08-02 walker output._ The promotion walk runs AFTER this delta report has been validated; the walker consumes this report's JSON sidecar and appends promoted protos back into the `promoted_bronze_to_silver` key as part of its execution.
+**Promoted to Silver:** 0
+
+_Zero Bronze sidecars met the strict 'all 6 pairs clean' rule. This is the expected headline per 08-RESEARCH.md 'Bronze Promotion Reality Check' — all Bronze sidecars map to 0-field marker classes._
+
+**Outcome breakdown:**
+
+- `already_silver_clean`: 226
+- `no_sidecar`: 4
+- `stayed_bronze_no_164`: 10
 
 ## 6. Drifted Silver/Gold
 

@@ -730,7 +730,968 @@
     }
   ],
   "schema_changes": [],
-  "promoted_bronze_to_silver": [],
+  "promoted_bronze_to_silver": [
+    {
+      "proto_message": "AudioConfig",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "AudioFocusState",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "AudioStreamType",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "AudioStreamTypeEnum",
+      "outcome": "stayed_bronze_no_164"
+    },
+    {
+      "proto_message": "AudioFocusChannel",
+      "outcome": "stayed_bronze_no_164"
+    },
+    {
+      "proto_message": "AudioFocusRequest",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "AudioFocusResponse",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "AVChannel",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "AVChannelMediaConfig",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "StatsEntry",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "AVChannelSetupRequest",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "AVChannelSetupResponse",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "AVChannelStartIndication",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "AVInputChannel",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "AVInputOpenRequest",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "AVInputOpenResponse",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "AVMediaAckIndication",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "AdditionalVideoConfig",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "BluetoothChannel",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "BluetoothPairingRequest",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "BluetoothPairingResponse",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "CarAction",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "CarActionEntry",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "CarActionControl",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "CarActionNotification",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "CarAreaId",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "CarControl",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "CarControlChannelDescriptor",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "CarControlGroup",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "CarControlGroupUpdate",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "CarProperty",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "CarPropertyAreaConfig",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "CarPropertyChangeEvent",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "CarPropertyConfig",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "CarPropertyControl",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "RegisterCarPropertyListenersResponse",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "SetCarPropertyValueResponse",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "CarPropertyValue",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "FloatValues",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "IntValues",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "LongValues",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "SetCarPropertyListenerResult",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "SetCarPropertyValueRequest",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "Diagnostics",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "DriverPosition",
+      "outcome": "stayed_bronze_no_164"
+    },
+    {
+      "proto_message": "AssistantFeatureFlags",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "VersionFeatureFlags",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "PingConfiguration",
+      "outcome": "no_sidecar"
+    },
+    {
+      "proto_message": "SessionInfo",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "AuthCompleteIndication",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "ByeByeResponse",
+      "outcome": "stayed_bronze_no_164"
+    },
+    {
+      "proto_message": "BindingRequest",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "BindingResponse",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "ChannelDescriptor",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "ChannelOpenAck",
+      "outcome": "stayed_bronze_no_164"
+    },
+    {
+      "proto_message": "ChannelOpenRequest",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "ChannelOpenResponse",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "ConnectionConfiguration",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "ConnectionFeatureFlags",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "ConnectionReservedConfig",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "ConnectionSecurityConfig",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "ConnectionTransportConfig",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "ConnectionTuningConfig",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "HeadUnitInfo",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "CapabilityEntry",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "CapabilityFlag",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "CapabilityPair",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "DeviceInfo",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "PhoneConnectionConfig",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "PhoneCapabilities",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "CapabilityConnectionConfig",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "InputModelEntry",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "InputModelDescriptor",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "HandwritingInputModelConfig",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "PingConfigPair",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "PingRequest",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "PingResponse",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "GalPingRequest",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "GalPingResponse",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "RadioBand",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "RadioChannel",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "RadioStation",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "ControlChannelParams",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "ControlChannelConfig",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "ControlChannelConfigWrapper",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "ServiceDiscoveryFeatureA",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "ServiceDiscoveryFeatureB",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "ServiceDiscoveryFeatureC",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "ServiceDiscoveryFeatureD",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "ServiceDiscoveryRequest",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "ServiceDiscoveryResponse",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "ServiceDiscoveryUpdate",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "ShutdownRequest",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "VendorExtensionChannel",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "AbsInputEvent",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "AbsoluteEvent",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "AbsoluteInputEvent",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "AbsoluteInputEvents",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "ButtonEvent",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "ButtonEvents",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "HapticFeedbackType",
+      "outcome": "no_sidecar"
+    },
+    {
+      "proto_message": "InputChannelConfig",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "InputChannel",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "InputEventIndication",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "KeyEvent",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "RelativeInputEvent",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "InputBindingNotification",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "InputBindingRequest",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "RelativeInputEvents",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "TouchConfig",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "TouchCoordinate",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "TouchEvent",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "TouchLocation",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "CarLocalMediaPlaybackMetadata",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "CarLocalMediaPlaybackRequest",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "CarLocalMediaPlaybackStatus",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "MediaPlaybackCommand",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "MediaStatusList",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "MediaPlaybackMetadata",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "MediaPlaybackStatus",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "MediaTrackIdentifier",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "MediaEventIdWrapper",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "AVChannelMediaStats",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "LaneShape",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "NavigationChannelConfig",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "NavigationImageDimensions",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "NavigationChannel",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "DistanceLabel",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "NavigationDistanceDisplay",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "NavigationDistanceValue",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "NavigationDistance",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "NavigationDistanceEntry",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "NavigationDistanceInfo",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "NavigationDistanceOneof",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "NavigationFocusRequest",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "NavigationFocusIndication",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "NavigationFocusResponse",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "NavigationImageOptions",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "ChargingStationDetails",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "NavigationDestination",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "NavigationLane",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "NavigationLaneDirection",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "NavigationManeuver",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "NavigationTurnDistance",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "DestinationDistance",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "NavigationNextTurnDistanceEvent",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "NavigationRemainingDistance",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "NavigationNotification",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "NavigationRoadInfo",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "NavigationStep",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "NavigationStepDistance",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "NavigationText",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "NavigationState",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "NavigationTurnEvent",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "NotificationChannel",
+      "outcome": "stayed_bronze_no_164"
+    },
+    {
+      "proto_message": "CallAvailabilityStatus",
+      "outcome": "no_sidecar"
+    },
+    {
+      "proto_message": "PhoneCallState",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "PhoneInputType",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "PhoneStatusInput",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "PhoneCall",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "PhoneStatusUpdate",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "VoiceSessionRequest",
+      "outcome": "no_sidecar"
+    },
+    {
+      "proto_message": "RadioImage",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "RadioMetadata",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "RadioProgramIdentifier",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "RadioProgramInfo",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "RadioProgramInfoNotification",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "RadioProgramSelector",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "RadioProgramType",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "RadioSongMetadata",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "RadioTuneRequest",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "Accel",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "Compass",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "Door",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "DrivingStatus",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "EVConnectorType",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "Environment",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "FuelLevel",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "FuelType",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "GPSLocation",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "Gear",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "GpsSatelliteData",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "Gyro",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "HVAC",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "Light",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "NightMode",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "Odometer",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "ParkingBrake",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "Passenger",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "RPM",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "SensorChannelConfig",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "SensorTypeEntry",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "SensorChannel",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "Sensor",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "SensorEventFloat",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "SensorEventIndication",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "SensorStartRequestMessage",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "SensorStartResponseMessage",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "SensorRequest",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "SensorErrorStatus",
+      "outcome": "stayed_bronze_no_164"
+    },
+    {
+      "proto_message": "SensorError",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "RawEvTripSettings",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "RawVehicleEnergyModel",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "VehicleEnergyModelData",
+      "outcome": "stayed_bronze_no_164"
+    },
+    {
+      "proto_message": "TrailerData",
+      "outcome": "stayed_bronze_no_164"
+    },
+    {
+      "proto_message": "Speed",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "SteeringWheel",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "TirePressure",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "CarLocalMediaPlayback",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "UiConfigData",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "UiConfigEntry",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "TollCardData",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "TransportMetadata",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "TransportSecurityConfig",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "VideoInsets",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "VideoMarginConfig",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "VideoResizeAction",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "VideoResolutionRange",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "VideoConfig",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "UiConfigRequest",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "VideoFocusMode",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "VideoFocusNotification",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "VideoMargins",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "VideoFocusIndication",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "VideoFocusRequest",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "UpdateUiConfigRequest",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "WifiChannel",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "WifiConnectStatus",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "WifiConnectionRejection",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "WifiDirectConfig",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "WifiInfoRequest",
+      "outcome": "stayed_bronze_no_164"
+    },
+    {
+      "proto_message": "WifiInfoResponse",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "WiFiProjectionChannel",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "WifiSecurityResponse",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "WifiNetworkInfo",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "WifiSetupInfo",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "WifiSetupMessage",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "WifiStartResponse",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "WifiVersionRequest",
+      "outcome": "already_silver_clean"
+    },
+    {
+      "proto_message": "WifiVersionResponse",
+      "outcome": "already_silver_clean"
+    }
+  ],
   "drifted_silver_gold": [],
   "unmappable": [
     {

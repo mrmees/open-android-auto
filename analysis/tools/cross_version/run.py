@@ -16,7 +16,7 @@ if __package__ in (None, ""):
 
 from analysis.tools.cross_version.compare import run_comparison
 from analysis.tools.cross_version.delta_report import generate_delta_report
-from analysis.tools.cross_version.promote import promote_sidecars
+from analysis.tools.cross_version.promote import promote_eligible, promote_sidecars
 from analysis.tools.cross_version.report import generate_report
 from analysis.tools.cross_version.tables import generate_tables
 from analysis.tools.proto_schema_validator.mapping import load_mapping
@@ -138,11 +138,30 @@ def main(argv: list[str] | None = None) -> int:
     table_files = generate_tables(db_paths, mappings, args.output_dir)
     print(f"Generated {len(table_files)} mapping table(s) in {args.output_dir}")
 
-    # Promote sidecars
+    # Phase 8 Plan 02 pipeline: when 16.4 is in the run and --promote is set,
+    # use the strict 4-version walker + promotion rule. Otherwise fall back
+    # to the original 3-version promote_sidecars helper for backward compat.
     promotion_count = 0
+    promotion_outcomes: list[tuple[str, str]] = []
     if args.promote:
-        promotion_count = promote_sidecars(results)
-        print(f"Promoted {promotion_count} sidecar(s) from bronze to silver")
+        if "16.4" in db_paths:
+            print("Running Phase 8 (XVER-03 + XVER-04) walker + promotion...")
+            promotion_outcomes = promote_eligible(
+                mappings, results, dry_run=False
+            )
+            by_outcome: dict[str, int] = {}
+            for _, outcome in promotion_outcomes:
+                by_outcome[outcome] = by_outcome.get(outcome, 0) + 1
+            promotion_count = by_outcome.get("promoted", 0)
+            print(f"Walker outcomes: {dict(sorted(by_outcome.items()))}")
+            print(f"Promoted {promotion_count} Bronze sidecar(s) to Silver")
+        else:
+            promotion_count = promote_sidecars(results)
+            print(
+                f"Promoted {promotion_count} sidecar(s) from bronze to silver "
+                f"(3-version legacy path)"
+            )
+
         if promotion_count > 0:
             # Re-annotate proto files so confidence comments match promoted sidecars
             oaa_root = _REPO_ROOT / "oaa"
@@ -154,15 +173,19 @@ def main(argv: list[str] | None = None) -> int:
             print(f"Re-annotated {annotated} proto file(s) after promotion")
     else:
         eligible = sum(1 for r in results if r.is_consistent and r.pairs_compared)
-        print(f"Promotion skipped (dry-run). {eligible} sidecars eligible. "
-              f"Use --promote to enable.")
+        print(
+            f"Promotion skipped (dry-run). {eligible} sidecars eligible. "
+            f"Use --promote to enable."
+        )
 
     # Generate 3-version consistency report (existing output)
     report_path = args.output_dir / "consistency-report.md"
     exit_code = generate_report(results, report_path, promotion_count)
     print(f"Report written to {report_path}")
 
-    # Generate 16.4 delta report (XVER-02) when 16.4 is in play
+    # Generate 16.4 delta report (XVER-02) when 16.4 is in play.
+    # Includes the Phase 8 Plan 02 Promoted Bronze → Silver outcomes in
+    # section 5 / json key.
     if "16.4" in db_paths and not args.skip_delta_report:
         delta_dir = _REPO_ROOT / "analysis" / "reports" / "cross-version"
         candidates_path = delta_dir / "16-4-mapping-candidates.md"
@@ -172,6 +195,7 @@ def main(argv: list[str] | None = None) -> int:
             all_mappings_results=results,
             mapping_candidates_md=candidates_path if candidates_path.exists() else None,
             output_dir=delta_dir,
+            promotion_outcomes=promotion_outcomes or None,
         )
         print(f"16.4 delta report written to {delta_dir}/16-4-delta-report.md")
         print(f"16.4 delta JSON sidecar written to {delta_dir}/16-4-delta-report.json")

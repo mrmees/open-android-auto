@@ -1,7 +1,7 @@
 proto: oaa/navigation/NavigationTurnEventMessage.proto
 message: NavigationTurnEvent
 confidence: silver
-last_updated: '2026-03-13'
+last_updated: '2026-04-08'
 evidence:
 - type: apk_static
   method: bfs_trace
@@ -38,13 +38,20 @@ evidence:
   source: class_mapping.yaml (v15.9:vru, v16.1:vzm, v16.2:vyy)
   date: '2026-03-03'
   description: Mapped NavigationTurnEvent to obfuscated APK class(es) via string_const
-    analysis. In 16.2 the matched class (`vyy`) is deprecated, and fallback
-    JADX over classes.dex recovered hlj.mo18767n(...) building `vyy` and
-    sending it on native `0x8004` / `32772`.
+    analysis. In 16.2 the matched class (`vyy`) is deprecated, and fallback JADX over
+    classes.dex recovered hlj.mo18767n(...) building `vyy` and sending it on native
+    `0x8004` / `32772`.
 - type: cross_version
   method: structural_comparison
   source: cross-version checker (15.9, 16.1, 16.2)
   date: '2026-03-03'
-  description: Structural class-shape match exists across versions 15.9, 16.1,
-    and the deprecated 16.2 class match; post-plan fallback decompilation also
-    confirms an active 16.2 native `0x8004` / `32772` sender path.
+  description: Structural class-shape match exists across versions 15.9, 16.1, and
+    the deprecated 16.2 class match; post-plan fallback decompilation also confirms
+    an active 16.2 native `0x8004` / `32772` sender path.
+- type: cross_version
+  method: structural_comparison
+  source: cross-version checker (15.9, 16.1, 16.2, 16.4)
+  date: '2026-04-08'
+  description: Structural match confirmed across versions 15.9, 16.1, 16.2, 16.4.
+    Field numbers, types, and modifiers are consistent across all 6 pairwise comparisons.
+  status: consistent

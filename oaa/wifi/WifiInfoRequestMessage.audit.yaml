@@ -1,7 +1,7 @@
 proto: oaa/wifi/WifiInfoRequestMessage.proto
 message: WifiInfoRequest
 confidence: bronze
-last_updated: '2026-03-03'
+last_updated: '2026-04-08'
 evidence:
 - type: apk_static
   method: string_const
@@ -9,3 +9,10 @@ evidence:
   date: '2026-03-03'
   description: Mapped WifiInfoRequest to obfuscated APK class(es) via string_const
     analysis.
+- type: cross_version
+  method: structural_comparison
+  source: cross-version checker (15.9, 16.1, 16.2, 16.4)
+  date: '2026-04-08'
+  description: Unmappable in 16.4 (matcher found no candidate meeting structural fingerprint
+    + field count match, or candidate was ambiguous).
+  status: unmappable_16_4

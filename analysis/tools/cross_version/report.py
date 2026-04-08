@@ -1,12 +1,23 @@
 """Consistency report generator.
 
 Produces a markdown report summarizing cross-version comparison results.
+
+Phase 8 Plan 02: suppresses the same 4 known spurious enum drifts the
+delta_report already suppresses (DriverPosition / HapticFeedbackType /
+SensorErrorStatus / CarLocalMediaPlayback). These fire because the
+``proto_enum_classes`` table is present in 15.9 / 16.4 DBs but absent
+from 16.1 / 16.2 — the comparator interprets the empty-table fallback
+as "all fields removed". That's a data-layer artifact, not a real drift,
+and it must not turn the legacy 3-version report red on the Phase 8
+pipeline (otherwise ``run.py --promote`` exits non-zero and the
+acceptance ``&&`` chain fails).
 """
 from __future__ import annotations
 
 from pathlib import Path
 
 from analysis.tools.cross_version.compare import ComparisonResult
+from analysis.tools.cross_version.delta_report import SPURIOUS_ENUM_NAMES
 from analysis.tools.proto_schema_validator.models import IssueKind, Severity
 
 
@@ -31,11 +42,14 @@ def generate_report(
     consistent = sum(1 for r in results if r.is_consistent)
     discrepant = total - consistent
 
-    # Classify issues across all results
+    # Classify issues across all results. Phase 8: drop issues from the 4
+    # known spurious enum drifts so they don't flip the report exit code.
     expected_issues: list[tuple[ComparisonResult, any]] = []
     suspicious_issues: list[tuple[ComparisonResult, any]] = []
 
     for r in results:
+        if r.mapping.proto_message in SPURIOUS_ENUM_NAMES:
+            continue
         for issue in r.issues:
             if issue.kind == IssueKind.FIELD_ADDED:
                 expected_issues.append((r, issue))

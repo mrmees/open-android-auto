@@ -188,6 +188,7 @@ def generate_delta_report(
     mapping_candidates_md: Path | None = None,
     output_dir: Path = REPORT_DIR,
     total_mappings: int | None = None,
+    promotion_outcomes: list[tuple[str, str]] | None = None,
 ) -> None:
     """Generate the markdown + JSON delta report.
 
@@ -199,6 +200,9 @@ def generate_delta_report(
             section — ones with no pair ran at all). If None, uses `results`.
         mapping_candidates_md: optional reference to the candidates report.
         output_dir: target directory for the two output files.
+        promotion_outcomes: optional list of (proto_message, outcome) tuples
+            from the Phase 8 Plan 02 walker. Populates section 5 and the
+            ``promoted_bronze_to_silver`` JSON key.
     """
     output_dir.mkdir(parents=True, exist_ok=True)
     md_path = output_dir / "16-4-delta-report.md"
@@ -281,6 +285,13 @@ def generate_delta_report(
 
     # 661034 reproducibility-gap reference goes into the intro / references
     # section of the markdown. The JSON sidecar records it explicitly.
+    promoted_outcomes_json: list[dict[str, str]] = (
+        [
+            {"proto_message": p, "outcome": o}
+            for p, o in (promotion_outcomes or [])
+        ]
+    )
+
     report: dict[str, Any] = {
         "generated_date": date.today().isoformat(),
         "canonical_build": "16.4.661014",
@@ -290,7 +301,7 @@ def generate_delta_report(
         "new_in_16_4": _new_in_16_4(real_results, db_paths),
         "removed_in_16_4": removed,
         "schema_changes": schema_changes,
-        "promoted_bronze_to_silver": [],  # Plan 08-02 populates this
+        "promoted_bronze_to_silver": promoted_outcomes_json,
         "drifted_silver_gold": drifted,
         "unmappable": unmappable,
         "baseline_reproduction": {
@@ -425,17 +436,37 @@ def _build_markdown(report: dict[str, Any], candidates_md: Path | None) -> str:
     # ---- Section 5: Promoted Bronze → Silver ----
     lines.append(SECTION_HEADERS[4])
     lines.append("")
-    if report["promoted_bronze_to_silver"]:
-        for entry in report["promoted_bronze_to_silver"]:
-            lines.append(f"- `{entry['proto_message']}`")
-    else:
+    outcomes_list = report["promoted_bronze_to_silver"]
+    if not outcomes_list:
         lines.append(
-            "_Populated by Plan 08-02 walker output._ The promotion walk runs AFTER this "
-            "delta report has been validated; the walker consumes this report's JSON sidecar "
-            "and appends promoted protos back into the `promoted_bronze_to_silver` key "
-            "as part of its execution."
+            "_No outcomes recorded (promotion walk did not run). Re-run with "
+            "`--promote` to populate this section._"
         )
-    lines.append("")
+    else:
+        promoted_entries = [o for o in outcomes_list if o["outcome"] == "promoted"]
+        lines.append(f"**Promoted to Silver:** {len(promoted_entries)}")
+        lines.append("")
+        if promoted_entries:
+            lines.append("| Proto Message |")
+            lines.append("|---------------|")
+            for entry in promoted_entries:
+                lines.append(f"| `{entry['proto_message']}` |")
+            lines.append("")
+        else:
+            lines.append(
+                "_Zero Bronze sidecars met the strict 'all 6 pairs clean' rule. "
+                "This is the expected headline per 08-RESEARCH.md 'Bronze Promotion "
+                "Reality Check' — all Bronze sidecars map to 0-field marker classes._"
+            )
+            lines.append("")
+        by_outcome: dict[str, int] = {}
+        for o in outcomes_list:
+            by_outcome[o["outcome"]] = by_outcome.get(o["outcome"], 0) + 1
+        lines.append("**Outcome breakdown:**")
+        lines.append("")
+        for outcome, count in sorted(by_outcome.items()):
+            lines.append(f"- `{outcome}`: {count}")
+        lines.append("")
 
     # ---- Section 6: Drifted Silver/Gold ----
     lines.append(SECTION_HEADERS[5])
