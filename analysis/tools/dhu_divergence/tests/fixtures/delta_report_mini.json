@@ -1,0 +1,19 @@
+{
+  "generated_date": "2026-04-09",
+  "canonical_build": "fixture",
+  "summary": {"total": 5, "eligible": 5},
+  "new_in_16_4": [
+    {"proto_message": "VersionAttributedFixtureMessage", "first_present_in": "16.4"}
+  ],
+  "removed_in_16_4": [
+    {"proto_message": "RemovedFixtureMessage", "last_present_in": "16.1"}
+  ],
+  "schema_changes": [],
+  "drifted_silver_gold": [],
+  "promoted_bronze_to_silver": [],
+  "unmappable": [],
+  "known_indexer_artifacts": [],
+  "reproducibility_gap_build": {},
+  "reproducibility_gap_doc": "",
+  "baseline_reproduction": {}
+}

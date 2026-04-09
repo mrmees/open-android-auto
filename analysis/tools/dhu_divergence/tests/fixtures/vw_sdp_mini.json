@@ -1,0 +1,30 @@
+{
+  "directions": {
+    "sdp_request.bin": "phone -> HU",
+    "sdp_response.bin": "HU -> phone"
+  },
+  "request": {
+    "device_brand": "FixtureBrand",
+    "device_name": "FixtureDevice"
+  },
+  "response": {
+    "head_unit_info": {
+      "make": "Volkswagen",
+      "model": "MIB3 OI",
+      "year": "2024",
+      "head_unit_make": "Volkswagen",
+      "head_unit_model": "MIB3 OI",
+      "head_unit_software_version": "16.4.661034",
+      "head_unit_software_build": "fixture-build"
+    },
+    "car_model": "MIB3 OI",
+    "channels": [
+      {"channel_id": 0, "channel_kind": "av_channel",          "config": {}},
+      {"channel_id": 1, "channel_kind": "av_channel",          "config": {}},
+      {"channel_id": 2, "channel_kind": "bluetooth_channel",   "config": {"adapter_address": "FIXTURE"}},
+      {"channel_id": 3, "channel_kind": "wifi_channel",        "config": {"ssid": "FIXTURE"}},
+      {"channel_id": 4, "channel_kind": "sensor_channel",      "config": {}},
+      {"channel_id": 5, "channel_kind": "input_channel",       "config": {}}
+    ]
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "metadata": {
+    "generated_date": "FIXTURE",
+    "vw_capture_path": "FIXTURE",
+    "vw_aa_version": "16.4.661034",
+    "dhu_baselines": [
+      {"name": "baseline_a", "path": "FIXTURE", "sha256": "FIXTURE"},
+      {"name": "baseline_b", "path": "FIXTURE", "sha256": "FIXTURE"}
+    ],
+    "phase_8_delta_report_sha256": "FIXTURE"
+  },
+  "summary": {
+    "total_divergences": 3,
+    "by_attribution": {"version": 0, "oem": 2, "ambiguous": 1},
+    "by_service": {"bluetooth_channel": 1, "wifi_channel": 1, "vendor_extension_channel": 1}
+  },
+  "version_attributed_divergences": [],
+  "oem_attributed_divergences": [],
+  "ambiguous_divergences": [],
+  "services_in_vw_but_not_dhu": ["bluetooth_channel", "wifi_channel"],
+  "services_in_dhu_but_not_vw": ["vendor_extension_channel"],
+  "per_baseline_observation_summary": {},
+  "baseline_reproduction": {}
+}
