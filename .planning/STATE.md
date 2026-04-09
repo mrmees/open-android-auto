@@ -2,15 +2,15 @@
 gsd_state_version: 1.0
 milestone: v1.5
 milestone_name: milestone
-status: Phase 8 COMPLETE. Plan 08-02 shipped XVER-03 + XVER-04 via the append-only sidecar walker + strict 'all 6 pairs clean' promotion rule. Schema migration landed first (audit-schema.json allows optional status + drift_issues). Walker touched 120 sidecars (48 consistent, 72 unmappable_16_4, 0 drift_detected), zero Bronze promotions as expected. Walker is bit-idempotent on the real oaa/ tree. test_promoted_sidecars.py still green. Phase 9 (divergence) and Phase 10 (Gold promotion) are next -- both ready to consume Phase 8 outputs.
-stopped_at: "Phase 8 complete (plans 08-01 and 08-02). Next: Phase 9 divergence report."
-last_updated: "2026-04-08T19:37:17.000Z"
-last_activity: 2026-04-08 -- Phase 8 plan 02 complete (sidecar_walker.py + schema migration + strict promotion rule; 120 sidecars updated; 0 Bronze promoted; idempotent on real tree)
+status: Phase 9 IN PROGRESS. Plan 09-01 COMPLETE. Platinum tier strictly above Gold, 8+4 MATCH/NOMATCH closed enum, TIER-05 non-claim doc, cross_link_walker inserted callouts into 5 channel docs, first Gold→Platinum promotion (VideoFocusRequestMessage citing MATCH-08). Plan 09-02 (dhu_divergence report) is next — scaffold already in place from 09-01 Wave 0.
+stopped_at: "Completed 09-01-PLAN.md -- Plan 09-01 complete; ready for 09-02 (dhu_divergence report)"
+last_updated: "2026-04-09T12:15:42.952Z"
+last_activity: 2026-04-09 -- Phase 9 plan 01 complete (Platinum tier schema migration + match policy + non-claim doc + cross-link walker + example sidecar promotion; 30 tests green, baseline 334/1 preserved)
 progress:
   total_phases: 7
   completed_phases: 3
-  total_plans: 12
-  completed_plans: 5
+  total_plans: 7
+  completed_plans: 6
   percent: 42
 ---
 
@@ -25,12 +25,12 @@ See: .planning/PROJECT.md (updated 2026-04-07)
 
 ## Current Position
 
-Phase: 8 (16.4 Cross-Version Validation) -- COMPLETE
-Plan: 08-01 -- COMPLETE; 08-02 -- COMPLETE
-Status: Phase 8 COMPLETE. Plan 08-02 shipped XVER-03 and XVER-04 via the append-only sidecar walker (sidecar_walker.py) and the strict 'all 6 pairs clean' promotion rule (promote.py). Schema migration landed first: audit-schema.json evidence_entry now allows optional status + drift_issues with additionalProperties: false preserved. Walker is append-only / idempotent / non-blocking; content_hash excludes the date field. End-to-end walk touched 120 of 160 sidecars (48 consistent, 72 unmappable_16_4, 0 drift_detected, 0 unmappable_marker); 40 sidecars skipped (35 pre-existing schema violations, 7 orphans, 1 malformed) all logged to skipped-sidecars.md. 0 Bronze promotions -- expected headline per 08-RESEARCH.md 'Bronze Promotion Reality Check'. All 10 Bronze sidecars fall into stayed_bronze_no_164 because the 16.4 matcher found no candidate, not because they're 0-field markers. Walker is bit-idempotent on the real tree (second run produces zero git diff across the entire repo). test_promoted_sidecars.py still green (334 pass, 1 pre-existing baseline failure). Phase 9 (divergence) and Phase 10 (Gold promotion) are next -- both now have the data they need from Phase 8.
-Last activity: 2026-04-08 -- Phase 8 plan 02 complete (sidecar_walker.py + schema migration + strict promotion rule; 120 sidecars updated; 40 logged; 0 Bronze promoted; bit-idempotent on real tree)
+Phase: 9 (OEM Methodology & Divergence Report) -- IN PROGRESS
+Plan: 09-01 -- COMPLETE; 09-02 -- pending
+Status: Plan 09-01 COMPLETE. Schema migration landed first (Rule 1 auto-fix required to whitelist 10 legacy top-level fields + 2 legacy evidence types so 6 retracted sidecars + VideoFocusRequestMessage validate; additionalProperties: false preserved). Phase 8 baseline held at 334 passed / 1 pre-existing failure post-migration. Platinum tier introduced strictly above Gold; Gold redefined as deep-trace APK + cross-version (matches existing 32 Gold sidecars, zero migration). 8 MATCH + 4 NOMATCH rules published in 05-oem-match-policy.md as closed enum in audit-schema.json (cross-file integrity test locks them together). 06-capture-non-claim-boundary.md centralizes the 5 non-claim surfaces (channel_id, flags, outer frame headers, fragmentation, encryption). cross_link_walker package built with sentinel-substring idempotency + path-suffix self-exclusion; live run inserted callouts into 5 target docs (wifi-projection, audio, video, sensor, channel-map), second run is byte-perfect no-op. First Gold→Platinum promotion: VideoFocusRequestMessage cites MATCH-08 (SDP descriptor match) with msg_seq/ts_ms placeholders for Phase 10 deep inspection. REQUIREMENTS.md TIER-01 text fixed (oem_evidence → platinum_evidence). 30 new tests all green, zero skips. Phase 9 Plan 02 (dhu_divergence report) is next — scaffold already in place from Plan 01 Wave 0. Phase 10 (Gold promotion walk) is unblocked.
+Last activity: 2026-04-09 -- Phase 9 plan 01 complete (Platinum tier schema migration + match policy + non-claim doc + cross-link walker + example sidecar promotion; 30 tests green, baseline 334/1 preserved)
 
-Progress: [█████░░░░░] 42% (5/12 v1.5 plans complete)
+Progress: [██████░░░░] 50% (6/12 v1.5 plans complete)
 
 ## Accumulated Context
 
@@ -101,6 +101,13 @@ Phase 8 plan 02 execution decisions (2026-04-08):
 - All 10 Bronze sidecars classify as stayed_bronze_no_164 (not stayed_bronze_marker). The Research doc framed the gap as 0-field markers; the live result is that those 10 also happen to have null 16.4 entries, so they're flagged as unmappable rather than marker-class-trivial. Semantically the same outcome (stay Bronze), but the reason is slightly different. The stayed_bronze_marker outcome exists in the classifier for future cases but is currently empty.
 - Walker end-to-end stats: 160 sidecars → 120 updated (75%), 40 skipped (25%). Of 120 updated: 48 status=consistent, 72 status=unmappable_16_4, 0 drift_detected, 0 unmappable_marker. Of 40 skipped: 35 schema_validation_failed (pre-existing), 7 orphan_no_mapping, 1 malformed.
 - Test suite baseline improved slightly: 528 passed / 170 failed → 568 passed / 168 failed. The -2 is incidental (parametric test collection shifted slightly); no regressions introduced.
+- [Phase 09-oem-methodology-divergence-report]: Tier ladder locked at unverified → bronze → silver → gold → platinum, retracted as non-ordinal state
+- [Phase 09-oem-methodology-divergence-report]: Gold redefined as deep-trace APK + cross-version (matches existing 32 Gold sidecars, no migration required); Platinum strictly above Gold with OEM wire capture confirmation
+- [Phase 09-oem-methodology-divergence-report]: Platinum badges ALWAYS render with scope qualifier (Platinum / single-OEM or Platinum / multi-OEM) — single-OEM trap named on badge, not in prose footnote
+- [Phase 09-oem-methodology-divergence-report]: 8 MATCH + 4 NOMATCH rules as closed enum in audit-schema.json; cross-file integrity test asserts schema enum exactly equals 05-oem-match-policy.md doc headings
+- [Phase 09-oem-methodology-divergence-report]: Rule 1 auto-fix: whitelisted 10 legacy top-level sidecar fields + 2 legacy evidence types (apk_deep_trace, deep_trace) so 6 retracted sidecars + VideoFocusRequestMessage validate; plan assumed only tier enum addition needed, reality required legacy whitelist too. additionalProperties: false preserved
+- [Phase 09-oem-methodology-divergence-report]: Cross-link walker uses sentinel-substring idempotency + path-suffix self-exclusion; explicit 5-file WALKER_TARGETS list (not glob-discovered); walker is byte-idempotent on real docs tree
+- [Phase 09-oem-methodology-divergence-report]: First Gold→Platinum promotion: VideoFocusRequestMessage citing MATCH-08 (SDP descriptor match); msg_seq/ts_ms placeholders [0]/[0] for Phase 10 to overwrite after deep wire inspection
 
 ### Pending Todos
 
@@ -117,6 +124,6 @@ Phase 8 plan 02 execution decisions (2026-04-08):
 
 ## Session Continuity
 
-Last session: 2026-04-08T19:40:08.550Z
-Stopped at: Completed 08-02-PLAN.md -- Phase 8 complete: walker + strict promotion rule + 0 Bronze promotions as expected
+Last session: 2026-04-09T12:15:42.950Z
+Stopped at: Completed 09-01-PLAN.md -- Platinum tier strictly above Gold, 8+4 MATCH/NOMATCH rules, TIER-05 non-claim doc, cross_link_walker inserted callouts into 5 channel docs, first Gold→Platinum promotion (VideoFocusRequestMessage citing MATCH-08)
 Resume file: None

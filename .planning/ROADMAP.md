@@ -102,11 +102,11 @@ Plans:
   3. OEM match policy is published in the methodology doc with explicit rules for what counts as a match (msg-level presence vs field-level confirmation vs enum value match vs repeat observation) and what does NOT count. Phase 10 promotions will cite these rule IDs
   4. Non-claim boundary for the VW capture is documented centrally — the on-phone hook lives inside the AA framing layer, so the capture cannot validate outer frame header semantics, `channel_id`, or `flags` behavior. Anywhere those surfaces are discussed, the boundary is cross-linked
   5. VW-vs-DHU SDP divergence report exists with version-alignment notes distinguishing 16.4-vs-older-APK differences from OEM-vs-DHU differences
-**Plans:** 2 plans
+**Plans:** 1/2 plans executed
 
 Plans:
-- [ ] 09-01-PLAN.md — `oem_evidence` schema, Gold scope dimension, match policy, non-claim boundary (TIER-01, TIER-02, TIER-03, TIER-05)
-- [ ] 09-02-PLAN.md — VW-vs-DHU SDP divergence report with version-alignment notes (OEM-04)
+- [ ] 09-01-PLAN.md — `platinum_evidence` schema migration, Platinum tier (strictly above Gold), match policy (8 MATCH + 4 NOMATCH), non-claim boundary doc, cross-link walker, example Platinum sidecar, REQUIREMENTS.md TIER-01 text fix (TIER-01, TIER-02, TIER-03, TIER-05)
+- [ ] 09-02-PLAN.md — `analysis/tools/dhu_divergence/` sibling package (imports oem_vw_parser), live VW-vs-DHU SDP divergence report at `analysis/reports/oem-vw/dhu-divergence.{md,json}` with version-alignment attribution (OEM-04)
 
 ### Phase 10: Gold-Tier Promotion Walk
 **Goal**: Every Silver-tier proto in services the VW capture observed has been checked against the capture and marked `promoted` / `retracted` / `explicitly unmatched`, using the TIER-03 match policy and scoped by the OEM-03 coverage manifest. Protos in unobserved services stay Silver, untouched. This is the milestone's headline deliverable.
@@ -172,7 +172,7 @@ Plans:
 | 6. Historical Bookkeeping | v1.5 | 1/1 | Complete | 2026-04-07 |
 | 7. VW Capture Analysis | v1.5 | 2/2 | Complete | 2026-04-08 |
 | 8. 16.4 Cross-Version Validation | 2/2 | Complete   | 2026-04-08 | — |
-| 9. OEM Methodology & Divergence Report | v1.5 | 0/2 | Not started | — |
+| 9. OEM Methodology & Divergence Report | 1/2 | In Progress|  | — |
 | 10. Gold-Tier Promotion Walk | v1.5 | 0/2 | Not started | — |
 | 11. Channel Architecture Reference | v1.5 | 0/2 | Not started | — |
 | 12. Audit Report Generator | v1.5 | 0/1 | Not started | — |
