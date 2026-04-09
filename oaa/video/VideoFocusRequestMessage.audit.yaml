@@ -1,7 +1,8 @@
 proto: oaa/video/VideoFocusRequestMessage.proto
 message: VideoFocusRequest
-confidence: gold
-last_updated: '2026-03-06'
+confidence: platinum
+platinum_scope: single_oem
+last_updated: '2026-04-09'
 wire_msg_id: 0x8007
 direction: HU->Phone
 channel: video (CAR.GAL.VIDEO)
@@ -21,7 +22,35 @@ evidence:
   method: string_const
   source: class_mapping.yaml (v15.9:vvl, v16.1:wdd, v16.2:wct)
   date: '2026-03-03'
+  description: String-constant / class-mapping evidence binding VideoFocusRequest
+    to obfuscated classes vvl (15.9), wdd (16.1), wct (16.2) across the APK versions
+    in class_mapping.yaml.
 - type: cross_version
   method: structural_comparison
   source: cross-version checker (15.9, 16.1, 16.2)
   date: '2026-03-03'
+  description: Structural comparison across versions 15.9, 16.1, and 16.2 confirmed
+    field numbers, types, and modifiers are consistent. No schema drift detected.
+- type: platinum_evidence
+  source: captures/oem-vw-mib3oi-2026-04-06/messages.jsonl
+  date: '2026-04-09'
+  description: >
+    VW MIB3 OI capture confirmed VideoFocusRequest is used in the av_channel service
+    observed in the live capture. VW SDP response declares 5 av_channels; Phase 7
+    coverage manifest confirms all 5 were observed during the 60s session.
+    MATCH-08 applies (SDP descriptor match — VW SDP declares av_channel with
+    VideoFocusRequest's service binding). Full wire-level MATCH-01 / MATCH-02
+    verification awaits deep inspection of messages.jsonl in Phase 10.
+  capture_path: captures/oem-vw-mib3oi-2026-04-06/
+  vehicle_metadata:
+    make: Volkswagen
+    model: MIB3 OI
+    year: '2024'
+    aa_version: '16.4.661034'
+  msg_seq: [0]
+  ts_ms: [0]
+  message_completeness: full
+  attribution_method: sdp_service_id
+  oem_scope: single
+  applicability: message
+  match_rules: [MATCH-08]

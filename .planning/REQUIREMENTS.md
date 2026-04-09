@@ -26,7 +26,7 @@ Requirements for milestone v1.5. Each maps to a roadmap phase. Structural choice
 
 ### TIER — OEM Evidence Schema & Gold Promotion
 
-- [ ] **TIER-01**: Audit sidecar JSON Schema adds an `oem_evidence` evidence type with scope fields: capture provenance (path, vehicle metadata, msg seq, ts_ms), message completeness (first-only / full / reassembled), service attribution method, OEM scope (single / multi), and field-level vs message-level applicability.
+- [ ] **TIER-01**: Audit sidecar JSON Schema adds a `platinum_evidence` evidence type with scope fields: capture provenance (path, vehicle metadata, msg seq, ts_ms), message completeness (first-only / full / reassembled), service attribution method, OEM scope (single / multi), and field-level vs message-level applicability.
 - [ ] **TIER-02**: Gold tier is split into a visible scope dimension — `Gold / single-OEM` and (future) `Gold / multi-OEM` — reflected in sidecar metadata and all rendered confidence badges, not just buried in prose. Methodology doc explains the dimension and the single-OEM trap.
 - [ ] **TIER-03**: OEM match policy is defined in the methodology doc — explicit rules for what counts as a match for promotion (msg-level presence vs field-level confirmation vs enum value match vs repeat observation) and what does NOT count. TIER-04 promotions cite the specific rule that applied.
 - [ ] **TIER-04**: Every Silver-tier proto **in services/channels observed by the VW capture** (per OEM-03 manifest) has been checked against the capture and marked promoted, retracted, or explicitly unmatched. Protos in services the VW session never exercised get no claim either way — they remain Silver.
