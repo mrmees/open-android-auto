@@ -96,6 +96,18 @@ Any claim Phase 10 makes about one of the 5 surfaces above MUST cite
 `nomatch_rules` list. `NOMATCH-01` exists specifically to operationalize this
 doc's scope boundary — it is the "below framing layer" rule.
 
+The cross-link callout block that the walker inserts into channel docs
+reads:
+
+> **Capture evidence boundary:** The VW capture cannot validate claims about this surface.
+> The on-phone hook lives inside the AA framing layer; `channel_id`, `flags`, and outer
+> frame header semantics are below the hook's observation point. See
+> [06-capture-non-claim-boundary.md](06-capture-non-claim-boundary.md).
+
+That block is a forward-link into THIS file. The walker is forbidden from
+editing this file (self-exclusion by path), so the callout shown above is
+part of the doc's own body — there is no recursive link.
+
 A promotion that would otherwise look like "Platinum / single-OEM because
 `channel_id: 3` was observed" is a category error: the `channel_id` was never
 observed, regardless of how complete the rest of the evidence is. Phase 10

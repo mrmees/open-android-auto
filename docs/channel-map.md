@@ -187,3 +187,8 @@ Note: `CallAvailabilityStatus` and `VoiceSessionRequest` are on the **control ch
 | `CarLocalMediaPlaybackStatus` | HU -> Phone | Local media playback state |
 | `CarLocalMediaPlaybackMetadata` | HU -> Phone | Local media track info |
 | `CarLocalMediaPlaybackRequest` | Phone -> HU | Request playback action |
+
+> **Capture evidence boundary:** The VW capture cannot validate claims about this surface.
+> The on-phone hook lives inside the AA framing layer; `channel_id`, `flags`, and outer
+> frame header semantics are below the hook's observation point. See
+> [06-capture-non-claim-boundary.md](verification/06-capture-non-claim-boundary.md).

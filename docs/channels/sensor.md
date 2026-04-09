@@ -639,3 +639,8 @@ void handle_sensor_error(SensorError *msg) {
 ### Cross-References
 - [Channel map](../channel-map.md) -- Channel ID reference for all AA channels
 - [01-confidence-tiers.md](../verification/01-confidence-tiers.md) -- Confidence tier definitions
+
+> **Capture evidence boundary:** The VW capture cannot validate claims about this surface.
+> The on-phone hook lives inside the AA framing layer; `channel_id`, `flags`, and outer
+> frame header semantics are below the hook's observation point. See
+> [06-capture-non-claim-boundary.md](../verification/06-capture-non-claim-boundary.md).
