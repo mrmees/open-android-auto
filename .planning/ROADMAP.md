@@ -38,7 +38,7 @@ Phase numbering continues from v1.0 (which shipped Phases 1-5). Decimal phases a
 - [x] **Phase 6: Historical Bookkeeping** — Retroactively log v1.1–v1.4 patch work in MILESTONES.md so the ledger reflects reality before the milestone proper begins (completed 2026-04-07)
 - [x] **Phase 7: VW Capture Analysis** (2/2 plans complete) — Parse the VW capture into per-msg-type / per-direction tables with fragment classification, extract production SDP values, build the coverage manifest that scopes later promotion work, and flag candidate OEM-only msg_types — completed 2026-04-08
 - [x] **Phase 8: 16.4 Cross-Version Validation** — Extend the consistency checker to 4 APK versions, fold 16.4 into sidecars, promote Bronze-across-4 to Silver, and document the manual-JADX reproducibility gap (completed 2026-04-08)
-- [ ] **Phase 9: OEM Methodology & Divergence Report** — Extend audit sidecar schema for `oem_evidence`, split Gold into a visible scope dimension, publish the OEM match policy, document the VW capture's non-claim boundary, and produce the VW-vs-DHU divergence report
+- [x] **Phase 9: OEM Methodology & Divergence Report** — Extend audit sidecar schema for `oem_evidence`, split Gold into a visible scope dimension, publish the OEM match policy, document the VW capture's non-claim boundary, and produce the VW-vs-DHU divergence report (completed 2026-04-09)
 - [ ] **Phase 10: Gold-Tier Promotion Walk** — Walk every Silver proto in services observed by the VW capture, promote/retract/mark-unmatched per the match policy, and leave unobserved-service Silver protos untouched
 - [ ] **Phase 11: Channel Architecture Reference** — Publish the multiplexing/framing/service-binding/capability-negotiation reference doc with concrete VW vs DHU examples drawn from actual captures
 - [ ] **Phase 12: Audit Report Generator** — Coverage dashboard tool reading the audit trail, surfacing Bronze/Silver/Gold counts per channel, evidence-type breakdowns, and missing-sidecar lists
@@ -102,7 +102,7 @@ Plans:
   3. OEM match policy is published in the methodology doc with explicit rules for what counts as a match (msg-level presence vs field-level confirmation vs enum value match vs repeat observation) and what does NOT count. Phase 10 promotions will cite these rule IDs
   4. Non-claim boundary for the VW capture is documented centrally — the on-phone hook lives inside the AA framing layer, so the capture cannot validate outer frame header semantics, `channel_id`, or `flags` behavior. Anywhere those surfaces are discussed, the boundary is cross-linked
   5. VW-vs-DHU SDP divergence report exists with version-alignment notes distinguishing 16.4-vs-older-APK differences from OEM-vs-DHU differences
-**Plans:** 1/2 plans executed
+**Plans:** 2/2 plans complete
 
 Plans:
 - [ ] 09-01-PLAN.md — `platinum_evidence` schema migration, Platinum tier (strictly above Gold), match policy (8 MATCH + 4 NOMATCH), non-claim boundary doc, cross-link walker, example Platinum sidecar, REQUIREMENTS.md TIER-01 text fix (TIER-01, TIER-02, TIER-03, TIER-05)
@@ -172,7 +172,7 @@ Plans:
 | 6. Historical Bookkeeping | v1.5 | 1/1 | Complete | 2026-04-07 |
 | 7. VW Capture Analysis | v1.5 | 2/2 | Complete | 2026-04-08 |
 | 8. 16.4 Cross-Version Validation | 2/2 | Complete   | 2026-04-08 | — |
-| 9. OEM Methodology & Divergence Report | 1/2 | In Progress|  | — |
+| 9. OEM Methodology & Divergence Report | 2/2 | Complete   | 2026-04-09 | — |
 | 10. Gold-Tier Promotion Walk | v1.5 | 0/2 | Not started | — |
 | 11. Channel Architecture Reference | v1.5 | 0/2 | Not started | — |
 | 12. Audit Report Generator | v1.5 | 0/1 | Not started | — |

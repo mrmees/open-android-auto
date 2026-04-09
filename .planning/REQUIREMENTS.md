@@ -13,7 +13,7 @@ Requirements for milestone v1.5. Each maps to a roadmap phase. Structural choice
 - [x] **OEM-01**: VW capture is parsed into per-msg-type/per-direction tables with explicit fragment classification (`standalone`, `probable_first`, `continuation_or_garbage`, `reassembled`, `unattributed`). Naïve readers must not be able to mistake continuation fragments for standalone messages. — completed 2026-04-07 by 07-01 (`analysis/tools/oem_vw_parser/` + `analysis/reports/oem-vw/msg-type-classification.{md,json}`)
 - [x] **OEM-02**: Real production values from VW SDP are documented — HeadUnitInfo/CarInfo identity fields **and** observed service descriptors, channel capabilities, and SDP-level configuration drawn from `sdp_request.bin` / `sdp_response.bin`.
 - [x] **OEM-03**: Capture coverage manifest records which services/channels/features the 60s session actually exercised, including what was *not* observed. Provides the baseline against which TIER-04 coverage claims are scoped.
-- [ ] **OEM-04**: Divergence report compares VW SDP against DHU baselines with explicit version-alignment notes. VW is on AA 16.4; DHU baselines span older APKs — reported differences must distinguish version-related from OEM-related changes.
+- [x] **OEM-04**: Divergence report compares VW SDP against DHU baselines with explicit version-alignment notes. VW is on AA 16.4; DHU baselines span older APKs — reported differences must distinguish version-related from OEM-related changes.
 - [x] **OEM-05**: Candidate OEM-only msg_types (seen in VW but not in DHU baselines) are documented, filtered for fragment artifacts per OEM-01 classification, and labeled `candidate` until repeat observation or successful parse confirms them as real.
 
 ### XVER — 16.4 Cross-Version Validation
@@ -98,7 +98,7 @@ Which phases cover which requirements. Populated during roadmap creation by the 
 | TIER-02 | Phase 9 — OEM Methodology & Divergence Report | Pending |
 | TIER-03 | Phase 9 — OEM Methodology & Divergence Report | Pending |
 | TIER-05 | Phase 9 — OEM Methodology & Divergence Report | Pending |
-| OEM-04 | Phase 9 — OEM Methodology & Divergence Report | Pending |
+| OEM-04 | Phase 9 — OEM Methodology & Divergence Report | Complete |
 | TIER-04 | Phase 10 — Gold-Tier Promotion Walk | Pending |
 | ARCH-01 | Phase 11 — Channel Architecture Reference | Pending |
 | ARCH-02 | Phase 11 — Channel Architecture Reference | Pending |

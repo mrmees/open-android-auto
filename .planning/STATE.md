@@ -2,16 +2,16 @@
 gsd_state_version: 1.0
 milestone: v1.5
 milestone_name: milestone
-status: Phase 9 IN PROGRESS. Plan 09-01 COMPLETE. Platinum tier strictly above Gold, 8+4 MATCH/NOMATCH closed enum, TIER-05 non-claim doc, cross_link_walker inserted callouts into 5 channel docs, first Gold→Platinum promotion (VideoFocusRequestMessage citing MATCH-08). Plan 09-02 (dhu_divergence report) is next — scaffold already in place from 09-01 Wave 0.
-stopped_at: "Completed 09-01-PLAN.md -- Plan 09-01 complete; ready for 09-02 (dhu_divergence report)"
-last_updated: "2026-04-09T12:15:42.952Z"
-last_activity: 2026-04-09 -- Phase 9 plan 01 complete (Platinum tier schema migration + match policy + non-claim doc + cross-link walker + example sidecar promotion; 30 tests green, baseline 334/1 preserved)
+status: Phase 9 COMPLETE. Both plans 09-01 (methodology surface) and 09-02 (dhu_divergence report, OEM-04) shipped. dhu-divergence.{md,json} live at analysis/reports/oem-vw/ with empirical preview locked: bluetooth+wifi VW-only attributed oem, vendor_extension DHU-only attributed ambiguous. 12 Plan 09-02 tests green (1 merge + 2 divergence + 3 attribution + 3 report + 3 live snapshot). Phase 8 baseline preserved at 334/1. oem_vw_parser/ untouched. Phase 10 (Gold promotion walk, TIER-04) is unblocked.
+stopped_at: "Completed 09-02-PLAN.md -- Phase 9 COMPLETE; Plan 09-02 (dhu_divergence report) shipped: bluetooth+wifi VW-only attributed oem, vendor_extension DHU-only attributed ambiguous; 12 new tests green; oem_vw_parser untouched; Phase 10 unblocked"
+last_updated: "2026-04-09T12:30:40.110Z"
+last_activity: 2026-04-09 -- Phase 9 COMPLETE (both plans landed; OEM-04 dhu-divergence report shipped with empirical preview locked; oem_vw_parser untouched; Phase 10 unblocked)
 progress:
   total_phases: 7
-  completed_phases: 3
-  total_plans: 7
-  completed_plans: 6
-  percent: 42
+  completed_phases: 4
+  total_plans: 12
+  completed_plans: 7
+  percent: 58
 ---
 
 # Project State
@@ -25,12 +25,12 @@ See: .planning/PROJECT.md (updated 2026-04-07)
 
 ## Current Position
 
-Phase: 9 (OEM Methodology & Divergence Report) -- IN PROGRESS
-Plan: 09-01 -- COMPLETE; 09-02 -- pending
-Status: Plan 09-01 COMPLETE. Schema migration landed first (Rule 1 auto-fix required to whitelist 10 legacy top-level fields + 2 legacy evidence types so 6 retracted sidecars + VideoFocusRequestMessage validate; additionalProperties: false preserved). Phase 8 baseline held at 334 passed / 1 pre-existing failure post-migration. Platinum tier introduced strictly above Gold; Gold redefined as deep-trace APK + cross-version (matches existing 32 Gold sidecars, zero migration). 8 MATCH + 4 NOMATCH rules published in 05-oem-match-policy.md as closed enum in audit-schema.json (cross-file integrity test locks them together). 06-capture-non-claim-boundary.md centralizes the 5 non-claim surfaces (channel_id, flags, outer frame headers, fragmentation, encryption). cross_link_walker package built with sentinel-substring idempotency + path-suffix self-exclusion; live run inserted callouts into 5 target docs (wifi-projection, audio, video, sensor, channel-map), second run is byte-perfect no-op. First Gold→Platinum promotion: VideoFocusRequestMessage cites MATCH-08 (SDP descriptor match) with msg_seq/ts_ms placeholders for Phase 10 deep inspection. REQUIREMENTS.md TIER-01 text fixed (oem_evidence → platinum_evidence). 30 new tests all green, zero skips. Phase 9 Plan 02 (dhu_divergence report) is next — scaffold already in place from Plan 01 Wave 0. Phase 10 (Gold promotion walk) is unblocked.
-Last activity: 2026-04-09 -- Phase 9 plan 01 complete (Platinum tier schema migration + match policy + non-claim doc + cross-link walker + example sidecar promotion; 30 tests green, baseline 334/1 preserved)
+Phase: 9 (OEM Methodology & Divergence Report) -- COMPLETE
+Plan: 09-01 -- COMPLETE; 09-02 -- COMPLETE
+Status: PHASE 9 COMPLETE. Plan 09-02 (VW-vs-DHU SDP divergence report, OEM-04) shipped: new sibling package analysis/tools/dhu_divergence/ with 5 implementation modules (baseline_merge, divergence, attribution, report, run) imports oem_vw_parser.sdp_decode as a library function and reshapes SdpSnapshot.services tuple into Phase 7 channel-dict shape. NO modifications to oem_vw_parser/ — import-not-fork discipline preserved (verified via git status --porcelain). Live divergence report at analysis/reports/oem-vw/dhu-divergence.{md,json} matches research preview exactly: services_in_vw_but_not_dhu = [bluetooth_channel, wifi_channel] (both attributed oem); services_in_dhu_but_not_vw = [vendor_extension_channel] (attributed ambiguous); summary by_attribution = {version: 0, oem: 2, ambiguous: 1}. All 4 DHU SDP baselines confirmed byte-identical (single sha256 a4f2bc3465..., 844 bytes each, 14 channels / 8 distinct kinds). 12 new tests all green (1 merge + 2 divergence + 3 attribution + 3 report + 3 live snapshot). Phase 8 baseline held at 334 passed / 1 pre-existing failure (NavigationDistanceMessage). 8 locked markdown section headers and 9 locked JSON top-level keys both verified. Metadata block carries sha256 hashes for all 4 DHU SDP files + Phase 8 delta report (5 hashes total). Phase 10 (Gold promotion walk, TIER-04) is unblocked: dhu-divergence.json gives it the OEM candidate scoping, the migrated schema accepts platinum_evidence entries, 05-oem-match-policy.md defines the rule IDs, and VideoFocusRequestMessage is the reference platinum-promotion shape.
+Last activity: 2026-04-09 -- Phase 9 COMPLETE (both plans landed; OEM-04 dhu-divergence report shipped with empirical preview locked; oem_vw_parser untouched; Phase 10 unblocked)
 
-Progress: [██████░░░░] 50% (6/12 v1.5 plans complete)
+Progress: [███████░░░] 58% (7/12 v1.5 plans complete)
 
 ## Accumulated Context
 
@@ -108,6 +108,10 @@ Phase 8 plan 02 execution decisions (2026-04-08):
 - [Phase 09-oem-methodology-divergence-report]: Rule 1 auto-fix: whitelisted 10 legacy top-level sidecar fields + 2 legacy evidence types (apk_deep_trace, deep_trace) so 6 retracted sidecars + VideoFocusRequestMessage validate; plan assumed only tier enum addition needed, reality required legacy whitelist too. additionalProperties: false preserved
 - [Phase 09-oem-methodology-divergence-report]: Cross-link walker uses sentinel-substring idempotency + path-suffix self-exclusion; explicit 5-file WALKER_TARGETS list (not glob-discovered); walker is byte-idempotent on real docs tree
 - [Phase 09-oem-methodology-divergence-report]: First Gold→Platinum promotion: VideoFocusRequestMessage citing MATCH-08 (SDP descriptor match); msg_seq/ts_ms placeholders [0]/[0] for Phase 10 to overwrite after deep wire inspection
+- [Phase 09-oem-methodology-divergence-report]: Plan 09-02: dhu_divergence sibling package imports oem_vw_parser.sdp_decode as a library; SdpSnapshot field is .services not .channels (Rule 3 fix); reshape to {channel_id, channel_kind, config} dicts to share Phase 7 sdp-values.json shape; oem_vw_parser/ remains untouched (verified via git status --porcelain)
+- [Phase 09-oem-methodology-divergence-report]: Plan 09-02: All 4 DHU SDP baselines are byte-identical (single sha256 a4f2bc3465..., 844 bytes each, 14 channels / 8 distinct kinds); merge logic handles the degenerate union gracefully — every kind gets all 4 baseline names in kinds_to_baselines provenance
+- [Phase 09-oem-methodology-divergence-report]: Plan 09-02: Live attribution result matches research preview exactly — bluetooth_channel + wifi_channel attributed oem (new_in_16_4 empty); vendor_extension_channel attributed ambiguous (no removed_in_16_4 substring match); summary by_attribution = {version: 0, oem: 2, ambiguous: 1}; live empirical snapshot tests lock these against future drift
+- [Phase 09-oem-methodology-divergence-report]: Plan 09-02: Substring matcher strips _channel suffix and underscores before delta lookup — service strings (channel_kind format) and delta entries (proto message names) don't line up 1:1, so loose substring containment is the realistic matcher; empty needle short-circuits to False; design lets version attribution fire automatically once Phase 8 starts populating new_in_16_4
 
 ### Pending Todos
 
@@ -124,6 +128,6 @@ Phase 8 plan 02 execution decisions (2026-04-08):
 
 ## Session Continuity
 
-Last session: 2026-04-09T12:15:42.950Z
-Stopped at: Completed 09-01-PLAN.md -- Platinum tier strictly above Gold, 8+4 MATCH/NOMATCH rules, TIER-05 non-claim doc, cross_link_walker inserted callouts into 5 channel docs, first Gold→Platinum promotion (VideoFocusRequestMessage citing MATCH-08)
+Last session: 2026-04-09T12:30:22.155Z
+Stopped at: Completed 09-02-PLAN.md -- Phase 9 COMPLETE; Plan 09-02 (dhu_divergence report) shipped: bluetooth+wifi VW-only attributed oem, vendor_extension DHU-only attributed ambiguous; 12 new tests green; oem_vw_parser untouched; Phase 10 unblocked
 Resume file: None
