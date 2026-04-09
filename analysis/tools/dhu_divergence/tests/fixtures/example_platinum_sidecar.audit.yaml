@@ -1,0 +1,34 @@
+proto: oaa/_fixtures/_ExampleFixtureProto.proto
+message: ExampleFixtureMessage
+confidence: platinum
+platinum_scope: single_oem
+last_updated: '2026-04-09'
+evidence:
+  - type: apk_static
+    method: proto_access
+    source: fixture
+    date: '2026-04-09'
+    description: Fixture apk_static evidence.
+  - type: cross_version
+    method: structural_comparison
+    source: fixture cross-version
+    date: '2026-04-09'
+    description: Fixture cross-version evidence.
+  - type: platinum_evidence
+    source: captures/oem-vw-mib3oi-2026-04-06/messages.jsonl
+    date: '2026-04-09'
+    description: Fixture platinum_evidence demonstrating schema shape.
+    capture_path: captures/oem-vw-mib3oi-2026-04-06/
+    vehicle_metadata:
+      make: Volkswagen
+      model: MIB3 OI
+      year: '2024'
+      aa_version: '16.4.661034'
+    msg_seq: [1]
+    ts_ms: [1000]
+    message_completeness: full
+    attribution_method: sdp_service_id
+    oem_scope: single
+    applicability: fields
+    fields: [1]
+    match_rules: [MATCH-01, MATCH-08]
