@@ -288,3 +288,91 @@ Do not assume the reader has access to your local environment, tools, or prior c
 - **What tier does my evidence produce?** Apply the promotion logic from [01-confidence-tiers.md](01-confidence-tiers.md).
 - **How do I record it?** Follow the YAML format in [02-audit-trail-format.md](02-audit-trail-format.md).
 - **Still unsure?** Raise the question in your PR. It is better to ask than to introduce ambiguity.
+
+---
+
+## 5. Platinum Evidence
+
+Platinum evidence is OEM wire capture confirmation applied to a sidecar that
+already has Gold prerequisites (deep-trace APK + cross-version). See
+[01-confidence-tiers.md](01-confidence-tiers.md) for the tier ladder and
+[05-oem-match-policy.md](05-oem-match-policy.md) for the `MATCH-*` rule IDs
+this procedure cites. See
+[06-capture-non-claim-boundary.md](06-capture-non-claim-boundary.md) for the
+5 surfaces Platinum evidence CANNOT validate.
+
+### Prerequisites
+
+A proto MUST be at `confidence: gold` BEFORE it can receive a
+`platinum_evidence` entry and be promoted to `confidence: platinum`. The
+promotion ladder is strict: Bronze → Silver → Gold → Platinum. Bronze/Silver
+protos that get matched in an OEM capture but lack Gold prerequisites
+receive the sidecar-level flag `oem_match_pending_gold: true` and wait for
+deep-trace analysis to land first.
+
+The walker that consumes the `oem_match_pending_gold` worklist lives in
+Phase 10.
+
+### Procedure
+
+1. **Verify the proto is already Gold.** Read the sidecar's `confidence:`
+   field. If it is `silver` or `bronze`, set `oem_match_pending_gold: true`
+   at the sidecar top level and stop — this proto is not eligible for
+   Platinum promotion yet.
+
+2. **Locate the proto in the OEM capture.** Use
+   `analysis/reports/oem-vw/coverage.json` and
+   `analysis/reports/oem-vw/msg-type-classification.json` to find the
+   `msg_seq` indices (positions in `messages.jsonl`) and OEM-01 labels for
+   the proto's messages.
+
+3. **Classify the observation per OEM-01.** Record the
+   `message_completeness` value from the OEM-01 taxonomy:
+   - `standalone` full payload → enables `MATCH-02`
+   - `reassembled` multi-fragment → enables `MATCH-03` (zero usage in v1.5)
+   - `continuation_or_garbage` → triggers `NOMATCH-04` instead; do NOT
+     promote
+   - `probable_first` / `unattributed` → insufficient for Platinum; stay at
+     Gold
+
+4. **Determine applicability.** Set `applicability: message` if the whole
+   message shape is confirmed, OR `applicability: fields` if only specific
+   fields were verified. `applicability: fields` requires a populated
+   `fields` list of field numbers or names; `applicability: message`
+   requires the `fields` key to be OMITTED (the schema enforces this).
+
+5. **Enumerate the satisfied MATCH rules.** Cross-reference
+   [05-oem-match-policy.md](05-oem-match-policy.md) and cite EVERY rule that
+   the observation satisfies. Cherry-picking a subset is not allowed. The
+   minimum honest citation when only SDP-level evidence is available is
+   `match_rules: [MATCH-08]`.
+
+6. **Add the `platinum_evidence` entry.** Append a new entry to the
+   sidecar's `evidence:` array. Required fields: `capture_path`,
+   `vehicle_metadata` (`make`/`model`/`year`/`aa_version`), `msg_seq`,
+   `ts_ms`, `message_completeness`, `attribution_method`, `oem_scope`,
+   `applicability`, and `match_rules`. If `applicability == fields`, include
+   the `fields` list. Do NOT modify or remove existing evidence entries —
+   the Platinum entry sits alongside the pre-existing Gold evidence.
+
+7. **Set the sidecar tier fields.** Change `confidence:` from `gold` to
+   `platinum` and add `platinum_scope: single_oem` at the sidecar top level.
+   Update `last_updated:` to today's date.
+
+8. **Validate against the schema.** Run
+   `jsonschema.validate(data, audit-schema)` against
+   `docs/verification/audit-schema.json`. The schema enforces: `confidence:
+   platinum` requires `platinum_scope`; `type: platinum_evidence` requires
+   all 10 scope fields; `applicability: fields` requires the `fields` list;
+   `applicability: message` forbids the `fields` list; `match_rules` rejects
+   unknown IDs, duplicates, and empty lists.
+
+### Worked examples
+
+Worked examples land in Phase 10 after the first batch of real Platinum
+promotions are produced. See `.planning/phases/10-gold-tier-promotion-walk/`
+for the Phase 10 plan artifacts. Phase 9 Plan 01 committed one reference
+example: `oaa/video/VideoFocusRequestMessage.audit.yaml`, promoted from
+Gold to Platinum with a single-OEM `MATCH-08` (SDP descriptor match)
+citation. Phase 10 will extend that entry with the real `msg_seq` /
+`ts_ms` indices after deep inspection of `messages.jsonl`.

@@ -25,9 +25,11 @@ In practice, most proto files define a single message. Keep it simple -- use `fi
 |-------|----------|------|-------------|
 | `proto` | Yes | string | Relative path to the `.proto` file from the repo root. Must match pattern `oaa/*.proto`. |
 | `message` | Yes | string | Primary message name defined in this proto file. |
-| `confidence` | Yes | string | Current overall tier: `unverified`, `bronze`, `silver`, or `gold`. Lowercase. |
+| `confidence` | Yes | string | Current overall tier: `unverified`, `bronze`, `silver`, `gold`, `platinum`, or `retracted`. Lowercase. See [01-confidence-tiers.md](01-confidence-tiers.md) for the full tier ladder and retracted-state semantics. |
 | `evidence` | No | list | Ordered list of evidence entries. Defaults to empty list `[]`. |
 | `fields` | No | map | Per-field overrides. Keys are field names, values are override objects. |
+| `platinum_scope` | Conditional | string | `single_oem` or `multi_oem`. REQUIRED when `confidence: platinum`; omitted otherwise. See [01-confidence-tiers.md](01-confidence-tiers.md) for the single-OEM trap explanation. |
+| `oem_match_pending_gold` | No | bool | Phase 10 worklist flag — `true` if a Silver/Bronze proto was matched in an OEM capture but lacks Gold prerequisites. |
 
 ### Evidence Entry Fields
 
@@ -35,11 +37,21 @@ Each entry in the `evidence` list has these fields:
 
 | Field | Required | Type | Description |
 |-------|----------|------|-------------|
-| `type` | Yes | string | One of: `apk_static`, `dhu_observation`, `oem_capture`, `cross_version`. |
+| `type` | Yes | string | One of: `apk_static`, `dhu_observation`, `oem_capture`, `cross_version`, `platinum_evidence`, `deep_trace`, `apk_deep_trace`. See [01-confidence-tiers.md](01-confidence-tiers.md) and [05-oem-match-policy.md](05-oem-match-policy.md) for Platinum/Gold evidence semantics. |
 | `method` | No | string | Sub-method tag (free-form). See [03-verification-procedures.md](03-verification-procedures.md) for suggested values. |
 | `source` | Yes | string | Human-readable source reference. Include enough detail to locate the raw material (APK version, tool, class name, DHU version, config, etc.). |
 | `date` | Yes | string | ISO 8601 date (`YYYY-MM-DD`) when the evidence was gathered. |
 | `description` | Yes | string | What was found and how. Should be self-contained -- a reader should understand the finding without needing external context. |
+
+> **Platinum evidence entries** additionally carry 10 scope fields:
+> `capture_path`, `vehicle_metadata`, `msg_seq`, `ts_ms`,
+> `message_completeness`, `attribution_method`, `oem_scope`, `applicability`,
+> optional `fields` list, and `match_rules` (closed enum of `MATCH-*` rule
+> IDs). See [01-confidence-tiers.md](01-confidence-tiers.md) for the
+> Platinum tier semantics and [05-oem-match-policy.md](05-oem-match-policy.md)
+> for the rule IDs. Phase 9 added the retracted tier and the Platinum tier;
+> [03-verification-procedures.md](03-verification-procedures.md) describes
+> the platinum_evidence authoring procedure.
 
 ### Field Override Object
 
@@ -47,7 +59,7 @@ Each entry in the `fields` map has these fields:
 
 | Field | Required | Type | Description |
 |-------|----------|------|-------------|
-| `confidence` | Yes | string | Tier for this specific field: `unverified`, `bronze`, `silver`, or `gold`. |
+| `confidence` | Yes | string | Tier for this specific field: `unverified`, `bronze`, `silver`, `gold`, `platinum`, or `retracted`. |
 | `evidence` | No | list | Evidence entries specific to this field (same structure as top-level evidence). |
 | `notes` | No | string | Free-form notes about this field's verification status. |
 
