@@ -40,13 +40,74 @@
         "$ref": "#/$defs/field_override"
       },
       "description": "Per-field overrides when a specific field's confidence differs from the message level."
+    },
+    "platinum_scope": {
+      "type": "string",
+      "enum": ["single_oem", "multi_oem"],
+      "description": "Phase 9+ \u2014 REQUIRED when confidence=platinum. Values: single_oem (v1.5 default, one OEM capture), multi_oem (v2+ reserved for multi-OEM corroboration)."
+    },
+    "oem_match_pending_gold": {
+      "type": "boolean",
+      "description": "Phase 9+ \u2014 Phase 10 worklist flag. True if a Silver/Bronze proto was matched in an OEM capture but lacks deep-trace Gold prerequisites. Cannot be promoted to Platinum until Gold is earned."
+    },
+    "wire_msg_id": {
+      "type": ["string", "integer"],
+      "description": "Legacy field carried by pre-Phase-9 Gold sidecars \u2014 wire-level msg_type identifier (hex string or int). Phase 9 whitelists for backward compatibility."
+    },
+    "direction": {
+      "type": "string",
+      "description": "Legacy field carried by pre-Phase-9 Gold sidecars \u2014 directional binding (e.g. HU->Phone, Phone->HU, bidir)."
+    },
+    "channel": {
+      "type": "string",
+      "description": "Legacy field carried by pre-Phase-9 Gold sidecars \u2014 channel binding description."
+    },
+    "handler": {
+      "type": "string",
+      "description": "Legacy field carried by pre-Phase-9 Gold sidecars \u2014 handler class reference (e.g. ied.java m20258P)."
+    },
+    "class_mapping": {
+      "type": "object",
+      "description": "Legacy field carried by pre-Phase-9 Gold sidecars \u2014 obfuscated class mapping per APK version."
+    },
+    "retracted": {
+      "type": "boolean",
+      "description": "Legacy field carried by some retracted sidecars \u2014 redundant with confidence: retracted. Phase 9 whitelists for backward compatibility."
+    },
+    "retraction": {
+      "type": "object",
+      "description": "Legacy field carried by some retracted sidecars \u2014 structured retraction record (date, reason, evidence, corrections)."
+    },
+    "retraction_reason": {
+      "type": "string",
+      "description": "Legacy field carried by some retracted sidecars \u2014 free-form retraction explanation."
+    },
+    "replaced_by": {
+      "type": "string",
+      "description": "Legacy field carried by some retracted sidecars \u2014 path to the replacement proto definition."
+    },
+    "previous_evidence": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/evidence_entry"
+      },
+      "description": "Legacy field carried by some retracted sidecars \u2014 historical evidence list preserved for audit trail."
     }
   },
+  "allOf": [
+    {
+      "if": {
+        "properties": { "confidence": { "const": "platinum" } },
+        "required": ["confidence"]
+      },
+      "then": { "required": ["platinum_scope"] }
+    }
+  ],
   "$defs": {
     "confidence_tier": {
       "type": "string",
-      "enum": ["unverified", "bronze", "silver", "gold"],
-      "description": "Confidence tier: unverified (no evidence), bronze (single source), silver (2+ distinct types), gold (OEM capture)."
+      "enum": ["unverified", "bronze", "silver", "gold", "platinum", "retracted"],
+      "description": "Confidence tier: unverified (no evidence), bronze (single source), silver (2+ distinct types), gold (deep-trace APK + cross-version), platinum (Gold prerequisites + OEM wire capture), retracted (non-ordinal \u2014 previously promoted, then invalidated)."
     },
     "evidence_entry": {
       "type": "object",
@@ -55,8 +116,8 @@
       "properties": {
         "type": {
           "type": "string",
-          "enum": ["apk_static", "dhu_observation", "oem_capture", "cross_version"],
-          "description": "Evidence type — determines which methodology was used to gather this evidence."
+          "enum": ["apk_static", "dhu_observation", "oem_capture", "cross_version", "platinum_evidence", "apk_deep_trace", "deep_trace"],
+          "description": "Evidence type \u2014 determines which methodology was used to gather this evidence. apk_deep_trace and deep_trace are legacy Gold-tier evidence types retained for backward compatibility; platinum_evidence is the Phase 9+ OEM wire-capture evidence type."
         },
         "method": {
           "type": "string",
@@ -80,11 +141,11 @@
         "status": {
           "type": "string",
           "enum": ["consistent", "drift_detected", "unmappable_16_4", "unmappable_marker"],
-          "description": "Phase 8+ — status for cross-version evidence entries. Optional; omitted for pre-Phase-8 entries."
+          "description": "Phase 8+ \u2014 status for cross-version evidence entries. Optional; omitted for pre-Phase-8 entries."
         },
         "drift_issues": {
           "type": "array",
-          "description": "Phase 8+ — list of specific drift issues for drift_detected entries. Optional.",
+          "description": "Phase 8+ \u2014 list of specific drift issues for drift_detected entries. Optional.",
           "items": {
             "type": "object",
             "additionalProperties": false,
@@ -109,8 +170,115 @@
               }
             }
           }
+        },
+        "capture_path": {
+          "type": "string",
+          "pattern": "^captures/.+/$|^captures/.+/messages\\.jsonl$",
+          "description": "Phase 9+ platinum_evidence \u2014 relative path to the OEM capture directory or messages.jsonl file."
+        },
+        "vehicle_metadata": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["make", "model", "year", "aa_version"],
+          "properties": {
+            "make":       { "type": "string", "minLength": 1 },
+            "model":      { "type": "string", "minLength": 1 },
+            "year":       { "type": "string", "minLength": 1 },
+            "aa_version": { "type": "string", "minLength": 1 }
+          },
+          "description": "Phase 9+ platinum_evidence \u2014 vehicle + AA version provenance."
+        },
+        "msg_seq": {
+          "type": "array",
+          "items": { "type": "integer", "minimum": 0 },
+          "minItems": 1,
+          "description": "Phase 9+ platinum_evidence \u2014 list of message indices (into messages.jsonl) where this proto was observed."
+        },
+        "ts_ms": {
+          "type": "array",
+          "items": { "type": "integer", "minimum": 0 },
+          "minItems": 1,
+          "description": "Phase 9+ platinum_evidence \u2014 observation timestamps in ms relative to capture start."
+        },
+        "message_completeness": {
+          "type": "string",
+          "enum": ["first_only", "full", "reassembled"],
+          "description": "Phase 9+ platinum_evidence \u2014 wire-level payload completeness classification (OEM-01 taxonomy)."
+        },
+        "attribution_method": {
+          "type": "string",
+          "enum": ["sdp_service_id", "channel_namespace", "msg_type_fingerprint"],
+          "description": "Phase 9+ platinum_evidence \u2014 how the observation was attributed to this proto."
+        },
+        "oem_scope": {
+          "type": "string",
+          "enum": ["single", "multi"],
+          "description": "Phase 9+ platinum_evidence \u2014 OEM scope of this evidence entry (single = one OEM capture, multi = corroborated across multiple OEMs)."
+        },
+        "applicability": {
+          "type": "string",
+          "enum": ["message", "fields"],
+          "description": "Phase 9+ platinum_evidence \u2014 message-level confirmation (whole shape) vs field-level confirmation (specific fields)."
+        },
+        "fields": {
+          "type": "array",
+          "items": { "type": ["integer", "string"] },
+          "minItems": 1,
+          "description": "Phase 9+ platinum_evidence \u2014 list of confirmed field numbers or names. REQUIRED when applicability=fields; OMITTED when applicability=message."
+        },
+        "match_rules": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "MATCH-01", "MATCH-02", "MATCH-03", "MATCH-04",
+              "MATCH-05", "MATCH-06", "MATCH-07", "MATCH-08"
+            ]
+          },
+          "uniqueItems": true,
+          "minItems": 1,
+          "description": "Phase 9+ platinum_evidence \u2014 closed enum of MATCH-* rule IDs this evidence satisfies. See docs/verification/05-oem-match-policy.md for rule definitions. Empty list, duplicates, and unknown rule IDs are all rejected."
+        },
+        "nomatch_rules": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": ["NOMATCH-01", "NOMATCH-02", "NOMATCH-03", "NOMATCH-04"]
+          },
+          "uniqueItems": true,
+          "minItems": 1,
+          "description": "Phase 9+ platinum_evidence \u2014 closed enum of NOMATCH-* rule IDs this evidence cites (e.g., explicitly not-observed fields, ambiguous attribution). Optional."
         }
-      }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": { "type": { "const": "platinum_evidence" } },
+            "required": ["type"]
+          },
+          "then": {
+            "required": [
+              "capture_path", "vehicle_metadata", "msg_seq", "ts_ms",
+              "message_completeness", "attribution_method", "oem_scope",
+              "applicability", "match_rules"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": { "applicability": { "const": "fields" } },
+            "required": ["applicability"]
+          },
+          "then": { "required": ["fields"] }
+        },
+        {
+          "if": {
+            "properties": { "applicability": { "const": "message" } },
+            "required": ["applicability"]
+          },
+          "then": { "not": { "required": ["fields"] } }
+        }
+      ]
     },
     "field_override": {
       "type": "object",
