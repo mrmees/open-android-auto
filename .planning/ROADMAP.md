@@ -4,7 +4,7 @@
 
 v1.0 shipped the verification framework, seed import, cross-version tooling (15.9/16.1/16.2), connection lifecycle docs, and feature channel docs. v1.x patch work (retroactively logged as v1.1–v1.4) completed all 14 GAL channel verifications (196 Gold), SDP layer verification across 9 waves (112 Gold SDP), and pushed the validator decode rate to 100%.
 
-**v1.5's single most important outcome:** the VW MIB3 OI 2024 capture — the project's first OEM evidence source — moves a meaningful number of Silver protos to `Gold / single-OEM` status, rigorously scoped to the services the capture actually exercised, with no overclaim. Everything else in this milestone supports or runs alongside that goal.
+**v1.5's single most important outcome:** the VW MIB3 OI 2024 capture — the project's first OEM evidence source — moves a meaningful number of Silver protos to `Platinum / single-OEM` status, rigorously scoped to the services the capture actually exercised, with no overclaim. Everything else in this milestone supports or runs alongside that goal.
 
 The shape of the work flows naturally from that: retire the v1.x bookkeeping debt, analyze the VW capture on its own terms, fold APK 16.4 into the cross-version matrix so the Silver pool is as large as possible before promotion, land the schema/tier/policy/boundary groundwork that makes promotion honest, then walk every eligible Silver proto against the capture. A channel architecture reference and an audit report generator ride alongside once the Gold counts are nonzero.
 
@@ -38,7 +38,7 @@ Phase numbering continues from v1.0 (which shipped Phases 1-5). Decimal phases a
 - [x] **Phase 6: Historical Bookkeeping** — Retroactively log v1.1–v1.4 patch work in MILESTONES.md so the ledger reflects reality before the milestone proper begins (completed 2026-04-07)
 - [x] **Phase 7: VW Capture Analysis** (2/2 plans complete) — Parse the VW capture into per-msg-type / per-direction tables with fragment classification, extract production SDP values, build the coverage manifest that scopes later promotion work, and flag candidate OEM-only msg_types — completed 2026-04-08
 - [x] **Phase 8: 16.4 Cross-Version Validation** — Extend the consistency checker to 4 APK versions, fold 16.4 into sidecars, promote Bronze-across-4 to Silver, and document the manual-JADX reproducibility gap (completed 2026-04-08)
-- [x] **Phase 9: OEM Methodology & Divergence Report** — Extend audit sidecar schema for `oem_evidence`, split Gold into a visible scope dimension, publish the OEM match policy, document the VW capture's non-claim boundary, and produce the VW-vs-DHU divergence report (completed 2026-04-09)
+- [x] **Phase 9: OEM Methodology & Divergence Report** — Extend audit sidecar schema for `platinum_evidence`, split Gold into a visible scope dimension, publish the OEM match policy, document the VW capture's non-claim boundary, and produce the VW-vs-DHU divergence report (completed 2026-04-09)
 - [ ] **Phase 10: Gold-Tier Promotion Walk** — Walk every Silver proto in services observed by the VW capture, promote/retract/mark-unmatched per the match policy, and leave unobserved-service Silver protos untouched
 - [ ] **Phase 11: Channel Architecture Reference** — Publish the multiplexing/framing/service-binding/capability-negotiation reference doc with concrete VW vs DHU examples drawn from actual captures
 - [ ] **Phase 12: Audit Report Generator** — Coverage dashboard tool reading the audit trail, surfacing Bronze/Silver/Gold counts per channel, evidence-type breakdowns, and missing-sidecar lists
@@ -93,12 +93,12 @@ Plans:
 - [ ] 08-02-PLAN.md — Sidecar 16.4 evidence updates and Bronze→Silver promotion walk (XVER-03, XVER-04)
 
 ### Phase 9: OEM Methodology & Divergence Report
-**Goal**: The methodology surface required for honest OEM-evidence promotion exists — sidecar schema knows about `oem_evidence`, the Gold tier has a visible scope dimension rather than a buried caveat, the match policy is published, the VW capture's non-claim boundary is documented, and the VW-vs-DHU divergence report (with version-alignment notes) exists as a first-class artifact
+**Goal**: The methodology surface required for honest OEM-evidence promotion exists — sidecar schema knows about `platinum_evidence`, the Gold tier has a visible scope dimension rather than a buried caveat, the match policy is published, the VW capture's non-claim boundary is documented, and the VW-vs-DHU divergence report (with version-alignment notes) exists as a first-class artifact
 **Depends on**: Phase 7 (needs OEM-01..OEM-03 outputs for divergence scoping), Phase 8 (needs 16.4 context for version-alignment notes)
 **Requirements**: TIER-01, TIER-02, TIER-03, TIER-05, OEM-04
 **Success Criteria** (what must be TRUE):
-  1. Audit sidecar JSON Schema has an `oem_evidence` evidence type with scope fields: capture provenance (path, vehicle metadata, msg seq, ts_ms), message completeness (`first-only` / `full` / `reassembled`), service attribution method, OEM scope (`single` / `multi`), and field-level vs message-level applicability — schema validates, example sidecar passes
-  2. Gold tier is split into a visible scope dimension — `Gold / single-OEM` and (future) `Gold / multi-OEM` — reflected in sidecar metadata and all rendered confidence badges, not just buried in prose. Methodology doc explains the dimension and the single-OEM trap by name
+  1. Audit sidecar JSON Schema has a `platinum_evidence` evidence type with scope fields: capture provenance (path, vehicle metadata, msg seq, ts_ms), message completeness (`first-only` / `full` / `reassembled`), service attribution method, OEM scope (`single` / `multi`), and field-level vs message-level applicability — schema validates, example sidecar passes
+  2. Gold tier is split into a visible scope dimension — `Platinum / single-OEM` and (future) `Platinum / multi-OEM` — reflected in sidecar metadata and all rendered confidence badges, not just buried in prose. Methodology doc explains the dimension and the single-OEM trap by name
   3. OEM match policy is published in the methodology doc with explicit rules for what counts as a match (msg-level presence vs field-level confirmation vs enum value match vs repeat observation) and what does NOT count. Phase 10 promotions will cite these rule IDs
   4. Non-claim boundary for the VW capture is documented centrally — the on-phone hook lives inside the AA framing layer, so the capture cannot validate outer frame header semantics, `channel_id`, or `flags` behavior. Anywhere those surfaces are discussed, the boundary is cross-linked
   5. VW-vs-DHU SDP divergence report exists with version-alignment notes distinguishing 16.4-vs-older-APK differences from OEM-vs-DHU differences
@@ -113,16 +113,16 @@ Plans:
 **Depends on**: Phase 7 (coverage manifest, classified tables), Phase 8 (final Silver pool), Phase 9 (schema, policy, scope dimension, non-claim boundary)
 **Requirements**: TIER-04
 **Success Criteria** (what must be TRUE):
-  1. A promotion walk report exists listing every Silver proto in services/channels from the OEM-03 coverage manifest, with an explicit verdict for each: `promoted to Gold / single-OEM`, `retracted`, or `explicitly unmatched` (and why)
+  1. A promotion walk report exists listing every Silver proto in services/channels from the OEM-03 coverage manifest, with an explicit verdict for each: `promoted to Platinum / single-OEM`, `retracted`, or `explicitly unmatched` (and why)
   2. Each promotion entry cites the specific TIER-03 match policy rule that applied (msg-level presence, field confirmation, enum match, repeat observation)
-  3. Sidecars for every promoted proto have been updated with `oem_evidence` entries per the TIER-01 schema and their confidence badge reflects `Gold / single-OEM` per TIER-02
+  3. Sidecars for every promoted proto have been updated with `platinum_evidence` entries per the TIER-01 schema and their confidence badge reflects `Platinum / single-OEM` per TIER-02
   4. Silver protos in services the VW session never exercised appear in the report under a clearly-marked "unobserved — no claim either way" section and have NOT had their sidecars modified
   5. A Gold-counts delta exists before/after the walk, broken down by channel, so the milestone's headline outcome is measurable
 **Plans:** 2 plans
 
 Plans:
-- [ ] 10-01-PLAN.md — Promotion walk execution against observed-services Silver pool (TIER-04 walk)
-- [ ] 10-02-PLAN.md — Sidecar updates, Gold-count delta report, unmatched/unobserved reconciliation (TIER-04 wrap)
+- [ ] 10-01-PLAN.md — Schema migration (pending_platinum_evidence + corrections whitelist), ROADMAP terminology fix, promotion_walker package scaffold, 8 fixture sidecars, test stubs (TIER-04 Wave 1)
+- [ ] 10-02-PLAN.md — Walker implementation (index/verdict/rule_eval/report/run), live walker run with atomic per-sidecar commits, promotion-walk + worklist reports (TIER-04 Wave 2)
 
 ### Phase 11: Channel Architecture Reference
 **Goal**: A reader who has never touched the AA protocol can read one document and understand multiplexing, framing, fragmentation, direction semantics, channel→service binding via SDP, and capability negotiation — illustrated with concrete VW-vs-DHU examples drawn from real captures, not hand-waved theory
@@ -145,7 +145,7 @@ Plans:
 **Depends on**: Phase 10 (running it before the promotion walk would just show pre-walk Silver counts — the whole point is visualizing the new Gold distribution)
 **Requirements**: REPORT-01
 **Success Criteria** (what must be TRUE):
-  1. Coverage dashboard tool reads all audit sidecars and outputs a per-channel Bronze/Silver/Gold count table (plus `Gold / single-OEM` vs `Gold / multi-OEM` split where applicable)
+  1. Coverage dashboard tool reads all audit sidecars and outputs a per-channel Bronze/Silver/Gold/Platinum count table (plus `Platinum / single-OEM` vs `Platinum / multi-OEM` split where applicable)
   2. Tool breaks down evidence types per tier — static analysis, cross-version, DHU observation, OEM evidence — so the reader can see WHAT is driving each tier's population
   3. Tool surfaces a missing-sidecar list (proto files with no corresponding sidecar) so coverage gaps are visible
   4. Tool runs from the CLI with a single command and writes both machine-readable (JSON) and human-readable (Markdown) output

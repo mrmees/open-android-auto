@@ -1,0 +1,20 @@
+proto: oaa/media/CarLocalMediaPlaybackStatusMessage.proto
+message: CarLocalMediaPlaybackStatus
+confidence: gold
+last_updated: '2026-04-09'
+corrections:
+  - "Phase 7 verification note: service=20 car_local_media, handler=hyh.java"
+  - "Phase 9 review: MATCH-08 would apply if VW declared car_local_media in SDP"
+evidence:
+  - type: apk_static
+    source: analysis/aa-16.2/jadx-output/sources/p000/hyh.java
+    date: '2026-03-15'
+    description: "Handler hyh.java m20258P dispatches GAL type 20 (car_local_media) msg_type 0x8003 to CarLocalMediaPlaybackStatusMessage; fingerprint matches across 15.9/16.1/16.2/16.4"
+  - type: apk_deep_trace
+    source: analysis/aa-16.2/jadx-output/sources/p000/hyh.java
+    date: '2026-03-15'
+    description: "Deep trace: 4 fields (playback_state, position_ms, duration_ms, track_id); proto matches iav wire format exactly"
+  - type: cross_version
+    source: analysis/reports/cross-version/16-4-delta-report.json
+    date: '2026-04-08'
+    description: "Cross-version consistent across 15.9/16.1/16.2/16.4; no schema drift; confirmed via class_mapping.yaml"

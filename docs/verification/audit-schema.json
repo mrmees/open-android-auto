@@ -34,6 +34,22 @@
       },
       "description": "Ordered list of evidence entries supporting this claim. Empty for Unverified tier."
     },
+    "pending_platinum_evidence": {
+      "type": "array",
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/evidence_entry"
+      },
+      "description": "Phase 10+ \u2014 draft platinum_evidence entries for Silver/Bronze protos matched in VW capture but blocked from Platinum by the Gold-prerequisite rule. Walker writes these; future deep-trace work moves them to evidence[] when promoting."
+    },
+    "corrections": {
+      "type": "array",
+      "default": [],
+      "items": {
+        "type": "string"
+      },
+      "description": "Phase 10+ legacy field whitelist \u2014 top-level corrections array used by 5 existing oaa/media/ Gold sidecars (CarLocalMediaPlayback* + MediaPlayback{Status,Metadata}Message). Whitelisted (Option B) so those sidecars validate and can be walked for Platinum promotion. Semantics preserved unchanged from pre-Phase-10 data."
+    },
     "fields": {
       "type": "object",
       "additionalProperties": {
@@ -248,6 +264,13 @@
           "uniqueItems": true,
           "minItems": 1,
           "description": "Phase 9+ platinum_evidence \u2014 closed enum of NOMATCH-* rule IDs this evidence cites (e.g., explicitly not-observed fields, ambiguous attribution). Optional."
+        },
+        "corrections": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Phase 10+ legacy field whitelist \u2014 corrections array carried by some apk_deep_trace evidence entries from Phase 7 verification work. Lists corrections applied during proto verification. Whitelisted (Option B) so the 4 oaa/media/ Gold sidecars with this field validate and can be walked for Platinum promotion."
         }
       },
       "allOf": [
