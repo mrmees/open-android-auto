@@ -1,0 +1,758 @@
+{
+  "gold_counts_delta": {
+    "gold_after": 6,
+    "gold_before": 8,
+    "platinum_after": 3,
+    "platinum_before": 1,
+    "promotion_count": 2
+  },
+  "metadata": {
+    "capture_path": "captures/oem-vw-mib3oi-2026-04-06",
+    "capture_sha256": "b66645c9a8a55eb466e9edf00715441af1a135edc1de057756b01882d0130408",
+    "messages_jsonl_line_count": 7954,
+    "scope_dirs": [
+      "oaa/av",
+      "oaa/media",
+      "oaa/video",
+      "oaa/audio"
+    ],
+    "walker_run_date": "2026-04-11",
+    "walker_version": "10.02"
+  },
+  "nomatch_observations": [],
+  "pending_gold_flags": [
+    {
+      "channel_kind": "av_channel",
+      "contradiction_summary": null,
+      "current_tier": "silver",
+      "matched_rules": [
+        "MATCH-08"
+      ],
+      "message_completeness": "full",
+      "msg_seq": [
+        0
+      ],
+      "nomatch_rules": [],
+      "proto_message": "AudioConfig",
+      "sidecar_path": "oaa/audio/AudioConfigData.audit.yaml",
+      "skip_reason": null,
+      "ts_ms": [
+        0
+      ],
+      "verdict_kind": "flag_pending_gold"
+    },
+    {
+      "channel_kind": "av_channel",
+      "contradiction_summary": null,
+      "current_tier": "bronze",
+      "matched_rules": [
+        "MATCH-08"
+      ],
+      "message_completeness": "full",
+      "msg_seq": [
+        0
+      ],
+      "nomatch_rules": [],
+      "proto_message": "AudioFocusChannel",
+      "sidecar_path": "oaa/audio/AudioFocusChannelData.audit.yaml",
+      "skip_reason": null,
+      "ts_ms": [
+        0
+      ],
+      "verdict_kind": "flag_pending_gold"
+    },
+    {
+      "channel_kind": "av_channel",
+      "contradiction_summary": null,
+      "current_tier": "silver",
+      "matched_rules": [
+        "MATCH-08"
+      ],
+      "message_completeness": "full",
+      "msg_seq": [
+        0
+      ],
+      "nomatch_rules": [],
+      "proto_message": "AudioFocusRequest",
+      "sidecar_path": "oaa/audio/AudioFocusRequestMessage.audit.yaml",
+      "skip_reason": null,
+      "ts_ms": [
+        0
+      ],
+      "verdict_kind": "flag_pending_gold"
+    },
+    {
+      "channel_kind": "av_channel",
+      "contradiction_summary": null,
+      "current_tier": "silver",
+      "matched_rules": [
+        "MATCH-08"
+      ],
+      "message_completeness": "full",
+      "msg_seq": [
+        0
+      ],
+      "nomatch_rules": [],
+      "proto_message": "AudioFocusResponse",
+      "sidecar_path": "oaa/audio/AudioFocusResponseMessage.audit.yaml",
+      "skip_reason": null,
+      "ts_ms": [
+        0
+      ],
+      "verdict_kind": "flag_pending_gold"
+    },
+    {
+      "channel_kind": "av_channel",
+      "contradiction_summary": null,
+      "current_tier": "silver",
+      "matched_rules": [
+        "MATCH-08"
+      ],
+      "message_completeness": "full",
+      "msg_seq": [
+        0
+      ],
+      "nomatch_rules": [],
+      "proto_message": "AudioFocusState",
+      "sidecar_path": "oaa/audio/AudioFocusStateMessage.audit.yaml",
+      "skip_reason": null,
+      "ts_ms": [
+        0
+      ],
+      "verdict_kind": "flag_pending_gold"
+    },
+    {
+      "channel_kind": "av_channel",
+      "contradiction_summary": null,
+      "current_tier": "bronze",
+      "matched_rules": [
+        "MATCH-08"
+      ],
+      "message_completeness": "full",
+      "msg_seq": [
+        0
+      ],
+      "nomatch_rules": [],
+      "proto_message": "AudioStreamTypeEnum",
+      "sidecar_path": "oaa/audio/AudioStreamTypeEnum.audit.yaml",
+      "skip_reason": null,
+      "ts_ms": [
+        0
+      ],
+      "verdict_kind": "flag_pending_gold"
+    },
+    {
+      "channel_kind": "av_channel",
+      "contradiction_summary": null,
+      "current_tier": "silver",
+      "matched_rules": [
+        "MATCH-08"
+      ],
+      "message_completeness": "full",
+      "msg_seq": [
+        0
+      ],
+      "nomatch_rules": [],
+      "proto_message": "AudioStreamType",
+      "sidecar_path": "oaa/audio/AudioStreamTypeMessage.audit.yaml",
+      "skip_reason": null,
+      "ts_ms": [
+        0
+      ],
+      "verdict_kind": "flag_pending_gold"
+    },
+    {
+      "channel_kind": "av_channel",
+      "contradiction_summary": null,
+      "current_tier": "silver",
+      "matched_rules": [
+        "MATCH-08"
+      ],
+      "message_completeness": "full",
+      "msg_seq": [
+        0
+      ],
+      "nomatch_rules": [],
+      "proto_message": "AVChannel",
+      "sidecar_path": "oaa/av/AVChannelData.audit.yaml",
+      "skip_reason": null,
+      "ts_ms": [
+        0
+      ],
+      "verdict_kind": "flag_pending_gold"
+    },
+    {
+      "channel_kind": "av_channel",
+      "contradiction_summary": null,
+      "current_tier": "silver",
+      "matched_rules": [
+        "MATCH-08"
+      ],
+      "message_completeness": "full",
+      "msg_seq": [
+        0
+      ],
+      "nomatch_rules": [],
+      "proto_message": "AVChannelMediaConfig",
+      "sidecar_path": "oaa/av/AVChannelMediaConfigMessage.audit.yaml",
+      "skip_reason": null,
+      "ts_ms": [
+        0
+      ],
+      "verdict_kind": "flag_pending_gold"
+    },
+    {
+      "channel_kind": "av_channel",
+      "contradiction_summary": null,
+      "current_tier": "silver",
+      "matched_rules": [
+        "MATCH-08"
+      ],
+      "message_completeness": "full",
+      "msg_seq": [
+        0
+      ],
+      "nomatch_rules": [],
+      "proto_message": "AVChannelMediaStats",
+      "sidecar_path": "oaa/av/AVChannelMediaStatsMessage.audit.yaml",
+      "skip_reason": null,
+      "ts_ms": [
+        0
+      ],
+      "verdict_kind": "flag_pending_gold"
+    },
+    {
+      "channel_kind": "av_channel",
+      "contradiction_summary": null,
+      "current_tier": "silver",
+      "matched_rules": [
+        "MATCH-08"
+      ],
+      "message_completeness": "full",
+      "msg_seq": [
+        0
+      ],
+      "nomatch_rules": [],
+      "proto_message": "AVChannelSetupRequest",
+      "sidecar_path": "oaa/av/AVChannelSetupRequestMessage.audit.yaml",
+      "skip_reason": null,
+      "ts_ms": [
+        0
+      ],
+      "verdict_kind": "flag_pending_gold"
+    },
+    {
+      "channel_kind": "av_channel",
+      "contradiction_summary": null,
+      "current_tier": "silver",
+      "matched_rules": [
+        "MATCH-08"
+      ],
+      "message_completeness": "full",
+      "msg_seq": [
+        0
+      ],
+      "nomatch_rules": [],
+      "proto_message": "AVChannelSetupResponse",
+      "sidecar_path": "oaa/av/AVChannelSetupResponseMessage.audit.yaml",
+      "skip_reason": null,
+      "ts_ms": [
+        0
+      ],
+      "verdict_kind": "flag_pending_gold"
+    },
+    {
+      "channel_kind": "av_channel",
+      "contradiction_summary": null,
+      "current_tier": "silver",
+      "matched_rules": [
+        "MATCH-08"
+      ],
+      "message_completeness": "full",
+      "msg_seq": [
+        0
+      ],
+      "nomatch_rules": [],
+      "proto_message": "AVChannelStartIndication",
+      "sidecar_path": "oaa/av/AVChannelStartIndicationMessage.audit.yaml",
+      "skip_reason": null,
+      "ts_ms": [
+        0
+      ],
+      "verdict_kind": "flag_pending_gold"
+    },
+    {
+      "channel_kind": "av_channel",
+      "contradiction_summary": null,
+      "current_tier": "silver",
+      "matched_rules": [
+        "MATCH-08"
+      ],
+      "message_completeness": "full",
+      "msg_seq": [
+        0
+      ],
+      "nomatch_rules": [],
+      "proto_message": "AVInputChannel",
+      "sidecar_path": "oaa/av/AVInputChannelData.audit.yaml",
+      "skip_reason": null,
+      "ts_ms": [
+        0
+      ],
+      "verdict_kind": "flag_pending_gold"
+    },
+    {
+      "channel_kind": "av_channel",
+      "contradiction_summary": null,
+      "current_tier": "silver",
+      "matched_rules": [
+        "MATCH-08"
+      ],
+      "message_completeness": "full",
+      "msg_seq": [
+        0
+      ],
+      "nomatch_rules": [],
+      "proto_message": "AVInputOpenRequest",
+      "sidecar_path": "oaa/av/AVInputOpenRequestMessage.audit.yaml",
+      "skip_reason": null,
+      "ts_ms": [
+        0
+      ],
+      "verdict_kind": "flag_pending_gold"
+    },
+    {
+      "channel_kind": "av_channel",
+      "contradiction_summary": null,
+      "current_tier": "silver",
+      "matched_rules": [
+        "MATCH-08"
+      ],
+      "message_completeness": "full",
+      "msg_seq": [
+        0
+      ],
+      "nomatch_rules": [],
+      "proto_message": "AVInputOpenResponse",
+      "sidecar_path": "oaa/av/AVInputOpenResponseMessage.audit.yaml",
+      "skip_reason": null,
+      "ts_ms": [
+        0
+      ],
+      "verdict_kind": "flag_pending_gold"
+    },
+    {
+      "channel_kind": "av_channel",
+      "contradiction_summary": null,
+      "current_tier": "silver",
+      "matched_rules": [
+        "MATCH-08"
+      ],
+      "message_completeness": "full",
+      "msg_seq": [
+        0
+      ],
+      "nomatch_rules": [],
+      "proto_message": "AVMediaAckIndication",
+      "sidecar_path": "oaa/av/AVMediaAckIndicationMessage.audit.yaml",
+      "skip_reason": null,
+      "ts_ms": [
+        0
+      ],
+      "verdict_kind": "flag_pending_gold"
+    },
+    {
+      "channel_kind": "av_channel",
+      "contradiction_summary": null,
+      "current_tier": "silver",
+      "matched_rules": [
+        "MATCH-08"
+      ],
+      "message_completeness": "full",
+      "msg_seq": [
+        0
+      ],
+      "nomatch_rules": [],
+      "proto_message": "UpdateUiConfigRequest",
+      "sidecar_path": "oaa/av/UiConfigMessages.audit.yaml",
+      "skip_reason": null,
+      "ts_ms": [
+        0
+      ],
+      "verdict_kind": "flag_pending_gold"
+    },
+    {
+      "channel_kind": "av_channel",
+      "contradiction_summary": null,
+      "current_tier": "silver",
+      "matched_rules": [
+        "MATCH-08"
+      ],
+      "message_completeness": "full",
+      "msg_seq": [
+        0
+      ],
+      "nomatch_rules": [],
+      "proto_message": "AdditionalVideoConfig",
+      "sidecar_path": "oaa/video/AdditionalVideoConfigData.audit.yaml",
+      "skip_reason": null,
+      "ts_ms": [
+        0
+      ],
+      "verdict_kind": "flag_pending_gold"
+    },
+    {
+      "channel_kind": "av_channel",
+      "contradiction_summary": null,
+      "current_tier": "silver",
+      "matched_rules": [
+        "MATCH-08"
+      ],
+      "message_completeness": "full",
+      "msg_seq": [
+        0
+      ],
+      "nomatch_rules": [],
+      "proto_message": "VideoConfig",
+      "sidecar_path": "oaa/video/VideoConfigData.audit.yaml",
+      "skip_reason": null,
+      "ts_ms": [
+        0
+      ],
+      "verdict_kind": "flag_pending_gold"
+    },
+    {
+      "channel_kind": "av_channel",
+      "contradiction_summary": null,
+      "current_tier": "silver",
+      "matched_rules": [
+        "MATCH-08"
+      ],
+      "message_completeness": "full",
+      "msg_seq": [
+        0
+      ],
+      "nomatch_rules": [],
+      "proto_message": "VideoMargins",
+      "sidecar_path": "oaa/video/VideoMarginsData.audit.yaml",
+      "skip_reason": null,
+      "ts_ms": [
+        0
+      ],
+      "verdict_kind": "flag_pending_gold"
+    }
+  ],
+  "platinum_promotions": [
+    {
+      "channel_kind": "media_info_channel",
+      "contradiction_summary": null,
+      "current_tier": "gold",
+      "matched_rules": [
+        "MATCH-08"
+      ],
+      "message_completeness": "full",
+      "msg_seq": [
+        0
+      ],
+      "nomatch_rules": [],
+      "proto_message": "MediaPlaybackMetadata",
+      "sidecar_path": "oaa/media/MediaPlaybackMetadataMessage.audit.yaml",
+      "skip_reason": null,
+      "ts_ms": [
+        0
+      ],
+      "verdict_kind": "promote_to_platinum"
+    },
+    {
+      "channel_kind": "media_info_channel",
+      "contradiction_summary": null,
+      "current_tier": "gold",
+      "matched_rules": [
+        "MATCH-08"
+      ],
+      "message_completeness": "full",
+      "msg_seq": [
+        0
+      ],
+      "nomatch_rules": [],
+      "proto_message": "MediaPlaybackStatus",
+      "sidecar_path": "oaa/media/MediaPlaybackStatusMessage.audit.yaml",
+      "skip_reason": null,
+      "ts_ms": [
+        0
+      ],
+      "verdict_kind": "promote_to_platinum"
+    }
+  ],
+  "retraction_review_queue": [],
+  "skipped_sidecars": [
+    {
+      "channel_kind": null,
+      "contradiction_summary": null,
+      "current_tier": "superseded",
+      "matched_rules": [],
+      "message_completeness": null,
+      "msg_seq": [],
+      "nomatch_rules": [],
+      "proto_message": "CarLocalMediaPlayback",
+      "sidecar_path": "oaa/media/CarLocalMediaPlaybackEnum.audit.yaml",
+      "skip_reason": "confidence: superseded",
+      "ts_ms": [],
+      "verdict_kind": "skip_superseded"
+    },
+    {
+      "channel_kind": "car_local_media_channel",
+      "contradiction_summary": null,
+      "current_tier": "gold",
+      "matched_rules": [],
+      "message_completeness": null,
+      "msg_seq": [],
+      "nomatch_rules": [],
+      "proto_message": "CarLocalMediaPlaybackMetadata",
+      "sidecar_path": "oaa/media/CarLocalMediaPlaybackMetadataMessage.audit.yaml",
+      "skip_reason": "channel_kind_not_in_vw_sdp: car_local_media_channel",
+      "ts_ms": [],
+      "verdict_kind": "skip_out_of_sdp_scope"
+    },
+    {
+      "channel_kind": "car_local_media_channel",
+      "contradiction_summary": null,
+      "current_tier": "gold",
+      "matched_rules": [],
+      "message_completeness": null,
+      "msg_seq": [],
+      "nomatch_rules": [],
+      "proto_message": "CarLocalMediaPlaybackRequest",
+      "sidecar_path": "oaa/media/CarLocalMediaPlaybackRequestMessage.audit.yaml",
+      "skip_reason": "channel_kind_not_in_vw_sdp: car_local_media_channel",
+      "ts_ms": [],
+      "verdict_kind": "skip_out_of_sdp_scope"
+    },
+    {
+      "channel_kind": "car_local_media_channel",
+      "contradiction_summary": null,
+      "current_tier": "gold",
+      "matched_rules": [],
+      "message_completeness": null,
+      "msg_seq": [],
+      "nomatch_rules": [],
+      "proto_message": "CarLocalMediaPlaybackStatus",
+      "sidecar_path": "oaa/media/CarLocalMediaPlaybackStatusMessage.audit.yaml",
+      "skip_reason": "channel_kind_not_in_vw_sdp: car_local_media_channel",
+      "ts_ms": [],
+      "verdict_kind": "skip_out_of_sdp_scope"
+    },
+    {
+      "channel_kind": null,
+      "contradiction_summary": null,
+      "current_tier": "retracted",
+      "matched_rules": [],
+      "message_completeness": null,
+      "msg_seq": [],
+      "nomatch_rules": [],
+      "proto_message": "MediaPlaybackCommand",
+      "sidecar_path": "oaa/media/MediaPlaybackCommandMessage.audit.yaml",
+      "skip_reason": "confidence: retracted",
+      "ts_ms": [],
+      "verdict_kind": "skip_retracted"
+    },
+    {
+      "channel_kind": null,
+      "contradiction_summary": null,
+      "current_tier": "gold",
+      "matched_rules": [],
+      "message_completeness": null,
+      "msg_seq": [],
+      "nomatch_rules": [],
+      "proto_message": "MediaPlaybackStatusEvent",
+      "sidecar_path": "oaa/media/MediaPlaybackStatusEventMessage.audit.yaml",
+      "skip_reason": "pre_existing_invalid: Additional properties are not allowed ('notes' was unexpected)",
+      "ts_ms": [],
+      "verdict_kind": "skip_schema_invalid"
+    },
+    {
+      "channel_kind": null,
+      "contradiction_summary": null,
+      "current_tier": "retracted",
+      "matched_rules": [],
+      "message_completeness": null,
+      "msg_seq": [],
+      "nomatch_rules": [],
+      "proto_message": "MediaStatusList",
+      "sidecar_path": "oaa/media/MediaStatusListData.audit.yaml",
+      "skip_reason": "confidence: retracted",
+      "ts_ms": [],
+      "verdict_kind": "skip_retracted"
+    },
+    {
+      "channel_kind": null,
+      "contradiction_summary": null,
+      "current_tier": "retracted",
+      "matched_rules": [],
+      "message_completeness": null,
+      "msg_seq": [],
+      "nomatch_rules": [],
+      "proto_message": "MediaTrackIdentifier",
+      "sidecar_path": "oaa/media/MediaTrackIdentifierData.audit.yaml",
+      "skip_reason": "confidence: retracted",
+      "ts_ms": [],
+      "verdict_kind": "skip_retracted"
+    },
+    {
+      "channel_kind": "av_channel",
+      "contradiction_summary": null,
+      "current_tier": "gold",
+      "matched_rules": [],
+      "message_completeness": null,
+      "msg_seq": [],
+      "nomatch_rules": [],
+      "proto_message": "UiConfigRequest",
+      "sidecar_path": "oaa/video/UiConfigRequestMessage.audit.yaml",
+      "skip_reason": "static=True, cross_version=False",
+      "ts_ms": [],
+      "verdict_kind": "skip_missing_gold_prereq"
+    },
+    {
+      "channel_kind": null,
+      "contradiction_summary": null,
+      "current_tier": "gold",
+      "matched_rules": [],
+      "message_completeness": null,
+      "msg_seq": [],
+      "nomatch_rules": [],
+      "proto_message": "VideoFocusIndication",
+      "sidecar_path": "oaa/video/VideoFocusIndicationMessage.audit.yaml",
+      "skip_reason": "pre_existing_invalid: 'description' is a required property",
+      "ts_ms": [],
+      "verdict_kind": "skip_schema_invalid"
+    },
+    {
+      "channel_kind": null,
+      "contradiction_summary": null,
+      "current_tier": "retracted",
+      "matched_rules": [],
+      "message_completeness": null,
+      "msg_seq": [],
+      "nomatch_rules": [],
+      "proto_message": "VideoFocusMode",
+      "sidecar_path": "oaa/video/VideoFocusModeMessage.audit.yaml",
+      "skip_reason": "confidence: retracted",
+      "ts_ms": [],
+      "verdict_kind": "skip_retracted"
+    },
+    {
+      "channel_kind": null,
+      "contradiction_summary": null,
+      "current_tier": "retracted",
+      "matched_rules": [],
+      "message_completeness": null,
+      "msg_seq": [],
+      "nomatch_rules": [],
+      "proto_message": "VideoFocusNotification",
+      "sidecar_path": "oaa/video/VideoFocusNotificationMessage.audit.yaml",
+      "skip_reason": "confidence: retracted",
+      "ts_ms": [],
+      "verdict_kind": "skip_retracted"
+    },
+    {
+      "channel_kind": null,
+      "contradiction_summary": null,
+      "current_tier": "platinum",
+      "matched_rules": [],
+      "message_completeness": null,
+      "msg_seq": [],
+      "nomatch_rules": [],
+      "proto_message": "VideoFocusRequest",
+      "sidecar_path": "oaa/video/VideoFocusRequestMessage.audit.yaml",
+      "skip_reason": "already_platinum",
+      "ts_ms": [],
+      "verdict_kind": "skip_already_platinum"
+    }
+  ],
+  "summary": {
+    "by_kind": {
+      "contradiction_review": 0,
+      "flag_pending_gold": 21,
+      "nomatch_observation": 0,
+      "promote_to_platinum": 2,
+      "skip_already_platinum": 1,
+      "skip_missing_gold_prereq": 1,
+      "skip_out_of_sdp_scope": 3,
+      "skip_retracted": 5,
+      "skip_schema_invalid": 2,
+      "skip_superseded": 1
+    },
+    "gold_counts_delta": {
+      "gold_after": 6,
+      "gold_before": 8,
+      "platinum_after": 3,
+      "platinum_before": 1,
+      "promotion_count": 2
+    },
+    "pending_gold_flag_count": 21,
+    "skipped_count": 13,
+    "total_verdicts": 36
+  },
+  "unobserved_services": {
+    "oaa/bluetooth": {
+      "silver": 3,
+      "total": 3
+    },
+    "oaa/carcontrol": {
+      "gold": 2,
+      "total": 2
+    },
+    "oaa/common": {
+      "bronze": 1,
+      "silver": 4,
+      "total": 5
+    },
+    "oaa/control": {
+      "bronze": 1,
+      "gold": 2,
+      "silver": 24,
+      "total": 27
+    },
+    "oaa/generic": {
+      "bronze": 1,
+      "total": 1
+    },
+    "oaa/input": {
+      "gold": 13,
+      "silver": 4,
+      "total": 17
+    },
+    "oaa/mic": {
+      "gold": 1,
+      "total": 1
+    },
+    "oaa/navigation": {
+      "silver": 12,
+      "total": 12
+    },
+    "oaa/notification": {
+      "bronze": 1,
+      "total": 1
+    },
+    "oaa/phone": {
+      "gold": 3,
+      "total": 3
+    },
+    "oaa/radio": {
+      "silver": 1,
+      "total": 1
+    },
+    "oaa/sensor": {
+      "bronze": 3,
+      "silver": 34,
+      "total": 37
+    },
+    "oaa/wifi": {
+      "bronze": 1,
+      "gold": 2,
+      "retracted": 1,
+      "silver": 10,
+      "total": 14
+    }
+  }
+}
