@@ -1,16 +1,16 @@
 ---
 gsd_state_version: 1.0
-milestone: v1.5
+milestone: v1.0
 milestone_name: milestone
-status: Phase 9 COMPLETE. Both plans 09-01 (methodology surface) and 09-02 (dhu_divergence report, OEM-04) shipped. dhu-divergence.{md,json} live at analysis/reports/oem-vw/ with empirical preview locked: bluetooth+wifi VW-only attributed oem, vendor_extension DHU-only attributed ambiguous. 12 Plan 09-02 tests green (1 merge + 2 divergence + 3 attribution + 3 report + 3 live snapshot). Phase 8 baseline preserved at 334/1. oem_vw_parser/ untouched. Phase 10 (Gold promotion walk, TIER-04) is unblocked.
-stopped_at: "Completed 09-02-PLAN.md -- Phase 9 COMPLETE; Plan 09-02 (dhu_divergence report) shipped: bluetooth+wifi VW-only attributed oem, vendor_extension DHU-only attributed ambiguous; 12 new tests green; oem_vw_parser untouched; Phase 10 unblocked"
-last_updated: "2026-04-09T12:30:40.110Z"
+status: verifying
+stopped_at: Completed 10-01-PLAN.md -- schema migration (pending_platinum_evidence + corrections Option B), ROADMAP terminology fix, promotion_walker package scaffold with 6 source stubs + 8 test files + 11 fixtures; Plan 10-02 unblocked
+last_updated: "2026-04-11T15:39:42.329Z"
 last_activity: 2026-04-09 -- Phase 9 COMPLETE (both plans landed; OEM-04 dhu-divergence report shipped with empirical preview locked; oem_vw_parser untouched; Phase 10 unblocked)
 progress:
   total_phases: 7
   completed_phases: 4
-  total_plans: 12
-  completed_plans: 7
+  total_plans: 9
+  completed_plans: 8
   percent: 58
 ---
 
@@ -112,6 +112,8 @@ Phase 8 plan 02 execution decisions (2026-04-08):
 - [Phase 09-oem-methodology-divergence-report]: Plan 09-02: All 4 DHU SDP baselines are byte-identical (single sha256 a4f2bc3465..., 844 bytes each, 14 channels / 8 distinct kinds); merge logic handles the degenerate union gracefully — every kind gets all 4 baseline names in kinds_to_baselines provenance
 - [Phase 09-oem-methodology-divergence-report]: Plan 09-02: Live attribution result matches research preview exactly — bluetooth_channel + wifi_channel attributed oem (new_in_16_4 empty); vendor_extension_channel attributed ambiguous (no removed_in_16_4 substring match); summary by_attribution = {version: 0, oem: 2, ambiguous: 1}; live empirical snapshot tests lock these against future drift
 - [Phase 09-oem-methodology-divergence-report]: Plan 09-02: Substring matcher strips _channel suffix and underscores before delta lookup — service strings (channel_kind format) and delta entries (proto message names) don't line up 1:1, so loose substring containment is the realistic matcher; empty needle short-circuits to False; design lets version attribution fire automatically once Phase 8 starts populating new_in_16_4
+- [Phase 10]: Option B corrections whitelist applied at BOTH evidence_entry AND top-level scope (Rule 1 auto-fix: real sidecars carry corrections inside evidence entries, not at top level)
+- [Phase 10]: ROADMAP.md terminology fix spans all sections (not just Phase 10): 6 replacements of oem_evidence -> platinum_evidence and Gold / single-OEM -> Platinum / single-OEM across overview, Phase 9, Phase 10, and Phase 12 sections
 
 ### Pending Todos
 
@@ -128,6 +130,6 @@ Phase 8 plan 02 execution decisions (2026-04-08):
 
 ## Session Continuity
 
-Last session: 2026-04-09T12:30:22.155Z
-Stopped at: Completed 09-02-PLAN.md -- Phase 9 COMPLETE; Plan 09-02 (dhu_divergence report) shipped: bluetooth+wifi VW-only attributed oem, vendor_extension DHU-only attributed ambiguous; 12 new tests green; oem_vw_parser untouched; Phase 10 unblocked
+Last session: 2026-04-11T15:39:42.326Z
+Stopped at: Completed 10-01-PLAN.md -- schema migration (pending_platinum_evidence + corrections Option B), ROADMAP terminology fix, promotion_walker package scaffold with 6 source stubs + 8 test files + 11 fixtures; Plan 10-02 unblocked
 Resume file: None

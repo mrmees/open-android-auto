@@ -118,7 +118,7 @@ Plans:
   3. Sidecars for every promoted proto have been updated with `platinum_evidence` entries per the TIER-01 schema and their confidence badge reflects `Platinum / single-OEM` per TIER-02
   4. Silver protos in services the VW session never exercised appear in the report under a clearly-marked "unobserved — no claim either way" section and have NOT had their sidecars modified
   5. A Gold-counts delta exists before/after the walk, broken down by channel, so the milestone's headline outcome is measurable
-**Plans:** 2 plans
+**Plans:** 1/2 plans executed
 
 Plans:
 - [ ] 10-01-PLAN.md — Schema migration (pending_platinum_evidence + corrections whitelist), ROADMAP terminology fix, promotion_walker package scaffold, 8 fixture sidecars, test stubs (TIER-04 Wave 1)
@@ -173,6 +173,6 @@ Plans:
 | 7. VW Capture Analysis | v1.5 | 2/2 | Complete | 2026-04-08 |
 | 8. 16.4 Cross-Version Validation | 2/2 | Complete   | 2026-04-08 | — |
 | 9. OEM Methodology & Divergence Report | 2/2 | Complete   | 2026-04-09 | — |
-| 10. Gold-Tier Promotion Walk | v1.5 | 0/2 | Not started | — |
+| 10. Gold-Tier Promotion Walk | 1/2 | In Progress|  | — |
 | 11. Channel Architecture Reference | v1.5 | 0/2 | Not started | — |
 | 12. Audit Report Generator | v1.5 | 0/1 | Not started | — |
