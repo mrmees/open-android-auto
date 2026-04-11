@@ -1,0 +1,11 @@
+proto: oaa/media/FixtureMediaPlaybackCommandMessage.proto
+message: FixtureMediaPlaybackCommand
+confidence: retracted
+last_updated: '2026-04-09'
+retracted: true
+retraction_reason: "Fixture retracted sidecar: obfuscated name collision detected in cross-version pass"
+evidence:
+  - type: apk_static
+    source: analysis/aa-16.2/jadx-output/sources/p000/fixture.java
+    date: '2026-04-09'
+    description: "Fixture original evidence preserved as historical record"

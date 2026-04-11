@@ -1,0 +1,9 @@
+proto: oaa/video/FixtureUiConfigRequestMessage.proto
+message: FixtureUiConfigRequest
+confidence: gold
+last_updated: '2026-04-09'
+evidence:
+  - type: deep_trace
+    source: analysis/aa-16.2/jadx-output/sources/p000/fixture.java
+    date: '2026-04-09'
+    description: "Fixture Gold without cross_version: single deep_trace entry, no cross-version evidence -- triggers SKIP_MISSING_GOLD_PREREQ"

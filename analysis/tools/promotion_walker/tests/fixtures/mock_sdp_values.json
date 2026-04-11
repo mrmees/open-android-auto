@@ -1,0 +1,15 @@
+{
+  "directions": {"sdp_request.bin": "phone -> HU", "sdp_response.bin": "HU -> phone"},
+  "request": {},
+  "response": {
+    "head_unit_info": {
+      "head_unit_make": "Mock", "head_unit_model": "Mock",
+      "head_unit_software_version": "16.4.000000", "head_unit_software_build": "mock",
+      "make": "Mock", "model": "Mock", "year": "2024", "vehicle_id": "mock"
+    },
+    "channels": [
+      {"channel_id": 1, "channel_kind": "av_channel", "config": {}},
+      {"channel_id": 10, "channel_kind": "media_info_channel", "config": {}}
+    ]
+  }
+}

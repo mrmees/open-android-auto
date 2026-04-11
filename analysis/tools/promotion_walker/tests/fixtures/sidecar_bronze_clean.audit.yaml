@@ -1,0 +1,9 @@
+proto: oaa/audio/FixtureAudioFocusChannelData.proto
+message: FixtureAudioFocusChannel
+confidence: bronze
+last_updated: '2026-04-09'
+evidence:
+  - type: apk_static
+    source: analysis/aa-16.2/jadx-output/sources/p000/fixture.java
+    date: '2026-04-09'
+    description: "Fixture Bronze: single static evidence source"

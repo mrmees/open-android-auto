@@ -1,0 +1,14 @@
+{
+  "capture_id": "mock-capture",
+  "generated_date": "2026-04-09",
+  "observed": [
+    {"channel_id": 1, "service_type": "media_sink", "service": "av_channel",
+     "msg_types": [32771], "count_in": 946, "count_out": 1}
+  ],
+  "per_msg_type": [
+    {"msg_type": 32771, "direction": "out", "service": "av_channel", "count": 1},
+    {"msg_type": 32865, "direction": "out", "service": "av_channel", "count": 1}
+  ],
+  "gaps": {"intrinsic": [], "comparative": []},
+  "anomalies": {"unattributed": []}
+}

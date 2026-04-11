@@ -1,0 +1,35 @@
+proto: oaa/video/FixtureVideoFocusRequestMessage.proto
+message: FixtureVideoFocusRequest
+confidence: platinum
+platinum_scope: single_oem
+last_updated: '2026-04-09'
+evidence:
+  - type: apk_static
+    source: analysis/aa-16.2/jadx-output/sources/p000/fixture.java
+    date: '2026-04-09'
+    description: "Fixture already-Platinum: static evidence"
+  - type: apk_deep_trace
+    source: analysis/aa-16.2/jadx-output/sources/p000/fixture.java
+    date: '2026-04-09'
+    description: "Fixture already-Platinum: deep trace evidence"
+  - type: cross_version
+    source: analysis/reports/cross-version/fixture-delta.json
+    date: '2026-04-09'
+    description: "Fixture already-Platinum: cross-version consistent across 4 APK versions"
+  - type: platinum_evidence
+    source: captures/fixture-capture/messages.jsonl
+    date: '2026-04-09'
+    description: "Fixture already-Platinum: VW capture MATCH-08 SDP descriptor match"
+    capture_path: "captures/fixture-capture/"
+    vehicle_metadata:
+      make: Fixture
+      model: Fixture
+      year: '2024'
+      aa_version: '16.4.000000'
+    msg_seq: [0]
+    ts_ms: [0]
+    message_completeness: full
+    attribution_method: sdp_service_id
+    oem_scope: single
+    applicability: message
+    match_rules: [MATCH-08]

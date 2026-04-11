@@ -1,0 +1,13 @@
+proto: oaa/audio/FixtureAudioConfigData.proto
+message: FixtureAudioConfig
+confidence: silver
+last_updated: '2026-04-09'
+evidence:
+  - type: apk_static
+    source: analysis/aa-16.2/jadx-output/sources/p000/fixture.java
+    date: '2026-04-09'
+    description: "Fixture Silver: static field shape confirmed"
+  - type: cross_version
+    source: analysis/reports/cross-version/fixture-delta.json
+    date: '2026-04-09'
+    description: "Fixture Silver: consistent across 4 versions"

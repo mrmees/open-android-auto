@@ -1,0 +1,17 @@
+proto: oaa/media/FixtureMediaPlaybackStatusMessage.proto
+message: FixtureMediaPlaybackStatus
+confidence: gold
+last_updated: '2026-04-09'
+evidence:
+  - type: apk_static
+    source: analysis/aa-16.2/jadx-output/sources/p000/fixture.java
+    date: '2026-04-09'
+    description: "Fixture clean Gold: static handler dispatch confirms media_info msg_type 0x8001 binding"
+  - type: apk_deep_trace
+    source: analysis/aa-16.2/jadx-output/sources/p000/fixture.java
+    date: '2026-04-09'
+    description: "Fixture clean Gold: deep trace confirms 3 fields (status, position_ms, duration_ms); proto matches wire format"
+  - type: cross_version
+    source: analysis/reports/cross-version/fixture-delta.json
+    date: '2026-04-09'
+    description: "Fixture clean Gold: consistent across all 4 APK versions (15.9/16.1/16.2/16.4); no schema drift"
