@@ -1,7 +1,7 @@
 proto: oaa/audio/AudioStreamTypeEnum.proto
 message: AudioStreamTypeEnum
 confidence: bronze
-last_updated: '2026-04-08'
+last_updated: '2026-04-11'
 evidence:
 - type: apk_static
   method: bfs_trace
@@ -16,3 +16,26 @@ evidence:
   description: Unmappable in 16.4 (matcher found no candidate meeting structural fingerprint
     + field count match, or candidate was ambiguous).
   status: unmappable_16_4
+oem_match_pending_gold: true
+pending_platinum_evidence:
+- type: platinum_evidence
+  source: captures/oem-vw-mib3oi-2026-04-06/messages.jsonl
+  date: '2026-04-11'
+  description: 'VW MIB3 OI capture: MATCH-08 citation for av_channel. Phase 10 walker
+    verdict. See analysis/reports/oem-vw/promotion-walk.md.'
+  capture_path: captures/oem-vw-mib3oi-2026-04-06/
+  vehicle_metadata:
+    make: Volkswagen
+    model: MIB3 OI
+    year: '2024'
+    aa_version: 16.4.661034
+  msg_seq:
+  - 0
+  ts_ms:
+  - 0
+  message_completeness: full
+  attribution_method: sdp_service_id
+  oem_scope: single
+  applicability: message
+  match_rules:
+  - MATCH-08
