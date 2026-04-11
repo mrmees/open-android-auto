@@ -1,10 +1,10 @@
 {
   "gold_counts_delta": {
     "gold_after": 6,
-    "gold_before": 8,
+    "gold_before": 6,
     "platinum_after": 3,
-    "platinum_before": 1,
-    "promotion_count": 2
+    "platinum_before": 3,
+    "promotion_count": 0
   },
   "metadata": {
     "capture_path": "captures/oem-vw-mib3oi-2026-04-06",
@@ -442,48 +442,7 @@
       "verdict_kind": "flag_pending_gold"
     }
   ],
-  "platinum_promotions": [
-    {
-      "channel_kind": "media_info_channel",
-      "contradiction_summary": null,
-      "current_tier": "gold",
-      "matched_rules": [
-        "MATCH-08"
-      ],
-      "message_completeness": "full",
-      "msg_seq": [
-        0
-      ],
-      "nomatch_rules": [],
-      "proto_message": "MediaPlaybackMetadata",
-      "sidecar_path": "oaa/media/MediaPlaybackMetadataMessage.audit.yaml",
-      "skip_reason": null,
-      "ts_ms": [
-        0
-      ],
-      "verdict_kind": "promote_to_platinum"
-    },
-    {
-      "channel_kind": "media_info_channel",
-      "contradiction_summary": null,
-      "current_tier": "gold",
-      "matched_rules": [
-        "MATCH-08"
-      ],
-      "message_completeness": "full",
-      "msg_seq": [
-        0
-      ],
-      "nomatch_rules": [],
-      "proto_message": "MediaPlaybackStatus",
-      "sidecar_path": "oaa/media/MediaPlaybackStatusMessage.audit.yaml",
-      "skip_reason": null,
-      "ts_ms": [
-        0
-      ],
-      "verdict_kind": "promote_to_platinum"
-    }
-  ],
+  "platinum_promotions": [],
   "retraction_review_queue": [],
   "skipped_sidecars": [
     {
@@ -559,6 +518,20 @@
     {
       "channel_kind": null,
       "contradiction_summary": null,
+      "current_tier": "platinum",
+      "matched_rules": [],
+      "message_completeness": null,
+      "msg_seq": [],
+      "nomatch_rules": [],
+      "proto_message": "MediaPlaybackMetadata",
+      "sidecar_path": "oaa/media/MediaPlaybackMetadataMessage.audit.yaml",
+      "skip_reason": "already_platinum",
+      "ts_ms": [],
+      "verdict_kind": "skip_already_platinum"
+    },
+    {
+      "channel_kind": null,
+      "contradiction_summary": null,
       "current_tier": "gold",
       "matched_rules": [],
       "message_completeness": null,
@@ -569,6 +542,20 @@
       "skip_reason": "pre_existing_invalid: Additional properties are not allowed ('notes' was unexpected)",
       "ts_ms": [],
       "verdict_kind": "skip_schema_invalid"
+    },
+    {
+      "channel_kind": null,
+      "contradiction_summary": null,
+      "current_tier": "platinum",
+      "matched_rules": [],
+      "message_completeness": null,
+      "msg_seq": [],
+      "nomatch_rules": [],
+      "proto_message": "MediaPlaybackStatus",
+      "sidecar_path": "oaa/media/MediaPlaybackStatusMessage.audit.yaml",
+      "skip_reason": "already_platinum",
+      "ts_ms": [],
+      "verdict_kind": "skip_already_platinum"
     },
     {
       "channel_kind": null,
@@ -674,8 +661,8 @@
       "contradiction_review": 0,
       "flag_pending_gold": 21,
       "nomatch_observation": 0,
-      "promote_to_platinum": 2,
-      "skip_already_platinum": 1,
+      "promote_to_platinum": 0,
+      "skip_already_platinum": 3,
       "skip_missing_gold_prereq": 1,
       "skip_out_of_sdp_scope": 3,
       "skip_retracted": 5,
@@ -684,13 +671,13 @@
     },
     "gold_counts_delta": {
       "gold_after": 6,
-      "gold_before": 8,
+      "gold_before": 6,
       "platinum_after": 3,
-      "platinum_before": 1,
-      "promotion_count": 2
+      "platinum_before": 3,
+      "promotion_count": 0
     },
     "pending_gold_flag_count": 21,
-    "skipped_count": 13,
+    "skipped_count": 15,
     "total_verdicts": 36
   },
   "unobserved_services": {

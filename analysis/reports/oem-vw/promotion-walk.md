@@ -6,20 +6,17 @@
 
 ## Summary
 
-- **Gold-counts delta (in scope):** Gold 8 → 6; Platinum 1 → 3 (+2 promoted)
+- **Gold-counts delta (in scope):** Gold 6 → 6; Platinum 3 → 3 (+0 promoted)
 - **Total verdicts:** 36
-- **Platinum promotions:** 2
+- **Platinum promotions:** 0
 - **oem_match_pending_gold flags:** 21
-- **Skipped sidecars:** 13
+- **Skipped sidecars:** 15
 
 **Single-OEM trap reminder:** All promotions in this walk cite single-OEM VW MIB3 OI 2024 evidence. Every Platinum badge renders as `Platinum / single-OEM` per TIER-02. Multi-OEM corroboration is a v2 problem.
 
 ## Platinum promotions
 
-| Sidecar | Previous tier | Matched rules | msg_seq count |
-|---------|---------------|---------------|---------------|
-| `oaa/media/MediaPlaybackMetadataMessage.audit.yaml` | gold | MATCH-08 | 1 |
-| `oaa/media/MediaPlaybackStatusMessage.audit.yaml` | gold | MATCH-08 | 1 |
+_No promotions in this walk._
 
 ## oem_match_pending_gold (Silver + Bronze flagged)
 
@@ -66,7 +63,9 @@ _No contradictions surfaced in this walk._
 | `oaa/media/CarLocalMediaPlaybackRequestMessage.audit.yaml` | skip_out_of_sdp_scope | channel_kind_not_in_vw_sdp: car_local_media_channel |
 | `oaa/media/CarLocalMediaPlaybackStatusMessage.audit.yaml` | skip_out_of_sdp_scope | channel_kind_not_in_vw_sdp: car_local_media_channel |
 | `oaa/media/MediaPlaybackCommandMessage.audit.yaml` | skip_retracted | confidence: retracted |
+| `oaa/media/MediaPlaybackMetadataMessage.audit.yaml` | skip_already_platinum | already_platinum |
 | `oaa/media/MediaPlaybackStatusEventMessage.audit.yaml` | skip_schema_invalid | pre_existing_invalid: Additional properties are not allowed ('notes' was unexpected) |
+| `oaa/media/MediaPlaybackStatusMessage.audit.yaml` | skip_already_platinum | already_platinum |
 | `oaa/media/MediaStatusListData.audit.yaml` | skip_retracted | confidence: retracted |
 | `oaa/media/MediaTrackIdentifierData.audit.yaml` | skip_retracted | confidence: retracted |
 | `oaa/video/UiConfigRequestMessage.audit.yaml` | skip_missing_gold_prereq | static=True, cross_version=False |
