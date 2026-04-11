@@ -39,7 +39,7 @@ Phase numbering continues from v1.0 (which shipped Phases 1-5). Decimal phases a
 - [x] **Phase 7: VW Capture Analysis** (2/2 plans complete) — Parse the VW capture into per-msg-type / per-direction tables with fragment classification, extract production SDP values, build the coverage manifest that scopes later promotion work, and flag candidate OEM-only msg_types — completed 2026-04-08
 - [x] **Phase 8: 16.4 Cross-Version Validation** — Extend the consistency checker to 4 APK versions, fold 16.4 into sidecars, promote Bronze-across-4 to Silver, and document the manual-JADX reproducibility gap (completed 2026-04-08)
 - [x] **Phase 9: OEM Methodology & Divergence Report** — Extend audit sidecar schema for `platinum_evidence`, split Gold into a visible scope dimension, publish the OEM match policy, document the VW capture's non-claim boundary, and produce the VW-vs-DHU divergence report (completed 2026-04-09)
-- [ ] **Phase 10: Gold-Tier Promotion Walk** — Walk every Silver proto in services observed by the VW capture, promote/retract/mark-unmatched per the match policy, and leave unobserved-service Silver protos untouched
+- [x] **Phase 10: Gold-Tier Promotion Walk** — Walk every Silver proto in services observed by the VW capture, promote/retract/mark-unmatched per the match policy, and leave unobserved-service Silver protos untouched (completed 2026-04-11)
 - [ ] **Phase 11: Channel Architecture Reference** — Publish the multiplexing/framing/service-binding/capability-negotiation reference doc with concrete VW vs DHU examples drawn from actual captures
 - [ ] **Phase 12: Audit Report Generator** — Coverage dashboard tool reading the audit trail, surfacing Bronze/Silver/Gold counts per channel, evidence-type breakdowns, and missing-sidecar lists
 
@@ -118,7 +118,7 @@ Plans:
   3. Sidecars for every promoted proto have been updated with `platinum_evidence` entries per the TIER-01 schema and their confidence badge reflects `Platinum / single-OEM` per TIER-02
   4. Silver protos in services the VW session never exercised appear in the report under a clearly-marked "unobserved — no claim either way" section and have NOT had their sidecars modified
   5. A Gold-counts delta exists before/after the walk, broken down by channel, so the milestone's headline outcome is measurable
-**Plans:** 1/2 plans executed
+**Plans:** 2/2 plans complete
 
 Plans:
 - [ ] 10-01-PLAN.md — Schema migration (pending_platinum_evidence + corrections whitelist), ROADMAP terminology fix, promotion_walker package scaffold, 8 fixture sidecars, test stubs (TIER-04 Wave 1)
@@ -173,6 +173,6 @@ Plans:
 | 7. VW Capture Analysis | v1.5 | 2/2 | Complete | 2026-04-08 |
 | 8. 16.4 Cross-Version Validation | 2/2 | Complete   | 2026-04-08 | — |
 | 9. OEM Methodology & Divergence Report | 2/2 | Complete   | 2026-04-09 | — |
-| 10. Gold-Tier Promotion Walk | 1/2 | In Progress|  | — |
+| 10. Gold-Tier Promotion Walk | 2/2 | Complete   | 2026-04-11 | — |
 | 11. Channel Architecture Reference | v1.5 | 0/2 | Not started | — |
 | 12. Audit Report Generator | v1.5 | 0/1 | Not started | — |

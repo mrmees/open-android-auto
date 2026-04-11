@@ -3,15 +3,15 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: verifying
-stopped_at: Completed 10-01-PLAN.md -- schema migration (pending_platinum_evidence + corrections Option B), ROADMAP terminology fix, promotion_walker package scaffold with 6 source stubs + 8 test files + 11 fixtures; Plan 10-02 unblocked
-last_updated: "2026-04-11T15:39:42.329Z"
-last_activity: 2026-04-09 -- Phase 9 COMPLETE (both plans landed; OEM-04 dhu-divergence report shipped with empirical preview locked; oem_vw_parser untouched; Phase 10 unblocked)
+stopped_at: Completed 10-02-PLAN.md -- PHASE 10 COMPLETE. Promotion walker shipped 2 Platinum promotions + 21 oem_match_pending_gold flags + 4 report files + 42 tests. Gold 8->6, Platinum 1->3. Phase 11 unblocked.
+last_updated: "2026-04-11T15:51:50Z"
+last_activity: 2026-04-11 -- Phase 10 COMPLETE (both plans landed; Gold-counts delta Gold 8->6, Platinum 1->3; promotion walker byte-idempotent; oem_vw_parser untouched; Phase 11 + 12 unblocked)
 progress:
   total_phases: 7
-  completed_phases: 4
+  completed_phases: 5
   total_plans: 9
-  completed_plans: 8
-  percent: 58
+  completed_plans: 9
+  percent: 67
 ---
 
 # Project State
@@ -25,12 +25,12 @@ See: .planning/PROJECT.md (updated 2026-04-07)
 
 ## Current Position
 
-Phase: 9 (OEM Methodology & Divergence Report) -- COMPLETE
-Plan: 09-01 -- COMPLETE; 09-02 -- COMPLETE
-Status: PHASE 9 COMPLETE. Plan 09-02 (VW-vs-DHU SDP divergence report, OEM-04) shipped: new sibling package analysis/tools/dhu_divergence/ with 5 implementation modules (baseline_merge, divergence, attribution, report, run) imports oem_vw_parser.sdp_decode as a library function and reshapes SdpSnapshot.services tuple into Phase 7 channel-dict shape. NO modifications to oem_vw_parser/ — import-not-fork discipline preserved (verified via git status --porcelain). Live divergence report at analysis/reports/oem-vw/dhu-divergence.{md,json} matches research preview exactly: services_in_vw_but_not_dhu = [bluetooth_channel, wifi_channel] (both attributed oem); services_in_dhu_but_not_vw = [vendor_extension_channel] (attributed ambiguous); summary by_attribution = {version: 0, oem: 2, ambiguous: 1}. All 4 DHU SDP baselines confirmed byte-identical (single sha256 a4f2bc3465..., 844 bytes each, 14 channels / 8 distinct kinds). 12 new tests all green (1 merge + 2 divergence + 3 attribution + 3 report + 3 live snapshot). Phase 8 baseline held at 334 passed / 1 pre-existing failure (NavigationDistanceMessage). 8 locked markdown section headers and 9 locked JSON top-level keys both verified. Metadata block carries sha256 hashes for all 4 DHU SDP files + Phase 8 delta report (5 hashes total). Phase 10 (Gold promotion walk, TIER-04) is unblocked: dhu-divergence.json gives it the OEM candidate scoping, the migrated schema accepts platinum_evidence entries, 05-oem-match-policy.md defines the rule IDs, and VideoFocusRequestMessage is the reference platinum-promotion shape.
-Last activity: 2026-04-09 -- Phase 9 COMPLETE (both plans landed; OEM-04 dhu-divergence report shipped with empirical preview locked; oem_vw_parser untouched; Phase 10 unblocked)
+Phase: 10 (Gold-Tier Promotion Walk) -- COMPLETE
+Plan: 10-01 -- COMPLETE; 10-02 -- COMPLETE
+Status: PHASE 10 COMPLETE. Plan 10-02 (promotion walker implementation, TIER-04 milestone headline) shipped: new sibling package analysis/tools/promotion_walker/ with 5 implementation modules (index, verdict, rule_eval, report, run). Live walker run against VW MIB3 OI capture produced 36 verdicts: 2 Gold->Platinum promotions (MediaPlaybackStatusMessage + MediaPlaybackMetadataMessage, both MATCH-08), 21 oem_match_pending_gold flags on Silver/Bronze in-scope sidecars, 3 CarLocalMediaPlayback* out-of-SDP-scope skips, 1 already-Platinum skip (VideoFocusRequestMessage), 5 retracted skips, 1 superseded skip, 1 missing-Gold-prereq skip, 2 schema-invalid skips. Gold-counts delta: Gold 8->6, Platinum 1->3 (+2 promoted). Walker is byte-idempotent on real oaa/ tree. 42 tests all green. Phase 8 baseline held at 334 passed / 1 pre-existing failure. NO modifications to oem_vw_parser/ -- import-not-fork discipline preserved. Reports at analysis/reports/oem-vw/promotion-walk.{md,json} + oem-match-pending-gold-worklist.{md,json}. Phase 11 (channel architecture) and Phase 12 (audit dashboard) unblocked.
+Last activity: 2026-04-11 -- Phase 10 COMPLETE (both plans landed; Gold 8->6, Platinum 1->3; promotion walker byte-idempotent; Phase 11 + 12 unblocked)
 
-Progress: [███████░░░] 58% (7/12 v1.5 plans complete)
+Progress: [████████░░] 67% (9/12 v1.5 plans complete)
 
 ## Accumulated Context
 
@@ -114,12 +114,16 @@ Phase 8 plan 02 execution decisions (2026-04-08):
 - [Phase 09-oem-methodology-divergence-report]: Plan 09-02: Substring matcher strips _channel suffix and underscores before delta lookup — service strings (channel_kind format) and delta entries (proto message names) don't line up 1:1, so loose substring containment is the realistic matcher; empty needle short-circuits to False; design lets version attribution fire automatically once Phase 8 starts populating new_in_16_4
 - [Phase 10]: Option B corrections whitelist applied at BOTH evidence_entry AND top-level scope (Rule 1 auto-fix: real sidecars carry corrections inside evidence entries, not at top level)
 - [Phase 10]: ROADMAP.md terminology fix spans all sections (not just Phase 10): 6 replacements of oem_evidence -> platinum_evidence and Gold / single-OEM -> Platinum / single-OEM across overview, Phase 9, Phase 10, and Phase 12 sections
+- [Phase 10]: Plan 10-02: Promotion walker uses directory-based channel binding (oaa/av/ -> av_channel, oaa/media/ -> media_info_channel) with KNOWN_CAR_LOCAL_MEDIA_PROTOS override; no per-sidecar channel metadata needed
+- [Phase 10]: Plan 10-02: MATCH-08 is the only rule that fires in Phase 10 -- no wire-level msg_type observations map to in-scope proto message names in coverage.json; all 2 promotions + 21 flags cite MATCH-08 alone
+- [Phase 10]: Plan 10-02: Gold-counts delta headline: Gold 8->6, Platinum 1->3 (+2 promoted). Single-OEM trap named in report. 3 CarLocalMediaPlayback* stay Gold (skipped for out-of-SDP-scope, not contradicted)
+- [Phase 10]: Plan 10-02: Walker byte-idempotent on real oaa/ tree -- second run routes 2 promoted sidecars to skip_already_platinum (3 total), content_hash dedupe prevents re-appending pending_platinum_evidence on 21 flagged sidecars
 
 ### Pending Todos
 
-- Phase 9 (divergence report) — REQUIRES BOTH Phase 7 and Phase 8 outputs. Reads analysis/reports/oem-vw/coverage.json + sdp-values.json + candidate-oem-only-msg-types.json from Phase 7 AND analysis/reports/cross-version/16-4-delta-report.json from Phase 8 (now with the populated promoted_bronze_to_silver key). Schema migration in Plan 08-02 lets Phase 9 add oem_evidence fields using the same "explicit whitelist under additionalProperties: false" pattern.
-- Phase 10 (Gold promotion walk, TIER-04) — gated on Phase 9. Reads coverage.json.observed[] to scope which Silver protos can be promoted. Override mechanism enforced via coverage.validate_override(). Silver pool is unchanged at 111 after Phase 8 (expected — the headline 0-promotion result stands). The strict is_eligible_for_silver rule from Plan 08-02 is reusable as a template for is_eligible_for_gold.
-- Housekeeping (deferred, not blocking): clean up 35 pre-existing schema-invalid sidecars under oaa/ (changes_applied, class_15_9/class_16_1/class_16_2, msg_id, deep_trace method, superseded confidence — logged to analysis/reports/cross-version/skipped-sidecars.md). Not in scope for Phase 9 or 10 unless the schema evolves to accept these fields.
+- Phase 11 (channel architecture reference, ARCH-04) -- reads promotion-walk.json for VW-vs-DHU examples. Unblocked by Phase 10.
+- Phase 12 (audit dashboard, REPORT-01) -- reads promotion-walk.json for Gold/Platinum counts by channel. Unblocked by Phase 10.
+- Housekeeping (deferred, not blocking): clean up 35 pre-existing schema-invalid sidecars under oaa/ (changes_applied, class_15_9/class_16_1/class_16_2, msg_id, deep_trace method, superseded confidence -- logged to analysis/reports/cross-version/skipped-sidecars.md). Not in scope for Phase 10 unless the schema evolves to accept these fields.
 
 ### Blockers/Concerns
 
@@ -130,6 +134,6 @@ Phase 8 plan 02 execution decisions (2026-04-08):
 
 ## Session Continuity
 
-Last session: 2026-04-11T15:39:42.326Z
-Stopped at: Completed 10-01-PLAN.md -- schema migration (pending_platinum_evidence + corrections Option B), ROADMAP terminology fix, promotion_walker package scaffold with 6 source stubs + 8 test files + 11 fixtures; Plan 10-02 unblocked
+Last session: 2026-04-11T15:51:50Z
+Stopped at: Completed 10-02-PLAN.md -- PHASE 10 COMPLETE. Promotion walker shipped 2 Platinum promotions + 21 oem_match_pending_gold flags + 4 report files + 42 tests. Gold 8->6, Platinum 1->3. Phase 11 unblocked.
 Resume file: None
