@@ -41,7 +41,7 @@ Requirements for milestone v1.5. Each maps to a roadmap phase. Structural choice
 
 ### REPORT — Audit Report Generator
 
-- [ ] **REPORT-01**: Coverage dashboard tool reads audit sidecars and outputs Bronze/Silver/Gold counts per channel, evidence type breakdown per tier (static analysis / cross-version / DHU observation / OEM evidence), and a missing-sidecar list. Acknowledged as lower priority than OEM/XVER/TIER work — scope for a single compact feature, not a full reporting suite.
+- [x] **REPORT-01**: Coverage dashboard tool reads audit sidecars and outputs Bronze/Silver/Gold counts per channel, evidence type breakdown per tier (static analysis / cross-version / DHU observation / OEM evidence), and a missing-sidecar list. Acknowledged as lower priority than OEM/XVER/TIER work — scope for a single compact feature, not a full reporting suite.
 
 ### HIST — Historical Bookkeeping
 
@@ -104,7 +104,7 @@ Which phases cover which requirements. Populated during roadmap creation by the 
 | ARCH-02 | Phase 11 — Channel Architecture Reference | Complete |
 | ARCH-03 | Phase 11 — Channel Architecture Reference | Complete |
 | ARCH-04 | Phase 11 — Channel Architecture Reference | Complete |
-| REPORT-01 | Phase 12 — Audit Report Generator | Pending |
+| REPORT-01 | Phase 12 — Audit Report Generator | Complete |
 
 **Coverage:**
 - v1.5 requirements: 21 total

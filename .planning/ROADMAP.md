@@ -41,7 +41,7 @@ Phase numbering continues from v1.0 (which shipped Phases 1-5). Decimal phases a
 - [x] **Phase 9: OEM Methodology & Divergence Report** — Extend audit sidecar schema for `platinum_evidence`, split Gold into a visible scope dimension, publish the OEM match policy, document the VW capture's non-claim boundary, and produce the VW-vs-DHU divergence report (completed 2026-04-09)
 - [x] **Phase 10: Gold-Tier Promotion Walk** — Walk every Silver proto in services observed by the VW capture, promote/retract/mark-unmatched per the match policy, and leave unobserved-service Silver protos untouched (completed 2026-04-11)
 - [x] **Phase 11: Channel Architecture Reference** — Publish the multiplexing/framing/service-binding/capability-negotiation reference doc with concrete VW vs DHU examples drawn from actual captures (completed 2026-04-12)
-- [ ] **Phase 12: Audit Report Generator** — Coverage dashboard tool reading the audit trail, surfacing Bronze/Silver/Gold counts per channel, evidence-type breakdowns, and missing-sidecar lists
+- [x] **Phase 12: Audit Report Generator** — Coverage dashboard tool reading the audit trail, surfacing Bronze/Silver/Gold counts per channel, evidence-type breakdowns, and missing-sidecar lists (completed 2026-04-12)
 
 ## Phase Details
 
@@ -149,7 +149,7 @@ Plans:
   2. Tool breaks down evidence types per tier — static analysis, cross-version, DHU observation, OEM evidence — so the reader can see WHAT is driving each tier's population
   3. Tool surfaces a missing-sidecar list (proto files with no corresponding sidecar) so coverage gaps are visible
   4. Tool runs from the CLI with a single command and writes both machine-readable (JSON) and human-readable (Markdown) output
-**Plans:** 1 plan
+**Plans:** 1/1 plans complete
 
 Plans:
 - [ ] 12-01-PLAN.md — Coverage dashboard tool (REPORT-01)
@@ -174,5 +174,5 @@ Plans:
 | 8. 16.4 Cross-Version Validation | 2/2 | Complete   | 2026-04-08 | — |
 | 9. OEM Methodology & Divergence Report | 2/2 | Complete   | 2026-04-09 | — |
 | 10. Gold-Tier Promotion Walk | 2/2 | Complete    | 2026-04-11 | — |
-| 11. Channel Architecture Reference | 2/2 | Complete   | 2026-04-12 | — |
-| 12. Audit Report Generator | v1.5 | 0/1 | Not started | — |
+| 11. Channel Architecture Reference | 2/2 | Complete    | 2026-04-12 | — |
+| 12. Audit Report Generator | 1/1 | Complete   | 2026-04-12 | — |

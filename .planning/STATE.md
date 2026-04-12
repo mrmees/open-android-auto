@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: completed
-stopped_at: Completed 11-02-PLAN.md
-last_updated: "2026-04-12T15:03:16.661Z"
-last_activity: 2026-04-12 -- Phase 11 Plan 02 complete (VW-vs-DHU section + cross-link walker). All v1.5 plans done.
+stopped_at: Completed 12-01-PLAN.md -- Phase 12 complete, v1.5 milestone DONE
+last_updated: "2026-04-12T16:57:09.308Z"
+last_activity: 2026-04-12 -- Phase 12 Plan 01 complete (coverage dashboard). All 12/12 v1.5 plans done.
 progress:
   total_phases: 7
   completed_phases: 7
-  total_plans: 11
-  completed_plans: 11
+  total_plans: 12
+  completed_plans: 12
   percent: 100
 ---
 
@@ -21,16 +21,16 @@ progress:
 See: .planning/PROJECT.md (updated 2026-04-07)
 
 **Core value:** Every published proto definition and protocol claim carries explicit verification evidence and confidence level
-**Current focus:** Phase 7 COMPLETE (OEM-01/02/03/05 all satisfied); Phase 8 (cross-version analysis) is the next critical path; Phase 8 and Phase 9 are the remaining v1.5 work
+**Current focus:** v1.5 milestone COMPLETE. All 12 plans across 7 phases shipped.
 
 ## Current Position
 
-Phase: 11 (Channel Architecture Reference) -- COMPLETE
-Plan: 11-01 -- COMPLETE; 11-02 -- COMPLETE
-Status: Phase 11 complete. architecture.md (431 lines) with VW-vs-DHU comparison section (5 tables), arch_link_walker inserting cross-links into 14 files, byte-idempotent. ARCH-01/02/03/04 all satisfied. v1.5 milestone complete.
-Last activity: 2026-04-12 -- Phase 11 Plan 02 complete (VW-vs-DHU section + cross-link walker). All v1.5 plans done.
+Phase: 12 (Audit Report Generator) -- COMPLETE
+Plan: 12-01 -- COMPLETE
+Status: Phase 12 complete. Coverage dashboard tool at analysis/tools/coverage_dashboard/ scanning 160 sidecars across 19 oaa/ directories. First v1.5 snapshot: 65% coverage (160/245), 3 Platinum, 29 Gold, 111 Silver, 10 Bronze. REPORT-01 satisfied. v1.5 milestone DONE.
+Last activity: 2026-04-12 -- Phase 12 Plan 01 complete (coverage dashboard). All 12/12 v1.5 plans done.
 
-Progress: [██████████] 100% (11/11 v1.5 plans complete)
+Progress: [██████████] 100% (12/12 v1.5 plans complete)
 
 ## Accumulated Context
 
@@ -121,6 +121,7 @@ Phase 8 plan 02 execution decisions (2026-04-08):
 - [Phase 11]: Frame header presented as 2B structural + 2B/6B size (aasdk FrameHeader::getSizeOf()=2), all citations commit-pinned to f1xpl/aasdk at 046b3b3
 - [Phase 11]: All 5 VW-vs-DHU examples included (3 mandatory + 2 optional) -- doc stays at 431 lines within 300-500 target
 - [Phase 11]: Purpose-built arch_link_walker separate from Phase 9 walker -- different insertion strategy (insert-after-heading vs append-to-EOF)
+- [Phase 12]: Coverage dashboard discovers evidence types dynamically from sidecar data, not hardcoded; pending_platinum_evidence excluded from evidence breakdown
 
 ### Pending Todos
 
@@ -137,6 +138,6 @@ Phase 8 plan 02 execution decisions (2026-04-08):
 
 ## Session Continuity
 
-Last session: 2026-04-12T15:03:16.658Z
-Stopped at: Completed 11-02-PLAN.md
+Last session: 2026-04-12T16:57:09.303Z
+Stopped at: Completed 12-01-PLAN.md -- Phase 12 complete, v1.5 milestone DONE
 Resume file: None
