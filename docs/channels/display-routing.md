@@ -1,5 +1,9 @@
 # Multi-Display Content Routing
 
+> **Architecture context:** This channel is part of the Android Auto multiplexed
+> protocol. For the overall architecture — framing, SDP binding, capability
+> negotiation — see [Channel Architecture Reference](architecture.md).
+
 ## Overview
 
 Android Auto supports up to three display types: MAIN, CLUSTER, and AUXILIARY. The phone controls what content is rendered on each — the HU advertises displays via ServiceDiscoveryResponse, but has **no mechanism to request specific content types** on secondary displays.

@@ -1,5 +1,9 @@
 # WiFi Projection Protocol (WPP)
 
+> **Architecture context:** This channel is part of the Android Auto multiplexed
+> protocol. For the overall architecture — framing, SDP binding, capability
+> negotiation — see [Channel Architecture Reference](architecture.md).
+
 ## Overview
 
 Wireless Android Auto uses a two-channel architecture to establish projection over WiFi. The phone discovers the head unit via Bluetooth SDP (not mDNS), negotiates WiFi credentials over an RFCOMM link, then transitions to a TCP connection for the actual AA session.

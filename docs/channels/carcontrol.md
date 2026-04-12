@@ -1,5 +1,9 @@
 # Car Control Channel
 
+> **Architecture context:** This channel is part of the Android Auto multiplexed
+> protocol. For the overall architecture — framing, SDP binding, capability
+> negotiation — see [Channel Architecture Reference](architecture.md).
+
 ## Overview
 
 The Car Control channel (GAL Service 19, log tag `CAR.GAL.CAR_CONTROL`) provides vehicle property access via Android's VHAL (Vehicle Hardware Abstraction Layer). It covers HVAC controls, seat temperature, defrost, door locks, mirror heat, steering wheel heat, toll card status, and Hyundai/Kia vendor extensions.

@@ -1,5 +1,9 @@
 # Coolwalk Layout Engine
 
+> **Architecture context:** This channel is part of the Android Auto multiplexed
+> protocol. For the overall architecture — framing, SDP binding, capability
+> negotiation — see [Channel Architecture Reference](architecture.md).
+
 ## Overview
 
 Coolwalk is Android Auto's responsive layout system for the main display. It adapts the UI based on screen dimensions, aspect ratio, and DPI — all computed **phone-side** from the display configuration the HU advertises in the ServiceDiscoveryResponse.

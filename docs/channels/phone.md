@@ -1,5 +1,9 @@
 # Phone Channel
 
+> **Architecture context:** This channel is part of the Android Auto multiplexed
+> protocol. For the overall architecture — framing, SDP binding, capability
+> negotiation — see [Channel Architecture Reference](architecture.md).
+
 ## Proto Confidence Summary
 
 | Message | Tier | Evidence | Audit File |

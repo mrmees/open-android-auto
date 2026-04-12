@@ -1,5 +1,9 @@
 # Bluetooth Channel
 
+> **Architecture context:** This channel is part of the Android Auto multiplexed
+> protocol. For the overall architecture — framing, SDP binding, capability
+> negotiation — see [Channel Architecture Reference](architecture.md).
+
 ## Overview
 
 The Bluetooth channel (GAL service type 9) handles **BT pairing orchestration only**. It coordinates the initial Bluetooth bonding between the phone and the head unit so that HFP (Hands-Free Profile) can subsequently carry call audio. The channel itself carries no audio data.

@@ -1,5 +1,9 @@
 # Radio Channel
 
+> **Architecture context:** This channel is part of the Android Auto multiplexed
+> protocol. For the overall architecture — framing, SDP binding, capability
+> negotiation — see [Channel Architecture Reference](architecture.md).
+
 ## Overview
 
 The radio channel (GAL Service 15, log tag `CAR.GAL.RADIO-EP`) enables the phone to control the car's broadcast radio tuner. The HU reports its radio hardware capabilities via the SDP; the phone provides the UI, station lists, metadata display, and user control.

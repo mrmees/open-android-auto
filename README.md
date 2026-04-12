@@ -4,6 +4,10 @@ The most complete open-source Android Auto protocol reference available. Protoco
 
 **234 `.proto` files** organized into 17 categories covering the full AA protocol surface: session control, audio/video streaming, input, sensors, navigation, Bluetooth, WiFi projection, car control, radio, and more.
 
+> **Architecture context:** This channel is part of the Android Auto multiplexed
+> protocol. For the overall architecture — framing, SDP binding, capability
+> negotiation — see [Channel Architecture Reference](docs/channels/architecture.md).
+
 ## Origins
 
 These definitions were reverse-engineered from Android Auto firmware (APK v16.1 and v16.2) and extended from [f1x.studio's aasdk](https://github.com/nicka-2/aasdk) (Michal Szwaj's original Android Auto SDK). The original aasdk provided a proto2 foundation; this collection upgrades to proto3, adds dozens of previously undocumented messages, and includes field-level annotations from live protocol captures.

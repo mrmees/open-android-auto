@@ -1,5 +1,9 @@
 # Input Channels
 
+> **Architecture context:** This channel is part of the Android Auto multiplexed
+> protocol. For the overall architecture — framing, SDP binding, capability
+> negotiation — see [Channel Architecture Reference](architecture.md).
+
 ## Overview
 
 The head unit sends user input (touch, buttons, rotary, touchpad) to the phone via input channels. Each display can have its own input channel, matched by `display_id` in the SDP `InputChannelConfig`.
