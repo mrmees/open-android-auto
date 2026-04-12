@@ -6,9 +6,18 @@ from pathlib import Path
 from analysis.tools.coverage_dashboard.run import main
 
 
+def _cli_args(mock_oaa_tree: Path, out_name: str = "out", extra: list[str] | None = None) -> list[str]:
+    """Build CLI args pointing at the mock tree."""
+    out = str(mock_oaa_tree / out_name)
+    args = ["--repo-root", str(mock_oaa_tree), "--output-dir", out]
+    if extra:
+        args.extend(extra)
+    return args
+
+
 def test_cli_stdout_has_table(mock_oaa_tree: Path, capsys) -> None:
     """main() prints tier table to stdout."""
-    rc = main(["--output-dir", str(mock_oaa_tree / "out")])
+    rc = main(_cli_args(mock_oaa_tree))
     assert rc == 0
     captured = capsys.readouterr()
     assert "Channel" in captured.out
@@ -18,7 +27,7 @@ def test_cli_stdout_has_table(mock_oaa_tree: Path, capsys) -> None:
 def test_cli_writes_both_files(mock_oaa_tree: Path) -> None:
     """main() creates both .md and .json in output dir."""
     out = mock_oaa_tree / "out"
-    rc = main(["--output-dir", str(out)])
+    rc = main(_cli_args(mock_oaa_tree))
     assert rc == 0
     assert (out / "coverage-dashboard.md").exists()
     assert (out / "coverage-dashboard.json").exists()
@@ -27,7 +36,7 @@ def test_cli_writes_both_files(mock_oaa_tree: Path) -> None:
 def test_cli_quiet_flag(mock_oaa_tree: Path, capsys) -> None:
     """--quiet suppresses stdout, files still written."""
     out = mock_oaa_tree / "out"
-    rc = main(["--output-dir", str(out), "--quiet"])
+    rc = main(_cli_args(mock_oaa_tree, extra=["--quiet"]))
     assert rc == 0
     captured = capsys.readouterr()
     assert "Channel" not in captured.out
@@ -38,7 +47,7 @@ def test_cli_quiet_flag(mock_oaa_tree: Path, capsys) -> None:
 def test_cli_json_only_flag(mock_oaa_tree: Path) -> None:
     """--json-only writes only .json, no .md."""
     out = mock_oaa_tree / "out"
-    rc = main(["--output-dir", str(out), "--json-only"])
+    rc = main(_cli_args(mock_oaa_tree, extra=["--json-only"]))
     assert rc == 0
     assert (out / "coverage-dashboard.json").exists()
     assert not (out / "coverage-dashboard.md").exists()
@@ -46,22 +55,21 @@ def test_cli_json_only_flag(mock_oaa_tree: Path) -> None:
 
 def test_cli_output_dir_override(mock_oaa_tree: Path) -> None:
     """--output-dir <path> writes to custom location."""
-    custom = mock_oaa_tree / "custom_output"
-    rc = main(["--output-dir", str(custom)])
+    rc = main(_cli_args(mock_oaa_tree, out_name="custom_output"))
     assert rc == 0
+    custom = mock_oaa_tree / "custom_output"
     assert (custom / "coverage-dashboard.md").exists()
     assert (custom / "coverage-dashboard.json").exists()
 
 
 def test_cli_exit_code_zero(mock_oaa_tree: Path) -> None:
     """main() returns 0 on success."""
-    out = mock_oaa_tree / "out"
-    rc = main(["--output-dir", str(out), "--quiet"])
+    rc = main(_cli_args(mock_oaa_tree, extra=["--quiet"]))
     assert rc == 0
 
 
 # ---------------------------------------------------------------------------
-# Live snapshot test — runs against the real oaa/ tree
+# Live snapshot test -- runs against the real oaa/ tree
 # ---------------------------------------------------------------------------
 
 def _find_repo_root() -> Path:
