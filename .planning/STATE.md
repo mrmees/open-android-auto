@@ -3,15 +3,15 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: completed
-stopped_at: Completed 11-01-PLAN.md
-last_updated: "2026-04-12T14:55:05.300Z"
-last_activity: 2026-04-12 -- Phase 11 Plan 01 complete (architecture.md + redirect stub + README link). Plan 11-02 next.
+stopped_at: Completed 11-02-PLAN.md
+last_updated: "2026-04-12T15:03:16.661Z"
+last_activity: 2026-04-12 -- Phase 11 Plan 02 complete (VW-vs-DHU section + cross-link walker). All v1.5 plans done.
 progress:
   total_phases: 7
-  completed_phases: 5
+  completed_phases: 7
   total_plans: 11
-  completed_plans: 10
-  percent: 91
+  completed_plans: 11
+  percent: 100
 ---
 
 # Project State
@@ -25,12 +25,12 @@ See: .planning/PROJECT.md (updated 2026-04-07)
 
 ## Current Position
 
-Phase: 11 (Channel Architecture Reference) -- IN PROGRESS
-Plan: 11-01 -- COMPLETE; 11-02 -- pending
-Status: Plan 11-01 complete. architecture.md (339 lines) delivered with ASCII art diagrams, 14-channel SDP table, 3 capability negotiation examples, commit-pinned f1xpl/aasdk citations. protocol-overview.md replaced with redirect stub. README link updated. ARCH-01/02/03 satisfied. Plan 11-02 (VW-vs-DHU comparison section + cross-link walker) is next.
-Last activity: 2026-04-12 -- Phase 11 Plan 01 complete (architecture.md + redirect stub + README link). Plan 11-02 next.
+Phase: 11 (Channel Architecture Reference) -- COMPLETE
+Plan: 11-01 -- COMPLETE; 11-02 -- COMPLETE
+Status: Phase 11 complete. architecture.md (431 lines) with VW-vs-DHU comparison section (5 tables), arch_link_walker inserting cross-links into 14 files, byte-idempotent. ARCH-01/02/03/04 all satisfied. v1.5 milestone complete.
+Last activity: 2026-04-12 -- Phase 11 Plan 02 complete (VW-vs-DHU section + cross-link walker). All v1.5 plans done.
 
-Progress: [█████████░] 91% (10/11 v1.5 plans complete)
+Progress: [██████████] 100% (11/11 v1.5 plans complete)
 
 ## Accumulated Context
 
@@ -119,6 +119,8 @@ Phase 8 plan 02 execution decisions (2026-04-08):
 - [Phase 10]: Plan 10-02: Gold-counts delta headline: Gold 8->6, Platinum 1->3 (+2 promoted). Single-OEM trap named in report. 3 CarLocalMediaPlayback* stay Gold (skipped for out-of-SDP-scope, not contradicted)
 - [Phase 10]: Plan 10-02: Walker byte-idempotent on real oaa/ tree -- second run routes 2 promoted sidecars to skip_already_platinum (3 total), content_hash dedupe prevents re-appending pending_platinum_evidence on 21 flagged sidecars
 - [Phase 11]: Frame header presented as 2B structural + 2B/6B size (aasdk FrameHeader::getSizeOf()=2), all citations commit-pinned to f1xpl/aasdk at 046b3b3
+- [Phase 11]: All 5 VW-vs-DHU examples included (3 mandatory + 2 optional) -- doc stays at 431 lines within 300-500 target
+- [Phase 11]: Purpose-built arch_link_walker separate from Phase 9 walker -- different insertion strategy (insert-after-heading vs append-to-EOF)
 
 ### Pending Todos
 
@@ -135,6 +137,6 @@ Phase 8 plan 02 execution decisions (2026-04-08):
 
 ## Session Continuity
 
-Last session: 2026-04-12T14:55:05.297Z
-Stopped at: Completed 11-01-PLAN.md
+Last session: 2026-04-12T15:03:16.658Z
+Stopped at: Completed 11-02-PLAN.md
 Resume file: None
