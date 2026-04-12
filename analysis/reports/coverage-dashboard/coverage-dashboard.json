@@ -1,0 +1,351 @@
+{
+  "evidence_type_breakdown": {
+    "bronze": {
+      "apk_static": 10,
+      "cross_version": 10
+    },
+    "gold": {
+      "apk_deep_trace": 5,
+      "apk_static": 21,
+      "cross_version": 10,
+      "deep_trace": 20,
+      "handler_trace": 13
+    },
+    "platinum": {
+      "apk_deep_trace": 2,
+      "apk_static": 4,
+      "cross_version": 3,
+      "deep_trace": 1,
+      "platinum_evidence": 3
+    },
+    "retracted": {
+      "apk_deep_trace": 2,
+      "apk_static": 3,
+      "cross_version": 2,
+      "deep_trace": 1
+    },
+    "silver": {
+      "apk_static": 167,
+      "cross_version": 221
+    },
+    "superseded": {
+      "apk_deep_trace": 1,
+      "apk_static": 1
+    }
+  },
+  "metadata": {
+    "git_head": "96978cd8780abc8639bd85a66a9696c1c633cbc6",
+    "run_date": "2026-04-12T16:55:01Z",
+    "sidecar_directory": "oaa/",
+    "tool_version": "1.0.0",
+    "total_protos": 245,
+    "total_sidecars": 160
+  },
+  "missing_sidecars": {
+    "audio": [
+      "AudioFocusStateEnum.proto",
+      "AudioFocusTypeEnum.proto",
+      "AudioTypeEnum.proto"
+    ],
+    "av": [
+      "AVChannelMediaOptionsMessage.proto",
+      "AVChannelMessageIdsEnum.proto",
+      "AVChannelSessionTypeEnum.proto",
+      "AVChannelSetupStatusEnum.proto",
+      "AVChannelStopIndicationMessage.proto",
+      "AVStreamTypeEnum.proto",
+      "AndroidKeycodeEnum.proto",
+      "MediaCodecTypeEnum.proto"
+    ],
+    "bluetooth": [
+      "BluetoothAuthenticationDataMessage.proto",
+      "BluetoothAuthenticationResultMessage.proto",
+      "BluetoothChannelConfigData.proto",
+      "BluetoothChannelMessageIdsEnum.proto",
+      "BluetoothPairingMethodEnum.proto",
+      "BluetoothPairingStatusEnum.proto"
+    ],
+    "carcontrol": [
+      "VehicleAreaEnums.proto"
+    ],
+    "common": [
+      "ChannelErrorCodeEnum.proto",
+      "ChannelTypeEnum.proto",
+      "ConnectionStateEnum.proto",
+      "DisconnectReasonEnum.proto",
+      "FragInfoEnum.proto",
+      "LocationCharacterizationEnum.proto",
+      "PingConfigurationData.proto",
+      "SessionConfigurationEnum.proto",
+      "SessionErrorEnum.proto",
+      "StatusEnum.proto",
+      "WirelessTcpConfigurationData.proto"
+    ],
+    "control": [
+      "BatteryStatusMessage.proto",
+      "ChannelCloseNotificationMessage.proto",
+      "ConnectedDevicesMessages.proto",
+      "ControlMessageIdsEnum.proto",
+      "ShutdownReasonEnum.proto",
+      "ShutdownResponseMessage.proto",
+      "VendorExtensionChannel.proto",
+      "VersionResponseStatusEnum.proto"
+    ],
+    "input": [
+      "ButtonCodeEnum.proto",
+      "HapticFeedbackTypeEnum.proto",
+      "InputChannelMessageIdsEnum.proto",
+      "TouchActionEnum.proto",
+      "TouchPadConfigData.proto",
+      "TouchScreenConfigData.proto"
+    ],
+    "media": [
+      "BufferedMediaSinkMessage.proto",
+      "MediaChannelData.proto"
+    ],
+    "mediabrowser": [
+      "MediaBrowserMessageIdsEnum.proto",
+      "MediaBrowserMessages.proto"
+    ],
+    "navigation": [
+      "InstrumentClusterMessages.proto",
+      "ManeuverTypeEnum.proto",
+      "NavigationTypeEnum.proto",
+      "TurnSideEnum.proto",
+      "VehicleEnergyForecastMessage.proto"
+    ],
+    "notification": [
+      "NotificationTypeEnum.proto"
+    ],
+    "radio": [
+      "LegacyRadioMessages.proto",
+      "RadioBandTypeEnum.proto",
+      "RadioCodecTypeEnum.proto",
+      "RadioProgramTypeSchemaEnum.proto",
+      "RadioRegionEnum.proto"
+    ],
+    "sensor": [
+      "DrivingStatusEnum.proto",
+      "GearEnum.proto",
+      "HeadlightStatusEnum.proto",
+      "IndicatorStatusEnum.proto",
+      "SensorChannelMessageIdsEnum.proto",
+      "SensorTypeEnum.proto"
+    ],
+    "verification": [
+      "GalVerificationMessages.proto",
+      "GoogleDiagnosticsMessages.proto"
+    ],
+    "video": [
+      "ColorSchemeSupportEnum.proto",
+      "DisplayTypeEnum.proto",
+      "IntegratedOverlayStartNotification.proto",
+      "IntegratedOverlayStopNotification.proto",
+      "UpdateHuUiConfigResponse.proto",
+      "UpdateUiConfigRequestMessage.proto",
+      "VideoFPSEnum.proto",
+      "VideoFocusModeEnum.proto",
+      "VideoFocusReasonEnum.proto",
+      "VideoResolutionEnum.proto"
+    ],
+    "wifi": [
+      "WifiAccessPointTypeEnum.proto",
+      "WifiChannelMessageIdsEnum.proto",
+      "WifiChannelTypeEnum.proto",
+      "WifiConnectionRejectionReasonEnum.proto",
+      "WifiPingMessage.proto",
+      "WifiSecurityModeEnum.proto",
+      "WifiSecurityRequestMessage.proto",
+      "WifiStartRequestMessage.proto",
+      "WifiVersionStatusEnum.proto"
+    ]
+  },
+  "orphan_sidecars": {},
+  "per_channel_tier_counts": {
+    "audio": {
+      "bronze": 2,
+      "gold": 0,
+      "platinum": 0,
+      "retracted": 0,
+      "silver": 5,
+      "superseded": 0,
+      "total": 7
+    },
+    "av": {
+      "bronze": 0,
+      "gold": 0,
+      "platinum": 0,
+      "retracted": 0,
+      "silver": 11,
+      "superseded": 0,
+      "total": 11
+    },
+    "bluetooth": {
+      "bronze": 0,
+      "gold": 0,
+      "platinum": 0,
+      "retracted": 0,
+      "silver": 3,
+      "superseded": 0,
+      "total": 3
+    },
+    "carcontrol": {
+      "bronze": 0,
+      "gold": 2,
+      "platinum": 0,
+      "retracted": 0,
+      "silver": 0,
+      "superseded": 0,
+      "total": 2
+    },
+    "common": {
+      "bronze": 1,
+      "gold": 0,
+      "platinum": 0,
+      "retracted": 0,
+      "silver": 4,
+      "superseded": 0,
+      "total": 5
+    },
+    "control": {
+      "bronze": 1,
+      "gold": 2,
+      "platinum": 0,
+      "retracted": 0,
+      "silver": 24,
+      "superseded": 0,
+      "total": 27
+    },
+    "generic": {
+      "bronze": 1,
+      "gold": 0,
+      "platinum": 0,
+      "retracted": 0,
+      "silver": 0,
+      "superseded": 0,
+      "total": 1
+    },
+    "input": {
+      "bronze": 0,
+      "gold": 13,
+      "platinum": 0,
+      "retracted": 0,
+      "silver": 4,
+      "superseded": 0,
+      "total": 17
+    },
+    "media": {
+      "bronze": 0,
+      "gold": 4,
+      "platinum": 2,
+      "retracted": 3,
+      "silver": 0,
+      "superseded": 1,
+      "total": 10
+    },
+    "mediabrowser": {
+      "bronze": 0,
+      "gold": 0,
+      "platinum": 0,
+      "retracted": 0,
+      "silver": 0,
+      "superseded": 0,
+      "total": 0
+    },
+    "mic": {
+      "bronze": 0,
+      "gold": 1,
+      "platinum": 0,
+      "retracted": 0,
+      "silver": 0,
+      "superseded": 0,
+      "total": 1
+    },
+    "navigation": {
+      "bronze": 0,
+      "gold": 0,
+      "platinum": 0,
+      "retracted": 0,
+      "silver": 12,
+      "superseded": 0,
+      "total": 12
+    },
+    "notification": {
+      "bronze": 1,
+      "gold": 0,
+      "platinum": 0,
+      "retracted": 0,
+      "silver": 0,
+      "superseded": 0,
+      "total": 1
+    },
+    "phone": {
+      "bronze": 0,
+      "gold": 3,
+      "platinum": 0,
+      "retracted": 0,
+      "silver": 0,
+      "superseded": 0,
+      "total": 3
+    },
+    "radio": {
+      "bronze": 0,
+      "gold": 0,
+      "platinum": 0,
+      "retracted": 0,
+      "silver": 1,
+      "superseded": 0,
+      "total": 1
+    },
+    "sensor": {
+      "bronze": 3,
+      "gold": 0,
+      "platinum": 0,
+      "retracted": 0,
+      "silver": 34,
+      "superseded": 0,
+      "total": 37
+    },
+    "verification": {
+      "bronze": 0,
+      "gold": 0,
+      "platinum": 0,
+      "retracted": 0,
+      "silver": 0,
+      "superseded": 0,
+      "total": 0
+    },
+    "video": {
+      "bronze": 0,
+      "gold": 2,
+      "platinum": 1,
+      "retracted": 2,
+      "silver": 3,
+      "superseded": 0,
+      "total": 8
+    },
+    "wifi": {
+      "bronze": 1,
+      "gold": 2,
+      "platinum": 0,
+      "retracted": 1,
+      "silver": 10,
+      "superseded": 0,
+      "total": 14
+    }
+  },
+  "summary": {
+    "coverage_pct": 65,
+    "pending_gold_count": 21,
+    "tiers": {
+      "bronze": 10,
+      "gold": 29,
+      "platinum": 3,
+      "retracted": 6,
+      "silver": 111,
+      "superseded": 1
+    },
+    "total_protos": 245,
+    "total_sidecars": 160
+  }
+}
