@@ -106,7 +106,7 @@ import "oaa/video/VideoConfigData.proto";
 
 ### Protocol Reference
 
-- [Protocol Overview](docs/protocol-overview.md) — high-level AA protocol architecture
+- [Channel Architecture Reference](docs/channels/architecture.md) — AA multiplexing, framing, SDP binding, capability negotiation
 - [Protocol Reference](docs/protocol-reference.md) — auto-generated message catalog (86 messages, 8 enums)
 - [Protocol Cross-Reference](docs/protocol-cross-reference.md) — cross-referencing phone-side (APK) and head-unit-side (firmware) protocol implementations
 - [Channel Map](docs/channel-map.md) — channel IDs, message types, and data flow directions
