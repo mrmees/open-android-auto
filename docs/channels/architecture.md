@@ -330,6 +330,98 @@ For channel-specific negotiation details, see the individual
 [channel docs](.). For per-message field tables and msg IDs, see
 [protocol-reference.md](../protocol-reference.md).
 
+## VW-vs-DHU Comparison
+
+The same AA protocol produces different SDP configurations depending on the head unit
+implementation. Below are concrete examples comparing a production VW MIB3 OI 2024
+(AA 16.4) against Google's Desktop Head Unit 2.1 (development tool). For the full
+divergence analysis, see
+[dhu-divergence.md](../../analysis/reports/oem-vw/dhu-divergence.md).
+
+### Service-Presence Divergence
+
+Not every HU declares the same set of channels. The VW and DHU SDP responses differ
+in which services they advertise:
+
+| Service | VW MIB3 OI | DHU 2.1 |
+|---------|------------|---------|
+| Total SDP services | 13 | 14 |
+| `bluetooth_channel` | Present (adapter `84:96:90:8C:34:0B`) | Absent |
+| `wifi_channel` | Present (bssid `86:96:90:8C:77:EF`) | Absent |
+| `vendor_extension_channel` | Absent | Present (`EchoVendorExtension`) |
+
+SDP declarations vary by implementation. A channel the protocol supports may not be
+declared by every HU. Implementers must handle absent channels gracefully
+([dhu-divergence.json](../../analysis/reports/oem-vw/dhu-divergence.json),
+[sdp-values.json](../../analysis/reports/oem-vw/sdp-values.json)).
+
+### HeadUnitInfo Identity Fields
+
+The SDP request carries identity fields that distinguish the OEM (vehicle manufacturer)
+from the HU manufacturer (tier-1 supplier):
+
+| Field | VW MIB3 OI | DHU 2.1 |
+|-------|------------|---------|
+| `make` | Volkswagen | Google |
+| `model` | VW3363 | Desktop Head Unit |
+| `year` | 2024 | 2015 |
+| `head_unit_make` | LGE | Google |
+| `head_unit_model` | COCKPIT_MIB3OI_GP | Desktop Head Unit |
+| `software_version` | 2756.04 | 2.1-windows |
+| `software_build` | C sample | 2022-12-15-495540972 |
+| `car_model` | VW3363 | (not set) |
+
+`make` vs `head_unit_make` shows VW separates OEM (Volkswagen) from HU manufacturer
+(LGE). The phone uses these fields for logging, analytics, and feature gating
+([sdp-values.json](../../analysis/reports/oem-vw/sdp-values.json)).
+
+### Video Configuration
+
+| Field | VW MIB3 OI (MAIN) | DHU 2.1 (MAIN) |
+|-------|-------------------|-----------------|
+| Resolutions | 1920x1080, 1280x720, 800x480 | 1280x720 only |
+| FPS | 60 | 30 |
+| Codec | H264 BP | H264 BP |
+| DPI (primary) | 213 (1080p) | 160 (720p) |
+| `margin_height` | 240 / 160 / 130 | 0 |
+| `viewing_distance` | 900 | 500 |
+| Additional displays | None | CLUSTER + AUXILIARY |
+
+VW offers 3 resolutions at 60 FPS (phone picks best match); DHU offers 1 resolution
+at 30 FPS but declares all 3 display types (MAIN + CLUSTER + AUXILIARY). Capability
+negotiation adapts the phone's rendering pipeline to each HU's declared capabilities
+([sdp-values.json](../../analysis/reports/oem-vw/sdp-values.json),
+[video.md](video.md)).
+
+### Sensor Configuration
+
+| Dimension | VW MIB3 OI | DHU 2.1 |
+|-----------|------------|---------|
+| Sensor count | 10 | 13 |
+| DHU-only sensors | -- | COMPASS, ODOMETER, TOLL_CARD |
+| Fuel types | UNLEADED | UNLEADED, ELECTRIC |
+
+DHU is a test harness that advertises kitchen-sink capabilities (including EV features
+on a non-EV). Real OEMs advertise only what their hardware actually supports
+([sdp-values.json](../../analysis/reports/oem-vw/sdp-values.json),
+[sensor.md](sensor.md)).
+
+### Audio Configuration
+
+| Dimension | VW MIB3 OI | DHU 2.1 |
+|-----------|------------|---------|
+| Media audio | 48kHz stereo 16-bit | 48kHz stereo 16-bit |
+| Speech audio | 48kHz mono 16-bit | 16kHz + 48kHz mono (2 configs) |
+| Mic input | 16kHz mono 16-bit | 16kHz mono 16-bit |
+
+Multiple configs give the phone a choice. VW offers one speech config at 48kHz mono;
+DHU offers two (16kHz + 48kHz). The phone selects based on its own capability
+([sdp-values.json](../../analysis/reports/oem-vw/sdp-values.json),
+[audio.md](audio.md)).
+
+For the complete divergence analysis including version-alignment attribution, see
+[dhu-divergence.md](../../analysis/reports/oem-vw/dhu-divergence.md).
+
 ## Further Reading
 
 - [Protocol Reference](../protocol-reference.md) -- per-message field tables and msg ID catalog
