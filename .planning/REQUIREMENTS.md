@@ -34,9 +34,9 @@ Requirements for milestone v1.5. Each maps to a roadmap phase. Structural choice
 
 ### ARCH — Channel Architecture Reference
 
-- [ ] **ARCH-01**: Channel architecture doc exists and explains AA multiplexing, frame layout, channel IDs, fragmentation, direction semantics, and how existing per-channel docs fit into the larger model. Cross-linking from per-channel docs and main README is acceptance criteria.
-- [ ] **ARCH-02**: Doc explains channel→service binding via SDP descriptors and service ID assignment rules.
-- [ ] **ARCH-03**: Doc explains capability negotiation flow scoped to concrete examples from captures (version exchange, AVChannel field 9 ColorSchemeSupport, codec/resolution negotiation). Not an exhaustive capability survey — scoped to what's evidenced.
+- [x] **ARCH-01**: Channel architecture doc exists and explains AA multiplexing, frame layout, channel IDs, fragmentation, direction semantics, and how existing per-channel docs fit into the larger model. Cross-linking from per-channel docs and main README is acceptance criteria.
+- [x] **ARCH-02**: Doc explains channel→service binding via SDP descriptors and service ID assignment rules.
+- [x] **ARCH-03**: Doc explains capability negotiation flow scoped to concrete examples from captures (version exchange, AVChannel field 9 ColorSchemeSupport, codec/resolution negotiation). Not an exhaustive capability survey — scoped to what's evidenced.
 - [ ] **ARCH-04**: Doc includes concrete VW vs DHU comparison examples drawn from actual captures.
 
 ### REPORT — Audit Report Generator
@@ -100,9 +100,9 @@ Which phases cover which requirements. Populated during roadmap creation by the 
 | TIER-05 | Phase 9 — OEM Methodology & Divergence Report | Pending |
 | OEM-04 | Phase 9 — OEM Methodology & Divergence Report | Complete |
 | TIER-04 | Phase 10 — Gold-Tier Promotion Walk | Complete |
-| ARCH-01 | Phase 11 — Channel Architecture Reference | Pending |
-| ARCH-02 | Phase 11 — Channel Architecture Reference | Pending |
-| ARCH-03 | Phase 11 — Channel Architecture Reference | Pending |
+| ARCH-01 | Phase 11 — Channel Architecture Reference | Complete |
+| ARCH-02 | Phase 11 — Channel Architecture Reference | Complete |
+| ARCH-03 | Phase 11 — Channel Architecture Reference | Complete |
 | ARCH-04 | Phase 11 — Channel Architecture Reference | Pending |
 | REPORT-01 | Phase 12 — Audit Report Generator | Pending |
 

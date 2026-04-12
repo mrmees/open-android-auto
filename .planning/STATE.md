@@ -2,16 +2,16 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: verifying
-stopped_at: Completed 10-02-PLAN.md -- PHASE 10 COMPLETE. Promotion walker shipped 2 Platinum promotions + 21 oem_match_pending_gold flags + 4 report files + 42 tests. Gold 8->6, Platinum 1->3. Phase 11 unblocked.
-last_updated: "2026-04-11T15:51:50Z"
-last_activity: 2026-04-11 -- Phase 10 COMPLETE (both plans landed; Gold-counts delta Gold 8->6, Platinum 1->3; promotion walker byte-idempotent; oem_vw_parser untouched; Phase 11 + 12 unblocked)
+status: completed
+stopped_at: Completed 11-01-PLAN.md
+last_updated: "2026-04-12T14:55:05.300Z"
+last_activity: 2026-04-12 -- Phase 11 Plan 01 complete (architecture.md + redirect stub + README link). Plan 11-02 next.
 progress:
   total_phases: 7
   completed_phases: 5
-  total_plans: 9
-  completed_plans: 9
-  percent: 67
+  total_plans: 11
+  completed_plans: 10
+  percent: 91
 ---
 
 # Project State
@@ -25,12 +25,12 @@ See: .planning/PROJECT.md (updated 2026-04-07)
 
 ## Current Position
 
-Phase: 10 (Gold-Tier Promotion Walk) -- COMPLETE
-Plan: 10-01 -- COMPLETE; 10-02 -- COMPLETE
-Status: PHASE 10 COMPLETE. Plan 10-02 (promotion walker implementation, TIER-04 milestone headline) shipped: new sibling package analysis/tools/promotion_walker/ with 5 implementation modules (index, verdict, rule_eval, report, run). Live walker run against VW MIB3 OI capture produced 36 verdicts: 2 Gold->Platinum promotions (MediaPlaybackStatusMessage + MediaPlaybackMetadataMessage, both MATCH-08), 21 oem_match_pending_gold flags on Silver/Bronze in-scope sidecars, 3 CarLocalMediaPlayback* out-of-SDP-scope skips, 1 already-Platinum skip (VideoFocusRequestMessage), 5 retracted skips, 1 superseded skip, 1 missing-Gold-prereq skip, 2 schema-invalid skips. Gold-counts delta: Gold 8->6, Platinum 1->3 (+2 promoted). Walker is byte-idempotent on real oaa/ tree. 42 tests all green. Phase 8 baseline held at 334 passed / 1 pre-existing failure. NO modifications to oem_vw_parser/ -- import-not-fork discipline preserved. Reports at analysis/reports/oem-vw/promotion-walk.{md,json} + oem-match-pending-gold-worklist.{md,json}. Phase 11 (channel architecture) and Phase 12 (audit dashboard) unblocked.
-Last activity: 2026-04-11 -- Phase 10 COMPLETE (both plans landed; Gold 8->6, Platinum 1->3; promotion walker byte-idempotent; Phase 11 + 12 unblocked)
+Phase: 11 (Channel Architecture Reference) -- IN PROGRESS
+Plan: 11-01 -- COMPLETE; 11-02 -- pending
+Status: Plan 11-01 complete. architecture.md (339 lines) delivered with ASCII art diagrams, 14-channel SDP table, 3 capability negotiation examples, commit-pinned f1xpl/aasdk citations. protocol-overview.md replaced with redirect stub. README link updated. ARCH-01/02/03 satisfied. Plan 11-02 (VW-vs-DHU comparison section + cross-link walker) is next.
+Last activity: 2026-04-12 -- Phase 11 Plan 01 complete (architecture.md + redirect stub + README link). Plan 11-02 next.
 
-Progress: [████████░░] 67% (9/12 v1.5 plans complete)
+Progress: [█████████░] 91% (10/11 v1.5 plans complete)
 
 ## Accumulated Context
 
@@ -118,6 +118,7 @@ Phase 8 plan 02 execution decisions (2026-04-08):
 - [Phase 10]: Plan 10-02: MATCH-08 is the only rule that fires in Phase 10 -- no wire-level msg_type observations map to in-scope proto message names in coverage.json; all 2 promotions + 21 flags cite MATCH-08 alone
 - [Phase 10]: Plan 10-02: Gold-counts delta headline: Gold 8->6, Platinum 1->3 (+2 promoted). Single-OEM trap named in report. 3 CarLocalMediaPlayback* stay Gold (skipped for out-of-SDP-scope, not contradicted)
 - [Phase 10]: Plan 10-02: Walker byte-idempotent on real oaa/ tree -- second run routes 2 promoted sidecars to skip_already_platinum (3 total), content_hash dedupe prevents re-appending pending_platinum_evidence on 21 flagged sidecars
+- [Phase 11]: Frame header presented as 2B structural + 2B/6B size (aasdk FrameHeader::getSizeOf()=2), all citations commit-pinned to f1xpl/aasdk at 046b3b3
 
 ### Pending Todos
 
@@ -134,6 +135,6 @@ Phase 8 plan 02 execution decisions (2026-04-08):
 
 ## Session Continuity
 
-Last session: 2026-04-11T15:51:50Z
-Stopped at: Completed 10-02-PLAN.md -- PHASE 10 COMPLETE. Promotion walker shipped 2 Platinum promotions + 21 oem_match_pending_gold flags + 4 report files + 42 tests. Gold 8->6, Platinum 1->3. Phase 11 unblocked.
+Last session: 2026-04-12T14:55:05.297Z
+Stopped at: Completed 11-01-PLAN.md
 Resume file: None

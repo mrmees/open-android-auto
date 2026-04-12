@@ -134,7 +134,7 @@ Plans:
   3. Capability negotiation flow is explained and scoped to concrete evidenced examples (version exchange, AVChannel field 9 `ColorSchemeSupport`, codec/resolution negotiation) — not an exhaustive capability survey
   4. Doc includes concrete VW vs DHU comparison examples pulled from real captures (SDP differences, channel advertisement differences, any observed capability drift)
   5. Every claim in the doc cites either an existing verification report, a sidecar, or a specific capture message by seq/ts — nothing hand-waved
-**Plans:** 2 plans
+**Plans:** 1/2 plans executed
 
 Plans:
 - [ ] 11-01-PLAN.md — Core architecture doc: multiplexing, framing, service binding, capability negotiation (ARCH-01, ARCH-02, ARCH-03)
@@ -173,6 +173,6 @@ Plans:
 | 7. VW Capture Analysis | v1.5 | 2/2 | Complete | 2026-04-08 |
 | 8. 16.4 Cross-Version Validation | 2/2 | Complete   | 2026-04-08 | — |
 | 9. OEM Methodology & Divergence Report | 2/2 | Complete   | 2026-04-09 | — |
-| 10. Gold-Tier Promotion Walk | 2/2 | Complete   | 2026-04-11 | — |
-| 11. Channel Architecture Reference | v1.5 | 0/2 | Not started | — |
+| 10. Gold-Tier Promotion Walk | 2/2 | Complete    | 2026-04-11 | — |
+| 11. Channel Architecture Reference | 1/2 | In Progress|  | — |
 | 12. Audit Report Generator | v1.5 | 0/1 | Not started | — |
