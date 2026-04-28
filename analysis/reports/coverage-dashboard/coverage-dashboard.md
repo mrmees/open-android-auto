@@ -185,9 +185,9 @@ No orphan sidecars found.
 
 ## Dashboard Metadata
 
-- **Run date:** 2026-04-12T16:55:01Z
+- **Run date:** 2026-04-12T16:59:26Z
 - **Tool version:** 1.0.0
 - **Total protos:** 245
 - **Total sidecars:** 160
 - **Sidecar directory:** oaa/
-- **Git HEAD:** 96978cd8780abc8639bd85a66a9696c1c633cbc6
+- **Git HEAD:** 4e9dadd69ce00100c07ae73bf116f2f868643f44

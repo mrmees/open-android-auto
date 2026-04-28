@@ -34,8 +34,8 @@
     }
   },
   "metadata": {
-    "git_head": "96978cd8780abc8639bd85a66a9696c1c633cbc6",
-    "run_date": "2026-04-12T16:55:01Z",
+    "git_head": "4e9dadd69ce00100c07ae73bf116f2f868643f44",
+    "run_date": "2026-04-12T16:59:26Z",
     "sidecar_directory": "oaa/",
     "tool_version": "1.0.0",
     "total_protos": 245,
