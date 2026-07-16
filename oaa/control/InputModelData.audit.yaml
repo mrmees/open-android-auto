@@ -1,7 +1,11 @@
 proto: oaa/control/InputModelData.proto
 message: InputModelEntry
-confidence: silver
-last_updated: '2026-04-08'
+confidence: retracted
+last_updated: '2026-07-16'
+retracted: true
+retraction_reason: >-
+  The mapped aafl/aago families are GoogleAuth and Google Surveys data, not
+  Android Auto capability connections or handwriting input models.
 evidence:
 - type: apk_static
   method: bfs_trace
@@ -39,3 +43,10 @@ evidence:
   description: Structural match confirmed across versions 15.9, 16.1, 16.2, 16.4.
     Field numbers, types, and modifiers are consistent across all 6 pairwise comparisons.
   status: consistent
+- type: apk_deep_trace
+  method: class_lineage_call_site
+  source: analysis/lineage/android-auto-17.3.yaml
+  date: '2026-07-16'
+  description: >-
+    RETRACTED. aafl -> aayi -> abud is consumed by GoogleAuthProviderImpl;
+    aago -> aazl -> abvg is Google Surveys request context with survey failures.

@@ -2,9 +2,9 @@
 
 ## Summary
 
-- **Mapped protos:** 171
-- **Validated (with APK class):** 171
-- **Layer 1 (Schema vs APK):** 0 errors, 60 warnings
+- **Mapped protos:** 215
+- **Validated (with APK class):** 203
+- **Layer 1 (Schema vs APK):** 24 errors, 12 warnings
 
 ## Layer 1: Schema vs APK Database
 
@@ -12,183 +12,124 @@
 
 | Issue Type | Count |
 |---|---|
-| modifier_mismatch | 31 |
-| type_mismatch | 17 |
-| missing_field | 11 |
-| extra_field | 1 |
+| missing_field | 19 |
+| type_mismatch | 9 |
+| extra_field | 5 |
+| syntax_mismatch | 2 |
+| modifier_mismatch | 1 |
 
 ### Per-Message Details
 
-#### AVChannelSetupRequest (0E / 1W)
+#### AbsInputEvent (1E / 0W)
 
-- **[WARN]** `type_mismatch`: field 1 (config_index): ours=uint32, APK=enum (same wire type)
+- **[ERROR]** `missing_field`: could not find oaa.proto.messages.AbsInputEvent in compiled descriptor pool
 
-#### AudioFocusChannel (0E / 1W)
+#### AbsoluteInputEvent (1E / 1W)
 
-- **[WARN]** `missing_field`: APK class vxq has no fields in DB (may be empty message or missing descriptor)
+- **[WARN]** `type_mismatch`: field 2 (value): ours=int32, APK=uint32 (same wire type)
+- **[ERROR]** `missing_field`: field 3 in APK (uint32) but missing from our schema
 
-#### AuthCompleteIndication (0E / 1W)
+#### AbsoluteInputEvents (2E / 0W)
 
-- **[WARN]** `type_mismatch`: field 1 (status): ours=enum, APK=int32 (same wire type)
+- **[ERROR]** `missing_field`: field 2 in APK (uint32) but missing from our schema
+- **[ERROR]** `missing_field`: field 3 in APK (enum) but missing from our schema
 
-#### BluetoothPairingRequest (0E / 3W)
+#### AudioFocusState (1E / 0W)
 
-- **[WARN]** `modifier_mismatch`: field 1 (phone_address): oneof: ours=True, APK=False
-- **[WARN]** `modifier_mismatch`: field 2 (pairing_method): oneof: ours=True, APK=False
-- **[WARN]** `modifier_mismatch`: field 3 (phone_name): oneof: ours=True, APK=False
+- **[ERROR]** `missing_field`: could not find oaa.proto.messages.AudioFocusState in compiled descriptor pool
 
-#### CarAreaId (0E / 5W)
+#### AudioStreamType (1E / 0W)
 
-- **[WARN]** `type_mismatch`: field 2 (window_ids): ours=int32, APK=enum (same wire type)
-- **[WARN]** `type_mismatch`: field 3 (seat_ids): ours=int32, APK=enum (same wire type)
-- **[WARN]** `type_mismatch`: field 4 (mirror_ids): ours=int32, APK=enum (same wire type)
-- **[WARN]** `type_mismatch`: field 5 (door_ids): ours=int32, APK=enum (same wire type)
-- **[WARN]** `type_mismatch`: field 6 (wheel_ids): ours=int32, APK=enum (same wire type)
+- **[ERROR]** `missing_field`: could not find oaa.proto.messages.AudioStreamType in compiled descriptor pool
 
-#### CarControl (0E / 1W)
+#### BluetoothPairingResponse (1E / 2W)
 
-- **[WARN]** `modifier_mismatch`: field 5 (metadata): packed: ours=True, APK=False
+- **[WARN]** `type_mismatch`: field 1 (status): ours=enum, APK=bool (same wire type)
+- **[WARN]** `type_mismatch`: field 2 (already_paired): ours=bool, APK=enum (same wire type)
+- **[ERROR]** `missing_field`: field 3 in APK (enum repeated) but missing from our schema
 
-#### CarLocalMediaPlaybackStatus (0E / 1W)
+#### CarLocalMediaPlayback (1E / 0W)
 
-- **[WARN]** `modifier_mismatch`: field 4 (actions): packed: ours=True, APK=False
+- **[ERROR]** `missing_field`: could not find oaa.proto.enums.CarLocalMediaPlayback in compiled descriptor pool
 
-#### ConnectionConfiguration (0E / 1W)
+#### ChannelDescriptor (0E / 1W)
 
-- **[WARN]** `modifier_mismatch`: field 1 (ping_configuration): oneof: ours=True, APK=False
+- **[WARN]** `extra_field`: field 18 (car_intent_channel: message) in our schema but not in APK DB
 
-#### ConnectionFeatureFlags (0E / 1W)
+#### FloatValues (1E / 0W)
 
-- **[WARN]** `modifier_mismatch`: field 1 (enabled): oneof: ours=True, APK=False
+- **[ERROR]** `type_mismatch`: field 1 (values): ours=float, APK=int64 (DIFFERENT wire type!)
 
-#### ConnectionReservedConfig (0E / 1W)
+#### GalPingRequest (1E / 0W)
 
-- **[WARN]** `missing_field`: APK class aaji has no fields in DB (may be empty message or missing descriptor)
+- **[ERROR]** `missing_field`: could not find oaa.proto.messages.GalPingRequest in compiled descriptor pool
 
-#### ConnectionSecurityConfig (0E / 1W)
+#### GalPingResponse (1E / 0W)
 
-- **[WARN]** `modifier_mismatch`: field 1 (security_mode): oneof: ours=True, APK=False
+- **[ERROR]** `missing_field`: could not find oaa.proto.messages.GalPingResponse in compiled descriptor pool
 
-#### ConnectionTransportConfig (0E / 2W)
+#### HeadUnitInfo (1E / 1W)
 
-- **[WARN]** `modifier_mismatch`: field 2 (transport_params_a): oneof: ours=True, APK=False
-- **[WARN]** `modifier_mismatch`: field 3 (transport_params_b): oneof: ours=True, APK=False
+- **[ERROR]** `syntax_mismatch`: ours=proto2, APK=proto3
+- **[WARN]** `extra_field`: field 9 (vehicle_type: int32) in our schema but not in APK DB
 
-#### ConnectionTuningConfig (0E / 1W)
+#### InputBindingRequest (1E / 2W)
 
-- **[WARN]** `modifier_mismatch`: field 1 (timeout_ms): oneof: ours=True, APK=False
+- **[WARN]** `type_mismatch`: field 1 (keycodes): ours=int32, APK=uint32 (same wire type)
+- **[WARN]** `modifier_mismatch`: field 1 (keycodes): repeated: ours=True, APK=False; packed: ours=True, APK=False
+- **[ERROR]** `missing_field`: field 2 in APK (int32) but missing from our schema
 
-#### DriverPosition (0E / 1W)
+#### InputChannel (1E / 0W)
 
-- **[WARN]** `missing_field`: APK class vxi has no fields in DB (may be empty message or missing descriptor)
+- **[ERROR]** `missing_field`: could not find oaa.proto.data.InputChannel in compiled descriptor pool
 
-#### EVConnectorType (0E / 1W)
+#### KeyEvent (1E / 0W)
 
-- **[WARN]** `missing_field`: APK class vxl has no fields in DB (may be empty message or missing descriptor)
+- **[ERROR]** `missing_field`: could not find oaa.proto.data.KeyEvent in compiled descriptor pool
 
-#### FuelType (0E / 1W)
+#### LongValues (1E / 0W)
 
-- **[WARN]** `missing_field`: APK class vxo has no fields in DB (may be empty message or missing descriptor)
+- **[ERROR]** `type_mismatch`: field 1 (values): ours=int64, APK=float (DIFFERENT wire type!)
 
-#### HapticFeedbackType (0E / 1W)
+#### MediaEventIdWrapper (1E / 0W)
 
-- **[WARN]** `missing_field`: APK class vxm has no fields in DB (may be empty message or missing descriptor)
+- **[ERROR]** `missing_field`: could not find oaa.proto.messages.MediaEventIdWrapper in compiled descriptor pool
 
-#### HeadUnitInfo (0E / 8W)
+#### MediaPlaybackMetadata (3E / 1W)
 
-- **[WARN]** `modifier_mismatch`: field 1 (make): oneof: ours=True, APK=False
-- **[WARN]** `modifier_mismatch`: field 2 (model): oneof: ours=True, APK=False
-- **[WARN]** `modifier_mismatch`: field 3 (year): oneof: ours=True, APK=False
-- **[WARN]** `modifier_mismatch`: field 4 (vehicle_id): oneof: ours=True, APK=False
-- **[WARN]** `modifier_mismatch`: field 5 (head_unit_make): oneof: ours=True, APK=False
-- **[WARN]** `modifier_mismatch`: field 6 (head_unit_model): oneof: ours=True, APK=False
-- **[WARN]** `modifier_mismatch`: field 7 (head_unit_software_build): oneof: ours=True, APK=False
-- **[WARN]** `modifier_mismatch`: field 8 (head_unit_software_version): oneof: ours=True, APK=False
-
-#### InputChannelConfig (0E / 1W)
-
-- **[WARN]** `modifier_mismatch`: field 1 (input_type): packed: ours=False, APK=True
-
-#### LaneShape (0E / 1W)
-
-- **[WARN]** `missing_field`: APK class vzh has no fields in DB (may be empty message or missing descriptor)
-
-#### MediaPlaybackMetadata (0E / 6W)
-
-- **[WARN]** `modifier_mismatch`: field 1 (title): oneof: ours=True, APK=False
-- **[WARN]** `modifier_mismatch`: field 2 (artist): oneof: ours=True, APK=False
-- **[WARN]** `modifier_mismatch`: field 3 (album): oneof: ours=True, APK=False
-- **[WARN]** `modifier_mismatch`: field 4 (album_art): oneof: ours=True, APK=False
-- **[WARN]** `modifier_mismatch`: field 5 (is_playing): oneof: ours=True, APK=False
-- **[WARN]** `modifier_mismatch`: field 6 (album_art_url): oneof: ours=True, APK=False
+- **[ERROR]** `syntax_mismatch`: ours=proto2, APK=proto3
+- **[ERROR]** `type_mismatch`: field 5 (unknown_5): ours=string, APK=bool (DIFFERENT wire type!)
+- **[ERROR]** `type_mismatch`: field 6 (unknown_6): ours=uint32, APK=string (DIFFERENT wire type!)
+- **[WARN]** `extra_field`: field 7 (unknown_7: int32) in our schema but not in APK DB
 
 #### NavigationChannel (0E / 1W)
 
 - **[WARN]** `type_mismatch`: field 2 (type): ours=enum, APK=int32 (same wire type)
 
-#### NavigationChannelConfig (0E / 1W)
+#### NavigationFocusIndication (1E / 0W)
 
-- **[WARN]** `type_mismatch`: field 2 (type): ours=int32, APK=enum (same wire type)
+- **[ERROR]** `missing_field`: could not find oaa.proto.messages.NavigationFocusIndication in compiled descriptor pool
 
-#### NavigationDistanceDisplay (0E / 1W)
+#### PingRequest (0E / 1W)
 
-- **[WARN]** `type_mismatch`: field 4 (labels): ours=message, APK=group (DIFFERENT wire type!) [known limitation]
+- **[WARN]** `extra_field`: field 3 (payload: bytes) in our schema but not in APK DB
 
-#### NavigationDistanceEntry (0E / 1W)
+#### PingResponse (0E / 1W)
 
-- **[WARN]** `modifier_mismatch`: field 3 (metadata): repeated: ours=False, APK=True; packed: ours=False, APK=True
+- **[WARN]** `extra_field`: field 2 (payload: bytes) in our schema but not in APK DB
 
-#### NavigationDistanceInfo (0E / 1W)
+#### RadioBand (1E / 0W)
 
-- **[WARN]** `modifier_mismatch`: field 4 (oneof_display): oneof: ours=False, APK=True
+- **[ERROR]** `missing_field`: could not find oaa.proto.data.RadioBand in compiled descriptor pool
 
-#### NotificationChannel (0E / 1W)
+#### SensorErrorStatus (0E / 1W)
 
-- **[WARN]** `missing_field`: APK class wah has no fields in DB (may be empty message or missing descriptor)
+- **[WARN]** `missing_field`: APK class wbg has no fields in DB (may be empty message or missing descriptor)
 
-#### PhoneCallState (0E / 1W)
+#### TouchConfig (1E / 0W)
 
-- **[WARN]** `missing_field`: APK class wae has no fields in DB (may be empty message or missing descriptor)
+- **[ERROR]** `missing_field`: could not find oaa.proto.data.TouchConfig in compiled descriptor pool
 
-#### PingConfiguration (0E / 2W)
+#### TouchCoordinate (1E / 0W)
 
-- **[WARN]** `modifier_mismatch`: field 1 (ping_interval_ns): oneof: ours=True, APK=False
-- **[WARN]** `modifier_mismatch`: field 2 (ping_timeout_ms): oneof: ours=True, APK=False
-
-#### RadioStation (0E / 1W)
-
-- **[WARN]** `type_mismatch`: field 2 (identifier_type): ours=int32, APK=enum (same wire type)
-
-#### TouchCoordinate (0E / 1W)
-
-- **[WARN]** `extra_field`: field 3 (pointer_id: uint32) in our schema but not in APK DB
-
-#### WiFiProjectionChannel (0E / 2W)
-
-- **[WARN]** `type_mismatch`: field 1 (ssid): ours=string, APK=message (same wire type)
-- **[WARN]** `modifier_mismatch`: field 1 (ssid): repeated: ours=False, APK=True
-
-#### WifiConnectStatus (0E / 1W)
-
-- **[WARN]** `type_mismatch`: field 1 (state): ours=sint32, APK=enum (same wire type)
-
-#### WifiInfoRequest (0E / 1W)
-
-- **[WARN]** `missing_field`: APK class wdl has no fields in DB (may be empty message or missing descriptor)
-
-#### WifiSecurityResponse (0E / 2W)
-
-- **[WARN]** `type_mismatch`: field 4 (security_mode): ours=enum, APK=message (DIFFERENT wire type!) [known limitation]
-- **[WARN]** `type_mismatch`: field 5 (access_point_type): ours=enum, APK=message (DIFFERENT wire type!) [known limitation]
-
-#### WifiSetupMessage (0E / 1W)
-
-- **[WARN]** `missing_field`: APK class wdn has no fields in DB (may be empty message or missing descriptor)
-
-#### WifiStartResponse (0E / 1W)
-
-- **[WARN]** `type_mismatch`: field 3 (status): ours=sint32, APK=enum (same wire type)
-
-#### WifiVersionResponse (0E / 1W)
-
-- **[WARN]** `type_mismatch`: field 4 (version_status): ours=sint32, APK=enum (same wire type)
+- **[ERROR]** `missing_field`: could not find oaa.proto.data.TouchCoordinate in compiled descriptor pool

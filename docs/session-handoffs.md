@@ -889,3 +889,53 @@ Verification:
 - Documented 17.3 matcher smoke command with `--lineage-yaml` -> success; 422 canonical messages, 1,957 APK messages, 129 dispatch observations, and 6 lineage anchors
 - Generated report summary -> 152 resolved, 39 high confidence, 113 medium confidence, 52 graph-resolved, 6 lineage invalidations
 - Generated conflict audit -> 0 dispatch/schema conflicts, 0 parent constraint conflicts, 0 direct child-schema differences
+
+## 2026-07-16 — Bundled-library proto quarantine and Wi-Fi correction
+
+Date / Session: 2026-07-16 / bundled-library-proto-quarantine
+
+What Changed:
+- Retracted `CapabilityData`, `PhoneCapabilitiesMessage`, `InputModelData`,
+  `ConnectionConfigurationData`, and `WifiDirectConfigData` at the audit-file
+  boundary while retaining their source as research history
+- Made the schema validator omit mappings whose proto audit is retracted
+- Removed false fields 6-13 from `WifiSecurityResponse`; fields 1-5 remain
+  capture-backed, and the stale `wan`/`waf`/`wss` mapping was cleared
+- Corrected service-discovery, ping-maintenance, Wi-Fi, protocol-reference, and
+  cross-version documentation that exposed the invalid schemas as protocol data
+- Regenerated the 17.3 schema-match and 16.2 validation reports
+
+Why:
+- The exact lineages proved that these were stable protobufs, but their call
+  sites place them in bundled GoogleAuth/Google Surveys rather than Android Auto
+- `WifiSecurityResponse` is a real wire message, so retracting the whole message
+  would discard useful data; only its radio-derived extension needed removal
+- Keeping retracted mappings in active validation allowed structurally correct
+  unrelated classes to continue contaminating reports and graph propagation
+
+Status:
+- The active canonical graph fell from 422 messages/117 enums to 373 messages/111
+  enums by excluding 49 non-protocol messages and 6 enums
+- The conservative 17.3 baseline is 151 mappings: 39 high-confidence and 112
+  medium-confidence, including 51 graph-resolved mappings
+- `RadioSongMetadata -> xla` is now a unique structural mapping; it had previously
+  collided with the false `WifiDirectConfig` alias
+- The 16.2 validator now loads 215 active mappings (203 mapped for 16.2) and no
+  longer reports the retracted families or false `WifiSecurityResponse` APK class
+
+Next Steps:
+1. Trace legitimate unresolved children directly from dispatch-backed Android
+   Auto service/channel parents, prioritizing the 166 structural collisions
+2. Use captures or trusted RFCOMM handlers to determine whether
+   `WifiSecurityResponse` has any real fields beyond the capture-backed 1-5
+3. Regenerate the legacy protocol-reference document from active audited protos
+   rather than continuing to patch its 16.1 auto-generated snapshot
+
+Verification:
+- `protoc --proto_path=. --descriptor_set_out=/tmp/oaa-proto-quarantine-check/all.pb $(find oaa -name '*.proto' -print | sort)` -> success
+- `PYTHONPATH=. /tmp/open-android-auto-test-venv/bin/pytest analysis/tools/proto_schema_matcher/tests analysis/tools/proto_schema_validator/tests -q` -> 29 passed
+- `PYTHONPATH=. /tmp/open-android-auto-test-venv/bin/pytest analysis/tools/apk_indexer/tests analysis/tools/proto_schema_matcher/tests analysis/tools/proto_schema_validator/tests analysis/tools/proto_stream_validator/tests -q` -> 93 passed
+- All 6 changed audit sidecars validate against `docs/verification/audit-schema.json`
+- Documented 17.3 matcher smoke command -> success; 373 canonical messages, 111 canonical enums, 1,957 APK messages, and 6 lineage anchors
+- Generated 17.3 report -> 151 resolved, 39 high confidence, 112 medium confidence, 51 graph-resolved, and `RadioSongMetadata -> xla`
+- 16.2 validator smoke -> 215 active mappings, 203 with a 16.2 class, 24 errors and 12 warnings after excluding retractions

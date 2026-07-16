@@ -91,6 +91,19 @@ def test_invalidated_lineage_quarantines_all_structural_candidates():
     assert result.structural_candidates == ["aaa", "bbb"]
 
 
+def test_invalidated_lineage_may_name_retracted_canonical_message():
+    anchor = _anchor("oaa.proto.messages.Retracted", "bbb", "invalidated")
+
+    results = match_graphs(
+        {"oaa.proto.messages.Active": _node("active", FieldShape(1, "int32"))},
+        {"bbb": _node("bbb", FieldShape(1, "string"))},
+        lineage_anchors=[anchor],
+    )
+
+    assert len(results) == 1
+    assert results[0].canonical_name == "oaa.proto.messages.Active"
+
+
 def test_dispatch_resolves_structural_collision():
     shape = FieldShape(1, "int64")
     canonical_name = "oaa.proto.messages.PingRequest"

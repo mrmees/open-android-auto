@@ -7,18 +7,18 @@ lineage. It does not use a live Android Auto session.
 ## Provenance
 
 - APK SHA-256: `1db7ce995aa52b2cde47a01abfb0364220fb57fc60217de3ec714e3034795344`
-- Canonical messages: 422
+- Canonical messages: 373
 - Decoded APK messages: 1957
-- Canonical enums: 117
+- Canonical enums: 111
 - Decoded APK enums: 134
-- Canonical message-reference edges: 278
+- Canonical message-reference edges: 219
 - APK field-linked reference edges: 1273
 
 ## Summary
 
-- Resolved mappings: 152
+- Resolved mappings: 151
 - High confidence (dispatch or confirmed lineage): 39
-- Medium confidence (unique structure): 113
+- Medium confidence (unique structure): 112
 - Static dispatch observations considered: 129
 - Cross-version lineage anchors considered: 6
 - Legacy canonical identities invalidated: 6
@@ -120,7 +120,6 @@ field-number-labelled message-edge constraint propagation.
 | `oaa.proto.data.TollCardData` | `xmg` | 2 |
 | `oaa.proto.data.TouchLocation` | `xmh` | 2 |
 | `oaa.proto.data.TrailerData` | `xmj` | 270 |
-| `oaa.proto.data.TransportCapabilityEntry` | `abxp` | 12 |
 | `oaa.proto.data.VehicleEnergyModelData` | `xeq` | 88 |
 | `oaa.proto.data.VehicleEnergyValue` | `xep` | 6 |
 | `oaa.proto.data.VersionFeatureFlags` | `xnq` | 5 |
@@ -157,7 +156,6 @@ These mappings have one exact APK schema candidate but no dispatch anchor yet.
 | `oaa.proto.data.AssistantFeatureFlags` | `opi` | 14 |
 | `oaa.proto.data.BluetoothChannel` | `xfp` | 2 |
 | `oaa.proto.data.ButtonEvent` | `xia` | 4 |
-| `oaa.proto.data.CapConnModelList` | `vzh` | 2 |
 | `oaa.proto.data.ChannelDescriptor` | `xlv` | 18 |
 | `oaa.proto.data.Compass` | `xgp` | 3 |
 | `oaa.proto.data.DistanceLabel` | `zad` | 4 |
@@ -175,7 +173,6 @@ These mappings have one exact APK schema candidate but no dispatch anchor yet.
 | `oaa.proto.data.TouchEvent` | `xmi` | 3 |
 | `oaa.proto.data.TouchPadConfig` | `xhq` | 8 |
 | `oaa.proto.data.TouchScreenConfig` | `xhr` | 3 |
-| `oaa.proto.data.TransportCapabilities` | `abxq` | 2 |
 | `oaa.proto.data.VehicleEnergyInfo` | `xer` | 5 |
 | `oaa.proto.messages.AVChannelMediaConfig` | `xig` | 13 |
 | `oaa.proto.messages.AVChannelMediaStats` | `xim` | 15 |
@@ -206,10 +203,12 @@ These mappings have one exact APK schema candidate but no dispatch anchor yet.
 | `oaa.proto.messages.RadioMetadata` | `xkn` | 13 |
 | `oaa.proto.messages.RadioProgramIdentifier` | `xkr` | 2 |
 | `oaa.proto.messages.RadioProgramType` | `xkw` | 2 |
+| `oaa.proto.messages.RadioSongMetadata` | `xla` | 6 |
 | `oaa.proto.messages.SensorError` | `xlo` | 2 |
 | `oaa.proto.messages.StatsEntry` | `xfa` | 4 |
 | `oaa.proto.messages.UiConfigEntry` | `xmp` | 2 |
 | `oaa.proto.messages.UiConfigValue` | `xmo` | 1 |
+| `oaa.proto.messages.UserSwitchRequest` | `syl` | 1 |
 | `oaa.proto.messages.WifiNetworkInfo` | `xni` | 5 |
 | `oaa.proto.messages.WifiSetupInfo` | `xns` | 5 |
 | `oaa.proto.messages.WifiVersionRequest` | `xnv` | 6 |

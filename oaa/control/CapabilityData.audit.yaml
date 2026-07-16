@@ -1,7 +1,11 @@
 proto: oaa/control/CapabilityData.proto
 message: CapabilityEntry
-confidence: silver
-last_updated: '2026-04-08'
+confidence: retracted
+last_updated: '2026-07-16'
+retracted: true
+retraction_reason: >-
+  The aagb -> aayy -> abut family and its parent/child graph are Google Surveys
+  client-capability telemetry, not Android Auto phone capability negotiation.
 evidence:
 - type: apk_static
   method: string_const
@@ -40,3 +44,10 @@ evidence:
   description: Unmappable in 16.4 (matcher found no candidate meeting structural fingerprint
     + field count match, or candidate was ambiguous).
   status: unmappable_16_4
+- type: apk_deep_trace
+  method: class_lineage_call_site
+  source: analysis/lineage/android-auto-17.3.yaml
+  date: '2026-07-16'
+  description: >-
+    RETRACTED. Exact 16.2/16.4/17.3 lineage plus vdo.java and wmp.java call
+    sites identify this file's mapped classes as Google Surveys request context.

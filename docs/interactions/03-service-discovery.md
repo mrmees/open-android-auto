@@ -13,7 +13,6 @@
 | InputChannel | Silver | apk_static + cross_version | [InputChannelData.audit.yaml](../../oaa/input/InputChannelData.audit.yaml) |
 | BluetoothChannel | Silver | apk_static + cross_version | [BluetoothChannelData.audit.yaml](../../oaa/bluetooth/BluetoothChannelData.audit.yaml) |
 | WifiChannel | Bronze | apk_static | [WifiChannelData.audit.yaml](../../oaa/wifi/WifiChannelData.audit.yaml) |
-| ConnectionConfiguration | Silver | apk_static + cross_version | [ConnectionConfigurationData.audit.yaml](../../oaa/control/ConnectionConfigurationData.audit.yaml) |
 | AudioConfig | Silver | apk_static + cross_version | [AudioConfigData.audit.yaml](../../oaa/audio/AudioConfigData.audit.yaml) |
 | VideoConfig | Silver | apk_static + cross_version | [VideoConfigData.audit.yaml](../../oaa/video/VideoConfigData.audit.yaml) |
 
@@ -52,7 +51,9 @@ Phone                                        Head Unit
 
 This is the most important message the HU sends. It defines the entire session's capabilities.
 
-> **Gotcha:** The `ServiceDiscoveryResponse` contains a `ConnectionConfiguration` (field 16, via `HeadUnitInfo`) which embeds a `PingConfiguration` with timing parameters for keepalive (`ping_interval_ns` and `ping_timeout_ms`). Implementers must parse and store these values -- they control the keepalive heartbeat that prevents the phone from disconnecting. Ignoring this configuration results in the phone using its own defaults, which may cause unexpected disconnects.
+> **Correction (2026-07):** The former `ConnectionConfiguration` field-16
+> claim was retracted. Current `ServiceDiscoveryResponse` has no field 16; the
+> mapped class family is GoogleAuth data, not Android Auto service discovery.
 
 ### Message Structure
 

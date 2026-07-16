@@ -2,6 +2,9 @@
 // https://github.com/mrmees/open-android-auto
 // SPDX-License-Identifier: GPL-3.0-or-later
 
+// RETRACTED: aafx/aayu/abup are Google Surveys client-context protos, not the
+// Android Auto ServiceDiscoveryRequest. Retained as research history only.
+
 /*
  * PhoneCapabilities — proto3 top-level message from ServiceDiscoveryRequest field 2.
  *

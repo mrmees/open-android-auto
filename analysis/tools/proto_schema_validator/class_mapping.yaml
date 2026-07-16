@@ -2101,10 +2101,10 @@ mappings:
   proto_fqn: oaa.proto.messages.WifiSecurityResponse
   apk_classes:
     '15.9': null
-    '16.1': wan
-    '16.2': waf
-    '16.4': wss
-  confidence: apk_protos_json
+    '16.1': null
+    '16.2': null
+    '16.4': null
+  confidence: wire_capture_only
 - proto_message: WifiNetworkInfo
   proto_file: oaa/wifi/WifiSetupInfoMessage.proto
   proto_fqn: oaa.proto.messages.WifiNetworkInfo

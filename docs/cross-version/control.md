@@ -2,6 +2,11 @@
 
 **Mappings:** 46 | **Versions:** 15.9, 16.1, 16.2, 16.4
 
+> **Correction (2026-07):** Capability/InputModel and
+> ConnectionConfiguration rows below are retained as historical class-lineage
+> records only. Their semantic protocol names are retracted; the classes belong
+> to Google Surveys or GoogleAuth.
+
 | Proto Name | 15.9 | 16.1 | 16.2 | 16.4 | Fields (15.9/16.1/16.2/16.4) |
 |---|---|---|---|---|---|
 | AuthCompleteIndication | `vod` | `vvv` | `vvh` | -- | 1/1/1/0 |

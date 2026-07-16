@@ -2,6 +2,9 @@
 // https://github.com/mrmees/open-android-auto
 // SPDX-License-Identifier: GPL-3.0-or-later
 
+// RETRACTED: the mapped aaiq/aajh families are Google authentication protos,
+// not ServiceDiscoveryResponse connection data. Retained as research history.
+
 /*
  * ConnectionConfiguration — connection setup parameters.
  *

@@ -1,7 +1,11 @@
 proto: oaa/wifi/WifiDirectConfigData.proto
 message: WifiDirectConfig
-confidence: silver
-last_updated: '2026-04-08'
+confidence: retracted
+last_updated: '2026-07-16'
+retracted: true
+retraction_reason: >-
+  The was -> wtf -> xla lineage is RadioSongMetadata, not Wi-Fi Direct
+  connection configuration.
 evidence:
 - type: apk_static
   method: proto_access
@@ -22,3 +26,10 @@ evidence:
   description: Structural match confirmed across versions 15.9, 16.1, 16.2, 16.4.
     Field numbers, types, and modifiers are consistent across all 6 pairwise comparisons.
   status: consistent
+- type: apk_deep_trace
+  method: class_lineage_call_site
+  source: analysis/lineage/android-auto-17.3.yaml
+  date: '2026-07-16'
+  description: >-
+    RETRACTED. Three release-specific consumers convert was/wtf/xla directly to
+    RadioMetadata.RadioSongMetadata.

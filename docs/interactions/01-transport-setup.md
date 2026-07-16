@@ -8,7 +8,7 @@
 | WifiInfoRequest | Bronze | apk_static | [WifiInfoRequestMessage.audit.yaml](../../oaa/wifi/WifiInfoRequestMessage.audit.yaml) |
 | WifiInfoResponse | Silver | apk_static + cross_version | [WifiInfoResponseMessage.audit.yaml](../../oaa/wifi/WifiInfoResponseMessage.audit.yaml) |
 | WifiSecurityRequest | Unverified | -- | -- |
-| WifiSecurityResponse | Silver | apk_static + cross_version | [WifiSecurityResponseMessage.audit.yaml](../../oaa/wifi/WifiSecurityResponseMessage.audit.yaml) |
+| WifiSecurityResponse | Gold | wire capture | [WifiSecurityResponseMessage.audit.yaml](../../oaa/wifi/WifiSecurityResponseMessage.audit.yaml) |
 | WifiConnectStatus | Silver | apk_static + cross_version | [WifiConnectStatusMessage.audit.yaml](../../oaa/wifi/WifiConnectStatusMessage.audit.yaml) |
 | WifiStartRequest | Unverified | -- | -- |
 

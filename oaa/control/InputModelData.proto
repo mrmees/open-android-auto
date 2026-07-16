@@ -2,6 +2,9 @@
 // https://github.com/mrmees/open-android-auto
 // SPDX-License-Identifier: GPL-3.0-or-later
 
+// RETRACTED: the mapped classes belong to GoogleAuth and Google Surveys, not
+// Android Auto input-model negotiation. Retained as research history only.
+
 /*
  * Input model and capability connection config messages (proto3).
  *

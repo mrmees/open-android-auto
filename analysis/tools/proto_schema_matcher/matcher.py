@@ -62,10 +62,6 @@ def match_graphs(
 
     anchor_by_canonical: dict[str, LineageAnchor] = {}
     for anchor in lineage_anchors or []:
-        if anchor.canonical_name not in canonical_graph:
-            raise ValueError(
-                f"lineage anchor names unknown canonical message {anchor.canonical_name}"
-            )
         if anchor.current_class not in apk_graph:
             raise ValueError(
                 f"lineage anchor for {anchor.canonical_name} names unknown APK class "
@@ -76,6 +72,15 @@ def match_graphs(
             raise ValueError(
                 f"lineage anchor for {anchor.canonical_name} rejects unknown APK "
                 f"classes {sorted(unknown_rejections)}"
+            )
+        if anchor.canonical_name not in canonical_graph:
+            if anchor.disposition == "invalidated":
+                # Keep retracted identities in the top-level lineage report
+                # without reintroducing them into the active canonical graph.
+                continue
+            raise ValueError(
+                f"confirmed lineage anchor names unknown canonical message "
+                f"{anchor.canonical_name}"
             )
         if anchor.canonical_name in anchor_by_canonical:
             raise ValueError(f"duplicate lineage anchor for {anchor.canonical_name}")

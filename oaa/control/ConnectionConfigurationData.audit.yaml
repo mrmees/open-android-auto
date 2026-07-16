@@ -1,7 +1,11 @@
 proto: oaa/control/ConnectionConfigurationData.proto
 message: ConnectionConfiguration
-confidence: silver
-last_updated: '2026-04-08'
+confidence: retracted
+last_updated: '2026-07-16'
+retracted: true
+retraction_reason: >-
+  The aaiq root and aajh security-detail subtree track Google authentication
+  credential protos, not ServiceDiscoveryResponse connection configuration.
 evidence:
 - type: apk_static
   method: string_const
@@ -64,3 +68,11 @@ evidence:
   description: Unmappable in 16.4 (matcher found no candidate meeting structural fingerprint
     + field count match, or candidate was ambiguous).
   status: unmappable_16_4
+- type: apk_deep_trace
+  method: class_lineage_call_site
+  source: analysis/lineage/android-auto-17.3.yaml
+  date: '2026-07-16'
+  description: >-
+    RETRACTED. The root continues as aaiq -> abbn -> abxi and the detail as
+    aajh -> abce -> abxz; both are referenced from GoogleAuthProviderImpl.
+    Current ServiceDiscoveryResponse has no field 16.

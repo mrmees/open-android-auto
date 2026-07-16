@@ -2,6 +2,9 @@
 // https://github.com/mrmees/open-android-auto
 // SPDX-License-Identifier: GPL-3.0-or-later
 
+// RETRACTED: was/wtf/xla are RadioSongMetadata, not Wi-Fi Direct connection
+// configuration. Retained as research history only.
+
 /*
 *  Discovered via APK proto decoder (wbb.java, AA v16.1).
 *  Sub-message of WifiSecurityResponse field 6.

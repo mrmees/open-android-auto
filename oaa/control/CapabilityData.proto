@@ -2,6 +2,9 @@
 // https://github.com/mrmees/open-android-auto
 // SPDX-License-Identifier: GPL-3.0-or-later
 
+// RETRACTED: these classes are Google Surveys request-context protos, not
+// Android Auto capability negotiation. Retained as research history only.
+
 /*
  * Phone capability sub-messages — proto3 types used in ServiceDiscoveryRequest.
  * Split from PhoneCapabilitiesData.proto because the APK compiles these as proto3.
