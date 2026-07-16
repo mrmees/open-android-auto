@@ -33,6 +33,7 @@
 syntax = "proto2";
 
 import "oaa/carcontrol/CarPropertyData.proto";
+import "oaa/common/StatusEnum.proto";
 
 package oaa.proto.messages;
 
@@ -119,7 +120,7 @@ message SetCarPropertyValueRequest {
 // confidence: gold [deep_trace, handler hyc.java case 32770]
 message SetCarPropertyValueResponse {
     optional CarProperty car_property = 1;  // confidence: gold [deep_trace]
-    optional int32 status = 2;  // ProtocolStatus (vyh) — shared AA status enum. 0=SUCCESS, -26=SET_FAILED, -27=LISTENER_FAILED  // confidence: gold [deep_trace, vyh.m37369b confirmed in handler]
+    optional enums.Status.Enum status = 2;  // ProtocolStatus (vyh/xin) — shared AA status enum. 0=SUCCESS, -26=SET_FAILED, -27=LISTENER_FAILED  // confidence: gold [17.3_raw_message_info]
     optional string request_id = 3; // UUID correlating to original request  // confidence: gold [deep_trace]
     optional int32 error_code = 4; // CarPropertySetError code  // confidence: gold [deep_trace]
 }
@@ -142,7 +143,7 @@ message RegisterCarPropertyListenersResponse {
 // confidence: gold [deep_trace, 16.2 DB verified]
 message SetCarPropertyListenerResult {
     optional CarProperty car_property = 1;  // confidence: gold [deep_trace]
-    optional int32 status = 2;  // ProtocolStatus (vyh) — shared AA status enum. vik.m36848u confirms vyh  // confidence: gold [deep_trace]
+    optional enums.Status.Enum status = 2;  // ProtocolStatus (vyh/xin) — shared AA status enum  // confidence: gold [17.3_raw_message_info]
 }
 
 // 0x8005: CarPropertyChangeEvent (APK class: vwg 16.2 / vwu 16.1)

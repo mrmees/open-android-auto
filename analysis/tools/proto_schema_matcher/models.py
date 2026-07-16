@@ -1,0 +1,74 @@
+from __future__ import annotations
+
+from dataclasses import dataclass, field
+
+
+@dataclass(frozen=True, order=True)
+class FieldShape:
+    number: int
+    base_type: str
+    repeated: bool = False
+    packed: bool = False
+    oneof: bool = False
+    map: bool = False
+    required: bool = False
+    target: str | None = field(default=None, compare=False)
+
+    def structural_key(self) -> tuple[object, ...]:
+        return (
+            self.number,
+            self.base_type,
+            self.repeated,
+            self.packed,
+            self.oneof,
+            self.map,
+            self.required,
+        )
+
+
+@dataclass(frozen=True)
+class MessageNode:
+    name: str
+    syntax: str
+    fields: tuple[FieldShape, ...]
+    source: str = ""
+
+    def structural_key(self) -> tuple[object, ...]:
+        return (self.syntax, tuple(field.structural_key() for field in self.fields))
+
+
+@dataclass(frozen=True)
+class EnumNode:
+    name: str
+    values: tuple[int, ...]
+    source: str = ""
+
+    def structural_key(self) -> tuple[int, ...]:
+        return tuple(sorted(set(self.values)))
+
+
+@dataclass(frozen=True)
+class DispatchObservation:
+    canonical_name: str
+    message_id: int
+    apk_class: str
+    source: str
+    line: int
+    service_type: str = "control"
+
+
+@dataclass
+class MatchResult:
+    canonical_name: str
+    source: str
+    field_count: int
+    status: str
+    confidence: str
+    candidates: list[str]
+    structural_candidates: list[str]
+    structural_candidate_count: int
+    refined_candidate_count: int
+    canonical_shape_count: int
+    resolved_apk_class: str | None = None
+    edge_constraint_conflict: bool = False
+    dispatch_evidence: list[DispatchObservation] = field(default_factory=list)

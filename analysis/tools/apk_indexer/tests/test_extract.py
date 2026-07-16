@@ -1,4 +1,32 @@
-from analysis.tools.apk_indexer.extract import extract_signals
+import re
+
+from analysis.tools.apk_indexer.extract import (
+    _decode_field_references,
+    _detect_proto_names,
+    _extract_proto_enum_from_text,
+    extract_signals,
+)
+
+
+def test_proto_enum_excludes_generated_unrecognized_sentinel(tmp_path):
+    source = tmp_path / "xed.java"
+    text = """
+    public enum xed implements abnb {
+        FIRST(0),
+        SECOND(1),
+        UNRECOGNIZED(-1);
+    }
+    """
+
+    row = _extract_proto_enum_from_text(
+        source,
+        text,
+        enum_interface_re=re.compile(r"implements\s+abnb"),
+    )
+
+    assert row is not None
+    assert '"name": "UNRECOGNIZED"' not in row["values"]
+    assert row["value_count"] == 2
 
 
 def test_extract_uuid(tmp_path):
@@ -113,3 +141,71 @@ def test_extract_switch_maps(tmp_path):
     rows = {(r["switch_expr"], r["case_value"], r["target"]) for r in result["switch_maps"]}
     assert ("messageId", "7", "handler.handleAudio") in rows
     assert ("messageId", "9", "codec.select") in rows
+
+
+def test_detect_descriptor_by_raw_message_info_shape_not_total_new_count(tmp_path):
+    obfuscated = tmp_path / "sources" / "defpackage"
+    obfuscated.mkdir(parents=True)
+
+    (obfuscated / "signals.java").write_text(
+        "\n".join(
+            ["final class Message extends abmx {}"] * 501
+            + ['Object info = new aboi(a, "\\u0001\\u0000", null);'] * 501
+            + ['Object helper = new yxw(1, "VALUE");'] * 600
+            + ["enum Value implements abnb { VALUE }"] * 51
+        )
+    )
+
+    assert _detect_proto_names(tmp_path) == (
+        "defpackage",
+        "abmx",
+        "aboi",
+        "abnb",
+    )
+
+
+def test_decode_raw_message_info_field_references():
+    decoded = {
+        "syntax": "proto2",
+        "oneof_count": 0,
+        "hasbits_count": 1,
+        "fields": [
+            {
+                "field_number": 1,
+                "type_id": 9,
+                "base_type": "message",
+                "is_oneof": False,
+                "enum_closed": False,
+            },
+            {
+                "field_number": 2,
+                "type_id": 27,
+                "base_type": "message",
+                "is_oneof": False,
+                "enum_closed": False,
+            },
+            {
+                "field_number": 3,
+                "type_id": 12,
+                "base_type": "enum",
+                "is_oneof": False,
+                "enum_closed": True,
+            },
+        ],
+    }
+
+    references = _decode_field_references(
+        decoded,
+        ['"bitField0_"', '"child_"', '"children_"', "abc.class", '"state_"', "xyz.a"],
+        [
+            {"name": "child_", "type": "defpackage.abc"},
+            {"name": "children_", "type": "abna"},
+            {"name": "state_", "type": "int"},
+        ],
+    )
+
+    assert [(item["field_number"], item["target_class"]) for item in references] == [
+        (1, "abc"),
+        (2, "abc"),
+        (3, "xyz"),
+    ]

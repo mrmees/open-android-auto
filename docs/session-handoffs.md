@@ -649,3 +649,142 @@ Verification:
 - `jadx --single-class defpackage.rcn --single-class-output <tmp> analysis/aa_apk_16.4.661034_apkm/jadx-output/resources/classes2.dex` -> completed, but output differed from preserved `manual-jadx/defpackage/rcn.java`
 - `jadx --single-class defpackage.rdt --single-class-output <tmp> analysis/aa_apk_16.4.661034_apkm/jadx-output/resources/classes.dex` -> completed, but output differed from preserved `manual-jadx/defpackage/rdt.java`
 - `jadx --show-bad-code --comments-level debug --decompilation-mode simple --single-class defpackage.red --single-class-output <tmp> analysis/aa_apk_16.4.661034_apkm/jadx-output/resources/classes.dex` -> completed, but output still differed from preserved `manual-jadx/defpackage/red.java`
+
+## 2026-07-15 — Android Auto 17.3 protobuf metadata detection
+
+Date / Session: 2026-07-15 / 17.3-static-protobuf-ingest
+
+What Changed:
+- Replaced frequency-only protobuf descriptor-class selection with detection of the stable `RawMessageInfo` constructor call shape: `(default instance, compact schema string, object array)`
+- Retained the previous total-constructor-count heuristic only as a best-effort fallback for incomplete decompiles
+- Added a regression that reproduces the 17.3 failure mode where an unrelated helper class has more total constructor calls than the real descriptor class
+- Updated the roadmap with the 17.3 static-ingest, canonical schema-graph matching, and message-dispatch milestones
+
+Why:
+- Android Auto 17.3 instantiates the unrelated `yxw` helper 2,050 times and the real protobuf metadata class `aboi` 2,028 times, so the previous "most instantiated class" heuristic selected the wrong type
+- Recognizing the semantic constructor shape recovers protobuf-lite metadata without requiring a running phone/head-unit session or wire capture
+
+Status:
+- The detector now identifies the 17.3 obfuscated protobuf runtime as base `abmx`, descriptor `aboi`, and enum interface `abnb`
+- A full static scan of the local 17.3 JADX tree recovers 1,961 protobuf classes, 1,957 decoded descriptors, 134 protobuf enums, and 9,500 switch-map entries
+- Canonical schema-graph matching and dispatch constraint propagation remain the next implementation increment
+
+Next Steps:
+1. Compile `oaa/**/*.proto` into a descriptor set and emit normalized canonical message signatures
+2. Emit field-number-labelled APK message/enum reference edges from `RawMessageInfo` object arrays
+3. Resolve ambiguous structural matches with channel, message-ID, direction, and cross-version anchors
+
+Verification:
+- `PYTHONPATH=. /tmp/open-android-auto-test-venv/bin/pytest analysis/tools/apk_indexer/tests/test_extract.py -q` -> 9 passed
+- `PYTHONPATH=. /tmp/open-android-auto-test-venv/bin/pytest analysis/tools/apk_indexer/tests -q` -> 25 passed
+- `_detect_proto_names(Path('/tmp/android-auto-17.3-jadx'))` -> `('defpackage', 'abmx', 'aboi', 'abnb')`
+- `extract_signals(Path('/tmp/android-auto-17.3-jadx'), scope='all')` -> 1,961 protobuf classes, 1,957 decoded descriptors, 134 protobuf enums, and 9,500 switch-map entries
+
+## 2026-07-15 — Android Auto 17.3 static schema-graph resolver
+
+Date / Session: 2026-07-15 / 17.3-schema-graph-resolver
+
+What Changed:
+- Added `analysis/tools/proto_schema_matcher/`, which compiles the canonical `oaa/` descriptor graph and normalizes it against APK protobuf-lite schema metadata
+- Added global structural uniqueness checks so duplicate canonical schemas are not incorrectly promoted as unique mappings
+- Added conservative control-channel dispatch observations using the repository's existing message-ID map; observations become mappings only when the APK class is structurally compatible
+- Decoded field-number-linked message/enum/map references from the `RawMessageInfo` object-array cursor and added iterative message-edge constraint propagation
+- Generated machine-readable and Markdown Android Auto 17.3 reports under `analysis/reports/cross-version/17-3-schema-match.*`
+
+Why:
+- Local field tuples cannot distinguish empty, tiny, or deliberately parallel message schemas
+- Global message-reference edges and dispatch IDs add independent constraints without requiring a phone, head unit, emulator, or capture session
+- Explicit conflict reporting prevents incomplete decompilation or schema drift from being mistaken for a successful name recovery
+
+Status:
+- The 17.3 run compares 423 canonical messages with 1,957 decoded APK messages, 274 canonical message edges, and 1,273 recovered APK field-linked edges
+- 77 mappings are resolved: 9 high-confidence dispatch-backed mappings and 68 medium-confidence mappings (61 globally unique structures plus 7 graph-resolved collisions)
+- Graph resolution recovered `CarProperty`, `NavigationDestination`, `NavigationNotification`, `NavigationRemainingDistance`, `NavigationStepDistance`, `RadioProgramSelector`, and `UiConfigData`
+- 13 constraint conflicts are retained in the report for drift/reference-parser triage; 259 messages remain structurally ambiguous and 74 have no exact 17.3 shape match
+
+Next Steps:
+1. Identify service/channel context around non-control handlers and reuse the existing service message-ID map for more dispatch anchors
+2. Audit the 13 edge conflicts against raw JADX metadata, starting with canonical messages that had one local structural candidate
+3. Add enum-domain edges and 16.2/16.4 cross-version anchors, then rerun fixed-point constraint propagation
+
+Verification:
+- `PYTHONPATH=. /tmp/open-android-auto-test-venv/bin/pytest analysis/tools/apk_indexer/tests analysis/tools/proto_schema_matcher/tests -q` -> 34 passed
+- Documented `proto_schema_matcher` 17.3 smoke command -> success; 423 canonical messages, 1,957 APK messages, 60 static dispatch observations, 77 resolved mappings
+- Generated report summary -> 9 high confidence, 68 medium confidence, 7 graph-resolved, 13 constraint conflicts, 259 ambiguous, 74 not found
+- `UiConfigData` graph evidence -> local shape had 3 APK candidates and field targets narrowed it to `xmn`, whose fields 1 and 2 are repeated `xmp`
+
+## 2026-07-15 — Android Auto 17.3 service-aware schema refinement
+
+Date / Session: 2026-07-15 / 17.3-service-aware-schema-refinement
+
+What Changed:
+- Extended static dispatch extraction to handlers with an unambiguous `rpq` service token and to validation logs that spell out protobuf message names
+- Added field-level schema differences for cases where explicit handler identity and the canonical local schema disagree
+- Corrected input message IDs 0x8002/0x8003 to `InputBindingRequest`/`InputBindingResponse` and sensor message ID 0x8001 to the non-retracted `SensorRequest`
+- Corrected `BluetoothPairingResponse.status` to the shared Status enum and recorded the 17.3-required `InputEventIndication.timestamp`
+- Preserved a dispatch-backed identity when a recovered child edge conflicts, while retaining the disagreement as an explicit report status
+
+Why:
+- Service-local IDs are reusable across Android Auto channels, so a service token is required before they can safely identify a message
+- The three initial dispatch/schema conflicts proved to be actionable catalog evidence: one stale retracted name, one enum declared as `int32`, and one 17.3 required-field change
+- Named handler logs provide identity independently of schema shape and therefore resolve collisions without runtime testing
+
+Status:
+- The 17.3 run resolves 88 mappings: 25 high-confidence dispatch-backed mappings and 63 medium-confidence mappings
+- Service and named-log extraction contributes input, sensor, video, Wi-Fi, Bluetooth, and radio anchors; radio case IDs are retained from switch branches
+- All explicit dispatch/schema conflicts are reconciled; 12 graph-edge conflicts remain for separate reference/drift triage
+- `BluetoothPairingResponse -> xfn`, `InputEventIndication -> xhp`, and `SensorRequest -> xlq` are now high-confidence mappings
+
+Next Steps:
+1. Audit the 12 remaining graph-edge conflicts against their raw object arrays and field declarations
+2. Add canonical/APK enum-domain matching and use enum field references as graph constraints
+3. Add 16.2/16.4 cross-version anchors for tiny and empty schemas that remain structurally ambiguous
+
+Verification:
+- `PYTHONPATH=. /tmp/open-android-auto-test-venv/bin/pytest analysis/tools/proto_schema_matcher/tests analysis/tools/proto_stream_validator/tests/test_message_map.py -q` -> 32 passed
+- Documented 17.3 matcher smoke command -> success; 423 canonical messages, 1,957 APK messages, 80 static observations, 88 resolved mappings
+- Generated report summary -> 25 high confidence, 63 medium confidence, 7 graph-resolved, 12 constraint conflicts, 251 ambiguous, 72 not found
+- Dispatch/schema conflict count -> 0 after catalog corrections
+
+## 2026-07-15 — Android Auto 17.3 conservative static extraction complete
+
+Date / Session: 2026-07-15 / 17.3-conservative-static-extraction
+
+What Changed:
+- Added numeric superclass service-ID inference for Bluetooth, navigation, phone status, radio, Wi-Fi projection, car control, and car-local media handlers
+- Added conservative canonical-name log anchors, including builder-to-literal-send correlation, while requiring structural compatibility before accepting identity
+- Resolved multiplexed protobuf-lite enum verifier members to real enum classes, normalized generated `UNRECOGNIZED` values and proto3 zero sentinels, and matched enum numeric domains
+- Added bidirectional field-edge propagation from dispatch-backed or globally unique parents and retained an evidence check so unknown enum targets cannot win by elimination
+- Excluded explicitly retracted proto files from the canonical graph and emitted 30 direct parent/child schema differences for the remaining constraint conflicts
+- Recovered the Android Auto 17.3 structured `VehicleEnergyModelData` schema from `xeq`/`xer`/`xep` metadata and the diagnostic formatter
+
+Why:
+- DEX protobuf-lite metadata contains field numbers, wire types, requiredness, oneofs, and message/enum references even though source names and descriptor strings are removed
+- Explicit endpoint service IDs and semantic logs provide the independent identity anchors needed to turn structural candidates into names without a live session
+- Parent-to-child propagation extracts otherwise ambiguous one-field and empty messages when their exact field position under a trusted parent is known
+- The remaining unresolved set no longer has equivalent low-risk local evidence; it needs schema reconstruction, cross-version identity, stronger decompilation, or runtime traffic
+
+Status:
+- Active canonical graph: 421 messages and 117 enums after excluding retracted files
+- Android Auto 17.3 graph: 1,957 decoded messages and 134 decoded enums
+- 144 message mappings resolved: 39 high-confidence dispatch-backed and 105 medium-confidence mappings, including 50 graph-resolved mappings
+- 13 globally unique enum numeric-domain mappings recovered
+- 129 static dispatch observations were considered; explicit dispatch/schema conflict count is zero
+- 12 parent constraint conflicts remain, described by 30 direct child-schema differences; 196 messages remain structurally ambiguous and 69 have no exact current-catalog shape
+
+Notable 17.3 Catalog Corrections:
+- `BluetoothPairingResponse.status`, `BluetoothAuthenticationResult.status`, and car-control response status fields now use the shared Status enum
+- `InputEventIndication.timestamp`, `PhoneStatusInput.input_type`, and `PhoneInputType.action` are required in 17.3
+- Sensor 0x8001 resolves to active `SensorRequest`, not retracted `SensorStartRequestMessage`
+- `VehicleEnergyModelData` now contains battery level/capacity, HVAC status, external temperature, and battery temperature through recovered nested messages
+
+Next Steps:
+1. Reconstruct the 12 remaining schema-drift families from the generated direct child-edge table
+2. Bring in 16.2/16.4 graph anchors for the 196 locally ambiguous messages
+3. Re-decompile the unresolved multiplexed enum verifier switch bodies with a lower-level DEX tool where the extra enum edges justify the effort
+
+Verification:
+- `PYTHONPATH=. /tmp/open-android-auto-test-venv/bin/pytest analysis/tools/apk_indexer/tests analysis/tools/proto_schema_matcher/tests analysis/tools/proto_stream_validator/tests -q` -> 86 passed
+- Documented 17.3 matcher smoke command -> success; 421 canonical messages, 117 canonical enums, 1,957 APK messages, 134 APK enums
+- Generated report summary -> 144 resolved, 39 high confidence, 105 medium confidence, 50 graph-resolved, 13 unique enum domains
+- Generated conflict audit -> 0 dispatch/schema conflicts, 12 parent constraint conflicts, 30 direct child-schema differences

@@ -43,14 +43,14 @@ enum PhoneInputAction {
 // APK class: vxo (16.2), vyc (16.1) — sub-message carrying the action type
 // confidence: gold [deep_trace, 16.2 APK verified 2026-03-06]
 message PhoneInputType {
-    optional PhoneInputAction action = 1;  // confidence: gold [deep_trace]
+    required PhoneInputAction action = 1;  // confidence: gold [17.3_raw_message_info]
 }
 
 // APK class: vzs (16.2), wag (16.1) — HU input relayed to phone (0x8002)
 // confidence: gold [deep_trace, 16.2 APK verified 2026-03-06]
 message PhoneStatusInput {
     // D-pad action type from the head unit
-    optional PhoneInputType input_type = 1;  // confidence: gold [deep_trace]
+    required PhoneInputType input_type = 1;  // confidence: gold [17.3_raw_message_info]
     // Phone number or caller identifier
     optional string caller_id = 2;  // confidence: gold [deep_trace]
     // Display name or contact label

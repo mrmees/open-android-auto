@@ -1,7 +1,7 @@
 proto: oaa/input/InputEventIndicationMessage.proto
 message: InputEventIndication
 confidence: gold
-last_updated: '2026-03-06'
+last_updated: '2026-07-15'
 channel: input
 channel_gal_type: 8
 msg_id: 0x8001
@@ -22,6 +22,13 @@ evidence:
   source: class_mapping.yaml (v15.9:vqf, v16.1:vxx, v16.2:vxj)
   date: '2026-03-03'
   description: Mapped InputEventIndication to obfuscated APK class(es) via string_const.
+- type: apk_static
+  method: raw_message_info_and_service_dispatch
+  source: Android Auto 17.3 xhp.java; rjq.java:81
+  date: '2026-07-15'
+  description: >
+    INPUT_SOURCE message ID 0x8001 dispatches to xhp. RawMessageInfo confirms
+    timestamp field 1 is required in 17.3 and fields 3-7 retain their prior shapes.
 changes:
 - date: '2026-03-06'
   description: >

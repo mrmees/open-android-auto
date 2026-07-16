@@ -1,7 +1,7 @@
 proto: oaa/bluetooth/BluetoothPairingResponseMessage.proto
 message: BluetoothPairingResponse
-confidence: silver
-last_updated: '2026-04-08'
+confidence: gold
+last_updated: '2026-07-15'
 evidence:
 - type: apk_static
   method: proto_access
@@ -22,3 +22,10 @@ evidence:
   description: Structural match confirmed across versions 15.9, 16.1, 16.2, 16.4.
     Field numbers, types, and modifiers are consistent across all 6 pairwise comparisons.
   status: consistent
+- type: apk_static
+  method: raw_message_info_and_named_handler_log
+  source: Android Auto 17.3 xfn.java; rqj.java:35
+  date: '2026-07-15'
+  description: >
+    Handler log identifies xfn as BluetoothPairingResponse at message ID 0x8002.
+    RawMessageInfo confirms required Status enum field 1 and required bool field 2.

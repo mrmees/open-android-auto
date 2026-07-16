@@ -17,6 +17,8 @@
 
 syntax = "proto2";
 
+import "oaa/common/StatusEnum.proto";
+
 package oaa.proto.messages;
 
 // confidence: gold [apk_deep_trace]
@@ -27,7 +29,7 @@ message BluetoothPairingResponse
     // -11=UNAVAILABLE, -12=INVALID_ADDRESS, -13=INVALID_PAIRING_METHOD,
     // -14=INVALID_AUTH_DATA, -15=AUTH_DATA_MISMATCH,
     // -16=HFP_ANOTHER_CONNECTION, -17=HFP_CONNECTION_FAILURE
-    required int32 status = 1;  // confidence: gold [apk_deep_trace]
+    required enums.Status.Enum status = 1;  // confidence: gold [17.3_raw_message_info]
 
     required bool already_paired = 2;  // confidence: gold [apk_deep_trace]
 }

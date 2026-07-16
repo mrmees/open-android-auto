@@ -149,11 +149,12 @@ def decode_proto_descriptor(raw_desc: str) -> dict[str, Any] | None:
             syntax = "proto2" if (flags & 1) else "proto3"
             return {
                 "syntax": syntax, "field_count": 0, "oneof_count": 0,
+                "hasbits_count": 0,
                 "map_count": 0, "fields": [],
             }
 
         oneof_count, pos = _read_varint(desc, pos)
-        _hasbits_count, pos = _read_varint(desc, pos)
+        hasbits_count, pos = _read_varint(desc, pos)
         _min_field, pos = _read_varint(desc, pos)
         _max_field, pos = _read_varint(desc, pos)
         _num_entries, pos = _read_varint(desc, pos)
@@ -203,6 +204,7 @@ def decode_proto_descriptor(raw_desc: str) -> dict[str, Any] | None:
             "syntax": syntax,
             "field_count": field_count,
             "oneof_count": oneof_count,
+            "hasbits_count": hasbits_count,
             "map_count": map_count,
             "fields": fields,
         }
@@ -214,11 +216,148 @@ FIELD_DECL_RE = re.compile(
     re.MULTILINE,
 )
 
+
+def _split_java_object_array(raw: str) -> list[str]:
+    """Split a decompiled Java Object[] initializer without splitting calls."""
+    tokens: list[str] = []
+    start = 0
+    depth = 0
+    quoted = False
+    escaped = False
+    for index, char in enumerate(raw):
+        if quoted:
+            if escaped:
+                escaped = False
+            elif char == "\\":
+                escaped = True
+            elif char == '"':
+                quoted = False
+            continue
+        if char == '"':
+            quoted = True
+        elif char in "([{":
+            depth += 1
+        elif char in ")]}":
+            depth = max(0, depth - 1)
+        elif char == "," and depth == 0:
+            token = raw[start:index].strip()
+            if token:
+                tokens.append(token)
+            start = index + 1
+    token = raw[start:].strip()
+    if token:
+        tokens.append(token)
+    return tokens
+
+
+def _object_target_class(token: str) -> str | None:
+    """Return the obfuscated class named by a class/verifier/default token."""
+    cleaned = token.strip()
+    class_match = re.fullmatch(r"(?:defpackage\.)?([a-z][a-z0-9]*)\.class", cleaned)
+    if class_match:
+        return class_match.group(1)
+    member_match = re.match(r"(?:defpackage\.)?([a-z][a-z0-9]*)\.[A-Za-z_]\w*", cleaned)
+    if member_match:
+        return member_match.group(1)
+    new_match = re.match(r"new\s+(?:defpackage\.)?([a-z][a-z0-9]*)\b", cleaned)
+    if new_match:
+        return new_match.group(1)
+    return None
+
+
+def _decode_field_references(
+    decoded: dict[str, Any],
+    objects: list[str],
+    field_decls: list[dict[str, str]],
+) -> list[dict[str, object]]:
+    """Associate RawMessageInfo object-array type references with field numbers.
+
+    The cursor layout follows MessageSchema.newSchemaForRawMessageInfo(): oneof
+    field/case pairs and has-bit fields form a prefix, followed by per-field
+    names and message/enum/map metadata.
+    """
+    position = int(decoded["oneof_count"]) * 2 + int(decoded["hasbits_count"])
+    decl_types = {item["name"]: item["type"] for item in field_decls}
+    references: list[dict[str, object]] = []
+
+    def consume() -> str | None:
+        nonlocal position
+        if position >= len(objects):
+            return None
+        token = objects[position]
+        position += 1
+        return token
+
+    for field in decoded["fields"]:
+        type_id = int(field["type_id"])
+        base_type = str(field["base_type"])
+        target: str | None = None
+        token: str | None = None
+
+        if bool(field["is_oneof"]):
+            needs_oneof_object = base_type in {"message", "group"} or (
+                base_type == "enum"
+                and (
+                    decoded["syntax"] == "proto2"
+                    or bool(field["enum_closed"])
+                )
+            )
+            if needs_oneof_object:
+                token = consume()
+                if token:
+                    target = _object_target_class(token)
+        else:
+            field_name_token = consume()
+            field_name = None
+            if field_name_token and re.fullmatch(r'"(?:[^"\\]|\\.)*"', field_name_token):
+                field_name = field_name_token[1:-1]
+
+            if type_id in {9, 17} and field_name:
+                declared_type = decl_types.get(field_name, "")
+                if re.fullmatch(r"(?:defpackage\.)?[a-z][a-z0-9]*", declared_type):
+                    target = declared_type.rsplit(".", 1)[-1]
+                    token = declared_type
+            elif type_id in {27, 49, 50} or (
+                type_id in {12, 30, 44}
+                and (
+                    decoded["syntax"] == "proto2"
+                    or bool(field["enum_closed"])
+                )
+            ):
+                token = consume()
+                if token:
+                    target = _object_target_class(token)
+
+        if target:
+            references.append(
+                {
+                    "field_number": int(field["field_number"]),
+                    "base_type": base_type,
+                    "target_class": target,
+                    "token": token or "",
+                }
+            )
+    return references
+
 # Obfuscated package directories produced by different jadx versions
 _OBFUSCATED_DIRS = ("defpackage", "p000")
 
 # Pattern to find "extends <classname>" in the obfuscated package
 _EXTENDS_RE = re.compile(r"\bextends\s+(?:defpackage\.)?([a-z][a-z0-9]*)\b")
+
+# RawMessageInfo construction has a stable semantic shape even when R8 renames
+# every participating class:
+#
+#   new <descriptor>(<default instance>, "<compact schema>", <object array>)
+#
+# Counting this call shape is more reliable than counting every constructor
+# call.  Large enum/helper classes can be instantiated slightly more often than
+# RawMessageInfo and previously caused the detector to select the wrong class.
+_RAW_MESSAGE_INFO_NEW_RE = re.compile(
+    r'\bnew\s+(?:defpackage\.)?([a-z][a-z0-9]*)\s*\('
+    r'\s*[^,\n]+,\s*"(?:[^"\\]|\\.)*"\s*,\s*'
+    r'(?:new\s+(?:java\.lang\.)?Object\[\]\s*\{|null\b|[A-Za-z_]\w*\b)'
+)
 
 
 def _find_obfuscated_dir(root: Path) -> str | None:
@@ -239,7 +378,8 @@ def _detect_proto_names(
 
     Strategy:
     - Proto base class: the most-extended class in the obfuscated package (1900+ hits)
-    - Descriptor class: the most-instantiated class via `new <class>(` (2000+ hits)
+    - Descriptor class: the class most often instantiated with the stable
+      RawMessageInfo call shape `(default instance, schema string, object array)`
     - Enum interface: the most-implemented interface on `enum` declarations (~133 hits)
     """
     obf_dir = _find_obfuscated_dir(root)
@@ -249,6 +389,7 @@ def _detect_proto_names(
     obf_path = root / "sources" / obf_dir
     extends_counts: Counter[str] = Counter()
     new_counts: Counter[str] = Counter()
+    raw_message_info_counts: Counter[str] = Counter()
     enum_impl_counts: Counter[str] = Counter()
 
     # Build patterns based on package style
@@ -276,6 +417,8 @@ def _detect_proto_names(
             extends_counts[m.group(1)] += 1
         for m in new_pat.finditer(text):
             new_counts[m.group(1)] += 1
+        for m in _RAW_MESSAGE_INFO_NEW_RE.finditer(text):
+            raw_message_info_counts[m.group(1)] += 1
         for m in enum_impl_pat.finditer(text):
             enum_impl_counts[m.group(1)] += 1
 
@@ -286,9 +429,17 @@ def _detect_proto_names(
         if top_count > 500:  # proto base is always dominant by a wide margin
             base_class = top_class
 
-    # Descriptor class: most instantiated, should be 1500+
+    # Descriptor class: RawMessageInfo's constructor call shape is stable even
+    # when its class name changes. Prefer it over total constructor frequency,
+    # which can be dominated by unrelated generated enum/helper classes.
     descriptor_class = None
-    if new_counts:
+    if raw_message_info_counts:
+        top_class, top_count = raw_message_info_counts.most_common(1)[0]
+        if top_count > 500:
+            descriptor_class = top_class
+    elif new_counts:
+        # Compatibility fallback for incomplete decompiles where descriptor
+        # calls are unavailable. This preserves the legacy best-effort result.
         top_class, top_count = new_counts.most_common(1)[0]
         if top_count > 500:
             descriptor_class = top_class
@@ -427,26 +578,34 @@ def _extract_proto_class_from_text(
     # Extract descriptor string and field name array from RawMessageInfo constructor
     descriptor = ""
     field_names: list[str] = []
+    descriptor_objects: list[str] = []
     if descriptor_re is not None:
         desc_match = descriptor_re.search(text)
         if desc_match:
             descriptor = desc_match.group(1)
             names_raw = desc_match.group(2) if desc_match.lastindex >= 2 else ""
             if names_raw:
+                descriptor_objects = _split_java_object_array(names_raw)
                 field_names = [
                     n.strip().strip('"')
-                    for n in names_raw.split(",")
+                    for n in descriptor_objects
                     if n.strip().strip('"')
                 ]
 
     # Decode descriptor into structured field metadata
     decoded_fields: list[dict[str, object]] = []
+    field_references: list[dict[str, object]] = []
     proto_syntax = ""
     if descriptor:
         decoded = decode_proto_descriptor(descriptor)
         if decoded is not None:
             proto_syntax = decoded["syntax"]
             decoded_fields = decoded["fields"]
+            field_references = _decode_field_references(
+                decoded,
+                descriptor_objects,
+                fields,
+            )
 
     # Extract sub-message type references from field declarations
     sub_message_refs: list[str] = []
@@ -469,6 +628,7 @@ def _extract_proto_class_from_text(
         "descriptor": descriptor,
         "proto_syntax": proto_syntax,
         "decoded_fields": json.dumps(decoded_fields),
+        "field_references": json.dumps(field_references),
     }
 
 
@@ -487,7 +647,7 @@ def _extract_proto_enum_from_text(
     values: list[dict[str, object]] = []
     for line in text.splitlines():
         m = _ENUM_CONST_RE.match(line)
-        if m:
+        if m and m.group(1) != "UNRECOGNIZED":
             values.append({"name": m.group(1), "int_value": int(m.group(2))})
 
     return {

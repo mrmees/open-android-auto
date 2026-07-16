@@ -15,7 +15,7 @@ package oaa.proto.messages;
 // confidence: gold [handler_trace, deep_apk]
 message InputEventIndication
 {
-    optional uint64 timestamp = 1;                                    // elapsedRealtime in microseconds
+    required uint64 timestamp = 1;                                    // elapsedRealtime in microseconds; required in 17.3
     optional data.TouchEvent touch_event = 3;                         // touchscreen input
     optional data.ButtonEvents button_event = 4;                      // hardware button press/release
     optional data.AbsoluteInputEvents absolute_input_event = 5;       // touchpad primary click
