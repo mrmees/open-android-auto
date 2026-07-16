@@ -788,3 +788,54 @@ Verification:
 - Documented 17.3 matcher smoke command -> success; 421 canonical messages, 117 canonical enums, 1,957 APK messages, 134 APK enums
 - Generated report summary -> 144 resolved, 39 high confidence, 105 medium confidence, 50 graph-resolved, 13 unique enum domains
 - Generated conflict audit -> 0 dispatch/schema conflicts, 12 parent constraint conflicts, 30 direct child-schema differences
+
+## 2026-07-16 — Android Auto 17.3 protocol-facing schema-drift reconstruction
+
+Date / Session: 2026-07-16 / 17.3-schema-drift-reconstruction
+
+What Changed:
+- Reconstructed `NavigationNextTurnDistanceEvent` directly from the 17.3
+  `NavigationCurrentPosition` sender: step distance, repeated destination
+  distances, and current-road text
+- Reconstructed `WifiSetupInfo` from its RFCOMM logger/consumer: protocol
+  version, setup token, WPP IP/port endpoint, and access-point info
+- Corrected the required 17.3 `SensorTypeEntry` field and removed the duplicate
+  `Sensor` child wrapper from `SensorChannel`
+- Identified `xlv` as the 18-field 17.3 `ChannelDescriptor`, including required
+  channel ID and the CarLocalMedia, BufferedMedia, and CarIntent service markers
+- Reconstructed the nested 17.3 navigation and radio SDP configs from their
+  service-discovery consumers and updated permanent channel/interaction docs
+- Regenerated the 17.3 JSON and Markdown schema-match reports
+
+Why:
+- The outer protobuf schemas already matched, but stale nested types prevented
+  graph propagation and hid current field semantics
+- Direct construction/consumption sites expose semantic names that protobuf-lite
+  metadata alone cannot recover
+- Several remaining local-shape candidates are demonstrably unrelated telemetry
+  or radio messages, so forcing them would reduce catalog accuracy
+
+Status:
+- Active canonical graph: 422 messages and 117 enums
+- Android Auto 17.3 graph: 1,957 decoded messages and 134 decoded enums
+- 155 mappings resolved: 39 high-confidence and 116 medium-confidence, including
+  55 graph-resolved mappings
+- Constraint-conflict parents fell from 12 to 6; direct child differences fell
+  from 30 to 19; explicit dispatch/schema conflicts remain zero
+- The six residual families are capability/phone, handwriting, transport
+  security, and Wi-Fi Direct shapes without a trustworthy 17.3 identity anchor
+
+Next Steps:
+1. Use 16.2/16.4 class lineage or lower-level DEX references to identify the six
+   remaining conflict families before changing their canonical schemas
+2. Add cross-version anchors for the 194 locally ambiguous messages, prioritizing
+   protocol-facing children of the now-resolved ChannelDescriptor tree
+3. Treat the current 17.3 conflict candidates as hypotheses, not mappings; `xla`
+   is already proven to be radio song metadata rather than Wi-Fi Direct config
+
+Verification:
+- `protoc --proto_path=. --descriptor_set_out=/tmp/oaa-proto-check/all.pb $(find oaa -name '*.proto' -print | sort)` -> success
+- All `oaa/**/*.audit.yaml` files parse with PyYAML
+- `PYTHONPATH=. /tmp/open-android-auto-test-venv/bin/pytest analysis/tools/apk_indexer/tests analysis/tools/proto_schema_matcher/tests analysis/tools/proto_stream_validator/tests -q` -> 86 passed
+- Generated report summary -> 155 resolved, 39 high confidence, 116 medium confidence, 55 graph-resolved, 13 unique enum domains
+- Generated conflict audit -> 0 dispatch/schema conflicts, 6 parent constraint conflicts, 19 direct child-schema differences

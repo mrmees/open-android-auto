@@ -1,7 +1,7 @@
 proto: oaa/wifi/WifiSetupInfoMessage.proto
 message: WifiSetupInfo
-confidence: silver
-last_updated: '2026-04-08'
+confidence: gold
+last_updated: '2026-07-16'
 evidence:
 - type: apk_static
   method: enum_match
@@ -26,3 +26,11 @@ evidence:
   description: Structural match confirmed across versions 15.9, 16.1, 16.2, 16.4.
     Field numbers, types, and modifiers are consistent across all 6 pairwise comparisons.
   status: consistent
+- type: apk_static
+  method: semantic_consumer_trace
+  source: Android Auto 17.3 ltt.java and pef.java (xns/xnq/xni)
+  date: '2026-07-16'
+  description: Consumer logging and validation name all five WifiSetupInfo fields
+    as major/minor version, setup token, WPP IP/port endpoint, and access-point
+    information. This replaces the placeholder payload and incorrect feature-flags
+    child assignments.

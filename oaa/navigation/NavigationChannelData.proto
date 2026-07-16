@@ -4,6 +4,7 @@
 syntax="proto2";
 
 import "oaa/navigation/NavigationImageOptionsData.proto";
+import "oaa/navigation/NavigationTypeEnum.proto";
 
 package oaa.proto.data;
 
@@ -11,7 +12,7 @@ package oaa.proto.data;
 // confidence: gold [deep_trace_verified, 16.2_jadx]
 message NavigationChannel
 {
-    optional int32 minimum_interval_ms = 1;  // confidence: gold [deep_trace_verified, 16.2_jadx]
-    optional int32 type = 2; // APK: viz.M(), values 1=TURN_BY_TURN, 2=NEXT_TURN_IMAGE  // confidence: gold [deep_trace_verified, 16.2_jadx]
-    optional NavigationImageOptions image_options = 3;  // confidence: gold [deep_trace_verified, 16.2_jadx]
+    required int32 minimum_interval_ms = 1; // 17.3: xjk.c, required  // confidence: gold [17.3_jadx]
+    required enums.NavigationType.Enum type = 2; // 17.3: xjk.d, required enum via xjj.a/wni.s  // confidence: gold [17.3_jadx]
+    optional NavigationImageOptions image_options = 3; // 17.3: xjk.e -> xji  // confidence: gold [17.3_jadx]
 }

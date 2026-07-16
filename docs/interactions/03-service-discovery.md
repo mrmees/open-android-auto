@@ -99,7 +99,7 @@ Each `ChannelDescriptor` advertises one channel the HU supports:
 
 ```protobuf
 message ChannelDescriptor {
-    optional int32 channel_id = 1;
+    required int32 channel_id = 1;
     optional SensorChannel sensor_channel = 2;
     optional AVChannel av_channel = 3;
     optional InputChannel input_channel = 4;
@@ -114,10 +114,15 @@ message ChannelDescriptor {
     optional NotificationChannel notification_channel = 13;
     optional WifiChannel wifi_channel = 14;
     optional CarControlChannel car_control_channel = 15;
-    optional GenericNotificationChannel generic_notification_channel = 16;
-    optional VoiceChannel voice_channel = 17;
+    optional CarLocalMediaChannel car_local_media_channel = 16; // 17.3
+    optional BufferedMediaChannel buffered_media_channel = 17; // 17.3
+    optional CarIntentChannel car_intent_channel = 18;          // 17.3
 }
 ```
+
+The final service slots are version-dependent. Android Auto 17.3 identifies
+them through active service factories as CarLocalMedia, BufferedMedia, and
+CarIntent; older 16.x catalogs used different names for fields 16-17.
 
 Only ONE of the channel-type fields is set per descriptor. The `channel_id` determines the channel number used in frame headers.
 

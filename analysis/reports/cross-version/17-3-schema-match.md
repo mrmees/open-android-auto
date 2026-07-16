@@ -6,22 +6,22 @@ static service/semantic dispatch evidence. It does not use a live Android Auto s
 ## Provenance
 
 - APK SHA-256: `1db7ce995aa52b2cde47a01abfb0364220fb57fc60217de3ec714e3034795344`
-- Canonical messages: 421
+- Canonical messages: 422
 - Decoded APK messages: 1957
 - Canonical enums: 117
 - Decoded APK enums: 134
-- Canonical message-reference edges: 277
+- Canonical message-reference edges: 278
 - APK field-linked reference edges: 1273
 
 ## Summary
 
-- Resolved mappings: 144
+- Resolved mappings: 155
 - High confidence (structure + dispatch): 39
-- Medium confidence (unique structure): 105
+- Medium confidence (unique structure): 116
 - Static dispatch observations considered: 129
 - Explicit service/log dispatch schema conflicts: 0
 - Globally unique enum numeric-domain mappings: 13
-- Direct child-schema conflicts described: 30
+- Direct child-schema conflicts described: 19
 
 ## Dispatch-resolved and confirmed mappings
 
@@ -87,11 +87,14 @@ field-number-labelled message-edge constraint propagation.
 | `oaa.proto.data.Gyro` | `xhl` | 11 |
 | `oaa.proto.data.HVAC` | `xhn` | 8 |
 | `oaa.proto.data.InputModelDescriptor` | `abvb` | 3 |
+| `oaa.proto.data.NavigationImageOptions` | `xji` | 3 |
 | `oaa.proto.data.NightMode` | `xjp` | 11 |
 | `oaa.proto.data.Odometer` | `xjq` | 2 |
 | `oaa.proto.data.ParkingBrake` | `xju` | 2 |
 | `oaa.proto.data.Passenger` | `xjv` | 11 |
 | `oaa.proto.data.RPM` | `xlm` | 4 |
+| `oaa.proto.data.RadioBands` | `xkj` | 24 |
+| `oaa.proto.data.RadioChannelConfig` | `xkx` | 10 |
 | `oaa.proto.data.RawEvTripSettings` | `xle` | 6 |
 | `oaa.proto.data.RawVehicleEnergyModel` | `xlg` | 6 |
 | `oaa.proto.data.RelativeInputEvent` | `xlk` | 2 |
@@ -105,6 +108,7 @@ field-number-labelled message-edge constraint propagation.
 | `oaa.proto.data.VehicleEnergyModelData` | `xeq` | 88 |
 | `oaa.proto.data.VehicleEnergyValue` | `xep` | 6 |
 | `oaa.proto.data.VersionFeatureFlags` | `xnq` | 5 |
+| `oaa.proto.data.WifiChannel` | `xnh` | 6 |
 | `oaa.proto.messages.CarAction` | `xdw` | 9 |
 | `oaa.proto.messages.CarActionControl` | `xfv` | 30 |
 | `oaa.proto.messages.CarProperty` | `xee` | 3 |
@@ -116,7 +120,7 @@ field-number-labelled message-edge constraint propagation.
 | `oaa.proto.messages.NavigationNotification` | `xjg` | 3 |
 | `oaa.proto.messages.NavigationRemainingDistance` | `xjo` | 2 |
 | `oaa.proto.messages.NavigationRoadInfo` | `xiv` | 5 |
-| `oaa.proto.messages.NavigationStepDistance` | `yzv` | 2 |
+| `oaa.proto.messages.NavigationStepDistance` | `xjo` | 2 |
 | `oaa.proto.messages.NavigationText` | `xjf` | 6 |
 | `oaa.proto.messages.PhoneInputType` | `xhu` | 11 |
 | `oaa.proto.messages.RadioImage` | `xkm` | 6 |
@@ -124,6 +128,7 @@ field-number-labelled message-edge constraint propagation.
 | `oaa.proto.messages.RadioProgramSelector` | `xkv` | 3 |
 | `oaa.proto.messages.SetCarPropertyListenerResult` | `xgk` | 2 |
 | `oaa.proto.messages.UiConfigData` | `xmn` | 3 |
+| `oaa.proto.messages.WifiProjectionEndpoint` | `xnq` | 5 |
 
 ## Unique structural mappings
 
@@ -137,6 +142,7 @@ These mappings have one exact APK schema candidate but no dispatch anchor yet.
 | `oaa.proto.data.BluetoothChannel` | `xfp` | 2 |
 | `oaa.proto.data.ButtonEvent` | `xia` | 4 |
 | `oaa.proto.data.CapConnModelList` | `vzh` | 2 |
+| `oaa.proto.data.ChannelDescriptor` | `xlv` | 18 |
 | `oaa.proto.data.Compass` | `xgp` | 3 |
 | `oaa.proto.data.DistanceLabel` | `zad` | 4 |
 | `oaa.proto.data.Door` | `xgz` | 3 |
@@ -145,7 +151,9 @@ These mappings have one exact APK schema candidate but no dispatch anchor yet.
 | `oaa.proto.data.GpsSatelliteInfo` | `xhj` | 5 |
 | `oaa.proto.data.InputChannelConfig` | `xhs` | 5 |
 | `oaa.proto.data.Light` | `xic` | 3 |
+| `oaa.proto.data.NavigationChannel` | `xjk` | 3 |
 | `oaa.proto.data.NavigationDistanceValue` | `yzw` | 3 |
+| `oaa.proto.data.RadioBandGroup` | `xki` | 4 |
 | `oaa.proto.data.SensorEventFloat` | `xjt` | 1 |
 | `oaa.proto.data.Speed` | `xmc` | 3 |
 | `oaa.proto.data.TouchEvent` | `xmi` | 3 |
@@ -167,12 +175,14 @@ These mappings have one exact APK schema candidate but no dispatch anchor yet.
 | `oaa.proto.messages.ChannelOpenRequest` | `xgm` | 2 |
 | `oaa.proto.messages.DestinationDistance` | `xiy` | 3 |
 | `oaa.proto.messages.FloatValues` | `xej` | 1 |
+| `oaa.proto.messages.LegacyActiveRadioNotification` | `ajdm` | 3 |
 | `oaa.proto.messages.LegacyHdRadioComment` | `abrm` | 2 |
 | `oaa.proto.messages.LongValues` | `xel` | 1 |
 | `oaa.proto.messages.MediaPlaybackMetadata` | `xih` | 7 |
 | `oaa.proto.messages.MediaPlaybackStatus` | `xii` | 6 |
 | `oaa.proto.messages.NavigationDistance` | `zac` | 4 |
 | `oaa.proto.messages.NavigationDistanceEntry` | `zag` | 3 |
+| `oaa.proto.messages.NavigationNextTurnDistanceEvent` | `xiw` | 3 |
 | `oaa.proto.messages.NavigationStep` | `xjn` | 4 |
 | `oaa.proto.messages.NavigationTurnDistance` | `xiz` | 3 |
 | `oaa.proto.messages.PhoneCall` | `xjx` | 6 |
@@ -185,6 +195,7 @@ These mappings have one exact APK schema candidate but no dispatch anchor yet.
 | `oaa.proto.messages.UiConfigEntry` | `xmp` | 2 |
 | `oaa.proto.messages.UiConfigValue` | `xmo` | 1 |
 | `oaa.proto.messages.WifiNetworkInfo` | `xni` | 5 |
+| `oaa.proto.messages.WifiSetupInfo` | `xns` | 5 |
 | `oaa.proto.messages.WifiVersionRequest` | `xnv` | 6 |
 
 ## Unique enum numeric-domain mappings
@@ -237,15 +248,9 @@ than silently accepted or discarded.
 | `oaa.proto.data.CapabilityConnectionEntry` | `abum` |
 | `oaa.proto.data.CapabilityEntry` | `abut` |
 | `oaa.proto.data.HandwritingInputModelConfig` | `abvg` |
-| `oaa.proto.data.NavigationChannel` | `ajdm` |
 | `oaa.proto.data.PhoneCapabilities` | `abup` |
-| `oaa.proto.data.RadioChannelConfig` | `abas`, `abdr`, `ajdh`, `yvv` |
-| `oaa.proto.data.SensorChannel` | `xlt` |
-| `oaa.proto.data.SensorChannelConfig` | `xlt` |
 | `oaa.proto.data.TransportSecurityDetail` | `abrb`, `akef`, `sxq` |
 | `oaa.proto.data.WifiDirectConfig` | `xla` |
-| `oaa.proto.messages.NavigationNextTurnDistanceEvent` | `xiw` |
-| `oaa.proto.messages.WifiSetupInfo` | `xns` |
 
 ### Direct child-schema differences
 
@@ -264,15 +269,8 @@ not have the local shape of any candidate for the canonical child type.
 | `oaa.proto.data.CapabilityEntry` | `abut` | 7 | `oaa.proto.data.CapabilityValueMsg` | `abuo` |
 | `oaa.proto.data.CapabilityEntry` | `abut` | 10 | `oaa.proto.data.CapabilityValueMsg` | `abvi` |
 | `oaa.proto.data.HandwritingInputModelConfig` | `abvg` | 2 | `oaa.proto.data.InputModelDescriptor` | `abup` |
-| `oaa.proto.data.NavigationChannel` | `ajdm` | 3 | `oaa.proto.data.NavigationImageOptions` | `ajdi` |
 | `oaa.proto.data.PhoneCapabilities` | `abup` | 2 | `oaa.proto.data.DeviceInfo` | `abtq` |
 | `oaa.proto.data.PhoneCapabilities` | `abup` | 3 | `oaa.proto.data.PhoneConnectionConfig` | `abts` |
-| `oaa.proto.data.RadioChannelConfig` | `abas` | 2 | `oaa.proto.data.RadioBands` | `aazi` |
-| `oaa.proto.data.RadioChannelConfig` | `abdr` | 2 | `oaa.proto.data.RadioBands` | `aazi` |
-| `oaa.proto.data.RadioChannelConfig` | `ajdh` | 2 | `oaa.proto.data.RadioBands` | `ajdi` |
-| `oaa.proto.data.RadioChannelConfig` | `yvv` | 2 | `oaa.proto.data.RadioBands` | `yxh` |
-| `oaa.proto.data.SensorChannel` | `xlt` | 1 | `oaa.proto.data.Sensor` | `xls` |
-| `oaa.proto.data.SensorChannelConfig` | `xlt` | 1 | `oaa.proto.data.SensorTypeEntry` | `xls` |
 | `oaa.proto.data.TransportSecurityDetail` | `abrb` | 1 | `oaa.proto.data.TransportSecurityCertChain` | `abqz` |
 | `oaa.proto.data.TransportSecurityDetail` | `abrb` | 2 | `oaa.proto.data.TransportSecurityParams` | `abra` |
 | `oaa.proto.data.TransportSecurityDetail` | `akef` | 1 | `oaa.proto.data.TransportSecurityCertChain` | `akee` |
@@ -280,10 +278,6 @@ not have the local shape of any candidate for the canonical child type.
 | `oaa.proto.data.TransportSecurityDetail` | `sxq` | 1 | `oaa.proto.data.TransportSecurityCertChain` | `syj` |
 | `oaa.proto.data.TransportSecurityDetail` | `sxq` | 2 | `oaa.proto.data.TransportSecurityParams` | `sxp` |
 | `oaa.proto.data.WifiDirectConfig` | `xla` | 5 | `oaa.proto.data.GroupOwnerInfo` | `xkm` |
-| `oaa.proto.messages.NavigationNextTurnDistanceEvent` | `xiw` | 2 | `oaa.proto.messages.NavigationTurnLabel` | `xiy` |
-| `oaa.proto.messages.NavigationNextTurnDistanceEvent` | `xiw` | 3 | `oaa.proto.messages.NavigationStepDistance` | `xjf` |
-| `oaa.proto.messages.WifiSetupInfo` | `xns` | 4 | `oaa.proto.messages.WifiSetupPayload` | `xnq` |
-| `oaa.proto.messages.WifiSetupInfo` | `xns` | 5 | `oaa.proto.data.VersionFeatureFlags` | `xni` |
 
 ## Limitations
 

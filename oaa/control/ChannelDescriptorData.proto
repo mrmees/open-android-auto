@@ -17,7 +17,8 @@
  *   9=media_info(vyd), 10=phone_status(vzt), 11=media_browser(vxy),
  *   12=vendor_ext, 13=notification(wah), 14=wifi(wcx), 15=car_control(vwa),
  *   16=generic_notification(vwf), 17=voice(vvp)
- *   (16.2 class names above; 16.1 class names differ)
+ *   (16.2 class names above; 16.1 class names differ). In 17.3, fields 16-18
+ *   are CarLocalMedia (xgi), BufferedMedia (xfq), and CarIntent (xgd).
  *
  * Original aasdk copyright (field names/structure):
  * Copyright (C) 2018 f1x.studio (Michal Szwaj), GPLv3
@@ -46,7 +47,7 @@ package oaa.proto.data;
 // confidence: gold [deep_trace_verified, 16.2_jadx]
 message ChannelDescriptor
 {
-    optional int32 channel_id = 1;  // confidence: gold [deep_trace_verified, 16.2_jadx]
+    required int32 channel_id = 1; // 17.3: xlv.c, required  // confidence: gold [17.3_jadx]
     optional SensorChannel sensor_channel = 2;  // confidence: gold [deep_trace_verified, 16.2_jadx]
     optional AVChannel av_channel = 3;  // confidence: gold [deep_trace_verified, 16.2_jadx]
     optional InputChannelConfig input_channel = 4;  // confidence: gold [deep_trace_verified, 16.2_jadx]
@@ -61,8 +62,9 @@ message ChannelDescriptor
     optional NotificationChannel notification_channel = 13;  // confidence: gold [deep_trace_verified, 16.2_jadx]
     optional WifiChannel wifi_channel = 14;  // confidence: gold [deep_trace_verified, 16.2_jadx]
     optional CarControlChannel car_control_channel = 15; // APK: vwo (3 fields)  // confidence: gold [deep_trace_verified, 16.2_jadx]
-    optional GenericNotificationChannel generic_notification_channel = 16; // APK: vwt (empty proto)  // confidence: gold [deep_trace_verified, 16.2_jadx]
-    optional VoiceChannel voice_channel = 17; // APK: vwd (empty proto)  // confidence: gold [deep_trace_verified, 16.2_jadx]
+    optional CarLocalMediaChannel car_local_media_channel = 16; // 17.3: xgi, service presence bit 0x8000  // confidence: gold [17.3_semantic_trace]
+    optional BufferedMediaChannel buffered_media_channel = 17; // 17.3: xfq, service presence bit 0x10000  // confidence: gold [17.3_semantic_trace]
+    optional CarIntentChannel car_intent_channel = 18; // 17.3: xgd, service presence bit 0x20000  // confidence: gold [17.3_semantic_trace]
 }
 
 // APK class: vzt (16.2), wan (16.1) — empty message
@@ -86,14 +88,17 @@ message CarControlChannel {
     repeated oaa.proto.messages.CarActionEntry action_entries = 3;  // 16.2: vua  // confidence: gold [deep_trace_verified, 16.2_jadx]
 }
 
-// APK class: vwf (16.2), vwt (16.1) — empty message
-// Placeholder — sub-message structure TBD from wire captures
-// confidence: gold [deep_trace_verified, 16.2_jadx]
-message GenericNotificationChannel {
+// APK class: xgi (17.3) — empty service marker
+// confidence: gold [17.3_semantic_trace]
+message CarLocalMediaChannel {
 }
 
-// APK class: vvp (16.2), vwd (16.1) — empty message
-// Placeholder — sub-message structure TBD from wire captures
-// confidence: gold [deep_trace_verified, 16.2_jadx]
-message VoiceChannel {
+// APK class: xfq (17.3) — empty service marker
+// confidence: gold [17.3_semantic_trace]
+message BufferedMediaChannel {
+}
+
+// APK class: xgd (17.3) — empty service marker
+// confidence: gold [17.3_semantic_trace]
+message CarIntentChannel {
 }

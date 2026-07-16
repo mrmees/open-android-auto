@@ -1,7 +1,7 @@
 proto: oaa/sensor/SensorChannelData.proto
 message: SensorChannel
-confidence: silver
-last_updated: '2026-04-08'
+confidence: gold
+last_updated: '2026-07-16'
 evidence:
 - type: apk_static
   method: enum_match
@@ -21,3 +21,9 @@ evidence:
   description: Structural match confirmed across versions 15.9, 16.1, 16.2, 16.4.
     Field numbers, types, and modifiers are consistent across all 6 pairwise comparisons.
   status: consistent
+- type: apk_static
+  method: semantic_descriptor_trace
+  source: Android Auto 17.3 xlt.java -> xls.java
+  date: '2026-07-16'
+  description: Confirmed field 1 is repeated xls SensorTypeEntry messages. Replaced
+    the wire-compatible but duplicative Sensor wrapper type with SensorTypeEntry.

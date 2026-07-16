@@ -1,7 +1,7 @@
 proto: oaa/navigation/NavigationChannelData.proto
 message: NavigationChannel
-confidence: silver
-last_updated: '2026-04-08'
+confidence: gold
+last_updated: '2026-07-16'
 evidence:
 - type: apk_static
   method: proto_access
@@ -22,3 +22,9 @@ evidence:
   description: Unmappable in 16.4 (matcher found no candidate meeting structural fingerprint
     + field count match, or candidate was ambiguous).
   status: unmappable_16_4
+- type: apk_static
+  method: semantic_service_log
+  source: Android Auto 17.3 xlv.j -> xjk; rrb/iya service logging
+  date: '2026-07-16'
+  description: Confirmed required minimum interval and NavigationType fields plus
+    the xji NavigationImageOptions child on ChannelDescriptor field 8.

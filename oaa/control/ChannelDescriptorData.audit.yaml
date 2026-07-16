@@ -1,7 +1,7 @@
 proto: oaa/control/ChannelDescriptorData.proto
 message: ChannelDescriptor
-confidence: silver
-last_updated: '2026-04-08'
+confidence: gold
+last_updated: '2026-07-16'
 evidence:
 - type: apk_static
   method: proto_access
@@ -22,3 +22,10 @@ evidence:
   description: Structural match confirmed across versions 15.9, 16.1, 16.2, 16.4.
     Field numbers, types, and modifiers are consistent across all 6 pairwise comparisons.
   status: consistent
+- type: apk_static
+  method: semantic_service_discovery_trace
+  source: Android Auto 17.3 xlv.java with rrb/iya and service factories
+  date: '2026-07-16'
+  description: Confirmed xlv as the 18-field ChannelDescriptor, field 1 required,
+    and fields 16-18 as the empty CarLocalMedia, BufferedMedia, and CarIntent
+    service markers via their presence-bit consumers.

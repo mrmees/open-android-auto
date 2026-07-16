@@ -19,11 +19,11 @@
 - Documentation cleanup and accuracy sweep (this task).
 - Consolidate remaining session-specific notes into permanent docs.
 - Publish a minimal `dist` branch for downstream proto consumers without the research archive.
-- Android Auto 17.3 static schema-matching baseline operational: 144 mappings resolved without a live session, including 39 dispatch-backed and 50 graph-resolved mappings, plus 13 unique enum-domain mappings.
+- Android Auto 17.3 static schema-matching baseline operational: 155 mappings resolved without a live session, including 39 dispatch-backed and 55 graph-resolved mappings, plus 13 unique enum-domain mappings.
 
 ## Next
 
-- Reconstruct the 12 remaining 17.3 parent/child schema-drift families using the 30 direct child-edge differences in the generated report.
+- Add 16.2/16.4 identity anchors for the six remaining 17.3 structural-conflict families; current 17.3 call sites show that several are unrelated schema look-alikes.
 - Add 16.2/16.4 cross-version anchors for the remaining tiny and empty structural collisions.
 - Add verifier recovery for enum multiplexers whose switch bodies JADX could not decompile.
 - Expand wire capture coverage to underexplored channels (car control, radio, phone).
@@ -42,4 +42,4 @@
 - Prioritize protocol definitions, protocol docs, and analysis tooling only.
 - Defer cross-repo product planning to the primary application repository.
 
-Last Updated: 2026-07-15
+Last Updated: 2026-07-16

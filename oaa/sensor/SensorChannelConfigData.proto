@@ -30,5 +30,5 @@ message SensorChannelConfig
 // confidence: gold [deep_trace, 16.2 DB verified]
 message SensorTypeEntry
 {
-    optional enums.SensorType.Enum sensor_type = 1; // 16.2: wbl enum  // confidence: gold
+    required enums.SensorType.Enum sensor_type = 1; // 17.3: xls.b, required enum via xlu verifier  // confidence: gold [17.3_jadx]
 }

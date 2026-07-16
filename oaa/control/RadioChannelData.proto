@@ -21,8 +21,8 @@ package oaa.proto.data;
 // Replaces RadioChannel(way) from 16.1
 // confidence: gold [deep_trace_verified, 16.2_jadx]
 message RadioChannelConfig {
-    optional int32 config_id = 1;  // purpose TBD — possibly config version or tuner ID  // confidence: silver [structure_verified]
-    optional RadioBands bands = 2;  // confidence: gold [deep_trace_verified, 16.2_jadx]
+    // Field 1 is absent in 17.3.
+    optional RadioBands bands = 2; // 17.3: xkx.c -> xkj  // confidence: gold [17.3_semantic_trace]
 }
 
 // APK class: wab (16.2) — radio bands container
@@ -37,4 +37,5 @@ message RadioBandGroup {
     repeated enums.RadioBandType.Enum band_types = 1;  // AM=1, FM=2, DAB=3  // confidence: gold [deep_trace_verified, 16.2_jadx]
     optional bool hide_empty_group = 2;  // confidence: gold [deep_trace_verified, 16.2_jadx]
     optional string band_scan_action = 3;  // confidence: gold [deep_trace_verified, 16.2_jadx]
+    optional bool unknown_flag_4 = 4; // 17.3: xki.g; semantics not exposed by current consumers  // confidence: silver [17.3_jadx]
 }
