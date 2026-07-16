@@ -4,6 +4,10 @@ Statically matches canonical `oaa/**/*.proto` messages to obfuscated Android
 Auto protobuf-lite classes. The matcher combines exact normalized schema shape
 with conservative message-ID observations from control and explicitly identified
 service handlers, plus message names recovered from nearby validation logs.
+Curated class-lineage anchors can confirm an identity across releases or
+invalidate a legacy canonical name when call sites identify an unrelated bundled
+Google library.
+
 Proto files explicitly marked `confidence: retracted` are excluded from the
 canonical graph.
 
@@ -29,6 +33,7 @@ PYTHONPATH=. python3 -m analysis.tools.proto_schema_matcher.run \
   --jadx-root /tmp/android-auto-17.3-jadx \
   --version 17.3.662804-release \
   --apk-sha256 1db7ce995aa52b2cde47a01abfb0364220fb57fc60217de3ec714e3034795344 \
+  --lineage-yaml analysis/lineage/android-auto-17.3.yaml \
   --output-json analysis/reports/cross-version/17-3-schema-match.json \
   --output-md analysis/reports/cross-version/17-3-schema-match.md
 ```
@@ -38,9 +43,14 @@ refinement is available only when `--jadx-root` is supplied.
 
 ## Confidence
 
-- `high`: exact schema match plus a unique compatible static service/semantic dispatch observation
+- `high`: exact schema plus unique static dispatch, or a curated confirmed lineage anchor (including an explicitly reported schema/edge conflict)
 - `medium`: globally unique normalized schema shape, or a graph-resolved match
 - `none`: no candidate or multiple structurally identical candidates remain
+
+An `invalidated` lineage never resolves a mapping. It quarantines the canonical
+identity and every same-shape candidate because the historical schema was shown
+to come from non-protocol code. Class-name continuity alone is not semantic
+evidence.
 
 The tool never chooses arbitrarily among ambiguous candidates. When explicit
 handler evidence identifies a class whose local schema differs, the JSON and

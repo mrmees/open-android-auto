@@ -5,7 +5,14 @@ from dataclasses import asdict
 import json
 from pathlib import Path
 
-from .models import DispatchObservation, EnumNode, FieldShape, MatchResult, MessageNode
+from .models import (
+    DispatchObservation,
+    EnumNode,
+    FieldShape,
+    LineageAnchor,
+    MatchResult,
+    MessageNode,
+)
 
 
 _STRUCTURAL_FIELD_ATTRIBUTES = (
@@ -108,6 +115,7 @@ def build_payload(
     enum_matches: dict[str, list[str]],
     results: list[MatchResult],
     observations: list[DispatchObservation],
+    lineage_anchors: list[LineageAnchor],
 ) -> dict[str, object]:
     status_counts = Counter(result.status for result in results)
     result_by_name = {result.canonical_name: result for result in results}
@@ -147,6 +155,7 @@ def build_payload(
         if result.status not in {
             "constraint_conflict",
             "dispatch_resolved_edge_conflict",
+            "lineage_resolved_edge_conflict",
         }:
             continue
         canonical_node = canonical_graph[result.canonical_name]
@@ -178,6 +187,11 @@ def build_payload(
                         "reason": "child local schema differs",
                     }
                 )
+    match_payloads = []
+    for result in results:
+        item = asdict(result)
+        del item["lineage_anchor"]
+        match_payloads.append(item)
     return {
         "version": version,
         "apk_sha256": apk_sha256,
@@ -192,6 +206,10 @@ def build_payload(
             "high_confidence": sum(result.confidence == "high" for result in results),
             "medium_confidence": sum(result.confidence == "medium" for result in results),
             "dispatch_observations": len(observations),
+            "lineage_anchors": len(lineage_anchors),
+            "lineage_invalidations": sum(
+                anchor.disposition == "invalidated" for anchor in lineage_anchors
+            ),
             "dispatch_schema_conflicts": len(dispatch_schema_conflicts),
             "unique_enum_domains": len(enum_domain_mappings),
             "direct_child_schema_conflicts": len(constraint_conflict_details),
@@ -200,7 +218,8 @@ def build_payload(
         "dispatch_schema_conflicts": dispatch_schema_conflicts,
         "enum_domain_mappings": enum_domain_mappings,
         "constraint_conflict_details": constraint_conflict_details,
-        "matches": [asdict(result) for result in results],
+        "lineage_anchors": [asdict(anchor) for anchor in lineage_anchors],
+        "matches": match_payloads,
     }
 
 
@@ -219,7 +238,8 @@ def render_markdown(payload: dict[str, object]) -> str:
         f"# Android Auto {payload['version']} Static Proto Schema Matches",
         "",
         "This report is generated from protobuf-lite `RawMessageInfo` metadata and",
-        "static service/semantic dispatch evidence. It does not use a live Android Auto session.",
+        "static service/semantic dispatch evidence, and curated cross-version class",
+        "lineage. It does not use a live Android Auto session.",
         "",
         "## Provenance",
         "",
@@ -234,18 +254,46 @@ def render_markdown(payload: dict[str, object]) -> str:
         "## Summary",
         "",
         f"- Resolved mappings: {summary['resolved']}",
-        f"- High confidence (structure + dispatch): {summary['high_confidence']}",
+        f"- High confidence (dispatch or confirmed lineage): {summary['high_confidence']}",
         f"- Medium confidence (unique structure): {summary['medium_confidence']}",
         f"- Static dispatch observations considered: {summary['dispatch_observations']}",
+        f"- Cross-version lineage anchors considered: {summary['lineage_anchors']}",
+        f"- Legacy canonical identities invalidated: {summary['lineage_invalidations']}",
         f"- Explicit service/log dispatch schema conflicts: {summary['dispatch_schema_conflicts']}",
         f"- Globally unique enum numeric-domain mappings: {summary['unique_enum_domains']}",
         f"- Direct child-schema conflicts described: {summary['direct_child_schema_conflicts']}",
         "",
-        "## Dispatch-resolved and confirmed mappings",
+        "## Cross-version class-lineage anchors",
         "",
-        "| Canonical message | APK class | Status | Evidence |",
-        "|---|---|---|---|",
+        "Lineage continuity identifies which obfuscated class survived each release.",
+        "An `invalidated` disposition means call-site semantics prove that the legacy",
+        "canonical name came from an unrelated bundled-library protobuf; it is not a",
+        "17.3 protocol mapping.",
+        "",
+        "| Canonical identity | 16.2 → 16.4 → 17.3 | Disposition | Rejected local candidates | Reason |",
+        "|---|---|---|---|---|",
     ]
+    for anchor in payload.get("lineage_anchors") or []:
+        chain = " → ".join(
+            f"`{step['apk_class']}`" for step in anchor["lineage"]
+        )
+        rejected = ", ".join(
+            f"`{candidate}`" for candidate in anchor["rejected_candidates"]
+        ) or "—"
+        lines.append(
+            f"| `{anchor['canonical_name']}` | {chain} | {anchor['disposition']} | "
+            f"{rejected} | {anchor['rationale']} |"
+        )
+
+    lines.extend(
+        [
+            "",
+            "## Dispatch-resolved mappings",
+            "",
+            "| Canonical message | APK class | Status | Evidence |",
+            "|---|---|---|---|",
+        ]
+    )
 
     dispatch_rows = [
         item
@@ -350,9 +398,10 @@ def render_markdown(payload: dict[str, object]) -> str:
     lines.extend(
         [
             "",
-            "## Dispatch-backed edge conflicts",
+            "## Hard-anchor edge conflicts",
             "",
-            "Identity is supported by exact local shape and unambiguous service dispatch,",
+            "Identity is supported by exact local shape and an unambiguous dispatch or",
+            "confirmed lineage anchor,",
             "but at least one recovered child edge disagrees with the canonical graph.",
             "",
             "| Canonical message | APK class |",
@@ -360,7 +409,10 @@ def render_markdown(payload: dict[str, object]) -> str:
         ]
     )
     for item in matches:
-        if item["status"] == "dispatch_resolved_edge_conflict":
+        if item["status"] in {
+            "dispatch_resolved_edge_conflict",
+            "lineage_resolved_edge_conflict",
+        }:
             lines.append(
                 f"| `{item['canonical_name']}` | `{item['resolved_apk_class']}` |"
             )
@@ -410,6 +462,7 @@ def render_markdown(payload: dict[str, object]) -> str:
             "## Limitations",
             "",
             "- Unique structure is evidence of identity, not proof of original Google naming.",
+            "- Class continuity across releases is not semantic proof; bundled Google libraries can preserve unrelated schemas for years.",
             "- Empty and small messages remain highly ambiguous until graph or dispatch constraints apply.",
             "- Field references are recovered where the `RawMessageInfo` object-array cursor and JADX field declarations are complete.",
             "- Canonical corrections describe 17.3; consumers supporting older releases should preserve version-compatibility policy at their API boundary.",

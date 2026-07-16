@@ -839,3 +839,53 @@ Verification:
 - `PYTHONPATH=. /tmp/open-android-auto-test-venv/bin/pytest analysis/tools/apk_indexer/tests analysis/tools/proto_schema_matcher/tests analysis/tools/proto_stream_validator/tests -q` -> 86 passed
 - Generated report summary -> 155 resolved, 39 high confidence, 116 medium confidence, 55 graph-resolved, 13 unique enum domains
 - Generated conflict audit -> 0 dispatch/schema conflicts, 6 parent constraint conflicts, 19 direct child-schema differences
+
+## 2026-07-16 — Android Auto 17.3 class-lineage invalidation anchors
+
+Date / Session: 2026-07-16 / 17.3-class-lineage-anchors
+
+What Changed:
+- Added curated 16.2 → 16.4 → 17.3 lineage evidence for the six residual
+  structural-conflict families under `analysis/lineage/`
+- Extended `proto_schema_matcher` with confirmed and invalidated lineage anchors;
+  invalidated identities quarantine every same-shape candidate instead of
+  allowing graph propagation to assign a protocol name
+- Regenerated the 17.3 JSON and Markdown reports with a dedicated lineage table
+  and explicit invalidation counts
+
+Why:
+- Exact protobuf structure and stable obfuscated-class order establish class
+  continuity, but they do not establish semantics when Android Auto bundles
+  unrelated Google libraries
+- Direct call sites identify the six historical mappings as Google Surveys
+  request context, GoogleAuth data/telemetry, or radio song metadata
+- Quarantining those identities also removes three child mappings that had been
+  inferred only from the invalid parent graphs
+
+Status:
+- All six former constraint-conflict parents are now `lineage_invalidated`; no
+  residual parent or direct-child constraint conflicts remain
+- The conservative 17.3 baseline is 152 mappings: 39 high-confidence and 113
+  medium-confidence, including 52 graph-resolved mappings
+- `CapabilityFlag -> abuf`, `CapabilityPair -> abuq`, and
+  `InputModelDescriptor -> abvb` were withdrawn because their only identity
+  evidence came from invalidated Surveys parent messages
+- The invalidated legacy lineages are:
+  `aafl -> aayi -> abud`, `aagb -> aayy -> abut`,
+  `aago -> aazl -> abvg`, `aafx -> aayu -> abup`,
+  `aajh -> abce -> abxz`, and `was -> wtf -> xla`
+
+Next Steps:
+1. Quarantine/retract the affected canonical proto definitions and stale
+   `class_mapping.yaml` entries so older tooling cannot consume the invalid names
+2. Reconstruct real protocol-facing capability, transport-security, and Wi-Fi
+   schemas only from trusted service/channel parents or wire evidence
+3. Extend class-lineage anchoring to legitimate tiny/empty protocol collisions
+
+Verification:
+- `PYTHONPATH=. /tmp/open-android-auto-test-venv/bin/pytest analysis/tools/proto_schema_matcher/tests -q` -> 27 passed
+- `PYTHONPATH=. /tmp/open-android-auto-test-venv/bin/pytest analysis/tools/apk_indexer/tests analysis/tools/proto_schema_matcher/tests analysis/tools/proto_stream_validator/tests -q` -> 91 passed
+- New lineage YAML plus all 160 production `oaa/**/*.audit.yaml` files parse with PyYAML
+- Documented 17.3 matcher smoke command with `--lineage-yaml` -> success; 422 canonical messages, 1,957 APK messages, 129 dispatch observations, and 6 lineage anchors
+- Generated report summary -> 152 resolved, 39 high confidence, 113 medium confidence, 52 graph-resolved, 6 lineage invalidations
+- Generated conflict audit -> 0 dispatch/schema conflicts, 0 parent constraint conflicts, 0 direct child-schema differences

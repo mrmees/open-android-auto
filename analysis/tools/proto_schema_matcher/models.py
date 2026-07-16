@@ -57,6 +57,24 @@ class DispatchObservation:
     service_type: str = "control"
 
 
+@dataclass(frozen=True)
+class LineageStep:
+    version: str
+    apk_class: str
+
+
+@dataclass(frozen=True)
+class LineageAnchor:
+    canonical_name: str
+    current_class: str
+    disposition: str
+    lineage: tuple[LineageStep, ...]
+    rejected_candidates: tuple[str, ...]
+    rationale: str
+    evidence: tuple[str, ...]
+    source: str
+
+
 @dataclass
 class MatchResult:
     canonical_name: str
@@ -72,3 +90,4 @@ class MatchResult:
     resolved_apk_class: str | None = None
     edge_constraint_conflict: bool = False
     dispatch_evidence: list[DispatchObservation] = field(default_factory=list)
+    lineage_anchor: LineageAnchor | None = None

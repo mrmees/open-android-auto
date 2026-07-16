@@ -1,7 +1,8 @@
 # Android Auto 17.3.662804-release Static Proto Schema Matches
 
 This report is generated from protobuf-lite `RawMessageInfo` metadata and
-static service/semantic dispatch evidence. It does not use a live Android Auto session.
+static service/semantic dispatch evidence, and curated cross-version class
+lineage. It does not use a live Android Auto session.
 
 ## Provenance
 
@@ -15,15 +16,33 @@ static service/semantic dispatch evidence. It does not use a live Android Auto s
 
 ## Summary
 
-- Resolved mappings: 155
-- High confidence (structure + dispatch): 39
-- Medium confidence (unique structure): 116
+- Resolved mappings: 152
+- High confidence (dispatch or confirmed lineage): 39
+- Medium confidence (unique structure): 113
 - Static dispatch observations considered: 129
+- Cross-version lineage anchors considered: 6
+- Legacy canonical identities invalidated: 6
 - Explicit service/log dispatch schema conflicts: 0
 - Globally unique enum numeric-domain mappings: 13
-- Direct child-schema conflicts described: 19
+- Direct child-schema conflicts described: 0
 
-## Dispatch-resolved and confirmed mappings
+## Cross-version class-lineage anchors
+
+Lineage continuity identifies which obfuscated class survived each release.
+An `invalidated` disposition means call-site semantics prove that the legacy
+canonical name came from an unrelated bundled-library protobuf; it is not a
+17.3 protocol mapping.
+
+| Canonical identity | 16.2 → 16.4 → 17.3 | Disposition | Rejected local candidates | Reason |
+|---|---|---|---|---|
+| `oaa.proto.data.CapabilityConnectionEntry` | `aafl` → `aayi` → `abud` | invalidated | `abum` | The historical class lineage belongs to Google authentication data, while the same-shape 17.3 candidate abum belongs to a separate auth telemetry lineage; neither supports the capability-negotiation name. |
+| `oaa.proto.data.CapabilityEntry` | `aagb` → `aayy` → `abut` | invalidated | `abut` | This stable class is a Google Surveys client-capability entry, not an Android Auto phone capability entry. |
+| `oaa.proto.data.HandwritingInputModelConfig` | `aago` → `aazl` → `abvg` | invalidated | `abvg` | The five-field lineage is a Google Surveys request-context message; field 2 is the survey client-capability object, not an input-model descriptor. |
+| `oaa.proto.data.PhoneCapabilities` | `aafx` → `aayu` → `abup` | invalidated | `abup` | The six-field lineage is Google Surveys client context, not the Android Auto ServiceDiscoveryRequest phone-capabilities message. |
+| `oaa.proto.data.TransportSecurityDetail` | `aajh` → `abce` → `abxz` | invalidated | `abrb`, `akef`, `sxq` | The historical four-level child graph survives as Google authentication credential data, not Android Auto transport-security configuration; the three local candidates are unrelated two-way oneofs. |
+| `oaa.proto.data.WifiDirectConfig` | `was` → `wtf` → `xla` | invalidated | `xla` | The six-field lineage is radio song metadata, not Wi-Fi Direct connection configuration. |
+
+## Dispatch-resolved mappings
 
 | Canonical message | APK class | Status | Evidence |
 |---|---|---|---|
@@ -78,15 +97,12 @@ field-number-labelled message-edge constraint propagation.
 | `oaa.proto.data.AbsoluteInputEvents` | `xet` | 24 |
 | `oaa.proto.data.Accel` | `xeu` | 11 |
 | `oaa.proto.data.ButtonEvents` | `xib` | 24 |
-| `oaa.proto.data.CapabilityFlag` | `abuf` | 2 |
-| `oaa.proto.data.CapabilityPair` | `abuq` | 5 |
 | `oaa.proto.data.Diagnostics` | `xgx` | 6 |
 | `oaa.proto.data.DrivingStatus` | `xhb` | 4 |
 | `oaa.proto.data.Environment` | `xhc` | 11 |
 | `oaa.proto.data.Gear` | `xhh` | 11 |
 | `oaa.proto.data.Gyro` | `xhl` | 11 |
 | `oaa.proto.data.HVAC` | `xhn` | 8 |
-| `oaa.proto.data.InputModelDescriptor` | `abvb` | 3 |
 | `oaa.proto.data.NavigationImageOptions` | `xji` | 3 |
 | `oaa.proto.data.NightMode` | `xjp` | 11 |
 | `oaa.proto.data.Odometer` | `xjq` | 2 |
@@ -229,9 +245,10 @@ Explicit service or message-name evidence identifies an APK class, but its
 
 None.
 
-## Dispatch-backed edge conflicts
+## Hard-anchor edge conflicts
 
-Identity is supported by exact local shape and unambiguous service dispatch,
+Identity is supported by exact local shape and an unambiguous dispatch or
+confirmed lineage anchor,
 but at least one recovered child edge disagrees with the canonical graph.
 
 | Canonical message | APK class |
@@ -245,12 +262,6 @@ than silently accepted or discarded.
 
 | Canonical message | Initial APK candidates |
 |---|---|
-| `oaa.proto.data.CapabilityConnectionEntry` | `abum` |
-| `oaa.proto.data.CapabilityEntry` | `abut` |
-| `oaa.proto.data.HandwritingInputModelConfig` | `abvg` |
-| `oaa.proto.data.PhoneCapabilities` | `abup` |
-| `oaa.proto.data.TransportSecurityDetail` | `abrb`, `akef`, `sxq` |
-| `oaa.proto.data.WifiDirectConfig` | `xla` |
 
 ### Direct child-schema differences
 
@@ -259,29 +270,11 @@ not have the local shape of any candidate for the canonical child type.
 
 | Canonical parent | APK parent | Field | Canonical child | APK child |
 |---|---|---:|---|---|
-| `oaa.proto.data.CapabilityConnectionEntry` | `abum` | 1 | `oaa.proto.data.CapConnValue` | `abui` |
-| `oaa.proto.data.CapabilityConnectionEntry` | `abum` | 3 | `oaa.proto.data.CapConnValue` | `abul` |
-| `oaa.proto.data.CapabilityConnectionEntry` | `abum` | 4 | `oaa.proto.data.CapConnBool` | `abuj` |
-| `oaa.proto.data.CapabilityConnectionEntry` | `abum` | 5 | `oaa.proto.data.CapConnComplex` | `abuh` |
-| `oaa.proto.data.CapabilityEntry` | `abut` | 4 | `oaa.proto.data.CapabilityValueMsg` | `abvc` |
-| `oaa.proto.data.CapabilityEntry` | `abut` | 5 | `oaa.proto.data.CapabilityValueMsg` | `abun` |
-| `oaa.proto.data.CapabilityEntry` | `abut` | 6 | `oaa.proto.data.CapabilityValueMsg` | `abuu` |
-| `oaa.proto.data.CapabilityEntry` | `abut` | 7 | `oaa.proto.data.CapabilityValueMsg` | `abuo` |
-| `oaa.proto.data.CapabilityEntry` | `abut` | 10 | `oaa.proto.data.CapabilityValueMsg` | `abvi` |
-| `oaa.proto.data.HandwritingInputModelConfig` | `abvg` | 2 | `oaa.proto.data.InputModelDescriptor` | `abup` |
-| `oaa.proto.data.PhoneCapabilities` | `abup` | 2 | `oaa.proto.data.DeviceInfo` | `abtq` |
-| `oaa.proto.data.PhoneCapabilities` | `abup` | 3 | `oaa.proto.data.PhoneConnectionConfig` | `abts` |
-| `oaa.proto.data.TransportSecurityDetail` | `abrb` | 1 | `oaa.proto.data.TransportSecurityCertChain` | `abqz` |
-| `oaa.proto.data.TransportSecurityDetail` | `abrb` | 2 | `oaa.proto.data.TransportSecurityParams` | `abra` |
-| `oaa.proto.data.TransportSecurityDetail` | `akef` | 1 | `oaa.proto.data.TransportSecurityCertChain` | `akee` |
-| `oaa.proto.data.TransportSecurityDetail` | `akef` | 2 | `oaa.proto.data.TransportSecurityParams` | `tjw` |
-| `oaa.proto.data.TransportSecurityDetail` | `sxq` | 1 | `oaa.proto.data.TransportSecurityCertChain` | `syj` |
-| `oaa.proto.data.TransportSecurityDetail` | `sxq` | 2 | `oaa.proto.data.TransportSecurityParams` | `sxp` |
-| `oaa.proto.data.WifiDirectConfig` | `xla` | 5 | `oaa.proto.data.GroupOwnerInfo` | `xkm` |
 
 ## Limitations
 
 - Unique structure is evidence of identity, not proof of original Google naming.
+- Class continuity across releases is not semantic proof; bundled Google libraries can preserve unrelated schemas for years.
 - Empty and small messages remain highly ambiguous until graph or dispatch constraints apply.
 - Field references are recovered where the `RawMessageInfo` object-array cursor and JADX field declarations are complete.
 - Canonical corrections describe 17.3; consumers supporting older releases should preserve version-compatibility policy at their API boundary.

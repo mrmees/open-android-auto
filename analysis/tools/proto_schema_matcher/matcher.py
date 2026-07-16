@@ -2,7 +2,13 @@ from __future__ import annotations
 
 from collections import defaultdict
 
-from .models import DispatchObservation, EnumNode, MatchResult, MessageNode
+from .models import (
+    DispatchObservation,
+    EnumNode,
+    LineageAnchor,
+    MatchResult,
+    MessageNode,
+)
 
 
 def match_enum_domains(
@@ -39,6 +45,7 @@ def match_graphs(
     dispatch_observations: list[DispatchObservation] | None = None,
     canonical_enums: dict[str, EnumNode] | None = None,
     apk_enums: dict[str, EnumNode] | None = None,
+    lineage_anchors: list[LineageAnchor] | None = None,
 ) -> list[MatchResult]:
     """Match canonical messages to APK classes with auditable constraints."""
     apk_by_shape: dict[tuple[object, ...], list[str]] = defaultdict(list)
@@ -53,6 +60,27 @@ def match_graphs(
     for observation in dispatch_observations or []:
         dispatch_by_canonical[observation.canonical_name].append(observation)
 
+    anchor_by_canonical: dict[str, LineageAnchor] = {}
+    for anchor in lineage_anchors or []:
+        if anchor.canonical_name not in canonical_graph:
+            raise ValueError(
+                f"lineage anchor names unknown canonical message {anchor.canonical_name}"
+            )
+        if anchor.current_class not in apk_graph:
+            raise ValueError(
+                f"lineage anchor for {anchor.canonical_name} names unknown APK class "
+                f"{anchor.current_class}"
+            )
+        unknown_rejections = set(anchor.rejected_candidates) - set(apk_graph)
+        if unknown_rejections:
+            raise ValueError(
+                f"lineage anchor for {anchor.canonical_name} rejects unknown APK "
+                f"classes {sorted(unknown_rejections)}"
+            )
+        if anchor.canonical_name in anchor_by_canonical:
+            raise ValueError(f"duplicate lineage anchor for {anchor.canonical_name}")
+        anchor_by_canonical[anchor.canonical_name] = anchor
+
     enum_candidate_sets = match_enum_domains(
         canonical_enums or {},
         apk_enums or {},
@@ -66,11 +94,31 @@ def match_graphs(
         canonical_name: set(candidates)
         for canonical_name, candidates in initial_candidates.items()
     }
+    confirmed_anchors = {
+        name: anchor.current_class
+        for name, anchor in anchor_by_canonical.items()
+        if anchor.disposition == "confirmed"
+    }
+    invalidated_names = {
+        name
+        for name, anchor in anchor_by_canonical.items()
+        if anchor.disposition == "invalidated"
+    }
+    for canonical_name, apk_class in confirmed_anchors.items():
+        candidate_sets[canonical_name] = {apk_class}
+    for canonical_name in invalidated_names:
+        # An invalidated anchor means that the canonical schema itself came
+        # from an unrelated bundled-library protobuf. No same-shape class is
+        # eligible for protocol naming until independent protocol evidence
+        # reconstructs the message.
+        candidate_sets[canonical_name] = set()
 
     # Dispatch is a hard constraint only when all structurally compatible
     # observations agree on one APK class.
     dispatch_anchors: dict[str, str] = {}
     for canonical_name, evidence in dispatch_by_canonical.items():
+        if canonical_name in anchor_by_canonical:
+            continue
         compatible = {
             item.apk_class
             for item in evidence
@@ -80,10 +128,11 @@ def match_graphs(
             candidate_sets[canonical_name] = compatible
             dispatch_anchors[canonical_name] = next(iter(compatible))
 
-    trusted_parent_names = set(dispatch_anchors)
+    trusted_parent_names = set(dispatch_anchors) | set(confirmed_anchors)
     trusted_parent_names.update(
         canonical_name
         for canonical_name, candidates in initial_candidates.items()
+        if canonical_name not in invalidated_names
         if len(candidates) == 1
         and len(
             canonical_by_shape[
@@ -197,7 +246,10 @@ def match_graphs(
             current = candidate_sets[canonical_name]
             if not current:
                 continue
-            if canonical_name in dispatch_anchors:
+            if (
+                canonical_name in dispatch_anchors
+                or canonical_name in confirmed_anchors
+            ):
                 # Preserve a structurally compatible, unambiguous dispatch
                 # identity. Any edge disagreement is reported separately.
                 continue
@@ -215,6 +267,7 @@ def match_graphs(
         candidates = sorted(candidate_sets[canonical_name])
         canonical_shape_count = len(canonical_by_shape[node.structural_key()])
         evidence = dispatch_by_canonical.get(canonical_name, [])
+        lineage_anchor = anchor_by_canonical.get(canonical_name)
         dispatch_candidates = sorted(
             {
                 item.apk_class
@@ -222,15 +275,31 @@ def match_graphs(
                 if item.apk_class in initial_candidates[canonical_name]
             }
         )
+        hard_anchor_class = dispatch_anchors.get(canonical_name) or confirmed_anchors.get(
+            canonical_name
+        )
         edge_constraint_conflict = (
-            canonical_name in dispatch_anchors
+            hard_anchor_class is not None
             and not candidate_edges_are_compatible(
                 canonical_name,
-                dispatch_anchors[canonical_name],
+                hard_anchor_class,
             )
         )
 
-        if not structural_candidates:
+        if canonical_name in invalidated_names:
+            status = "lineage_invalidated"
+            confidence = "none"
+            resolved = None
+        elif canonical_name in confirmed_anchors:
+            resolved = confirmed_anchors[canonical_name]
+            if resolved not in initial_candidates[canonical_name]:
+                status = "lineage_resolved_schema_conflict"
+            elif edge_constraint_conflict:
+                status = "lineage_resolved_edge_conflict"
+            else:
+                status = "lineage_resolved"
+            confidence = "high"
+        elif not structural_candidates:
             status = "not_found"
             confidence = "none"
             resolved = None
@@ -292,6 +361,7 @@ def match_graphs(
                     for item in evidence
                     if item.apk_class in initial_candidates[canonical_name]
                 ],
+                lineage_anchor=lineage_anchor,
             )
         )
     return results

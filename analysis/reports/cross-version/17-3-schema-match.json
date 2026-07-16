@@ -6,160 +6,7 @@
   "canonical_enum_count": 117,
   "canonical_message_count": 422,
   "canonical_message_edge_count": 278,
-  "constraint_conflict_details": [
-    {
-      "apk_class": "abum",
-      "apk_target": "abui",
-      "canonical_name": "oaa.proto.data.CapabilityConnectionEntry",
-      "canonical_target": "oaa.proto.data.CapConnValue",
-      "field_number": 1,
-      "reason": "child local schema differs"
-    },
-    {
-      "apk_class": "abum",
-      "apk_target": "abul",
-      "canonical_name": "oaa.proto.data.CapabilityConnectionEntry",
-      "canonical_target": "oaa.proto.data.CapConnValue",
-      "field_number": 3,
-      "reason": "child local schema differs"
-    },
-    {
-      "apk_class": "abum",
-      "apk_target": "abuj",
-      "canonical_name": "oaa.proto.data.CapabilityConnectionEntry",
-      "canonical_target": "oaa.proto.data.CapConnBool",
-      "field_number": 4,
-      "reason": "child local schema differs"
-    },
-    {
-      "apk_class": "abum",
-      "apk_target": "abuh",
-      "canonical_name": "oaa.proto.data.CapabilityConnectionEntry",
-      "canonical_target": "oaa.proto.data.CapConnComplex",
-      "field_number": 5,
-      "reason": "child local schema differs"
-    },
-    {
-      "apk_class": "abut",
-      "apk_target": "abvc",
-      "canonical_name": "oaa.proto.data.CapabilityEntry",
-      "canonical_target": "oaa.proto.data.CapabilityValueMsg",
-      "field_number": 4,
-      "reason": "child local schema differs"
-    },
-    {
-      "apk_class": "abut",
-      "apk_target": "abun",
-      "canonical_name": "oaa.proto.data.CapabilityEntry",
-      "canonical_target": "oaa.proto.data.CapabilityValueMsg",
-      "field_number": 5,
-      "reason": "child local schema differs"
-    },
-    {
-      "apk_class": "abut",
-      "apk_target": "abuu",
-      "canonical_name": "oaa.proto.data.CapabilityEntry",
-      "canonical_target": "oaa.proto.data.CapabilityValueMsg",
-      "field_number": 6,
-      "reason": "child local schema differs"
-    },
-    {
-      "apk_class": "abut",
-      "apk_target": "abuo",
-      "canonical_name": "oaa.proto.data.CapabilityEntry",
-      "canonical_target": "oaa.proto.data.CapabilityValueMsg",
-      "field_number": 7,
-      "reason": "child local schema differs"
-    },
-    {
-      "apk_class": "abut",
-      "apk_target": "abvi",
-      "canonical_name": "oaa.proto.data.CapabilityEntry",
-      "canonical_target": "oaa.proto.data.CapabilityValueMsg",
-      "field_number": 10,
-      "reason": "child local schema differs"
-    },
-    {
-      "apk_class": "abvg",
-      "apk_target": "abup",
-      "canonical_name": "oaa.proto.data.HandwritingInputModelConfig",
-      "canonical_target": "oaa.proto.data.InputModelDescriptor",
-      "field_number": 2,
-      "reason": "child local schema differs"
-    },
-    {
-      "apk_class": "abup",
-      "apk_target": "abtq",
-      "canonical_name": "oaa.proto.data.PhoneCapabilities",
-      "canonical_target": "oaa.proto.data.DeviceInfo",
-      "field_number": 2,
-      "reason": "child local schema differs"
-    },
-    {
-      "apk_class": "abup",
-      "apk_target": "abts",
-      "canonical_name": "oaa.proto.data.PhoneCapabilities",
-      "canonical_target": "oaa.proto.data.PhoneConnectionConfig",
-      "field_number": 3,
-      "reason": "child local schema differs"
-    },
-    {
-      "apk_class": "abrb",
-      "apk_target": "abqz",
-      "canonical_name": "oaa.proto.data.TransportSecurityDetail",
-      "canonical_target": "oaa.proto.data.TransportSecurityCertChain",
-      "field_number": 1,
-      "reason": "child local schema differs"
-    },
-    {
-      "apk_class": "abrb",
-      "apk_target": "abra",
-      "canonical_name": "oaa.proto.data.TransportSecurityDetail",
-      "canonical_target": "oaa.proto.data.TransportSecurityParams",
-      "field_number": 2,
-      "reason": "child local schema differs"
-    },
-    {
-      "apk_class": "akef",
-      "apk_target": "akee",
-      "canonical_name": "oaa.proto.data.TransportSecurityDetail",
-      "canonical_target": "oaa.proto.data.TransportSecurityCertChain",
-      "field_number": 1,
-      "reason": "child local schema differs"
-    },
-    {
-      "apk_class": "akef",
-      "apk_target": "tjw",
-      "canonical_name": "oaa.proto.data.TransportSecurityDetail",
-      "canonical_target": "oaa.proto.data.TransportSecurityParams",
-      "field_number": 2,
-      "reason": "child local schema differs"
-    },
-    {
-      "apk_class": "sxq",
-      "apk_target": "syj",
-      "canonical_name": "oaa.proto.data.TransportSecurityDetail",
-      "canonical_target": "oaa.proto.data.TransportSecurityCertChain",
-      "field_number": 1,
-      "reason": "child local schema differs"
-    },
-    {
-      "apk_class": "sxq",
-      "apk_target": "sxp",
-      "canonical_name": "oaa.proto.data.TransportSecurityDetail",
-      "canonical_target": "oaa.proto.data.TransportSecurityParams",
-      "field_number": 2,
-      "reason": "child local schema differs"
-    },
-    {
-      "apk_class": "xla",
-      "apk_target": "xkm",
-      "canonical_name": "oaa.proto.data.WifiDirectConfig",
-      "canonical_target": "oaa.proto.data.GroupOwnerInfo",
-      "field_number": 5,
-      "reason": "child local schema differs"
-    }
-  ],
+  "constraint_conflict_details": [],
   "dispatch_schema_conflicts": [],
   "enum_domain_mappings": [
     {
@@ -226,6 +73,181 @@
       "apk_class": "xec",
       "canonical_name": "oaa.proto.messages.VehicleAreaWindow",
       "value_count": 11
+    }
+  ],
+  "lineage_anchors": [
+    {
+      "canonical_name": "oaa.proto.data.CapabilityConnectionEntry",
+      "current_class": "abud",
+      "disposition": "invalidated",
+      "evidence": [
+        "RawMessageInfo and child order are stable across aafl, aayi, and abud: field 1 is a presence-tracked message and fields 2-6 are oneof messages.",
+        "17.3 sources/defpackage/wfn.java:555-928 constructs abud inside GoogleAuthProviderImpl account/token handling.",
+        "The structural look-alike follows aafu -> aayr -> abum and is written through the separate auth telemetry envelope abvm."
+      ],
+      "lineage": [
+        {
+          "apk_class": "aafl",
+          "version": "16.2.660604-release"
+        },
+        {
+          "apk_class": "aayi",
+          "version": "16.4.661014-release"
+        },
+        {
+          "apk_class": "abud",
+          "version": "17.3.662804-release"
+        }
+      ],
+      "rationale": "The historical class lineage belongs to Google authentication data, while the same-shape 17.3 candidate abum belongs to a separate auth telemetry lineage; neither supports the capability-negotiation name.",
+      "rejected_candidates": [
+        "abum"
+      ],
+      "source": "analysis/lineage/android-auto-17.3.yaml"
+    },
+    {
+      "canonical_name": "oaa.proto.data.CapabilityEntry",
+      "current_class": "abut",
+      "disposition": "invalidated",
+      "evidence": [
+        "The ten-field schema and its position under aafx/aayu/abup are exact in all three releases.",
+        "16.2 sources/p000/vdo.java:534-769 imports the Surveys Answer model and constructs aagb while assembling survey request context.",
+        "17.3 sources/defpackage/wmp.java:1804-2021 constructs abut in the same survey-context conversion."
+      ],
+      "lineage": [
+        {
+          "apk_class": "aagb",
+          "version": "16.2.660604-release"
+        },
+        {
+          "apk_class": "aayy",
+          "version": "16.4.661014-release"
+        },
+        {
+          "apk_class": "abut",
+          "version": "17.3.662804-release"
+        }
+      ],
+      "rationale": "This stable class is a Google Surveys client-capability entry, not an Android Auto phone capability entry.",
+      "rejected_candidates": [
+        "abut"
+      ],
+      "source": "analysis/lineage/android-auto-17.3.yaml"
+    },
+    {
+      "canonical_name": "oaa.proto.data.HandwritingInputModelConfig",
+      "current_class": "abvg",
+      "disposition": "invalidated",
+      "evidence": [
+        "Field 2 follows aafx -> aayu -> abup across the same three releases.",
+        "17.3 sources/defpackage/wmp.java:1567-2106 builds abvg from survey data and appends failures such as FAILED_TO_FETCH_SURVEY."
+      ],
+      "lineage": [
+        {
+          "apk_class": "aago",
+          "version": "16.2.660604-release"
+        },
+        {
+          "apk_class": "aazl",
+          "version": "16.4.661014-release"
+        },
+        {
+          "apk_class": "abvg",
+          "version": "17.3.662804-release"
+        }
+      ],
+      "rationale": "The five-field lineage is a Google Surveys request-context message; field 2 is the survey client-capability object, not an input-model descriptor.",
+      "rejected_candidates": [
+        "abvg"
+      ],
+      "source": "analysis/lineage/android-auto-17.3.yaml"
+    },
+    {
+      "canonical_name": "oaa.proto.data.PhoneCapabilities",
+      "current_class": "abup",
+      "disposition": "invalidated",
+      "evidence": [
+        "RawMessageInfo is identical across aafx, aayu, and abup, including the repeated aagb/aayy/abut entry at field 5.",
+        "16.2 sources/p000/vdo.java:346-781 imports Surveys Answer and constructs aafx; 17.3 wmp.java:1616-2051 performs the corresponding abup conversion."
+      ],
+      "lineage": [
+        {
+          "apk_class": "aafx",
+          "version": "16.2.660604-release"
+        },
+        {
+          "apk_class": "aayu",
+          "version": "16.4.661014-release"
+        },
+        {
+          "apk_class": "abup",
+          "version": "17.3.662804-release"
+        }
+      ],
+      "rationale": "The six-field lineage is Google Surveys client context, not the Android Auto ServiceDiscoveryRequest phone-capabilities message.",
+      "rejected_candidates": [
+        "abup"
+      ],
+      "source": "analysis/lineage/android-auto-17.3.yaml"
+    },
+    {
+      "canonical_name": "oaa.proto.data.TransportSecurityDetail",
+      "current_class": "abxz",
+      "disposition": "invalidated",
+      "evidence": [
+        "The graph is stable: two message fields -> five-string child plus repeated-message child -> two-string entries, with wrappers at fields 2 then 1.",
+        "Alphabetic class-order deltas independently predict aajh -> abce -> abxz, matching the full recovered child graph in every release.",
+        "17.3 sources/defpackage/wfn.java references abxz/abya/abyb in GoogleAuthProviderImpl credential processing."
+      ],
+      "lineage": [
+        {
+          "apk_class": "aajh",
+          "version": "16.2.660604-release"
+        },
+        {
+          "apk_class": "abce",
+          "version": "16.4.661014-release"
+        },
+        {
+          "apk_class": "abxz",
+          "version": "17.3.662804-release"
+        }
+      ],
+      "rationale": "The historical four-level child graph survives as Google authentication credential data, not Android Auto transport-security configuration; the three local candidates are unrelated two-way oneofs.",
+      "rejected_candidates": [
+        "abrb",
+        "akef",
+        "sxq"
+      ],
+      "source": "analysis/lineage/android-auto-17.3.yaml"
+    },
+    {
+      "canonical_name": "oaa.proto.data.WifiDirectConfig",
+      "current_class": "xla",
+      "disposition": "invalidated",
+      "evidence": [
+        "The four strings, image/message field, and uint64 are identical across was, wtf, and xla.",
+        "16.2 sources/p000/hlr.java:265-305, 16.4 sources/defpackage/htv.java:228-268, and 17.3 sources/defpackage/iji.java:220-260 convert the class to RadioMetadata.RadioSongMetadata."
+      ],
+      "lineage": [
+        {
+          "apk_class": "was",
+          "version": "16.2.660604-release"
+        },
+        {
+          "apk_class": "wtf",
+          "version": "16.4.661014-release"
+        },
+        {
+          "apk_class": "xla",
+          "version": "17.3.662804-release"
+        }
+      ],
+      "rationale": "The six-field lineage is radio song metadata, not Wi-Fi Direct connection configuration.",
+      "rejected_candidates": [
+        "xla"
+      ],
+      "source": "analysis/lineage/android-auto-17.3.yaml"
     }
   ],
   "matches": [
@@ -2672,6 +2694,8 @@
         "abrz",
         "absf",
         "absn",
+        "abvd",
+        "abwh",
         "yyn",
         "zji"
       ],
@@ -2681,7 +2705,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 2,
-      "refined_candidate_count": 15,
+      "refined_candidate_count": 17,
       "resolved_apk_class": null,
       "source": "oaa/control/InputModelData.proto",
       "status": "ambiguous_structural",
@@ -2730,7 +2754,7 @@
       "refined_candidate_count": 0,
       "resolved_apk_class": null,
       "source": "oaa/control/InputModelData.proto",
-      "status": "constraint_conflict",
+      "status": "lineage_invalidated",
       "structural_candidate_count": 1,
       "structural_candidates": [
         "abum"
@@ -2747,7 +2771,7 @@
       "refined_candidate_count": 0,
       "resolved_apk_class": null,
       "source": "oaa/control/CapabilityData.proto",
-      "status": "constraint_conflict",
+      "status": "lineage_invalidated",
       "structural_candidate_count": 1,
       "structural_candidates": [
         "abut"
@@ -2755,18 +2779,19 @@
     },
     {
       "candidates": [
-        "abuf"
+        "abuf",
+        "abxj"
       ],
       "canonical_name": "oaa.proto.data.CapabilityFlag",
       "canonical_shape_count": 1,
-      "confidence": "medium",
+      "confidence": "none",
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 2,
-      "refined_candidate_count": 1,
-      "resolved_apk_class": "abuf",
+      "refined_candidate_count": 2,
+      "resolved_apk_class": null,
       "source": "oaa/control/CapabilityData.proto",
-      "status": "graph_resolved",
+      "status": "ambiguous_structural",
       "structural_candidate_count": 2,
       "structural_candidates": [
         "abuf",
@@ -2775,18 +2800,22 @@
     },
     {
       "candidates": [
-        "abuq"
+        "aayu",
+        "abuq",
+        "abxo",
+        "oiy",
+        "unq"
       ],
       "canonical_name": "oaa.proto.data.CapabilityPair",
       "canonical_shape_count": 1,
-      "confidence": "medium",
+      "confidence": "none",
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 2,
-      "refined_candidate_count": 1,
-      "resolved_apk_class": "abuq",
+      "refined_candidate_count": 5,
+      "resolved_apk_class": null,
       "source": "oaa/control/CapabilityData.proto",
-      "status": "graph_resolved",
+      "status": "ambiguous_structural",
       "structural_candidate_count": 5,
       "structural_candidates": [
         "aayu",
@@ -5833,7 +5862,7 @@
       "refined_candidate_count": 0,
       "resolved_apk_class": null,
       "source": "oaa/control/InputModelData.proto",
-      "status": "constraint_conflict",
+      "status": "lineage_invalidated",
       "structural_candidate_count": 1,
       "structural_candidates": [
         "abvg"
@@ -5879,18 +5908,20 @@
     },
     {
       "candidates": [
-        "abvb"
+        "abvb",
+        "abyc",
+        "tjv"
       ],
       "canonical_name": "oaa.proto.data.InputModelDescriptor",
       "canonical_shape_count": 1,
-      "confidence": "medium",
+      "confidence": "none",
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 2,
-      "refined_candidate_count": 1,
-      "resolved_apk_class": "abvb",
+      "refined_candidate_count": 3,
+      "resolved_apk_class": null,
       "source": "oaa/control/InputModelData.proto",
-      "status": "graph_resolved",
+      "status": "ambiguous_structural",
       "structural_candidate_count": 3,
       "structural_candidates": [
         "abvb",
@@ -7328,7 +7359,7 @@
       "refined_candidate_count": 0,
       "resolved_apk_class": null,
       "source": "oaa/control/PhoneCapabilitiesMessage.proto",
-      "status": "constraint_conflict",
+      "status": "lineage_invalidated",
       "structural_candidate_count": 1,
       "structural_candidates": [
         "abup"
@@ -8943,7 +8974,7 @@
       "refined_candidate_count": 0,
       "resolved_apk_class": null,
       "source": "oaa/control/ConnectionConfigurationData.proto",
-      "status": "constraint_conflict",
+      "status": "lineage_invalidated",
       "structural_candidate_count": 3,
       "structural_candidates": [
         "abrb",
@@ -9699,7 +9730,7 @@
       "refined_candidate_count": 0,
       "resolved_apk_class": null,
       "source": "oaa/wifi/WifiDirectConfigData.proto",
-      "status": "constraint_conflict",
+      "status": "lineage_invalidated",
       "structural_candidate_count": 1,
       "structural_candidates": [
         "xla"
@@ -52636,17 +52667,19 @@
     }
   ],
   "summary": {
-    "direct_child_schema_conflicts": 19,
+    "direct_child_schema_conflicts": 0,
     "dispatch_observations": 129,
     "dispatch_schema_conflicts": 0,
     "high_confidence": 39,
-    "medium_confidence": 116,
-    "resolved": 155,
+    "lineage_anchors": 6,
+    "lineage_invalidations": 6,
+    "medium_confidence": 113,
+    "resolved": 152,
     "status_counts": {
-      "ambiguous_structural": 194,
-      "constraint_conflict": 6,
+      "ambiguous_structural": 197,
       "dispatch_resolved": 21,
-      "graph_resolved": 55,
+      "graph_resolved": 52,
+      "lineage_invalidated": 6,
       "not_found": 67,
       "unique_structural": 61,
       "unique_structural_dispatch_confirmed": 18

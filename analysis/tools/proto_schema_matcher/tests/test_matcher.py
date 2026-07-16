@@ -3,12 +3,34 @@ from analysis.tools.proto_schema_matcher.models import (
     DispatchObservation,
     EnumNode,
     FieldShape,
+    LineageAnchor,
+    LineageStep,
     MessageNode,
 )
 
 
 def _node(name: str, *fields: FieldShape) -> MessageNode:
     return MessageNode(name=name, syntax="proto2", fields=tuple(fields))
+
+
+def _anchor(
+    canonical_name: str,
+    apk_class: str,
+    disposition: str,
+) -> LineageAnchor:
+    return LineageAnchor(
+        canonical_name=canonical_name,
+        current_class=apk_class,
+        disposition=disposition,
+        lineage=(
+            LineageStep("16.2", "old"),
+            LineageStep("17.3", apk_class),
+        ),
+        rejected_candidates=(apk_class,),
+        rationale="test evidence",
+        evidence=("call site",),
+        source="test.yaml",
+    )
 
 
 def test_unique_structure_resolves_with_medium_confidence():
@@ -22,6 +44,51 @@ def test_unique_structure_resolves_with_medium_confidence():
     assert result.status == "unique_structural"
     assert result.confidence == "medium"
     assert result.resolved_apk_class == "abc"
+
+
+def test_confirmed_lineage_resolves_structural_collision():
+    canonical_name = "oaa.proto.messages.Request"
+    shape = FieldShape(1, "int32")
+
+    result = match_graphs(
+        {canonical_name: _node(canonical_name, shape)},
+        {"aaa": _node("aaa", shape), "bbb": _node("bbb", shape)},
+        lineage_anchors=[_anchor(canonical_name, "bbb", "confirmed")],
+    )[0]
+
+    assert result.status == "lineage_resolved"
+    assert result.confidence == "high"
+    assert result.resolved_apk_class == "bbb"
+
+
+def test_confirmed_lineage_can_report_local_schema_conflict():
+    canonical_name = "oaa.proto.messages.Request"
+
+    result = match_graphs(
+        {canonical_name: _node(canonical_name, FieldShape(1, "int32"))},
+        {"bbb": _node("bbb", FieldShape(1, "string"))},
+        lineage_anchors=[_anchor(canonical_name, "bbb", "confirmed")],
+    )[0]
+
+    assert result.status == "lineage_resolved_schema_conflict"
+    assert result.resolved_apk_class == "bbb"
+
+
+def test_invalidated_lineage_quarantines_all_structural_candidates():
+    canonical_name = "oaa.proto.messages.Request"
+    shape = FieldShape(1, "int32")
+
+    result = match_graphs(
+        {canonical_name: _node(canonical_name, shape)},
+        {"aaa": _node("aaa", shape), "bbb": _node("bbb", shape)},
+        lineage_anchors=[_anchor(canonical_name, "bbb", "invalidated")],
+    )[0]
+
+    assert result.status == "lineage_invalidated"
+    assert result.confidence == "none"
+    assert result.resolved_apk_class is None
+    assert result.candidates == []
+    assert result.structural_candidates == ["aaa", "bbb"]
 
 
 def test_dispatch_resolves_structural_collision():

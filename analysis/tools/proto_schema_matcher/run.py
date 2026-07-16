@@ -6,6 +6,7 @@ import sys
 
 from .dispatch import extract_dispatch_observations
 from .loaders import load_apk_schema, load_canonical_schema
+from .lineage import load_lineage_anchors
 from .matcher import match_enum_domains, match_graphs
 from .report import build_payload, write_json, write_markdown
 
@@ -35,6 +36,11 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--apk-sha256", default="unknown", help="Source APK SHA-256")
     parser.add_argument("--output-json", type=Path, required=True)
     parser.add_argument("--output-md", type=Path, required=True)
+    parser.add_argument(
+        "--lineage-yaml",
+        type=Path,
+        help="Curated confirmed/invalidated cross-version class lineages",
+    )
     args = parser.parse_args(argv)
 
     print("Building canonical descriptor graph...", file=sys.stderr)
@@ -60,12 +66,18 @@ def main(argv: list[str] | None = None) -> int:
         )
         print(f"  {len(observations)} observations", file=sys.stderr)
 
+    lineage_anchors = []
+    if args.lineage_yaml:
+        lineage_anchors = load_lineage_anchors(args.lineage_yaml)
+        print(f"  {len(lineage_anchors)} lineage anchors", file=sys.stderr)
+
     results = match_graphs(
         canonical_graph,
         apk_graph,
         observations,
         canonical_enums,
         apk_enums,
+        lineage_anchors,
     )
     enum_matches = match_enum_domains(canonical_enums, apk_enums)
     payload = build_payload(
@@ -92,6 +104,7 @@ def main(argv: list[str] | None = None) -> int:
         enum_matches=enum_matches,
         results=results,
         observations=observations,
+        lineage_anchors=lineage_anchors,
     )
     write_json(payload, args.output_json)
     write_markdown(payload, args.output_md)
