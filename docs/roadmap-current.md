@@ -19,14 +19,15 @@
 - Documentation cleanup and accuracy sweep (this task).
 - Consolidate remaining session-specific notes into permanent docs.
 - Publish a minimal `dist` branch for downstream proto consumers without the research archive.
-- Android Auto 17.3 static schema-matching baseline operational: 151 mappings resolved without a live session, including 39 dispatch-backed and 51 graph-resolved mappings, plus 13 unique enum-domain mappings.
+- Android Auto 17.3 static schema-matching baseline operational: 175 mappings resolved without a live session, including 39 dispatch-backed and 73 graph-resolved mappings, plus 13 unique enum-domain mappings. Every graph-resolved row now records its exact parent/field evidence.
 - Six residual conflict families have exact 16.2 → 16.4 → 17.3 class lineages; five unrelated proto files (49 messages and 6 enums) are excluded from the active graph after call sites tied them to Surveys, GoogleAuth, or radio metadata.
 - The capture-backed `WifiSecurityResponse` is reduced to fields 1-5; removing its false radio-metadata extension unlocked `RadioSongMetadata -> xla` as a unique structural mapping.
+- Trusted-parent propagation recovered 24 additional identities and the 17.3 blended-UI subtree (`xml`/`xfi`/`xgs`/`xir`/`xlh`); the only remaining trusted-parent schema delta is `VideoConfig` field 7, which disappeared in 17.3 but remains in the proto for 16.x compatibility.
 
 ## Next
 
 - Reconstruct any real protocol-facing capability or connection schemas only from trusted service/channel parents or wire evidence; do not reuse the retracted bundled-library names.
-- Add 16.2/16.4 cross-version anchors for the remaining tiny and empty structural collisions.
+- Trace the remaining 149 structural collisions from cross-version parents or semantic call sites; do not promote globally unique local shapes without contextual evidence.
 - Add verifier recovery for enum multiplexers whose switch bodies JADX could not decompile.
 - Expand wire capture coverage to underexplored channels (car control, radio, phone).
 - VideoConfigData field 11: confirm UiConfig sub-message structure via wire capture.

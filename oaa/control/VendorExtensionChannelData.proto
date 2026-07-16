@@ -8,7 +8,7 @@ package oaa.proto.data;
 // confidence: gold [deep_trace_verified, 16.2_jadx]
 message VendorExtensionChannel
 {
-    optional string name = 1;  // confidence: gold [deep_trace_verified, 16.2_jadx]
+    required string name = 1; // 17.3 xmv marks the vendor name required  // confidence: gold [deep_trace_verified, 16.2_jadx, 17.3_jadx]
     repeated string package_white_list = 2;  // confidence: gold [deep_trace_verified, 16.2_jadx]
     optional bytes data = 3;  // confidence: gold [deep_trace_verified, 16.2_jadx]
 }

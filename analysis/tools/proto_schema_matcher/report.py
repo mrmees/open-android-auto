@@ -187,6 +187,50 @@ def build_payload(
                         "reason": "child local schema differs",
                     }
                 )
+    resolved_parent_child_schema_differences = []
+    for result in results:
+        has_trusted_parent_edge = any(
+            evidence.relation == "trusted_parent"
+            for evidence in result.graph_evidence
+        )
+        if result.resolved_apk_class is None or not (
+            result.confidence == "high" or has_trusted_parent_edge
+        ):
+            continue
+        canonical_parent = canonical_graph[result.canonical_name]
+        apk_parent = apk_graph[result.resolved_apk_class]
+        apk_fields = {field.number: field for field in apk_parent.fields}
+        for canonical_field in canonical_parent.fields:
+            if (
+                canonical_field.base_type not in {"message", "group"}
+                or not canonical_field.target
+                or canonical_field.target not in result_by_name
+            ):
+                continue
+            apk_field = apk_fields.get(canonical_field.number)
+            if (
+                apk_field is None
+                or apk_field.target is None
+                or apk_field.target not in apk_graph
+            ):
+                continue
+            child_result = result_by_name[canonical_field.target]
+            if apk_field.target in child_result.structural_candidates:
+                continue
+            resolved_parent_child_schema_differences.append(
+                {
+                    "canonical_parent": result.canonical_name,
+                    "apk_parent": result.resolved_apk_class,
+                    "field_number": canonical_field.number,
+                    "canonical_child": canonical_field.target,
+                    "apk_child": apk_field.target,
+                    "canonical_child_status": child_result.status,
+                    "schema_difference": describe_schema_difference(
+                        canonical_graph[canonical_field.target],
+                        apk_graph[apk_field.target],
+                    ),
+                }
+            )
     match_payloads = []
     for result in results:
         item = asdict(result)
@@ -213,11 +257,17 @@ def build_payload(
             "dispatch_schema_conflicts": len(dispatch_schema_conflicts),
             "unique_enum_domains": len(enum_domain_mappings),
             "direct_child_schema_conflicts": len(constraint_conflict_details),
+            "resolved_parent_child_schema_differences": len(
+                resolved_parent_child_schema_differences
+            ),
             "status_counts": dict(sorted(status_counts.items())),
         },
         "dispatch_schema_conflicts": dispatch_schema_conflicts,
         "enum_domain_mappings": enum_domain_mappings,
         "constraint_conflict_details": constraint_conflict_details,
+        "resolved_parent_child_schema_differences": (
+            resolved_parent_child_schema_differences
+        ),
         "lineage_anchors": [asdict(anchor) for anchor in lineage_anchors],
         "matches": match_payloads,
     }
@@ -262,6 +312,7 @@ def render_markdown(payload: dict[str, object]) -> str:
         f"- Explicit service/log dispatch schema conflicts: {summary['dispatch_schema_conflicts']}",
         f"- Globally unique enum numeric-domain mappings: {summary['unique_enum_domains']}",
         f"- Direct child-schema conflicts described: {summary['direct_child_schema_conflicts']}",
+        f"- Resolved-parent child schema differences: {summary['resolved_parent_child_schema_differences']}",
         "",
         "## Cross-version class-lineage anchors",
         "",
@@ -324,15 +375,23 @@ def render_markdown(payload: dict[str, object]) -> str:
             "These mappings were ambiguous by local shape and became unique after",
             "field-number-labelled message-edge constraint propagation.",
             "",
-            "| Canonical message | APK class | Initial candidates |",
-            "|---|---|---:|",
+            "| Canonical message | APK class | Initial candidates | Graph evidence |",
+            "|---|---|---:|---|",
         ]
     )
     for item in matches:
         if item["status"] == "graph_resolved":
+            evidence = item.get("graph_evidence") or []
+            evidence_text = "; ".join(
+                f"{entry['relation']} `"
+                f"{entry['canonical_parent']}:{entry['field_number']}` → `"
+                f"{entry['canonical_target']}` (`{entry['apk_parent']}` → "
+                f"`{entry['apk_target']}`)"
+                for entry in evidence[:3]
+            )
             lines.append(
                 f"| `{item['canonical_name']}` | `{item['resolved_apk_class']}` | "
-                f"{item['structural_candidate_count']} |"
+                f"{item['structural_candidate_count']} | {evidence_text} |"
             )
 
     lines.extend(
@@ -370,6 +429,34 @@ def render_markdown(payload: dict[str, object]) -> str:
             f"| `{item['canonical_name']}` | `{item['apk_class']}` | "
             f"{item['value_count']} |"
         )
+
+    lines.extend(
+        [
+            "",
+            "## Resolved-parent child schema differences",
+            "",
+            "A dispatch/lineage-backed parent, or one linked from a trusted parent,",
+            "identifies the APK child at this field, but the child schema differs",
+            "from the current canonical definition. These are",
+            "version-delta or stale-schema candidates, not accepted mappings.",
+            "",
+            "| Canonical parent | APK parent | Field | Canonical child | APK child | Local schema difference |",
+            "|---|---|---:|---|---|---|",
+        ]
+    )
+    parent_child_differences = (
+        payload.get("resolved_parent_child_schema_differences") or []
+    )
+    if parent_child_differences:
+        for item in parent_child_differences:
+            lines.append(
+                f"| `{item['canonical_parent']}` | `{item['apk_parent']}` | "
+                f"{item['field_number']} | `{item['canonical_child']}` | "
+                f"`{item['apk_child']}` | "
+                f"{_format_schema_difference(item['schema_difference'])} |"
+            )
+    else:
+        lines.extend(["", "None."])
 
     lines.extend(
         [

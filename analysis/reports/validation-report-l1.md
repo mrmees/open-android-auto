@@ -4,7 +4,7 @@
 
 - **Mapped protos:** 215
 - **Validated (with APK class):** 203
-- **Layer 1 (Schema vs APK):** 24 errors, 12 warnings
+- **Layer 1 (Schema vs APK):** 24 errors, 13 warnings
 
 ## Layer 1: Schema vs APK Database
 
@@ -14,7 +14,7 @@
 |---|---|
 | missing_field | 19 |
 | type_mismatch | 9 |
-| extra_field | 5 |
+| extra_field | 6 |
 | syntax_mismatch | 2 |
 | modifier_mismatch | 1 |
 
@@ -33,6 +33,10 @@
 
 - **[ERROR]** `missing_field`: field 2 in APK (uint32) but missing from our schema
 - **[ERROR]** `missing_field`: field 3 in APK (enum) but missing from our schema
+
+#### AdditionalVideoConfig (0E / 1W)
+
+- **[WARN]** `extra_field`: field 8 (blended_ui_config: message) in our schema but not in APK DB
 
 #### AudioFocusState (1E / 0W)
 

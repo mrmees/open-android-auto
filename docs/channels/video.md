@@ -342,9 +342,16 @@ The HU advertises video capabilities in the ServiceDiscoveryResponse via one or 
 | 8 | uint32 | -- | Pixel aspect ratio x 10000 (10000 = 1.0 = square pixels) |
 | 9 | uint32 | -- | Real density -- actual DPI before Android bucket quantization |
 | 10 | enum (MediaCodecType) | PCM (1) | Video codec (H.264=3, VP9=5, AV1=6, H.265=7) |
-| 11 | AdditionalVideoConfig | -- | Extended config (resolution ranges, theme, elements, margins) |
+| 11 | AdditionalVideoConfig | -- | Extended config (insets, theme, elements, margins) |
 
 > **Note:** The default for `codec` (field 10) is `PCM (1)` per the proto default, which is an audio codec value. When the phone sees a non-video codec value, it falls back to H.264. Set this explicitly to 3 (H.264) or another video codec.
+
+#### 17.3 static delta
+
+The 17.3 class is `xmz`, reached directly from `AVChannel` (`xik`) field 4.
+It retains fields 1-6 and 8-11 but no longer declares viewing distance at field
+7. The canonical proto keeps that optional field so older 16.x configurations
+remain decodable.
 
 ### VideoResolution Enum (wco, 16.2) -- Gold (Full Rewrite)
 
@@ -375,26 +382,33 @@ Landscape resolutions (values 1-5) have width > height. Portrait resolutions (va
 
 ### AdditionalVideoConfig (wcb, 16.2) -- Gold
 
-Extended configuration for resolution ranges, theming, element visibility, and resize behavior. Used both in `VideoConfig` field 11 (initial SDP setup) and as the payload of `UpdateUiConfigRequest` (runtime updates).
+Extended configuration for display insets, theming, element visibility, and resize behavior. Used both in `VideoConfig` field 11 (initial SDP setup) and as the payload of `UpdateUiConfigRequest` (runtime updates). Phone-side consumers in 17.1 and 17.3 prove that fields 1-3 are Rect-style insets; the older “minimum/maximum/preferred resolution” labels were incorrect.
 
 | Field | Type | Description |
 |-------|------|-------------|
-| 1 | VideoResolutionRange | Minimum supported resolution |
-| 2 | VideoResolutionRange | Maximum supported resolution |
-| 3 | VideoResolutionRange | Preferred resolution |
+| 1 | VideoInsets | Projected display insets |
+| 2 | VideoInsets | Additional inset rectangle (semantic label not recovered) |
+| 3 | VideoInsets | Additional inset rectangle (semantic label not recovered) |
 | 4 | UITheme | Theme mode (auto=0, light=1, dark=2) |
 | 5 | repeated UIElement | UI elements the phone should hide |
 | 6 | repeated VideoResizeAction | Supported resize behaviors |
 | 7 | repeated VideoMarginConfig | Margin/inset configurations |
+| 8 | BlendedUIConfig | Display corner radii and native UI element rectangles (17.1+) |
 
-**VideoResolutionRange (vxn, 16.2):**
+In 17.3 this graph is `xml` → `xfi`: `xfi` contains optional corner radii
+(`xgs`) and repeated native UI elements (`xir`). Each element carries a Rect
+position (`xlh`) and an enum whose accepted numeric domain is 1-3; the original
+symbolic names are not present in the APK, so the proto intentionally keeps
+neutral value names.
+
+**VideoInsets (vxn, 16.2):**
 
 | Field | Type | Description |
 |-------|------|-------------|
-| 1 | uint32 | Width (pixels) |
-| 2 | uint32 | Height (pixels) |
-| 3 | uint32 | Density (DPI) |
-| 4 | uint32 | FPS |
+| 1 | uint32 | Top inset |
+| 2 | uint32 | Bottom inset |
+| 3 | uint32 | Left inset |
+| 4 | uint32 | Right inset |
 
 **UITheme:**
 
@@ -651,7 +665,7 @@ config.hidden_ui_elements = { UI_ELEMENT_CLOCK, UI_ELEMENT_BATTERY_LEVEL };
 - `wcf.java` -- UiConfigValue (theming token value)
 - `wcc.java` -- ThemingTokensStatus validator
 - `vws.java` -- DisplayType enum
-- `vxn.java` -- VideoResolutionRange sub-message
+- `vxn.java` -- VideoInsets sub-message (historically mislabeled as a resolution range)
 - `hum.java` -- UiStyle builder (theming token construction)
 - `huz.java` -- Video channel manager (send chain for UiConfigRequest/UpdateUiConfig)
 - `huy.java` -- Handler message processor (case 5/8/9/10)

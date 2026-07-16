@@ -939,3 +939,73 @@ Verification:
 - Documented 17.3 matcher smoke command -> success; 373 canonical messages, 111 canonical enums, 1,957 APK messages, and 6 lineage anchors
 - Generated 17.3 report -> 151 resolved, 39 high confidence, 112 medium confidence, 51 graph-resolved, and `RadioSongMetadata -> xla`
 - 16.2 validator smoke -> 215 active mappings, 203 with a 16.2 class, 24 errors and 12 warnings after excluding retractions
+
+## 2026-07-16 — Trusted-parent frontier and 17.3 blended UI recovery
+
+Date / Session: 2026-07-16 / trusted-parent-class-lineage-frontier
+
+What Changed:
+- Fixed schema-matcher fixed-point propagation so a canonical alias with one
+  APK candidate can inherit identity from a trusted parent, and graph-resolved
+  parents can continue constraining their descendants
+- Added machine-readable graph provenance (canonical/APK parent, field number,
+  target edge, and relation) to every graph-resolved mapping and a separate
+  report of child schema differences rooted in trusted parents
+- Corrected `AudioConfig` fields 1-3 to proto2 `required`,
+  `PingConfiguration` fields 1-2 to ordinary proto3 scalars, and
+  `VendorExtensionChannel.name` to required in 17.3
+- Recovered the 17.1/17.3 blended-UI subtree under
+  `AdditionalVideoConfig`: display insets, corner radii, native UI elements,
+  and their Rect-style positions; removed the false `VideoResolutionRange`
+  identity and corrected the historical class mappings
+- Recorded the one remaining trusted-parent version delta: 17.3 `VideoConfig`
+  (`xmz`) omits field 7, while the optional field remains for 16.x wire
+  compatibility
+
+Why:
+- Thirteen exact child identities were hidden because the matcher treated an
+  already-single candidate as unresolved when its canonical shape had aliases
+- Previous reports stated only that a mapping was graph-resolved; they did not
+  preserve the edge that justified it, making independent review needlessly
+  difficult
+- Phone-side Rect construction in both 17.1 and 17.3 directly contradicts the
+  old “minimum/maximum/preferred resolution” names for AdditionalVideoConfig
+  fields 1-3 and exposes field 8 without a live projection session
+
+Status:
+- Active canonical graph: 376 messages and 112 enums; Android Auto 17.3 graph:
+  1,957 decoded messages and 134 enums
+- 175 mappings resolved: 39 high-confidence and 136 medium-confidence,
+  including 73 graph-resolved mappings; 149 ambiguous structural mappings and
+  52 not-found schemas remain
+- Newly resolved protocol-facing identities include `CarControlChannel -> xgb`,
+  `CarActionEntry -> xdx`, `SensorTypeEntry -> xls`, `AudioConfig -> xfb`,
+  `AdditionalVideoConfig -> xml`, `BlendedUIConfig -> xfi`,
+  `DisplayCornerRadii -> xgs`, `NativeUIElement -> xir`,
+  `UIElementPosition -> xlh`, and `PingConfiguration -> abmh`
+- No dispatch/schema, hard-edge, or constraint conflicts remain; the trusted
+  parent child-delta report contains only the intentional VideoConfig field-7
+  compatibility difference
+
+Next Steps:
+1. Trace the remaining 149 structural collisions from cross-version parent
+   graphs or direct semantic consumers; do not promote context-free unique
+   shapes as semantic proof
+2. Recover the symbolic names for `NativeUIElementType` values 1-3 from an
+   un-obfuscated API surface or wire/callback behavior
+3. Decide whether downstream generated APIs need an explicit versioned
+   `VideoConfig` view, rather than removing the backward-compatible field 7
+
+Verification:
+- `protoc --proto_path=. --descriptor_set_out=/tmp/oaa-proto-frontier-check/all.pb $(find oaa -name '*.proto' -print | sort)` -> success
+- `PYTHONPATH=. /tmp/open-android-auto-test-venv/bin/pytest -q analysis/tools/apk_indexer/tests analysis/tools/proto_schema_matcher/tests analysis/tools/proto_schema_validator/tests analysis/tools/proto_stream_validator/tests` -> 94 passed
+- All four changed audit sidecars validate against
+  `docs/verification/audit-schema.json`
+- Documented 17.3 matcher smoke command -> success; 376 canonical messages,
+  1,957 APK messages, 129 dispatch observations, and 6 lineage anchors
+- Generated report -> 175 resolved, 39 high confidence, 136 medium confidence,
+  73 graph-resolved, 13 unique enum domains, and 1 intentional trusted-parent
+  child schema delta
+- 16.2 Layer-1 validator -> 215 active mappings, 203 with a 16.2 class, 24
+  errors and 13 warnings; the added warning is expected because blended UI
+  field 8 is new after 16.2

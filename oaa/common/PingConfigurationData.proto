@@ -16,6 +16,6 @@ package oaa.proto.data;
 
 // confidence: gold [16.2_db_verified]
 message PingConfiguration {
-    optional int64 ping_interval_ns = 1; // APK: zyd.b (16.1) → aaac (16.2)  // confidence: gold
-    optional int32 ping_timeout_ms = 2; // APK: zyd.c (16.1) → aaac (16.2)  // confidence: gold
+    int64 ping_interval_ns = 1; // Proto3 scalar without explicit presence: 16.2 zxk/aaac, 17.3 abmh  // confidence: gold [16.2_jadx, 17.3_jadx]
+    int32 ping_timeout_ms = 2; // confidence: gold [16.2_jadx, 17.3_jadx]
 }

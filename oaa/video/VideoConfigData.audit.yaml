@@ -1,7 +1,7 @@
 proto: oaa/video/VideoConfigData.proto
 message: VideoConfig
 confidence: silver
-last_updated: '2026-04-11'
+last_updated: '2026-07-16'
 evidence:
 - type: apk_static
   method: proto_access
@@ -21,6 +21,15 @@ evidence:
   description: Structural match confirmed across versions 15.9, 16.1, 16.2, 16.4.
     Field numbers, types, and modifiers are consistent across all 6 pairwise comparisons.
   status: consistent
+- type: apk_static
+  method: raw_message_info
+  source: 17.3 xik.java field 4 and xmz.java
+  date: '2026-07-16'
+  description: >-
+    Trusted AVChannel field 4 identifies xmz as VideoConfig. Its 17.3 schema is
+    identical to the through-16.4 definition except that field 7 (viewing
+    distance) is absent. The optional field remains in the canonical proto for
+    backward wire compatibility and is reported as an explicit version delta.
 oem_match_pending_gold: true
 pending_platinum_evidence:
 - type: platinum_evidence

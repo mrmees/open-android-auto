@@ -139,6 +139,39 @@ def test_canonical_aliases_are_not_treated_as_unique():
     assert all(result.resolved_apk_class is None for result in results)
 
 
+def test_trusted_parent_resolves_one_candidate_canonical_alias():
+    child_name = "oaa.proto.data.Child"
+    alias_name = "oaa.proto.data.ChildAlias"
+    parent_name = "oaa.proto.messages.Parent"
+    child_shape = FieldShape(1, "string")
+
+    results = match_graphs(
+        {
+            child_name: _node(child_name, child_shape),
+            alias_name: _node(alias_name, child_shape),
+            parent_name: _node(
+                parent_name,
+                FieldShape(1, "message", target=child_name),
+            ),
+        },
+        {
+            "child": _node("child", child_shape),
+            "parent": _node(
+                "parent",
+                FieldShape(1, "message", target="child"),
+            ),
+        },
+    )
+    by_name = {result.canonical_name: result for result in results}
+
+    assert by_name[child_name].status == "graph_resolved"
+    assert by_name[child_name].resolved_apk_class == "child"
+    assert len(by_name[child_name].graph_evidence) == 1
+    assert by_name[child_name].graph_evidence[0].canonical_parent == parent_name
+    assert by_name[child_name].graph_evidence[0].relation == "trusted_parent"
+    assert by_name[alias_name].status == "ambiguous_structural"
+
+
 def test_message_edge_constraint_resolves_parent_collision():
     child_name = "oaa.proto.data.Child"
     parent_name = "oaa.proto.messages.Parent"
@@ -190,6 +223,8 @@ def test_dispatch_parent_resolves_child_collision_backwards():
 
     assert child.status == "graph_resolved"
     assert child.resolved_apk_class == "child2"
+    assert child.graph_evidence[0].canonical_parent == parent_name
+    assert child.graph_evidence[0].field_number == 1
 
 
 def test_dispatch_identity_survives_message_edge_conflict():

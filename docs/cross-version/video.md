@@ -13,8 +13,8 @@
 | VideoFocusMode | `vvc` | `wcu` | `wck` | -- | 1/1/1/0 |
 | VideoFocusNotification | `vqm` | `vye` | `vxq` | -- | 1/1/1/0 |
 | VideoFocusRequest | `vvl` | `wdd` | `wct` | `wvf` | 2/2/2/2 |
-| VideoInsets | `vtq` | `wbi` | `way` | -- | 4/4/4/0 |
+| UIElementPosition | `vtq` | `wbi` | `way` | -- | 4/4/4/0 |
 | VideoMarginConfig | `vpl` | `vxd` | `vwp` | -- | 1/1/1/0 |
 | VideoMargins | `wzu` | `xhv` | `xhg` | -- | 3/3/3/0 |
 | VideoResizeAction | `vnt` | `vvl` | `vux` | -- | 1/1/1/0 |
-| VideoResolutionRange | `vqj` | `vyb` | `vxn` | -- | 4/4/4/0 |
+| VideoInsets | `vqj` | `vyb` | `vxn` | -- | 4/4/4/0 |

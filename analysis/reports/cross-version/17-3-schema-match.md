@@ -7,24 +7,25 @@ lineage. It does not use a live Android Auto session.
 ## Provenance
 
 - APK SHA-256: `1db7ce995aa52b2cde47a01abfb0364220fb57fc60217de3ec714e3034795344`
-- Canonical messages: 373
+- Canonical messages: 376
 - Decoded APK messages: 1957
-- Canonical enums: 111
+- Canonical enums: 112
 - Decoded APK enums: 134
-- Canonical message-reference edges: 219
+- Canonical message-reference edges: 223
 - APK field-linked reference edges: 1273
 
 ## Summary
 
-- Resolved mappings: 151
+- Resolved mappings: 175
 - High confidence (dispatch or confirmed lineage): 39
-- Medium confidence (unique structure): 112
+- Medium confidence (unique structure): 136
 - Static dispatch observations considered: 129
 - Cross-version lineage anchors considered: 6
 - Legacy canonical identities invalidated: 6
 - Explicit service/log dispatch schema conflicts: 0
 - Globally unique enum numeric-domain mappings: 13
 - Direct child-schema conflicts described: 0
+- Resolved-parent child schema differences: 1
 
 ## Cross-version class-lineage anchors
 
@@ -91,59 +92,81 @@ canonical name came from an unrelated bundled-library protobuf; it is not a
 These mappings were ambiguous by local shape and became unique after
 field-number-labelled message-edge constraint propagation.
 
-| Canonical message | APK class | Initial candidates |
-|---|---|---:|
-| `oaa.proto.data.AbsoluteInputEvent` | `xes` | 2 |
-| `oaa.proto.data.AbsoluteInputEvents` | `xet` | 24 |
-| `oaa.proto.data.Accel` | `xeu` | 11 |
-| `oaa.proto.data.ButtonEvents` | `xib` | 24 |
-| `oaa.proto.data.Diagnostics` | `xgx` | 6 |
-| `oaa.proto.data.DrivingStatus` | `xhb` | 4 |
-| `oaa.proto.data.Environment` | `xhc` | 11 |
-| `oaa.proto.data.Gear` | `xhh` | 11 |
-| `oaa.proto.data.Gyro` | `xhl` | 11 |
-| `oaa.proto.data.HVAC` | `xhn` | 8 |
-| `oaa.proto.data.NavigationImageOptions` | `xji` | 3 |
-| `oaa.proto.data.NightMode` | `xjp` | 11 |
-| `oaa.proto.data.Odometer` | `xjq` | 2 |
-| `oaa.proto.data.ParkingBrake` | `xju` | 2 |
-| `oaa.proto.data.Passenger` | `xjv` | 11 |
-| `oaa.proto.data.RPM` | `xlm` | 4 |
-| `oaa.proto.data.RadioBands` | `xkj` | 24 |
-| `oaa.proto.data.RadioChannelConfig` | `xkx` | 10 |
-| `oaa.proto.data.RawEvTripSettings` | `xle` | 6 |
-| `oaa.proto.data.RawVehicleEnergyModel` | `xlg` | 6 |
-| `oaa.proto.data.RelativeInputEvent` | `xlk` | 2 |
-| `oaa.proto.data.RelativeInputEvents` | `xll` | 24 |
-| `oaa.proto.data.SteeringWheel` | `xgw` | 2 |
-| `oaa.proto.data.TirePressure` | `xmf` | 2 |
-| `oaa.proto.data.TollCardData` | `xmg` | 2 |
-| `oaa.proto.data.TouchLocation` | `xmh` | 2 |
-| `oaa.proto.data.TrailerData` | `xmj` | 270 |
-| `oaa.proto.data.VehicleEnergyModelData` | `xeq` | 88 |
-| `oaa.proto.data.VehicleEnergyValue` | `xep` | 6 |
-| `oaa.proto.data.VersionFeatureFlags` | `xnq` | 5 |
-| `oaa.proto.data.WifiChannel` | `xnh` | 6 |
-| `oaa.proto.messages.CarAction` | `xdw` | 9 |
-| `oaa.proto.messages.CarActionControl` | `xfv` | 30 |
-| `oaa.proto.messages.CarProperty` | `xee` | 3 |
-| `oaa.proto.messages.CarPropertyAreaConfig` | `xdv` | 5 |
-| `oaa.proto.messages.CarPropertyControl` | `xeh` | 5 |
-| `oaa.proto.messages.IntValues` | `xek` | 4 |
-| `oaa.proto.messages.NavigationDestination` | `xix` | 2 |
-| `oaa.proto.messages.NavigationLane` | `xjb` | 24 |
-| `oaa.proto.messages.NavigationNotification` | `xjg` | 3 |
-| `oaa.proto.messages.NavigationRemainingDistance` | `xjo` | 2 |
-| `oaa.proto.messages.NavigationRoadInfo` | `xiv` | 5 |
-| `oaa.proto.messages.NavigationStepDistance` | `xjo` | 2 |
-| `oaa.proto.messages.NavigationText` | `xjf` | 6 |
-| `oaa.proto.messages.PhoneInputType` | `xhu` | 11 |
-| `oaa.proto.messages.RadioImage` | `xkm` | 6 |
-| `oaa.proto.messages.RadioProgramInfo` | `xks` | 8 |
-| `oaa.proto.messages.RadioProgramSelector` | `xkv` | 3 |
-| `oaa.proto.messages.SetCarPropertyListenerResult` | `xgk` | 2 |
-| `oaa.proto.messages.UiConfigData` | `xmn` | 3 |
-| `oaa.proto.messages.WifiProjectionEndpoint` | `xnq` | 5 |
+| Canonical message | APK class | Initial candidates | Graph evidence |
+|---|---|---:|---|
+| `oaa.proto.data.AbsoluteInputEvent` | `xes` | 2 | trusted_parent `oaa.proto.data.AbsoluteInputEvents:1` → `oaa.proto.data.AbsoluteInputEvent` (`xet` → `xes`) |
+| `oaa.proto.data.AbsoluteInputEvents` | `xet` | 24 | trusted_parent `oaa.proto.messages.InputEventIndication:5` → `oaa.proto.data.AbsoluteInputEvents` (`xhp` → `xet`); compatible_child `oaa.proto.data.AbsoluteInputEvents:1` → `oaa.proto.data.AbsoluteInputEvent` (`xet` → `xes`) |
+| `oaa.proto.data.Accel` | `xeu` | 11 | trusted_parent `oaa.proto.messages.SensorEventIndication:19` → `oaa.proto.data.Accel` (`xln` → `xeu`) |
+| `oaa.proto.data.AudioConfig` | `xfb` | 2 | trusted_parent `oaa.proto.data.AVChannel:3` → `oaa.proto.data.AudioConfig` (`xik` → `xfb`); trusted_parent `oaa.proto.data.AVInputChannel:2` → `oaa.proto.data.AudioConfig` (`xil` → `xfb`) |
+| `oaa.proto.data.BlendedUIConfig` | `xfi` | 3 | trusted_parent `oaa.proto.data.AdditionalVideoConfig:8` → `oaa.proto.data.BlendedUIConfig` (`xml` → `xfi`); compatible_child `oaa.proto.data.BlendedUIConfig:1` → `oaa.proto.data.DisplayCornerRadii` (`xfi` → `xgs`); compatible_child `oaa.proto.data.BlendedUIConfig:2` → `oaa.proto.data.NativeUIElement` (`xfi` → `xir`) |
+| `oaa.proto.data.ButtonEvents` | `xib` | 24 | trusted_parent `oaa.proto.messages.InputEventIndication:4` → `oaa.proto.data.ButtonEvents` (`xhp` → `xib`); compatible_child `oaa.proto.data.ButtonEvents:1` → `oaa.proto.data.ButtonEvent` (`xib` → `xia`) |
+| `oaa.proto.data.CarControlChannel` | `xgb` | 1 | trusted_parent `oaa.proto.data.ChannelDescriptor:15` → `oaa.proto.data.CarControlChannel` (`xlv` → `xgb`); compatible_child `oaa.proto.data.CarControlChannel:1` → `oaa.proto.messages.CarPropertyConfig` (`xgb` → `xeg`); compatible_child `oaa.proto.data.CarControlChannel:2` → `oaa.proto.messages.CarControl` (`xgb` → `xfy`) |
+| `oaa.proto.data.DeviceInfo` | `xen` | 1 | trusted_parent `oaa.proto.messages.WifiVersionRequest:5` → `oaa.proto.data.DeviceInfo` (`xnv` → `xen`) |
+| `oaa.proto.data.Diagnostics` | `xgx` | 6 | trusted_parent `oaa.proto.messages.SensorEventIndication:9` → `oaa.proto.data.Diagnostics` (`xln` → `xgx`) |
+| `oaa.proto.data.DisplayCornerRadii` | `xgs` | 4 | trusted_parent `oaa.proto.data.BlendedUIConfig:1` → `oaa.proto.data.DisplayCornerRadii` (`xfi` → `xgs`) |
+| `oaa.proto.data.DrivingStatus` | `xhb` | 4 | trusted_parent `oaa.proto.messages.SensorEventIndication:13` → `oaa.proto.data.DrivingStatus` (`xln` → `xhb`) |
+| `oaa.proto.data.Environment` | `xhc` | 11 | trusted_parent `oaa.proto.messages.SensorEventIndication:11` → `oaa.proto.data.Environment` (`xln` → `xhc`) |
+| `oaa.proto.data.FuelLevel` | `xhf` | 1 | trusted_parent `oaa.proto.messages.SensorEventIndication:6` → `oaa.proto.data.FuelLevel` (`xln` → `xhf`) |
+| `oaa.proto.data.Gear` | `xhh` | 11 | trusted_parent `oaa.proto.messages.SensorEventIndication:8` → `oaa.proto.data.Gear` (`xln` → `xhh`) |
+| `oaa.proto.data.Gyro` | `xhl` | 11 | trusted_parent `oaa.proto.messages.SensorEventIndication:20` → `oaa.proto.data.Gyro` (`xln` → `xhl`) |
+| `oaa.proto.data.HVAC` | `xhn` | 8 | trusted_parent `oaa.proto.messages.SensorEventIndication:12` → `oaa.proto.data.HVAC` (`xln` → `xhn`) |
+| `oaa.proto.data.HeadUnitInfo` | `xen` | 1 | trusted_parent `oaa.proto.messages.ServiceDiscoveryResponse:17` → `oaa.proto.data.HeadUnitInfo` (`xlx` → `xen`) |
+| `oaa.proto.data.NativeUIElement` | `xir` | 2 | trusted_parent `oaa.proto.data.BlendedUIConfig:2` → `oaa.proto.data.NativeUIElement` (`xfi` → `xir`); compatible_child `oaa.proto.data.NativeUIElement:1` → `oaa.proto.data.UIElementPosition` (`xir` → `xlh`) |
+| `oaa.proto.data.NavigationImageOptions` | `xji` | 3 | trusted_parent `oaa.proto.data.NavigationChannel:3` → `oaa.proto.data.NavigationImageOptions` (`xjk` → `xji`) |
+| `oaa.proto.data.NightMode` | `xjp` | 11 | trusted_parent `oaa.proto.messages.SensorEventIndication:10` → `oaa.proto.data.NightMode` (`xln` → `xjp`) |
+| `oaa.proto.data.Odometer` | `xjq` | 2 | trusted_parent `oaa.proto.messages.SensorEventIndication:5` → `oaa.proto.data.Odometer` (`xln` → `xjq`) |
+| `oaa.proto.data.ParkingBrake` | `xju` | 2 | trusted_parent `oaa.proto.messages.SensorEventIndication:7` → `oaa.proto.data.ParkingBrake` (`xln` → `xju`) |
+| `oaa.proto.data.Passenger` | `xjv` | 11 | trusted_parent `oaa.proto.messages.SensorEventIndication:15` → `oaa.proto.data.Passenger` (`xln` → `xjv`) |
+| `oaa.proto.data.PingConfiguration` | `abmh` | 2 | trusted_parent `oaa.proto.messages.AVChannelMediaConfig:1` → `oaa.proto.data.PingConfiguration` (`xig` → `abmh`); trusted_parent `oaa.proto.messages.AVChannelMediaConfig:3` → `oaa.proto.data.PingConfiguration` (`xig` → `abmh`); trusted_parent `oaa.proto.messages.AVChannelMediaConfig:4` → `oaa.proto.data.PingConfiguration` (`xig` → `abmh`) |
+| `oaa.proto.data.RPM` | `xlm` | 4 | trusted_parent `oaa.proto.messages.SensorEventIndication:4` → `oaa.proto.data.RPM` (`xln` → `xlm`) |
+| `oaa.proto.data.RadioBands` | `xkj` | 24 | trusted_parent `oaa.proto.data.RadioChannelConfig:2` → `oaa.proto.data.RadioBands` (`xkx` → `xkj`); compatible_child `oaa.proto.data.RadioBands:1` → `oaa.proto.data.RadioBandGroup` (`xkj` → `xki`) |
+| `oaa.proto.data.RadioChannelConfig` | `xkx` | 10 | trusted_parent `oaa.proto.data.ChannelDescriptor:7` → `oaa.proto.data.RadioChannelConfig` (`xlv` → `xkx`); compatible_child `oaa.proto.data.RadioChannelConfig:2` → `oaa.proto.data.RadioBands` (`xkx` → `xkj`) |
+| `oaa.proto.data.RawEvTripSettings` | `xle` | 6 | trusted_parent `oaa.proto.messages.SensorEventIndication:26` → `oaa.proto.data.RawEvTripSettings` (`xln` → `xle`) |
+| `oaa.proto.data.RawVehicleEnergyModel` | `xlg` | 6 | trusted_parent `oaa.proto.messages.SensorEventIndication:25` → `oaa.proto.data.RawVehicleEnergyModel` (`xln` → `xlg`) |
+| `oaa.proto.data.RelativeInputEvent` | `xlk` | 2 | trusted_parent `oaa.proto.data.RelativeInputEvents:1` → `oaa.proto.data.RelativeInputEvent` (`xll` → `xlk`) |
+| `oaa.proto.data.RelativeInputEvents` | `xll` | 24 | trusted_parent `oaa.proto.messages.InputEventIndication:6` → `oaa.proto.data.RelativeInputEvents` (`xhp` → `xll`); compatible_child `oaa.proto.data.RelativeInputEvents:1` → `oaa.proto.data.RelativeInputEvent` (`xll` → `xlk`) |
+| `oaa.proto.data.SensorChannel` | `xlt` | 1 | trusted_parent `oaa.proto.data.ChannelDescriptor:2` → `oaa.proto.data.SensorChannel` (`xlv` → `xlt`); compatible_child `oaa.proto.data.SensorChannel:1` → `oaa.proto.data.SensorTypeEntry` (`xlt` → `xls`) |
+| `oaa.proto.data.SensorChannelConfig` | `xlt` | 1 | compatible_child `oaa.proto.data.SensorChannelConfig:1` → `oaa.proto.data.SensorTypeEntry` (`xlt` → `xls`) |
+| `oaa.proto.data.SensorTypeEntry` | `xls` | 11 | trusted_parent `oaa.proto.data.SensorChannel:1` → `oaa.proto.data.SensorTypeEntry` (`xlt` → `xls`); trusted_parent `oaa.proto.data.SensorChannelConfig:1` → `oaa.proto.data.SensorTypeEntry` (`xlt` → `xls`); compatible_enum `oaa.proto.data.SensorTypeEntry:1` → `oaa.proto.enums.SensorType.Enum` (`xls` → `xlu`) |
+| `oaa.proto.data.SessionInfo` | `xeo` | 1 | trusted_parent `oaa.proto.messages.ServiceDiscoveryRequest:6` → `oaa.proto.data.SessionInfo` (`xlw` → `xeo`) |
+| `oaa.proto.data.SteeringWheel` | `xgw` | 2 | trusted_parent `oaa.proto.messages.SensorEventIndication:14` → `oaa.proto.data.SteeringWheel` (`xln` → `xgw`) |
+| `oaa.proto.data.TirePressure` | `xmf` | 2 | trusted_parent `oaa.proto.messages.SensorEventIndication:18` → `oaa.proto.data.TirePressure` (`xln` → `xmf`) |
+| `oaa.proto.data.TollCardData` | `xmg` | 2 | trusted_parent `oaa.proto.messages.SensorEventIndication:22` → `oaa.proto.data.TollCardData` (`xln` → `xmg`) |
+| `oaa.proto.data.TouchLocation` | `xmh` | 2 | trusted_parent `oaa.proto.data.TouchEvent:1` → `oaa.proto.data.TouchLocation` (`xmi` → `xmh`) |
+| `oaa.proto.data.TrailerData` | `xmj` | 270 | trusted_parent `oaa.proto.messages.SensorEventIndication:24` → `oaa.proto.data.TrailerData` (`xln` → `xmj`) |
+| `oaa.proto.data.UIElementPosition` | `xlh` | 4 | trusted_parent `oaa.proto.data.NativeUIElement:1` → `oaa.proto.data.UIElementPosition` (`xir` → `xlh`); trusted_parent `oaa.proto.data.VideoMarginConfig:1` → `oaa.proto.data.UIElementPosition` (`xgv` → `xlh`) |
+| `oaa.proto.data.VehicleEnergyModelData` | `xeq` | 88 | trusted_parent `oaa.proto.messages.SensorEventIndication:23` → `oaa.proto.data.VehicleEnergyModelData` (`xln` → `xeq`); compatible_child `oaa.proto.data.VehicleEnergyModelData:1` → `oaa.proto.data.VehicleEnergyInfo` (`xeq` → `xer`) |
+| `oaa.proto.data.VehicleEnergyValue` | `xep` | 6 | trusted_parent `oaa.proto.data.VehicleEnergyInfo:3` → `oaa.proto.data.VehicleEnergyValue` (`xer` → `xep`); trusted_parent `oaa.proto.data.VehicleEnergyInfo:4` → `oaa.proto.data.VehicleEnergyValue` (`xer` → `xep`) |
+| `oaa.proto.data.VersionFeatureFlags` | `xnq` | 5 | trusted_parent `oaa.proto.messages.WifiVersionRequest:6` → `oaa.proto.data.VersionFeatureFlags` (`xnv` → `xnq`) |
+| `oaa.proto.data.VideoInsets` | `xht` | 4 | trusted_parent `oaa.proto.data.AdditionalVideoConfig:1` → `oaa.proto.data.VideoInsets` (`xml` → `xht`); trusted_parent `oaa.proto.data.AdditionalVideoConfig:2` → `oaa.proto.data.VideoInsets` (`xml` → `xht`); trusted_parent `oaa.proto.data.AdditionalVideoConfig:3` → `oaa.proto.data.VideoInsets` (`xml` → `xht`) |
+| `oaa.proto.data.VideoMarginConfig` | `xgv` | 30 | trusted_parent `oaa.proto.data.AdditionalVideoConfig:7` → `oaa.proto.data.VideoMarginConfig` (`xml` → `xgv`); compatible_child `oaa.proto.data.VideoMarginConfig:1` → `oaa.proto.data.UIElementPosition` (`xgv` → `xlh`) |
+| `oaa.proto.data.VideoResizeAction` | `xew` | 15 | trusted_parent `oaa.proto.data.AdditionalVideoConfig:6` → `oaa.proto.data.VideoResizeAction` (`xml` → `xew`); compatible_enum `oaa.proto.data.VideoResizeAction:1` → `oaa.proto.data.ResizeActionType` (`xew` → `xey`) |
+| `oaa.proto.data.WifiChannel` | `xnh` | 6 | trusted_parent `oaa.proto.data.ChannelDescriptor:14` → `oaa.proto.data.WifiChannel` (`xlv` → `xnh`) |
+| `oaa.proto.messages.CarAction` | `xdw` | 9 | trusted_parent `oaa.proto.messages.CarActionControl:1` → `oaa.proto.messages.CarAction` (`xfv` → `xdw`); trusted_parent `oaa.proto.messages.CarActionEntry:1` → `oaa.proto.messages.CarAction` (`xdx` → `xdw`); trusted_parent `oaa.proto.messages.CarPropertyControl:2` → `oaa.proto.messages.CarAction` (`xeh` → `xdw`) |
+| `oaa.proto.messages.CarActionControl` | `xfv` | 30 | trusted_parent `oaa.proto.messages.CarControl:2` → `oaa.proto.messages.CarActionControl` (`xfy` → `xfv`); compatible_child `oaa.proto.messages.CarActionControl:1` → `oaa.proto.messages.CarAction` (`xfv` → `xdw`) |
+| `oaa.proto.messages.CarActionEntry` | `xdx` | 88 | trusted_parent `oaa.proto.data.CarControlChannel:3` → `oaa.proto.messages.CarActionEntry` (`xgb` → `xdx`); trusted_parent `oaa.proto.messages.CarControlChannelDescriptor:3` → `oaa.proto.messages.CarActionEntry` (`xgb` → `xdx`); compatible_child `oaa.proto.messages.CarActionEntry:1` → `oaa.proto.messages.CarAction` (`xdx` → `xdw`) |
+| `oaa.proto.messages.CarControlChannelDescriptor` | `xgb` | 1 | compatible_child `oaa.proto.messages.CarControlChannelDescriptor:1` → `oaa.proto.messages.CarPropertyConfig` (`xgb` → `xeg`); compatible_child `oaa.proto.messages.CarControlChannelDescriptor:2` → `oaa.proto.messages.CarControl` (`xgb` → `xfy`); compatible_child `oaa.proto.messages.CarControlChannelDescriptor:3` → `oaa.proto.messages.CarActionEntry` (`xgb` → `xdx`) |
+| `oaa.proto.messages.CarProperty` | `xee` | 3 | trusted_parent `oaa.proto.messages.CarPropertyChangeEvent:1` → `oaa.proto.messages.CarProperty` (`xgj` → `xee`); trusted_parent `oaa.proto.messages.CarPropertyControl:1` → `oaa.proto.messages.CarProperty` (`xeh` → `xee`); trusted_parent `oaa.proto.messages.CarPropertyControl:3` → `oaa.proto.messages.CarProperty` (`xeh` → `xee`) |
+| `oaa.proto.messages.CarPropertyAreaConfig` | `xdv` | 5 | trusted_parent `oaa.proto.messages.CarPropertyConfig:7` → `oaa.proto.messages.CarPropertyAreaConfig` (`xeg` → `xdv`); compatible_child `oaa.proto.messages.CarPropertyAreaConfig:1` → `oaa.proto.messages.CarAreaId` (`xdv` → `xef`); compatible_child `oaa.proto.messages.CarPropertyAreaConfig:2` → `oaa.proto.messages.CarPropertyValue` (`xdv` → `xem`) |
+| `oaa.proto.messages.CarPropertyControl` | `xeh` | 5 | trusted_parent `oaa.proto.messages.CarControl:1` → `oaa.proto.messages.CarPropertyControl` (`xfy` → `xeh`); compatible_child `oaa.proto.messages.CarPropertyControl:1` → `oaa.proto.messages.CarProperty` (`xeh` → `xee`); compatible_child `oaa.proto.messages.CarPropertyControl:2` → `oaa.proto.messages.CarAction` (`xeh` → `xdw`) |
+| `oaa.proto.messages.ChargingStationDetails` | `xgo` | 11 | trusted_parent `oaa.proto.messages.NavigationDestination:2` → `oaa.proto.messages.ChargingStationDetails` (`xix` → `xgo`) |
+| `oaa.proto.messages.IntValues` | `xek` | 4 | trusted_parent `oaa.proto.messages.CarPropertyValue:6` → `oaa.proto.messages.IntValues` (`xem` → `xek`) |
+| `oaa.proto.messages.NavigationDestination` | `xix` | 2 | trusted_parent `oaa.proto.messages.NavigationNotification:2` → `oaa.proto.messages.NavigationDestination` (`xjg` → `xix`); compatible_child `oaa.proto.messages.NavigationDestination:2` → `oaa.proto.messages.ChargingStationDetails` (`xix` → `xgo`) |
+| `oaa.proto.messages.NavigationLane` | `xjb` | 24 | trusted_parent `oaa.proto.messages.NavigationStep:3` → `oaa.proto.messages.NavigationLane` (`xjn` → `xjb`); compatible_child `oaa.proto.messages.NavigationLane:1` → `oaa.proto.messages.NavigationLaneDirection` (`xjb` → `xja`) |
+| `oaa.proto.messages.NavigationLaneDirection` | `xja` | 2 | trusted_parent `oaa.proto.messages.NavigationLane:1` → `oaa.proto.messages.NavigationLaneDirection` (`xjb` → `xja`) |
+| `oaa.proto.messages.NavigationManeuver` | `xjc` | 1 | trusted_parent `oaa.proto.messages.NavigationStep:1` → `oaa.proto.messages.NavigationManeuver` (`xjn` → `xjc`) |
+| `oaa.proto.messages.NavigationNotification` | `xjg` | 3 | compatible_child `oaa.proto.messages.NavigationNotification:1` → `oaa.proto.messages.NavigationStep` (`xjg` → `xjn`); compatible_child `oaa.proto.messages.NavigationNotification:2` → `oaa.proto.messages.NavigationDestination` (`xjg` → `xix`) |
+| `oaa.proto.messages.NavigationRemainingDistance` | `xjo` | 2 | compatible_child `oaa.proto.messages.NavigationRemainingDistance:1` → `oaa.proto.messages.NavigationTurnDistance` (`xjo` → `xiz`) |
+| `oaa.proto.messages.NavigationRoadInfo` | `xiv` | 5 | trusted_parent `oaa.proto.messages.NavigationStep:4` → `oaa.proto.messages.NavigationRoadInfo` (`xjn` → `xiv`) |
+| `oaa.proto.messages.NavigationStepDistance` | `xjo` | 2 | trusted_parent `oaa.proto.messages.NavigationNextTurnDistanceEvent:1` → `oaa.proto.messages.NavigationStepDistance` (`xiw` → `xjo`); compatible_child `oaa.proto.messages.NavigationStepDistance:1` → `oaa.proto.messages.NavigationTurnDistance` (`xjo` → `xiz`) |
+| `oaa.proto.messages.NavigationText` | `xjf` | 6 | trusted_parent `oaa.proto.messages.NavigationNextTurnDistanceEvent:3` → `oaa.proto.messages.NavigationText` (`xiw` → `xjf`); trusted_parent `oaa.proto.messages.NavigationStep:2` → `oaa.proto.messages.NavigationText` (`xjn` → `xjf`) |
+| `oaa.proto.messages.PhoneInputType` | `xhu` | 11 | trusted_parent `oaa.proto.messages.PhoneStatusInput:1` → `oaa.proto.messages.PhoneInputType` (`xka` → `xhu`) |
+| `oaa.proto.messages.RadioImage` | `xkm` | 6 | trusted_parent `oaa.proto.messages.RadioMetadata:5` → `oaa.proto.messages.RadioImage` (`xkn` → `xkm`); trusted_parent `oaa.proto.messages.RadioSongMetadata:5` → `oaa.proto.messages.RadioImage` (`xla` → `xkm`) |
+| `oaa.proto.messages.RadioProgramInfo` | `xks` | 8 | trusted_parent `oaa.proto.messages.RadioFavoriteListNotification:1` → `oaa.proto.messages.RadioProgramInfo` (`xkl` → `xks`); trusted_parent `oaa.proto.messages.RadioProgramInfoNotification:1` → `oaa.proto.messages.RadioProgramInfo` (`xkt` → `xks`); trusted_parent `oaa.proto.messages.RadioProgramListNotification:1` → `oaa.proto.messages.RadioProgramInfo` (`xku` → `xks`) |
+| `oaa.proto.messages.RadioProgramSelector` | `xkv` | 3 | trusted_parent `oaa.proto.messages.RadioProgramInfo:1` → `oaa.proto.messages.RadioProgramSelector` (`xks` → `xkv`); compatible_child `oaa.proto.messages.RadioProgramSelector:1` → `oaa.proto.messages.RadioProgramIdentifier` (`xkv` → `xkr`); compatible_child `oaa.proto.messages.RadioProgramSelector:2` → `oaa.proto.messages.RadioProgramIdentifier` (`xkv` → `xkr`) |
+| `oaa.proto.messages.SetCarPropertyListenerResult` | `xgk` | 2 | trusted_parent `oaa.proto.messages.RegisterCarPropertyListenersResponse:1` → `oaa.proto.messages.SetCarPropertyListenerResult` (`xlj` → `xgk`); compatible_child `oaa.proto.messages.SetCarPropertyListenerResult:1` → `oaa.proto.messages.CarProperty` (`xgk` → `xee`); compatible_enum `oaa.proto.messages.SetCarPropertyListenerResult:2` → `oaa.proto.enums.Status.Enum` (`xgk` → `xin`) |
+| `oaa.proto.messages.UiConfigData` | `xmn` | 3 | compatible_child `oaa.proto.messages.UiConfigData:1` → `oaa.proto.messages.UiConfigEntry` (`xmn` → `xmp`); compatible_child `oaa.proto.messages.UiConfigData:2` → `oaa.proto.messages.UiConfigEntry` (`xmn` → `xmp`) |
+| `oaa.proto.messages.WifiProjectionEndpoint` | `xnq` | 5 | trusted_parent `oaa.proto.messages.WifiSetupInfo:4` → `oaa.proto.messages.WifiProjectionEndpoint` (`xns` → `xnq`) |
 
 ## Unique structural mappings
 
@@ -153,6 +176,7 @@ These mappings have one exact APK schema candidate but no dispatch anchor yet.
 |---|---|---:|
 | `oaa.proto.data.AVChannel` | `xik` | 8 |
 | `oaa.proto.data.AVInputChannel` | `xil` | 2 |
+| `oaa.proto.data.AdditionalVideoConfig` | `xml` | 8 |
 | `oaa.proto.data.AssistantFeatureFlags` | `opi` | 14 |
 | `oaa.proto.data.BluetoothChannel` | `xfp` | 2 |
 | `oaa.proto.data.ButtonEvent` | `xia` | 4 |
@@ -174,6 +198,7 @@ These mappings have one exact APK schema candidate but no dispatch anchor yet.
 | `oaa.proto.data.TouchPadConfig` | `xhq` | 8 |
 | `oaa.proto.data.TouchScreenConfig` | `xhr` | 3 |
 | `oaa.proto.data.VehicleEnergyInfo` | `xer` | 5 |
+| `oaa.proto.data.VendorExtensionChannel` | `xmv` | 3 |
 | `oaa.proto.messages.AVChannelMediaConfig` | `xig` | 13 |
 | `oaa.proto.messages.AVChannelMediaStats` | `xim` | 15 |
 | `oaa.proto.messages.AVChannelSetupResponse` | `xgq` | 3 |
@@ -233,6 +258,17 @@ catalog and the decoded APK. Names alone are not used for matching.
 | `oaa.proto.messages.VehicleAreaSeat` | `xea` | 9 |
 | `oaa.proto.messages.VehicleAreaWheel` | `xeb` | 5 |
 | `oaa.proto.messages.VehicleAreaWindow` | `xec` | 11 |
+
+## Resolved-parent child schema differences
+
+A dispatch/lineage-backed parent, or one linked from a trusted parent,
+identifies the APK child at this field, but the child schema differs
+from the current canonical definition. These are
+version-delta or stale-schema candidates, not accepted mappings.
+
+| Canonical parent | APK parent | Field | Canonical child | APK child | Local schema difference |
+|---|---|---:|---|---|---|
+| `oaa.proto.data.AVChannel` | `xik` | 4 | `oaa.proto.data.VideoConfig` | `xmz` | missing f7 uint32 |
 
 ## Dispatch/schema conflicts
 

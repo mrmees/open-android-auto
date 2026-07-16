@@ -57,6 +57,16 @@ class DispatchObservation:
     service_type: str = "control"
 
 
+@dataclass(frozen=True, order=True)
+class GraphEvidence:
+    canonical_parent: str
+    apk_parent: str
+    field_number: int
+    canonical_target: str
+    apk_target: str
+    relation: str
+
+
 @dataclass(frozen=True)
 class LineageStep:
     version: str
@@ -90,4 +100,5 @@ class MatchResult:
     resolved_apk_class: str | None = None
     edge_constraint_conflict: bool = False
     dispatch_evidence: list[DispatchObservation] = field(default_factory=list)
+    graph_evidence: list[GraphEvidence] = field(default_factory=list)
     lineage_anchor: LineageAnchor | None = None

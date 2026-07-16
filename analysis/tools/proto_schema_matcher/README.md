@@ -16,6 +16,11 @@ parents. Enum fields use resolved protobuf-lite verifier members and numeric
 domains; generated `UNRECOGNIZED` constants and canonical proto3 zero sentinels
 are normalized before matching.
 
+Graph-resolved rows include the exact canonical/APK parent, field number, and
+target edge used for the deduction. The report also lists child schema deltas
+identified by dispatch/lineage-backed parents, allowing version changes to be
+recorded without forcing a false exact match.
+
 It does not require a phone, head unit, emulator, or wire capture.
 
 ## Requirements

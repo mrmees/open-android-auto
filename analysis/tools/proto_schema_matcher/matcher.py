@@ -5,6 +5,7 @@ from collections import defaultdict
 from .models import (
     DispatchObservation,
     EnumNode,
+    GraphEvidence,
     LineageAnchor,
     MatchResult,
     MessageNode,
@@ -187,10 +188,11 @@ def match_graphs(
                 return False
         return True
 
-    def candidate_has_confirmed_edge(
+    def candidate_confirmed_edges(
         canonical_name: str,
         apk_class: str,
-    ) -> bool:
+    ) -> list[GraphEvidence]:
+        evidence: list[GraphEvidence] = []
         apk_fields = {field.number: field for field in apk_graph[apk_class].fields}
         for canonical_field in canonical_graph[canonical_name].fields:
             target_name = canonical_field.target
@@ -200,21 +202,46 @@ def match_graphs(
             if canonical_field.base_type in {"message", "group"}:
                 target_candidates = candidate_sets.get(target_name, set())
                 if target_candidates and apk_field.target in target_candidates:
-                    return True
+                    evidence.append(
+                        GraphEvidence(
+                            canonical_parent=canonical_name,
+                            apk_parent=apk_class,
+                            field_number=canonical_field.number,
+                            canonical_target=target_name,
+                            apk_target=apk_field.target,
+                            relation="compatible_child",
+                        )
+                    )
             elif canonical_field.base_type == "enum":
                 target_candidates = enum_candidate_sets.get(target_name, [])
                 if (
                     apk_field.target in (apk_enums or {})
                     and apk_field.target in target_candidates
                 ):
-                    return True
-        return False
+                    evidence.append(
+                        GraphEvidence(
+                            canonical_parent=canonical_name,
+                            apk_parent=apk_class,
+                            field_number=canonical_field.number,
+                            canonical_target=target_name,
+                            apk_target=apk_field.target,
+                            relation="compatible_enum",
+                        )
+                    )
+        return evidence
+
+    def candidate_has_confirmed_edge(
+        canonical_name: str,
+        apk_class: str,
+    ) -> bool:
+        return bool(candidate_confirmed_edges(canonical_name, apk_class))
 
     # Constraint propagation over field-number-labelled message edges.
     # Unknown APK targets are deliberately skipped instead of treated as a
     # mismatch, keeping partial decompiles conservative.
     changed = True
     backward_resolved: set[str] = set()
+    graph_evidence_by_canonical: dict[str, set[GraphEvidence]] = defaultdict(set)
     while changed:
         changed = False
         # A trusted parent also constrains its children: once the parent class
@@ -242,11 +269,26 @@ def match_graphs(
                 ):
                     continue
                 narrowed = {apk_field.target}
-                if candidate_sets[target_name] != narrowed:
-                    candidate_sets[target_name] = narrowed
+                graph_evidence_by_canonical[target_name].add(
+                    GraphEvidence(
+                        canonical_parent=canonical_name,
+                        apk_parent=apk_parent.name,
+                        field_number=canonical_field.number,
+                        canonical_target=target_name,
+                        apk_target=apk_field.target,
+                        relation="trusted_parent",
+                    )
+                )
+                if candidate_sets[target_name] == narrowed:
                     backward_resolved.add(target_name)
-                    trusted_parent_names.add(target_name)
-                    changed = True
+                    if target_name not in trusted_parent_names:
+                        trusted_parent_names.add(target_name)
+                        changed = True
+                    continue
+                candidate_sets[target_name] = narrowed
+                backward_resolved.add(target_name)
+                trusted_parent_names.add(target_name)
+                changed = True
         for canonical_name in canonical_graph:
             current = candidate_sets[canonical_name]
             if not current:
@@ -264,6 +306,18 @@ def match_graphs(
                     retained.add(apk_class)
             if retained != current:
                 candidate_sets[canonical_name] = retained
+                changed = True
+            if (
+                len(retained) == 1
+                and canonical_name not in trusted_parent_names
+                and candidate_has_confirmed_edge(
+                    canonical_name,
+                    next(iter(retained)),
+                )
+            ):
+                # A candidate that becomes unique through a confirmed child
+                # edge can safely act as the next parent in the fixed point.
+                trusted_parent_names.add(canonical_name)
                 changed = True
 
     results: list[MatchResult] = []
@@ -333,7 +387,6 @@ def match_graphs(
             confidence = "medium"
         elif (
             len(candidates) == 1
-            and len(structural_candidates) > 1
             and (
                 canonical_name in backward_resolved
                 or candidate_has_confirmed_edge(canonical_name, candidates[0])
@@ -366,6 +419,24 @@ def match_graphs(
                     for item in evidence
                     if item.apk_class in initial_candidates[canonical_name]
                 ],
+                graph_evidence=sorted(
+                    graph_evidence_by_canonical[canonical_name]
+                    | (
+                        set(candidate_confirmed_edges(canonical_name, resolved))
+                        if status == "graph_resolved" and resolved is not None
+                        else set()
+                    ),
+                    key=lambda item: (
+                        {
+                            "trusted_parent": 0,
+                            "compatible_child": 1,
+                            "compatible_enum": 2,
+                        }.get(item.relation, 3),
+                        item.canonical_parent,
+                        item.field_number,
+                        item.canonical_target,
+                    ),
+                ),
                 lineage_anchor=lineage_anchor,
             )
         )

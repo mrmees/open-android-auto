@@ -3,9 +3,9 @@
   "apk_message_count": 1957,
   "apk_message_edge_count": 1273,
   "apk_sha256": "1db7ce995aa52b2cde47a01abfb0364220fb57fc60217de3ec714e3034795344",
-  "canonical_enum_count": 111,
-  "canonical_message_count": 373,
-  "canonical_message_edge_count": 219,
+  "canonical_enum_count": 112,
+  "canonical_message_count": 376,
+  "canonical_message_edge_count": 223,
   "constraint_conflict_details": [],
   "dispatch_schema_conflicts": [],
   "enum_domain_mappings": [
@@ -261,6 +261,16 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 8,
+      "graph_evidence": [
+        {
+          "apk_parent": "xlv",
+          "apk_target": "xik",
+          "canonical_parent": "oaa.proto.data.ChannelDescriptor",
+          "canonical_target": "oaa.proto.data.AVChannel",
+          "field_number": 3,
+          "relation": "trusted_parent"
+        }
+      ],
       "refined_candidate_count": 1,
       "resolved_apk_class": "xik",
       "source": "oaa/av/AVChannelData.proto",
@@ -280,6 +290,16 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 2,
+      "graph_evidence": [
+        {
+          "apk_parent": "xlv",
+          "apk_target": "xil",
+          "canonical_parent": "oaa.proto.data.ChannelDescriptor",
+          "canonical_target": "oaa.proto.data.AVInputChannel",
+          "field_number": 5,
+          "relation": "trusted_parent"
+        }
+      ],
       "refined_candidate_count": 1,
       "resolved_apk_class": "xil",
       "source": "oaa/av/AVInputChannelData.proto",
@@ -299,6 +319,16 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 2,
+      "graph_evidence": [
+        {
+          "apk_parent": "xet",
+          "apk_target": "xes",
+          "canonical_parent": "oaa.proto.data.AbsoluteInputEvents",
+          "canonical_target": "oaa.proto.data.AbsoluteInputEvent",
+          "field_number": 1,
+          "relation": "trusted_parent"
+        }
+      ],
       "refined_candidate_count": 1,
       "resolved_apk_class": "xes",
       "source": "oaa/input/AbsoluteInputEventData.proto",
@@ -319,6 +349,24 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 1,
+      "graph_evidence": [
+        {
+          "apk_parent": "xhp",
+          "apk_target": "xet",
+          "canonical_parent": "oaa.proto.messages.InputEventIndication",
+          "canonical_target": "oaa.proto.data.AbsoluteInputEvents",
+          "field_number": 5,
+          "relation": "trusted_parent"
+        },
+        {
+          "apk_parent": "xet",
+          "apk_target": "xes",
+          "canonical_parent": "oaa.proto.data.AbsoluteInputEvents",
+          "canonical_target": "oaa.proto.data.AbsoluteInputEvent",
+          "field_number": 1,
+          "relation": "compatible_child"
+        }
+      ],
       "refined_candidate_count": 1,
       "resolved_apk_class": "xet",
       "source": "oaa/input/AbsoluteInputEventsData.proto",
@@ -361,6 +409,16 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 3,
+      "graph_evidence": [
+        {
+          "apk_parent": "xln",
+          "apk_target": "xeu",
+          "canonical_parent": "oaa.proto.messages.SensorEventIndication",
+          "canonical_target": "oaa.proto.data.Accel",
+          "field_number": 19,
+          "relation": "trusted_parent"
+        }
+      ],
       "refined_candidate_count": 1,
       "resolved_apk_class": "xeu",
       "source": "oaa/sensor/AccelData.proto",
@@ -381,19 +439,33 @@
       ]
     },
     {
-      "candidates": [],
+      "candidates": [
+        "xml"
+      ],
       "canonical_name": "oaa.proto.data.AdditionalVideoConfig",
       "canonical_shape_count": 1,
-      "confidence": "none",
+      "confidence": "medium",
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
-      "field_count": 7,
-      "refined_candidate_count": 0,
-      "resolved_apk_class": null,
+      "field_count": 8,
+      "graph_evidence": [
+        {
+          "apk_parent": "xms",
+          "apk_target": "xml",
+          "canonical_parent": "oaa.proto.messages.UpdateUiConfigRequest",
+          "canonical_target": "oaa.proto.data.AdditionalVideoConfig",
+          "field_number": 1,
+          "relation": "trusted_parent"
+        }
+      ],
+      "refined_candidate_count": 1,
+      "resolved_apk_class": "xml",
       "source": "oaa/video/AdditionalVideoConfigData.proto",
-      "status": "not_found",
-      "structural_candidate_count": 0,
-      "structural_candidates": []
+      "status": "unique_structural",
+      "structural_candidate_count": 1,
+      "structural_candidates": [
+        "xml"
+      ]
     },
     {
       "candidates": [
@@ -405,6 +477,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 14,
+      "graph_evidence": [],
       "refined_candidate_count": 1,
       "resolved_apk_class": "opi",
       "source": "oaa/common/AssistantFeatureFlagsData.proto",
@@ -415,19 +488,42 @@
       ]
     },
     {
-      "candidates": [],
+      "candidates": [
+        "xfb"
+      ],
       "canonical_name": "oaa.proto.data.AudioConfig",
       "canonical_shape_count": 2,
-      "confidence": "none",
+      "confidence": "medium",
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 3,
-      "refined_candidate_count": 0,
-      "resolved_apk_class": null,
+      "graph_evidence": [
+        {
+          "apk_parent": "xik",
+          "apk_target": "xfb",
+          "canonical_parent": "oaa.proto.data.AVChannel",
+          "canonical_target": "oaa.proto.data.AudioConfig",
+          "field_number": 3,
+          "relation": "trusted_parent"
+        },
+        {
+          "apk_parent": "xil",
+          "apk_target": "xfb",
+          "canonical_parent": "oaa.proto.data.AVInputChannel",
+          "canonical_target": "oaa.proto.data.AudioConfig",
+          "field_number": 2,
+          "relation": "trusted_parent"
+        }
+      ],
+      "refined_candidate_count": 1,
+      "resolved_apk_class": "xfb",
       "source": "oaa/audio/AudioConfigData.proto",
-      "status": "not_found",
-      "structural_candidate_count": 0,
-      "structural_candidates": []
+      "status": "graph_resolved",
+      "structural_candidate_count": 2,
+      "structural_candidates": [
+        "xfb",
+        "xmh"
+      ]
     },
     {
       "candidates": [
@@ -708,6 +804,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 0,
+      "graph_evidence": [],
       "refined_candidate_count": 270,
       "resolved_apk_class": null,
       "source": "oaa/audio/AudioFocusChannelData.proto",
@@ -988,6 +1085,53 @@
     },
     {
       "candidates": [
+        "xfi"
+      ],
+      "canonical_name": "oaa.proto.data.BlendedUIConfig",
+      "canonical_shape_count": 2,
+      "confidence": "medium",
+      "dispatch_evidence": [],
+      "edge_constraint_conflict": false,
+      "field_count": 2,
+      "graph_evidence": [
+        {
+          "apk_parent": "xml",
+          "apk_target": "xfi",
+          "canonical_parent": "oaa.proto.data.AdditionalVideoConfig",
+          "canonical_target": "oaa.proto.data.BlendedUIConfig",
+          "field_number": 8,
+          "relation": "trusted_parent"
+        },
+        {
+          "apk_parent": "xfi",
+          "apk_target": "xgs",
+          "canonical_parent": "oaa.proto.data.BlendedUIConfig",
+          "canonical_target": "oaa.proto.data.DisplayCornerRadii",
+          "field_number": 1,
+          "relation": "compatible_child"
+        },
+        {
+          "apk_parent": "xfi",
+          "apk_target": "xir",
+          "canonical_parent": "oaa.proto.data.BlendedUIConfig",
+          "canonical_target": "oaa.proto.data.NativeUIElement",
+          "field_number": 2,
+          "relation": "compatible_child"
+        }
+      ],
+      "refined_candidate_count": 1,
+      "resolved_apk_class": "xfi",
+      "source": "oaa/video/AdditionalVideoConfigData.proto",
+      "status": "graph_resolved",
+      "structural_candidate_count": 3,
+      "structural_candidates": [
+        "abrk",
+        "xfi",
+        "xkv"
+      ]
+    },
+    {
+      "candidates": [
         "xfp"
       ],
       "canonical_name": "oaa.proto.data.BluetoothChannel",
@@ -996,6 +1140,16 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 2,
+      "graph_evidence": [
+        {
+          "apk_parent": "xlv",
+          "apk_target": "xfp",
+          "canonical_parent": "oaa.proto.data.ChannelDescriptor",
+          "canonical_target": "oaa.proto.data.BluetoothChannel",
+          "field_number": 6,
+          "relation": "trusted_parent"
+        }
+      ],
       "refined_candidate_count": 1,
       "resolved_apk_class": "xfp",
       "source": "oaa/bluetooth/BluetoothChannelData.proto",
@@ -1284,6 +1438,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 0,
+      "graph_evidence": [],
       "refined_candidate_count": 270,
       "resolved_apk_class": null,
       "source": "oaa/control/ChannelDescriptorData.proto",
@@ -1572,6 +1727,16 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 4,
+      "graph_evidence": [
+        {
+          "apk_parent": "xib",
+          "apk_target": "xia",
+          "canonical_parent": "oaa.proto.data.ButtonEvents",
+          "canonical_target": "oaa.proto.data.ButtonEvent",
+          "field_number": 1,
+          "relation": "trusted_parent"
+        }
+      ],
       "refined_candidate_count": 1,
       "resolved_apk_class": "xia",
       "source": "oaa/input/ButtonEventData.proto",
@@ -1591,6 +1756,24 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 1,
+      "graph_evidence": [
+        {
+          "apk_parent": "xhp",
+          "apk_target": "xib",
+          "canonical_parent": "oaa.proto.messages.InputEventIndication",
+          "canonical_target": "oaa.proto.data.ButtonEvents",
+          "field_number": 4,
+          "relation": "trusted_parent"
+        },
+        {
+          "apk_parent": "xib",
+          "apk_target": "xia",
+          "canonical_parent": "oaa.proto.data.ButtonEvents",
+          "canonical_target": "oaa.proto.data.ButtonEvent",
+          "field_number": 1,
+          "relation": "compatible_child"
+        }
+      ],
       "refined_candidate_count": 1,
       "resolved_apk_class": "xib",
       "source": "oaa/input/ButtonEventsData.proto",
@@ -1629,14 +1812,48 @@
       ],
       "canonical_name": "oaa.proto.data.CarControlChannel",
       "canonical_shape_count": 2,
-      "confidence": "none",
+      "confidence": "medium",
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 3,
+      "graph_evidence": [
+        {
+          "apk_parent": "xlv",
+          "apk_target": "xgb",
+          "canonical_parent": "oaa.proto.data.ChannelDescriptor",
+          "canonical_target": "oaa.proto.data.CarControlChannel",
+          "field_number": 15,
+          "relation": "trusted_parent"
+        },
+        {
+          "apk_parent": "xgb",
+          "apk_target": "xeg",
+          "canonical_parent": "oaa.proto.data.CarControlChannel",
+          "canonical_target": "oaa.proto.messages.CarPropertyConfig",
+          "field_number": 1,
+          "relation": "compatible_child"
+        },
+        {
+          "apk_parent": "xgb",
+          "apk_target": "xfy",
+          "canonical_parent": "oaa.proto.data.CarControlChannel",
+          "canonical_target": "oaa.proto.messages.CarControl",
+          "field_number": 2,
+          "relation": "compatible_child"
+        },
+        {
+          "apk_parent": "xgb",
+          "apk_target": "xdx",
+          "canonical_parent": "oaa.proto.data.CarControlChannel",
+          "canonical_target": "oaa.proto.messages.CarActionEntry",
+          "field_number": 3,
+          "relation": "compatible_child"
+        }
+      ],
       "refined_candidate_count": 1,
-      "resolved_apk_class": null,
+      "resolved_apk_class": "xgb",
       "source": "oaa/control/ChannelDescriptorData.proto",
-      "status": "ambiguous_structural",
+      "status": "graph_resolved",
       "structural_candidate_count": 1,
       "structural_candidates": [
         "xgb"
@@ -1921,6 +2138,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 0,
+      "graph_evidence": [],
       "refined_candidate_count": 270,
       "resolved_apk_class": null,
       "source": "oaa/control/ChannelDescriptorData.proto",
@@ -2478,6 +2696,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 0,
+      "graph_evidence": [],
       "refined_candidate_count": 270,
       "resolved_apk_class": null,
       "source": "oaa/control/ChannelDescriptorData.proto",
@@ -2766,6 +2985,16 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 18,
+      "graph_evidence": [
+        {
+          "apk_parent": "xlx",
+          "apk_target": "xlv",
+          "canonical_parent": "oaa.proto.messages.ServiceDiscoveryResponse",
+          "canonical_target": "oaa.proto.data.ChannelDescriptor",
+          "field_number": 1,
+          "relation": "trusted_parent"
+        }
+      ],
       "refined_candidate_count": 1,
       "resolved_apk_class": "xlv",
       "source": "oaa/control/ChannelDescriptorData.proto",
@@ -2785,6 +3014,16 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 3,
+      "graph_evidence": [
+        {
+          "apk_parent": "xln",
+          "apk_target": "xgp",
+          "canonical_parent": "oaa.proto.messages.SensorEventIndication",
+          "canonical_target": "oaa.proto.data.Compass",
+          "field_number": 2,
+          "relation": "trusted_parent"
+        }
+      ],
       "refined_candidate_count": 1,
       "resolved_apk_class": "xgp",
       "source": "oaa/sensor/CompassData.proto",
@@ -2820,6 +3059,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 1,
+      "graph_evidence": [],
       "refined_candidate_count": 17,
       "resolved_apk_class": null,
       "source": "oaa/control/ControlChannelConfigData.proto",
@@ -2866,11 +3106,12 @@
         "xlh"
       ],
       "canonical_name": "oaa.proto.data.ControlChannelParams",
-      "canonical_shape_count": 4,
+      "canonical_shape_count": 5,
       "confidence": "none",
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 4,
+      "graph_evidence": [],
       "refined_candidate_count": 4,
       "resolved_apk_class": null,
       "source": "oaa/control/ControlChannelConfigData.proto",
@@ -2889,14 +3130,24 @@
       ],
       "canonical_name": "oaa.proto.data.DeviceInfo",
       "canonical_shape_count": 2,
-      "confidence": "none",
+      "confidence": "medium",
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 9,
+      "graph_evidence": [
+        {
+          "apk_parent": "xnv",
+          "apk_target": "xen",
+          "canonical_parent": "oaa.proto.messages.WifiVersionRequest",
+          "canonical_target": "oaa.proto.data.DeviceInfo",
+          "field_number": 5,
+          "relation": "trusted_parent"
+        }
+      ],
       "refined_candidate_count": 1,
-      "resolved_apk_class": null,
+      "resolved_apk_class": "xen",
       "source": "oaa/control/PhoneCapabilitiesData.proto",
-      "status": "ambiguous_structural",
+      "status": "graph_resolved",
       "structural_candidate_count": 1,
       "structural_candidates": [
         "xen"
@@ -2912,6 +3163,16 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 1,
+      "graph_evidence": [
+        {
+          "apk_parent": "xln",
+          "apk_target": "xgx",
+          "canonical_parent": "oaa.proto.messages.SensorEventIndication",
+          "canonical_target": "oaa.proto.data.Diagnostics",
+          "field_number": 9,
+          "relation": "trusted_parent"
+        }
+      ],
       "refined_candidate_count": 1,
       "resolved_apk_class": "xgx",
       "source": "oaa/common/DiagnosticsData.proto",
@@ -2928,6 +3189,38 @@
     },
     {
       "candidates": [
+        "xgs"
+      ],
+      "canonical_name": "oaa.proto.data.DisplayCornerRadii",
+      "canonical_shape_count": 5,
+      "confidence": "medium",
+      "dispatch_evidence": [],
+      "edge_constraint_conflict": false,
+      "field_count": 4,
+      "graph_evidence": [
+        {
+          "apk_parent": "xfi",
+          "apk_target": "xgs",
+          "canonical_parent": "oaa.proto.data.BlendedUIConfig",
+          "canonical_target": "oaa.proto.data.DisplayCornerRadii",
+          "field_number": 1,
+          "relation": "trusted_parent"
+        }
+      ],
+      "refined_candidate_count": 1,
+      "resolved_apk_class": "xgs",
+      "source": "oaa/video/AdditionalVideoConfigData.proto",
+      "status": "graph_resolved",
+      "structural_candidate_count": 4,
+      "structural_candidates": [
+        "xgs",
+        "xht",
+        "xkc",
+        "xlh"
+      ]
+    },
+    {
+      "candidates": [
         "zad"
       ],
       "canonical_name": "oaa.proto.data.DistanceLabel",
@@ -2936,6 +3229,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 4,
+      "graph_evidence": [],
       "refined_candidate_count": 1,
       "resolved_apk_class": "zad",
       "source": "oaa/navigation/NavigationDistanceDisplayData.proto",
@@ -2955,6 +3249,16 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 3,
+      "graph_evidence": [
+        {
+          "apk_parent": "xln",
+          "apk_target": "xgz",
+          "canonical_parent": "oaa.proto.messages.SensorEventIndication",
+          "canonical_target": "oaa.proto.data.Door",
+          "field_number": 16,
+          "relation": "trusted_parent"
+        }
+      ],
       "refined_candidate_count": 1,
       "resolved_apk_class": "xgz",
       "source": "oaa/sensor/DoorData.proto",
@@ -2974,6 +3278,16 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 1,
+      "graph_evidence": [
+        {
+          "apk_parent": "xln",
+          "apk_target": "xhb",
+          "canonical_parent": "oaa.proto.messages.SensorEventIndication",
+          "canonical_target": "oaa.proto.data.DrivingStatus",
+          "field_number": 13,
+          "relation": "trusted_parent"
+        }
+      ],
       "refined_candidate_count": 1,
       "resolved_apk_class": "xhb",
       "source": "oaa/sensor/DrivingStatusData.proto",
@@ -2996,6 +3310,16 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 3,
+      "graph_evidence": [
+        {
+          "apk_parent": "xln",
+          "apk_target": "xhc",
+          "canonical_parent": "oaa.proto.messages.SensorEventIndication",
+          "canonical_target": "oaa.proto.data.Environment",
+          "field_number": 11,
+          "relation": "trusted_parent"
+        }
+      ],
       "refined_candidate_count": 1,
       "resolved_apk_class": "xhc",
       "source": "oaa/sensor/EnvironmentData.proto",
@@ -3021,14 +3345,24 @@
       ],
       "canonical_name": "oaa.proto.data.FuelLevel",
       "canonical_shape_count": 3,
-      "confidence": "none",
+      "confidence": "medium",
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 3,
+      "graph_evidence": [
+        {
+          "apk_parent": "xln",
+          "apk_target": "xhf",
+          "canonical_parent": "oaa.proto.messages.SensorEventIndication",
+          "canonical_target": "oaa.proto.data.FuelLevel",
+          "field_number": 6,
+          "relation": "trusted_parent"
+        }
+      ],
       "refined_candidate_count": 1,
-      "resolved_apk_class": null,
+      "resolved_apk_class": "xhf",
       "source": "oaa/sensor/FuelLevelData.proto",
-      "status": "ambiguous_structural",
+      "status": "graph_resolved",
       "structural_candidate_count": 1,
       "structural_candidates": [
         "xhf"
@@ -3044,6 +3378,16 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 6,
+      "graph_evidence": [
+        {
+          "apk_parent": "xln",
+          "apk_target": "xid",
+          "canonical_parent": "oaa.proto.messages.SensorEventIndication",
+          "canonical_target": "oaa.proto.data.GPSLocation",
+          "field_number": 1,
+          "relation": "trusted_parent"
+        }
+      ],
       "refined_candidate_count": 1,
       "resolved_apk_class": "xid",
       "source": "oaa/sensor/GPSLocationData.proto",
@@ -3063,6 +3407,16 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 1,
+      "graph_evidence": [
+        {
+          "apk_parent": "xln",
+          "apk_target": "xhh",
+          "canonical_parent": "oaa.proto.messages.SensorEventIndication",
+          "canonical_target": "oaa.proto.data.Gear",
+          "field_number": 8,
+          "relation": "trusted_parent"
+        }
+      ],
       "refined_candidate_count": 1,
       "resolved_apk_class": "xhh",
       "source": "oaa/sensor/GearData.proto",
@@ -3092,6 +3446,16 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 3,
+      "graph_evidence": [
+        {
+          "apk_parent": "xln",
+          "apk_target": "xhk",
+          "canonical_parent": "oaa.proto.messages.SensorEventIndication",
+          "canonical_target": "oaa.proto.data.GpsSatelliteData",
+          "field_number": 21,
+          "relation": "trusted_parent"
+        }
+      ],
       "refined_candidate_count": 1,
       "resolved_apk_class": "xhk",
       "source": "oaa/sensor/GpsSatelliteData.proto",
@@ -3111,6 +3475,16 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 5,
+      "graph_evidence": [
+        {
+          "apk_parent": "xhk",
+          "apk_target": "xhj",
+          "canonical_parent": "oaa.proto.data.GpsSatelliteData",
+          "canonical_target": "oaa.proto.data.GpsSatelliteInfo",
+          "field_number": 3,
+          "relation": "trusted_parent"
+        }
+      ],
       "refined_candidate_count": 1,
       "resolved_apk_class": "xhj",
       "source": "oaa/sensor/GpsSatelliteData.proto",
@@ -3130,6 +3504,16 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 3,
+      "graph_evidence": [
+        {
+          "apk_parent": "xln",
+          "apk_target": "xhl",
+          "canonical_parent": "oaa.proto.messages.SensorEventIndication",
+          "canonical_target": "oaa.proto.data.Gyro",
+          "field_number": 20,
+          "relation": "trusted_parent"
+        }
+      ],
       "refined_candidate_count": 1,
       "resolved_apk_class": "xhl",
       "source": "oaa/sensor/GyroData.proto",
@@ -3159,6 +3543,16 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 2,
+      "graph_evidence": [
+        {
+          "apk_parent": "xln",
+          "apk_target": "xhn",
+          "canonical_parent": "oaa.proto.messages.SensorEventIndication",
+          "canonical_target": "oaa.proto.data.HVAC",
+          "field_number": 12,
+          "relation": "trusted_parent"
+        }
+      ],
       "refined_candidate_count": 1,
       "resolved_apk_class": "xhn",
       "source": "oaa/sensor/HVACData.proto",
@@ -3181,14 +3575,24 @@
       ],
       "canonical_name": "oaa.proto.data.HeadUnitInfo",
       "canonical_shape_count": 2,
-      "confidence": "none",
+      "confidence": "medium",
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 9,
+      "graph_evidence": [
+        {
+          "apk_parent": "xlx",
+          "apk_target": "xen",
+          "canonical_parent": "oaa.proto.messages.ServiceDiscoveryResponse",
+          "canonical_target": "oaa.proto.data.HeadUnitInfo",
+          "field_number": 17,
+          "relation": "trusted_parent"
+        }
+      ],
       "refined_candidate_count": 1,
-      "resolved_apk_class": null,
+      "resolved_apk_class": "xen",
       "source": "oaa/control/HeadUnitInfoData.proto",
-      "status": "ambiguous_structural",
+      "status": "graph_resolved",
       "structural_candidate_count": 1,
       "structural_candidates": [
         "xen"
@@ -3204,6 +3608,16 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 5,
+      "graph_evidence": [
+        {
+          "apk_parent": "xlv",
+          "apk_target": "xhs",
+          "canonical_parent": "oaa.proto.data.ChannelDescriptor",
+          "canonical_target": "oaa.proto.data.InputChannelConfig",
+          "field_number": 4,
+          "relation": "trusted_parent"
+        }
+      ],
       "refined_candidate_count": 1,
       "resolved_apk_class": "xhs",
       "source": "oaa/input/InputChannelConfigData.proto",
@@ -3223,6 +3637,16 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 3,
+      "graph_evidence": [
+        {
+          "apk_parent": "xln",
+          "apk_target": "xic",
+          "canonical_parent": "oaa.proto.messages.SensorEventIndication",
+          "canonical_target": "oaa.proto.data.Light",
+          "field_number": 17,
+          "relation": "trusted_parent"
+        }
+      ],
       "refined_candidate_count": 1,
       "resolved_apk_class": "xic",
       "source": "oaa/sensor/LightData.proto",
@@ -3511,6 +3935,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 0,
+      "graph_evidence": [],
       "refined_candidate_count": 270,
       "resolved_apk_class": null,
       "source": "oaa/control/ChannelDescriptorData.proto",
@@ -4068,6 +4493,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 0,
+      "graph_evidence": [],
       "refined_candidate_count": 270,
       "resolved_apk_class": null,
       "source": "oaa/media/MediaChannelData.proto",
@@ -4348,6 +4774,44 @@
     },
     {
       "candidates": [
+        "xir"
+      ],
+      "canonical_name": "oaa.proto.data.NativeUIElement",
+      "canonical_shape_count": 2,
+      "confidence": "medium",
+      "dispatch_evidence": [],
+      "edge_constraint_conflict": false,
+      "field_count": 2,
+      "graph_evidence": [
+        {
+          "apk_parent": "xfi",
+          "apk_target": "xir",
+          "canonical_parent": "oaa.proto.data.BlendedUIConfig",
+          "canonical_target": "oaa.proto.data.NativeUIElement",
+          "field_number": 2,
+          "relation": "trusted_parent"
+        },
+        {
+          "apk_parent": "xir",
+          "apk_target": "xlh",
+          "canonical_parent": "oaa.proto.data.NativeUIElement",
+          "canonical_target": "oaa.proto.data.UIElementPosition",
+          "field_number": 1,
+          "relation": "compatible_child"
+        }
+      ],
+      "refined_candidate_count": 1,
+      "resolved_apk_class": "xir",
+      "source": "oaa/video/AdditionalVideoConfigData.proto",
+      "status": "graph_resolved",
+      "structural_candidate_count": 2,
+      "structural_candidates": [
+        "xgk",
+        "xir"
+      ]
+    },
+    {
+      "candidates": [
         "xjk"
       ],
       "canonical_name": "oaa.proto.data.NavigationChannel",
@@ -4356,6 +4820,16 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 3,
+      "graph_evidence": [
+        {
+          "apk_parent": "xlv",
+          "apk_target": "xjk",
+          "canonical_parent": "oaa.proto.data.ChannelDescriptor",
+          "canonical_target": "oaa.proto.data.NavigationChannel",
+          "field_number": 8,
+          "relation": "trusted_parent"
+        }
+      ],
       "refined_candidate_count": 1,
       "resolved_apk_class": "xjk",
       "source": "oaa/navigation/NavigationChannelData.proto",
@@ -4373,6 +4847,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 3,
+      "graph_evidence": [],
       "refined_candidate_count": 0,
       "resolved_apk_class": null,
       "source": "oaa/navigation/NavigationChannelConfigData.proto",
@@ -4388,6 +4863,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 4,
+      "graph_evidence": [],
       "refined_candidate_count": 0,
       "resolved_apk_class": null,
       "source": "oaa/navigation/NavigationDistanceDisplayData.proto",
@@ -4405,6 +4881,16 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 3,
+      "graph_evidence": [
+        {
+          "apk_parent": "zac",
+          "apk_target": "yzw",
+          "canonical_parent": "oaa.proto.messages.NavigationDistance",
+          "canonical_target": "oaa.proto.data.NavigationDistanceValue",
+          "field_number": 1,
+          "relation": "trusted_parent"
+        }
+      ],
       "refined_candidate_count": 1,
       "resolved_apk_class": "yzw",
       "source": "oaa/navigation/NavigationDistanceDisplayData.proto",
@@ -4434,6 +4920,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 3,
+      "graph_evidence": [],
       "refined_candidate_count": 11,
       "resolved_apk_class": null,
       "source": "oaa/navigation/NavigationChannelConfigData.proto",
@@ -4463,6 +4950,16 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 3,
+      "graph_evidence": [
+        {
+          "apk_parent": "xjk",
+          "apk_target": "xji",
+          "canonical_parent": "oaa.proto.data.NavigationChannel",
+          "canonical_target": "oaa.proto.data.NavigationImageOptions",
+          "field_number": 3,
+          "relation": "trusted_parent"
+        }
+      ],
       "refined_candidate_count": 1,
       "resolved_apk_class": "xji",
       "source": "oaa/navigation/NavigationImageOptionsData.proto",
@@ -4484,6 +4981,16 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 1,
+      "graph_evidence": [
+        {
+          "apk_parent": "xln",
+          "apk_target": "xjp",
+          "canonical_parent": "oaa.proto.messages.SensorEventIndication",
+          "canonical_target": "oaa.proto.data.NightMode",
+          "field_number": 10,
+          "relation": "trusted_parent"
+        }
+      ],
       "refined_candidate_count": 1,
       "resolved_apk_class": "xjp",
       "source": "oaa/sensor/NightModeData.proto",
@@ -4523,6 +5030,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 1,
+      "graph_evidence": [],
       "refined_candidate_count": 11,
       "resolved_apk_class": null,
       "source": "oaa/notification/NotificationChannelData.proto",
@@ -4552,6 +5060,16 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 2,
+      "graph_evidence": [
+        {
+          "apk_parent": "xln",
+          "apk_target": "xjq",
+          "canonical_parent": "oaa.proto.messages.SensorEventIndication",
+          "canonical_target": "oaa.proto.data.Odometer",
+          "field_number": 5,
+          "relation": "trusted_parent"
+        }
+      ],
       "refined_candidate_count": 1,
       "resolved_apk_class": "xjq",
       "source": "oaa/sensor/OdometerData.proto",
@@ -4572,6 +5090,16 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 1,
+      "graph_evidence": [
+        {
+          "apk_parent": "xln",
+          "apk_target": "xju",
+          "canonical_parent": "oaa.proto.messages.SensorEventIndication",
+          "canonical_target": "oaa.proto.data.ParkingBrake",
+          "field_number": 7,
+          "relation": "trusted_parent"
+        }
+      ],
       "refined_candidate_count": 1,
       "resolved_apk_class": "xju",
       "source": "oaa/sensor/ParkingBrakeData.proto",
@@ -4592,6 +5120,16 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 1,
+      "graph_evidence": [
+        {
+          "apk_parent": "xln",
+          "apk_target": "xjv",
+          "canonical_parent": "oaa.proto.messages.SensorEventIndication",
+          "canonical_target": "oaa.proto.data.Passenger",
+          "field_number": 15,
+          "relation": "trusted_parent"
+        }
+      ],
       "refined_candidate_count": 1,
       "resolved_apk_class": "xjv",
       "source": "oaa/sensor/PassengerData.proto",
@@ -4621,6 +5159,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 5,
+      "graph_evidence": [],
       "refined_candidate_count": 1,
       "resolved_apk_class": null,
       "source": "oaa/control/PhoneCapabilitiesData.proto",
@@ -4909,6 +5448,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 0,
+      "graph_evidence": [],
       "refined_candidate_count": 270,
       "resolved_apk_class": null,
       "source": "oaa/control/ChannelDescriptorData.proto",
@@ -5188,19 +5728,106 @@
       ]
     },
     {
-      "candidates": [],
+      "candidates": [
+        "abmh"
+      ],
       "canonical_name": "oaa.proto.data.PingConfiguration",
       "canonical_shape_count": 1,
-      "confidence": "none",
+      "confidence": "medium",
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 2,
-      "refined_candidate_count": 0,
-      "resolved_apk_class": null,
+      "graph_evidence": [
+        {
+          "apk_parent": "xig",
+          "apk_target": "abmh",
+          "canonical_parent": "oaa.proto.messages.AVChannelMediaConfig",
+          "canonical_target": "oaa.proto.data.PingConfiguration",
+          "field_number": 1,
+          "relation": "trusted_parent"
+        },
+        {
+          "apk_parent": "xig",
+          "apk_target": "abmh",
+          "canonical_parent": "oaa.proto.messages.AVChannelMediaConfig",
+          "canonical_target": "oaa.proto.data.PingConfiguration",
+          "field_number": 3,
+          "relation": "trusted_parent"
+        },
+        {
+          "apk_parent": "xig",
+          "apk_target": "abmh",
+          "canonical_parent": "oaa.proto.messages.AVChannelMediaConfig",
+          "canonical_target": "oaa.proto.data.PingConfiguration",
+          "field_number": 4,
+          "relation": "trusted_parent"
+        },
+        {
+          "apk_parent": "xig",
+          "apk_target": "abmh",
+          "canonical_parent": "oaa.proto.messages.AVChannelMediaConfig",
+          "canonical_target": "oaa.proto.data.PingConfiguration",
+          "field_number": 5,
+          "relation": "trusted_parent"
+        },
+        {
+          "apk_parent": "xig",
+          "apk_target": "abmh",
+          "canonical_parent": "oaa.proto.messages.AVChannelMediaConfig",
+          "canonical_target": "oaa.proto.data.PingConfiguration",
+          "field_number": 6,
+          "relation": "trusted_parent"
+        },
+        {
+          "apk_parent": "xig",
+          "apk_target": "abmh",
+          "canonical_parent": "oaa.proto.messages.AVChannelMediaConfig",
+          "canonical_target": "oaa.proto.data.PingConfiguration",
+          "field_number": 8,
+          "relation": "trusted_parent"
+        },
+        {
+          "apk_parent": "xig",
+          "apk_target": "abmh",
+          "canonical_parent": "oaa.proto.messages.AVChannelMediaConfig",
+          "canonical_target": "oaa.proto.data.PingConfiguration",
+          "field_number": 10,
+          "relation": "trusted_parent"
+        },
+        {
+          "apk_parent": "xig",
+          "apk_target": "abmh",
+          "canonical_parent": "oaa.proto.messages.AVChannelMediaConfig",
+          "canonical_target": "oaa.proto.data.PingConfiguration",
+          "field_number": 12,
+          "relation": "trusted_parent"
+        },
+        {
+          "apk_parent": "xig",
+          "apk_target": "abmh",
+          "canonical_parent": "oaa.proto.messages.AVChannelMediaConfig",
+          "canonical_target": "oaa.proto.data.PingConfiguration",
+          "field_number": 13,
+          "relation": "trusted_parent"
+        },
+        {
+          "apk_parent": "xim",
+          "apk_target": "abmh",
+          "canonical_parent": "oaa.proto.messages.AVChannelMediaStats",
+          "canonical_target": "oaa.proto.data.PingConfiguration",
+          "field_number": 1,
+          "relation": "trusted_parent"
+        }
+      ],
+      "refined_candidate_count": 1,
+      "resolved_apk_class": "abmh",
       "source": "oaa/common/PingConfigurationData.proto",
-      "status": "not_found",
-      "structural_candidate_count": 0,
-      "structural_candidates": []
+      "status": "graph_resolved",
+      "structural_candidate_count": 2,
+      "structural_candidates": [
+        "abmh",
+        "abou"
+      ]
     },
     {
       "candidates": [
@@ -5212,6 +5839,16 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 1,
+      "graph_evidence": [
+        {
+          "apk_parent": "xln",
+          "apk_target": "xlm",
+          "canonical_parent": "oaa.proto.messages.SensorEventIndication",
+          "canonical_target": "oaa.proto.data.RPM",
+          "field_number": 4,
+          "relation": "trusted_parent"
+        }
+      ],
       "refined_candidate_count": 1,
       "resolved_apk_class": "xlm",
       "source": "oaa/sensor/RPMData.proto",
@@ -5234,6 +5871,16 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 4,
+      "graph_evidence": [
+        {
+          "apk_parent": "xkj",
+          "apk_target": "xki",
+          "canonical_parent": "oaa.proto.data.RadioBands",
+          "canonical_target": "oaa.proto.data.RadioBandGroup",
+          "field_number": 1,
+          "relation": "trusted_parent"
+        }
+      ],
       "refined_candidate_count": 1,
       "resolved_apk_class": "xki",
       "source": "oaa/control/RadioChannelData.proto",
@@ -5253,6 +5900,24 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 1,
+      "graph_evidence": [
+        {
+          "apk_parent": "xkx",
+          "apk_target": "xkj",
+          "canonical_parent": "oaa.proto.data.RadioChannelConfig",
+          "canonical_target": "oaa.proto.data.RadioBands",
+          "field_number": 2,
+          "relation": "trusted_parent"
+        },
+        {
+          "apk_parent": "xkj",
+          "apk_target": "xki",
+          "canonical_parent": "oaa.proto.data.RadioBands",
+          "canonical_target": "oaa.proto.data.RadioBandGroup",
+          "field_number": 1,
+          "relation": "compatible_child"
+        }
+      ],
       "refined_candidate_count": 1,
       "resolved_apk_class": "xkj",
       "source": "oaa/control/RadioChannelData.proto",
@@ -5295,6 +5960,24 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 1,
+      "graph_evidence": [
+        {
+          "apk_parent": "xlv",
+          "apk_target": "xkx",
+          "canonical_parent": "oaa.proto.data.ChannelDescriptor",
+          "canonical_target": "oaa.proto.data.RadioChannelConfig",
+          "field_number": 7,
+          "relation": "trusted_parent"
+        },
+        {
+          "apk_parent": "xkx",
+          "apk_target": "xkj",
+          "canonical_parent": "oaa.proto.data.RadioChannelConfig",
+          "canonical_target": "oaa.proto.data.RadioBands",
+          "field_number": 2,
+          "relation": "compatible_child"
+        }
+      ],
       "refined_candidate_count": 1,
       "resolved_apk_class": "xkx",
       "source": "oaa/control/RadioChannelData.proto",
@@ -5323,6 +6006,16 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 1,
+      "graph_evidence": [
+        {
+          "apk_parent": "xln",
+          "apk_target": "xle",
+          "canonical_parent": "oaa.proto.messages.SensorEventIndication",
+          "canonical_target": "oaa.proto.data.RawEvTripSettings",
+          "field_number": 26,
+          "relation": "trusted_parent"
+        }
+      ],
       "refined_candidate_count": 1,
       "resolved_apk_class": "xle",
       "source": "oaa/sensor/RawEvTripSettingsData.proto",
@@ -5347,6 +6040,16 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 1,
+      "graph_evidence": [
+        {
+          "apk_parent": "xln",
+          "apk_target": "xlg",
+          "canonical_parent": "oaa.proto.messages.SensorEventIndication",
+          "canonical_target": "oaa.proto.data.RawVehicleEnergyModel",
+          "field_number": 25,
+          "relation": "trusted_parent"
+        }
+      ],
       "refined_candidate_count": 1,
       "resolved_apk_class": "xlg",
       "source": "oaa/sensor/RawVehicleEnergyModelData.proto",
@@ -5371,6 +6074,16 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 2,
+      "graph_evidence": [
+        {
+          "apk_parent": "xll",
+          "apk_target": "xlk",
+          "canonical_parent": "oaa.proto.data.RelativeInputEvents",
+          "canonical_target": "oaa.proto.data.RelativeInputEvent",
+          "field_number": 1,
+          "relation": "trusted_parent"
+        }
+      ],
       "refined_candidate_count": 1,
       "resolved_apk_class": "xlk",
       "source": "oaa/input/RelativeInputEventData.proto",
@@ -5391,6 +6104,24 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 1,
+      "graph_evidence": [
+        {
+          "apk_parent": "xhp",
+          "apk_target": "xll",
+          "canonical_parent": "oaa.proto.messages.InputEventIndication",
+          "canonical_target": "oaa.proto.data.RelativeInputEvents",
+          "field_number": 6,
+          "relation": "trusted_parent"
+        },
+        {
+          "apk_parent": "xll",
+          "apk_target": "xlk",
+          "canonical_parent": "oaa.proto.data.RelativeInputEvents",
+          "canonical_target": "oaa.proto.data.RelativeInputEvent",
+          "field_number": 1,
+          "relation": "compatible_child"
+        }
+      ],
       "refined_candidate_count": 1,
       "resolved_apk_class": "xll",
       "source": "oaa/input/RelativeInputEventsData.proto",
@@ -5442,6 +6173,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 1,
+      "graph_evidence": [],
       "refined_candidate_count": 10,
       "resolved_apk_class": null,
       "source": "oaa/sensor/SensorData.proto",
@@ -5471,14 +6203,32 @@
       ],
       "canonical_name": "oaa.proto.data.SensorChannel",
       "canonical_shape_count": 2,
-      "confidence": "none",
+      "confidence": "medium",
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 4,
+      "graph_evidence": [
+        {
+          "apk_parent": "xlv",
+          "apk_target": "xlt",
+          "canonical_parent": "oaa.proto.data.ChannelDescriptor",
+          "canonical_target": "oaa.proto.data.SensorChannel",
+          "field_number": 2,
+          "relation": "trusted_parent"
+        },
+        {
+          "apk_parent": "xlt",
+          "apk_target": "xls",
+          "canonical_parent": "oaa.proto.data.SensorChannel",
+          "canonical_target": "oaa.proto.data.SensorTypeEntry",
+          "field_number": 1,
+          "relation": "compatible_child"
+        }
+      ],
       "refined_candidate_count": 1,
-      "resolved_apk_class": null,
+      "resolved_apk_class": "xlt",
       "source": "oaa/sensor/SensorChannelData.proto",
-      "status": "ambiguous_structural",
+      "status": "graph_resolved",
       "structural_candidate_count": 1,
       "structural_candidates": [
         "xlt"
@@ -5490,14 +6240,24 @@
       ],
       "canonical_name": "oaa.proto.data.SensorChannelConfig",
       "canonical_shape_count": 2,
-      "confidence": "none",
+      "confidence": "medium",
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 4,
+      "graph_evidence": [
+        {
+          "apk_parent": "xlt",
+          "apk_target": "xls",
+          "canonical_parent": "oaa.proto.data.SensorChannelConfig",
+          "canonical_target": "oaa.proto.data.SensorTypeEntry",
+          "field_number": 1,
+          "relation": "compatible_child"
+        }
+      ],
       "refined_candidate_count": 1,
-      "resolved_apk_class": null,
+      "resolved_apk_class": "xlt",
       "source": "oaa/sensor/SensorChannelConfigData.proto",
-      "status": "ambiguous_structural",
+      "status": "graph_resolved",
       "structural_candidate_count": 1,
       "structural_candidates": [
         "xlt"
@@ -5513,6 +6273,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 1,
+      "graph_evidence": [],
       "refined_candidate_count": 1,
       "resolved_apk_class": "xjt",
       "source": "oaa/sensor/SensorEventFloatData.proto",
@@ -5524,23 +6285,44 @@
     },
     {
       "candidates": [
-        "xfd",
-        "xhh",
-        "xhu",
-        "xjh",
-        "xls",
-        "xmb"
+        "xls"
       ],
       "canonical_name": "oaa.proto.data.SensorTypeEntry",
       "canonical_shape_count": 9,
-      "confidence": "none",
+      "confidence": "medium",
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 1,
-      "refined_candidate_count": 6,
-      "resolved_apk_class": null,
+      "graph_evidence": [
+        {
+          "apk_parent": "xlt",
+          "apk_target": "xls",
+          "canonical_parent": "oaa.proto.data.SensorChannel",
+          "canonical_target": "oaa.proto.data.SensorTypeEntry",
+          "field_number": 1,
+          "relation": "trusted_parent"
+        },
+        {
+          "apk_parent": "xlt",
+          "apk_target": "xls",
+          "canonical_parent": "oaa.proto.data.SensorChannelConfig",
+          "canonical_target": "oaa.proto.data.SensorTypeEntry",
+          "field_number": 1,
+          "relation": "trusted_parent"
+        },
+        {
+          "apk_parent": "xls",
+          "apk_target": "xlu",
+          "canonical_parent": "oaa.proto.data.SensorTypeEntry",
+          "canonical_target": "oaa.proto.enums.SensorType.Enum",
+          "field_number": 1,
+          "relation": "compatible_enum"
+        }
+      ],
+      "refined_candidate_count": 1,
+      "resolved_apk_class": "xls",
       "source": "oaa/sensor/SensorChannelConfigData.proto",
-      "status": "ambiguous_structural",
+      "status": "graph_resolved",
       "structural_candidate_count": 11,
       "structural_candidates": [
         "xfd",
@@ -5562,14 +6344,24 @@
       ],
       "canonical_name": "oaa.proto.data.SessionInfo",
       "canonical_shape_count": 2,
-      "confidence": "none",
+      "confidence": "medium",
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 4,
+      "graph_evidence": [
+        {
+          "apk_parent": "xlw",
+          "apk_target": "xeo",
+          "canonical_parent": "oaa.proto.messages.ServiceDiscoveryRequest",
+          "canonical_target": "oaa.proto.data.SessionInfo",
+          "field_number": 6,
+          "relation": "trusted_parent"
+        }
+      ],
       "refined_candidate_count": 1,
-      "resolved_apk_class": null,
+      "resolved_apk_class": "xeo",
       "source": "oaa/common/SessionInfoData.proto",
-      "status": "ambiguous_structural",
+      "status": "graph_resolved",
       "structural_candidate_count": 1,
       "structural_candidates": [
         "xeo"
@@ -5585,6 +6377,16 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 3,
+      "graph_evidence": [
+        {
+          "apk_parent": "xln",
+          "apk_target": "xmc",
+          "canonical_parent": "oaa.proto.messages.SensorEventIndication",
+          "canonical_target": "oaa.proto.data.Speed",
+          "field_number": 3,
+          "relation": "trusted_parent"
+        }
+      ],
       "refined_candidate_count": 1,
       "resolved_apk_class": "xmc",
       "source": "oaa/sensor/SpeedData.proto",
@@ -5604,6 +6406,16 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 2,
+      "graph_evidence": [
+        {
+          "apk_parent": "xln",
+          "apk_target": "xgw",
+          "canonical_parent": "oaa.proto.messages.SensorEventIndication",
+          "canonical_target": "oaa.proto.data.SteeringWheel",
+          "field_number": 14,
+          "relation": "trusted_parent"
+        }
+      ],
       "refined_candidate_count": 1,
       "resolved_apk_class": "xgw",
       "source": "oaa/sensor/SteeringWheelData.proto",
@@ -5624,6 +6436,16 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 1,
+      "graph_evidence": [
+        {
+          "apk_parent": "xln",
+          "apk_target": "xmf",
+          "canonical_parent": "oaa.proto.messages.SensorEventIndication",
+          "canonical_target": "oaa.proto.data.TirePressure",
+          "field_number": 18,
+          "relation": "trusted_parent"
+        }
+      ],
       "refined_candidate_count": 1,
       "resolved_apk_class": "xmf",
       "source": "oaa/sensor/TirePressureData.proto",
@@ -5644,6 +6466,16 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 1,
+      "graph_evidence": [
+        {
+          "apk_parent": "xln",
+          "apk_target": "xmg",
+          "canonical_parent": "oaa.proto.messages.SensorEventIndication",
+          "canonical_target": "oaa.proto.data.TollCardData",
+          "field_number": 22,
+          "relation": "trusted_parent"
+        }
+      ],
       "refined_candidate_count": 1,
       "resolved_apk_class": "xmg",
       "source": "oaa/sensor/TollCardData.proto",
@@ -5664,6 +6496,24 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 3,
+      "graph_evidence": [
+        {
+          "apk_parent": "xhp",
+          "apk_target": "xmi",
+          "canonical_parent": "oaa.proto.messages.InputEventIndication",
+          "canonical_target": "oaa.proto.data.TouchEvent",
+          "field_number": 3,
+          "relation": "trusted_parent"
+        },
+        {
+          "apk_parent": "xhp",
+          "apk_target": "xmi",
+          "canonical_parent": "oaa.proto.messages.InputEventIndication",
+          "canonical_target": "oaa.proto.data.TouchEvent",
+          "field_number": 7,
+          "relation": "trusted_parent"
+        }
+      ],
       "refined_candidate_count": 1,
       "resolved_apk_class": "xmi",
       "source": "oaa/input/TouchEventData.proto",
@@ -5678,11 +6528,21 @@
         "xmh"
       ],
       "canonical_name": "oaa.proto.data.TouchLocation",
-      "canonical_shape_count": 1,
+      "canonical_shape_count": 2,
       "confidence": "medium",
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 3,
+      "graph_evidence": [
+        {
+          "apk_parent": "xmi",
+          "apk_target": "xmh",
+          "canonical_parent": "oaa.proto.data.TouchEvent",
+          "canonical_target": "oaa.proto.data.TouchLocation",
+          "field_number": 1,
+          "relation": "trusted_parent"
+        }
+      ],
       "refined_candidate_count": 1,
       "resolved_apk_class": "xmh",
       "source": "oaa/input/TouchLocationData.proto",
@@ -5703,6 +6563,16 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 8,
+      "graph_evidence": [
+        {
+          "apk_parent": "xhs",
+          "apk_target": "xhq",
+          "canonical_parent": "oaa.proto.data.InputChannelConfig",
+          "canonical_target": "oaa.proto.data.TouchPadConfig",
+          "field_number": 3,
+          "relation": "trusted_parent"
+        }
+      ],
       "refined_candidate_count": 1,
       "resolved_apk_class": "xhq",
       "source": "oaa/input/TouchPadConfigData.proto",
@@ -5722,6 +6592,16 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 3,
+      "graph_evidence": [
+        {
+          "apk_parent": "xhs",
+          "apk_target": "xhr",
+          "canonical_parent": "oaa.proto.data.InputChannelConfig",
+          "canonical_target": "oaa.proto.data.TouchScreenConfig",
+          "field_number": 2,
+          "relation": "trusted_parent"
+        }
+      ],
       "refined_candidate_count": 1,
       "resolved_apk_class": "xhr",
       "source": "oaa/input/TouchScreenConfigData.proto",
@@ -5741,6 +6621,16 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 0,
+      "graph_evidence": [
+        {
+          "apk_parent": "xln",
+          "apk_target": "xmj",
+          "canonical_parent": "oaa.proto.messages.SensorEventIndication",
+          "canonical_target": "oaa.proto.data.TrailerData",
+          "field_number": 24,
+          "relation": "trusted_parent"
+        }
+      ],
       "refined_candidate_count": 1,
       "resolved_apk_class": "xmj",
       "source": "oaa/sensor/TrailerData.proto",
@@ -6021,6 +6911,46 @@
     },
     {
       "candidates": [
+        "xlh"
+      ],
+      "canonical_name": "oaa.proto.data.UIElementPosition",
+      "canonical_shape_count": 5,
+      "confidence": "medium",
+      "dispatch_evidence": [],
+      "edge_constraint_conflict": false,
+      "field_count": 4,
+      "graph_evidence": [
+        {
+          "apk_parent": "xir",
+          "apk_target": "xlh",
+          "canonical_parent": "oaa.proto.data.NativeUIElement",
+          "canonical_target": "oaa.proto.data.UIElementPosition",
+          "field_number": 1,
+          "relation": "trusted_parent"
+        },
+        {
+          "apk_parent": "xgv",
+          "apk_target": "xlh",
+          "canonical_parent": "oaa.proto.data.VideoMarginConfig",
+          "canonical_target": "oaa.proto.data.UIElementPosition",
+          "field_number": 1,
+          "relation": "trusted_parent"
+        }
+      ],
+      "refined_candidate_count": 1,
+      "resolved_apk_class": "xlh",
+      "source": "oaa/video/AdditionalVideoConfigData.proto",
+      "status": "graph_resolved",
+      "structural_candidate_count": 4,
+      "structural_candidates": [
+        "xgs",
+        "xht",
+        "xkc",
+        "xlh"
+      ]
+    },
+    {
+      "candidates": [
         "xer"
       ],
       "canonical_name": "oaa.proto.data.VehicleEnergyInfo",
@@ -6029,6 +6959,16 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 5,
+      "graph_evidence": [
+        {
+          "apk_parent": "xeq",
+          "apk_target": "xer",
+          "canonical_parent": "oaa.proto.data.VehicleEnergyModelData",
+          "canonical_target": "oaa.proto.data.VehicleEnergyInfo",
+          "field_number": 1,
+          "relation": "trusted_parent"
+        }
+      ],
       "refined_candidate_count": 1,
       "resolved_apk_class": "xer",
       "source": "oaa/sensor/VehicleEnergyModelData.proto",
@@ -6048,6 +6988,24 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 1,
+      "graph_evidence": [
+        {
+          "apk_parent": "xln",
+          "apk_target": "xeq",
+          "canonical_parent": "oaa.proto.messages.SensorEventIndication",
+          "canonical_target": "oaa.proto.data.VehicleEnergyModelData",
+          "field_number": 23,
+          "relation": "trusted_parent"
+        },
+        {
+          "apk_parent": "xeq",
+          "apk_target": "xer",
+          "canonical_parent": "oaa.proto.data.VehicleEnergyModelData",
+          "canonical_target": "oaa.proto.data.VehicleEnergyInfo",
+          "field_number": 1,
+          "relation": "compatible_child"
+        }
+      ],
       "refined_candidate_count": 1,
       "resolved_apk_class": "xeq",
       "source": "oaa/sensor/VehicleEnergyModelData.proto",
@@ -6154,6 +7112,24 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 1,
+      "graph_evidence": [
+        {
+          "apk_parent": "xer",
+          "apk_target": "xep",
+          "canonical_parent": "oaa.proto.data.VehicleEnergyInfo",
+          "canonical_target": "oaa.proto.data.VehicleEnergyValue",
+          "field_number": 3,
+          "relation": "trusted_parent"
+        },
+        {
+          "apk_parent": "xer",
+          "apk_target": "xep",
+          "canonical_parent": "oaa.proto.data.VehicleEnergyInfo",
+          "canonical_target": "oaa.proto.data.VehicleEnergyValue",
+          "field_number": 4,
+          "relation": "trusted_parent"
+        }
+      ],
       "refined_candidate_count": 1,
       "resolved_apk_class": "xep",
       "source": "oaa/sensor/VehicleEnergyModelData.proto",
@@ -6169,19 +7145,33 @@
       ]
     },
     {
-      "candidates": [],
+      "candidates": [
+        "xmv"
+      ],
       "canonical_name": "oaa.proto.data.VendorExtensionChannel",
       "canonical_shape_count": 1,
-      "confidence": "none",
+      "confidence": "medium",
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 3,
-      "refined_candidate_count": 0,
-      "resolved_apk_class": null,
+      "graph_evidence": [
+        {
+          "apk_parent": "xlv",
+          "apk_target": "xmv",
+          "canonical_parent": "oaa.proto.data.ChannelDescriptor",
+          "canonical_target": "oaa.proto.data.VendorExtensionChannel",
+          "field_number": 12,
+          "relation": "trusted_parent"
+        }
+      ],
+      "refined_candidate_count": 1,
+      "resolved_apk_class": "xmv",
       "source": "oaa/control/VendorExtensionChannelData.proto",
-      "status": "not_found",
-      "structural_candidate_count": 0,
-      "structural_candidates": []
+      "status": "unique_structural",
+      "structural_candidate_count": 1,
+      "structural_candidates": [
+        "xmv"
+      ]
     },
     {
       "candidates": [
@@ -6193,6 +7183,16 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 2,
+      "graph_evidence": [
+        {
+          "apk_parent": "xnv",
+          "apk_target": "xnq",
+          "canonical_parent": "oaa.proto.messages.WifiVersionRequest",
+          "canonical_target": "oaa.proto.data.VersionFeatureFlags",
+          "field_number": 6,
+          "relation": "trusted_parent"
+        }
+      ],
       "refined_candidate_count": 1,
       "resolved_apk_class": "xnq",
       "source": "oaa/common/FeatureFlagsData.proto",
@@ -6214,6 +7214,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 11,
+      "graph_evidence": [],
       "refined_candidate_count": 0,
       "resolved_apk_class": null,
       "source": "oaa/video/VideoConfigData.proto",
@@ -6223,21 +7224,44 @@
     },
     {
       "candidates": [
-        "xgs",
-        "xht",
-        "xkc",
-        "xlh"
+        "xht"
       ],
       "canonical_name": "oaa.proto.data.VideoInsets",
-      "canonical_shape_count": 4,
-      "confidence": "none",
+      "canonical_shape_count": 5,
+      "confidence": "medium",
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 4,
-      "refined_candidate_count": 4,
-      "resolved_apk_class": null,
+      "graph_evidence": [
+        {
+          "apk_parent": "xml",
+          "apk_target": "xht",
+          "canonical_parent": "oaa.proto.data.AdditionalVideoConfig",
+          "canonical_target": "oaa.proto.data.VideoInsets",
+          "field_number": 1,
+          "relation": "trusted_parent"
+        },
+        {
+          "apk_parent": "xml",
+          "apk_target": "xht",
+          "canonical_parent": "oaa.proto.data.AdditionalVideoConfig",
+          "canonical_target": "oaa.proto.data.VideoInsets",
+          "field_number": 2,
+          "relation": "trusted_parent"
+        },
+        {
+          "apk_parent": "xml",
+          "apk_target": "xht",
+          "canonical_parent": "oaa.proto.data.AdditionalVideoConfig",
+          "canonical_target": "oaa.proto.data.VideoInsets",
+          "field_number": 3,
+          "relation": "trusted_parent"
+        }
+      ],
+      "refined_candidate_count": 1,
+      "resolved_apk_class": "xht",
       "source": "oaa/video/AdditionalVideoConfigData.proto",
-      "status": "ambiguous_structural",
+      "status": "graph_resolved",
       "structural_candidate_count": 4,
       "structural_candidates": [
         "xgs",
@@ -6248,34 +7272,36 @@
     },
     {
       "candidates": [
-        "abjs",
-        "abjt",
-        "abkm",
-        "abkt",
-        "abth",
-        "ajfl",
-        "xgr",
-        "xgv",
-        "yti",
-        "ytj",
-        "yyr",
-        "yyt",
-        "yzf",
-        "yzt",
-        "zhb",
-        "zhc",
-        "zhf"
+        "xgv"
       ],
       "canonical_name": "oaa.proto.data.VideoMarginConfig",
       "canonical_shape_count": 12,
-      "confidence": "none",
+      "confidence": "medium",
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 1,
-      "refined_candidate_count": 17,
-      "resolved_apk_class": null,
+      "graph_evidence": [
+        {
+          "apk_parent": "xml",
+          "apk_target": "xgv",
+          "canonical_parent": "oaa.proto.data.AdditionalVideoConfig",
+          "canonical_target": "oaa.proto.data.VideoMarginConfig",
+          "field_number": 7,
+          "relation": "trusted_parent"
+        },
+        {
+          "apk_parent": "xgv",
+          "apk_target": "xlh",
+          "canonical_parent": "oaa.proto.data.VideoMarginConfig",
+          "canonical_target": "oaa.proto.data.UIElementPosition",
+          "field_number": 1,
+          "relation": "compatible_child"
+        }
+      ],
+      "refined_candidate_count": 1,
+      "resolved_apk_class": "xgv",
       "source": "oaa/video/AdditionalVideoConfigData.proto",
-      "status": "ambiguous_structural",
+      "status": "graph_resolved",
       "structural_candidate_count": 30,
       "structural_candidates": [
         "abjs",
@@ -6330,6 +7356,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 3,
+      "graph_evidence": [],
       "refined_candidate_count": 11,
       "resolved_apk_class": null,
       "source": "oaa/video/VideoMarginsData.proto",
@@ -6351,30 +7378,36 @@
     },
     {
       "candidates": [
-        "ajdz",
-        "xew",
-        "xex",
-        "xgu",
-        "xho",
-        "xit",
-        "xkz",
-        "xlc",
-        "xmu",
-        "xne",
-        "xnk",
-        "yzd",
-        "zio"
+        "xew"
       ],
       "canonical_name": "oaa.proto.data.VideoResizeAction",
       "canonical_shape_count": 13,
-      "confidence": "none",
+      "confidence": "medium",
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 1,
-      "refined_candidate_count": 13,
-      "resolved_apk_class": null,
+      "graph_evidence": [
+        {
+          "apk_parent": "xml",
+          "apk_target": "xew",
+          "canonical_parent": "oaa.proto.data.AdditionalVideoConfig",
+          "canonical_target": "oaa.proto.data.VideoResizeAction",
+          "field_number": 6,
+          "relation": "trusted_parent"
+        },
+        {
+          "apk_parent": "xew",
+          "apk_target": "xey",
+          "canonical_parent": "oaa.proto.data.VideoResizeAction",
+          "canonical_target": "oaa.proto.data.ResizeActionType",
+          "field_number": 1,
+          "relation": "compatible_enum"
+        }
+      ],
+      "refined_candidate_count": 1,
+      "resolved_apk_class": "xew",
       "source": "oaa/video/AdditionalVideoConfigData.proto",
-      "status": "ambiguous_structural",
+      "status": "graph_resolved",
       "structural_candidate_count": 15,
       "structural_candidates": [
         "aatj",
@@ -6396,31 +7429,6 @@
     },
     {
       "candidates": [
-        "xgs",
-        "xht",
-        "xkc",
-        "xlh"
-      ],
-      "canonical_name": "oaa.proto.data.VideoResolutionRange",
-      "canonical_shape_count": 4,
-      "confidence": "none",
-      "dispatch_evidence": [],
-      "edge_constraint_conflict": false,
-      "field_count": 4,
-      "refined_candidate_count": 4,
-      "resolved_apk_class": null,
-      "source": "oaa/video/AdditionalVideoConfigData.proto",
-      "status": "ambiguous_structural",
-      "structural_candidate_count": 4,
-      "structural_candidates": [
-        "xgs",
-        "xht",
-        "xkc",
-        "xlh"
-      ]
-    },
-    {
-      "candidates": [
         "xnh"
       ],
       "canonical_name": "oaa.proto.data.WifiChannel",
@@ -6429,6 +7437,16 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 1,
+      "graph_evidence": [
+        {
+          "apk_parent": "xlv",
+          "apk_target": "xnh",
+          "canonical_parent": "oaa.proto.data.ChannelDescriptor",
+          "canonical_target": "oaa.proto.data.WifiChannel",
+          "field_number": 14,
+          "relation": "trusted_parent"
+        }
+      ],
       "refined_candidate_count": 1,
       "resolved_apk_class": "xnh",
       "source": "oaa/wifi/WifiChannelData.proto",
@@ -6446,11 +7464,12 @@
     {
       "candidates": [],
       "canonical_name": "oaa.proto.data.WirelessTcpConfiguration",
-      "canonical_shape_count": 2,
+      "canonical_shape_count": 1,
       "confidence": "none",
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 3,
+      "graph_evidence": [],
       "refined_candidate_count": 0,
       "resolved_apk_class": null,
       "source": "oaa/common/WirelessTcpConfigurationData.proto",
@@ -6737,6 +7756,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 0,
+      "graph_evidence": [],
       "refined_candidate_count": 270,
       "resolved_apk_class": null,
       "source": "oaa/av/AVChannelSessionTypeEnum.proto",
@@ -7225,6 +8245,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 0,
+      "graph_evidence": [],
       "refined_candidate_count": 201,
       "resolved_apk_class": null,
       "source": "oaa/av/AVChannelSetupStatusEnum.proto",
@@ -7644,6 +8665,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 0,
+      "graph_evidence": [],
       "refined_candidate_count": 201,
       "resolved_apk_class": null,
       "source": "oaa/av/AVStreamTypeEnum.proto",
@@ -8132,6 +9154,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 0,
+      "graph_evidence": [],
       "refined_candidate_count": 270,
       "resolved_apk_class": null,
       "source": "oaa/av/AndroidKeycodeEnum.proto",
@@ -8620,6 +9643,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 0,
+      "graph_evidence": [],
       "refined_candidate_count": 201,
       "resolved_apk_class": null,
       "source": "oaa/audio/AudioFocusStateEnum.proto",
@@ -9039,6 +10063,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 0,
+      "graph_evidence": [],
       "refined_candidate_count": 201,
       "resolved_apk_class": null,
       "source": "oaa/audio/AudioFocusTypeEnum.proto",
@@ -9458,6 +10483,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 0,
+      "graph_evidence": [],
       "refined_candidate_count": 201,
       "resolved_apk_class": null,
       "source": "oaa/audio/AudioTypeEnum.proto",
@@ -9877,6 +10903,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 0,
+      "graph_evidence": [],
       "refined_candidate_count": 201,
       "resolved_apk_class": null,
       "source": "oaa/bluetooth/BluetoothPairingMethodEnum.proto",
@@ -10296,6 +11323,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 0,
+      "graph_evidence": [],
       "refined_candidate_count": 201,
       "resolved_apk_class": null,
       "source": "oaa/input/ButtonCodeEnum.proto",
@@ -10715,6 +11743,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 0,
+      "graph_evidence": [],
       "refined_candidate_count": 201,
       "resolved_apk_class": null,
       "source": "oaa/common/ChannelErrorCodeEnum.proto",
@@ -11134,6 +12163,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 0,
+      "graph_evidence": [],
       "refined_candidate_count": 201,
       "resolved_apk_class": null,
       "source": "oaa/common/ChannelTypeEnum.proto",
@@ -11622,6 +12652,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 0,
+      "graph_evidence": [],
       "refined_candidate_count": 270,
       "resolved_apk_class": null,
       "source": "oaa/video/ColorSchemeSupportEnum.proto",
@@ -12110,6 +13141,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 0,
+      "graph_evidence": [],
       "refined_candidate_count": 201,
       "resolved_apk_class": null,
       "source": "oaa/common/ConnectionStateEnum.proto",
@@ -12529,6 +13561,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 0,
+      "graph_evidence": [],
       "refined_candidate_count": 201,
       "resolved_apk_class": null,
       "source": "oaa/common/DisconnectReasonEnum.proto",
@@ -12948,6 +13981,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 0,
+      "graph_evidence": [],
       "refined_candidate_count": 201,
       "resolved_apk_class": null,
       "source": "oaa/video/DisplayTypeEnum.proto",
@@ -13436,6 +14470,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 0,
+      "graph_evidence": [],
       "refined_candidate_count": 270,
       "resolved_apk_class": null,
       "source": "oaa/common/DriverPositionEnum.proto",
@@ -13924,6 +14959,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 0,
+      "graph_evidence": [],
       "refined_candidate_count": 201,
       "resolved_apk_class": null,
       "source": "oaa/sensor/DrivingStatusEnum.proto",
@@ -14412,6 +15448,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 0,
+      "graph_evidence": [],
       "refined_candidate_count": 270,
       "resolved_apk_class": null,
       "source": "oaa/sensor/EVConnectorTypeEnum.proto",
@@ -14969,6 +16006,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 0,
+      "graph_evidence": [],
       "refined_candidate_count": 270,
       "resolved_apk_class": null,
       "source": "oaa/sensor/FuelTypeEnum.proto",
@@ -15526,6 +16564,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 0,
+      "graph_evidence": [],
       "refined_candidate_count": 270,
       "resolved_apk_class": null,
       "source": "oaa/sensor/GearEnum.proto",
@@ -16083,6 +17122,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 0,
+      "graph_evidence": [],
       "refined_candidate_count": 270,
       "resolved_apk_class": null,
       "source": "oaa/input/HapticFeedbackTypeEnum.proto",
@@ -16571,6 +17611,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 0,
+      "graph_evidence": [],
       "refined_candidate_count": 201,
       "resolved_apk_class": null,
       "source": "oaa/sensor/HeadlightStatusEnum.proto",
@@ -16990,6 +18031,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 0,
+      "graph_evidence": [],
       "refined_candidate_count": 201,
       "resolved_apk_class": null,
       "source": "oaa/sensor/IndicatorStatusEnum.proto",
@@ -17478,6 +18520,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 0,
+      "graph_evidence": [],
       "refined_candidate_count": 270,
       "resolved_apk_class": null,
       "source": "oaa/navigation/LaneShapeEnum.proto",
@@ -17966,6 +19009,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 0,
+      "graph_evidence": [],
       "refined_candidate_count": 201,
       "resolved_apk_class": null,
       "source": "oaa/navigation/ManeuverTypeEnum.proto",
@@ -18454,6 +19498,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 0,
+      "graph_evidence": [],
       "refined_candidate_count": 270,
       "resolved_apk_class": null,
       "source": "oaa/mediabrowser/MediaBrowserMessageIdsEnum.proto",
@@ -18942,6 +19987,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 0,
+      "graph_evidence": [],
       "refined_candidate_count": 201,
       "resolved_apk_class": null,
       "source": "oaa/av/MediaCodecTypeEnum.proto",
@@ -19361,6 +20407,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 0,
+      "graph_evidence": [],
       "refined_candidate_count": 201,
       "resolved_apk_class": null,
       "source": "oaa/navigation/NavigationTypeEnum.proto",
@@ -19780,6 +20827,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 0,
+      "graph_evidence": [],
       "refined_candidate_count": 201,
       "resolved_apk_class": null,
       "source": "oaa/notification/NotificationTypeEnum.proto",
@@ -20268,6 +21316,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 0,
+      "graph_evidence": [],
       "refined_candidate_count": 270,
       "resolved_apk_class": null,
       "source": "oaa/phone/PhoneCallStateEnum.proto",
@@ -20825,6 +21874,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 0,
+      "graph_evidence": [],
       "refined_candidate_count": 270,
       "resolved_apk_class": null,
       "source": "oaa/control/VersionResponseStatusEnum.proto",
@@ -21382,6 +22432,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 0,
+      "graph_evidence": [],
       "refined_candidate_count": 270,
       "resolved_apk_class": null,
       "source": "oaa/radio/RadioBandTypeEnum.proto",
@@ -21939,6 +22990,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 0,
+      "graph_evidence": [],
       "refined_candidate_count": 270,
       "resolved_apk_class": null,
       "source": "oaa/radio/RadioCodecTypeEnum.proto",
@@ -22496,6 +23548,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 0,
+      "graph_evidence": [],
       "refined_candidate_count": 270,
       "resolved_apk_class": null,
       "source": "oaa/radio/RadioProgramTypeSchemaEnum.proto",
@@ -23053,6 +24106,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 0,
+      "graph_evidence": [],
       "refined_candidate_count": 270,
       "resolved_apk_class": null,
       "source": "oaa/radio/RadioRegionEnum.proto",
@@ -23610,6 +24664,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 0,
+      "graph_evidence": [],
       "refined_candidate_count": 270,
       "resolved_apk_class": null,
       "source": "oaa/sensor/SensorErrorStatusEnum.proto",
@@ -24098,6 +25153,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 0,
+      "graph_evidence": [],
       "refined_candidate_count": 201,
       "resolved_apk_class": null,
       "source": "oaa/sensor/SensorTypeEnum.proto",
@@ -24517,6 +25573,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 0,
+      "graph_evidence": [],
       "refined_candidate_count": 201,
       "resolved_apk_class": null,
       "source": "oaa/common/SessionErrorEnum.proto",
@@ -25005,6 +26062,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 0,
+      "graph_evidence": [],
       "refined_candidate_count": 270,
       "resolved_apk_class": null,
       "source": "oaa/control/ShutdownReasonEnum.proto",
@@ -25493,6 +26551,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 0,
+      "graph_evidence": [],
       "refined_candidate_count": 201,
       "resolved_apk_class": null,
       "source": "oaa/common/StatusEnum.proto",
@@ -25912,6 +26971,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 0,
+      "graph_evidence": [],
       "refined_candidate_count": 201,
       "resolved_apk_class": null,
       "source": "oaa/input/TouchActionEnum.proto",
@@ -26331,6 +27391,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 0,
+      "graph_evidence": [],
       "refined_candidate_count": 201,
       "resolved_apk_class": null,
       "source": "oaa/navigation/TurnSideEnum.proto",
@@ -26750,6 +27811,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 0,
+      "graph_evidence": [],
       "refined_candidate_count": 201,
       "resolved_apk_class": null,
       "source": "oaa/video/VideoFPSEnum.proto",
@@ -27169,6 +28231,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 0,
+      "graph_evidence": [],
       "refined_candidate_count": 201,
       "resolved_apk_class": null,
       "source": "oaa/video/VideoFocusModeEnum.proto",
@@ -27588,6 +28651,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 0,
+      "graph_evidence": [],
       "refined_candidate_count": 201,
       "resolved_apk_class": null,
       "source": "oaa/video/VideoFocusReasonEnum.proto",
@@ -28007,6 +29071,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 0,
+      "graph_evidence": [],
       "refined_candidate_count": 201,
       "resolved_apk_class": null,
       "source": "oaa/video/VideoResolutionEnum.proto",
@@ -28495,6 +29560,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 0,
+      "graph_evidence": [],
       "refined_candidate_count": 270,
       "resolved_apk_class": null,
       "source": "oaa/wifi/WifiAccessPointTypeEnum.proto",
@@ -29052,6 +30118,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 0,
+      "graph_evidence": [],
       "refined_candidate_count": 270,
       "resolved_apk_class": null,
       "source": "oaa/wifi/WifiChannelTypeEnum.proto",
@@ -29609,6 +30676,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 0,
+      "graph_evidence": [],
       "refined_candidate_count": 270,
       "resolved_apk_class": null,
       "source": "oaa/wifi/WifiConnectionRejectionReasonEnum.proto",
@@ -30166,6 +31234,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 0,
+      "graph_evidence": [],
       "refined_candidate_count": 270,
       "resolved_apk_class": null,
       "source": "oaa/wifi/WifiSecurityModeEnum.proto",
@@ -30723,6 +31792,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 0,
+      "graph_evidence": [],
       "refined_candidate_count": 270,
       "resolved_apk_class": null,
       "source": "oaa/wifi/WifiSetupMessageEnum.proto",
@@ -31211,6 +32281,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 0,
+      "graph_evidence": [],
       "refined_candidate_count": 201,
       "resolved_apk_class": null,
       "source": "oaa/wifi/WifiVersionStatusEnum.proto",
@@ -31630,6 +32701,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 0,
+      "graph_evidence": [],
       "refined_candidate_count": 201,
       "resolved_apk_class": null,
       "source": "oaa/av/AVChannelMessageIdsEnum.proto",
@@ -32049,6 +33121,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 0,
+      "graph_evidence": [],
       "refined_candidate_count": 201,
       "resolved_apk_class": null,
       "source": "oaa/bluetooth/BluetoothChannelMessageIdsEnum.proto",
@@ -32468,6 +33541,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 0,
+      "graph_evidence": [],
       "refined_candidate_count": 201,
       "resolved_apk_class": null,
       "source": "oaa/control/ControlMessageIdsEnum.proto",
@@ -32887,6 +33961,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 0,
+      "graph_evidence": [],
       "refined_candidate_count": 201,
       "resolved_apk_class": null,
       "source": "oaa/input/InputChannelMessageIdsEnum.proto",
@@ -33306,6 +34381,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 0,
+      "graph_evidence": [],
       "refined_candidate_count": 201,
       "resolved_apk_class": null,
       "source": "oaa/sensor/SensorChannelMessageIdsEnum.proto",
@@ -33725,6 +34801,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 0,
+      "graph_evidence": [],
       "refined_candidate_count": 201,
       "resolved_apk_class": null,
       "source": "oaa/wifi/WifiChannelMessageIdsEnum.proto",
@@ -33944,6 +35021,16 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 13,
+      "graph_evidence": [
+        {
+          "apk_parent": "xmd",
+          "apk_target": "xig",
+          "canonical_parent": "oaa.proto.messages.AVChannelStartIndication",
+          "canonical_target": "oaa.proto.messages.AVChannelMediaConfig",
+          "field_number": 4,
+          "relation": "trusted_parent"
+        }
+      ],
       "refined_candidate_count": 1,
       "resolved_apk_class": "xig",
       "source": "oaa/av/AVChannelMediaConfigMessage.proto",
@@ -34232,6 +35319,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 0,
+      "graph_evidence": [],
       "refined_candidate_count": 270,
       "resolved_apk_class": null,
       "source": "oaa/av/AVChannelMediaOptionsMessage.proto",
@@ -34520,6 +35608,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 15,
+      "graph_evidence": [],
       "refined_candidate_count": 1,
       "resolved_apk_class": "xim",
       "source": "oaa/av/AVChannelMediaStatsMessage.proto",
@@ -34543,6 +35632,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 1,
+      "graph_evidence": [],
       "refined_candidate_count": 5,
       "resolved_apk_class": null,
       "source": "oaa/av/AVChannelSetupRequestMessage.proto",
@@ -34572,6 +35662,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 3,
+      "graph_evidence": [],
       "refined_candidate_count": 1,
       "resolved_apk_class": "xgq",
       "source": "oaa/av/AVChannelSetupResponseMessage.proto",
@@ -34591,6 +35682,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 4,
+      "graph_evidence": [],
       "refined_candidate_count": 1,
       "resolved_apk_class": "xmd",
       "source": "oaa/av/AVChannelStartIndicationMessage.proto",
@@ -34879,6 +35971,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 0,
+      "graph_evidence": [],
       "refined_candidate_count": 270,
       "resolved_apk_class": null,
       "source": "oaa/av/AVChannelStopIndicationMessage.proto",
@@ -35165,6 +36258,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 4,
+      "graph_evidence": [],
       "refined_candidate_count": 0,
       "resolved_apk_class": null,
       "source": "oaa/av/AVInputOpenRequestMessage.proto",
@@ -35189,6 +36283,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 2,
+      "graph_evidence": [],
       "refined_candidate_count": 8,
       "resolved_apk_class": null,
       "source": "oaa/av/AVInputOpenResponseMessage.proto",
@@ -35215,6 +36310,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 3,
+      "graph_evidence": [],
       "refined_candidate_count": 1,
       "resolved_apk_class": "xev",
       "source": "oaa/av/AVMediaAckIndicationMessage.proto",
@@ -35244,6 +36340,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 1,
+      "graph_evidence": [],
       "refined_candidate_count": 11,
       "resolved_apk_class": null,
       "source": "oaa/audio/AudioFocusRequestMessage.proto",
@@ -35302,6 +36399,7 @@
       ],
       "edge_constraint_conflict": false,
       "field_count": 2,
+      "graph_evidence": [],
       "refined_candidate_count": 1,
       "resolved_apk_class": "xfc",
       "source": "oaa/audio/AudioFocusResponseMessage.proto",
@@ -35346,6 +36444,7 @@
       ],
       "edge_constraint_conflict": false,
       "field_count": 1,
+      "graph_evidence": [],
       "refined_candidate_count": 1,
       "resolved_apk_class": "xfg",
       "source": "oaa/control/AuthCompleteIndicationMessage.proto",
@@ -35366,6 +36465,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 3,
+      "graph_evidence": [],
       "refined_candidate_count": 0,
       "resolved_apk_class": null,
       "source": "oaa/control/BatteryStatusMessage.proto",
@@ -35384,6 +36484,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 1,
+      "graph_evidence": [],
       "refined_candidate_count": 2,
       "resolved_apk_class": null,
       "source": "oaa/control/BindingRequestMessage.proto",
@@ -35404,6 +36505,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 2,
+      "graph_evidence": [],
       "refined_candidate_count": 1,
       "resolved_apk_class": null,
       "source": "oaa/control/BindingResponseMessage.proto",
@@ -35441,6 +36543,7 @@
       ],
       "edge_constraint_conflict": false,
       "field_count": 1,
+      "graph_evidence": [],
       "refined_candidate_count": 1,
       "resolved_apk_class": "xfj",
       "source": "oaa/bluetooth/BluetoothAuthenticationDataMessage.proto",
@@ -35477,6 +36580,7 @@
       ],
       "edge_constraint_conflict": false,
       "field_count": 1,
+      "graph_evidence": [],
       "refined_candidate_count": 1,
       "resolved_apk_class": "xfk",
       "source": "oaa/bluetooth/BluetoothAuthenticationResultMessage.proto",
@@ -35504,6 +36608,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 3,
+      "graph_evidence": [],
       "refined_candidate_count": 0,
       "resolved_apk_class": null,
       "source": "oaa/bluetooth/BluetoothPairingRequestMessage.proto",
@@ -35538,6 +36643,7 @@
       ],
       "edge_constraint_conflict": false,
       "field_count": 2,
+      "graph_evidence": [],
       "refined_candidate_count": 1,
       "resolved_apk_class": "xfn",
       "source": "oaa/bluetooth/BluetoothPairingResponseMessage.proto",
@@ -35590,6 +36696,7 @@
       ],
       "edge_constraint_conflict": false,
       "field_count": 0,
+      "graph_evidence": [],
       "refined_candidate_count": 1,
       "resolved_apk_class": "xft",
       "source": "oaa/control/ByeByeResponseMessage.proto",
@@ -35895,6 +37002,7 @@
       ],
       "edge_constraint_conflict": false,
       "field_count": 1,
+      "graph_evidence": [],
       "refined_candidate_count": 1,
       "resolved_apk_class": "xfu",
       "source": "oaa/control/CallAvailabilityMessage.proto",
@@ -35924,6 +37032,32 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 1,
+      "graph_evidence": [
+        {
+          "apk_parent": "xfv",
+          "apk_target": "xdw",
+          "canonical_parent": "oaa.proto.messages.CarActionControl",
+          "canonical_target": "oaa.proto.messages.CarAction",
+          "field_number": 1,
+          "relation": "trusted_parent"
+        },
+        {
+          "apk_parent": "xdx",
+          "apk_target": "xdw",
+          "canonical_parent": "oaa.proto.messages.CarActionEntry",
+          "canonical_target": "oaa.proto.messages.CarAction",
+          "field_number": 1,
+          "relation": "trusted_parent"
+        },
+        {
+          "apk_parent": "xeh",
+          "apk_target": "xdw",
+          "canonical_parent": "oaa.proto.messages.CarPropertyControl",
+          "canonical_target": "oaa.proto.messages.CarAction",
+          "field_number": 2,
+          "relation": "trusted_parent"
+        }
+      ],
       "refined_candidate_count": 1,
       "resolved_apk_class": "xdw",
       "source": "oaa/carcontrol/CarPropertyData.proto",
@@ -35951,6 +37085,24 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 1,
+      "graph_evidence": [
+        {
+          "apk_parent": "xfy",
+          "apk_target": "xfv",
+          "canonical_parent": "oaa.proto.messages.CarControl",
+          "canonical_target": "oaa.proto.messages.CarActionControl",
+          "field_number": 2,
+          "relation": "trusted_parent"
+        },
+        {
+          "apk_parent": "xfv",
+          "apk_target": "xdw",
+          "canonical_parent": "oaa.proto.messages.CarActionControl",
+          "canonical_target": "oaa.proto.messages.CarAction",
+          "field_number": 1,
+          "relation": "compatible_child"
+        }
+      ],
       "refined_candidate_count": 1,
       "resolved_apk_class": "xfv",
       "source": "oaa/carcontrol/CarControlMessages.proto",
@@ -35991,81 +37143,44 @@
     },
     {
       "candidates": [
-        "aahf",
-        "aahi",
-        "aaho",
-        "aaht",
-        "aahw",
-        "aaif",
-        "aaig",
-        "aaih",
-        "aail",
-        "aaip",
-        "aais",
-        "aait",
-        "aaiu",
-        "aajh",
-        "aaji",
-        "aajj",
-        "aajk",
-        "aajq",
-        "aajs",
-        "aaju",
-        "aajx",
-        "aakj",
-        "aakk",
-        "aakl",
-        "aakm",
-        "aakn",
-        "aakq",
-        "aaks",
-        "aakw",
-        "aala",
-        "aalh",
-        "aalo",
-        "aalp",
-        "aalu",
-        "aams",
-        "aamw",
-        "aane",
-        "aanf",
-        "aank",
-        "aanv",
-        "aapb",
-        "aapf",
-        "aapg",
-        "aawv",
-        "aayw",
-        "abfe",
-        "abrw",
-        "absb",
-        "absc",
-        "absd",
-        "absg",
-        "absi",
-        "absj",
-        "absk",
-        "absl",
-        "absv",
-        "absy",
-        "abtb",
-        "acef",
-        "xdx",
-        "ziz",
-        "zke",
-        "zkt",
-        "zlq"
+        "xdx"
       ],
       "canonical_name": "oaa.proto.messages.CarActionEntry",
       "canonical_shape_count": 2,
-      "confidence": "none",
+      "confidence": "medium",
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 1,
-      "refined_candidate_count": 64,
-      "resolved_apk_class": null,
+      "graph_evidence": [
+        {
+          "apk_parent": "xgb",
+          "apk_target": "xdx",
+          "canonical_parent": "oaa.proto.data.CarControlChannel",
+          "canonical_target": "oaa.proto.messages.CarActionEntry",
+          "field_number": 3,
+          "relation": "trusted_parent"
+        },
+        {
+          "apk_parent": "xgb",
+          "apk_target": "xdx",
+          "canonical_parent": "oaa.proto.messages.CarControlChannelDescriptor",
+          "canonical_target": "oaa.proto.messages.CarActionEntry",
+          "field_number": 3,
+          "relation": "trusted_parent"
+        },
+        {
+          "apk_parent": "xdx",
+          "apk_target": "xdw",
+          "canonical_parent": "oaa.proto.messages.CarActionEntry",
+          "canonical_target": "oaa.proto.messages.CarAction",
+          "field_number": 1,
+          "relation": "compatible_child"
+        }
+      ],
+      "refined_candidate_count": 1,
+      "resolved_apk_class": "xdx",
       "source": "oaa/carcontrol/CarPropertyData.proto",
-      "status": "ambiguous_structural",
+      "status": "graph_resolved",
       "structural_candidate_count": 88,
       "structural_candidates": [
         "aahf",
@@ -36184,6 +37299,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 1,
+      "graph_evidence": [],
       "refined_candidate_count": 17,
       "resolved_apk_class": null,
       "source": "oaa/carcontrol/CarControlMessages.proto",
@@ -36232,6 +37348,32 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 6,
+      "graph_evidence": [
+        {
+          "apk_parent": "xee",
+          "apk_target": "xef",
+          "canonical_parent": "oaa.proto.messages.CarProperty",
+          "canonical_target": "oaa.proto.messages.CarAreaId",
+          "field_number": 2,
+          "relation": "trusted_parent"
+        },
+        {
+          "apk_parent": "xdv",
+          "apk_target": "xef",
+          "canonical_parent": "oaa.proto.messages.CarPropertyAreaConfig",
+          "canonical_target": "oaa.proto.messages.CarAreaId",
+          "field_number": 1,
+          "relation": "trusted_parent"
+        },
+        {
+          "apk_parent": "xeg",
+          "apk_target": "xef",
+          "canonical_parent": "oaa.proto.messages.CarPropertyConfig",
+          "canonical_target": "oaa.proto.messages.CarAreaId",
+          "field_number": 4,
+          "relation": "trusted_parent"
+        }
+      ],
       "refined_candidate_count": 1,
       "resolved_apk_class": "xef",
       "source": "oaa/carcontrol/CarPropertyData.proto",
@@ -36451,6 +37593,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 0,
+      "graph_evidence": [],
       "refined_candidate_count": 201,
       "resolved_apk_class": null,
       "source": "oaa/control/ConnectedDevicesMessages.proto",
@@ -36668,6 +37811,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 3,
+      "graph_evidence": [],
       "refined_candidate_count": 0,
       "resolved_apk_class": null,
       "source": "oaa/control/ConnectedDevicesMessages.proto",
@@ -36685,6 +37829,32 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 6,
+      "graph_evidence": [
+        {
+          "apk_parent": "xgb",
+          "apk_target": "xfy",
+          "canonical_parent": "oaa.proto.data.CarControlChannel",
+          "canonical_target": "oaa.proto.messages.CarControl",
+          "field_number": 2,
+          "relation": "trusted_parent"
+        },
+        {
+          "apk_parent": "xgb",
+          "apk_target": "xfy",
+          "canonical_parent": "oaa.proto.messages.CarControlChannelDescriptor",
+          "canonical_target": "oaa.proto.messages.CarControl",
+          "field_number": 2,
+          "relation": "trusted_parent"
+        },
+        {
+          "apk_parent": "xfz",
+          "apk_target": "xfy",
+          "canonical_parent": "oaa.proto.messages.CarControlGroup",
+          "canonical_target": "oaa.proto.messages.CarControl",
+          "field_number": 2,
+          "relation": "trusted_parent"
+        }
+      ],
       "refined_candidate_count": 1,
       "resolved_apk_class": "xfy",
       "source": "oaa/carcontrol/CarControlMessages.proto",
@@ -36700,14 +37870,40 @@
       ],
       "canonical_name": "oaa.proto.messages.CarControlChannelDescriptor",
       "canonical_shape_count": 2,
-      "confidence": "none",
+      "confidence": "medium",
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 3,
+      "graph_evidence": [
+        {
+          "apk_parent": "xgb",
+          "apk_target": "xeg",
+          "canonical_parent": "oaa.proto.messages.CarControlChannelDescriptor",
+          "canonical_target": "oaa.proto.messages.CarPropertyConfig",
+          "field_number": 1,
+          "relation": "compatible_child"
+        },
+        {
+          "apk_parent": "xgb",
+          "apk_target": "xfy",
+          "canonical_parent": "oaa.proto.messages.CarControlChannelDescriptor",
+          "canonical_target": "oaa.proto.messages.CarControl",
+          "field_number": 2,
+          "relation": "compatible_child"
+        },
+        {
+          "apk_parent": "xgb",
+          "apk_target": "xdx",
+          "canonical_parent": "oaa.proto.messages.CarControlChannelDescriptor",
+          "canonical_target": "oaa.proto.messages.CarActionEntry",
+          "field_number": 3,
+          "relation": "compatible_child"
+        }
+      ],
       "refined_candidate_count": 1,
-      "resolved_apk_class": null,
+      "resolved_apk_class": "xgb",
       "source": "oaa/carcontrol/CarControlMessages.proto",
-      "status": "ambiguous_structural",
+      "status": "graph_resolved",
       "structural_candidate_count": 1,
       "structural_candidates": [
         "xgb"
@@ -36723,6 +37919,24 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 2,
+      "graph_evidence": [
+        {
+          "apk_parent": "xfy",
+          "apk_target": "xfz",
+          "canonical_parent": "oaa.proto.messages.CarControl",
+          "canonical_target": "oaa.proto.messages.CarControlGroup",
+          "field_number": 3,
+          "relation": "trusted_parent"
+        },
+        {
+          "apk_parent": "xga",
+          "apk_target": "xfz",
+          "canonical_parent": "oaa.proto.messages.CarControlGroupUpdate",
+          "canonical_target": "oaa.proto.messages.CarControlGroup",
+          "field_number": 1,
+          "relation": "trusted_parent"
+        }
+      ],
       "refined_candidate_count": 1,
       "resolved_apk_class": "xfz",
       "source": "oaa/carcontrol/CarControlMessages.proto",
@@ -36751,6 +37965,7 @@
       ],
       "edge_constraint_conflict": false,
       "field_count": 1,
+      "graph_evidence": [],
       "refined_candidate_count": 1,
       "resolved_apk_class": "xga",
       "source": "oaa/carcontrol/CarControlMessages.proto",
@@ -36808,6 +38023,7 @@
       ],
       "edge_constraint_conflict": false,
       "field_count": 5,
+      "graph_evidence": [],
       "refined_candidate_count": 1,
       "resolved_apk_class": "xgf",
       "source": "oaa/media/CarLocalMediaPlaybackMetadataMessage.proto",
@@ -36836,6 +38052,7 @@
       ],
       "edge_constraint_conflict": false,
       "field_count": 1,
+      "graph_evidence": [],
       "refined_candidate_count": 1,
       "resolved_apk_class": "xgg",
       "source": "oaa/media/CarLocalMediaPlaybackRequestMessage.proto",
@@ -36869,6 +38086,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 4,
+      "graph_evidence": [],
       "refined_candidate_count": 1,
       "resolved_apk_class": "xgh",
       "source": "oaa/media/CarLocalMediaPlaybackStatusMessage.proto",
@@ -36888,6 +38106,72 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 2,
+      "graph_evidence": [
+        {
+          "apk_parent": "xgj",
+          "apk_target": "xee",
+          "canonical_parent": "oaa.proto.messages.CarPropertyChangeEvent",
+          "canonical_target": "oaa.proto.messages.CarProperty",
+          "field_number": 1,
+          "relation": "trusted_parent"
+        },
+        {
+          "apk_parent": "xeh",
+          "apk_target": "xee",
+          "canonical_parent": "oaa.proto.messages.CarPropertyControl",
+          "canonical_target": "oaa.proto.messages.CarProperty",
+          "field_number": 1,
+          "relation": "trusted_parent"
+        },
+        {
+          "apk_parent": "xeh",
+          "apk_target": "xee",
+          "canonical_parent": "oaa.proto.messages.CarPropertyControl",
+          "canonical_target": "oaa.proto.messages.CarProperty",
+          "field_number": 3,
+          "relation": "trusted_parent"
+        },
+        {
+          "apk_parent": "xli",
+          "apk_target": "xee",
+          "canonical_parent": "oaa.proto.messages.RegisterCarPropertyListenersRequest",
+          "canonical_target": "oaa.proto.messages.CarProperty",
+          "field_number": 1,
+          "relation": "trusted_parent"
+        },
+        {
+          "apk_parent": "xgk",
+          "apk_target": "xee",
+          "canonical_parent": "oaa.proto.messages.SetCarPropertyListenerResult",
+          "canonical_target": "oaa.proto.messages.CarProperty",
+          "field_number": 1,
+          "relation": "trusted_parent"
+        },
+        {
+          "apk_parent": "xlz",
+          "apk_target": "xee",
+          "canonical_parent": "oaa.proto.messages.SetCarPropertyValueRequest",
+          "canonical_target": "oaa.proto.messages.CarProperty",
+          "field_number": 1,
+          "relation": "trusted_parent"
+        },
+        {
+          "apk_parent": "xma",
+          "apk_target": "xee",
+          "canonical_parent": "oaa.proto.messages.SetCarPropertyValueResponse",
+          "canonical_target": "oaa.proto.messages.CarProperty",
+          "field_number": 1,
+          "relation": "trusted_parent"
+        },
+        {
+          "apk_parent": "xee",
+          "apk_target": "xef",
+          "canonical_parent": "oaa.proto.messages.CarProperty",
+          "canonical_target": "oaa.proto.messages.CarAreaId",
+          "field_number": 2,
+          "relation": "compatible_child"
+        }
+      ],
       "refined_candidate_count": 1,
       "resolved_apk_class": "xee",
       "source": "oaa/carcontrol/CarPropertyData.proto",
@@ -36909,6 +38193,40 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 3,
+      "graph_evidence": [
+        {
+          "apk_parent": "xeg",
+          "apk_target": "xdv",
+          "canonical_parent": "oaa.proto.messages.CarPropertyConfig",
+          "canonical_target": "oaa.proto.messages.CarPropertyAreaConfig",
+          "field_number": 7,
+          "relation": "trusted_parent"
+        },
+        {
+          "apk_parent": "xdv",
+          "apk_target": "xef",
+          "canonical_parent": "oaa.proto.messages.CarPropertyAreaConfig",
+          "canonical_target": "oaa.proto.messages.CarAreaId",
+          "field_number": 1,
+          "relation": "compatible_child"
+        },
+        {
+          "apk_parent": "xdv",
+          "apk_target": "xem",
+          "canonical_parent": "oaa.proto.messages.CarPropertyAreaConfig",
+          "canonical_target": "oaa.proto.messages.CarPropertyValue",
+          "field_number": 2,
+          "relation": "compatible_child"
+        },
+        {
+          "apk_parent": "xdv",
+          "apk_target": "xem",
+          "canonical_parent": "oaa.proto.messages.CarPropertyAreaConfig",
+          "canonical_target": "oaa.proto.messages.CarPropertyValue",
+          "field_number": 3,
+          "relation": "compatible_child"
+        }
+      ],
       "refined_candidate_count": 1,
       "resolved_apk_class": "xdv",
       "source": "oaa/carcontrol/CarPropertyData.proto",
@@ -36941,6 +38259,7 @@
       ],
       "edge_constraint_conflict": false,
       "field_count": 3,
+      "graph_evidence": [],
       "refined_candidate_count": 1,
       "resolved_apk_class": "xgj",
       "source": "oaa/carcontrol/CarControlMessages.proto",
@@ -36960,6 +38279,24 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 7,
+      "graph_evidence": [
+        {
+          "apk_parent": "xgb",
+          "apk_target": "xeg",
+          "canonical_parent": "oaa.proto.data.CarControlChannel",
+          "canonical_target": "oaa.proto.messages.CarPropertyConfig",
+          "field_number": 1,
+          "relation": "trusted_parent"
+        },
+        {
+          "apk_parent": "xgb",
+          "apk_target": "xeg",
+          "canonical_parent": "oaa.proto.messages.CarControlChannelDescriptor",
+          "canonical_target": "oaa.proto.messages.CarPropertyConfig",
+          "field_number": 1,
+          "relation": "trusted_parent"
+        }
+      ],
       "refined_candidate_count": 1,
       "resolved_apk_class": "xeg",
       "source": "oaa/carcontrol/CarPropertyData.proto",
@@ -36979,6 +38316,40 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 3,
+      "graph_evidence": [
+        {
+          "apk_parent": "xfy",
+          "apk_target": "xeh",
+          "canonical_parent": "oaa.proto.messages.CarControl",
+          "canonical_target": "oaa.proto.messages.CarPropertyControl",
+          "field_number": 1,
+          "relation": "trusted_parent"
+        },
+        {
+          "apk_parent": "xeh",
+          "apk_target": "xee",
+          "canonical_parent": "oaa.proto.messages.CarPropertyControl",
+          "canonical_target": "oaa.proto.messages.CarProperty",
+          "field_number": 1,
+          "relation": "compatible_child"
+        },
+        {
+          "apk_parent": "xeh",
+          "apk_target": "xdw",
+          "canonical_parent": "oaa.proto.messages.CarPropertyControl",
+          "canonical_target": "oaa.proto.messages.CarAction",
+          "field_number": 2,
+          "relation": "compatible_child"
+        },
+        {
+          "apk_parent": "xeh",
+          "apk_target": "xee",
+          "canonical_parent": "oaa.proto.messages.CarPropertyControl",
+          "canonical_target": "oaa.proto.messages.CarProperty",
+          "field_number": 3,
+          "relation": "compatible_child"
+        }
+      ],
       "refined_candidate_count": 1,
       "resolved_apk_class": "xeh",
       "source": "oaa/carcontrol/CarPropertyData.proto",
@@ -37002,6 +38373,40 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 8,
+      "graph_evidence": [
+        {
+          "apk_parent": "xdv",
+          "apk_target": "xem",
+          "canonical_parent": "oaa.proto.messages.CarPropertyAreaConfig",
+          "canonical_target": "oaa.proto.messages.CarPropertyValue",
+          "field_number": 2,
+          "relation": "trusted_parent"
+        },
+        {
+          "apk_parent": "xdv",
+          "apk_target": "xem",
+          "canonical_parent": "oaa.proto.messages.CarPropertyAreaConfig",
+          "canonical_target": "oaa.proto.messages.CarPropertyValue",
+          "field_number": 3,
+          "relation": "trusted_parent"
+        },
+        {
+          "apk_parent": "xgj",
+          "apk_target": "xem",
+          "canonical_parent": "oaa.proto.messages.CarPropertyChangeEvent",
+          "canonical_target": "oaa.proto.messages.CarPropertyValue",
+          "field_number": 2,
+          "relation": "trusted_parent"
+        },
+        {
+          "apk_parent": "xlz",
+          "apk_target": "xem",
+          "canonical_parent": "oaa.proto.messages.SetCarPropertyValueRequest",
+          "canonical_target": "oaa.proto.messages.CarPropertyValue",
+          "field_number": 2,
+          "relation": "trusted_parent"
+        }
+      ],
       "refined_candidate_count": 1,
       "resolved_apk_class": "xem",
       "source": "oaa/carcontrol/CarPropertyData.proto",
@@ -37290,6 +38695,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 0,
+      "graph_evidence": [],
       "refined_candidate_count": 270,
       "resolved_apk_class": null,
       "source": "oaa/control/ChannelCloseNotificationMessage.proto",
@@ -37847,6 +39253,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 0,
+      "graph_evidence": [],
       "refined_candidate_count": 270,
       "resolved_apk_class": null,
       "source": "oaa/generic/ChannelOpenAckMessage.proto",
@@ -38135,6 +39542,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 2,
+      "graph_evidence": [],
       "refined_candidate_count": 1,
       "resolved_apk_class": "xgm",
       "source": "oaa/control/ChannelOpenRequestMessage.proto",
@@ -38161,6 +39569,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 1,
+      "graph_evidence": [],
       "refined_candidate_count": 8,
       "resolved_apk_class": null,
       "source": "oaa/control/ChannelOpenResponseMessage.proto",
@@ -38182,28 +39591,28 @@
     },
     {
       "candidates": [
-        "abdx",
-        "abft",
-        "ajff",
-        "xeu",
-        "xgo",
-        "xhc",
-        "xhl",
-        "yur",
-        "ywb",
-        "yxq",
-        "yxr"
+        "xgo"
       ],
       "canonical_name": "oaa.proto.messages.ChargingStationDetails",
       "canonical_shape_count": 9,
-      "confidence": "none",
+      "confidence": "medium",
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 3,
-      "refined_candidate_count": 11,
-      "resolved_apk_class": null,
+      "graph_evidence": [
+        {
+          "apk_parent": "xix",
+          "apk_target": "xgo",
+          "canonical_parent": "oaa.proto.messages.NavigationDestination",
+          "canonical_target": "oaa.proto.messages.ChargingStationDetails",
+          "field_number": 2,
+          "relation": "trusted_parent"
+        }
+      ],
+      "refined_candidate_count": 1,
+      "resolved_apk_class": "xgo",
       "source": "oaa/navigation/NavigationNotificationMessage.proto",
-      "status": "ambiguous_structural",
+      "status": "graph_resolved",
       "structural_candidate_count": 11,
       "structural_candidates": [
         "abdx",
@@ -38227,6 +39636,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 2,
+      "graph_evidence": [],
       "refined_candidate_count": 0,
       "resolved_apk_class": null,
       "source": "oaa/control/ConnectedDevicesMessages.proto",
@@ -38259,6 +39669,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 1,
+      "graph_evidence": [],
       "refined_candidate_count": 16,
       "resolved_apk_class": null,
       "source": "oaa/control/ControlChannelConfigMessage.proto",
@@ -38312,6 +39723,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 1,
+      "graph_evidence": [],
       "refined_candidate_count": 6,
       "resolved_apk_class": null,
       "source": "oaa/navigation/VehicleEnergyForecastMessage.proto",
@@ -38336,6 +39748,16 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 3,
+      "graph_evidence": [
+        {
+          "apk_parent": "xiw",
+          "apk_target": "xiy",
+          "canonical_parent": "oaa.proto.messages.NavigationNextTurnDistanceEvent",
+          "canonical_target": "oaa.proto.messages.DestinationDistance",
+          "field_number": 2,
+          "relation": "trusted_parent"
+        }
+      ],
       "refined_candidate_count": 1,
       "resolved_apk_class": "xiy",
       "source": "oaa/navigation/NavigationTurnEventMessage.proto",
@@ -38353,6 +39775,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 3,
+      "graph_evidence": [],
       "refined_candidate_count": 0,
       "resolved_apk_class": null,
       "source": "oaa/navigation/VehicleEnergyForecastMessage.proto",
@@ -38380,6 +39803,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 3,
+      "graph_evidence": [],
       "refined_candidate_count": 11,
       "resolved_apk_class": null,
       "source": "oaa/navigation/VehicleEnergyForecastMessage.proto",
@@ -38409,6 +39833,16 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 1,
+      "graph_evidence": [
+        {
+          "apk_parent": "xem",
+          "apk_target": "xej",
+          "canonical_parent": "oaa.proto.messages.CarPropertyValue",
+          "canonical_target": "oaa.proto.messages.FloatValues",
+          "field_number": 8,
+          "relation": "trusted_parent"
+        }
+      ],
       "refined_candidate_count": 1,
       "resolved_apk_class": "xej",
       "source": "oaa/carcontrol/CarPropertyData.proto",
@@ -38426,6 +39860,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 3,
+      "graph_evidence": [],
       "refined_candidate_count": 0,
       "resolved_apk_class": null,
       "source": "oaa/verification/GalVerificationMessages.proto",
@@ -38712,6 +40147,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 0,
+      "graph_evidence": [],
       "refined_candidate_count": 270,
       "resolved_apk_class": null,
       "source": "oaa/verification/GalVerificationMessages.proto",
@@ -39005,6 +40441,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 1,
+      "graph_evidence": [],
       "refined_candidate_count": 6,
       "resolved_apk_class": null,
       "source": "oaa/verification/GalVerificationMessages.proto",
@@ -39298,6 +40735,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 0,
+      "graph_evidence": [],
       "refined_candidate_count": 270,
       "resolved_apk_class": null,
       "source": "oaa/verification/GalVerificationMessages.proto",
@@ -39593,6 +41031,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 2,
+      "graph_evidence": [],
       "refined_candidate_count": 8,
       "resolved_apk_class": null,
       "source": "oaa/verification/GalVerificationMessages.proto",
@@ -39624,6 +41063,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 1,
+      "graph_evidence": [],
       "refined_candidate_count": 6,
       "resolved_apk_class": null,
       "source": "oaa/verification/GalVerificationMessages.proto",
@@ -39655,6 +41095,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 2,
+      "graph_evidence": [],
       "refined_candidate_count": 8,
       "resolved_apk_class": null,
       "source": "oaa/verification/GalVerificationMessages.proto",
@@ -39950,6 +41391,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 0,
+      "graph_evidence": [],
       "refined_candidate_count": 270,
       "resolved_apk_class": null,
       "source": "oaa/verification/GalVerificationMessages.proto",
@@ -40243,6 +41685,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 1,
+      "graph_evidence": [],
       "refined_candidate_count": 6,
       "resolved_apk_class": null,
       "source": "oaa/verification/GalVerificationMessages.proto",
@@ -40272,6 +41715,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 1,
+      "graph_evidence": [],
       "refined_candidate_count": 6,
       "resolved_apk_class": null,
       "source": "oaa/verification/GalVerificationMessages.proto",
@@ -40294,6 +41738,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 3,
+      "graph_evidence": [],
       "refined_candidate_count": 0,
       "resolved_apk_class": null,
       "source": "oaa/verification/GalVerificationMessages.proto",
@@ -40321,6 +41766,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 1,
+      "graph_evidence": [],
       "refined_candidate_count": 11,
       "resolved_apk_class": null,
       "source": "oaa/verification/GoogleDiagnosticsMessages.proto",
@@ -40348,6 +41794,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 2,
+      "graph_evidence": [],
       "refined_candidate_count": 0,
       "resolved_apk_class": null,
       "source": "oaa/verification/GoogleDiagnosticsMessages.proto",
@@ -40374,6 +41821,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 1,
+      "graph_evidence": [],
       "refined_candidate_count": 10,
       "resolved_apk_class": null,
       "source": "oaa/input/InputBindingNotificationMessage.proto",
@@ -40416,6 +41864,7 @@
       ],
       "edge_constraint_conflict": false,
       "field_count": 1,
+      "graph_evidence": [],
       "refined_candidate_count": 1,
       "resolved_apk_class": "xhx",
       "source": "oaa/input/InputBindingRequestMessage.proto",
@@ -40447,6 +41896,7 @@
       ],
       "edge_constraint_conflict": false,
       "field_count": 1,
+      "graph_evidence": [],
       "refined_candidate_count": 1,
       "resolved_apk_class": "xhy",
       "source": "oaa/input/InputBindingResponseMessage.proto",
@@ -40478,6 +41928,7 @@
       ],
       "edge_constraint_conflict": false,
       "field_count": 6,
+      "graph_evidence": [],
       "refined_candidate_count": 1,
       "resolved_apk_class": "xhp",
       "source": "oaa/input/InputEventIndicationMessage.proto",
@@ -40495,11 +41946,12 @@
         "xlh"
       ],
       "canonical_name": "oaa.proto.messages.Insets",
-      "canonical_shape_count": 4,
+      "canonical_shape_count": 5,
       "confidence": "none",
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 4,
+      "graph_evidence": [],
       "refined_candidate_count": 4,
       "resolved_apk_class": null,
       "source": "oaa/av/UiConfigMessages.proto",
@@ -40531,6 +41983,7 @@
       ],
       "edge_constraint_conflict": false,
       "field_count": 0,
+      "graph_evidence": [],
       "refined_candidate_count": 1,
       "resolved_apk_class": "xjl",
       "source": "oaa/navigation/InstrumentClusterMessages.proto",
@@ -40828,6 +42281,7 @@
       ],
       "edge_constraint_conflict": false,
       "field_count": 0,
+      "graph_evidence": [],
       "refined_candidate_count": 1,
       "resolved_apk_class": "xjm",
       "source": "oaa/navigation/InstrumentClusterMessages.proto",
@@ -41116,6 +42570,16 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 1,
+      "graph_evidence": [
+        {
+          "apk_parent": "xem",
+          "apk_target": "xek",
+          "canonical_parent": "oaa.proto.messages.CarPropertyValue",
+          "canonical_target": "oaa.proto.messages.IntValues",
+          "field_number": 6,
+          "relation": "trusted_parent"
+        }
+      ],
       "refined_candidate_count": 1,
       "resolved_apk_class": "xek",
       "source": "oaa/carcontrol/CarPropertyData.proto",
@@ -41148,6 +42612,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 1,
+      "graph_evidence": [],
       "refined_candidate_count": 11,
       "resolved_apk_class": null,
       "source": "oaa/video/IntegratedOverlayStartNotification.proto",
@@ -41446,6 +42911,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 0,
+      "graph_evidence": [],
       "refined_candidate_count": 270,
       "resolved_apk_class": null,
       "source": "oaa/video/IntegratedOverlayStopNotification.proto",
@@ -41734,6 +43200,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 3,
+      "graph_evidence": [],
       "refined_candidate_count": 1,
       "resolved_apk_class": "ajdm",
       "source": "oaa/radio/LegacyRadioMessages.proto",
@@ -41763,6 +43230,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 1,
+      "graph_evidence": [],
       "refined_candidate_count": 11,
       "resolved_apk_class": null,
       "source": "oaa/radio/LegacyRadioMessages.proto",
@@ -41799,6 +43267,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 2,
+      "graph_evidence": [],
       "refined_candidate_count": 8,
       "resolved_apk_class": null,
       "source": "oaa/radio/LegacyRadioMessages.proto",
@@ -41832,6 +43301,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 2,
+      "graph_evidence": [],
       "refined_candidate_count": 8,
       "resolved_apk_class": null,
       "source": "oaa/radio/LegacyRadioMessages.proto",
@@ -41868,6 +43338,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 3,
+      "graph_evidence": [],
       "refined_candidate_count": 11,
       "resolved_apk_class": null,
       "source": "oaa/radio/LegacyRadioMessages.proto",
@@ -41907,6 +43378,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 1,
+      "graph_evidence": [],
       "refined_candidate_count": 11,
       "resolved_apk_class": null,
       "source": "oaa/radio/LegacyRadioMessages.proto",
@@ -41934,6 +43406,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 4,
+      "graph_evidence": [],
       "refined_candidate_count": 0,
       "resolved_apk_class": null,
       "source": "oaa/radio/LegacyRadioMessages.proto",
@@ -41961,6 +43434,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 1,
+      "graph_evidence": [],
       "refined_candidate_count": 11,
       "resolved_apk_class": null,
       "source": "oaa/radio/LegacyRadioMessages.proto",
@@ -41988,6 +43462,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 3,
+      "graph_evidence": [],
       "refined_candidate_count": 0,
       "resolved_apk_class": null,
       "source": "oaa/radio/LegacyRadioMessages.proto",
@@ -42010,6 +43485,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 1,
+      "graph_evidence": [],
       "refined_candidate_count": 6,
       "resolved_apk_class": null,
       "source": "oaa/radio/LegacyRadioMessages.proto",
@@ -42034,6 +43510,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 2,
+      "graph_evidence": [],
       "refined_candidate_count": 1,
       "resolved_apk_class": "abrm",
       "source": "oaa/radio/LegacyRadioMessages.proto",
@@ -42051,6 +43528,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 7,
+      "graph_evidence": [],
       "refined_candidate_count": 0,
       "resolved_apk_class": null,
       "source": "oaa/radio/LegacyRadioMessages.proto",
@@ -42066,6 +43544,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 7,
+      "graph_evidence": [],
       "refined_candidate_count": 0,
       "resolved_apk_class": null,
       "source": "oaa/radio/LegacyRadioMessages.proto",
@@ -42081,6 +43560,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 7,
+      "graph_evidence": [],
       "refined_candidate_count": 0,
       "resolved_apk_class": null,
       "source": "oaa/radio/LegacyRadioMessages.proto",
@@ -42096,6 +43576,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 4,
+      "graph_evidence": [],
       "refined_candidate_count": 0,
       "resolved_apk_class": null,
       "source": "oaa/radio/LegacyRadioMessages.proto",
@@ -42111,6 +43592,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 2,
+      "graph_evidence": [],
       "refined_candidate_count": 0,
       "resolved_apk_class": null,
       "source": "oaa/radio/LegacyRadioMessages.proto",
@@ -42128,6 +43610,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 3,
+      "graph_evidence": [],
       "refined_candidate_count": 1,
       "resolved_apk_class": null,
       "source": "oaa/radio/LegacyRadioMessages.proto",
@@ -42145,6 +43628,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 4,
+      "graph_evidence": [],
       "refined_candidate_count": 0,
       "resolved_apk_class": null,
       "source": "oaa/navigation/InstrumentClusterMessages.proto",
@@ -42160,6 +43644,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 2,
+      "graph_evidence": [],
       "refined_candidate_count": 0,
       "resolved_apk_class": null,
       "source": "oaa/radio/LegacyRadioMessages.proto",
@@ -42175,6 +43660,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 14,
+      "graph_evidence": [],
       "refined_candidate_count": 0,
       "resolved_apk_class": null,
       "source": "oaa/radio/LegacyRadioMessages.proto",
@@ -42199,6 +43685,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 2,
+      "graph_evidence": [],
       "refined_candidate_count": 8,
       "resolved_apk_class": null,
       "source": "oaa/radio/LegacyRadioMessages.proto",
@@ -42494,6 +43981,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 0,
+      "graph_evidence": [],
       "refined_candidate_count": 270,
       "resolved_apk_class": null,
       "source": "oaa/radio/LegacyRadioMessages.proto",
@@ -42780,6 +44268,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 2,
+      "graph_evidence": [],
       "refined_candidate_count": 0,
       "resolved_apk_class": null,
       "source": "oaa/radio/LegacyRadioMessages.proto",
@@ -42795,6 +44284,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 6,
+      "graph_evidence": [],
       "refined_candidate_count": 0,
       "resolved_apk_class": null,
       "source": "oaa/radio/LegacyRadioMessages.proto",
@@ -42810,6 +44300,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 4,
+      "graph_evidence": [],
       "refined_candidate_count": 0,
       "resolved_apk_class": null,
       "source": "oaa/radio/LegacyRadioMessages.proto",
@@ -42830,6 +44321,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 2,
+      "graph_evidence": [],
       "refined_candidate_count": 4,
       "resolved_apk_class": null,
       "source": "oaa/radio/LegacyRadioMessages.proto",
@@ -42850,6 +44342,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 4,
+      "graph_evidence": [],
       "refined_candidate_count": 0,
       "resolved_apk_class": null,
       "source": "oaa/radio/LegacyRadioMessages.proto",
@@ -42865,6 +44358,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 9,
+      "graph_evidence": [],
       "refined_candidate_count": 0,
       "resolved_apk_class": null,
       "source": "oaa/radio/LegacyRadioMessages.proto",
@@ -42880,6 +44374,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 4,
+      "graph_evidence": [],
       "refined_candidate_count": 0,
       "resolved_apk_class": null,
       "source": "oaa/radio/LegacyRadioMessages.proto",
@@ -42897,6 +44392,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 3,
+      "graph_evidence": [],
       "refined_candidate_count": 1,
       "resolved_apk_class": null,
       "source": "oaa/radio/LegacyRadioMessages.proto",
@@ -42914,6 +44410,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 3,
+      "graph_evidence": [],
       "refined_candidate_count": 0,
       "resolved_apk_class": null,
       "source": "oaa/radio/LegacyRadioMessages.proto",
@@ -42938,6 +44435,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 2,
+      "graph_evidence": [],
       "refined_candidate_count": 8,
       "resolved_apk_class": null,
       "source": "oaa/radio/LegacyRadioMessages.proto",
@@ -42974,6 +44472,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 1,
+      "graph_evidence": [],
       "refined_candidate_count": 11,
       "resolved_apk_class": null,
       "source": "oaa/radio/LegacyRadioMessages.proto",
@@ -43003,6 +44502,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 3,
+      "graph_evidence": [],
       "refined_candidate_count": 1,
       "resolved_apk_class": null,
       "source": "oaa/radio/LegacyRadioMessages.proto",
@@ -43020,6 +44520,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 3,
+      "graph_evidence": [],
       "refined_candidate_count": 0,
       "resolved_apk_class": null,
       "source": "oaa/radio/LegacyRadioMessages.proto",
@@ -43035,6 +44536,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 1,
+      "graph_evidence": [],
       "refined_candidate_count": 0,
       "resolved_apk_class": null,
       "source": "oaa/radio/LegacyRadioMessages.proto",
@@ -43050,6 +44552,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 3,
+      "graph_evidence": [],
       "refined_candidate_count": 0,
       "resolved_apk_class": null,
       "source": "oaa/radio/LegacyRadioMessages.proto",
@@ -43074,6 +44577,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 2,
+      "graph_evidence": [],
       "refined_candidate_count": 8,
       "resolved_apk_class": null,
       "source": "oaa/radio/LegacyRadioMessages.proto",
@@ -43098,6 +44602,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 3,
+      "graph_evidence": [],
       "refined_candidate_count": 0,
       "resolved_apk_class": null,
       "source": "oaa/radio/LegacyRadioMessages.proto",
@@ -43125,6 +44630,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 3,
+      "graph_evidence": [],
       "refined_candidate_count": 11,
       "resolved_apk_class": null,
       "source": "oaa/radio/LegacyRadioMessages.proto",
@@ -43161,6 +44667,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 2,
+      "graph_evidence": [],
       "refined_candidate_count": 8,
       "resolved_apk_class": null,
       "source": "oaa/radio/LegacyRadioMessages.proto",
@@ -43187,6 +44694,16 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 1,
+      "graph_evidence": [
+        {
+          "apk_parent": "xem",
+          "apk_target": "xel",
+          "canonical_parent": "oaa.proto.messages.CarPropertyValue",
+          "canonical_target": "oaa.proto.messages.LongValues",
+          "field_number": 7,
+          "relation": "trusted_parent"
+        }
+      ],
       "refined_candidate_count": 1,
       "resolved_apk_class": "xel",
       "source": "oaa/carcontrol/CarPropertyData.proto",
@@ -43207,6 +44724,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 2,
+      "graph_evidence": [],
       "refined_candidate_count": 2,
       "resolved_apk_class": null,
       "source": "oaa/mediabrowser/MediaBrowserMessages.proto",
@@ -43225,6 +44743,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 3,
+      "graph_evidence": [],
       "refined_candidate_count": 0,
       "resolved_apk_class": null,
       "source": "oaa/mediabrowser/MediaBrowserMessages.proto",
@@ -43240,6 +44759,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 4,
+      "graph_evidence": [],
       "refined_candidate_count": 0,
       "resolved_apk_class": null,
       "source": "oaa/mediabrowser/MediaBrowserMessages.proto",
@@ -43255,6 +44775,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 4,
+      "graph_evidence": [],
       "refined_candidate_count": 0,
       "resolved_apk_class": null,
       "source": "oaa/mediabrowser/MediaBrowserMessages.proto",
@@ -43272,6 +44793,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 7,
+      "graph_evidence": [],
       "refined_candidate_count": 1,
       "resolved_apk_class": "xih",
       "source": "oaa/media/MediaPlaybackMetadataMessage.proto",
@@ -43291,6 +44813,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 6,
+      "graph_evidence": [],
       "refined_candidate_count": 1,
       "resolved_apk_class": "xii",
       "source": "oaa/media/MediaPlaybackStatusMessage.proto",
@@ -43314,6 +44837,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 1,
+      "graph_evidence": [],
       "refined_candidate_count": 5,
       "resolved_apk_class": null,
       "source": "oaa/media/MediaPlaybackStatusEventMessage.proto",
@@ -43341,6 +44865,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 2,
+      "graph_evidence": [],
       "refined_candidate_count": 0,
       "resolved_apk_class": null,
       "source": "oaa/mediabrowser/MediaBrowserMessages.proto",
@@ -43358,6 +44883,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 4,
+      "graph_evidence": [],
       "refined_candidate_count": 1,
       "resolved_apk_class": null,
       "source": "oaa/mediabrowser/MediaBrowserMessages.proto",
@@ -43375,6 +44901,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 3,
+      "graph_evidence": [],
       "refined_candidate_count": 0,
       "resolved_apk_class": null,
       "source": "oaa/mediabrowser/MediaBrowserMessages.proto",
@@ -43390,6 +44917,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 3,
+      "graph_evidence": [],
       "refined_candidate_count": 0,
       "resolved_apk_class": null,
       "source": "oaa/mediabrowser/MediaBrowserMessages.proto",
@@ -43405,6 +44933,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 4,
+      "graph_evidence": [],
       "refined_candidate_count": 0,
       "resolved_apk_class": null,
       "source": "oaa/mediabrowser/MediaBrowserMessages.proto",
@@ -43423,6 +44952,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 2,
+      "graph_evidence": [],
       "refined_candidate_count": 2,
       "resolved_apk_class": null,
       "source": "oaa/mic/MicrophoneOpenResponse.proto",
@@ -43443,6 +44973,24 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 2,
+      "graph_evidence": [
+        {
+          "apk_parent": "xjg",
+          "apk_target": "xix",
+          "canonical_parent": "oaa.proto.messages.NavigationNotification",
+          "canonical_target": "oaa.proto.messages.NavigationDestination",
+          "field_number": 2,
+          "relation": "trusted_parent"
+        },
+        {
+          "apk_parent": "xix",
+          "apk_target": "xgo",
+          "canonical_parent": "oaa.proto.messages.NavigationDestination",
+          "canonical_target": "oaa.proto.messages.ChargingStationDetails",
+          "field_number": 2,
+          "relation": "compatible_child"
+        }
+      ],
       "refined_candidate_count": 1,
       "resolved_apk_class": "xix",
       "source": "oaa/navigation/NavigationNotificationMessage.proto",
@@ -43463,6 +45011,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 4,
+      "graph_evidence": [],
       "refined_candidate_count": 1,
       "resolved_apk_class": "zac",
       "source": "oaa/navigation/NavigationDistanceMessage.proto",
@@ -43482,6 +45031,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 3,
+      "graph_evidence": [],
       "refined_candidate_count": 1,
       "resolved_apk_class": "zag",
       "source": "oaa/navigation/NavigationDistanceMessage.proto",
@@ -43499,6 +45049,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 3,
+      "graph_evidence": [],
       "refined_candidate_count": 0,
       "resolved_apk_class": null,
       "source": "oaa/navigation/NavigationDistanceMessage.proto",
@@ -43517,6 +45068,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 1,
+      "graph_evidence": [],
       "refined_candidate_count": 2,
       "resolved_apk_class": null,
       "source": "oaa/navigation/NavigationDistanceMessage.proto",
@@ -43568,6 +45120,7 @@
       ],
       "edge_constraint_conflict": false,
       "field_count": 1,
+      "graph_evidence": [],
       "refined_candidate_count": 1,
       "resolved_apk_class": "xit",
       "source": "oaa/navigation/NavigationFocusRequestMessage.proto",
@@ -43611,6 +45164,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 1,
+      "graph_evidence": [],
       "refined_candidate_count": 11,
       "resolved_apk_class": null,
       "source": "oaa/navigation/NavigationFocusResponseMessage.proto",
@@ -43644,6 +45198,24 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 1,
+      "graph_evidence": [
+        {
+          "apk_parent": "xjn",
+          "apk_target": "xjb",
+          "canonical_parent": "oaa.proto.messages.NavigationStep",
+          "canonical_target": "oaa.proto.messages.NavigationLane",
+          "field_number": 3,
+          "relation": "trusted_parent"
+        },
+        {
+          "apk_parent": "xjb",
+          "apk_target": "xja",
+          "canonical_parent": "oaa.proto.messages.NavigationLane",
+          "canonical_target": "oaa.proto.messages.NavigationLaneDirection",
+          "field_number": 1,
+          "relation": "compatible_child"
+        }
+      ],
       "refined_candidate_count": 1,
       "resolved_apk_class": "xjb",
       "source": "oaa/navigation/NavigationNotificationMessage.proto",
@@ -43682,14 +45254,24 @@
       ],
       "canonical_name": "oaa.proto.messages.NavigationLaneDirection",
       "canonical_shape_count": 3,
-      "confidence": "none",
+      "confidence": "medium",
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 2,
+      "graph_evidence": [
+        {
+          "apk_parent": "xjb",
+          "apk_target": "xja",
+          "canonical_parent": "oaa.proto.messages.NavigationLane",
+          "canonical_target": "oaa.proto.messages.NavigationLaneDirection",
+          "field_number": 1,
+          "relation": "trusted_parent"
+        }
+      ],
       "refined_candidate_count": 1,
-      "resolved_apk_class": null,
+      "resolved_apk_class": "xja",
       "source": "oaa/navigation/NavigationNotificationMessage.proto",
-      "status": "ambiguous_structural",
+      "status": "graph_resolved",
       "structural_candidate_count": 2,
       "structural_candidates": [
         "xja",
@@ -43702,14 +45284,24 @@
       ],
       "canonical_name": "oaa.proto.messages.NavigationManeuver",
       "canonical_shape_count": 2,
-      "confidence": "none",
+      "confidence": "medium",
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 3,
+      "graph_evidence": [
+        {
+          "apk_parent": "xjn",
+          "apk_target": "xjc",
+          "canonical_parent": "oaa.proto.messages.NavigationStep",
+          "canonical_target": "oaa.proto.messages.NavigationManeuver",
+          "field_number": 1,
+          "relation": "trusted_parent"
+        }
+      ],
       "refined_candidate_count": 1,
-      "resolved_apk_class": null,
+      "resolved_apk_class": "xjc",
       "source": "oaa/navigation/NavigationNotificationMessage.proto",
-      "status": "ambiguous_structural",
+      "status": "graph_resolved",
       "structural_candidate_count": 1,
       "structural_candidates": [
         "xjc"
@@ -43725,6 +45317,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 3,
+      "graph_evidence": [],
       "refined_candidate_count": 1,
       "resolved_apk_class": "xiw",
       "source": "oaa/navigation/NavigationTurnEventMessage.proto",
@@ -43744,6 +45337,24 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 2,
+      "graph_evidence": [
+        {
+          "apk_parent": "xjg",
+          "apk_target": "xjn",
+          "canonical_parent": "oaa.proto.messages.NavigationNotification",
+          "canonical_target": "oaa.proto.messages.NavigationStep",
+          "field_number": 1,
+          "relation": "compatible_child"
+        },
+        {
+          "apk_parent": "xjg",
+          "apk_target": "xix",
+          "canonical_parent": "oaa.proto.messages.NavigationNotification",
+          "canonical_target": "oaa.proto.messages.NavigationDestination",
+          "field_number": 2,
+          "relation": "compatible_child"
+        }
+      ],
       "refined_candidate_count": 1,
       "resolved_apk_class": "xjg",
       "source": "oaa/navigation/NavigationNotificationMessage.proto",
@@ -43765,6 +45376,16 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 2,
+      "graph_evidence": [
+        {
+          "apk_parent": "xjo",
+          "apk_target": "xiz",
+          "canonical_parent": "oaa.proto.messages.NavigationRemainingDistance",
+          "canonical_target": "oaa.proto.messages.NavigationTurnDistance",
+          "field_number": 1,
+          "relation": "compatible_child"
+        }
+      ],
       "refined_candidate_count": 1,
       "resolved_apk_class": "xjo",
       "source": "oaa/navigation/NavigationTurnEventMessage.proto",
@@ -43785,6 +45406,16 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 1,
+      "graph_evidence": [
+        {
+          "apk_parent": "xjn",
+          "apk_target": "xiv",
+          "canonical_parent": "oaa.proto.messages.NavigationStep",
+          "canonical_target": "oaa.proto.messages.NavigationRoadInfo",
+          "field_number": 4,
+          "relation": "trusted_parent"
+        }
+      ],
       "refined_candidate_count": 1,
       "resolved_apk_class": "xiv",
       "source": "oaa/navigation/NavigationNotificationMessage.proto",
@@ -43817,6 +45448,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 1,
+      "graph_evidence": [],
       "refined_candidate_count": 10,
       "resolved_apk_class": null,
       "source": "oaa/navigation/NavigationStateMessage.proto",
@@ -43850,6 +45482,16 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 4,
+      "graph_evidence": [
+        {
+          "apk_parent": "xjg",
+          "apk_target": "xjn",
+          "canonical_parent": "oaa.proto.messages.NavigationNotification",
+          "canonical_target": "oaa.proto.messages.NavigationStep",
+          "field_number": 1,
+          "relation": "trusted_parent"
+        }
+      ],
       "refined_candidate_count": 1,
       "resolved_apk_class": "xjn",
       "source": "oaa/navigation/NavigationNotificationMessage.proto",
@@ -43869,6 +45511,24 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 2,
+      "graph_evidence": [
+        {
+          "apk_parent": "xiw",
+          "apk_target": "xjo",
+          "canonical_parent": "oaa.proto.messages.NavigationNextTurnDistanceEvent",
+          "canonical_target": "oaa.proto.messages.NavigationStepDistance",
+          "field_number": 1,
+          "relation": "trusted_parent"
+        },
+        {
+          "apk_parent": "xjo",
+          "apk_target": "xiz",
+          "canonical_parent": "oaa.proto.messages.NavigationStepDistance",
+          "canonical_target": "oaa.proto.messages.NavigationTurnDistance",
+          "field_number": 1,
+          "relation": "compatible_child"
+        }
+      ],
       "refined_candidate_count": 1,
       "resolved_apk_class": "xjo",
       "source": "oaa/navigation/NavigationTurnEventMessage.proto",
@@ -43889,6 +45549,24 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 1,
+      "graph_evidence": [
+        {
+          "apk_parent": "xiw",
+          "apk_target": "xjf",
+          "canonical_parent": "oaa.proto.messages.NavigationNextTurnDistanceEvent",
+          "canonical_target": "oaa.proto.messages.NavigationText",
+          "field_number": 3,
+          "relation": "trusted_parent"
+        },
+        {
+          "apk_parent": "xjn",
+          "apk_target": "xjf",
+          "canonical_parent": "oaa.proto.messages.NavigationStep",
+          "canonical_target": "oaa.proto.messages.NavigationText",
+          "field_number": 2,
+          "relation": "trusted_parent"
+        }
+      ],
       "refined_candidate_count": 1,
       "resolved_apk_class": "xjf",
       "source": "oaa/navigation/NavigationNotificationMessage.proto",
@@ -43913,6 +45591,32 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 3,
+      "graph_evidence": [
+        {
+          "apk_parent": "xiy",
+          "apk_target": "xiz",
+          "canonical_parent": "oaa.proto.messages.DestinationDistance",
+          "canonical_target": "oaa.proto.messages.NavigationTurnDistance",
+          "field_number": 1,
+          "relation": "trusted_parent"
+        },
+        {
+          "apk_parent": "xjo",
+          "apk_target": "xiz",
+          "canonical_parent": "oaa.proto.messages.NavigationRemainingDistance",
+          "canonical_target": "oaa.proto.messages.NavigationTurnDistance",
+          "field_number": 1,
+          "relation": "trusted_parent"
+        },
+        {
+          "apk_parent": "xjo",
+          "apk_target": "xiz",
+          "canonical_parent": "oaa.proto.messages.NavigationStepDistance",
+          "canonical_target": "oaa.proto.messages.NavigationTurnDistance",
+          "field_number": 1,
+          "relation": "trusted_parent"
+        }
+      ],
       "refined_candidate_count": 1,
       "resolved_apk_class": "xiz",
       "source": "oaa/navigation/NavigationTurnEventMessage.proto",
@@ -43930,6 +45634,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 6,
+      "graph_evidence": [],
       "refined_candidate_count": 0,
       "resolved_apk_class": null,
       "source": "oaa/navigation/NavigationTurnEventMessage.proto",
@@ -43952,6 +45657,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 1,
+      "graph_evidence": [],
       "refined_candidate_count": 6,
       "resolved_apk_class": null,
       "source": "oaa/navigation/NavigationTurnEventMessage.proto",
@@ -43976,6 +45682,16 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 6,
+      "graph_evidence": [
+        {
+          "apk_parent": "xjz",
+          "apk_target": "xjx",
+          "canonical_parent": "oaa.proto.messages.PhoneStatusUpdate",
+          "canonical_target": "oaa.proto.messages.PhoneCall",
+          "field_number": 1,
+          "relation": "trusted_parent"
+        }
+      ],
       "refined_candidate_count": 1,
       "resolved_apk_class": "xjx",
       "source": "oaa/phone/PhoneStatusMessage.proto",
@@ -43995,6 +45711,16 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 1,
+      "graph_evidence": [
+        {
+          "apk_parent": "xka",
+          "apk_target": "xhu",
+          "canonical_parent": "oaa.proto.messages.PhoneStatusInput",
+          "canonical_target": "oaa.proto.messages.PhoneInputType",
+          "field_number": 1,
+          "relation": "trusted_parent"
+        }
+      ],
       "refined_candidate_count": 1,
       "resolved_apk_class": "xhu",
       "source": "oaa/phone/PhoneStatusInputMessage.proto",
@@ -44033,6 +45759,7 @@
       ],
       "edge_constraint_conflict": false,
       "field_count": 3,
+      "graph_evidence": [],
       "refined_candidate_count": 1,
       "resolved_apk_class": "xka",
       "source": "oaa/phone/PhoneStatusInputMessage.proto",
@@ -44052,6 +45779,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 2,
+      "graph_evidence": [],
       "refined_candidate_count": 1,
       "resolved_apk_class": "xjz",
       "source": "oaa/phone/PhoneStatusMessage.proto",
@@ -44096,6 +45824,7 @@
       ],
       "edge_constraint_conflict": false,
       "field_count": 3,
+      "graph_evidence": [],
       "refined_candidate_count": 1,
       "resolved_apk_class": "xkd",
       "source": "oaa/control/PingRequestMessage.proto",
@@ -44140,6 +45869,7 @@
       ],
       "edge_constraint_conflict": false,
       "field_count": 2,
+      "graph_evidence": [],
       "refined_candidate_count": 1,
       "resolved_apk_class": "xke",
       "source": "oaa/control/PingResponseMessage.proto",
@@ -44176,6 +45906,7 @@
       ],
       "edge_constraint_conflict": false,
       "field_count": 1,
+      "graph_evidence": [],
       "refined_candidate_count": 1,
       "resolved_apk_class": "xkl",
       "source": "oaa/radio/RadioMessages.proto",
@@ -44228,6 +45959,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 1,
+      "graph_evidence": [],
       "refined_candidate_count": 11,
       "resolved_apk_class": null,
       "source": "oaa/radio/RadioMessages.proto",
@@ -44257,6 +45989,24 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 1,
+      "graph_evidence": [
+        {
+          "apk_parent": "xkn",
+          "apk_target": "xkm",
+          "canonical_parent": "oaa.proto.messages.RadioMetadata",
+          "canonical_target": "oaa.proto.messages.RadioImage",
+          "field_number": 5,
+          "relation": "trusted_parent"
+        },
+        {
+          "apk_parent": "xla",
+          "apk_target": "xkm",
+          "canonical_parent": "oaa.proto.messages.RadioSongMetadata",
+          "canonical_target": "oaa.proto.messages.RadioImage",
+          "field_number": 5,
+          "relation": "trusted_parent"
+        }
+      ],
       "refined_candidate_count": 1,
       "resolved_apk_class": "xkm",
       "source": "oaa/radio/RadioMessages.proto",
@@ -44281,6 +46031,16 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 13,
+      "graph_evidence": [
+        {
+          "apk_parent": "xks",
+          "apk_target": "xkn",
+          "canonical_parent": "oaa.proto.messages.RadioProgramInfo",
+          "canonical_target": "oaa.proto.messages.RadioMetadata",
+          "field_number": 2,
+          "relation": "trusted_parent"
+        }
+      ],
       "refined_candidate_count": 1,
       "resolved_apk_class": "xkn",
       "source": "oaa/radio/RadioMessages.proto",
@@ -44310,6 +46070,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 1,
+      "graph_evidence": [],
       "refined_candidate_count": 11,
       "resolved_apk_class": null,
       "source": "oaa/radio/RadioMessages.proto",
@@ -44356,6 +46117,7 @@
       ],
       "edge_constraint_conflict": false,
       "field_count": 1,
+      "graph_evidence": [],
       "refined_candidate_count": 1,
       "resolved_apk_class": "xkp",
       "source": "oaa/radio/RadioMessages.proto",
@@ -44385,6 +46147,24 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 2,
+      "graph_evidence": [
+        {
+          "apk_parent": "xkv",
+          "apk_target": "xkr",
+          "canonical_parent": "oaa.proto.messages.RadioProgramSelector",
+          "canonical_target": "oaa.proto.messages.RadioProgramIdentifier",
+          "field_number": 1,
+          "relation": "trusted_parent"
+        },
+        {
+          "apk_parent": "xkv",
+          "apk_target": "xkr",
+          "canonical_parent": "oaa.proto.messages.RadioProgramSelector",
+          "canonical_target": "oaa.proto.messages.RadioProgramIdentifier",
+          "field_number": 2,
+          "relation": "trusted_parent"
+        }
+      ],
       "refined_candidate_count": 1,
       "resolved_apk_class": "xkr",
       "source": "oaa/radio/RadioMessages.proto",
@@ -44404,6 +46184,48 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 2,
+      "graph_evidence": [
+        {
+          "apk_parent": "xkl",
+          "apk_target": "xks",
+          "canonical_parent": "oaa.proto.messages.RadioFavoriteListNotification",
+          "canonical_target": "oaa.proto.messages.RadioProgramInfo",
+          "field_number": 1,
+          "relation": "trusted_parent"
+        },
+        {
+          "apk_parent": "xkt",
+          "apk_target": "xks",
+          "canonical_parent": "oaa.proto.messages.RadioProgramInfoNotification",
+          "canonical_target": "oaa.proto.messages.RadioProgramInfo",
+          "field_number": 1,
+          "relation": "trusted_parent"
+        },
+        {
+          "apk_parent": "xku",
+          "apk_target": "xks",
+          "canonical_parent": "oaa.proto.messages.RadioProgramListNotification",
+          "canonical_target": "oaa.proto.messages.RadioProgramInfo",
+          "field_number": 1,
+          "relation": "trusted_parent"
+        },
+        {
+          "apk_parent": "xks",
+          "apk_target": "xkv",
+          "canonical_parent": "oaa.proto.messages.RadioProgramInfo",
+          "canonical_target": "oaa.proto.messages.RadioProgramSelector",
+          "field_number": 1,
+          "relation": "compatible_child"
+        },
+        {
+          "apk_parent": "xks",
+          "apk_target": "xkn",
+          "canonical_parent": "oaa.proto.messages.RadioProgramInfo",
+          "canonical_target": "oaa.proto.messages.RadioMetadata",
+          "field_number": 2,
+          "relation": "compatible_child"
+        }
+      ],
       "refined_candidate_count": 1,
       "resolved_apk_class": "xks",
       "source": "oaa/radio/RadioMessages.proto",
@@ -44447,6 +46269,7 @@
       ],
       "edge_constraint_conflict": false,
       "field_count": 3,
+      "graph_evidence": [],
       "refined_candidate_count": 1,
       "resolved_apk_class": "xkt",
       "source": "oaa/radio/RadioMessages.proto",
@@ -44483,6 +46306,7 @@
       ],
       "edge_constraint_conflict": false,
       "field_count": 1,
+      "graph_evidence": [],
       "refined_candidate_count": 1,
       "resolved_apk_class": "xku",
       "source": "oaa/radio/RadioMessages.proto",
@@ -44520,11 +46344,37 @@
         "xkv"
       ],
       "canonical_name": "oaa.proto.messages.RadioProgramSelector",
-      "canonical_shape_count": 1,
+      "canonical_shape_count": 2,
       "confidence": "medium",
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 2,
+      "graph_evidence": [
+        {
+          "apk_parent": "xks",
+          "apk_target": "xkv",
+          "canonical_parent": "oaa.proto.messages.RadioProgramInfo",
+          "canonical_target": "oaa.proto.messages.RadioProgramSelector",
+          "field_number": 1,
+          "relation": "trusted_parent"
+        },
+        {
+          "apk_parent": "xkv",
+          "apk_target": "xkr",
+          "canonical_parent": "oaa.proto.messages.RadioProgramSelector",
+          "canonical_target": "oaa.proto.messages.RadioProgramIdentifier",
+          "field_number": 1,
+          "relation": "compatible_child"
+        },
+        {
+          "apk_parent": "xkv",
+          "apk_target": "xkr",
+          "canonical_parent": "oaa.proto.messages.RadioProgramSelector",
+          "canonical_target": "oaa.proto.messages.RadioProgramIdentifier",
+          "field_number": 2,
+          "relation": "compatible_child"
+        }
+      ],
       "refined_candidate_count": 1,
       "resolved_apk_class": "xkv",
       "source": "oaa/radio/RadioMessages.proto",
@@ -44546,6 +46396,16 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 2,
+      "graph_evidence": [
+        {
+          "apk_parent": "xkn",
+          "apk_target": "xkw",
+          "canonical_parent": "oaa.proto.messages.RadioMetadata",
+          "canonical_target": "oaa.proto.messages.RadioProgramType",
+          "field_number": 4,
+          "relation": "trusted_parent"
+        }
+      ],
       "refined_candidate_count": 1,
       "resolved_apk_class": "xkw",
       "source": "oaa/radio/RadioMessages.proto",
@@ -44570,6 +46430,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 1,
+      "graph_evidence": [],
       "refined_candidate_count": 6,
       "resolved_apk_class": null,
       "source": "oaa/radio/RadioMessages.proto",
@@ -44594,6 +46455,16 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 6,
+      "graph_evidence": [
+        {
+          "apk_parent": "xkn",
+          "apk_target": "xla",
+          "canonical_parent": "oaa.proto.messages.RadioMetadata",
+          "canonical_target": "oaa.proto.messages.RadioSongMetadata",
+          "field_number": 6,
+          "relation": "trusted_parent"
+        }
+      ],
       "refined_candidate_count": 1,
       "resolved_apk_class": "xla",
       "source": "oaa/radio/RadioMessages.proto",
@@ -44625,6 +46496,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 1,
+      "graph_evidence": [],
       "refined_candidate_count": 13,
       "resolved_apk_class": null,
       "source": "oaa/radio/RadioMessages.proto",
@@ -44673,6 +46545,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 1,
+      "graph_evidence": [],
       "refined_candidate_count": 16,
       "resolved_apk_class": null,
       "source": "oaa/radio/RadioMessages.proto",
@@ -44738,6 +46611,7 @@
       ],
       "edge_constraint_conflict": false,
       "field_count": 1,
+      "graph_evidence": [],
       "refined_candidate_count": 1,
       "resolved_apk_class": "xlc",
       "source": "oaa/radio/RadioMessages.proto",
@@ -44780,6 +46654,7 @@
       ],
       "edge_constraint_conflict": false,
       "field_count": 1,
+      "graph_evidence": [],
       "refined_candidate_count": 1,
       "resolved_apk_class": "xli",
       "source": "oaa/carcontrol/CarControlMessages.proto",
@@ -44831,6 +46706,7 @@
       ],
       "edge_constraint_conflict": false,
       "field_count": 1,
+      "graph_evidence": [],
       "refined_candidate_count": 1,
       "resolved_apk_class": "xlj",
       "source": "oaa/carcontrol/CarControlMessages.proto",
@@ -44873,6 +46749,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 2,
+      "graph_evidence": [],
       "refined_candidate_count": 1,
       "resolved_apk_class": "xlo",
       "source": "oaa/sensor/SensorErrorMessage.proto",
@@ -44901,6 +46778,7 @@
       ],
       "edge_constraint_conflict": false,
       "field_count": 26,
+      "graph_evidence": [],
       "refined_candidate_count": 1,
       "resolved_apk_class": "xln",
       "source": "oaa/sensor/SensorEventIndicationMessage.proto",
@@ -44929,6 +46807,7 @@
       ],
       "edge_constraint_conflict": false,
       "field_count": 2,
+      "graph_evidence": [],
       "refined_candidate_count": 1,
       "resolved_apk_class": "xlq",
       "source": "oaa/sensor/SensorRequestMessage.proto",
@@ -44957,6 +46836,7 @@
       ],
       "edge_constraint_conflict": false,
       "field_count": 1,
+      "graph_evidence": [],
       "refined_candidate_count": 1,
       "resolved_apk_class": "xlr",
       "source": "oaa/sensor/SensorStartResponseMessage.proto",
@@ -45255,6 +47135,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 0,
+      "graph_evidence": [],
       "refined_candidate_count": 270,
       "resolved_apk_class": null,
       "source": "oaa/control/ServiceDiscoveryResponseMessage.proto",
@@ -45812,6 +47693,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 0,
+      "graph_evidence": [],
       "refined_candidate_count": 270,
       "resolved_apk_class": null,
       "source": "oaa/control/ServiceDiscoveryResponseMessage.proto",
@@ -46369,6 +48251,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 0,
+      "graph_evidence": [],
       "refined_candidate_count": 270,
       "resolved_apk_class": null,
       "source": "oaa/control/ServiceDiscoveryResponseMessage.proto",
@@ -46926,6 +48809,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 0,
+      "graph_evidence": [],
       "refined_candidate_count": 270,
       "resolved_apk_class": null,
       "source": "oaa/control/ServiceDiscoveryResponseMessage.proto",
@@ -47223,6 +49107,7 @@
       ],
       "edge_constraint_conflict": false,
       "field_count": 6,
+      "graph_evidence": [],
       "refined_candidate_count": 1,
       "resolved_apk_class": "xlw",
       "source": "oaa/control/ServiceDiscoveryRequestMessage.proto",
@@ -47267,6 +49152,7 @@
       ],
       "edge_constraint_conflict": false,
       "field_count": 15,
+      "graph_evidence": [],
       "refined_candidate_count": 1,
       "resolved_apk_class": "xlx",
       "source": "oaa/control/ServiceDiscoveryResponseMessage.proto",
@@ -47301,6 +49187,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 1,
+      "graph_evidence": [],
       "refined_candidate_count": 16,
       "resolved_apk_class": null,
       "source": "oaa/control/ServiceDiscoveryUpdateMessage.proto",
@@ -47344,11 +49231,37 @@
         "xgk"
       ],
       "canonical_name": "oaa.proto.messages.SetCarPropertyListenerResult",
-      "canonical_shape_count": 1,
+      "canonical_shape_count": 2,
       "confidence": "medium",
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 2,
+      "graph_evidence": [
+        {
+          "apk_parent": "xlj",
+          "apk_target": "xgk",
+          "canonical_parent": "oaa.proto.messages.RegisterCarPropertyListenersResponse",
+          "canonical_target": "oaa.proto.messages.SetCarPropertyListenerResult",
+          "field_number": 1,
+          "relation": "trusted_parent"
+        },
+        {
+          "apk_parent": "xgk",
+          "apk_target": "xee",
+          "canonical_parent": "oaa.proto.messages.SetCarPropertyListenerResult",
+          "canonical_target": "oaa.proto.messages.CarProperty",
+          "field_number": 1,
+          "relation": "compatible_child"
+        },
+        {
+          "apk_parent": "xgk",
+          "apk_target": "xin",
+          "canonical_parent": "oaa.proto.messages.SetCarPropertyListenerResult",
+          "canonical_target": "oaa.proto.enums.Status.Enum",
+          "field_number": 2,
+          "relation": "compatible_enum"
+        }
+      ],
       "refined_candidate_count": 1,
       "resolved_apk_class": "xgk",
       "source": "oaa/carcontrol/CarControlMessages.proto",
@@ -47378,6 +49291,7 @@
       ],
       "edge_constraint_conflict": false,
       "field_count": 3,
+      "graph_evidence": [],
       "refined_candidate_count": 1,
       "resolved_apk_class": "xlz",
       "source": "oaa/carcontrol/CarControlMessages.proto",
@@ -47406,6 +49320,7 @@
       ],
       "edge_constraint_conflict": false,
       "field_count": 4,
+      "graph_evidence": [],
       "refined_candidate_count": 1,
       "resolved_apk_class": "xma",
       "source": "oaa/carcontrol/CarControlMessages.proto",
@@ -47450,6 +49365,7 @@
       ],
       "edge_constraint_conflict": false,
       "field_count": 1,
+      "graph_evidence": [],
       "refined_candidate_count": 1,
       "resolved_apk_class": "xfs",
       "source": "oaa/control/ShutdownRequestMessage.proto",
@@ -47479,6 +49395,64 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 4,
+      "graph_evidence": [
+        {
+          "apk_parent": "xim",
+          "apk_target": "xfa",
+          "canonical_parent": "oaa.proto.messages.AVChannelMediaStats",
+          "canonical_target": "oaa.proto.messages.StatsEntry",
+          "field_number": 5,
+          "relation": "trusted_parent"
+        },
+        {
+          "apk_parent": "xim",
+          "apk_target": "xfa",
+          "canonical_parent": "oaa.proto.messages.AVChannelMediaStats",
+          "canonical_target": "oaa.proto.messages.StatsEntry",
+          "field_number": 6,
+          "relation": "trusted_parent"
+        },
+        {
+          "apk_parent": "xim",
+          "apk_target": "xfa",
+          "canonical_parent": "oaa.proto.messages.AVChannelMediaStats",
+          "canonical_target": "oaa.proto.messages.StatsEntry",
+          "field_number": 7,
+          "relation": "trusted_parent"
+        },
+        {
+          "apk_parent": "xim",
+          "apk_target": "xfa",
+          "canonical_parent": "oaa.proto.messages.AVChannelMediaStats",
+          "canonical_target": "oaa.proto.messages.StatsEntry",
+          "field_number": 8,
+          "relation": "trusted_parent"
+        },
+        {
+          "apk_parent": "xim",
+          "apk_target": "xfa",
+          "canonical_parent": "oaa.proto.messages.AVChannelMediaStats",
+          "canonical_target": "oaa.proto.messages.StatsEntry",
+          "field_number": 11,
+          "relation": "trusted_parent"
+        },
+        {
+          "apk_parent": "xim",
+          "apk_target": "xfa",
+          "canonical_parent": "oaa.proto.messages.AVChannelMediaStats",
+          "canonical_target": "oaa.proto.messages.StatsEntry",
+          "field_number": 12,
+          "relation": "trusted_parent"
+        },
+        {
+          "apk_parent": "xim",
+          "apk_target": "xfa",
+          "canonical_parent": "oaa.proto.messages.AVChannelMediaStats",
+          "canonical_target": "oaa.proto.messages.StatsEntry",
+          "field_number": 13,
+          "relation": "trusted_parent"
+        }
+      ],
       "refined_candidate_count": 1,
       "resolved_apk_class": "xfa",
       "source": "oaa/av/AVChannelMediaStatsMessage.proto",
@@ -47500,6 +49474,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 2,
+      "graph_evidence": [],
       "refined_candidate_count": 3,
       "resolved_apk_class": null,
       "source": "oaa/navigation/VehicleEnergyForecastMessage.proto",
@@ -47524,6 +49499,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 4,
+      "graph_evidence": [],
       "refined_candidate_count": 0,
       "resolved_apk_class": null,
       "source": "oaa/av/UiConfigMessages.proto",
@@ -47541,6 +49517,24 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 2,
+      "graph_evidence": [
+        {
+          "apk_parent": "xmn",
+          "apk_target": "xmp",
+          "canonical_parent": "oaa.proto.messages.UiConfigData",
+          "canonical_target": "oaa.proto.messages.UiConfigEntry",
+          "field_number": 1,
+          "relation": "compatible_child"
+        },
+        {
+          "apk_parent": "xmn",
+          "apk_target": "xmp",
+          "canonical_parent": "oaa.proto.messages.UiConfigData",
+          "canonical_target": "oaa.proto.messages.UiConfigEntry",
+          "field_number": 2,
+          "relation": "compatible_child"
+        }
+      ],
       "refined_candidate_count": 1,
       "resolved_apk_class": "xmn",
       "source": "oaa/video/UiConfigRequestMessage.proto",
@@ -47562,6 +49556,24 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 2,
+      "graph_evidence": [
+        {
+          "apk_parent": "xmn",
+          "apk_target": "xmp",
+          "canonical_parent": "oaa.proto.messages.UiConfigData",
+          "canonical_target": "oaa.proto.messages.UiConfigEntry",
+          "field_number": 1,
+          "relation": "trusted_parent"
+        },
+        {
+          "apk_parent": "xmn",
+          "apk_target": "xmp",
+          "canonical_parent": "oaa.proto.messages.UiConfigData",
+          "canonical_target": "oaa.proto.messages.UiConfigEntry",
+          "field_number": 2,
+          "relation": "trusted_parent"
+        }
+      ],
       "refined_candidate_count": 1,
       "resolved_apk_class": "xmp",
       "source": "oaa/video/UiConfigRequestMessage.proto",
@@ -47596,6 +49608,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 1,
+      "graph_evidence": [],
       "refined_candidate_count": 16,
       "resolved_apk_class": null,
       "source": "oaa/video/UiConfigRequestMessage.proto",
@@ -47644,6 +49657,16 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 1,
+      "graph_evidence": [
+        {
+          "apk_parent": "xmp",
+          "apk_target": "xmo",
+          "canonical_parent": "oaa.proto.messages.UiConfigEntry",
+          "canonical_target": "oaa.proto.messages.UiConfigValue",
+          "field_number": 2,
+          "relation": "trusted_parent"
+        }
+      ],
       "refined_candidate_count": 1,
       "resolved_apk_class": "xmo",
       "source": "oaa/video/UiConfigRequestMessage.proto",
@@ -47692,6 +49715,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 1,
+      "graph_evidence": [],
       "refined_candidate_count": 30,
       "resolved_apk_class": null,
       "source": "oaa/av/UiConfigMessages.proto",
@@ -47752,6 +49776,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 1,
+      "graph_evidence": [],
       "refined_candidate_count": 13,
       "resolved_apk_class": null,
       "source": "oaa/video/UpdateHuUiConfigResponse.proto",
@@ -47814,6 +49839,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 1,
+      "graph_evidence": [],
       "refined_candidate_count": 30,
       "resolved_apk_class": null,
       "source": "oaa/av/UiConfigMessages.proto",
@@ -47887,6 +49913,7 @@
       ],
       "edge_constraint_conflict": false,
       "field_count": 1,
+      "graph_evidence": [],
       "refined_candidate_count": 1,
       "resolved_apk_class": "xms",
       "source": "oaa/video/UpdateUiConfigRequestMessage.proto",
@@ -47935,6 +49962,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 1,
+      "graph_evidence": [],
       "refined_candidate_count": 1,
       "resolved_apk_class": "syl",
       "source": "oaa/control/ConnectedDevicesMessages.proto",
@@ -47952,6 +49980,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 2,
+      "graph_evidence": [],
       "refined_candidate_count": 0,
       "resolved_apk_class": null,
       "source": "oaa/control/ConnectedDevicesMessages.proto",
@@ -47967,6 +49996,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 6,
+      "graph_evidence": [],
       "refined_candidate_count": 0,
       "resolved_apk_class": null,
       "source": "oaa/navigation/VehicleEnergyForecastMessage.proto",
@@ -47989,6 +50019,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 1,
+      "graph_evidence": [],
       "refined_candidate_count": 6,
       "resolved_apk_class": null,
       "source": "oaa/navigation/VehicleEnergyForecastMessage.proto",
@@ -48030,6 +50061,7 @@
       ],
       "edge_constraint_conflict": false,
       "field_count": 2,
+      "graph_evidence": [],
       "refined_candidate_count": 1,
       "resolved_apk_class": "xnb",
       "source": "oaa/video/VideoFocusIndicationMessage.proto",
@@ -48059,6 +50091,7 @@
       ],
       "edge_constraint_conflict": false,
       "field_count": 2,
+      "graph_evidence": [],
       "refined_candidate_count": 1,
       "resolved_apk_class": "xnd",
       "source": "oaa/video/VideoFocusRequestMessage.proto",
@@ -48088,6 +50121,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 1,
+      "graph_evidence": [],
       "refined_candidate_count": 11,
       "resolved_apk_class": null,
       "source": "oaa/control/VoiceSessionRequestMessage.proto",
@@ -48119,6 +50153,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 2,
+      "graph_evidence": [],
       "refined_candidate_count": 0,
       "resolved_apk_class": null,
       "source": "oaa/wifi/WifiConnectStatusMessage.proto",
@@ -48148,6 +50183,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 1,
+      "graph_evidence": [],
       "refined_candidate_count": 13,
       "resolved_apk_class": null,
       "source": "oaa/wifi/WifiConnectionRejectionMessage.proto",
@@ -48198,6 +50234,7 @@
       ],
       "edge_constraint_conflict": false,
       "field_count": 4,
+      "graph_evidence": [],
       "refined_candidate_count": 1,
       "resolved_apk_class": "xng",
       "source": "oaa/wifi/WifiCredentialsResponseMessage.proto",
@@ -48486,6 +50523,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 0,
+      "graph_evidence": [],
       "refined_candidate_count": 270,
       "resolved_apk_class": null,
       "source": "oaa/wifi/WifiInfoRequestMessage.proto",
@@ -48774,6 +50812,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 5,
+      "graph_evidence": [],
       "refined_candidate_count": 1,
       "resolved_apk_class": null,
       "source": "oaa/wifi/WifiInfoResponseMessage.proto",
@@ -48793,6 +50832,16 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 5,
+      "graph_evidence": [
+        {
+          "apk_parent": "xns",
+          "apk_target": "xni",
+          "canonical_parent": "oaa.proto.messages.WifiSetupInfo",
+          "canonical_target": "oaa.proto.messages.WifiNetworkInfo",
+          "field_number": 5,
+          "relation": "trusted_parent"
+        }
+      ],
       "refined_candidate_count": 1,
       "resolved_apk_class": "xni",
       "source": "oaa/wifi/WifiSetupInfoMessage.proto",
@@ -48810,6 +50859,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 1,
+      "graph_evidence": [],
       "refined_candidate_count": 0,
       "resolved_apk_class": null,
       "source": "oaa/wifi/WifiPingMessage.proto",
@@ -48825,6 +50875,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 1,
+      "graph_evidence": [],
       "refined_candidate_count": 0,
       "resolved_apk_class": null,
       "source": "oaa/wifi/WifiPingMessage.proto",
@@ -48842,6 +50893,16 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 2,
+      "graph_evidence": [
+        {
+          "apk_parent": "xns",
+          "apk_target": "xnq",
+          "canonical_parent": "oaa.proto.messages.WifiSetupInfo",
+          "canonical_target": "oaa.proto.messages.WifiProjectionEndpoint",
+          "field_number": 4,
+          "relation": "trusted_parent"
+        }
+      ],
       "refined_candidate_count": 1,
       "resolved_apk_class": "xnq",
       "source": "oaa/wifi/WifiSetupInfoMessage.proto",
@@ -49065,6 +51126,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 0,
+      "graph_evidence": [],
       "refined_candidate_count": 201,
       "resolved_apk_class": null,
       "source": "oaa/wifi/WifiSecurityRequestMessage.proto",
@@ -49284,6 +51346,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 5,
+      "graph_evidence": [],
       "refined_candidate_count": 1,
       "resolved_apk_class": null,
       "source": "oaa/wifi/WifiSecurityResponseMessage.proto",
@@ -49303,6 +51366,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 5,
+      "graph_evidence": [],
       "refined_candidate_count": 1,
       "resolved_apk_class": "xns",
       "source": "oaa/wifi/WifiSetupInfoMessage.proto",
@@ -49320,6 +51384,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 2,
+      "graph_evidence": [],
       "refined_candidate_count": 0,
       "resolved_apk_class": null,
       "source": "oaa/wifi/WifiStartRequestMessage.proto",
@@ -49335,6 +51400,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 3,
+      "graph_evidence": [],
       "refined_candidate_count": 0,
       "resolved_apk_class": null,
       "source": "oaa/wifi/WifiStartResponseMessage.proto",
@@ -49352,6 +51418,7 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 6,
+      "graph_evidence": [],
       "refined_candidate_count": 1,
       "resolved_apk_class": "xnv",
       "source": "oaa/wifi/WifiVersionRequestMessage.proto",
@@ -49369,12 +51436,39 @@
       "dispatch_evidence": [],
       "edge_constraint_conflict": false,
       "field_count": 7,
+      "graph_evidence": [],
       "refined_candidate_count": 0,
       "resolved_apk_class": null,
       "source": "oaa/wifi/WifiVersionResponseMessage.proto",
       "status": "not_found",
       "structural_candidate_count": 0,
       "structural_candidates": []
+    }
+  ],
+  "resolved_parent_child_schema_differences": [
+    {
+      "apk_child": "xmz",
+      "apk_parent": "xik",
+      "canonical_child": "oaa.proto.data.VideoConfig",
+      "canonical_child_status": "not_found",
+      "canonical_parent": "oaa.proto.data.AVChannel",
+      "field_number": 4,
+      "schema_difference": {
+        "changed_fields": [],
+        "extra_fields": [],
+        "missing_fields": [
+          {
+            "base_type": "uint32",
+            "map": false,
+            "number": 7,
+            "oneof": false,
+            "packed": false,
+            "repeated": false,
+            "required": false
+          }
+        ],
+        "syntax": null
+      }
     }
   ],
   "summary": {
@@ -49384,14 +51478,15 @@
     "high_confidence": 39,
     "lineage_anchors": 6,
     "lineage_invalidations": 6,
-    "medium_confidence": 112,
-    "resolved": 151,
+    "medium_confidence": 136,
+    "resolved": 175,
+    "resolved_parent_child_schema_differences": 1,
     "status_counts": {
-      "ambiguous_structural": 166,
+      "ambiguous_structural": 149,
       "dispatch_resolved": 21,
-      "graph_resolved": 51,
-      "not_found": 56,
-      "unique_structural": 61,
+      "graph_resolved": 73,
+      "not_found": 52,
+      "unique_structural": 63,
       "unique_structural_dispatch_confirmed": 18
     },
     "unique_enum_domains": 13

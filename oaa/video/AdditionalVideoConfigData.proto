@@ -5,7 +5,7 @@
 /*
  * Discovered via APK analysis (wcb in 16.2, wcm in 16.1)
  * Additional video configuration for AV channel setup.
- * Includes resolution ranges, UI theme, and display element preferences.
+ * Includes display insets, UI theme, and display element preferences.
  */
 
 syntax="proto2";
@@ -15,23 +15,16 @@ package oaa.proto.data;
 // confidence: gold [deep_trace_verified, 16.2_jadx]
 message AdditionalVideoConfig
 {
-    optional VideoResolutionRange min_resolution = 1; // APK: vxn (16.2), vyb (16.1) — minimum supported resolution  // confidence: gold [deep_trace_verified, 16.2_jadx]
-    optional VideoResolutionRange max_resolution = 2; // APK: vxn (16.2) — maximum supported resolution  // confidence: gold [deep_trace_verified, 16.2_jadx]
-    optional VideoResolutionRange preferred_resolution = 3; // APK: vxn (16.2) — preferred resolution  // confidence: gold [deep_trace_verified, 16.2_jadx]
+    // These three fields were historically mislabeled as resolution ranges.
+    // Phone-side display construction consumes all three as Rect-style insets.
+    optional VideoInsets display_insets = 1; // 17.3: xml.d -> xht; bounds used by itl.c  // confidence: gold [17.1_semantic_trace, 17.3_semantic_trace]
+    optional VideoInsets field_2_insets = 2; // 17.3: xml.e -> xht  // confidence: gold [17.1_semantic_trace, 17.3_jadx]
+    optional VideoInsets field_3_insets = 3; // 17.3: xml.f -> xht  // confidence: gold [17.1_semantic_trace, 17.3_jadx]
     optional UITheme ui_theme = 4; // APK: wcr enum (16.1) — light/dark/auto (0=auto, 1=light, 2=dark)  // confidence: gold [deep_trace_verified, 16.2_jadx]
     repeated UIElement hidden_ui_elements = 5; // APK: wcn enum — elements phone should hide  // confidence: gold [deep_trace_verified, 16.2_jadx]
     repeated VideoResizeAction resize_actions = 6; // APK: vux (16.2), vvl (16.1) — supported resize behaviors  // confidence: gold [deep_trace_verified, 16.2_jadx]
     repeated VideoMarginConfig margin_configs = 7; // APK: vwp (16.2), vxd (16.1) — margin/inset configs  // confidence: gold [deep_trace_verified, 16.2_jadx]
-}
-
-// APK class: vxn (16.2), vyb (16.1) — resolution dimensions (width x height x density x fps)
-// confidence: gold [deep_trace_verified, 16.2_jadx]
-message VideoResolutionRange
-{
-    optional uint32 width = 1;  // confidence: gold [deep_trace_verified, 16.2_jadx]
-    optional uint32 height = 2;  // confidence: gold [deep_trace_verified, 16.2_jadx]
-    optional uint32 density = 3;  // confidence: gold [deep_trace_verified, 16.2_jadx]
-    optional uint32 fps = 4;  // confidence: gold [deep_trace_verified, 16.2_jadx]
+    optional BlendedUIConfig blended_ui_config = 8; // 17.1: xol.k -> xhj; 17.3: xml.k -> xfi  // confidence: gold [17.1_semantic_trace, 17.3_jadx]
 }
 
 // APK class: vux (16.2), vvl (16.1) — video resize action wrapper
@@ -45,17 +38,58 @@ message VideoResizeAction
 // confidence: gold [deep_trace_verified, 16.2_jadx]
 message VideoMarginConfig
 {
-    optional VideoInsets insets = 1;  // confidence: gold [deep_trace_verified, 16.2_jadx]
+    optional UIElementPosition insets = 1; // 17.3: xgv.b -> xlh  // confidence: gold [17.1_semantic_trace, 17.3_jadx]
 }
 
-// APK class: way (16.2), wbi (16.1) — inset values (top/bottom/left/right)
+// APK class: vxn (16.2), vyb (16.1), xht (17.3) — display inset values
 // confidence: gold [deep_trace_verified, 16.2_jadx]
 message VideoInsets
 {
-    optional uint32 left = 1;  // confidence: gold [deep_trace_verified, 16.2_jadx]
-    optional uint32 top = 2;  // confidence: gold [deep_trace_verified, 16.2_jadx]
-    optional uint32 right = 3;  // confidence: gold [deep_trace_verified, 16.2_jadx]
-    optional uint32 bottom = 4;  // confidence: gold [deep_trace_verified, 16.2_jadx]
+    optional uint32 top = 1;  // Rect conversion: new Rect(field3, field1, field4, field2)  // confidence: gold [17.1_semantic_trace, 17.3_semantic_trace]
+    optional uint32 bottom = 2;  // confidence: gold [17.1_semantic_trace, 17.3_semantic_trace]
+    optional uint32 left = 3;  // confidence: gold [17.1_semantic_trace, 17.3_semantic_trace]
+    optional uint32 right = 4;  // confidence: gold [17.1_semantic_trace, 17.3_semantic_trace]
+}
+
+// Rect-style coordinates used by margin configs and native UI elements. The
+// generated APK keeps this as a distinct message type from VideoInsets even
+// though the two messages have the same wire shape.
+message UIElementPosition
+{
+    optional uint32 top = 1;  // confidence: gold [17.1_semantic_trace, 17.3_semantic_trace]
+    optional uint32 bottom = 2;  // confidence: gold [17.1_semantic_trace, 17.3_semantic_trace]
+    optional uint32 left = 3;  // confidence: gold [17.1_semantic_trace, 17.3_semantic_trace]
+    optional uint32 right = 4;  // confidence: gold [17.1_semantic_trace, 17.3_semantic_trace]
+}
+
+// Blended native/projected UI layout. Converted directly to
+// CarDisplayBlendedUiConfig by the phone display pipeline.
+message BlendedUIConfig
+{
+    optional DisplayCornerRadii corner_radii = 1; // 17.3: xfi.c -> xgs  // confidence: gold [17.1_semantic_trace, 17.3_jadx]
+    repeated NativeUIElement native_ui_elements = 2; // 17.3: xfi.d -> xir  // confidence: gold [17.1_semantic_trace, 17.3_jadx]
+}
+
+message DisplayCornerRadii
+{
+    optional uint32 top_left = 1;  // confidence: gold [17.1_semantic_trace]
+    optional uint32 top_right = 2;  // confidence: gold [17.1_semantic_trace]
+    optional uint32 bottom_left = 3;  // confidence: gold [17.1_semantic_trace]
+    optional uint32 bottom_right = 4;  // confidence: gold [17.1_semantic_trace]
+}
+
+message NativeUIElement
+{
+    optional UIElementPosition position = 1; // 17.3: xir.c -> xlh; converted to android.graphics.Rect  // confidence: gold [17.1_semantic_trace, 17.3_semantic_trace]
+    optional NativeUIElementType element_type = 2; // Runtime accepts numeric values 1-3  // confidence: silver [17.1_semantic_trace, 17.3_semantic_trace]
+}
+
+enum NativeUIElementType
+{
+    NATIVE_UI_ELEMENT_UNKNOWN = 0;
+    NATIVE_UI_ELEMENT_TYPE_1 = 1;
+    NATIVE_UI_ELEMENT_TYPE_2 = 2;
+    NATIVE_UI_ELEMENT_TYPE_3 = 3;
 }
 
 // APK class: wcr
