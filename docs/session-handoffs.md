@@ -3128,3 +3128,72 @@ Fix Round 1:
   and 1,807 deselected in 10.25s
 - Fresh `make PYTHON=.venv/bin/python test-release` -> exit 0; 736 passed in
   29.44s
+
+Final Review Fix Wave:
+- What changed: added a repository regression that rejects every non-unverified
+  `confidence:` label in a proto without an audit sidecar; normalized or
+  removed 12 unsupported manual label occurrences across the 11 affected
+  no-sidecar protos; enabled pytest skip summaries on both authoritative
+  aggregate/integration Make targets; replaced evidence-derived composite
+  discovery with an explicit 20-proto inventory and exact-token evidence
+  matching; and isolated the live 16.4 matcher test's copied mapping input,
+  generated mapping, and candidate report under `tmp_path`
+- Why: the final whole-branch review found four false-green/data-safety gaps:
+  legacy labels escaped the canonical renderer, Make hid the evidence-boundary
+  reasons, substring matching and evidence-derived inventory could hide lost
+  grouping coverage, and an asset-rich verification run could overwrite two
+  tracked matcher artifacts
+- Status: all scoped fixes and repository gates are green. The aggregate gate
+  reports 1,810 passed and 3 expected APK-index skips; release selection reports
+  736 passed; annotation rendering reports 247 files and `Changed: 0`; all three
+  integration skip entries print their exact reasons. No proto schema, audit
+  YAML, tier policy, evidence, dist workflow, or production matcher behavior
+  changed
+- Next steps: (1) run the scoped final re-review, (2) open the integration pull
+  request if that review is clean, and (3) merge only after GitHub Actions passes
+- RED annotation policy: `PYTHONPATH=. .venv/bin/python -m pytest -q
+  analysis/tools/seed_import/tests/test_proto_annotations_match_sidecars.py -k
+  without_sidecars` -> 1 failed / 247 deselected and listed all 12 unsupported
+  labels across 11 no-sidecar protos
+- GREEN annotation policy: the same focused selection -> 1 passed / 247
+  deselected; the complete annotation/grouping slice -> 273 passed
+- RED Make output: `make PYTHON=.venv/bin/python test-integration` followed by
+  a missing-reason scan -> pytest reported 3 skipped / 1,808 deselected but the
+  scan found zero exact missing-snapshot reason lines
+- GREEN Make output: the final authoritative target -> 3 skipped / 1,810
+  deselected and exactly three printed reason lines: two
+  `missing ignored APK-index SQLite snapshot(s): 15.9, 16.1, 16.4` entries and
+  one `missing ignored APK-index SQLite snapshot: Android Auto 16.4.661014`
+- RED grouping: the exact-token regression reported both `CarControl` and
+  `CarControlGroup` for evidence containing only `CarControlGroup`; the lost-
+  evidence composite fixture disappeared from the old evidence-derived
+  inventory
+- GREEN grouping: `PYTHONPATH=. .venv/bin/python -m pytest -q
+  analysis/tools/seed_import/tests/test_seed_import_grouping.py` -> 25 passed;
+  the 20-entry manifest remains stable independently of evidence, and the
+  synthetic one-message-evidence composite is inventoried and rejected
+- RED matcher isolation: a focused boundary assertion proved the imported
+  `MAPPING_YAML` and `CANDIDATES_MD` paths resolved outside a temporary
+  directory before monkeypatching
+- GREEN matcher isolation: the marked snapshot test skips before copying or
+  importing matcher work when indexes are absent; its asset-present branch now
+  reads a copied temp input, writes two distinct temp outputs, asserts them,
+  retains every matcher-result assertion, and asserts tracked bytes unchanged.
+  The local skip run left tracked hashes at
+  `04144b9c72afdbdc8b3235ab1c901a47d33ce01889f649fce40bfd156dc2e784`
+  (mapping) and
+  `997e754385542930fa5c1ba303ff8774865045df341931c00655f4a486d5a4ad`
+  (report)
+- Final `make PYTHON=.venv/bin/python verify` -> exit 0; 1,810 passed and 3
+  expected skips in 47.75s; annotation totals were 247 files, 168 with audit,
+  79 without audit, and `Changed: 0`
+- Final `make PYTHON=.venv/bin/python test-release` -> exit 0; 736 passed in
+  28.36s
+- Final `make PYTHON=.venv/bin/python test-integration` plus exact reason-count
+  assertion -> exit 0; 3 skipped / 1,810 deselected in 8.96s and three reason
+  lines printed
+- Final standalone annotation check -> exit 0; 247 files and `Changed: 0`
+- Final descriptor comparison -> 247 protos; pre/post files are both 105,152
+  bytes, byte-identical, SHA-256
+  `50ebb5948d14e543e9d8d24c3d9f61ed57fd4cd76be2593627e8a64bcf38de59`
+- Final `git diff --check` -> exit 0

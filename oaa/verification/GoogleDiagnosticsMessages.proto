@@ -15,7 +15,7 @@
 //
 // Source: opencardev/aasdk (GoogleDiagnosticsVendorExtensionMessageId enum,
 //         GoogleDiagnostics* message definitions)
-// Confidence: silver [cross_referenced, dhu_only]
+// Confidence: unverified
 
 syntax = "proto2";
 

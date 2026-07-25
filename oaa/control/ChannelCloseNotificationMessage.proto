@@ -19,7 +19,7 @@
  *
  * Cross-referenced: opencardev/aasdk (identical empty message)
  *
- * confidence: gold [deep_trace, transport_layer, 16.2 verified]
+ * confidence: unverified
  */
 
 syntax = "proto2";

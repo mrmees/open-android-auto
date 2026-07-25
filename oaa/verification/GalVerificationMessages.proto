@@ -17,7 +17,7 @@
 //
 // Source: opencardev/aasdk (GalVerificationVendorExtensionMessageId enum,
 //         GalVerification* message definitions)
-// Confidence: silver [cross_referenced, dhu_only]
+// Confidence: unverified
 // This is DHU testing infrastructure, not present in the phone APK.
 
 syntax = "proto2";
@@ -58,7 +58,7 @@ message GalVerificationSetSensor {
 // confidence: unverified
 message GalVerificationMediaSinkStatus {
     optional int32 channel = 1;  // confidence: unverified
-    optional int32 status  = 2; // media Config.Status value; confidence: bronze [external_reference]  // confidence: unverified
+    optional int32 status  = 2; // media Config.Status value  // confidence: unverified
 }
 
 // Controls video focus state for testing.

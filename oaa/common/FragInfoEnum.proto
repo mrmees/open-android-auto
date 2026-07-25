@@ -19,7 +19,7 @@
  * Source: opencardev/aasdk (GPLv3)
  * Original: aap_protobuf/service/control/message/FragInfo.proto
  *
- * confidence: silver [cross_referenced, aasdk_confirmed]
+ * confidence: unverified
  */
 
 syntax = "proto2";

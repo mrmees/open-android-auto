@@ -15,7 +15,7 @@
  * Source: opencardev/aasdk (GPLv3), adapted to oaa conventions
  * Original: aap_protobuf/service/mediabrowser/MediaBrowserMessageId.proto
  *
- * confidence: silver [cross_referenced, apk_confirmed_dead]
+ * confidence: unverified
  */
 
 syntax = "proto2";

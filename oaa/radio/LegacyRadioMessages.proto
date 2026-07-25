@@ -33,7 +33,7 @@
  *     StationPreset, RadioProperties, TrafficIncident all completely absent)
  *   - XM/Sirius, OIRT, RBDS: zero references in entire APK
  *
- * confidence: bronze [external_reference, legacy_api, confirmed_dead_in_16.2]
+ * confidence: unverified
  */
 
 syntax = "proto2";

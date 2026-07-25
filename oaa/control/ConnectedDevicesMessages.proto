@@ -28,7 +28,7 @@
  * Our proto3 version offsets to non-negative (proto3 enum requirement).
  * Original values: OK=0, errors=-1 through -9.
  *
- * confidence: silver [cross_referenced, msg_ids_confirmed, no_implementation]
+ * confidence: unverified
  */
 
 syntax = "proto3";

@@ -26,7 +26,7 @@
  * Source: opencardev/aasdk (GPLv3), cross-referenced with AA APK
  * Original: aap_protobuf/shared/SessionConfiguration.proto
  *
- * confidence: gold [deep_trace, 16.2 verified]
+ * confidence: unverified
  */
 
 syntax = "proto2";

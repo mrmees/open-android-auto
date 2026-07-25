@@ -19,7 +19,7 @@
  * Source: opencardev/aasdk (GPLv3), cross-referenced with AA APK
  * Original: aap_protobuf/shared/LocationCharacterization.proto
  *
- * confidence: silver [cross_referenced, apk_field_confirmed]
+ * confidence: unverified
  */
 
 syntax = "proto2";

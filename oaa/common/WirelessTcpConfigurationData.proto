@@ -25,7 +25,7 @@
  * Source: opencardev/aasdk (GPLv3)
  * Original: aap_protobuf/service/control/message/WirelessTcpConfiguration.proto
  *
- * confidence: bronze [external_reference, legacy_external_only]
+ * confidence: unverified
  */
 
 syntax = "proto2";

@@ -17,13 +17,13 @@ RELEASE_TESTS := \
 .PHONY: test test-release test-integration proto-check annotation-check verify
 
 test:
-	$(PYTEST) -q analysis/tools
+	$(PYTEST) -q -ra analysis/tools
 
 test-release:
 	$(PYTEST) -q $(RELEASE_TESTS)
 
 test-integration:
-	$(PYTEST) -q -m apk_index_integration analysis/tools
+	$(PYTEST) -q -rs -m apk_index_integration analysis/tools
 
 proto-check:
 	@descriptor="$$(mktemp)"; \
