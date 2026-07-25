@@ -77,6 +77,30 @@ def test_check_mode_reports_drift_without_writing(tmp_path: Path):
     assert proto_path.read_text() == PROTO
 
 
+def test_crlf_proto_is_preserved_by_check_repair_and_idempotence(tmp_path: Path):
+    """Catches text I/O that translates stored CRLF proto newlines to LF."""
+    proto_path = tmp_path / "Example.proto"
+    crlf_content = PROTO.replace("\n", "\r\n")
+    proto_path.write_bytes(crlf_content.encode())
+    original_bytes = proto_path.read_bytes()
+
+    check_before_repair = annotate.annotate_proto(proto_path, AUDIT, check=True)
+    expected, _ = annotate.render_annotated_content(crlf_content, AUDIT)
+    repair = annotate.annotate_proto(proto_path, AUDIT)
+    repaired_bytes = proto_path.read_bytes()
+    check_after_repair = annotate.annotate_proto(proto_path, AUDIT, check=True)
+    second_repair = annotate.annotate_proto(proto_path, AUDIT)
+
+    assert check_before_repair["changed"] is True
+    assert original_bytes == crlf_content.encode()
+    assert repaired_bytes == expected.encode()
+    assert b"\n" not in repaired_bytes.replace(b"\r\n", b"")
+    assert repair["changed"] is True
+    assert check_after_repair["changed"] is False
+    assert second_repair["changed"] is False
+    assert proto_path.read_bytes() == repaired_bytes
+
+
 def test_cli_check_prints_exact_drifting_path_and_returns_one(tmp_path: Path, capsys):
     """Catches a drift CLI that hides the affected proto path or exits successfully."""
     proto_path = tmp_path / "Example.proto"

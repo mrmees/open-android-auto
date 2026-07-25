@@ -161,12 +161,14 @@ def annotate_proto(
     check: bool = False,
 ) -> dict[str, int | bool]:
     """Write generated content, or report drift without writing in check mode."""
-    content = proto_path.read_text()
+    with proto_path.open(encoding='utf-8', newline='') as proto_file:
+        content = proto_file.read()
     rendered, stats = render_annotated_content(content, audit)
     changed = rendered != content
 
     if changed and not check:
-        proto_path.write_text(rendered)
+        with proto_path.open('w', encoding='utf-8', newline='') as proto_file:
+            proto_file.write(rendered)
 
     return {**stats, 'changed': changed}
 
