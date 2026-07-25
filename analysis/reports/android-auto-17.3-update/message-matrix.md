@@ -24,20 +24,20 @@
 | DIR-CC-8005 | car control | 0x8005 / 32773 | CarPropertyChangeEvent | `xgj` | receive/parse: converts and caches property state, then notifies listeners | HU -> Phone | `ixb.java:131-143`; `iip.java:603-694`; `xgj.java:7-10,29` | Canonical proto/docs/report say Phone -> HU (Gold in the report); 17.3 directly parses on the phone. | confirmed-static | Keep ID, name, and schema; reverse canonical direction to HU -> Phone. |
 | DIR-CC-8006 | car control | 0x8006 / 32774 | CarActionNotification | `xfw` | send: wraps a car-action ID; an inbound copy is explicitly unexpected | Phone -> HU | `iip.java:568-591`; `ixb.java:95-99`; `xfw.java:7-8,27`; `xdw.java:7-8,27` | Canonical proto/docs/report say HU -> Phone (Gold in the report); 17.3 directly sends, while its phone receive branch rejects the ID as unexpected. | confirmed-static | Keep ID, name, and schema; reverse canonical direction to Phone -> HU. |
 | DIR-CC-8007 | car control | 0x8007 / 32775 | CarControlGroupUpdate | `xga` | receive/parse: replaces the group by type and notifies group listeners | HU -> Phone | `ixb.java:162-178`; `iip.java:216-225,594-600`; `xga.java:7-8,27`; `xfz.java:7-9,28` | Canonical proto/docs/report say Phone -> HU (Gold in the report); 17.3 directly parses on the phone. | confirmed-static | Keep ID, name, and schema; reverse canonical direction to HU -> Phone. |
-| DIR-SEN-8001 | | | | | | | | | open | |
-| DIR-SEN-8002 | | | | | | | | | open | |
-| DIR-SEN-8003 | | | | | | | | | open | |
-| DIR-SEN-8004 | | | | | | | | | open | |
-| DIR-RAD-801A | | | | | | | | | open | |
-| DIR-RAD-801B | | | | | | | | | open | |
-| DIR-RAD-801C | | | | | | | | | open | |
-| DIR-RAD-801D | | | | | | | | | open | |
-| DIR-RAD-801E | | | | | | | | | open | |
-| DIR-RAD-801F | | | | | | | | | open | |
-| DIR-RAD-8020 | | | | | | | | | open | |
-| DIR-RAD-8021 | | | | | | | | | open | |
-| DIR-RAD-8022 | | | | | | | | | open | |
-| DIR-RAD-8023 | | | | | | | | | open | |
+| DIR-SEN-8001 | sensor | 0x8001 / 32769 | SensorRequest | `xlq` | send: builds sensor-type enum and refresh interval, then waits for response | Phone -> HU | `jal.java:15-18,545-597`; `ijm.java:128-149`; `ijl.java:97-106`; `xlq.java:7-10,29` | Canonical proto/channel already agree; the 16.x verification report says HU -> Phone. | confirmed-static | Keep ID, name, schema, and Phone -> HU direction; correct the inverted verification-report row. |
+| DIR-SEN-8002 | sensor | 0x8002 / 32770 | SensorStartResponse | `xlr` | receive/parse: consumes status and releases the pending request semaphore | HU -> Phone | `jal.java:15-18,190-226`; `xlr.java:7-9,28` | Canonical proto/channel already agree; the 16.x verification report says Phone -> HU. | confirmed-static | Keep ID, name, schema, and HU -> Phone direction; correct the inverted verification-report row. |
+| DIR-SEN-8003 | sensor | 0x8003 / 32771 | SensorEventIndication | `xln` | receive/parse: dispatches 26 repeated sensor-data fields by sensor type | HU -> Phone | `jal.java:15-18,248-252,308-428`; `xln.java:7-33,78-79` | Canonical proto/channel already agree; the 16.x verification report says Phone -> HU. | confirmed-static | Keep ID, name, schema, and HU -> Phone direction; correct the inverted verification-report row. |
+| DIR-SEN-8004 | sensor | 0x8004 / 32772 | SensorError | `xlo` | receive/parse: logs sensor type and sensor-error status | HU -> Phone | `jal.java:15-18,253-284`; `xlo.java:7-10,29` | Canonical proto/channel already agree; the 16.x verification report says Phone -> HU. | confirmed-static | Keep ID, name, schema, and HU -> Phone direction; correct the inverted verification-report row. |
+| DIR-RAD-801A | radio | 0x801A / 32794 | RadioProgramListNotification | `xku` | receive/parse: dispatches repeated program-info entries | HU -> Phone | `jai.java:23-43`; `xku.java:7,26`; `xks.java:7-10,28` | Canonical proto, catalog, and verification table agree; 17.3 class is `xku` rather than 16.2 `wam`. Channel prose at `docs/channels/radio.md:59` reverses the sender. | confirmed-static | No canonical change to the mapping: keep ID, name, schema, and HU -> Phone; correct the contradictory channel prose. |
+| DIR-RAD-801B | radio | 0x801B / 32795 | RadioProgramInfoNotification | `xkt` | receive/parse: dispatches program info, mute state, and audio-focus state | HU -> Phone | `jai.java:63-87`; `xkt.java:7-10,29`; `xks.java:7-10,28` | Canonical proto, catalog, and verification table agree; 17.3 class is `xkt` rather than 16.2 `wal`. Tune/seek prose at `docs/channels/radio.md:406,412` reverses the sender. | confirmed-static | No canonical change to the mapping: keep ID, name, schema, and HU -> Phone; correct the contradictory workflow prose. |
+| DIR-RAD-801C | radio | 0x801C / 32796 | RadioMuteRequest | `xko` | send: builds requested mute boolean; inbound copy is unhandled | Phone -> HU | `iji.java:274-287`; `jai.java:106-110`; `xko.java:7-8,27` | Canonical proto, catalog, and verification table agree; 17.3 class is `xko` rather than 16.2 `wag`. Narrative at `docs/channels/radio.md:89,416` reverses the sender. | confirmed-static | No canonical change to the mapping: keep ID, name, schema, and Phone -> HU; correct the contradictory channel prose. |
+| DIR-RAD-801D | radio | 0x801D / 32797 | RadioMuteResponse | `xkp` | receive/parse: dispatches confirmed mute state | HU -> Phone | `jai.java:111-130`; `xkp.java:7-8,27` | Canonical proto, catalog, and verification table agree; 17.3 class is `xkp` rather than 16.2 `wah`. Narrative at `docs/channels/radio.md:103,417` reverses the sender. | confirmed-static | No canonical change to the mapping: keep ID, name, schema, and HU -> Phone; correct the contradictory channel prose. |
+| DIR-RAD-801E | radio | 0x801E / 32798 | RadioTuneRequest | `xlb` | send: builds program selector with primary and repeated secondary identifiers; inbound copy is unhandled | Phone -> HU | `iji.java:390-415`; `jai.java:106-110`; `xlb.java:7-8,27`; `xkv.java:7-9,28`; `xkr.java:7-10,28` | Canonical proto, catalog, and verification table agree; 17.3 class is `xlb` rather than 16.2 `wat`. Narrative at `docs/channels/radio.md:117,404` reverses the sender. | confirmed-static | No canonical change to the mapping: keep ID, name, schema, and Phone -> HU; correct the contradictory channel prose. |
+| DIR-RAD-801F | radio | 0x801F / 32799 | RadioTuneResponse | `xlc` | receive/parse: dispatches tune-status enum, defaulting unset to success | HU -> Phone | `jai.java:149-168`; `xlc.java:7-8,27` | Canonical proto, catalog, and verification table agree; 17.3 class is `xlc` rather than 16.2 `wau`. Narrative at `docs/channels/radio.md:131,405,412` reverses the sender and assigns tuner execution to the phone. | confirmed-static | No canonical change to the mapping: keep ID, name, schema, and HU -> Phone; correct the contradictory workflow/ownership prose. |
+| DIR-RAD-8020 | radio | 0x8020 / 32800 | RadioFavoriteListNotification | `xkl` | receive/parse: dispatches repeated favorite program-info entries | HU -> Phone | `jai.java:187-205`; `xkl.java:7,26`; `xks.java:7-10,28` | Canonical proto, catalog, and verification table agree; 17.3 class is `xkl` rather than 16.2 `wad`. Favorite-flow prose at `docs/channels/radio.md:422` reverses the sender. | confirmed-static | No canonical change to the mapping: keep ID, name, schema, and HU -> Phone; correct the contradictory workflow prose. |
+| DIR-RAD-8021 | radio | 0x8021 / 32801 | RadioFavoriteToggleRequest | `xky` | send: builds requested favorite boolean | Phone -> HU | `iji.java:349-362`; `xky.java:7-8,27` | Canonical proto, catalog, and verification table agree; 17.3 class is `xky` rather than 16.2 `waq`. Narrative at `docs/channels/radio.md:159,421` reverses the sender. | confirmed-static | No canonical change to the mapping: keep ID, name, schema, and Phone -> HU; correct the contradictory channel prose. |
+| DIR-RAD-8022 | radio | 0x8022 / 32802 | RadioTuneDirectionRequest | `xkz` | send: builds tune-direction enum | Phone -> HU | `iji.java:370-387`; `xkz.java:7-8,27` | Canonical proto, catalog, and verification table agree; 17.3 class is `xkz` rather than 16.2 `war`. Narrative at `docs/channels/radio.md:173,411-412` reverses endpoint ownership. | confirmed-static | No canonical change to the mapping: keep ID, name, schema, and Phone -> HU; correct the contradictory workflow prose. |
+| DIR-RAD-8023 | radio | 0x8023 / 32803 | RadioSearchRequest | `xkk` | send: builds field-1 search/custom-action string | Phone -> HU | `iji.java:290-303`; `xkk.java:7-8,27` | Canonical ID, name, one-string schema, direction, and search action agree; 17.3 class is `xkk` rather than 16.2 `wac`. | confirmed-static | No canonical change: keep ID, name, schema, Phone -> HU direction, and added-in-16.2 history. |
 | ID-AV-F6 | | | | | | | | | open | |
 | ID-INPUT-F5 | | | | | | | | | open | |
 | ID-CD-F16 | | | | | | | | | open | |
@@ -164,3 +164,104 @@ table are not conflicts.
 | 0x8005 | Proto overview/direction/handler/event comments at `oaa/carcontrol/CarControlMessages.proto:10-11,18,23,149-155`; channel overview, pipeline, catalog, handler note, event/status narrative, change-mode table, lifecycle, and status note at `docs/channels/carcontrol.md:11,13,25,29,97-109,365-371,506-510,543`; verification dispatch/Gold rows at `analysis/reports/proto-verification/carcontrol.md:18,30` say or imply Phone -> HU and HU-owned event state | `ixb.java:131-143` parses `xgj`, then `iip.java:603-694` updates phone-side state and listeners; HU -> Phone |
 | 0x8006 | Proto direction/unexpected-handler/handler-section/action comments at `oaa/carcontrol/CarControlMessages.proto:19,24,106,158-162`; channel overview, catalog, handler note, action narrative, and car-action workflow at `docs/channels/carcontrol.md:11,26,29,113-123,525-529`; verification dispatch/Gold rows at `analysis/reports/proto-verification/carcontrol.md:19,31` say or imply HU -> Phone and phone-side action handling | `iip.java:568-591` builds and sends `xfw`; `ixb.java:95-99` separately rejects an inbound copy as unexpected; Phone -> HU |
 | 0x8007 | Proto direction/handler/update comments at `oaa/carcontrol/CarControlMessages.proto:20,23,165-169`; channel catalog, handler note, update/state narrative, dynamic-layout workflow, and replacement note at `docs/channels/carcontrol.md:27,29,127-137,512-516,547`; verification dispatch/Gold rows at `analysis/reports/proto-verification/carcontrol.md:20,32` say or imply Phone -> HU and HU-owned group state | `ixb.java:162-178` parses `xga`, then `iip.java:594-600` replaces phone-side group state; HU -> Phone |
+
+## Sensor protobuf-lite descriptor evidence
+
+The four constants are declared together at `jal.java:15-18`. Their use in the
+phone endpoint proves one send and three receive paths without relying on the
+older direction labels. `ijm.java:128-149` initiates sensor subscriptions,
+`ijl.java:97-106` forwards them to `jal.s(...)`, and `jal.java:545-597` builds
+and sends the request before waiting for the response semaphore.
+
+| Raw ID | APK class | Descriptor field structure |
+|---|---|---|
+| 0x8001 / 32769 | `xlq` | required enum sensor type field 1 and required int64 refresh interval field 2 (`xlq.java:7-10,29`) |
+| 0x8002 / 32770 | `xlr` | required status enum field 1 (`xlr.java:7-9,28`) |
+| 0x8003 / 32771 | `xln` | 26 repeated message fields: `xid`, `xgp`, `xmc`, `xlm`, `xjq`, `xhf`, `xju`, `xhh`, `xgx`, `xjp`, `xhc`, `xhn`, `xhb`, `xgw`, `xjv`, `xgz`, `xic`, `xmf`, `xeu`, `xhl`, `xhk`, `xmg`, `xeq`, `xmj`, `xlg`, and `xle` (`xln.java:7-33,41-68,78-79`) |
+| 0x8004 / 32772 | `xlo` | required sensor-type enum field 1 and required sensor-error-status enum field 2 (`xlo.java:7-10,29`) |
+
+## Sensor phone-endpoint normalization and conflicts
+
+`jal.java:545-591` calls the inherited endpoint send with constant `h = 32769`,
+so SensorRequest is Phone -> HU. The same phone endpoint parses
+constant `g = 32770` as `xlr` (`jal.java:192-226`), constant `i = 32771` as
+`xln` (`jal.java:248-252,308-428`), and constant `j = 32772` as `xlo`
+(`jal.java:253-284`), so those three messages are HU -> Phone.
+
+The message proto comments and channel documentation already express the 17.3
+directions: `SensorRequestMessage.proto:6-12`,
+`SensorStartResponseMessage.proto:6-12`,
+`SensorEventIndicationMessage.proto:6-14`,
+`SensorErrorMessage.proto:6-14`, and `docs/channels/sensor.md:47-51,61-95`.
+Only the active verification table is inverted:
+
+| Raw ID | Exact active old conflict | Higher-ranked 17.3 replacement |
+|---|---|---|
+| 0x8001 | `analysis/reports/proto-verification/sensor.md:13` says SensorRequest is HU -> Phone | `jal.java:545-591` builds `xlq` and sends it; Phone -> HU |
+| 0x8002 | verification report line 14 says SensorStartResponse is Phone -> HU | `jal.java:192-226` parses `xlr` and releases the phone's waiter; HU -> Phone |
+| 0x8003 | verification report line 15 says SensorEventIndication is Phone -> HU | `jal.java:308-428` parses `xln` and dispatches all 26 sensor fields; HU -> Phone |
+| 0x8004 | verification report line 16 says SensorError is Phone -> HU | `jal.java:253-284` parses `xlo` and logs its sensor/error enums; HU -> Phone |
+
+## Radio protobuf-lite descriptor evidence
+
+The radio names come from the endpoint's named parser failures and structural
+matches to the current schemas. The five request builders in `iji.java` send
+through `jai.k(...)`; the five notification/response branches in `jai.java`
+parse the supplied `ByteBuffer` on the phone.
+
+| Raw ID | APK class | Descriptor field structure |
+|---|---|---|
+| 0x801A / 32794 | `xku` | repeated `xks` RadioProgramInfo field 1 (`xku.java:7,26`); `xks` has selector and metadata message fields 1-2 (`xks.java:7-10,28`) |
+| 0x801B / 32795 | `xkt` | `xks` program-info field 1, bool mute field 2, bool audio-focus field 3 (`xkt.java:7-10,29`) |
+| 0x801C / 32796 | `xko` | bool mute field 1 (`xko.java:7-8,27`) |
+| 0x801D / 32797 | `xkp` | bool mute-state field 1 (`xkp.java:7-8,27`) |
+| 0x801E / 32798 | `xlb` | `xkv` program-selector field 1 (`xlb.java:7-8,27`); selector has `xkr` primary field 1 and repeated `xkr` secondary field 2 (`xkv.java:7-9,28`); identifier has enum type field 1 and uint64 value field 2 (`xkr.java:7-10,28`) |
+| 0x801F / 32799 | `xlc` | tune-status enum field 1 (`xlc.java:7-8,27`) |
+| 0x8020 / 32800 | `xkl` | repeated `xks` RadioProgramInfo field 1 (`xkl.java:7,26`) |
+| 0x8021 / 32801 | `xky` | bool favorite-state field 1 (`xky.java:7-8,27`) |
+| 0x8022 / 32802 | `xkz` | tune-direction enum field 1 (`xkz.java:7-8,27`) |
+| 0x8023 / 32803 | `xkk` | string search/custom-action field 1 (`xkk.java:7-8,27`) |
+
+## Radio phone-endpoint normalization
+
+`jai.java:23-205` parses `32794`, `32795`, `32797`, `32799`, and `32800`,
+normalizing RadioProgramListNotification, RadioProgramInfoNotification,
+RadioMuteResponse, RadioTuneResponse, and RadioFavoriteListNotification as HU
+-> Phone. Its `32796` and `32798` receive cases fall through to the unhandled
+branch (`jai.java:106-110`), consistent with the direct phone sends.
+
+`iji.java:274-302,349-415` builds and sends `32796`, `32798`, and `32801`
+through `32803`, normalizing RadioMuteRequest, RadioTuneRequest,
+RadioFavoriteToggleRequest, RadioTuneDirectionRequest, and RadioSearchRequest
+as Phone -> HU. This is evidence for an Android Auto control/status bridge to
+HU-managed radio functionality. It does not establish an RF tuner
+implementation on the phone and says nothing about backup-camera behavior.
+
+## Radio canonical agreement and prose-conflict ledger
+
+The active protocol mapping agrees with 17.3 for all ten rows: the IDs, names,
+directions, and top-level wire shapes at
+`oaa/radio/RadioMessages.proto:19-28,158-233`, the catalog at
+`docs/channels/radio.md:31-53`, and the verification table at
+`analysis/reports/proto-verification/radio.md:8-29` are mutually consistent.
+Therefore every radio row records **no canonical mapping change**; the `x*`
+class names are 17.3 obfuscation drift, not protocol changes.
+
+The same channel document contains later endpoint-perspective prose that does
+not agree with its own catalog. Task 10 must correct these narrative conflicts
+without reversing the already-correct canonical mapping:
+
+| Raw ID(s) | Exact active prose conflict | 17.3 disposition |
+|---|---|---|
+| 0x801A | `docs/channels/radio.md:59` says the phone sends the program list | HU sends; phone parses `xku` at `jai.java:25-43` |
+| 0x801B | tune/seek flow at channel-doc lines 406 and 412 says the phone sends program-info updates | HU sends; phone parses `xkt` at `jai.java:63-87` |
+| 0x801C / 0x801D | message prose and mute flow at channel-doc lines 89, 103, and 416-417 reverse both request and response | phone sends `xko` (`iji.java:274-287`); phone parses HU response `xkp` (`jai.java:111-130`) |
+| 0x801E / 0x801F | message prose and tune/seek flow at channel-doc lines 117, 131, 404-405, and 411-412 reverse request/response ownership and claim the phone tunes radio hardware | phone sends `xlb` (`iji.java:390-415`); phone parses HU status `xlc` (`jai.java:149-168`); remove the unsupported phone-RF implementation claim |
+| 0x8020 / 0x8021 | favorite prose/flow at channel-doc lines 159 and 421-422 reverses toggle and list senders | phone sends `xky` (`iji.java:349-362`); phone parses HU list `xkl` (`jai.java:187-205`) |
+| 0x8022 | seek prose/flow at channel-doc lines 173 and 411-412 says the HU sends the direction request and the phone performs the seek | phone sends `xkz` (`iji.java:370-387`); the static endpoint evidence does not prove a particular response pairing |
+| 0x8023 | Catalog and payload narrative at channel-doc lines 51 and 185-195 agree with the phone send; line 494 is a separate UI/service forwarding statement and must not be read as the wire direction | no canonical change; phone sends field-1 string in `xkk` (`iji.java:290-303`) |
+
+The separate timeout wording at `docs/channels/radio.md:520` also refers to
+"the phone's radio hardware". The endpoint evidence supports only a timeout in
+the phone-side service while awaiting the HU-managed radio result; it does not
+support phone-owned RF hardware.

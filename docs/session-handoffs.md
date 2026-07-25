@@ -1406,3 +1406,66 @@ Verification:
 - Task 4 open-row guard -> exit 0; direction check -> all seven proven rows
   unchanged
 - `git diff --check` -> exit 0
+
+## 2026-07-24 — Close Android Auto 17.3 sensor and radio direction matrix
+
+Date / Session: 2026-07-24 / android-auto-17.3-update-task-5
+
+What Changed:
+- Closed `DIR-SEN-8001` through `DIR-SEN-8004` and `DIR-RAD-801A` through
+  `DIR-RAD-8023` with exact IDs, payload names/classes, phone endpoint actions,
+  normalized directions, source anchors, version deltas, static status, and
+  canonical dispositions
+- Added complete top-level protobuf-lite descriptor inventories for all four
+  sensor and ten radio payloads
+- Recorded the exact four inverted sensor verification-report directions while
+  preserving the already-correct sensor proto comments and channel catalog
+- Recorded no canonical mapping change for all ten radio messages because the
+  proto mapping, channel catalog, and verification table agree with 17.3; also
+  inventoried the later radio channel prose that reverses endpoint ownership
+- Advanced the dossier resume pointer and next command to Task 6 and marked the
+  direction/video-ID audit gate `confirmed-static`
+
+Why:
+- Android Auto 17.3 directly sends SensorRequest plus five radio requests from
+  the phone and directly parses the three sensor response/event/error messages
+  plus five radio notifications/responses on the phone
+- Separating the correct radio protocol mapping from contradictory narrative
+  prose prevents Task 10 from reversing correct IDs while still ensuring the
+  endpoint-ownership descriptions are repaired
+
+Status:
+- All 14 Task 5 rows are `confirmed-static`; no runtime capture is claimed
+- Sensor: `0x8001` is Phone -> HU; `0x8002` through `0x8004` are HU -> Phone
+- Radio: `0x801A`, `0x801B`, `0x801D`, `0x801F`, and `0x8020` are HU -> Phone;
+  `0x801C`, `0x801E`, and `0x8021` through `0x8023` are Phone -> HU
+- Radio remains an AA control/status bridge to HU-managed radio functionality;
+  the static evidence does not establish phone-owned RF tuner implementation
+  details or any backup-camera behavior
+
+Next Steps:
+1. Task 6: close display, transport-channel, service-type, input-binding, and
+   descriptor fields 16-18 identity rows
+2. Task 10: correct the four sensor verification rows and the inventoried radio
+   narrative conflicts while preserving all ten radio mappings
+3. Runtime validation: supplement these static findings with framed traffic;
+   do not relabel the current evidence as runtime-captured
+
+Verification:
+- Exact Task 5 sensor extraction -> constants `32769` through `32772`, direct
+  `xlq` send, and `xlr`/`xln`/`xlo` phone receive parsers found
+- Exact Task 5 radio receive extraction -> phone parsers for `32794`, `32795`,
+  `32797`, `32799`, and `32800`; `32796` and `32798` inbound copies unhandled
+- Exact Task 5 radio send extraction -> `jai.k(...)` sends for `32796`, `32798`,
+  and `32801` through `32803`
+- Canonical comparison `rg` -> sensor proto/channel mapping agrees with 17.3,
+  sensor verification rows 13-16 are inverted; radio proto/catalog/report
+  mapping agrees for all ten, with contradictory channel prose inventoried
+- Exact Task 5 open-row guard -> exit 0 with no `DIR-SEN` or `DIR-RAD` open rows
+- Row/status counts -> 4 sensor plus 10 radio rows, all `confirmed-static`;
+  radio `No canonical change` count 10
+- Resume-pointer check -> Task 5 completed, Task 6 next, exact `itq.java`
+  extraction command present
+- Source-file existence check -> all 22 referenced endpoint/helper/descriptor
+  Java files present
+- `git diff --check` -> exit 0

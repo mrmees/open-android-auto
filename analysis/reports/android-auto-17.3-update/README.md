@@ -11,7 +11,7 @@
 | Gate | Status | Exit evidence |
 |---|---|---|
 | Baseline preservation | confirmed-static | Durable provenance and matcher smoke recorded in Task 1 handoff. |
-| Direction and video-ID audit | open | Video and car-control rows closed by Tasks 3-4; sensor and radio DIR rows remain open in `message-matrix.md`. |
+| Direction and video-ID audit | confirmed-static | All video, car-control, sensor, and radio DIR rows are closed in `message-matrix.md`; the sole bounded video slot remains explicitly deferred. |
 | Identity and compatibility | open | `message-matrix.md` ID rows |
 | New services | open | `services.md` SVC rows |
 | Runtime validation | open | `runtime-validation.md` RT rows |
@@ -20,6 +20,6 @@
 
 ## Resume Here
 
-- Last completed task: Task 4, car-control direction matrix
-- Next task: Task 5, sensor and radio direction matrix
-- Next command: `rg -n 'private static final int|sendSensorRequest|k\(i2|handleSensorResponse|sensor error|xln|xlo' analysis/aa_apk_17.3.662804_apkm/jadx-output/sources/defpackage/jal.java`
+- Last completed task: Task 5, sensor and radio direction matrix
+- Next task: Task 6, display, channel, and descriptor identity
+- Next command: `rg -n 'CarDisplayId|xik\.|new iti|new itt|display' analysis/aa_apk_17.3.662804_apkm/jadx-output/sources/defpackage/itq.java`
