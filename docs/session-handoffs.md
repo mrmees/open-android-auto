@@ -1271,9 +1271,10 @@ Status:
 - `0x8008` VideoFocusIndication, `0x8009` UpdateUiConfigRequest, `0x800B`
   AudioUnderflow, `0x800E` OverlayStart, `0x800F` OverlayStop, `0x8012`
   UpdateHuUiConfigResponse, and `0x8013` MediaStats are HU -> Phone
-- Raw `0x8010`/`32784` is `deferred`: the bounded source search found only
-  `wru.java` enum/offset bookkeeping, then `jdc` delegates and `jca` rejects
-  the shifted value; no 17.3 send, parser, or payload class was found
+- Raw `0x8010`/`32784` is `unresolved-with-bounded-search` with status
+  `deferred`: the bounded source search found only `wru.java` enum/offset
+  bookkeeping, then `jdc` delegates and `jca` rejects internal `32785`; no
+  17.3 send, parser, or payload class was found
 - The exact numeric search root was
   `analysis/aa_apk_17.3.662804_apkm/jadx-output/sources/defpackage` with
   `-g '*.java'`. Results were: `32779` only `wru.java:234,292-293`; `32784`
