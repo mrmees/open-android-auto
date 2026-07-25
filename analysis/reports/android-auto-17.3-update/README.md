@@ -15,11 +15,11 @@
 | Identity and compatibility | closed (confirmed-static) | All five identity rows are closed in [`message-matrix.md`](message-matrix.md): AV/input identity is source-proven, field 18 is a compatible addition, and the unavailable 16.2 semantics for fields 16-17 are explicitly classified as insufficient evidence rather than inferred. |
 | New services | closed (confirmed-static) | All CarIntent, CarLocalMedia, and BufferedMedia rows are closed in [`services.md`](services.md). CarLocalMedia value 5 and BufferedMedia IDs 1-3/outbound paths remain explicitly deferred; 17.3 directly proves a gated service-type-21 parser for incoming ID 4, not runtime activation or a complete transfer protocol. |
 | Runtime validation | closed (runtime-unverified) | [`runtime-validation.md`](runtime-validation.md) records no ADB `device` row and an unavailable `frida` capture dependency; no traffic, logcat clear, or ignored capture artifact was attempted. |
-| Canonical publication | open | `change-manifest.md` accepted rows |
+| Canonical publication | in progress | Task 11 applied all `CHG-VID-*`, `CHG-CC-*`, and `CHG-SEN-*` canonical rows; Task 12 publishes identity, compatibility, and new-service rows. |
 | Final verification and handoff | open | final handoff entry |
 
 ## Resume Here
 
-- Last completed task: Task 10, canonical change manifest freeze
-- Next task: Task 11, publish message-ID and direction corrections
-- Next command: `rg -n 'CHG-VID-|CHG-CC-|CHG-SEN-' analysis/reports/android-auto-17.3-update/change-manifest.md`
+- Last completed task: Task 11, message-ID and direction corrections
+- Next task: Task 12, publish identity, compatibility, and new-service changes
+- Next command: `rg -n 'CHG-ID-|CHG-CI-|CHG-CLM-|CHG-BUF-' analysis/reports/android-auto-17.3-update/change-manifest.md`

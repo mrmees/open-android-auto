@@ -8,9 +8,9 @@
 
 The Car Control channel (GAL Service 19, log tag `CAR.GAL.CAR_CONTROL`) provides vehicle property access via Android's VHAL (Vehicle Hardware Abstraction Layer). It covers HVAC controls, seat temperature, defrost, door locks, mirror heat, steering wheel heat, toll card status, and Hyundai/Kia vendor extensions.
 
-The channel uses a **subscription model**: during setup the HU advertises its supported properties in the `CarControlChannelDescriptor` (part of the SDP), then registers listeners for the properties it cares about. The phone sends change events whenever a property value updates. The HU can also write property values (e.g., user changes temperature) and trigger car actions (e.g., launch HVAC app).
+The channel uses a **subscription model**: during setup the HU advertises its supported properties in the `CarControlChannelDescriptor` (part of the SDP), then the phone registers listeners for the properties it cares about. The HU sends change events whenever a property value updates. The phone can also request property writes (e.g., projected UI changes temperature) and send car-action notifications.
 
-The pipeline on the phone: HU sends `RegisterCarPropertyListenersRequest` (0x8003) -> `hyc.java` (CAR.GAL.CAR_CONTROL handler) processes the registration -> phone subscribes to VHAL -> phone sends `CarPropertyChangeEvent` (0x8005) on each update. For writes: HU sends `SetCarPropertyValueRequest` (0x8001) -> phone sets the VHAL property -> phone responds with `SetCarPropertyValueResponse` (0x8002).
+The 17.3 phone endpoint sends `RegisterCarPropertyListenersRequest` (0x8003) and receives `CarPropertyChangeEvent` (0x8005). For writes, the phone sends `SetCarPropertyValueRequest` (0x8001), owns the request UUID mapping, and receives `SetCarPropertyValueResponse` (0x8002) from the HU.
 
 ---
 
@@ -18,21 +18,21 @@ The pipeline on the phone: HU sends `RegisterCarPropertyListenersRequest` (0x800
 
 | Msg ID | Direction | Proto Class (16.2) | Name | Purpose |
 |--------|-----------|-------------------|------|---------|
-| 0x8001 | HU -> Phone | `wbq` | SetCarPropertyValueRequest | Set a vehicle property value |
-| 0x8002 | Phone -> HU | `wbr` | SetCarPropertyValueResponse | Acknowledge property set with status |
-| 0x8003 | HU -> Phone | `waz` | RegisterCarPropertyListenersRequest | Subscribe to property change events |
-| 0x8004 | Phone -> HU | `wba` | RegisterCarPropertyListenersResponse | Per-property registration results |
-| 0x8005 | Phone -> HU | `vwg` | CarPropertyChangeEvent | Property value changed notification |
-| 0x8006 | HU -> Phone | `vvv` | CarActionNotification | Trigger a car action (app launch) |
-| 0x8007 | Phone -> HU | `vvz` | CarControlGroupUpdate | Updated control group layout |
+| 0x8001 | Phone -> HU | `wbq` | SetCarPropertyValueRequest | Set a vehicle property value |
+| 0x8002 | HU -> Phone | `wbr` | SetCarPropertyValueResponse | Acknowledge property set with status |
+| 0x8003 | Phone -> HU | `waz` | RegisterCarPropertyListenersRequest | Subscribe to property change events; inbound copies are unexpected |
+| 0x8004 | HU -> Phone | `wba` | RegisterCarPropertyListenersResponse | Per-property registration results |
+| 0x8005 | HU -> Phone | `vwg` | CarPropertyChangeEvent | Property value changed notification |
+| 0x8006 | Phone -> HU | `vvv` | CarActionNotification | Trigger a car action; inbound copies are unexpected |
+| 0x8007 | HU -> Phone | `vvz` | CarControlGroupUpdate | Updated replacement-style control group layout |
 
-**Note:** The phone-side handler (`hyc.mo18864a()`) only processes 4 inbound messages: 0x8002, 0x8004, 0x8005, 0x8007. Message IDs 0x8001, 0x8003, and 0x8006 are send-only from the HU -- if the handler receives 0x8003 or 0x8006, it logs "Received unexpected car control message" and drops them.
+**Note:** The phone-side handler processes four inbound HU messages: 0x8002, 0x8004, 0x8005, and 0x8007. IDs 0x8001, 0x8003, and 0x8006 are sent by the phone; if the phone handler receives 0x8003 or 0x8006, it logs "Received unexpected car control message" and drops them.
 
 ---
 
 ## SetCarPropertyValueRequest (0x8001)
 
-HU requests the phone to set a vehicle property. Correlated to the response by a UUID `request_id`.
+The phone requests the HU to set a vehicle property. The phone correlates the HU response by UUID `request_id`.
 
 ```protobuf
 message SetCarPropertyValueRequest {       // APK class: wbq (16.2) / wca (16.1)
@@ -42,13 +42,13 @@ message SetCarPropertyValueRequest {       // APK class: wbq (16.2) / wca (16.1)
 }
 ```
 
-The HU generates a UUID, stores a UUID->callback mapping, sends the request, and matches the response by UUID when 0x8002 arrives.
+The phone generates a UUID, stores a UUID->callback mapping, sends the request, and matches the response by UUID when 0x8002 arrives.
 
 ---
 
 ## SetCarPropertyValueResponse (0x8002)
 
-Phone acknowledges a property set request.
+The HU acknowledges the phone's property set request.
 
 ```protobuf
 message SetCarPropertyValueResponse {      // APK class: wbr (16.2) / wcb (16.1)
@@ -63,7 +63,7 @@ message SetCarPropertyValueResponse {      // APK class: wbr (16.2) / wcb (16.1)
 
 ## RegisterCarPropertyListenersRequest (0x8003)
 
-HU subscribes to change events for a list of properties. Sent once on channel open.
+The phone subscribes to change events for a list of HU properties. Sent once on channel open; an inbound copy at the phone endpoint is unexpected.
 
 ```protobuf
 message RegisterCarPropertyListenersRequest {  // APK class: waz (16.2) / wbk? (16.1)
@@ -71,13 +71,13 @@ message RegisterCarPropertyListenersRequest {  // APK class: waz (16.2) / wbk? (
 }
 ```
 
-The HU extracts all property references from its control groups, filters to only those present in the `CarPropertyConfig` list from the SDP, and sends this request.
+The phone extracts all property references from the HU's control groups, filters to those present in the `CarPropertyConfig` list from the SDP, and sends this request.
 
 ---
 
 ## RegisterCarPropertyListenersResponse (0x8004)
 
-Phone responds with per-property registration results and initial values.
+The HU responds with per-property registration results; the phone updates registration state and initial values.
 
 ```protobuf
 message RegisterCarPropertyListenersResponse {  // APK class: wba (16.2) / wbk (16.1)
@@ -90,13 +90,13 @@ message SetCarPropertyListenerResult {          // APK class: vwh (16.2) / vwv (
 }
 ```
 
-Failed registrations produce a `CarPropertyState` with status=2 (UNAVAILABLE) on the HU side.
+Failed registrations produce a phone-side `CarPropertyState` with status=2 (UNAVAILABLE).
 
 ---
 
 ## CarPropertyChangeEvent (0x8005)
 
-Phone notifies the HU that a vehicle property value changed. This is the primary ongoing data flow.
+The HU notifies the phone that a vehicle property value changed. This is the primary ongoing data flow.
 
 ```protobuf
 message CarPropertyChangeEvent {            // APK class: vwg (16.2) / vwu (16.1)
@@ -106,13 +106,13 @@ message CarPropertyChangeEvent {            // APK class: vwg (16.2) / vwu (16.1
 }
 ```
 
-**Status field:** When status=1 (AVAILABLE), the value is valid. When status=2 (UNAVAILABLE), the property value is null and the HU should treat the control as inactive.
+**Status field:** When status=1 (AVAILABLE), the value is valid. When status=2 (UNAVAILABLE), the property value is null and the phone treats the control as inactive.
 
 ---
 
 ## CarActionNotification (0x8006)
 
-HU tells the phone to trigger an application launch action.
+The phone tells the HU to trigger an application launch action. An inbound copy at the phone endpoint is unexpected.
 
 ```protobuf
 message CarActionNotification {             // APK class: vvv (16.2) / vwj (16.1)
@@ -120,13 +120,13 @@ message CarActionNotification {             // APK class: vvv (16.2) / vwj (16.1
 }
 ```
 
-These are not property changes -- they trigger app launches on the phone side. See [Car Action IDs](#car-action-ids) below.
+These are not property changes; the HU consumes the phone's requested car action. See [Car Action IDs](#car-action-ids) below.
 
 ---
 
 ## CarControlGroupUpdate (0x8007)
 
-Phone sends an updated control group layout to the HU, replacing the existing group of the same type.
+The HU sends an updated control group layout to the phone, replacing the existing group of the same type.
 
 ```protobuf
 message CarControlGroupUpdate {             // APK class: vvz (16.2) / vwn (16.1)
@@ -134,7 +134,7 @@ message CarControlGroupUpdate {             // APK class: vvz (16.2) / vwn (16.1
 }
 ```
 
-Used to dynamically enable/disable controls (e.g., disable AC when engine is off). The HU replaces its stored control group keyed by `group_type`.
+Used to dynamically enable/disable controls (e.g., disable AC when engine is off). The phone replaces its stored control group keyed by `group_type`.
 
 ---
 
@@ -367,8 +367,8 @@ See [ProtocolStatus reference](../../analysis/reports/proto-verification/control
 | Value | Name | Behavior |
 |-------|------|----------|
 | 0 | STATIC | Value never changes |
-| 1 | ON_CHANGE | Phone sends 0x8005 when value changes |
-| 2 | CONTINUOUS | Phone sends 0x8005 at a regular rate |
+| 1 | ON_CHANGE | HU sends 0x8005 when value changes |
+| 2 | CONTINUOUS | HU sends 0x8005 at a regular rate |
 
 ### CarPropertyType
 
@@ -492,41 +492,41 @@ The `CarControlChannelDescriptor` is embedded in the SDP. It declares:
 ### 2. Channel Open and Subscription
 
 When the channel opens (`hlb.mo18727r()`):
-1. HU extracts all property references from control groups
+1. Phone extracts all property references from control groups
 2. Filters to only properties present in the supported configs
 3. Sends 0x8003 (`RegisterCarPropertyListenersRequest`) with the filtered property list
 4. Stores registered properties for later matching
 
 ### 3. Initial Values
 
-Phone responds with 0x8004 (`RegisterCarPropertyListenersResponse`):
+HU responds with 0x8004 (`RegisterCarPropertyListenersResponse`):
 - Per-property status (SUCCESS or LISTENER_REGISTRATION_FAILED)
-- Failed registrations produce UNAVAILABLE state on the HU
+- Failed registrations produce UNAVAILABLE state on the phone
 
 ### 4. Ongoing Change Events
 
-Phone sends 0x8005 (`CarPropertyChangeEvent`) whenever a VHAL property value changes:
+HU sends 0x8005 (`CarPropertyChangeEvent`) whenever a VHAL property value changes:
 - Contains property ID, area, new value, and availability status
-- HU caches state and notifies its UI listeners
+- Phone caches state and notifies its UI listeners
 
 ### 5. Dynamic Layout Updates
 
-Phone may send 0x8007 (`CarControlGroupUpdate`) to update the control layout:
+HU may send 0x8007 (`CarControlGroupUpdate`) to update the control layout:
 - Contains a new `CarControlGroup` replacing the existing one (keyed by `group_type`)
 - Used to enable/disable controls dynamically
 
 ### 6. Property Writes
 
 When the user changes a control:
-1. HU sends 0x8001 (`SetCarPropertyValueRequest`) with a UUID
-2. Phone sets the VHAL property
-3. Phone responds with 0x8002 (`SetCarPropertyValueResponse`) with the same UUID and status
+1. Phone sends 0x8001 (`SetCarPropertyValueRequest`) with a UUID
+2. HU sets the VHAL property
+3. HU responds with 0x8002 (`SetCarPropertyValueResponse`) with the same UUID and status
 
 ### 7. Car Actions
 
-HU sends 0x8006 (`CarActionNotification`) for action buttons:
+Phone sends 0x8006 (`CarActionNotification`) for action buttons:
 - Triggers app launches on the phone (HVAC, media, control center, alerts)
-- Not property changes -- the phone handles these as intent launches
+- Not property changes -- the HU consumes these requested actions
 
 ---
 
@@ -540,11 +540,11 @@ HU sends 0x8006 (`CarActionNotification`) for action buttons:
 
 > **What's NOT supported**: Despite VHAL covering a wide range of vehicle functions, the AA Car Control channel only supports: HVAC (temperature, fan, AC, defrost, recirculation, seat heat/vent, steering wheel heat), mirror heat (no fold or adjust), door lock (no child lock, new in 16.2), toll card status, and HMG vendor extensions. No window control, trunk, lights, or other body functions.
 
-> **CarPropertyChangeEvent status values**: 1=AVAILABLE (value is valid), 2=UNAVAILABLE (value is null). When UNAVAILABLE, the HU should grey out or hide the control.
+> **CarPropertyChangeEvent status values**: 1=AVAILABLE (value is valid), 2=UNAVAILABLE (value is null). When UNAVAILABLE, the phone should grey out or hide the control.
 
-> **Request correlation**: 0x8001/0x8002 use UUID strings for request/response matching. The HU stores UUID->callback mappings in a `ConcurrentHashMap` and matches them when 0x8002 arrives.
+> **Request correlation**: 0x8001/0x8002 use UUID strings for request/response matching. The phone stores UUID->callback mappings in a `ConcurrentHashMap` and matches them when 0x8002 arrives.
 
-> **Control group updates are replacements**: 0x8007 replaces the entire control group matching the given `group_type`. It is not a diff/patch -- the HU must replace its stored group wholesale.
+> **Control group updates are replacements**: 0x8007 replaces the entire control group matching the given `group_type`. It is not a diff/patch -- the phone must replace its stored group wholesale.
 
 > **Bitmask semantics**: `CarAreaId` repeated enum fields are OR'd on the phone side. Sending `[ROW_1_LEFT, ROW_1_RIGHT]` in `seat_ids` targets both front seats.
 

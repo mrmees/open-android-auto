@@ -19,6 +19,7 @@
 | ~~VideoFocusModeMessage~~ | **Retracted** | Actually UpdateHuUiConfigResponse (0x8012) | -- |
 | AudioUnderflowNotification | Bronze | apk_static | -- |
 | ActionTakenNotification | Bronze | apk_static | -- |
+| CriticalUiNotification | **Gold** | 17.3 apk_static | -- (Task 13 audit sync) |
 | VideoConfig | Silver | apk_static, cross_version, wire_capture | [VideoConfigData.audit.yaml](../../oaa/video/VideoConfigData.audit.yaml) |
 | AdditionalVideoConfig | **Gold** | deep_trace_verified | [AdditionalVideoConfigData.audit.yaml](../../oaa/video/AdditionalVideoConfigData.audit.yaml) |
 | VideoFocusMode (enum) | **Gold** | deep_trace, handler_verified | -- |
@@ -44,7 +45,7 @@ Unlike audio, which uses three separate channels for different roles, there is o
 
 The video channel is an **AV channel** (handler `ied.java` extends `icv.java` AV base, extends `iav.java`). It inherits the standard AV setup/start/stop/ack flow from `icv.java`, then adds video-specific messages for focus management, UI configuration, theming tokens, and overlay notifications.
 
-**Video focus** is the mechanism that determines whether the phone's projected UI or the HU's native UI has control of the display. The HU requests focus transitions; the phone responds with its current focus state. This is conceptually similar to audio focus but operates on display ownership rather than audio streams.
+**Video focus** is the mechanism that determines whether the phone's projected UI or the HU's native UI has control of the display. In 17.3 the phone sends focus requests and the HU reports the resulting state. This is conceptually similar to audio focus but operates on display ownership rather than audio streams.
 
 **Prerequisite:** The video channel requires AV channel setup before any video data flows. See [04-channel-lifecycle.md](../interactions/04-channel-lifecycle.md) for the channel open and AV setup sequence.
 
@@ -58,16 +59,21 @@ The video channel is an **AV channel** (handler `ied.java` extends `icv.java` AV
 
 | Msg ID | Message | Direction | Purpose | Confidence |
 |--------|---------|-----------|---------|:---:|
-| 0x8007 | VideoFocusRequest | HU -> Phone | Request video focus transition (projected/native) | **Gold** |
-| 0x8008 | VideoFocusIndication | Phone -> HU | Report current video focus state | **Gold** |
-| 0x8009 | UpdateUiConfigRequest (inbound) | Phone -> HU | Runtime UI config update (margins, theme) | **Gold** |
-| 0x800A | UpdateUiConfigRequest (outbound) | HU -> Phone | Runtime UI config update (margins, theme) | **Gold** |
-| 0x800C | AudioUnderflowNotification | HU -> Phone | Audio underflow detected during video playback | Bronze |
-| 0x800D | ActionTakenNotification | HU -> Phone | User action acknowledged | Bronze |
-| 0x800E | IntegratedOverlayStartNotification | Phone -> HU | Overlay projection session started | **Gold** |
-| 0x800F | IntegratedOverlayStopNotification | Phone -> HU | Overlay projection session ended (empty) | **Gold** |
-| 0x8011 | UiConfigRequest | HU -> Phone | Send theming tokens (Material Design key-value pairs) | **Gold** |
-| 0x8012 | UpdateHuUiConfigResponse | Phone -> HU | Accept/reject theming tokens | **Gold** |
+| 0x8007 | VideoFocusRequest | Phone -> HU | Request video focus transition (projected/native) | **Gold** |
+| 0x8008 | VideoFocusIndication | HU -> Phone | Report current video focus state | **Gold** |
+| 0x8009 | UpdateUiConfigRequest (inbound to phone) | HU -> Phone | Runtime UI config update (margins, theme) | **Gold** |
+| 0x800A | UpdateUiConfigRequest (outbound from phone) | Phone -> HU | Runtime UI config update (margins, theme) | **Gold** |
+| 0x800B | AudioUnderflowNotification | HU -> Phone | Audio underflow callback; no payload parsed | **Gold** |
+| 0x800C | ActionTakenNotification | Phone -> HU | ActionTaken wrapper with enum field 1; public action enum remains unpublished | **Gold** |
+| 0x800D | IntegratedOverlayParametersNotification | Phone -> HU | OverlayParameters wrapper with repeated overlay-options field 1; nested overlay-option semantics remain unpublished | **Gold** |
+| 0x800E | IntegratedOverlayStartNotification | HU -> Phone | Overlay projection session started | **Gold** |
+| 0x800F | IntegratedOverlayStopNotification | HU -> Phone | OverlayStop notification; empty payload | **Gold** |
+| 0x8010 | Reserved | unknown | Name, payload, and direction unknown; deferred | deferred |
+| 0x8011 | UiConfigRequest | Phone -> HU | Send theming tokens (Material Design key-value pairs) | **Gold** |
+| 0x8012 | UpdateHuUiConfigResponse | HU -> Phone | Accept/reject theming tokens | **Gold** |
+| 0x8013 | MediaStats | HU -> Phone | Playback statistics (15 fields) | **Gold** |
+| 0x8014 | MediaOptions | Phone -> HU | Feature flags / media options (13 fields) | Silver |
+| 0x8015 | CriticalUiNotification | Phone -> HU | Critical-UI-focus enum field 1; no response implied | **Gold** |
 
 ### Retracted Video Messages
 
@@ -91,9 +97,6 @@ These shared AV messages are documented in detail in [04-channel-lifecycle.md](.
 | 0x8002 | AVChannelStopIndication | Phone -> HU | Video stream stops | Silver |
 | 0x8003 | AVChannelSetupResponse | HU -> Phone | Accept/reject, set max_unacked | Silver |
 | 0x8004 | AVMediaAckIndication | HU -> Phone | Flow control acknowledgment | Silver |
-| 0x800B | (signal/heartbeat) | -- | No proto payload | Gold |
-| 0x8013 | AVChannelMediaStats | HU -> Phone | Playback statistics (15 fields) | Gold |
-| 0x8014 | AVChannelMediaOptions | Phone -> HU | Feature flags / media options (13 fields) | Silver |
 
 ### Config Messages (Service Discovery)
 
@@ -111,9 +114,7 @@ These shared AV messages are documented in detail in [04-channel-lifecycle.md](.
 
 > Confidence: Gold [deep_trace, handler_verified] -- VideoFocusMode and VideoFocusReason enums fully verified
 
-Video focus determines who controls the display surface: the phone's projected AA UI or the HU's native interface. The HU is the **initiator** of focus transitions (via VideoFocusRequest), and the phone **responds** with its resulting state (via VideoFocusIndication).
-
-This is the inverse of audio focus, where the phone initiates requests. For video, the HU decides when to show projected vs. native content.
+Video focus determines who controls the display surface: the phone's projected AA UI or the HU's native interface. The phone is the **initiator** of focus transitions (via VideoFocusRequest), and the HU **responds** with the resulting state (via VideoFocusIndication).
 
 ### VideoFocusMode (wcq, 16.2) -- Gold
 
@@ -137,9 +138,9 @@ This is the inverse of audio focus, where the phone initiates requests. For vide
 | 3 | LAST_MODE | Restoring previous focus mode |
 | 4 | USER_SELECTION | User explicitly selected native/projected |
 
-### VideoFocusRequest (0x8007, HU -> Phone)
+### VideoFocusRequest (0x8007, Phone -> HU)
 
-The HU sends this to tell the phone what focus mode it wants.
+The phone sends this to request the focus mode it wants the HU to apply.
 
 | Field | Type | Description |
 |-------|------|-------------|
@@ -148,9 +149,9 @@ The HU sends this to tell the phone what focus mode it wants.
 
 **Note:** There is no field 1 -- field numbering starts at 2.
 
-### VideoFocusIndication (0x8008, Phone -> HU)
+### VideoFocusIndication (0x8008, HU -> Phone)
 
-The phone responds with its current focus state.
+The HU responds with the current focus state.
 
 | Field | Type | Description |
 |-------|------|-------------|
@@ -164,15 +165,15 @@ Phone                                        Head Unit
   |                                             |
   |  ... projected UI active (PROJECTED) ...    |
   |                                             |
-  |<-- VideoFocusRequest(NATIVE, LAUNCH_NATIVE) |  HU wants native UI
-  |--- VideoFocusIndication(NATIVE, false) ----> |  Phone acknowledges
+  |--- VideoFocusRequest(NATIVE, LAUNCH_NATIVE)> |  Phone requests native UI
+  |<-- VideoFocusIndication(NATIVE, false) ------|  HU acknowledges
   |                                             |  Phone stops video encoding
   |                                             |  HU shows native UI
   |                                             |
   |  ... native UI active ...                   |
   |                                             |
-  |<-- VideoFocusRequest(PROJECTED, USER_SEL)    |  User taps "Android Auto"
-  |--- VideoFocusIndication(PROJECTED, false) -> |  Phone resumes projection
+  |--- VideoFocusRequest(PROJECTED, USER_SEL) -->|  Phone requests projection
+  |<-- VideoFocusIndication(PROJECTED, false) ---|  HU acknowledges
   |--- AVChannelStartIndication (ch 3) -------> |  Video stream begins
   |--- [H.264 frames] -----------------------> |
 ```
@@ -184,19 +185,19 @@ Phone                                        Head Unit
   |                                             |
   |  ... projected UI active ...                |
   |                                             |
-  |<-- VideoFocusRequest(NATIVE_TRANSIENT, ...)  |  HU needs temporary overlay
-  |--- VideoFocusIndication(NATIVE_T, false) --> |  Phone keeps rendering,
+  |--- VideoFocusRequest(NATIVE_TRANSIENT, ...) >|  Phone requests native overlay
+  |<-- VideoFocusIndication(NATIVE_T, false) ----|  HU reports the state,
   |                                             |  but input goes to HU native UI
   |                                             |
   |  ... HU overlay active ...                  |
   |                                             |
-  |<-- VideoFocusRequest(PROJECTED, LAST_MODE)   |  Overlay dismissed
-  |--- VideoFocusIndication(PROJECTED, false) -> |  Phone regains input focus
+  |--- VideoFocusRequest(PROJECTED, LAST_MODE) ->|  Overlay dismissed
+  |<-- VideoFocusIndication(PROJECTED, false) ---|  HU reports projected focus
 ```
 
 ### Unrequested Focus Indications
 
-The phone can send a VideoFocusIndication with `unrequested = true` when it changes focus state on its own (e.g., phone screen off triggers a focus change). The HU should handle these gracefully -- the phone is informing, not requesting.
+The HU can send a VideoFocusIndication with `unrequested = true` when its focus state changes without a VideoFocusRequest. The phone handles this as an indication, not a request.
 
 ---
 
@@ -208,9 +209,9 @@ The video channel carries two distinct UI configuration mechanisms. They share s
 
 ### Theming Tokens (UiConfigRequest / UpdateHuUiConfigResponse)
 
-Material Design theming tokens -- key-value pairs that define colors, typography, and visual style. The HU sends these to the phone so the projected UI can match the vehicle's interior theme.
+Material Design theming tokens -- key-value pairs that define colors, typography, and visual style. The phone sends these to the HU.
 
-**UiConfigRequest (0x8011, HU -> Phone):**
+**UiConfigRequest (0x8011, Phone -> HU):**
 
 | Field | Type | Description |
 |-------|------|-------------|
@@ -238,7 +239,7 @@ Material Design theming tokens -- key-value pairs that define colors, typography
 
 The phone processes these through `hum.java` (UiStyle builder) -> `huz.java` -> `ied.java` send chain.
 
-**UpdateHuUiConfigResponse (0x8012, Phone -> HU):**
+**UpdateHuUiConfigResponse (0x8012, HU -> Phone):**
 
 | Field | Type | Description |
 |-------|------|-------------|
@@ -256,7 +257,10 @@ The phone processes these through `hum.java` (UiStyle builder) -> `huz.java` -> 
 
 Runtime changes to margins, theme (day/night), hidden UI elements, and resize actions. This is **bidirectional** -- both the HU and the phone can initiate updates using the same message type.
 
-**UpdateUiConfigRequest (0x8009 inbound / 0x800A outbound):**
+**UpdateUiConfigRequest directions:**
+
+- 0x8009 is HU -> Phone.
+- 0x800A is Phone -> HU.
 
 | Field | Type | Description |
 |-------|------|-------------|
@@ -276,9 +280,9 @@ If field 1 is missing, the phone returns `PROTOCOL_WRONG_MESSAGE` / `INVALID_UI_
 
 > Confidence: Gold [deep_trace, handler_verified]
 
-Integrated overlays are phone-rendered UI layers displayed on top of the HU's native content. The phone notifies the HU when overlay sessions start and stop.
+Integrated overlays are phone-rendered UI layers displayed on top of the HU's native content. The HU notifies the phone when overlay sessions start and stop.
 
-**IntegratedOverlayStartNotification (0x800E, Phone -> HU):**
+**IntegratedOverlayStartNotification (0x800E, HU -> Phone):**
 
 | Field | Type | Description |
 |-------|------|-------------|
@@ -286,7 +290,7 @@ Integrated overlays are phone-rendered UI layers displayed on top of the HU's na
 
 The session ID is passed to `qdd.mo30156e(int)` -- a display callback in the `com.google.android.gms.car.display` package.
 
-**IntegratedOverlayStopNotification (0x800F, Phone -> HU):**
+**IntegratedOverlayStopNotification (0x800F, HU -> Phone):**
 
 Empty message -- no fields. Triggers `qdd.mo30157f()` callback. The HU should dismiss any overlay-related display state when this arrives.
 
@@ -503,11 +507,11 @@ Phone                                        Head Unit
   |--- AVChannelSetupRequest (0x8000) --------> |  Phone selects H.264 (codec=3)
   |<-- AVChannelSetupResponse (0x8003) -------- |  HU accepts, sets max_unacked
   |                                             |
-  |<-- VideoFocusRequest(PROJECTED, USER_SEL) -- |  HU grants projected focus
-  |--- VideoFocusIndication(PROJECTED, false) -> |  Phone confirms
+  |--- VideoFocusRequest(PROJECTED, USER_SEL) -->|  Phone requests projected focus
+  |<-- VideoFocusIndication(PROJECTED, false) ---|  HU confirms
   |                                             |
-  |<-- UiConfigRequest (0x8011) --------------- |  HU sends theming tokens (optional)
-  |--- UpdateHuUiConfigResponse (0x8012) ------> |  Phone accepts/rejects
+  |--- UiConfigRequest (0x8011) --------------->|  Phone sends theming tokens (optional)
+  |<-- UpdateHuUiConfigResponse (0x8012) -------|  HU accepts/rejects
   |                                             |
   |--- AVChannelStartIndication (0x8001) ------> |  Video stream begins
   |--- [H.264 NAL units] --------------------> |  Compressed video frames
@@ -519,19 +523,12 @@ Phone                                        Head Unit
 
 ```c
 // Minimal video focus management on the HU side.
-// The HU initiates focus changes; the phone responds.
+// The phone requests focus changes; the HU responds.
 
-void request_video_focus(VideoFocusMode mode, VideoFocusReason reason) {
-    VideoFocusRequest req;
-    req.focus_mode = mode;
-    req.focus_reason = reason;
-    send_message(VIDEO_CHANNEL, 0x8007, &req);
-}
+void handle_video_focus_request(VideoFocusRequest *req) {
+    current_focus = req->focus_mode;
 
-void handle_video_focus_indication(VideoFocusIndication *ind) {
-    current_focus = ind->focus_mode;
-
-    switch (ind->focus_mode) {
+    switch (req->focus_mode) {
     case PROJECTED:
         // Phone is rendering -- show video decoder output
         show_projected_surface();
@@ -556,11 +553,10 @@ void handle_video_focus_indication(VideoFocusIndication *ind) {
         break;
     }
 
-    if (ind->unrequested) {
-        // Phone changed focus on its own (e.g., screen off)
-        // Update UI state accordingly
-        log("Unrequested focus change to %d", ind->focus_mode);
-    }
+    VideoFocusIndication ind;
+    ind.focus_mode = current_focus;
+    ind.unrequested = false;
+    send_message(VIDEO_CHANNEL, 0x8008, &ind);
 }
 ```
 
@@ -575,7 +571,7 @@ void set_day_night_mode(UITheme theme) {
 
     UpdateUiConfigRequest req;
     req.config = &config;
-    send_message(VIDEO_CHANNEL, 0x800A, &req);
+    send_message(VIDEO_CHANNEL, 0x8009, &req);
 }
 ```
 
@@ -597,7 +593,10 @@ config.hidden_ui_elements = { UI_ELEMENT_CLOCK, UI_ELEMENT_BATTERY_LEVEL };
 
 > **Gotcha:** Video-specific messages in `ied.java` use **raw wire IDs** (e.g., 0x8007 for VideoFocusRequest). Inherited AV messages in `icv.java` use a **+1 offset** via `vdp.m36513at()`. Do not apply the +1 offset to video-specific message IDs -- they are already the wire values. This is the opposite of audio channels, which only have the inherited AV messages.
 
-> **Gotcha:** `UpdateUiConfigRequest` is **bidirectional** with **different message IDs per direction**: 0x8009 (Phone -> HU) and 0x800A (HU -> Phone). Same proto, same field schema, but different wire IDs. The HU must handle both dispatch paths.
+> **Gotcha:** `UpdateUiConfigRequest` is bidirectional with different IDs.
+> ID 0x8009 is HU -> Phone.
+> ID 0x800A is Phone -> HU.
+> Both use the same proto and field schema, so the HU must handle both dispatch paths.
 
 > **Gotcha:** `UiConfigRequest` (0x8011, theming tokens) and `UpdateUiConfigRequest` (0x8009/0x800A, runtime UI config) are **completely different messages** despite similar names. UiConfigRequest carries Material Design key-value token pairs. UpdateUiConfigRequest carries AdditionalVideoConfig (margins, theme enum, hidden elements). Don't confuse them.
 

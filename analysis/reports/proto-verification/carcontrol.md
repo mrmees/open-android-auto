@@ -1,35 +1,35 @@
 # Car Control Channel Verification Report
 
 **Channel:** CAR.GAL.CAR_CONTROL (GAL type 19)
-**Handler:** hyc.java (16.2) / hxp.java (16.1)
-**Service manager:** hlb.java (CAR.CarControlService)
+**17.3 phone endpoint:** ixb.java
+**17.3 service manager:** iip.java
 **Msg ID enum:** vik.m36843p/m36844q (no offset — maps IDs unchanged)
-**Verified:** 2026-03-07
+**Updated:** 2026-07-25 from Android Auto `17.3.662804-release`
 **Status:** COMPLETE
 
 ## Message Dispatch Table
 
 | Wire ID | Internal ID | Name | Direction | 16.2 Class | Handler Action |
 |---------|-------------|------|-----------|------------|----------------|
-| 0x8001 | 32769 | SET_CAR_PROPERTY_VALUE_REQUEST | HU→Phone | wbq | Send-only |
-| 0x8002 | 32770 | SET_CAR_PROPERTY_VALUE_RESPONSE | Phone→HU | wbr | Parsed, UUID-matched callback |
-| 0x8003 | 32771 | REGISTER_CAR_PROPERTY_LISTENERS_REQUEST | HU→Phone | waz | Send-only (logs "unexpected" if received) |
-| 0x8004 | 32772 | REGISTER_CAR_PROPERTY_LISTENERS_RESPONSE | Phone→HU | wba | Parsed, per-property results |
-| 0x8005 | 32773 | CAR_PROPERTY_CHANGE_EVENT | Phone→HU | vwg | Parsed, updates cached property state |
-| 0x8006 | 32774 | CAR_ACTION_NOTIFICATION | HU→Phone | vvv | Send-only (logs "unexpected" if received) |
-| 0x8007 | 32775 | CAR_CONTROL_GROUP_UPDATE | Phone→HU | vvz | Parsed, replaces control group by type |
+| 0x8001 | 32769 | SET_CAR_PROPERTY_VALUE_REQUEST | Phone→HU | xlz | Phone sends and owns request correlation |
+| 0x8002 | 32770 | SET_CAR_PROPERTY_VALUE_RESPONSE | HU→Phone | xma | Phone parses and matches UUID callback |
+| 0x8003 | 32771 | REGISTER_CAR_PROPERTY_LISTENERS_REQUEST | Phone→HU | xli | Phone sends; inbound copies are unexpected |
+| 0x8004 | 32772 | REGISTER_CAR_PROPERTY_LISTENERS_RESPONSE | HU→Phone | xlj | Phone parses per-property results |
+| 0x8005 | 32773 | CAR_PROPERTY_CHANGE_EVENT | HU→Phone | xgj | Phone parses and updates cached property state |
+| 0x8006 | 32774 | CAR_ACTION_NOTIFICATION | Phone→HU | xfw | Phone sends; inbound copies are unexpected |
+| 0x8007 | 32775 | CAR_CONTROL_GROUP_UPDATE | HU→Phone | xga | Phone parses and replaces control group by type |
 
 ## Top-Level Messages (7 Gold)
 
 | Proto | Wire ID | Direction | 16.2 Class | Confidence | Result |
 |-------|---------|-----------|------------|------------|--------|
-| SetCarPropertyValueRequest | 0x8001 | HU→Phone | wbq | Gold | Correct (3 fields) |
-| SetCarPropertyValueResponse | 0x8002 | Phone→HU | wbr | Gold | **FIX**: status field uses vyh (ProtocolStatus), not CarControlStatus |
-| RegisterCarPropertyListenersRequest | 0x8003 | HU→Phone | waz | Gold | **NEW** — was missing from proto |
-| RegisterCarPropertyListenersResponse | 0x8004 | Phone→HU | wba | Gold | Correct (1 field) |
-| CarPropertyChangeEvent | 0x8005 | Phone→HU | vwg | Gold | Correct (3 fields) |
-| CarActionNotification | 0x8006 | HU→Phone | vvv | Gold | Correct (1 field) |
-| CarControlGroupUpdate | 0x8007 | Phone→HU | vvz | Gold | Correct (1 field) |
+| SetCarPropertyValueRequest | 0x8001 | Phone→HU | xlz | Gold | Correct (3 fields); phone-owned request correlation |
+| SetCarPropertyValueResponse | 0x8002 | HU→Phone | xma | Gold | Correct (4 fields); phone matches UUID |
+| RegisterCarPropertyListenersRequest | 0x8003 | Phone→HU | xli | Gold | Correct (1 field); inbound copies unexpected |
+| RegisterCarPropertyListenersResponse | 0x8004 | HU→Phone | xlj | Gold | Correct (1 field); phone updates state |
+| CarPropertyChangeEvent | 0x8005 | HU→Phone | xgj | Gold | Correct (3 fields) |
+| CarActionNotification | 0x8006 | Phone→HU | xfw | Gold | Correct (1 field); inbound copies unexpected |
+| CarControlGroupUpdate | 0x8007 | HU→Phone | xga | Gold | Correct (1 field); replacement-style update |
 
 ## Sub-Messages (12 Gold)
 

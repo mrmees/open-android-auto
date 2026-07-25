@@ -26,3 +26,18 @@
 | SetCarPropertyListenerResult | `vpd` | `vwv` | `vwh` | `wot` | 2/2/2/2 |
 | SetCarPropertyValueRequest | `vui` | `wca` | `wbq` | `wud` | 3/3/3/3 |
 | SetCarPropertyValueResponse | `vuj` | `wcb` | `wbr` | `wue` | 4/4/4/4 |
+
+## Android Auto 17.3 endpoint corrections
+
+Android Auto 17.3 preserves the seven existing message schemas while proving
+the phone-endpoint directions below:
+
+| Wire ID | Message | 17.3 direction | Phone-side behavior |
+|---|---|---|---|
+| 0x8001 | SetCarPropertyValueRequest | Phone -> HU | Creates and owns request correlation |
+| 0x8002 | SetCarPropertyValueResponse | HU -> Phone | Matches the request UUID |
+| 0x8003 | RegisterCarPropertyListenersRequest | Phone -> HU | Sends registrations; inbound copies are unexpected |
+| 0x8004 | RegisterCarPropertyListenersResponse | HU -> Phone | Updates registration state |
+| 0x8005 | CarPropertyChangeEvent | HU -> Phone | Updates property state and listeners |
+| 0x8006 | CarActionNotification | Phone -> HU | Sends the action; inbound copies are unexpected |
+| 0x8007 | CarControlGroupUpdate | HU -> Phone | Replaces the matching control group |

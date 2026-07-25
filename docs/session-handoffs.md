@@ -1304,6 +1304,7 @@ Verification:
 - `git diff --check` -> exit 0
 
 
+
 ## 2026-07-24 — Close Android Auto 17.3 car-control direction matrix
 
 Date / Session: 2026-07-24 / android-auto-17.3-update-task-4
@@ -2084,4 +2085,64 @@ Verification:
   statuses 1 with add never reached; allowlists remain 19/20/39
 - Audit/gates/scope -> 15 audit mappings, exactly two open gates, Task 11 next,
   matcher unchanged, and only the manifest and this handoff changed
+- `git diff --check` -> exit 0
+
+## 2026-07-25 — Task 11: publish message IDs and directions
+
+Date / Session: 2026-07-25 / android-auto-17.3-update-task-11
+
+What Changed:
+- Published the accepted 17.3 video matrix for 0x8007-0x8015, including the
+  corrected shifted names, normalized phone/HU directions, exact
+  CriticalUiNotification proto2 payload, unpublished ActionTaken enum
+  boundary, and reserved/unknown/deferred 0x8010 slot
+- Corrected all seven car-control message directions and phone-side ownership
+  prose without changing their wire schemas
+- Corrected only the four inverted sensor rows in the verification report;
+  sensor protos and channel documentation remain untouched
+- Marked the Task 11 manifest rows applied and moved the dossier resume pointer
+  to Task 12
+
+Why:
+- Android Auto 17.3 phone-endpoint send/parser evidence supersedes the older
+  shifted video enum and inverted endpoint-perspective claims
+- The frozen manifest is the publication contract; no audit YAML, sensor
+  canonical file, radio/service/identity file, or other Task 12/13 path was
+  edited
+
+Status:
+- Task 11's 19-path canonical publication slice is GREEN and ready for its
+  bounded commit
+- The broad stale search still reports two Task 13-owned rows in
+  `analysis/reports/proto-verification/PROGRESS.md` (car-control line 116 and
+  sensor line 201); the Task 11-authorized canonical/report set has no hit
+- Four pre-existing video audit links remain pending the Task 13 audit files;
+  Task 11 added no missing local reference
+
+Next Steps:
+1. Task 12: publish only the manifest-authorized identity, compatibility, and
+   new-service changes
+2. Task 13: synchronize audit YAML and PROGRESS/report rows, including the two
+   scoped stale-direction residuals
+3. Preserve 0x8010 as unnamed/reserved until direct endpoint or framed evidence
+   resolves it
+
+Verification:
+- RED stale-claim command -> found `VIDEO_FOCUS_NOTIFICATION = 0x8009`, the
+  old `UPDATE_UI_CONFIG_REQUEST = 0x800A`, and inverted car-control direction
+  comments before production edits
+- RED manifest gates -> all 26 CHG-VID/CHG-CC/CHG-SEN commands exited 1 for
+  missing accepted semantics; the 0x8010 descriptor assertion rejected the
+  old assignment, with no shell/protoc syntax failure
+- GREEN manifest gates -> 26/26 pass
+- Authorized targeted stale check -> no matches (expected `rg` exit 1)
+- Broad targeted stale check -> only the two Task 13-owned PROGRESS.md rows
+  cited above
+- Exact changed-proto compile (`protoc --proto_path=.` over the nine changed
+  proto targets) -> exit 0
+- Complete Task 11 protocol compile (AV/UI config, car control, four sensor
+  messages, and every `oaa/video/*.proto`) -> exit 0
+- New-reference path sanity -> exit 0; no newly added local link is missing
+- Task 11 manifest statuses -> exactly 15 CHG-VID, 7 CHG-CC, and 4 CHG-SEN
+  rows record Task 11 application; shared audit/report sync remains Task 13
 - `git diff --check` -> exit 0

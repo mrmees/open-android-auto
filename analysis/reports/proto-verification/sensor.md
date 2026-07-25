@@ -4,16 +4,16 @@
 **GAL type:** 7
 **Handler class:** `ibi.java` (16.2), extends `iav`
 **No +1 msg ID offset** — raw constants used directly
-**Verified:** 2026-03-06
+**Direction update:** 2026-07-25 from Android Auto `17.3.662804-release`
 
 ## Wire Messages
 
 | Proto | Wire ID | Direction | 16.1 Class | 16.2 Class | Confidence | Notes |
 |-------|---------|-----------|------------|------------|------------|-------|
-| SensorRequest | 0x8001 | HU→Phone | wbr | wbh | **Gold** | 2 fields: required enum SensorType, required int64 refresh_interval |
-| SensorStartResponse | 0x8002 | Phone→HU | — | wbi | **Gold** | 1 field: required enum Status (vyh) |
-| SensorEventIndication | 0x8003 | Phone→HU | wbo | wbe | **Gold** | 26 repeated message fields, one per sensor type |
-| SensorError | 0x8004 | Phone→HU | wbp | wbf | **Gold** | 2 fields: required enum SensorType, required enum SensorErrorStatus |
+| SensorRequest | 0x8001 | Phone→HU | wbr | wbh | **Gold** | 2 fields: required enum SensorType, required int64 refresh_interval |
+| SensorStartResponse | 0x8002 | HU→Phone | — | wbi | **Gold** | 1 field: required enum Status (vyh) |
+| SensorEventIndication | 0x8003 | HU→Phone | wbo | wbe | **Gold** | 26 repeated message fields, one per sensor type |
+| SensorError | 0x8004 | HU→Phone | wbp | wbf | **Gold** | 2 fields: required enum SensorType, required enum SensorErrorStatus |
 
 ## Enums
 

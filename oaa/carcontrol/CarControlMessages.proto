@@ -7,21 +7,22 @@
  * Handler: hyc.java (16.2) / hxp.java (16.1), log tag: CAR.GAL.CAR_CONTROL
  *
  * This channel provides VHAL (Vehicle HAL) property access — HVAC controls,
- * seat temperature, defrost, toll card status, etc. The HU registers listeners
+ * seat temperature, defrost, toll card status, etc. The phone registers listeners
  * for car properties and receives change events. It can also set property values.
  *
  * Message IDs (from vik.m36843p/m36844q):
- *   0x8001 = CAR_CONTROL_SET_CAR_PROPERTY_VALUE_REQUEST    (HU→Phone, wbq)
- *   0x8002 = CAR_CONTROL_SET_CAR_PROPERTY_VALUE_RESPONSE   (Phone→HU, wbr)
- *   0x8003 = CAR_CONTROL_REGISTER_CAR_PROPERTY_LISTENERS_REQUEST (HU→Phone, waz)
- *   0x8004 = CAR_CONTROL_REGISTER_CAR_PROPERTY_LISTENERS_RESPONSE (Phone→HU, wba)
- *   0x8005 = CAR_CONTROL_CAR_PROPERTY_CHANGE_EVENT         (Phone→HU, vwg)
- *   0x8006 = CAR_CONTROL_CAR_ACTION_NOTIFICATION           (HU→Phone, vvv)
- *   0x8007 = CAR_CONTROL_CAR_CONTROL_GROUP_UPDATE           (Phone→HU, vvz)
+ *   0x8001 = CAR_CONTROL_SET_CAR_PROPERTY_VALUE_REQUEST    (Phone→HU, wbq)
+ *   0x8002 = CAR_CONTROL_SET_CAR_PROPERTY_VALUE_RESPONSE   (HU→Phone, wbr)
+ *   0x8003 = CAR_CONTROL_REGISTER_CAR_PROPERTY_LISTENERS_REQUEST (Phone→HU, waz)
+ *   0x8004 = CAR_CONTROL_REGISTER_CAR_PROPERTY_LISTENERS_RESPONSE (HU→Phone, wba)
+ *   0x8005 = CAR_CONTROL_CAR_PROPERTY_CHANGE_EVENT         (HU→Phone, vwg)
+ *   0x8006 = CAR_CONTROL_CAR_ACTION_NOTIFICATION           (Phone→HU, vvv)
+ *   0x8007 = CAR_CONTROL_CAR_CONTROL_GROUP_UPDATE           (HU→Phone, vvz)
  *
  * No msg ID offset — hyc extends iav directly, vik.m36844q maps IDs unchanged.
- * Handler receives: 0x8002, 0x8004, 0x8005, 0x8007 (Phone→HU).
- * Handler drops with "unexpected": 0x8003, 0x8006 (HU→Phone, send-only).
+ * Phone handler receives: 0x8002, 0x8004, 0x8005, 0x8007 (HU→Phone).
+ * Phone handler drops inbound 0x8003 and 0x8006 as unexpected; both are
+ * Phone→HU send-only messages.
  *
  * Proto3 sub-messages (CarProperty, CarAreaId, CarAction, CarPropertyValue,
  * CarPropertyControl, IntValues, FloatValues, LongValues) are in
@@ -36,6 +37,15 @@ import "oaa/carcontrol/CarPropertyData.proto";
 import "oaa/common/StatusEnum.proto";
 
 package oaa.proto.messages;
+
+// Android Auto 17.3 phone-endpoint direction matrix:
+// 0x8001 SetCarPropertyValueRequest: Phone -> HU; phone owns correlation.
+// 0x8002 SetCarPropertyValueResponse: HU -> Phone; phone matches request UUID.
+// 0x8003 RegisterCarPropertyListenersRequest: Phone -> HU; inbound is unexpected.
+// 0x8004 RegisterCarPropertyListenersResponse: HU -> Phone; phone updates state.
+// 0x8005 CarPropertyChangeEvent: HU -> Phone; phone updates listeners.
+// 0x8006 CarActionNotification: Phone -> HU; inbound is unexpected.
+// 0x8007 CarControlGroupUpdate: HU -> Phone; replace matching group by type.
 
 // ============================================================================
 // Enums (proto2)
@@ -107,7 +117,7 @@ message CarControlGroup {
 // ============================================================================
 
 // 0x8001: SetCarPropertyValueRequest (APK class: wbq 16.2 / wca 16.1)
-// HU requests the phone to set a car property value.
+// Phone requests the HU to set a car property value and owns request correlation.
 // confidence: gold [deep_trace, 16.2 DB verified]
 message SetCarPropertyValueRequest {
     optional CarProperty car_property = 1;  // confidence: gold [deep_trace]
@@ -116,7 +126,7 @@ message SetCarPropertyValueRequest {
 }
 
 // 0x8002: SetCarPropertyValueResponse (APK class: wbr 16.2 / wcb 16.1)
-// Phone responds to HU's set-property request with result.
+// HU responds to the phone's set-property request; the phone matches request_id.
 // confidence: gold [deep_trace, handler hyc.java case 32770]
 message SetCarPropertyValueResponse {
     optional CarProperty car_property = 1;  // confidence: gold [deep_trace]
@@ -126,14 +136,15 @@ message SetCarPropertyValueResponse {
 }
 
 // 0x8003: RegisterCarPropertyListenersRequest (APK class: waz 16.2)
-// HU subscribes to change events for a list of properties.
+// Phone subscribes to HU change events for a list of properties.
+// An inbound copy at the phone endpoint is unexpected.
 // confidence: gold [deep_trace, 16.2 DB verified]
 message RegisterCarPropertyListenersRequest {
     repeated CarProperty car_properties = 1;  // confidence: gold [deep_trace]
 }
 
 // 0x8004: RegisterCarPropertyListenersResponse (APK class: wba 16.2 / wbk 16.1)
-// Phone responds with per-property registration results.
+// HU responds with per-property registration results; the phone updates its state.
 // confidence: gold [deep_trace, handler hyc.java case 32772]
 message RegisterCarPropertyListenersResponse {
     repeated SetCarPropertyListenerResult results = 1;  // confidence: gold [deep_trace]
@@ -147,7 +158,7 @@ message SetCarPropertyListenerResult {
 }
 
 // 0x8005: CarPropertyChangeEvent (APK class: vwg 16.2 / vwu 16.1)
-// Phone notifies HU that a car property value changed.
+// HU notifies the phone that a car property value changed.
 // confidence: gold [deep_trace, handler hyc.java case 32773]
 message CarPropertyChangeEvent {
     optional CarProperty car_property = 1;  // confidence: gold [deep_trace]
@@ -156,14 +167,15 @@ message CarPropertyChangeEvent {
 }
 
 // 0x8006: CarActionNotification (APK class: vvv 16.2 / vwj 16.1)
-// HU tells the phone to trigger an application launch action.
+// Phone tells the HU to trigger an application launch action.
+// An inbound copy at the phone endpoint is unexpected.
 // confidence: gold [deep_trace, 16.2 DB verified]
 message CarActionNotification {
     optional CarAction action = 1;  // confidence: gold [deep_trace]
 }
 
 // 0x8007: CarControlGroupUpdate (APK class: vvz 16.2 / vwn 16.1)
-// Phone sends updated control group layout to HU.
+// HU sends a replacement-style control group update to the phone.
 // confidence: gold [deep_trace, handler hyc.java case 32775]
 message CarControlGroupUpdate {
     optional CarControlGroup car_control_group = 1;  // confidence: gold [deep_trace]

@@ -2,8 +2,8 @@
 
 **Channel:** Video (AV sink)
 **GAL Tag:** `CAR.GAL.VIDEO`
-**Handler:** `ied.java` (16.2) extends `icv.java` (AV base) extends `iav.java`
-**Date:** 2026-03-06
+**17.3 phone endpoint:** `jdc.java` / `itt.java` / `its.java`, with shared AV handling in `jca.java`
+**Updated:** 2026-07-25 from Android Auto `17.3.662804-release`
 
 ## Complete Message ID Table (Ground Truth)
 
@@ -11,16 +11,21 @@
 
 | Wire ID | Direction | Proto Class (16.2) | Name | Confidence |
 |---------|-----------|-------------------|------|------------|
-| 0x8007 | HU→Phone | wct | VideoFocusRequest | Gold |
-| 0x8008 | Phone→HU | wcr | VideoFocusIndication | Gold |
-| 0x8009 | Phone→HU | wci | UpdateUiConfigRequest (inbound) | Gold |
-| 0x800A | HU→Phone | wci | UpdateUiConfigRequest (outbound) | Gold |
-| 0x800C | HU→Phone | vuy | AudioUnderflowNotification | Bronze |
-| 0x800D | HU→Phone | vxp | ActionTakenNotification | Bronze |
-| 0x800E | Phone→HU | vxq | IntegratedOverlayStartNotification | Gold |
-| 0x800F | Phone→HU | — | IntegratedOverlayStopNotification (empty) | Gold |
-| 0x8011 | HU→Phone | wcj | UiConfigRequest (theming tokens) | Gold |
-| 0x8012 | Phone→HU | wck | UpdateHuUiConfigResponse | Gold |
+| 0x8007 | Phone -> HU | xnd | VideoFocusRequest | Gold |
+| 0x8008 | HU -> Phone | xnb | VideoFocusIndication | Gold |
+| 0x8009 | HU -> Phone | xms | UpdateUiConfigRequest (inbound to phone) | Gold |
+| 0x800A | Phone -> HU | xms | UpdateUiConfigRequest (outbound from phone) | Gold |
+| 0x800B | HU -> Phone | — | AudioUnderflow; no payload parsed | Gold |
+| 0x800C | Phone -> HU | xex | ActionTaken; enum field 1 and public action enum unpublished | Gold |
+| 0x800D | Phone -> HU | xhv | OverlayParameters; repeated overlay-options field 1, nested semantics unpublished | Gold |
+| 0x800E | HU -> Phone | xhw | IntegratedOverlayStartNotification | Gold |
+| 0x800F | HU -> Phone | — | OverlayStop; empty payload | Gold |
+| 0x8010 | unknown | — | reserved; name/payload/direction unknown and deferred | deferred |
+| 0x8011 | Phone -> HU | xmt | UiConfigRequest (theming tokens) | Gold |
+| 0x8012 | HU -> Phone | xmu | UpdateHuUiConfigResponse | Gold |
+| 0x8013 | HU -> Phone | xim | MediaStats | Gold |
+| 0x8014 | Phone -> HU | xig | MediaOptions | Silver |
+| 0x8015 | Phone -> HU | xgu | CriticalUiNotification | Gold |
 
 ### Inherited AV Messages (icv.java — +1 offset via vdp.m36513at)
 
@@ -31,13 +36,10 @@
 | 0x8002 | Phone→HU | wbv | AVChannelStopIndication | Gold (media ch) |
 | 0x8003 | HU→Phone | vwn | AVChannelSetupResponse | Gold (media ch) |
 | 0x8004 | HU→Phone | vuw | AVMediaAckIndication | Gold (media ch) |
-| 0x800B | — | — | Signal/heartbeat (no proto) | Gold (media ch) |
-| 0x8013 | HU→Phone | vyg | AVChannelMediaStats | Gold |
-| 0x8014 | Phone→HU | vya | AVChannelMediaOptions | Silver |
 
 ## Per-Proto Verification Results
 
-### VideoFocusRequest (wct, 0x8007, HU→Phone) — Gold
+### VideoFocusRequest (xnd, 0x8007, Phone -> HU) — Gold
 
 All 6 checks pass. No changes needed to field schema.
 
@@ -52,7 +54,7 @@ All 6 checks pass. No changes needed to field schema.
 
 **Changes:** Updated 16.2 class from wdd→wct, upgraded to Gold.
 
-### VideoFocusIndication (wcr, 0x8008, Phone→HU) — Gold
+### VideoFocusIndication (xnb, 0x8008, HU -> Phone) — Gold
 
 All 6 checks pass. No changes needed to field schema.
 
@@ -67,7 +69,7 @@ All 6 checks pass. No changes needed to field schema.
 
 **Note:** vdp internal name is `MEDIA_MESSAGE_VIDEO_FOCUS_NOTIFICATION`, but we use "Indication" to match aasdk convention. Both are valid.
 
-### IntegratedOverlayStartNotification (vxq, 0x800E, Phone→HU) — Gold
+### IntegratedOverlayStartNotification (xhw, 0x800E, HU -> Phone) — Gold
 
 **Previously misidentified as VideoFocusNotification.**
 
@@ -84,7 +86,7 @@ All 6 checks pass. No changes needed to field schema.
 **Retracted:** VideoFocusNotificationMessage.proto (field 1 was wrongly called focus_mode)
 **Created:** IntegratedOverlayStartNotification.proto
 
-### IntegratedOverlayStopNotification (empty, 0x800F, Phone→HU) — Gold
+### IntegratedOverlayStopNotification (empty, 0x800F, HU -> Phone) — Gold
 
 | Check | Result | Details |
 |-------|--------|---------|
@@ -114,7 +116,7 @@ All 6 checks pass. No changes needed to field schema.
 **vdp name:** `MEDIA_MESSAGE_UPDATE_UI_CONFIG`
 **Created:** UpdateUiConfigRequestMessage.proto (references existing AdditionalVideoConfig)
 
-### UiConfigRequest (wcj, 0x8011, HU→Phone) — Gold
+### UiConfigRequest (xmt, 0x8011, Phone -> HU) — Gold
 
 Existing proto structure confirmed correct. Updated class refs and added field to UiConfigValue.
 
@@ -122,7 +124,7 @@ Existing proto structure confirmed correct. Updated class refs and added field t
 |-------|--------|---------|
 | Channel binding | PASS | Sent by huz.mo19796n → ied.m20106k(32785) |
 | Message ID | PASS | m20106k(32785) = wire 0x8011 |
-| Direction | PASS | HU→Phone only (built from UiStyle by hum.java) |
+| Direction | PASS | Phone -> HU only; built and sent by the 17.3 phone endpoint |
 | Field schema | CORRECTED | UiConfigValue was empty, now has `optional uint32 value = 1` |
 | Cross-references | PASS | hum→huz→ied send chain, response at 0x8012 |
 | Enum values | N/A | String key-value pairs |
@@ -130,7 +132,7 @@ Existing proto structure confirmed correct. Updated class refs and added field t
 **vdp name:** `MEDIA_MESSAGE_INTEGRATED_OVERLAY_SESSION_DATA_UPDATE`
 **WARNING:** 16.1 class names (wct, wco, wcq) all refer to DIFFERENT protos in 16.2 (VideoFocusRequest, VideoResolution enum, VideoFocusMode enum respectively).
 
-### UpdateHuUiConfigResponse (wck, 0x8012, Phone→HU) — Gold
+### UpdateHuUiConfigResponse (xmu, 0x8012, HU -> Phone) — Gold
 
 **Previously misidentified as VideoFocusModeMessage.**
 
@@ -218,14 +220,14 @@ All 11 fields match. Defaults: fps=1 (_60), margin_width=1, codec=1 (PCM).
 
 ## Shared AV Messages (icv.java)
 
-### AVChannelMediaStats (vyg, 0x8013, HU→Phone) — Gold
+### AVChannelMediaStats (xim, 0x8013, HU -> Phone) — Gold
 
 Existing proto structure confirmed correct (15 fields). Fixed:
 - Wire msg ID: 0x8014 → 0x8013 (was dispatch value, not wire value)
 - 16.2 class: vyu → vyg
 - Sub-message class: vvo → vva (StatsEntry)
 
-### AVChannelMediaOptions (vya, 0x8014, Phone→HU) — Silver
+### AVChannelMediaOptions (xig, 0x8014, Phone -> HU) — Silver
 
 New discovery. 13 fields (mostly PhenotypeFlag wrappers). Built by hnc.java from feature flags. Gated by PDK version (>= 5.0/5.1/6.0). Placeholder proto created — full field schema deferred to audio channel pass.
 
@@ -236,12 +238,15 @@ New discovery. 13 fields (mostly PhenotypeFlag wrappers). Built by hnc.java from
 | VideoFocusNotification | Actually IntegratedOverlayStartNotification | IntegratedOverlayStartNotification.proto |
 | VideoFocusModeMessage | Actually UpdateHuUiConfigResponse | UpdateHuUiConfigResponse.proto |
 
-## Additional Messages Not Fully Verified
+## Additional 17.3 message boundaries
 
 | Wire ID | Direction | Name | Notes |
 |---------|-----------|------|-------|
-| 0x800C | HU→Phone | AudioUnderflowNotification (vuy) | From huz.java, Bronze |
-| 0x800D | HU→Phone | ActionTakenNotification (vxp) | From huz.java, Bronze |
+| 0x800B | HU -> Phone | AudioUnderflowNotification | Phone callback parses no payload; no additional signal semantics are inferred |
+| 0x800C | Phone -> HU | ActionTakenNotification | Wrapper has enum field 1; public action enum is unpublished |
+| 0x800D | Phone -> HU | IntegratedOverlayParametersNotification | Wrapper has repeated overlay-options field 1; nested overlay-option semantics are unpublished |
+| 0x8010 | unknown | reserved | Name, payload, and direction are unknown; publication is deferred |
+| 0x8015 | Phone -> HU | CriticalUiNotification | Optional critical-UI-focus enum field 1; no acknowledgement or response implied |
 
 ## Key Discoveries
 
