@@ -17,13 +17,13 @@
 | DIR-VID-8013 | video/shared AV | 0x8013 / 32787 | AVChannelMediaStats | `xim` | receive/parse: inherited raw ID is shifted to internal 32788 and records stats | HU -> Phone | `jca.java:285-286,454-485`; `wru.java:252-253,263-310`; `jer.java:91-124,187-188`; `xim.java:7-22,41` | 16.x video docs/report already use MediaStats HU -> Phone; enum and `UiConfigMessages.proto` instead assign UpdateHuUiConfigResponse here. | confirmed-static | Keep MediaStats and direction; replace conflicting enum/UI-config claims. |
 | DIR-VID-8014 | video/shared AV | 0x8014 / 32788 | AVChannelMediaOptions | `xig` | send: PDK-gated 13-field media-options update | Phone -> HU | `jca.java:190-191`; `itt.java:748-755`; `its.java:182-190`; `xig.java:7-20,39` | 16.x video docs/report already use MediaOptions Phone -> HU; enum calls this MediaStats. | confirmed-static | Keep MediaOptions and direction; fix enum name. |
 | DIR-VID-8015 | video | 0x8015 / 32789 | CriticalUiNotification | `xgu` | send: builds critical-UI focus enum field 1 | Phone -> HU | `itt.java:609-621`; `xgu.java:7-8,27`; `xgt.java:4-7` | 16.x enum calls this MediaOptions and active video tables omit the critical-UI message. | confirmed-static | Replace with `CRITICAL_UI_NOTIFICATION`, Phone -> HU; add canonical payload/docs coverage. |
-| DIR-CC-8001 | | | | | | | | | open | |
-| DIR-CC-8002 | | | | | | | | | open | |
-| DIR-CC-8003 | | | | | | | | | open | |
-| DIR-CC-8004 | | | | | | | | | open | |
-| DIR-CC-8005 | | | | | | | | | open | |
-| DIR-CC-8006 | | | | | | | | | open | |
-| DIR-CC-8007 | | | | | | | | | open | |
+| DIR-CC-8001 | car control | 0x8001 / 32769 | SetCarPropertyValueRequest | `xlz` | send: builds property, value, and request UUID | Phone -> HU | `iip.java:904-935`; `xlz.java:7-10,29` | Canonical proto/docs/report say HU -> Phone (Gold in the report); 17.3 directly sends from the phone endpoint. | confirmed-static | Keep ID, name, and schema; reverse canonical direction to Phone -> HU. |
+| DIR-CC-8002 | car control | 0x8002 / 32770 | SetCarPropertyValueResponse | `xma` | receive/parse: matches request UUID and dispatches success or error callback | HU -> Phone | `ixb.java:31-75`; `xma.java:7-11,30` | Canonical proto/docs/report say Phone -> HU (Gold in the report); 17.3 directly parses on the phone. | confirmed-static | Keep ID, name, and schema; reverse canonical direction to HU -> Phone. |
+| DIR-CC-8003 | car control | 0x8003 / 32771 | RegisterCarPropertyListenersRequest | `xli` | send: builds repeated property subscription; an inbound copy is explicitly unexpected | Phone -> HU | `iip.java:251-268`; `ixb.java:95-99`; `xli.java:7,26` | Canonical proto/docs/report say HU -> Phone (Gold in the report); 17.3 directly sends, while its phone receive branch rejects the ID as unexpected. | confirmed-static | Keep ID, name, and schema; reverse canonical direction to Phone -> HU. |
+| DIR-CC-8004 | car control | 0x8004 / 32772 | RegisterCarPropertyListenersResponse | `xlj` | receive/parse: forwards repeated per-property results to registration state | HU -> Phone | `ixb.java:100-112`; `iip.java:727-746`; `xlj.java:7,26`; `xgk.java:7-9,28` | Canonical proto/docs/report say Phone -> HU (Gold in the report); 17.3 directly parses on the phone. | confirmed-static | Keep ID, name, and schema; reverse canonical direction to HU -> Phone. |
+| DIR-CC-8005 | car control | 0x8005 / 32773 | CarPropertyChangeEvent | `xgj` | receive/parse: converts and caches property state, then notifies listeners | HU -> Phone | `ixb.java:131-143`; `iip.java:603-694`; `xgj.java:7-10,29` | Canonical proto/docs/report say Phone -> HU (Gold in the report); 17.3 directly parses on the phone. | confirmed-static | Keep ID, name, and schema; reverse canonical direction to HU -> Phone. |
+| DIR-CC-8006 | car control | 0x8006 / 32774 | CarActionNotification | `xfw` | send: wraps a car-action ID; an inbound copy is explicitly unexpected | Phone -> HU | `iip.java:568-591`; `ixb.java:95-99`; `xfw.java:7-8,27`; `xdw.java:7-8,27` | Canonical proto/docs/report say HU -> Phone (Gold in the report); 17.3 directly sends, while its phone receive branch rejects the ID as unexpected. | confirmed-static | Keep ID, name, and schema; reverse canonical direction to Phone -> HU. |
+| DIR-CC-8007 | car control | 0x8007 / 32775 | CarControlGroupUpdate | `xga` | receive/parse: replaces the group by type and notifies group listeners | HU -> Phone | `ixb.java:162-178`; `iip.java:216-225,594-600`; `xga.java:7-8,27`; `xfz.java:7-9,28` | Canonical proto/docs/report say Phone -> HU (Gold in the report); 17.3 directly parses on the phone. | confirmed-static | Keep ID, name, and schema; reverse canonical direction to HU -> Phone. |
 | DIR-SEN-8001 | | | | | | | | | open | |
 | DIR-SEN-8002 | | | | | | | | | open | |
 | DIR-SEN-8003 | | | | | | | | | open | |
@@ -115,3 +115,48 @@ proto or channel document is changed in this task.
 | 0x8013 | enum/UI-config sources call it UpdateHuUiConfigResponse, Phone -> HU | `wru.S` plus `jca.java:454-485`: phone parses `xim`; AVChannelMediaStats, HU -> Phone, matching video docs/report lines 95/35 |
 | 0x8014 | enum line 36 calls it MediaStats | `jca.java:190-191`: phone sends `xig`; AVChannelMediaOptions, Phone -> HU, matching video docs/report lines 96/36 |
 | 0x8015 | enum line 37 calls it MediaOptions | `itt.java:609-621`: phone sends `xgu`; CriticalUiNotification, Phone -> HU |
+
+## Car-control protobuf-lite descriptor evidence
+
+The car-control payload names and directions above come from the complete
+builder/parser blocks in the Android Auto 17.3 phone endpoints and the concrete
+protobuf-lite descriptors. They are static APK findings, not runtime-capture
+claims.
+
+| Raw ID | APK class | Descriptor field structure |
+|---|---|---|
+| 0x8001 / 32769 | `xlz` | fields 1-3: message `xee` car property, message `xem` property value, string request ID (`xlz.java:7-10,29`) |
+| 0x8002 / 32770 | `xma` | fields 1-4: message `xee` car property, enum validated by `xjj.b`/`xin` status, string request ID, int32 error code (`xma.java:7-11,30`; `xjj.java:22,34-35`; `xin.java:6-40,48-125`) |
+| 0x8003 / 32771 | `xli` | field 1: repeated message `xee` car properties (`xli.java:7,26`) |
+| 0x8004 / 32772 | `xlj` | field 1: repeated message `xgk` listener results (`xlj.java:7,26`); `xgk` contains message `xee` field 1 and `xin` status field 2 (`xgk.java:7-9,28`) |
+| 0x8005 / 32773 | `xgj` | fields 1-3: message `xee` car property, message `xem` property value, int32 availability status (`xgj.java:7-10,29`) |
+| 0x8006 / 32774 | `xfw` | field 1: message `xdw` car action (`xfw.java:7-8,27`); `xdw` contains enum action ID field 1 (`xdw.java:7-8,27`) |
+| 0x8007 / 32775 | `xga` | field 1: message `xfz` control group (`xga.java:7-8,27`); `xfz` contains enum group type field 1 and repeated message `xfy` controls field 2 (`xfz.java:7-9,28`) |
+
+## Car-control phone-endpoint normalization
+
+`ixb.java` is the phone receive/parser endpoint. It directly parses `32770`,
+`32772`, `32773`, and `32775`, so those raw messages normalize as HU -> Phone.
+The builders in `iip.java` directly call `ixb.k(...)` with `32769`, `32771`,
+and `32774`, so those raw messages normalize as Phone -> HU.
+
+The explicit `ixb.java:95-99` receive cases for `32771` and `32774` log
+"Received unexpected car control message." Those branches describe unexpected
+inbound copies at the phone endpoint; they do not make the direct phone sends
+missing wire messages or weaken their Phone -> HU classification.
+
+## Car-control canonical conflict ledger
+
+Direct Android Auto 17.3 endpoint and descriptor evidence outranks the active
+16.x comments, documentation, and prior Gold labels below. These dispositions
+are inputs for Task 10; this task does not modify canonical car-control files.
+
+| Raw ID | Exact active old conflict | Higher-ranked 17.3 replacement |
+|---|---|---|
+| 0x8001 | `oaa/carcontrol/CarControlMessages.proto:14,109-115`, `docs/channels/carcontrol.md:13,21,29`, and `analysis/reports/proto-verification/carcontrol.md:14,26` say HU -> Phone | `iip.java:904-935` builds `xlz` and calls `ixb.k(32769, ...)`; Phone -> HU |
+| 0x8002 | proto lines `15,118-125`, channel-doc line `22`, and verification-report lines `15,27` say Phone -> HU | `ixb.java:31-75` parses `xma` and matches its request UUID; HU -> Phone |
+| 0x8003 | proto lines `16,128-133`, channel-doc lines `13,23,29`, and verification-report lines `16,28` say HU -> Phone | `iip.java:251-268` builds and sends `xli`; `ixb.java:95-99` separately rejects an inbound copy as unexpected; Phone -> HU |
+| 0x8004 | proto lines `17,135-146`, channel-doc line `24`, and verification-report lines `17,29` say Phone -> HU | `ixb.java:100-112` parses `xlj`; `iip.java:727-746` handles the response from the HU; HU -> Phone |
+| 0x8005 | proto lines `18,149-155`, channel-doc lines `13,25`, and verification-report lines `18,30` say Phone -> HU | `ixb.java:131-143` parses `xgj`, then `iip.java:603-694` updates phone-side state; HU -> Phone |
+| 0x8006 | proto lines `19,158-162`, channel-doc lines `26,29`, and verification-report lines `19,31` say HU -> Phone | `iip.java:568-591` builds and sends `xfw`; `ixb.java:95-99` separately rejects an inbound copy as unexpected; Phone -> HU |
+| 0x8007 | proto lines `20,165-169`, channel-doc line `27`, and verification-report lines `20,32` say Phone -> HU | `ixb.java:162-178` parses `xga`, then `iip.java:594-600` replaces phone-side group state; HU -> Phone |

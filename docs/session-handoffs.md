@@ -1302,3 +1302,68 @@ Verification:
 - Source-anchor existence loop -> 15/15 referenced primary payload/endpoint
   files present
 - `git diff --check` -> exit 0
+
+## 2026-07-24 — Close Android Auto 17.3 car-control direction matrix
+
+Date / Session: 2026-07-24 / android-auto-17.3-update-task-4
+
+What Changed:
+- Closed `DIR-CC-8001` through `DIR-CC-8007` with raw/decimal IDs, canonical
+  names, Android Auto 17.3 payload classes, phone endpoint actions, normalized
+  directions, exact source anchors, historical conflicts, static status, and
+  canonical dispositions
+- Traced the `ixb.java` phone receive branches and `iip.java` phone send
+  builders through `xlz`, `xma`, `xli`, `xlj`, `xgj`, `xfw`, and `xga`, plus
+  their nested protobuf-lite descriptor references
+- Added a phone-endpoint normalization note that keeps the unexpected inbound
+  `32771` and `32774` cases distinct from the direct phone-side sends
+- Added an exact seven-row conflict ledger covering the inverted canonical
+  proto comments, channel documentation, and prior Gold verification labels
+- Advanced the dossier resume pointer to Task 5 without modifying canonical
+  car-control protos/docs or changing roadmap sequencing
+
+Why:
+- The historical sources describe direction from the opposite endpoint
+  perspective: Android Auto 17.3 directly sends `0x8001`, `0x8003`, and
+  `0x8006` from the phone and directly parses `0x8002`, `0x8004`, `0x8005`,
+  and `0x8007` on the phone
+- Direct 17.3 endpoint and descriptor evidence outranks older comments and
+  audit labels, while remaining explicitly static rather than runtime-captured
+
+Status:
+- `0x8001` `xlz` SetCarPropertyValueRequest, `0x8003` `xli`
+  RegisterCarPropertyListenersRequest, and `0x8006` `xfw`
+  CarActionNotification are `confirmed-static`, Phone -> HU
+- `0x8002` `xma` SetCarPropertyValueResponse, `0x8004` `xlj`
+  RegisterCarPropertyListenersResponse, `0x8005` `xgj`
+  CarPropertyChangeEvent, and `0x8007` `xga` CarControlGroupUpdate are
+  `confirmed-static`, HU -> Phone
+- `ixb.java:95-99` explicitly rejects inbound `32771` and `32774`; those
+  unexpected receive branches do not negate the sends at `iip.java:251-268`
+  and `iip.java:568-591`
+- No runtime traffic was captured or implied, and all canonical edits remain
+  deferred to Task 10
+
+Next Steps:
+1. Task 5: trace `jal`, `jai`, and `iji` to close the sensor and radio direction
+   rows
+2. Task 10: publish the accepted car-control direction reversals from this
+   conflict ledger without changing the evidence-ranked names or schemas
+3. Runtime validation: capture framed car-control traffic to supplement these
+   static phone-endpoint findings
+
+Verification:
+- Exact Task 4 receive extraction -> direct parsers for `32770`, `32772`,
+  `32773`, and `32775`; explicit unexpected cases for `32771` and `32774`
+- Exact Task 4 send extraction -> `ixb.k(...)` calls for `32769`, `32771`, and
+  `32774` with complete `xlz`, `xli`, and `xfw` builders
+- Exact canonical comparison -> all seven active directions are opposite the
+  normalized Android Auto 17.3 phone-endpoint directions
+- Exact Task 4 open-row guard -> exit 0 with no `DIR-CC` open rows
+- Exact Task 4 direction `rg` -> all seven rows present with the required
+  `Phone -> HU` or `HU -> Phone` direction
+- Descriptor/source-anchor checks -> all referenced endpoint and protobuf-lite
+  files and cited descriptor lines present
+- Resume-pointer check -> Task 4 completed, Task 5 next, exact `jal.java`
+  extraction command present
+- `git diff --check` -> exit 0
