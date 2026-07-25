@@ -11,10 +11,12 @@ Android Auto models multiple screens as independent logical display instances.
 It does **not** render one panoramic canvas and ask the head unit to crop a
 section for each physical screen.
 
-Each advertised display receives a distinct `CarDisplayId`, display type,
+For each video-capable descriptor accepted by the static 17.3 construction
+path, Android Auto constructs a distinct `CarDisplayId`, display type,
 video-service object, Android `Surface`, video endpoint, video configuration
-set, encoder state, focus state, and matching input route. The resulting media
-streams share the Android Auto transport but remain separate logical channels.
+set, encoder state, focus state, and matching input route. The descriptor and
+endpoint objects are separate; concurrent media-stream behavior is
+runtime-unverified until framed runtime evidence is captured.
 
 AA can still partition the UI *within one display*. Insets, margins, Coolwalk
 regions, native UI elements, and blended-UI geometry modify a single display's
@@ -40,7 +42,7 @@ small reviewable artifact suitable for Git.
 
 ## 17.3 source trace
 
-### 1. One factory result per advertised video display
+### 1. One factory result per accepted video descriptor
 
 `defpackage/itq.java` consumes a `ChannelDescriptor` (`xlv`) containing an
 `AVChannel` (`xik`). It validates the channel's `VideoConfig` list (`xmz`), then
@@ -158,9 +160,10 @@ multi-display routing.
 
 Two useful architectures coexist:
 
-1. **Projected display:** MAIN, CLUSTER, or AUXILIARY gets its own video endpoint
-   and encoded media stream. Cluster and auxiliary projection are primarily
-   navigation/turn-card surfaces.
+1. **Projected display:** MAIN, CLUSTER, or AUXILIARY accepted by the static
+   construction path gets its own video endpoint. Concurrent encoded
+   media-stream behavior is runtime-unverified; cluster and auxiliary projection
+   are primarily navigation/turn-card surfaces in the static evidence.
 2. **Native HU widget:** the HU consumes navigation, media, and phone-status
    protobufs and renders its own cluster or secondary UI without a projected
    video stream.

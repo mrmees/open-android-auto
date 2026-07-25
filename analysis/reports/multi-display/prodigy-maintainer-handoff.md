@@ -6,9 +6,10 @@ Audience: OpenAuto Prodigy maintainer
 
 ## Decision in one paragraph
 
-Model every projected Android Auto display as an independent logical display
-session. Do **not** ask Android Auto for one panoramic framebuffer and crop it
-into screens. For each MAIN, CLUSTER, or AUXILIARY display, Prodigy should
+Model every projected Android Auto display accepted by the 17.3 phone's static
+construction path as an independent logical display session. Do **not** ask
+Android Auto for one panoramic framebuffer and crop it into screens. For each
+MAIN, CLUSTER, or AUXILIARY display, Prodigy should
 advertise a separate video `ChannelDescriptor`, give it a unique display ID,
 provide exactly one input configuration with the same display ID, and create a
 separate video-channel handler, decoder state, output sink, and focus state.
@@ -24,14 +25,14 @@ but that is a local Prodigy rendering decision invisible to Android Auto.
   and existing capture-backed channel work.
 - **Implementation recommendation:** the proposed Prodigy design follows from
   the confirmed protocol model but has not yet been implemented in Prodigy.
-- **Open — runtime:** static evidence is strong, but a live multi-display 17.3
-  session has not yet been captured.
+- **runtime-unverified:** static evidence is strong, but a live multi-display
+  17.3 session has not yet been captured.
 
 ## The protocol model
 
-The head unit returns a `ServiceDiscoveryResponse` containing one video-capable
-`ChannelDescriptor` for every logical projected display. Android Auto 17.3
-processes every such descriptor independently:
+When the head unit returns video-capable `ChannelDescriptor` entries that the
+17.3 phone accepts, static analysis shows Android Auto constructs their display
+objects independently:
 
 ```text
 ServiceDiscoveryResponse
@@ -49,10 +50,10 @@ Android Auto phone                         OpenAuto Prodigy
   CLUSTER CarDisplay/Surface/encoder <----> CLUSTER channel/decoder/sink/input
 ```
 
-The streams share the encrypted Android Auto transport, but each uses its own
-multiplexed channel and its own AV lifecycle. Android Auto does not provide a
-wire mechanism that labels rectangles of one stream as separate physical
-displays.
+The descriptor model assigns distinct multiplexed channels and AV lifecycles to
+those logical displays. Whether a live session produces concurrent separate
+media streams is runtime-unverified; Android Auto does not provide a wire
+mechanism that labels rectangles of one stream as separate physical displays.
 
 ### Do not confuse these identifiers
 
@@ -76,8 +77,8 @@ needed.
 | Configuration | What Prodigy advertises | Confirmed phone behavior | Recommended Prodigy output |
 |---|---|---|---|
 | MAIN only | One video descriptor with display ID 0 and type MAIN; one matching input config | Required baseline. Display ID 0 must exist and must be MAIN | Existing primary decoder and full-screen sink |
-| MAIN + CLUSTER | MAIN ID 0 plus one unique CLUSTER display ID; one matching input config per display | Phone creates two independent display/video objects. At most one CLUSTER is accepted | Add a second video handler, decoder, cluster sink, and focus state |
-| MAIN + AUXILIARY | MAIN ID 0 plus one or more unique AUXILIARY display IDs; matching input config for each | Phone creates an independent display/video object for every accepted descriptor. The observed validator does not impose a numeric AUXILIARY limit | Add one `DisplaySession` per AUXILIARY descriptor; constrain count by Prodigy/hardware capability |
+| MAIN + CLUSTER | MAIN ID 0 plus one unique CLUSTER display ID; one matching input config per display | Static code constructs two independent display/video objects when their descriptors are accepted. At most one CLUSTER is accepted | Add a second video handler, decoder, cluster sink, and focus state |
+| MAIN + AUXILIARY | MAIN ID 0 plus one or more unique AUXILIARY display IDs; matching input config for each | Static code constructs an independent display/video object for every accepted descriptor. The observed validator does not impose a numeric AUXILIARY limit | Add one `DisplaySession` per AUXILIARY descriptor; constrain count by Prodigy/hardware capability |
 | MAIN + CLUSTER + AUXILIARY | One MAIN, no more than one CLUSTER, and each AUXILIARY with unique IDs and matching inputs | Static 17.3 construction and validation support this topology | Run all logical video sessions independently; then map sinks to physical outputs |
 | One display with native chrome or reserved regions | One MAIN video descriptor whose `VideoConfig.additional_config` supplies insets, margins, corner radii, hidden elements, or blended native regions | Phone changes composition geometry within that one display | Keep one decoder/sink; composite OEM chrome around or over that sink |
 | Native HU-rendered cluster/secondary widgets | Navigation/media/phone semantic channels, possibly without a secondary video descriptor | Separate protocol path; the HU renders its own UI from data rather than pixels | Build native Prodigy widgets and do not pretend they are a second projected stream |
@@ -88,7 +89,8 @@ start order, and focus transitions remain runtime verification items.
 
 ## What Android Auto 17.3 actually constructs
 
-For each video-capable descriptor, 17.3 creates:
+For each video-capable descriptor accepted by its static construction path,
+17.3 creates:
 
 - a `CarDisplayId` from `AVChannel` field 6;
 - a display type from `AVChannel` field 7;
@@ -332,6 +334,6 @@ session advertising MAIN + CLUSTER + AUXILIARY and retain:
    launches; and
 6. Prodigy CPU/GPU/decoder/compositor measurements on target hardware.
 
-Static analysis answers the architecture question: **separate logical display
-instances and streams**. The capture is needed to verify operational details and
-content policy, not to choose between that model and a panoramic canvas.
+Static analysis answers the architecture question for accepted descriptors:
+**separate logical display instances**. Framed runtime capture is needed to
+verify concurrent media streams, operational details, and content policy.
