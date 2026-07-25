@@ -1084,6 +1084,7 @@ Verification:
 - Source-anchor existence checks for `jdc.java`, `itt.java`, `itq.java`,
   `iti.java`, `its.java`, and `jnb.java` -> all present
 - `git diff --check` -> success
+
 - Path/reference `rg` checks for the new durable path and report -> success; no
   active `/tmp/android-auto-17.3-jadx` smoke path remains
 
@@ -3019,3 +3020,88 @@ Verification:
 - Roadmap path/reference scan -> aggregate-suite recovery is the first `Now`
   item and names the existing analysis branch
 - `git diff --check` -> success
+
+## 2026-07-25 — Analysis test-suite recovery implementation
+
+Date / Session: 2026-07-25 / analysis-test-suite-recovery
+
+What Changed:
+- Added the root `Makefile` verification contract, pinned test dependency
+  manifest, pytest integration marker, and contributor-facing verification
+  commands so one `make verify` boundary covers active proto compilation, the
+  aggregate maintained tests, and generated annotation drift
+- Added a shared protobuf dynamic-message compatibility helper and routed the
+  stream validator and Volkswagen SDP decoder through it for protobuf 4.21 and
+  current runtimes
+- Added check/repair rendering for generated confidence annotations,
+  synchronized the active proto comment mirrors from canonical audit sidecars,
+  and proved the repair preserved descriptor bytes
+- Separated ignored APK-index snapshot checks from fixture-backed unit
+  coverage, aligned the current multi-message grouping and immutable Platinum
+  fixture contracts, and published the four missing cross-version category
+  tables for `carintent`, `mediabrowser`, `mic`, and `verification`
+- Added `.github/workflows/verify.yml`, using `actions/checkout@v7`,
+  `actions/setup-python@v7`, Python 3.11, `protobuf-compiler`, and the same
+  authoritative `make PYTHON=python verify` boundary proven locally
+
+Why:
+- The aggregate analysis suite had six classified debt buckets—confidence
+  mirrors and policy assumptions, protobuf runtime compatibility, ignored APK
+  database dependencies, grouping expectations, a stale Platinum example, and
+  missing cross-version documentation—and could not gate the analysis-to-main
+  merge
+
+Status:
+- Local implementation is green: the aggregate gate reports exactly 1,807
+  passed and 3 skipped; the three skips are all caused by absent ignored
+  APK-index SQLite snapshots
+- The explicit `apk_index_integration` selection reports 2 skipped and 1,808
+  deselected. Its exact skip reasons are `missing ignored APK-index SQLite
+  snapshot(s): 15.9, 16.1, 16.4` and `missing ignored APK-index SQLite
+  snapshot: Android Auto 16.4.661014`
+- The third aggregate skip is the pre-existing live-promotion snapshot with
+  reason `One or more APK index DBs unavailable`
+- The historical release selection reports exactly 736 passed; all 247 active
+  protos compile; annotation check reports 247 files and `Changed: 0`; and the
+  retained 105,152-byte pre/post annotation descriptor sets are byte-identical
+- Recovery remains the first `Now` item until GitHub Actions passes and the
+  integration branch is merged; no roadmap priority or sequencing changed
+
+Next Steps:
+1. Open and review the integration pull request
+2. Merge to `main` only after the new Verify GitHub Actions job passes
+3. Delete the merged analysis branch after integration is confirmed
+
+Verification:
+- `make PYTHON=.venv/bin/python verify` before workflow creation -> exit 0;
+  1,807 passed, 3 skipped in 50.42s; annotation totals were 247 files and
+  `Changed: 0`
+- `make PYTHON=.venv/bin/python test-release` -> exit 0; exactly 736 passed in
+  29.39s
+- `make PYTHON=.venv/bin/python proto-check` -> exit 0 with its intentionally
+  silent descriptor compilation; `find oaa -type f -name '*.proto' -print |
+  sort | wc -l` -> 247 active protos
+- `descriptor_dir="$(cat /tmp/oaa-annotation-descriptor-dir)"; cmp
+  "$descriptor_dir/before.pb" "$descriptor_dir/after.pb"` -> exit 0; both
+  retained descriptors are 105,152 bytes
+- `make PYTHON=.venv/bin/python test-integration` -> exit 0; 2 skipped and
+  1,808 deselected in 10.19s
+- `PYTHONPATH=. .venv/bin/python -m pytest -q -rs -m
+  apk_index_integration analysis/tools` -> exit 0; 2 skipped and 1,808
+  deselected in 10.23s, with the exact two missing-snapshot reasons recorded
+  above
+- `PYTHONPATH=. .venv/bin/python -m pytest -q -rs analysis/tools` -> exit 0;
+  1,807 passed and 3 skipped in 50.54s, including the live-promotion snapshot
+  skip reason recorded above
+- `PYTHONPATH=. .venv/bin/python -m analysis.tools.seed_import.annotate
+  --check $(find oaa -mindepth 1 -maxdepth 1 -type d -print | sort)` -> exit 0;
+  247 files checked and `Changed: 0`
+- Pre-workflow `git diff --check` and `git status --short` -> exit 0 and clean
+  output, respectively
+- `.venv/bin/python` YAML parse/assertion from the Task 8 brief -> exit 0 and
+  printed `.github/workflows/verify.yml`; the final workflow step is exactly
+  `make PYTHON=python verify`
+- `make PYTHON=.venv/bin/python verify` after workflow creation -> exit 0;
+  1,807 passed, 3 skipped in 50.20s; annotation totals were 247 files and
+  `Changed: 0`
+- Post-workflow `git diff --check` -> exit 0
