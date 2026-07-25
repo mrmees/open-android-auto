@@ -1574,3 +1574,56 @@ Verification:
   prior handoff contain no equivalent stale anchor
 - Exact Task 6 open-row guard -> exit 0 with no open `ID-*` row
 - `git diff --check` -> exit 0
+
+## 2026-07-24 — Task 7: reconstruct the CarIntent service
+
+Date / Session: 2026-07-24 / android-auto-17.3-update-task-7
+
+What Changed:
+- Closed all five `SVC-CI-*` rows with the descriptor, endpoint, raw-ID,
+  payload-schema, and activation evidence boundaries
+- Traced descriptor field 18 and presence bit `0x20000` through service type
+  22 endpoint construction to the phone's incoming `xgc` parse and callback
+  notification
+- Decoded `xgc` as one optional field-2 string (wire type 2/tag `0x12`) and
+  separated that wire fact from the consumer log's fixed NAVIGATE label
+- Recorded the bounded raw-ID search as deferred and advanced the dossier
+  resume pointer to Task 8
+
+Why:
+- The 17.3 sources prove a bounded HU -> Phone CarIntent payload contract, but
+  no sender enum, dispatch comparison, or resource mapping proves its raw ID
+- Publishing conventional `0x8001`, an intent-type enum, field 1 meaning, or
+  acknowledgement would go beyond the available wire evidence
+- The named `AdasRouteInfoFeature__car_intent_enabled` flag defaults false,
+  while the actual decompiled factory path accepts or suppresses the service
+  solely through descriptor field-18 presence
+
+Status:
+- `SVC-CI-DESCRIPTOR`, `SVC-CI-ENDPOINT`, `SVC-CI-SCHEMA`, and `SVC-CI-GATE`
+  are `confirmed-static`
+- `SVC-CI-ID` is `deferred`; the raw message ID remains unknown
+- No canonical CarIntent proto or channel documentation was created before the
+  Task 10 manifest gate
+- Static evidence is not a runtime capture; live activation and framed traffic
+  remain unverified
+
+Next Steps:
+1. Task 8: close CarLocalMedia state/flow and classify BufferedMedia
+2. Task 10: publish only CarIntent rows accepted by the change manifest
+3. Runtime validation: capture a framed CarIntent message to resolve its raw ID
+
+Verification:
+- Required descriptor/service search -> field-18 bit `131072`, service type
+  22, and `CarIntentService` construction anchors found
+- Required sender/dispatcher/resource searches -> no sender enum or raw-ID
+  comparison; `SVC-CI-ID` remains deferred
+- RawMessageInfo decoder -> proto2 optional field 2 `string`, wire type 2,
+  encoded tag `0x12`
+- Required activation search -> flag default false; no feature-name reference
+  in `jnb` or `iix`; factory acceptance follows descriptor bit `0x20000`
+- Exact Task 7 open-row guard -> exit 0 with no open `SVC-CI-*` rows
+- Required contract-term check -> service type 22, field 2, HU -> Phone,
+  NAVIGATE, and AdasRouteInfoFeature all present
+- Owned-file scope check -> only the three Task 7 owned files changed
+- `git diff --check` -> exit 0
