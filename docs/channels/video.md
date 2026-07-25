@@ -12,7 +12,7 @@
 | VideoFocusIndication | **Gold** | deep_trace, handler_verified | [VideoFocusIndicationMessage.audit.yaml](../../oaa/video/VideoFocusIndicationMessage.audit.yaml) |
 | UpdateUiConfigRequest | **Gold** | deep_trace, handler_verified | [UpdateUiConfigRequestMessage.audit.yaml](../../oaa/video/UpdateUiConfigRequestMessage.audit.yaml) |
 | UiConfigRequest | **Gold** | deep_trace, handler_verified | [UiConfigRequestMessage.audit.yaml](../../oaa/video/UiConfigRequestMessage.audit.yaml) |
-| UpdateHuUiConfigResponse | **Gold** | deep_trace, handler_verified | [UpdateHuUiConfigResponse.audit.yaml](../../oaa/video/UpdateHuUiConfigResponse.audit.yaml) |
+| UpdateHuUiConfigResponse | **Gold** | deep_trace, handler_verified | -- |
 | IntegratedOverlayStartNotification | **Gold** | deep_trace, handler_verified | [IntegratedOverlayStartNotification.audit.yaml](../../oaa/video/IntegratedOverlayStartNotification.audit.yaml) |
 | IntegratedOverlayStopNotification | **Gold** | deep_trace, handler_verified | [IntegratedOverlayStopNotification.audit.yaml](../../oaa/video/IntegratedOverlayStopNotification.audit.yaml) |
 | ~~VideoFocusNotification~~ | **Retracted** | Actually IntegratedOverlayStartNotification (0x800E) | -- |
@@ -20,8 +20,8 @@
 | AudioUnderflowNotification | **Gold** | 17.3 endpoint trace | -- |
 | ActionTakenNotification | **Gold** | 17.3 endpoint trace | -- |
 | IntegratedOverlayParametersNotification | **Gold** | 17.3 endpoint + descriptor trace | -- |
-| AVChannelMediaOptions | **Gold** | 17.3 raw message info | -- (Task 13 audit sync) |
-| CriticalUiNotification | **Gold** | 17.3 apk_static | -- (Task 13 audit sync) |
+| AVChannelMediaOptions | Bronze | 17.3 apk_deep_trace; runtime-unverified | [AVChannelMediaOptionsMessage.audit.yaml](../../oaa/av/AVChannelMediaOptionsMessage.audit.yaml) |
+| CriticalUiNotification | Bronze | 17.3 apk_deep_trace; runtime-unverified | [CriticalUiNotification.audit.yaml](../../oaa/video/CriticalUiNotification.audit.yaml) |
 | VideoConfig | Silver | apk_static, cross_version, wire_capture | [VideoConfigData.audit.yaml](../../oaa/video/VideoConfigData.audit.yaml) |
 | AdditionalVideoConfig | **Gold** | deep_trace_verified | [AdditionalVideoConfigData.audit.yaml](../../oaa/video/AdditionalVideoConfigData.audit.yaml) |
 | VideoFocusMode (enum) | **Gold** | deep_trace, handler_verified | -- |
@@ -39,7 +39,8 @@
 
 ## Overview
 
-> Confidence: Gold -- all video-specific messages deep-trace verified; SDP config Silver+
+> Confidence: Mixed -- most established messages are Gold; newly published
+> MediaOptions and CriticalUiNotification are Bronze from 17.3-only static traces.
 
 The video channel carries the **projected display** from the phone to the head unit. The phone renders its entire Android Auto UI (Coolwalk layout, maps, media cards, assistant) into a video surface, encodes it as H.264 (or VP9/AV1/H.265), and streams the compressed frames to the HU over channel 3. The HU decodes and displays them.
 
@@ -57,9 +58,9 @@ The video channel is an **AV channel** (handler `ied.java` extends `icv.java` AV
 
 ### Video-Specific Messages (ch 3 -- raw wire IDs, no +1 offset)
 
-> Confidence: Gold [17.3 endpoint trace, raw message info] -- accepted
-> directions come from `jdc`/`itt`/`its`/`jca`; the 16.2 `ied` trace is a
-> historical schema baseline.
+> Confidence: Per-message tiers below. Accepted directions come from the 17.3
+> `jdc`/`itt`/`its`/`jca` endpoint trace; the 16.2 `ied` trace is a historical
+> schema baseline.
 
 | Msg ID | Message | Direction | Purpose | Confidence |
 |--------|---------|-----------|---------|:---:|
@@ -76,8 +77,8 @@ The video channel is an **AV channel** (handler `ied.java` extends `icv.java` AV
 | 0x8011 | UiConfigRequest | Phone -> HU | Send theming tokens (Material Design key-value pairs) | **Gold** |
 | 0x8012 | UpdateHuUiConfigResponse | HU -> Phone | Accept/reject theming tokens | **Gold** |
 | 0x8013 | MediaStats | HU -> Phone | Playback statistics (15 fields) | **Gold** |
-| 0x8014 | MediaOptions | Phone -> HU | Exact 13-field wire envelope; field semantics unresolved | **Gold** |
-| 0x8015 | CriticalUiNotification | Phone -> HU | Critical-UI-focus enum field 1; no response implied | **Gold** |
+| 0x8014 | MediaOptions | Phone -> HU | Exact 13-field wire envelope; field semantics unresolved | Bronze |
+| 0x8015 | CriticalUiNotification | Phone -> HU | Critical-UI-focus enum field 1; no response implied | Bronze |
 
 ### MediaOptions wire envelope (0x8014)
 

@@ -2,7 +2,21 @@
 
 **Design:** `docs/plans/2026-03-06-proto-verification-design.md`
 **Started:** 2026-03-06
-**Last updated:** 2026-03-07
+**Last updated:** 2026-07-25 (Android Auto 17.3 publication supplement)
+
+## Android Auto 17.3 publication supplement
+
+- CarLocalMedia is service type 20: 0x8001 CarLocalMediaPlaybackStatus HU ->
+  Phone, 0x8002 CarLocalMediaPlaybackMetadata HU -> Phone, and 0x8003
+  CarLocalMediaPlaybackRequest Phone -> HU. Static endpoint flow does not prove
+  runtime activation, framed traffic, or callback delivery.
+- BufferedMedia incoming raw ID 4 is HU -> Phone and performs parse and consume of the
+  published six-field schema. IDs 1-3 and every outbound path are unknown. This
+  does not establish a response or completed transfer and is runtime-unverified;
+  downstream operation and activation are also unverified.
+- The accepted 17.3 car-control and sensor directions below supersede the old
+  16.2 endpoint interpretations while preserving the previously verified
+  schemas.
 
 ## Summary
 
@@ -113,13 +127,13 @@ kaz.java uses GMS vendor extension API (`com.google.android.apps.auto.components
 
 | Proto | Wire ID | Direction | 16.2 Class | Confidence | Result |
 |-------|---------|-----------|------------|------------|--------|
-| SetCarPropertyValueRequest | 0x8001 | HU→Phone | wbq | Gold | Correct |
-| SetCarPropertyValueResponse | 0x8002 | Phone→HU | wbr | Gold | Status → vyh (ProtocolStatus) |
-| RegisterCarPropertyListenersRequest | 0x8003 | HU→Phone | waz | Gold | **NEW** — was missing |
-| RegisterCarPropertyListenersResponse | 0x8004 | Phone→HU | wba | Gold | Correct |
-| CarPropertyChangeEvent | 0x8005 | Phone→HU | vwg | Gold | Correct |
-| CarActionNotification | 0x8006 | HU→Phone | vvv | Gold | Correct |
-| CarControlGroupUpdate | 0x8007 | Phone→HU | vvz | Gold | Correct |
+| SetCarPropertyValueRequest | 0x8001 | Phone→HU | wbq | Gold | 17.3 direction; schema retained |
+| SetCarPropertyValueResponse | 0x8002 | HU→Phone | wbr | Gold | 17.3 direction; status uses vyh |
+| RegisterCarPropertyListenersRequest | 0x8003 | Phone→HU | waz | Gold | 17.3 direction; inbound copy rejected |
+| RegisterCarPropertyListenersResponse | 0x8004 | HU→Phone | wba | Gold | 17.3 direction |
+| CarPropertyChangeEvent | 0x8005 | HU→Phone | vwg | Gold | 17.3 direction |
+| CarActionNotification | 0x8006 | Phone→HU | vvv | Gold | 17.3 direction; inbound copy rejected |
+| CarControlGroupUpdate | 0x8007 | HU→Phone | vvz | Gold | 17.3 direction |
 
 ### Critical Fixes
 
@@ -198,10 +212,10 @@ RadioIdentifierType(wai), RadioTuneStatus(C0000a.m80bA), RadioTuneDirection(vdp.
 
 | Proto | Wire ID | Direction | 16.2 Class | Confidence | Result |
 |-------|---------|-----------|------------|------------|--------|
-| SensorRequest | 0x8001 | HU→Phone | wbh | Gold | Correct, updated 16.2 class |
-| SensorStartResponse | 0x8002 | Phone→HU | wbi | Gold | optional→required on status field |
-| SensorEventIndication | 0x8003 | Phone→HU | wbe | Gold | MAJOR FIX: fields 21-26 had wrong sub-message types |
-| SensorError | 0x8004 | Phone→HU | wbf | Gold | Correct, updated 16.2 class |
+| SensorRequest | 0x8001 | Phone→HU | wbh | Gold | 17.3 direction; schema retained |
+| SensorStartResponse | 0x8002 | HU→Phone | wbi | Gold | 17.3 direction; required status |
+| SensorEventIndication | 0x8003 | HU→Phone | wbe | Gold | 17.3 direction; 26 fields retained |
+| SensorError | 0x8004 | HU→Phone | wbf | Gold | 17.3 direction; schema retained |
 
 ### Sub-Messages (26 sensor data types, all Gold)
 
@@ -288,13 +302,13 @@ Deferred from video pass. ResizeActionType enum values (0-2) unchanged in 16.2. 
 
 | Proto | Msg ID | Direction | 16.2 Class | Confidence | Result |
 |-------|--------|-----------|------------|------------|--------|
-| VideoFocusRequest | 0x8007 | HU→Phone | wct | Gold | Updated class refs |
-| VideoFocusIndication | 0x8008 | Phone→HU | wcr | Gold | Confirmed correct |
+| VideoFocusRequest | 0x8007 | Phone→HU | wct | Gold | 17.3 direction; schema retained |
+| VideoFocusIndication | 0x8008 | HU→Phone | wcr | Gold | 17.3 direction; schema retained |
 | UpdateUiConfigRequest | 0x8009/0x800A | Bidirectional | wci | Gold | NEW — runtime UI config |
-| IntegratedOverlayStartNotification | 0x800E | Phone→HU | vxq | Gold | NEW — was wrongly VideoFocusNotification |
-| IntegratedOverlayStopNotification | 0x800F | Phone→HU | — | Gold | NEW — empty message |
-| UiConfigRequest | 0x8011 | HU→Phone | wcj | Gold | Fixed class refs, added UiConfigValue field |
-| UpdateHuUiConfigResponse | 0x8012 | Phone→HU | wck | Gold | NEW — was wrongly VideoFocusModeMessage |
+| IntegratedOverlayStartNotification | 0x800E | HU→Phone | vxq | Gold | 17.3 direction; int32 field retained |
+| IntegratedOverlayStopNotification | 0x800F | HU→Phone | — | Gold | 17.3 direction; empty message |
+| UiConfigRequest | 0x8011 | Phone→HU | wcj | Gold | 17.3 direction; schema retained |
+| UpdateHuUiConfigResponse | 0x8012 | HU→Phone | wck | Gold | 17.3 direction; status enum retained |
 | AVChannelMediaStats | 0x8013 | HU→Phone | vyg | Gold | Fixed wire ID (was 0x8014), updated class refs |
 
 ### Enums (all Gold)
@@ -310,11 +324,11 @@ Deferred from video pass. ResizeActionType enum values (0-2) unchanged in 16.2. 
 
 | Proto | Msg ID | Direction | 16.2 Class | Notes |
 |-------|--------|-----------|------------|-------|
-| IntegratedOverlayStartNotification | 0x800E | Phone→HU | vxq | 1 field (int32 display_session_id) |
-| IntegratedOverlayStopNotification | 0x800F | Phone→HU | — | Empty message |
-| UpdateHuUiConfigResponse | 0x8012 | Phone→HU | wck | 1 field (ThemingTokensStatus enum) |
+| IntegratedOverlayStartNotification | 0x800E | HU→Phone | vxq | 1 field (int32 display_session_id) |
+| IntegratedOverlayStopNotification | 0x800F | HU→Phone | — | Empty message |
+| UpdateHuUiConfigResponse | 0x8012 | HU→Phone | wck | 1 field (ThemingTokensStatus enum) |
 | UpdateUiConfigRequest | 0x8009/0x800A | Bidirectional | wci | Wraps AdditionalVideoConfig |
-| AVChannelMediaOptions | 0x8014 | Phone→HU | vya | Silver — 13 fields, placeholder |
+| AVChannelMediaOptions | 0x8014 | Phone→HU | vya/xig | Exact 17.3 13-field schema; semantics unresolved |
 
 ### Retracted
 

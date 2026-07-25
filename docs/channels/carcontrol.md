@@ -559,7 +559,7 @@ Phone sends 0x8006 (`CarActionNotification`) for action buttons:
 | `hyc` | CAR.GAL.CAR_CONTROL -- channel handler, dispatches inbound messages |
 | `hlb` | CAR.CarControlService -- manager, builds outbound messages, caches state |
 | `vik` | Message ID enum (`m36843p`/`m36844q` methods) |
-| `vyh` | CarControlStatus enum |
+| `vyh` | Shared ProtocolStatus enum (the dedicated CarControlStatus claim is retracted) |
 | `vul` | CarPropertyId enum (25 properties) |
 | `wbq` | SetCarPropertyValueRequest proto (0x8001) |
 | `wbr` | SetCarPropertyValueResponse proto (0x8002) |

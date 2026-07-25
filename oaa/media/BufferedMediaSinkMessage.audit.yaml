@@ -1,0 +1,23 @@
+proto: oaa/media/BufferedMediaSinkMessage.proto
+message: BufferedMediaSinkMessage
+confidence: bronze
+last_updated: '2026-07-25'
+wire_msg_id: 4
+direction: HU->Phone
+channel: BufferedMedia (GAL service type 21)
+evidence:
+- type: apk_deep_trace
+  method: endpoint_parser_and_raw_message_info
+  source: >-
+    Android Auto 17.3.662804-release; APKM SHA-256
+    1db7ce995aa52b2cde47a01abfb0364220fb57fc60217de3ec714e3034795344;
+    base.apk SHA-256
+    5557827f259898bdab97b489e1a0aef937fd6ec711d87361cf25d51af6f48619;
+    JADX jaz.java:18-63, xkg.java RawMessageInfo, xkf.java:4-34
+  date: '2026-07-25'
+  description: >-
+    The phone accepts incoming raw ID 4, parses xkg, and reads exactly fields
+    1-6 as int32 session ID, uint64 UID/current/buffered/duration values, and
+    the xkf state enum values 0-4. IDs 1-3 and every outbound path remain
+    unknown. Static parsing does not prove production enablement, a response,
+    completed transfer, callback delivery, or downstream media operation.

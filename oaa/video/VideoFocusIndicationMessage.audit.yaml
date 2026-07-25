@@ -1,23 +1,49 @@
 proto: oaa/video/VideoFocusIndicationMessage.proto
 message: VideoFocusIndication
 confidence: gold
-last_updated: '2026-03-06'
+last_updated: '2026-07-25'
 wire_msg_id: 0x8008
-direction: Phone->HU
+direction: HU->Phone
 channel: video (CAR.GAL.VIDEO)
-handler: ied.java (mo18864a case 32776)
+handler: jdc.java receive branch 32776
 class_mapping:
   v15.9: vvj
   v16.1: wdb
   v16.2: wcr
+  '17.3': xnb
 evidence:
 - type: deep_trace
   method: handler_verified
   source: ied.java mo18864a case 32776 -> deserialize wcr
   date: '2026-03-06'
-  description: Field 1 = wcq enum (wcrVar.f75227c), field 2 = bool (wcrVar.f75228d).
-    vdp internal name MEDIA_MESSAGE_VIDEO_FOCUS_NOTIFICATION.
+  description: >-
+    Field 1 is the wcq focus-mode enum and field 2 is bool. The historical
+    handler trace established the two-field schema but carried a stale
+    direction that the direct 17.3 receive branch resolves.
 - type: apk_static
   method: proto_access
   source: class_mapping.yaml (v15.9:vvj, v16.1:wdb, v16.2:wcr)
   date: '2026-03-03'
+  description: >-
+    Class mapping binds VideoFocusIndication to vvj, wdb, and wcr across the
+    three historical APK versions.
+- type: cross_version
+  method: structural_comparison
+  source: 15.9 vvj / 16.1 wdb / 16.2 wcr compared with 17.3 xnb
+  date: '2026-07-25'
+  description: >-
+    Optional enum field 1 and optional bool field 2 remain structurally stable
+    across the cited versions.
+- type: apk_deep_trace
+  method: receive_parse_and_focus_trace
+  source: >-
+    Android Auto 17.3.662804-release; APKM SHA-256
+    1db7ce995aa52b2cde47a01abfb0364220fb57fc60217de3ec714e3034795344;
+    base.apk SHA-256
+    5557827f259898bdab97b489e1a0aef937fd6ec711d87361cf25d51af6f48619;
+    JADX jdc.java:73-88,149-170, xnb.java:7-9,28
+  date: '2026-07-25'
+  description: >-
+    The phone receives raw ID 0x8008, parses xnb, and applies focus mode plus
+    the unsolicited flag, proving HU-to-Phone direction. This is static source
+    evidence; framed traffic and runtime focus behavior remain unverified.

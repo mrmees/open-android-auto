@@ -19,10 +19,10 @@
 | CarPropertyConfig | `vnf` | `vux` | `vuj` | `wmv` | 7/7/7/7 |
 | CarPropertyControl | `vng` | `vuy` | `vuk` | `wmw` | 3/3/3/3 |
 | CarPropertyValue | `vnl` | `vvd` | `vup` | `wnb` | 8/8/8/8 |
-| FloatValues | `vnk` | `vvc` | `vuo` | -- | 1/1/1/0 |
+| FloatValues | `vnk` | `vvc` | `vum` | -- | 1/1/1/0 |
 | IntValues | `vnj` | `vvb` | `vun` | -- | 1/1/1/0 |
-| LongValues | `vni` | `vva` | `vum` | -- | 1/1/1/0 |
-| RegisterCarPropertyListenersResponse | `xeg` | `wbk` | -- | -- | 1/1/0/0 |
+| LongValues | `vni` | `vva` | `vuo` | -- | 1/1/1/0 |
+| RegisterCarPropertyListenersResponse | `xeg` | `wbk` | `wba` | -- | 1/1/1/0 |
 | SetCarPropertyListenerResult | `vpd` | `vwv` | `vwh` | `wot` | 2/2/2/2 |
 | SetCarPropertyValueRequest | `vui` | `wca` | `wbq` | `wud` | 3/3/3/3 |
 | SetCarPropertyValueResponse | `vuj` | `wcb` | `wbr` | `wue` | 4/4/4/4 |

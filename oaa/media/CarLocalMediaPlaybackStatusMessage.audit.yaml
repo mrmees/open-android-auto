@@ -24,15 +24,22 @@ evidence:
     PlaybackState enum is NOT shared with MediaPlaybackStatus — CarLocal uses
     own enum (values 1-5, C0000a.m83bD). Action enum vwb confirmed with
     unobfuscated names. SafeParcelable toString confirms field names.
-- type: apk_static
+- type: apk_deep_trace
   method: bounded_state_and_endpoint_trace
-  source: Android Auto 17.3 xgh.java:30-32; syn.java:88-89; a.java:367-384; iiy.java:41-60; ixi.java:42-137
+  source: >-
+    Android Auto 17.3.662804-release; APKM SHA-256
+    1db7ce995aa52b2cde47a01abfb0364220fb57fc60217de3ec714e3034795344;
+    base.apk SHA-256
+    5557827f259898bdab97b489e1a0aef937fd6ec711d87361cf25d51af6f48619;
+    JADX xgh.java:30-32, syn.java:88-89, a.java:367-384,
+    iiy.java:41-60, ixi.java:42-137
   date: '2026-07-25'
   description: >
     The 17.3 validator accepts playback-state integers 1 through 5 and passes
     them through without naming value 5. The endpoint statically confirms
     0x8001 and 0x8002 HU-to-Phone and 0x8003 Phone-to-HU. BufferedMedia state
     names are unrelated and provide no label for CarLocalMedia value 5.
+    Runtime activation, framed traffic, and callback delivery are unverified.
 corrections:
 - 'Direction: Phone->HU was wrong; corrected to HU->Phone.'
 - 'PlaybackState: removed shared import and created CarLocalMediaPlaybackState values 1-5.'

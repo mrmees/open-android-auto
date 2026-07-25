@@ -2,7 +2,7 @@
 
 ## Summary
 
-160 sidecars covering 245 protos (65% coverage). 3 Platinum / single-OEM, 29 Gold, 111 Silver, 10 Bronze.
+168 sidecars covering 247 protos (68% coverage). 3 Platinum / single-OEM, 46 Gold, 93 Silver, 13 Bronze.
 
 21 protos awaiting deep-trace for Platinum promotion (oem_match_pending_gold).
 
@@ -11,40 +11,40 @@
 | Channel | Bronze | Silver | Gold | Platinum (s-OEM) | Retracted | Superseded | Total |
 |---------|--------|--------|------|------------------|-----------|------------|-------|
 | audio | 2 | 5 | 0 | 0 | 0 | 0 | 7 |
-| av | 0 | 11 | 0 | 0 | 0 | 0 | 11 |
-| bluetooth | 0 | 3 | 0 | 0 | 0 | 0 | 3 |
+| av | 1 | 9 | 3 | 0 | 0 | 0 | 13 |
+| bluetooth | 0 | 2 | 1 | 0 | 0 | 0 | 3 |
 | carcontrol | 0 | 0 | 2 | 0 | 0 | 0 | 2 |
+| carintent | 1 | 0 | 0 | 0 | 0 | 0 | 1 |
 | common | 1 | 4 | 0 | 0 | 0 | 0 | 5 |
-| control | 1 | 24 | 2 | 0 | 0 | 0 | 27 |
+| control | 1 | 18 | 4 | 0 | 4 | 0 | 27 |
 | generic | 1 | 0 | 0 | 0 | 0 | 0 | 1 |
 | input | 0 | 4 | 13 | 0 | 0 | 0 | 17 |
-| media | 0 | 0 | 4 | 2 | 3 | 1 | 10 |
+| media | 1 | 0 | 4 | 2 | 4 | 0 | 11 |
 | mediabrowser | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
 | mic | 0 | 0 | 1 | 0 | 0 | 0 | 1 |
-| navigation | 0 | 12 | 0 | 0 | 0 | 0 | 12 |
+| navigation | 0 | 10 | 2 | 0 | 0 | 0 | 12 |
 | notification | 1 | 0 | 0 | 0 | 0 | 0 | 1 |
 | phone | 0 | 0 | 3 | 0 | 0 | 0 | 3 |
 | radio | 0 | 1 | 0 | 0 | 0 | 0 | 1 |
-| sensor | 3 | 34 | 0 | 0 | 0 | 0 | 37 |
+| sensor | 2 | 30 | 4 | 0 | 1 | 0 | 37 |
 | verification | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
-| video | 0 | 3 | 2 | 1 | 2 | 0 | 8 |
-| wifi | 1 | 10 | 2 | 0 | 1 | 0 | 14 |
-| **Total** | **10** | **111** | **29** | **3** | **6** | **1** | **160** |
+| video | 1 | 3 | 5 | 1 | 2 | 0 | 12 |
+| wifi | 1 | 7 | 4 | 0 | 2 | 0 | 14 |
+| **Total** | **13** | **93** | **46** | **3** | **13** | **0** | **168** |
 
 ## Evidence Type Breakdown
 
-| Tier | apk_deep_trace | apk_static | cross_version | deep_trace | handler_trace | platinum_evidence | Total |
-|------|----------------|------------|---------------|------------|---------------|-------------------|-------|
-| Bronze | 0 | 10 | 10 | 0 | 0 | 0 | 20 |
-| Silver | 0 | 167 | 221 | 0 | 0 | 0 | 388 |
-| Gold | 5 | 21 | 10 | 20 | 13 | 0 | 69 |
-| Platinum | 2 | 4 | 3 | 1 | 0 | 3 | 13 |
-| Retracted | 2 | 3 | 2 | 1 | 0 | 0 | 8 |
-| Superseded | 1 | 1 | 0 | 0 | 0 | 0 | 2 |
+| Tier | apk_deep_trace | apk_static | cross_version | deep_trace | dhu_observation | platinum_evidence | Total |
+|------|----------------|------------|---------------|------------|-----------------|-------------------|-------|
+| Bronze | 4 | 9 | 9 | 0 | 0 | 0 | 22 |
+| Silver | 0 | 137 | 185 | 0 | 0 | 0 | 322 |
+| Gold | 30 | 48 | 39 | 20 | 1 | 0 | 138 |
+| Platinum | 3 | 4 | 3 | 1 | 0 | 3 | 14 |
+| Retracted | 8 | 23 | 14 | 1 | 0 | 0 | 46 |
 
 ## Missing Sidecars
 
-85 proto files without audit sidecars:
+79 proto files without audit sidecars:
 
 ### audio (3 missing)
 
@@ -52,10 +52,8 @@
 - AudioFocusTypeEnum.proto
 - AudioTypeEnum.proto
 
-### av (8 missing)
+### av (6 missing)
 
-- AVChannelMediaOptionsMessage.proto
-- AVChannelMessageIdsEnum.proto
 - AVChannelSessionTypeEnum.proto
 - AVChannelSetupStatusEnum.proto
 - AVChannelStopIndicationMessage.proto
@@ -110,9 +108,8 @@
 - TouchPadConfigData.proto
 - TouchScreenConfigData.proto
 
-### media (2 missing)
+### media (1 missing)
 
-- BufferedMediaSinkMessage.proto
 - MediaChannelData.proto
 
 ### mediabrowser (2 missing)
@@ -154,14 +151,11 @@
 - GalVerificationMessages.proto
 - GoogleDiagnosticsMessages.proto
 
-### video (10 missing)
+### video (7 missing)
 
 - ColorSchemeSupportEnum.proto
 - DisplayTypeEnum.proto
-- IntegratedOverlayStartNotification.proto
-- IntegratedOverlayStopNotification.proto
 - UpdateHuUiConfigResponse.proto
-- UpdateUiConfigRequestMessage.proto
 - VideoFPSEnum.proto
 - VideoFocusModeEnum.proto
 - VideoFocusReasonEnum.proto
@@ -185,9 +179,9 @@ No orphan sidecars found.
 
 ## Dashboard Metadata
 
-- **Run date:** 2026-04-12T16:59:26Z
+- **Run date:** 2026-07-25T17:51:00Z
 - **Tool version:** 1.0.0
-- **Total protos:** 245
-- **Total sidecars:** 160
+- **Total protos:** 247
+- **Total sidecars:** 168
 - **Sidecar directory:** oaa/
-- **Git HEAD:** 4e9dadd69ce00100c07ae73bf116f2f868643f44
+- **Git HEAD:** e11bdd6c227a61523dc4eac4fd1706304c3d4393

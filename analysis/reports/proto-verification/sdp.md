@@ -1,7 +1,8 @@
 # SDP Layer Verification Report
 
 **Date:** 2026-03-07
-**APK:** Android Auto 16.2.660604-release
+**APK baseline:** Android Auto 16.2.660604-release
+**Publication supplement:** Android Auto 17.3.662804-release (2026-07-25)
 **Method:** DB-driven structure matching + jadx source trace
 **Waves:** 9 (all complete)
 
@@ -16,6 +17,23 @@
 | New protos added | 24 |
 | Messages retracted | 3 |
 | Bronze (unverified) | ~5 (ConnectedDevices msgs, deepest sub-message placeholders) |
+
+## Android Auto 17.3 ChannelDescriptor supplement
+
+Direct 17.3 `xlv` descriptor and factory consumers publish three marker fields
+that were not semantically attributable from the available 16.2 descriptor:
+
+| Field | Marker | Presence bit | GAL service |
+|---:|---|---:|---:|
+| 16 | CarLocalMedia | `0x8000` | service type 20 |
+| 17 | BufferedMedia | `0x10000` | service type 21 |
+| 18 | CarIntent | `0x20000` | service type 22 |
+
+Field 18 is a compatible optional 17.3 addition relative to the available 16.2 descriptor,
+which ends at field 17. The 16.2 meanings of fields 16-17 remain
+insufficiently evidenced and are not treated as aliases or semantic reuse.
+Descriptor/factory branches are static: live advertisement, service activation,
+and runtime traffic remain unverified.
 
 ## Wave Summary
 

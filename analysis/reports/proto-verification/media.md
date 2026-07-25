@@ -1,8 +1,42 @@
 # Media Channel Verification Report
 
-**Date:** 2026-03-06
-**APK:** Android Auto 16.2.660604-release
-**Status:** COMPLETE — significant findings
+**Date:** 2026-07-25
+**APK baseline:** Android Auto 16.2.660604-release
+**Publication supplement:** Android Auto 17.3.662804-release
+**Status:** COMPLETE — 17.3 services synchronized; historical findings retained
+
+## Accepted Android Auto 17.3 service evidence
+
+### CarLocalMedia — service type 20
+
+Direct phone endpoint evidence establishes this bounded static flow:
+
+| Raw ID | Payload | Direction | Phone endpoint action |
+|---:|---|---|---|
+| 0x8001 | CarLocalMediaPlaybackStatus | HU -> Phone | parse/cache/callback path |
+| 0x8002 | CarLocalMediaPlaybackMetadata | HU -> Phone | parse/cache/callback path |
+| 0x8003 | CarLocalMediaPlaybackRequest | Phone -> HU | build/send; inbound copy rejected |
+
+The synchronized audit is
+`oaa/media/CarLocalMediaPlaybackStatusMessage.audit.yaml`. Numeric playback
+state 5 remains unknown and deferred; BufferedMedia's enum is not transferable
+evidence. This static flow does not establish an acknowledgement, runtime
+service activation, framed traffic, or callback delivery.
+
+### BufferedMedia — service type 21
+
+Android Auto 17.3 incoming raw ID 4 is HU -> Phone: `jaz` parses and consumes
+the six-field `BufferedMediaSinkMessage` (`session_id`, `uid`, current position,
+state, buffered position, and content duration). State values are exactly
+UNKNOWN=0, PLAYING=1, PAUSED=2, STOPPED=3, BUFFERING=4. IDs 1-3 are unknown,
+and every outbound path is unknown.
+
+The parser does not establish a response or completed transfer and is runtime-unverified.
+It also proves no downstream media operation or production endpoint execution.
+URL, request/response, lifecycle, transport/data-plane, and
+session semantics beyond the six consumed fields remain unpublished.
+
+## Historical Android Auto 16.2 verification
 
 ## Critical Discovery: Two Separate Channels
 

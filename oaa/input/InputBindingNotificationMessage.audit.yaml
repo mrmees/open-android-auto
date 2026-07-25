@@ -2,15 +2,15 @@ proto: oaa/input/InputBindingNotificationMessage.proto
 message: InputBindingNotification
 confidence: gold
 last_updated: '2026-03-06'
-channel: input
-channel_gal_type: 8
-msg_id: 0x8004
+channel: input (GAL service type 8)
+wire_msg_id: 0x8004
 direction: Phone->HU
-class_16_2: vxi
-class_16_1: vxw
-class_15_9: vqe
+class_mapping:
+  '16.2': vxi
+  '16.1': vxw
+  '15.9': vqe
 evidence:
-- type: handler_trace
+- type: apk_deep_trace
   method: deep_apk
   source: hlg.java:496-507 (m18746o sends msg 32772 as vxi)
   date: '2026-03-06'
@@ -23,6 +23,5 @@ evidence:
   source: class_mapping.yaml (v15.9:vqe, v16.1:vxw, v16.2:vxi)
   date: '2026-03-03'
   description: Mapped InputBindingNotification to obfuscated APK class(es) via bfs_trace.
-changes:
-- date: '2026-03-06'
-  description: Updated class refs and comment. Promoted silver→gold.
+corrections:
+- '2026-03-06: Updated class refs and comment. Promoted silver→gold.'

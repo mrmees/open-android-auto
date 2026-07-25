@@ -2,9 +2,9 @@ proto: oaa/video/VideoFocusRequestMessage.proto
 message: VideoFocusRequest
 confidence: platinum
 platinum_scope: single_oem
-last_updated: '2026-04-09'
+last_updated: '2026-07-25'
 wire_msg_id: 0x8007
-direction: HU->Phone
+direction: Phone->HU
 channel: video (CAR.GAL.VIDEO)
 handler: ied.java (m20258P)
 class_mapping:
@@ -31,6 +31,19 @@ evidence:
   date: '2026-03-03'
   description: Structural comparison across versions 15.9, 16.1, and 16.2 confirmed
     field numbers, types, and modifiers are consistent. No schema drift detected.
+- type: apk_deep_trace
+  method: builder_and_send_trace
+  source: >-
+    Android Auto 17.3.662804-release; APKM SHA-256
+    1db7ce995aa52b2cde47a01abfb0364220fb57fc60217de3ec714e3034795344;
+    base.apk SHA-256
+    5557827f259898bdab97b489e1a0aef937fd6ec711d87361cf25d51af6f48619;
+    JADX jdc.java:97-118, xnd.java:7-9,28
+  date: '2026-07-25'
+  description: >-
+    The phone builds xnd with focus mode at field 2 and focus reason at field 3
+    and sends raw ID 0x8007, proving Phone-to-HU direction. The source trace is
+    static; current 17.3 runtime focus traffic was not captured.
 - type: platinum_evidence
   source: captures/oem-vw-mib3oi-2026-04-06/messages.jsonl
   date: '2026-04-09'

@@ -6,7 +6,12 @@
 
 ## Overview
 
-The radio channel (GAL Service 15, log tag `CAR.GAL.RADIO-EP`) enables the phone to control the car's broadcast radio tuner. The HU reports its radio hardware capabilities via the SDP; the phone provides the UI, station lists, metadata display, and user control.
+The radio channel (GAL Service 15, log tag `CAR.GAL.RADIO-EP`) lets Android
+Auto control and display status for the HU-managed broadcast tuner. The HU
+reports tuner capabilities through SDP and sends station/status notifications;
+the phone-side AA endpoint sends control requests and presents the resulting
+lists and metadata. This is a control/status bridge, not evidence that the
+phone owns or operates FM/AM/DAB hardware.
 
 The radio pipeline on the phone: HU advertises `RadioChannelConfig` in SDP with band group hierarchy describing tuner capabilities -> `ibf.java` (`CAR.GAL.RADIO-EP` endpoint) receives HU->Phone notifications and dispatches via Handler to -> `hlr.java` (`CAR.RADIO` service) which manages radio state and sends Phone->HU requests -> `RadioMediaBrowserService` (`GH.Radio`) exposes the radio as an Android MediaBrowser for the projection UI.
 
@@ -52,11 +57,25 @@ The radio pipeline on the phone: HU advertises `RadioChannelConfig` in SDP with 
 
 **Note:** Message IDs 0x801C (32796) and 0x801E (32798) fall through to the default case in the endpoint handler switch -- they are Phone->HU messages and are never received by the phone-side handler.
 
+Accepted direction inventory:
+
+- RadioProgramListNotification: HU -> Phone.
+- RadioProgramInfoNotification: HU -> Phone.
+- RadioMuteRequest: Phone -> HU.
+- RadioMuteResponse: HU -> Phone.
+- RadioTuneRequest: Phone -> HU.
+- RadioTuneResponse: HU -> Phone.
+- RadioFavoriteListNotification: HU -> Phone.
+- RadioFavoriteToggleRequest: Phone -> HU.
+- RadioTuneDirectionRequest: Phone -> HU.
+- RadioSearchRequest 0x8023: Phone -> HU.
+
 ---
 
 ## RadioProgramListNotification (0x801A)
 
-Full list of available radio programs sent by the phone on connection and when the station list changes.
+Full list of available radio programs sent by the HU to the phone on connection
+and when the HU-managed tuner station list changes.
 
 ```protobuf
 message RadioProgramListNotification {  // APK class: wam (16.2), wau (16.1)
@@ -70,7 +89,8 @@ Handler dispatches as `what=4` with `List<RadioProgramInfo>`.
 
 ## RadioProgramInfoNotification (0x801B)
 
-Current station update. Sent when the station changes, metadata updates, or mute/focus state changes.
+Current station update sent by the HU to the phone when the HU-managed tuner
+changes station, metadata, mute state, or audio-focus state.
 
 ```protobuf
 message RadioProgramInfoNotification {  // APK class: wal (16.2), wat (16.1)
@@ -86,7 +106,7 @@ Handler dispatches as `what=3`, `arg1=is_muted`, `arg2=has_audio_focus`, `obj=Ra
 
 ## RadioMuteRequest (0x801C)
 
-HU tells the phone to mute or unmute the radio.
+The phone-side AA service tells the HU-managed tuner to mute or unmute.
 
 ```protobuf
 message RadioMuteRequest {  // APK class: wag (16.2), wao (16.1)
@@ -100,7 +120,7 @@ Sent by `hlr.mo18788h(boolean z)`.
 
 ## RadioMuteResponse (0x801D)
 
-Phone confirms the new mute state.
+The HU confirms the HU-managed tuner's new mute state to the phone.
 
 ```protobuf
 message RadioMuteResponse {  // APK class: wah (16.2), wap (16.1)
@@ -114,7 +134,8 @@ Handler dispatches as `what=1`, `obj=Boolean(is_muted)`.
 
 ## RadioTuneRequest (0x801E)
 
-HU requests tuning to a specific station identified by a program selector.
+The phone requests that the HU-managed tuner select a station identified by a
+program selector.
 
 ```protobuf
 message RadioTuneRequest {  // APK class: wat (16.2), wbc (16.1)
@@ -128,7 +149,7 @@ Sent by `hlr.mo18794o(RadioProgramSelector)`. Builds a `RadioProgramSelector` wi
 
 ## RadioTuneResponse (0x801F)
 
-Phone reports the result of a tune operation.
+The HU reports the HU-managed tuner's tune result to the phone.
 
 ```protobuf
 message RadioTuneResponse {  // APK class: wau (16.2), wbd (16.1)
@@ -142,7 +163,8 @@ Handler dispatches as `what=2`, `arg1=status`. If the status value is 0 (unset),
 
 ## RadioFavoriteListNotification (0x8020)
 
-Full list of favorited stations. Sent on connection and whenever favorites change.
+Full favorites list sent by the HU to the phone on connection and whenever the
+HU-managed tuner favorites change.
 
 ```protobuf
 message RadioFavoriteListNotification {  // APK class: wad (16.2), wal (16.1)
@@ -156,7 +178,8 @@ Handler dispatches as `what=5` with `List<RadioProgramInfo>`.
 
 ## RadioFavoriteToggleRequest (0x8021)
 
-HU tells the phone to add or remove the **currently tuned** station from favorites.
+The phone tells the HU to add or remove the **currently tuned** station from
+the HU-managed tuner's favorites.
 
 ```protobuf
 message RadioFavoriteToggleRequest {  // APK class: waq (16.2), waz (16.1)
@@ -170,7 +193,7 @@ Sent by `hlr.mo18792l(boolean z)`.
 
 ## RadioTuneDirectionRequest (0x8022)
 
-HU requests a seek (scan) in a given direction.
+The phone requests a seek (scan) on the HU-managed tuner in a given direction.
 
 ```protobuf
 message RadioTuneDirectionRequest {  // APK class: war (16.2), wba (16.1)
@@ -401,25 +424,25 @@ The radio state is managed in `hlr.java` with these cached fields:
 
 ### Tune Flow
 
-1. HU sends `RadioTuneRequest` (0x801E) with `RadioProgramSelector` containing primary identifier (type + frequency/station ID) and optional secondary identifiers
-2. Phone tunes the radio hardware and responds with `RadioTuneResponse` (0x801F) with status (SUCCESS/FAILURE/TIMEOUT/CANCELLED)
-3. Phone follows up with `RadioProgramInfoNotification` (0x801B) containing the new station info, mute state, and audio focus state
+1. Phone sends `RadioTuneRequest` (0x801E) with `RadioProgramSelector` containing primary identifier (type + frequency/station ID) and optional secondary identifiers
+2. HU operates its tuner and responds with `RadioTuneResponse` (0x801F) with status (SUCCESS/FAILURE/TIMEOUT/CANCELLED)
+3. HU follows up with `RadioProgramInfoNotification` (0x801B) containing the new station info, mute state, and audio focus state
 4. `RadioMediaBrowserService` has a **6-second timeout** on tune operations
 
 ### Seek Flow
 
-1. HU sends `RadioTuneDirectionRequest` (0x8022) with direction (UP=1 or DOWN=2)
-2. Phone seeks to next station and responds with the same RadioTuneResponse + RadioProgramInfoNotification sequence
+1. Phone sends `RadioTuneDirectionRequest` (0x8022) with direction (UP=1 or DOWN=2)
+2. HU seeks its tuner to the next station and responds with the same RadioTuneResponse + RadioProgramInfoNotification sequence
 
 ### Mute Flow
 
-1. HU sends `RadioMuteRequest` (0x801C) with `mute=true/false`
-2. Phone responds with `RadioMuteResponse` (0x801D) confirming new mute state
+1. Phone sends `RadioMuteRequest` (0x801C) with `mute=true/false`
+2. HU responds with `RadioMuteResponse` (0x801D) confirming the new mute state
 
 ### Favorite Toggle Flow
 
-1. HU sends `RadioFavoriteToggleRequest` (0x8021) with `is_favorite=true/false`
-2. Phone updates favorites and sends `RadioFavoriteListNotification` (0x8020) with full updated list
+1. Phone sends `RadioFavoriteToggleRequest` (0x8021) with `is_favorite=true/false`
+2. HU updates tuner favorites and sends `RadioFavoriteListNotification` (0x8020) with the full updated list
 
 ### State Recovery on Reconnect
 
@@ -517,7 +540,7 @@ Station icons and album art are delivered as raw bytes in `RadioImage.image_data
 
 > **No satellite radio:** There is zero SiriusXM/XM support. The identifier types, band types, and codec types cover AM, FM (with HD Radio/RDS), and DAB/DAB+/DMB only. Terrestrial broadcast only.
 
-> **Tune timeout:** `RadioMediaBrowserService` enforces a 6-second timeout on tune operations. If the phone's radio hardware doesn't respond within 6 seconds, the tune is considered failed.
+> **Tune timeout:** `RadioMediaBrowserService` enforces a 6-second timeout on tune operations. If the HU-managed tuner does not return status within 6 seconds, the tune is considered failed.
 
 > **TuneResponse defaults to SUCCESS:** If the `RadioTuneStatus` value is 0 (unset/unknown), the handler defaults it to 1 (SUCCESS). This means an empty `RadioTuneResponse` is treated as successful.
 

@@ -1,7 +1,7 @@
 proto: oaa/carcontrol/CarControlMessages.proto
 message: CarControlMessages (all)
 confidence: gold
-last_updated: '2026-03-07'
+last_updated: '2026-07-25'
 evidence:
 - type: deep_trace
   method: handler_dispatch
@@ -43,7 +43,22 @@ evidence:
   date: '2026-03-03'
   description: Structural match confirmed across versions 15.9, 16.1, 16.2 for most
     messages. CarControlChannelDescriptor field 2 type changed (CarControlGroup → CarControl).
-changes_applied:
+- type: apk_deep_trace
+  method: endpoint_send_and_dispatch_trace
+  source: >-
+    Android Auto 17.3.662804-release; APKM SHA-256
+    1db7ce995aa52b2cde47a01abfb0364220fb57fc60217de3ec714e3034795344;
+    base.apk SHA-256
+    5557827f259898bdab97b489e1a0aef937fd6ec711d87361cf25d51af6f48619;
+    JADX iip.java:216-268,568-746,904-935; ixb.java:31-178;
+    xlz.java, xma.java, xli.java, xlj.java, xgj.java, xfw.java, xga.java
+  date: '2026-07-25'
+  description: >-
+    Direct 17.3 phone endpoint branches prove 0x8001/0x8003/0x8006
+    Phone-to-HU and 0x8002/0x8004/0x8005/0x8007 HU-to-Phone while preserving
+    the seven schemas. These directions are static; service activation and
+    framed runtime traffic remain unverified.
+corrections:
 - RegisterCarPropertyListenersRequest added (was missing from proto, waz 16.2)
 - CarControlStatus enum RETRACTED — status fields use shared ProtocolStatus (vyh)
 - CarControlMetadataType — METADATA_PREFER_STATUS_BAR=2 added

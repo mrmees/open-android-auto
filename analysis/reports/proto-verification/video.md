@@ -32,8 +32,8 @@ historical schema baseline and do not supply the accepted 17.3 directions.
 | 0x8011 | Phone -> HU | xmt | UiConfigRequest (theming tokens) | Gold |
 | 0x8012 | HU -> Phone | xmu | UpdateHuUiConfigResponse | Gold |
 | 0x8013 | HU -> Phone | xim | MediaStats | Gold |
-| 0x8014 | Phone -> HU | xig | MediaOptions | Gold |
-| 0x8015 | Phone -> HU | xgu | CriticalUiNotification | Gold |
+| 0x8014 | Phone -> HU | xig | MediaOptions | Bronze (17.3-only static trace) |
+| 0x8015 | Phone -> HU | xgu | CriticalUiNotification | Bronze (17.3-only static trace) |
 
 #### 0x8014 MediaOptions descriptor inventory
 

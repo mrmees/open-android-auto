@@ -1,0 +1,28 @@
+proto: oaa/video/IntegratedOverlayStartNotification.proto
+message: IntegratedOverlayStartNotification
+confidence: gold
+last_updated: '2026-07-25'
+wire_msg_id: 0x800E
+direction: HU->Phone
+channel: video
+evidence:
+- type: apk_deep_trace
+  method: receive_parse_callback_trace
+  source: >-
+    Android Auto 17.3.662804-release; APKM SHA-256
+    1db7ce995aa52b2cde47a01abfb0364220fb57fc60217de3ec714e3034795344;
+    base.apk SHA-256
+    5557827f259898bdab97b489e1a0aef937fd6ec711d87361cf25d51af6f48619;
+    JADX jdc.java:236-253, its.java:132-146, xhw.java:7-8,27
+  date: '2026-07-25'
+  description: >-
+    The phone parses raw ID 0x800E as xhw and passes optional int32 field 1 to
+    registered started callbacks. This proves HU-to-Phone static delivery and
+    schema, not runtime traffic or downstream display-state effects.
+- type: cross_version
+  method: structural_comparison
+  source: 16.1 vye / 16.2 vxq canonical descriptor compared with 17.3 xhw
+  date: '2026-07-25'
+  description: >-
+    The single optional int32 field-1 shape is stable across the cited APK
+    versions; the 17.3 endpoint trace corrects the historical direction.

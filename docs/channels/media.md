@@ -18,9 +18,9 @@
 | CarLocalMediaPlaybackStatus | **Gold** | deep trace + cross-version + 17.3 endpoint trace | [CarLocalMediaPlaybackStatusMessage.audit.yaml](../../oaa/media/CarLocalMediaPlaybackStatusMessage.audit.yaml) |
 | CarLocalMediaPlaybackMetadata | **Gold** | apk_deep_trace + cross_version | [CarLocalMediaPlaybackMetadataMessage.audit.yaml](../../oaa/media/CarLocalMediaPlaybackMetadataMessage.audit.yaml) |
 | CarLocalMediaPlaybackRequest | **Gold** | apk_deep_trace + cross_version | [CarLocalMediaPlaybackRequestMessage.audit.yaml](../../oaa/media/CarLocalMediaPlaybackRequestMessage.audit.yaml) |
-| CarLocalMediaPlaybackEnum | Bronze | apk_static | [CarLocalMediaPlaybackEnum.audit.yaml](../../oaa/media/CarLocalMediaPlaybackEnum.audit.yaml) |
+| CarLocalMediaPlaybackEnum | Retracted | superseded tombstone | [CarLocalMediaPlaybackEnum.audit.yaml](../../oaa/media/CarLocalMediaPlaybackEnum.audit.yaml) |
 | MediaInfoChannel | Unverified | -- | -- |
-| BufferedMediaSinkMessage | Bronze | 17.3 static parser trace | Task 13 audit sync pending |
+| BufferedMediaSinkMessage | Bronze | 17.3 apk_deep_trace; runtime-unverified | [BufferedMediaSinkMessage.audit.yaml](../../oaa/media/BufferedMediaSinkMessage.audit.yaml) |
 
 ---
 

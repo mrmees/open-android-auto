@@ -2494,3 +2494,91 @@ Verification:
 - Documentation/stale/scope -> local-link and Markdown-table checks, scoped and
   broad canonical stale scans, exact tracked scope 2/2, and `git diff --check`
   pass
+
+## 2026-07-25 — Task 13: synchronize Android Auto 17.3 publication evidence
+
+Date / Session: 2026-07-25 / android-auto-17.3-update-task-13
+
+What Changed:
+- Synchronized all 16 publication sidecars with Android Auto
+  `17.3.662804-release`, exact APKM/base hashes, JADX anchors, accepted
+  directions or schemas, and explicit static/runtime-unverified boundaries;
+  created the seven missing authorized sidecars
+- Migrated the exact 21 legacy sidecars to the existing audit schema without
+  changing wire claims or expanding `docs/verification/audit-schema.json`
+- Retained the conservative committed 17.3 matcher JSON/Markdown byte-for-byte
+  because Task 1 rejected the three unreviewed fresh-delta rows; likewise left
+  the six-row runtime matrix and runtime artifact set unchanged
+- Regenerated the coverage dashboard at a fixed timestamp and updated its
+  outcome-sensitive census test: 168 sidecars / 247 protos / 68% coverage, 3
+  Platinum, 46 Gold, 93 Silver, 13 Bronze, 13 Retracted, 0 Superseded, 79
+  missing sidecars, and 21 pending-Gold entries
+- Synchronized SDP, media, PROGRESS, video, channel-map, channel architecture,
+  radio, car-control, cross-version, roadmap, dossier index, and Prodigy
+  handoff surfaces. The radio documentation now describes a phone-side AA
+  control/status bridge to an HU-managed tuner, not phone-owned radio hardware
+- Recorded the existing 15.9/16.1/16.2/16.4 InputChannelConfig comparison in
+  its audit so the Gold label satisfies the published deep-trace plus
+  cross-version rule; kept the 17.3-only MediaOptions, CriticalUiNotification,
+  CarIntent, and BufferedMedia publications at honest Bronze
+- Expanded the exact Task 13 manifest allowlist from 40 to 59 paths for the
+  authorized legacy/publication audits and then to 60 for the literal coverage
+  snapshot test; Task 11/12 remain exact 20/21-path sets
+
+Why:
+- Tasks 11-12 had applied the canonical protocol changes, but audits, shared
+  reports, coverage, active documentation, and the downstream implementation
+  handoff still needed one evidence-consistent publication view
+- The original Task 13 audit precondition exposed 21 legacy sidecars rejected
+  by the current schema, and the new publication sidecars necessarily changed
+  the locked live-census test values
+
+Status:
+- GREEN: Task 13 publication synchronization is complete; Task 14 remains the
+  final release gate
+- Static evidence is published without inventing runtime confirmation.
+  CarLocalMedia state 5, BufferedMedia IDs 1-3/outbound paths, the CarIntent
+  raw ID/response, multi-display concurrency, and all six runtime probes remain
+  deferred or runtime-unverified as recorded
+- No active proto changed in Task 13. The Task 12 generated-API rename remains
+  `AVChannel.channel_id` -> `display_id` at wire-stable uint32 tag 6
+- The legacy audit-tier consistency test remains a known non-gating pre-Phase-9
+  snapshot: it reports 108 passed / 71 failed because it encodes OEM-capture
+  Gold semantics and ordinal treatment of retractions that conflict with
+  `docs/verification/01-confidence-tiers.md`; the current-rule assertions and
+  audit schema suite pass
+
+Next Steps:
+1. Task 14: run the complete proto/tool/baseline release gate and record exact
+   Task 1-13 commit lineage
+2. Preserve the matcher/runtime verify-only boundaries unless new reviewed
+   static evidence or framed target-version captures become available
+3. Hand `analysis/reports/multi-display/prodigy-maintainer-handoff.md` to the
+   downstream Prodigy implementation after Task 14 closes the release
+
+Verification:
+- RED audit baseline -> 149 passed / 21 failed (170 sidecars); failures were
+  exactly the manifest-authorized legacy schema migrations
+- GREEN audit schema -> 177 passed; `docs/verification/audit-schema.json`
+  unchanged
+- RED combined audit/dashboard/link-walker suite -> 218 passed / 1 failed at
+  the old literal `160` sidecar census; GREEN -> 219 passed
+- Coverage snapshot suite -> 26 passed; two fixed-date regenerations
+  byte-match the tracked JSON/Markdown
+- Publication audit assertions -> 16/16 include exact 17.3 hashes/JADX/static
+  boundaries; four Bronze audits are single-source, and 11 Gold plus one
+  Platinum audit satisfy deep-trace plus cross-version prerequisites
+- Protobuf compilation -> all 16 publication protos and all 247 active protos
+  compile successfully with `protoc --proto_path=. --cpp_out=...`
+- Manifest integrity -> 59/59 source IDs map uniquely to 59 rows; 59/59 command
+  strings pass `bash -n`; all 59 semantic commands pass; exact staging blocks
+  are 20/21/60 literal unique paths with one fail-closed index guard each; the
+  16 changed-proto audit mappings and 21 legacy migrations are exact/unique
+- Matcher/runtime immutability -> committed matcher JSON/Markdown and runtime
+  matrix match `HEAD` byte-for-byte; no runtime capture artifacts were added
+- Cross-link walker dry-run -> five no-ops; architecture walker -> 0 modified / 14 skipped
+- Documentation sanity -> all local link targets in changed Markdown exist,
+  all changed Markdown tables have stable columns, and active publication
+  stale-claim scans are clean; the required broad scan's remaining 12 hits are
+  confined to frozen plan/handoff/manifest verification history
+- `git diff --check` -> exit 0

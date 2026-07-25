@@ -21,14 +21,27 @@ evidence:
   source: class_mapping.yaml (v15.9:vqi, v16.1:vya, v16.2:vxm)
   date: '2026-03-03'
   description: Mapped InputChannelConfig via string_const.
-- type: apk_static
+- type: cross_version
+  method: structural_comparison
+  source: docs/cross-version/input.md (15.9, 16.1, 16.2, 16.4)
+  date: '2026-04-08'
+  description: >
+    Structural comparison across 15.9, 16.1, 16.2, and 16.4 confirms the
+    same five-field InputChannelConfig shape in every mapped APK version.
+- type: apk_deep_trace
   method: semantic_display_binding_trace
-  source: Android Auto 17.3 xhs.java:39; jnb.java:263-308; iiv.java:163-171,254
+  source: >-
+    Android Auto 17.3.662804-release; APKM SHA-256
+    1db7ce995aa52b2cde47a01abfb0364220fb57fc60217de3ec714e3034795344;
+    base.apk SHA-256
+    5557827f259898bdab97b489e1a0aef937fd6ec711d87361cf25d51af6f48619;
+    JADX xhs.java:39, jnb.java:263-308, iiv.java:163-171,254
   date: '2026-07-25'
   description: >
     The 17.3 descriptor decodes field 5 as optional uint32. The input matcher
     accepts it only when it equals the target CarDisplayId derived from
     AVChannel field 6, while logging the descriptor transport channel ID
-    separately.
+    separately. This proves static per-display routing, not concurrent runtime
+    input delivery.
 corrections:
 - '2026-03-06: Renamed input_type to supported_keycodes, key_configs to supported_haptic_types, and capabilities to display_id; updated APK class references and promoted silver to gold.'

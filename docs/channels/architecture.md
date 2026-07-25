@@ -185,6 +185,12 @@ VW MIB3 OI + DHU SDP captures)
   CarIntent (22)** exist in APK handler code but were not declared in the
   available VW or DHU captures. Static presence does not establish live service
   activation.
+- **Radio is a control/status bridge to an HU-managed tuner.** The phone-side
+  AA endpoint sends tune/mute/favorite/seek/search requests and receives HU
+  program/status notifications; it does not establish phone-owned FM hardware.
+- **Car Control is a vehicle-control bridge.** The phone sends property writes,
+  listener registrations, and car actions; the HU returns responses, changes,
+  and group updates. These directions are static and do not prove runtime use.
 
 ### Direction Semantics
 

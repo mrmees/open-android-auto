@@ -1,6 +1,6 @@
 # Android Auto Multi-display Handoff for OpenAuto Prodigy
 
-Date: 2026-07-24
+Date: 2026-07-25
 Android Auto reference: `17.3.662804-release` (`173662804`)
 Audience: OpenAuto Prodigy maintainer
 
@@ -150,6 +150,55 @@ For a first useful cluster experience, native HU rendering is lower risk:
 consume navigation turn data, media metadata, and phone status, and draw
 Prodigy's own widgets. That path does not require a second video decoder and can
 ship before projected CLUSTER support.
+
+## Adjacent integration boundaries
+
+These surfaces should be designed alongside multi-display routing, but none is
+permission to collapse the independent display sessions above.
+
+### Backup camera: HU-local preemption
+
+Treat a reverse/backup camera as an HU-local safety source. The HU should
+preempt or composite the affected physical output locally, preserve the AA
+logical display/session state, and restore that sink after the camera view
+ends. The accepted 17.3 evidence contains no proven Android Auto camera
+service, camera protobuf interface, or phone-provided camera stream. Do not
+invent one or route a camera through the projected video channel.
+
+### Radio: bridge to the HU-managed tuner
+
+Implement radio as a control/status bridge, not phone-owned FM hardware. The
+phone-side AA endpoint sends `RadioMuteRequest`, `RadioTuneRequest`,
+`RadioFavoriteToggleRequest`, `RadioTuneDirectionRequest`, and
+`RadioSearchRequest` to the HU. The HU operates its tuner and sends program
+lists/info, mute/tune responses, and favorites to the phone. Runtime activation
+and traffic on 17.3 remain unverified.
+
+### Vehicle controls: service 19 bridge
+
+For the vehicle-control bridge, route 0x8001 property writes, 0x8003 listener
+registrations, and 0x8006 car actions Phone -> HU. Route 0x8002 responses,
+0x8004 registration results, 0x8005 property changes, and 0x8007 group updates
+HU -> Phone. Keep VHAL/HU ownership separate from the projected UI. The direct
+17.3 endpoint proves these static directions and schemas, but not live service
+advertisement, activation, callbacks, or framed traffic.
+
+### Services 20-22: preserve bounded contracts
+
+- **CarLocalMedia (20):** status 0x8001 and metadata 0x8002 are HU -> Phone;
+  request 0x8003 is Phone -> HU. Playback-state value 5 remains unnamed, and
+  no acknowledgement or runtime delivery is proven.
+- **BufferedMedia (21):** only incoming raw ID 4 HU -> Phone has a published
+  six-field playback-status schema. IDs 1-3, every outbound path, responses,
+  transfer/lifecycle/data-plane behavior, and production activation remain
+  unknown or runtime-unverified.
+- **CarIntent (22):** only an incoming HU -> Phone optional string at field 2
+  is published. Raw ID, field 1, intent enum, acknowledgement, response, and
+  runtime callback delivery remain unknown or unverified.
+
+Implement each as a separate optional service endpoint keyed by its transport
+channel. Do not attach any of them to a global display canvas or infer missing
+IDs and pairings from neighboring service catalogs.
 
 ## Recommended Prodigy architecture
 

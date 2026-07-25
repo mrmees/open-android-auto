@@ -1,16 +1,17 @@
 proto: oaa/navigation/NavigationDistanceMessage.proto
 message: NavigationDistance
 confidence: silver
-wire_message: false
 last_updated: '2026-03-04'
-notes: >
-  NOT a wire protocol message. Never dispatched on any GAL channel in v16.1 or v16.2.
-  Only consumer is ahdy (phone-internal config proto inside aheo navigation state
-  management). Previously misattributed to nav channel message ID 0x8007, which is
-  actually NavigationNextTurnDistanceEvent (vzd/vyp) in NavigationTurnEventMessage.proto.
-  The required fields (distance, eta_text, eta_seconds) are correct per the APK
-  descriptor — they cause parse failures when consumers incorrectly try to decode
-  wire 0x8007 payloads as this message type.
+corrections:
+- >-
+  NOT a wire protocol message. Never dispatched on any GAL channel in v16.1 or
+  v16.2. Only consumer is ahdy (phone-internal config proto inside aheo
+  navigation state management). Previously misattributed to nav channel
+  message ID 0x8007, which is actually NavigationNextTurnDistanceEvent
+  (vzd/vyp) in NavigationTurnEventMessage.proto. The required fields
+  (distance, eta_text, eta_seconds) are correct per the APK descriptor — they
+  cause parse failures when consumers incorrectly try to decode wire 0x8007
+  payloads as this message type.
 evidence:
 - type: apk_static
   method: string_const

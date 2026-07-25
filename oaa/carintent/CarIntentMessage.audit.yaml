@@ -3,12 +3,18 @@ message: CarIntentMessage
 confidence: bronze
 last_updated: '2026-07-25'
 evidence:
-- type: apk_static
+- type: apk_deep_trace
   method: raw_message_info_and_consumer_trace
-  source: Android Auto 17.3 xgc.java:4-8,19-28; ixg.java:17-35
+  source: >-
+    Android Auto 17.3.662804-release; APKM SHA-256
+    1db7ce995aa52b2cde47a01abfb0364220fb57fc60217de3ec714e3034795344;
+    base.apk SHA-256
+    5557827f259898bdab97b489e1a0aef937fd6ec711d87361cf25d51af6f48619;
+    JADX xgc.java:4-8,19-28, ixg.java:17-35
   date: '2026-07-25'
   description: >
     The xgc RawMessageInfo decodes as proto2 with a sole optional string at
     field 2. The phone endpoint parses it from an incoming HU buffer, logs the
     metadata, and invokes registered callbacks. The raw ID is unused and
-    unresolved; no field 1, enum, acknowledgement, or response is proven.
+    unresolved; no field 1, enum, acknowledgement, response, runtime service
+    activation, or callback delivery is proven.

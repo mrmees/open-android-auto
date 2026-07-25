@@ -29,12 +29,19 @@ evidence:
   description: Confirmed xlv as the 18-field ChannelDescriptor, field 1 required,
     and fields 16-18 as the empty CarLocalMedia, BufferedMedia, and CarIntent
     service markers via their presence-bit consumers.
-- type: apk_static
+- type: apk_deep_trace
   method: descriptor_service_identity_trace
-  source: Android Auto 17.3 xlv.java:23-25,44-45; iiy.java:74-80; isi.java:11-23; iix.java:16-26; rpq.java:25-27,78-83
+  source: >-
+    Android Auto 17.3.662804-release; APKM SHA-256
+    1db7ce995aa52b2cde47a01abfb0364220fb57fc60217de3ec714e3034795344;
+    base.apk SHA-256
+    5557827f259898bdab97b489e1a0aef937fd6ec711d87361cf25d51af6f48619;
+    JADX xlv.java:23-25,44-45, iiy.java:74-80, isi.java:11-23,
+    iix.java:16-26, rpq.java:25-27,78-83
   date: '2026-07-25'
   description: >
     Direct 17.3 consumers bind fields 16, 17, and 18 to presence bits 0x8000,
     0x10000, and 0x20000 and GAL service types 20, 21, and 22. Available 16.2
     evidence establishes tags 16-17 but not their historical semantics; field
     18 is an optional 17.3 addition relative to the 16.2 maximum tag 17.
+    Descriptor presence is static and does not prove live service activation.

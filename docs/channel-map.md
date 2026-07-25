@@ -180,13 +180,16 @@ Note: `CallAvailabilityStatus` and `VoiceSessionRequest` are on the **control ch
 
 | Message | Direction | Purpose |
 |---------|-----------|---------|
-| `SetCarPropertyValueRequest` | HU -> Phone | Set a VHAL property |
-| `SetCarPropertyValueResponse` | Phone -> HU | Property set result |
-| `RegisterCarPropertyListenersRequest` | HU -> Phone | Subscribe to property changes |
-| `RegisterCarPropertyListenersResponse` | Phone -> HU | Per-property registration results |
-| `CarPropertyChangeEvent` | Phone -> HU | Property value changed |
-| `CarActionNotification` | HU -> Phone | App launch action (HVAC, media, etc.) |
-| `CarControlGroupUpdate` | Phone -> HU | Updated control group layout |
+| `SetCarPropertyValueRequest` | Phone -> HU | Set a VHAL property |
+| `SetCarPropertyValueResponse` | HU -> Phone | Property set result |
+| `RegisterCarPropertyListenersRequest` | Phone -> HU | Subscribe to property changes |
+| `RegisterCarPropertyListenersResponse` | HU -> Phone | Per-property registration results |
+| `CarPropertyChangeEvent` | HU -> Phone | Property value changed |
+| `CarActionNotification` | Phone -> HU | App launch action (HVAC, media, etc.) |
+| `CarControlGroupUpdate` | HU -> Phone | Updated control group layout |
+
+These are static 17.3 phone-endpoint directions. Service advertisement,
+activation, callback delivery, and framed runtime traffic remain unverified.
 
 ### Channel 20: Car Local Media (GAL type 20)
 

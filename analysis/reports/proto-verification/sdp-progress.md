@@ -3,6 +3,16 @@
 **Design:** `docs/plans/2026-03-07-sdp-verification-design.md`
 **Started:** 2026-03-07
 **Completed:** 2026-03-07
+**17.3 supplement:** 2026-07-25
+
+## Android Auto 17.3 publication supplement
+
+`ChannelDescriptor` field 16 is the CarLocalMedia marker for service type 20;
+field 17 is the BufferedMedia marker for service type 21; and field 18 is the
+CarIntent marker for service type 22. Field 18 is a compatible optional 17.3 addition relative to the available 16.2 descriptor ending at field 17.
+Historical 16.2 semantics for fields 16-17 are not published because the
+preserved evidence does not establish them. These are static descriptor and
+factory identities; runtime advertisement and activation are unverified.
 
 ## Summary
 
