@@ -1883,3 +1883,70 @@ Verification:
 - Open-gate/pointer check -> only publication/final gates open; Task 11 next
 - Owned-file scope -> only the manifest and this permanent handoff changed
 - `git diff --check` -> exit 0
+
+## 2026-07-25 — Task 10 Fix Round 2: executable staging guards and discriminating gates
+
+Date / Session: 2026-07-25 / android-auto-17.3-update-task-10-fix-2
+
+What Changed:
+- Replaced each standalone empty-index `test` with a self-contained
+  `git diff --cached --quiet` failure branch that prints the task number and
+  exits 1 before its literal `git add --` command
+- Strengthened the named video gates: 0x8009 now proves the exact field-1
+  AdditionalVideoConfig wrapper, 0x800C proves the enum-field-1 unpublished
+  boundary, 0x800F counts zero declared fields, and 0x8010 rejects every enum
+  assignment while requiring reserved, unknown, and deferred documentation
+- Strengthened RadioSearchRequest to require its exact ID/name/direction and
+  exactly one string field at tag 1, while proving the radio proto is unchanged
+- Restricted CarIntent to proto2 with exactly one declaration, optional string
+  tag 2, no tag 1, and no enum
+- Restricted BufferedMedia ID 4 to all six exact optional fields and the five
+  exact state values 0-4, with exact field/value counts and the IDs 1-3 and
+  outbound-unknown boundaries retained
+- Replaced the six shared runtime artifact searches with row-specific,
+  whole-row-anchored assertions containing each probe's concrete scenario or
+  environment limitation and no-device status
+- Re-audited adjacent video, all seven car-control, nine radio prose, CLM, and
+  BufferedMedia commands so retained schemas, unchanged mappings, negative
+  boundaries, and exact directions are discriminating rather than token-only
+
+Why:
+- A bare failing `test` does not stop a pasted shell block without `set -e`, so
+  a pre-existing staged path could survive and the following add still run
+- Shell-syntax validity alone did not prove that a row command rejected extra
+  fields, missing enum values, a non-empty canonical message, or a wrong
+  runtime row
+
+Status:
+- Task 11, 12, and 13 staging blocks each exit 1 before add when the modeled
+  index is non-empty; each retains exactly 19, 20, and 39 literal paths
+- All 59 manifest rows remain traceable and Markdown-table safe; all row
+  commands and complete staging blocks are shell-syntax valid
+- The audit coverage, task ownership, evidence boundaries, two open gates,
+  Task 11 pointer, and matcher verify-only rule are unchanged
+
+Next Steps:
+1. Task 11: paste the complete Task 11 block so its explicit guard and exact
+   add execute together
+2. Task 12: implement the exact CarIntent and BufferedMedia declarations now
+   enforced by their count-sensitive gates
+3. Task 13: run every row gate and preserve the row-specific runtime-unverified
+   results without promoting unavailable captures
+
+Verification:
+- RED guard simulation before edit -> all three old blocks returned 0 and
+  called add with a modeled non-empty index
+- RED semantic coverage before edit -> 16 required discriminator fragments
+  missing across the cited video/radio/CarIntent/BufferedMedia/runtime rows
+- Guard GREEN simulation -> Tasks 11/12/13 each returned 1 and `add=not-called`
+- Row/staging syntax -> 59 row commands and all three complete blocks pass
+  `bash -n -c`; 59 rows have the expected seven columns
+- Semantic coverage -> 59 named schema/direction/runtime assertions, 0 missing;
+  all six row-specific runtime commands execute successfully against the matrix
+- Traceability -> source 59, manifest 59, symmetric difference 0, duplicate
+  change/evidence IDs 0, evidence-source errors 0
+- Allowlists -> 19/20/39 literal paths, one explicit guard and one add each,
+  zero globs; non-empty simulations all exit 1 without reaching add
+- Audit/gates/scope -> 15 audit mappings, 0 errors; exactly two open gates;
+  Task 11 next; matcher unchanged; only manifest and this handoff changed
+- `git diff --check` -> exit 0
