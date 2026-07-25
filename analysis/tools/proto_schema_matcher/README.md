@@ -35,13 +35,22 @@ Run from the repository root:
 
 ```bash
 PYTHONPATH=. python3 -m analysis.tools.proto_schema_matcher.run \
-  --jadx-root /tmp/android-auto-17.3-jadx \
+  --jadx-root analysis/aa_apk_17.3.662804_apkm/jadx-output \
   --version 17.3.662804-release \
   --apk-sha256 1db7ce995aa52b2cde47a01abfb0364220fb57fc60217de3ec714e3034795344 \
   --lineage-yaml analysis/lineage/android-auto-17.3.yaml \
-  --output-json analysis/reports/cross-version/17-3-schema-match.json \
-  --output-md analysis/reports/cross-version/17-3-schema-match.md
+  --output-json analysis/aa_apk_17.3.662804_apkm/validation/17-3-schema-match-fresh.json \
+  --output-md analysis/aa_apk_17.3.662804_apkm/validation/17-3-schema-match-fresh.md
 ```
+
+The versioned JADX directory is intentionally ignored by Git. Its local
+`PROVENANCE.md` records the source bundle, checksums, decompiler version, and
+regeneration command. If the local tree is unavailable, restore the bundle and
+decompile it there before running this command.
+
+The smoke command writes into the ignored local analysis tree deliberately.
+Compare a fresh result with the committed cross-version report before promoting
+it; different JADX completeness can recover extra dispatch or enum evidence.
 
 For a previously indexed APK, use `--proto-classes-json` instead. Dispatch
 refinement is available only when `--jadx-root` is supplied.

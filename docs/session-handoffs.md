@@ -1009,3 +1009,193 @@ Verification:
 - 16.2 Layer-1 validator -> 215 active mappings, 203 with a 16.2 class, 24
   errors and 13 warnings; the added warning is expected because blended UI
   field 8 is new after 16.2
+
+## 2026-07-24 — Android Auto 17.3 durable multi-display analysis
+
+Date / Session: 2026-07-24 / 17.3-multi-display-durable-research
+
+What Changed:
+- Recovered the Android Auto `17.3.662804-release` APKM bundle from `/mnt/e/tmp`
+  and copied it into the ignored, versioned local analysis directory
+  `analysis/aa_apk_17.3.662804_apkm/`
+- Extracted and preserved `base.apk`, recorded both SHA-256 identities, and
+  generated a durable JADX 1.5.5 tree with 26,115 Java files
+- Added local `PROVENANCE.md` covering bundle identity, tool versions,
+  decompilation status, source anchors, and reproduction commands
+- Added `analysis/reports/multi-display/android-auto-17.3.md` with exact 17.3
+  source evidence for per-display `CarDisplayId`, `Surface`, video endpoint,
+  configuration, encoder, focus, and input-binding state
+- Updated the schema-matcher smoke command to use the durable local tree and to
+  write fresh results into the ignored validation directory before promotion
+- Updated the roadmap to make live MAIN + CLUSTER + AUXILIARY verification an
+  explicit next step
+
+Why:
+- The previous 17.3 source lived under `/tmp`, so schema reports survived but
+  source-level call-flow research depended on a transient decompile
+- Multi-display implementation planning for OpenAuto Prodigy needs a durable,
+  independently reviewable answer to whether AA uses separate displays or one
+  cropped panoramic canvas
+- Fresh 17.3 source proves that AA creates separate logical display/video
+  instances; retaining the full ignored tree and a tracked evidence summary
+  prevents that conclusion from being trapped in chat history
+
+Status:
+- The APKM hash is
+  `1db7ce995aa52b2cde47a01abfb0364220fb57fc60217de3ec714e3034795344`,
+  matching the existing 17.3 cross-version report; `base.apk` is
+  `5557827f259898bdab97b489e1a0aef937fd6ec711d87361cf25d51af6f48619`
+- 17.3 `itq` creates an `iti`/`itt` display/video pair for every video-capable
+  `ChannelDescriptor`; `itt` owns the display's surface/config/encoder state,
+  and `jdc` maps it to VIDEO, VIDEO_CLUSTER, or VIDEO_AUXILIARY
+- 17.3 `jnb` enforces unique display IDs, display 0 as MAIN, exactly one MAIN,
+  at most one CLUSTER, and exactly one matching input config per display
+- The architecture conclusion is separate logical displays and media streams,
+  not one HU-cropped mega-canvas; blended UI/insets are intra-display layout
+- JADX completed with 57 errors, but all multi-display anchor classes used by
+  the report are readable
+- A fresh matcher run from the durable tree recovered 1,957 APK messages, 134
+  enums, 135 observations, and 176 mappings (39 high, 137 medium). Its outputs
+  are preserved under `validation/` and were not promoted because they differ
+  from the committed 175/129 baseline at `BluetoothChannel`,
+  `PhoneConnectionConfig`, and `WifiInfoResponse`
+
+Next Steps:
+1. Capture a live 17.3 MAIN + CLUSTER + AUXILIARY session and correlate distinct
+   channel IDs, AV setup handshakes, media streams, focus changes, and logcat
+   `CarDisplayId` activity launches
+2. Review the three fresh-matcher delta rows before deciding whether the more
+   complete JADX evidence should update the canonical 17.3 schema report
+3. Translate the proven model into a Prodigy `DisplayRegistry` design with one
+   video session/decoder/sink/input route per logical display, beginning with
+   native semantic cluster widgets
+
+Verification:
+- Android reverse-engineering dependency check -> Java 21 and JADX 1.5.5 OK;
+  optional Vineflower, dex2jar, and apktool absent
+- Fingerprint of the APKM bundle -> native Android Java/Kotlin, Android Auto
+  `17.3.662804-release`, suitable for JADX
+- `sha256sum analysis/aa_apk_17.3.662804_apkm/input/android-auto-17.3.662804-release.apkm analysis/aa_apk_17.3.662804_apkm/input/base.apk` -> hashes match the values above
+- JADX wrapper against the preserved `base.apk` -> usable partial success,
+  26,115 Java files, 57 errors
+- Durable-path `proto_schema_matcher` smoke command -> success; 376 canonical
+  messages, 112 canonical enums, 1,957 APK messages, 134 APK enums, 135 static
+  observations, 6 lineage anchors, and 176 resolved mappings
+- Source-anchor existence checks for `jdc.java`, `itt.java`, `itq.java`,
+  `iti.java`, `its.java`, and `jnb.java` -> all present
+- `git diff --check` -> success
+- Path/reference `rg` checks for the new durable path and report -> success; no
+  active `/tmp/android-auto-17.3-jadx` smoke path remains
+
+## 2026-07-24 — Prodigy multi-display maintainer handoff
+
+Date / Session: 2026-07-24 / prodigy-multi-display-maintainer-handoff
+
+What Changed:
+- Added `analysis/reports/multi-display/prodigy-maintainer-handoff.md`, a
+  standalone transfer document for the OpenAuto Prodigy maintainer
+- Documented MAIN-only, MAIN + CLUSTER, MAIN + AUXILIARY, combined projected,
+  single-display blended-UI, and native semantic-widget configurations
+- Separated the multiplexed `ChannelDescriptor.channel_id` from the
+  `CarDisplayId` carried in `AVChannel` field 6 and its matching
+  `InputChannelConfig.display_id`
+- Added a proposed Prodigy `DisplayRegistry`/`DisplaySession` model, archived
+  integration seams, staged delivery order, acceptance tests, and failure modes
+- Linked the handoff from `analysis/reports/multi-display/README.md`
+
+Why:
+- A Prodigy implementation can route and decode multiple streams incorrectly
+  if it assumes one panoramic phone canvas or conflates a wire channel ID with
+  a logical display ID
+- The maintainer needs a self-contained document that preserves both the
+  confirmed 17.3 evidence and the boundary between static proof, implementation
+  recommendations, and unverified runtime behavior
+
+Status:
+- The maintainer handoff confirms separate logical display/video instances,
+  surfaces, endpoints, focus state, and input matching in Android Auto 17.3
+- Static topology support is distinguished from the still-missing simultaneous
+  MAIN + CLUSTER + AUXILIARY wire capture
+- No protobuf schema or Prodigy runtime code changed; the historical
+  `AVChannel` field-6 name is recorded as a future API/naming decision only
+- The current roadmap already prioritizes the required live multi-display
+  capture, so this documentation pass did not change sequencing
+
+Next Steps:
+1. Give `analysis/reports/multi-display/prodigy-maintainer-handoff.md` to the
+   Prodigy maintainer and map its responsibility-level seams to the current
+   Prodigy source tree
+2. Capture a live 17.3 MAIN + CLUSTER + AUXILIARY session to confirm concurrent
+   channel lifecycle, stream separation, focus transitions, and content policy
+3. Decide in a compatibility-focused proto/API pass whether `AVChannel` field 6
+   should be renamed from `channel_id` to `display_id`
+
+Verification:
+- All 14 repository files linked by the maintainer handoff -> present
+- Handoff evidence-anchor check -> all 14 cited 17.3 class/line spans present in
+  the document
+- Fresh JADX semantic check -> `xik.g` and `xik.h` are read before
+  `new CarDisplayId(i4)` in `itq.java:213-220`
+- Fresh JADX topology-message check -> unique display IDs, MAIN ID 0, MAIN type,
+  one MAIN, at most one CLUSTER, and exactly one matched input all present in
+  `jnb.java`
+- `git diff --check` -> success
+
+## 2026-07-24 — Preserve Android Auto 17.3 display evidence baseline
+
+Date / Session: 2026-07-24 / android-auto-17.3-update-task-1
+
+What Changed:
+- Preserved the durable 17.3 APK/JADX provenance and source-cited multi-display
+  reports as the committed evidence checkpoint for subsequent update work
+- Documented the matcher smoke command against the ignored, version-scoped
+  JADX tree and retained its fresh output only under the ignored `validation/`
+  directory
+- Reviewed the three fresh-matcher deltas without changing any canonical proto
+  claims or replacing the committed cross-version report
+
+Why:
+- Later 17.3 analysis needs reproducible local source evidence while retaining
+  the already reviewed 175-mapping/129-observation report as its stable
+  comparison baseline
+- The fresh output has more recovered evidence, but its three changed rows need
+  deliberate review before it can affect canonical protocol documentation
+
+Status:
+- APKM SHA-256:
+  `1db7ce995aa52b2cde47a01abfb0364220fb57fc60217de3ec714e3034795344`
+- `base.apk` SHA-256:
+  `5557827f259898bdab97b489e1a0aef937fd6ec711d87361cf25d51af6f48619`
+- Durable JADX tree contains 26,115 Java files; all six required display
+  anchors (`jdc`, `itt`, `itq`, `iti`, `its`, and `jnb`) are present
+- Fresh matcher result: 1,957 APK messages, 134 APK enums, 135 dispatch
+  observations, and 176 resolved mappings (39 high, 137 medium)
+- Delta disposition: retain
+  `analysis/reports/cross-version/17-3-schema-match.{json,md}` as canonical
+  for this task and do not stage the fresh ignored output. Relative to that
+  baseline, fresh `oaa.proto.data.BluetoothChannel` changes from
+  `unique_structural` / `xfp` / `medium` to `constraint_conflict` / `-` /
+  `none`; fresh `oaa.proto.data.PhoneConnectionConfig` changes from
+  `ambiguous_structural` / `-` / `none` to `graph_resolved` / `xnm` /
+  `medium`; and fresh `oaa.proto.messages.WifiInfoResponse` changes from
+  `ambiguous_structural` / `-` / `none` to `graph_resolved` / `xnm` /
+  `medium`
+
+Next Steps:
+1. Task 2: establish the 17.3 Release Dossier from this preserved evidence
+   checkpoint
+2. Review the three fresh-matcher delta rows before any report promotion or
+   canonical proto claim
+3. Capture a live MAIN + CLUSTER + AUXILIARY session to validate the static
+   multi-display model at runtime
+
+Verification:
+- Durable artifact checksum and source-count commands -> expected two hashes
+  and 26,115 Java files; all six anchor-file checks passed
+- Documented durable-path matcher smoke command -> exit 0; 176 resolved
+  mappings and 135 dispatch observations
+- Three-row committed-versus-fresh `jq` comparison -> exact disposition
+  recorded above; committed report retained as canonical
+- Path/reference `rg` checks -> no active `/tmp/android-auto-17.3-jadx` smoke
+  path; durable 17.3 paths and display concepts present
+- `git diff --check` -> success
