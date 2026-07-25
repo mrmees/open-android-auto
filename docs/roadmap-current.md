@@ -16,6 +16,11 @@
 
 ## Now
 
+- Recover the aggregate `analysis/tools` verification contract before merging
+  `dev/android-auto-17.3-analysis` into `main`: remove ignored-asset
+  requirements from the default gate, synchronize generated confidence
+  comments with canonical audit sidecars, restore protobuf 4.21 compatibility,
+  and make one clean-checkout verification command authoritative.
 - Android Auto 17.3 Task 13 evidence-policy reconciliation is complete:
   confidence tiers now derive from one executable policy, MATCH-08-only SDP
   bindings remain central-report evidence rather than message promotions, and

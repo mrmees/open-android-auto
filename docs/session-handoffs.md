@@ -2972,3 +2972,50 @@ Verification:
 - Final open/stale/reference, Markdown link/table, exact tracked-scope,
   `git diff --check`, cached diff, commit, and clean-worktree checks are
   recorded in the Task 14 ignored report and release commit.
+
+## 2026-07-25 — Analysis test-suite recovery design
+
+Date / Session: 2026-07-25 / analysis-test-suite-recovery-design
+
+What Changed:
+- Added
+  `docs/superpowers/specs/2026-07-25-analysis-test-suite-recovery-design.md`
+  with the approved repair-in-place design for the repository-wide analysis
+  test contract
+- Classified the fresh aggregate baseline into six exact root-cause groups:
+  226 confidence-related failures, 9 protobuf-runtime failures, 2 ignored-APK
+  database dependencies, 2 grouping-contract failures, 1 stale Platinum
+  example, and 1 cross-version documentation gap
+- Updated `docs/roadmap-current.md` so aggregate-suite recovery precedes the
+  Android Auto 17.3 analysis-to-main merge
+
+Why:
+- The scoped 17.3 release gate is green, but the aggregate `analysis/tools`
+  collection reported 1,484 passed, 241 failed, and 1 skipped
+- Merging while the broader repository gate is ambiguous would preserve stale
+  confidence mirrors, environment-specific decoder failures, and untracked
+  documentation gaps
+
+Status:
+- Design approved; implementation has not started
+- `dev/android-auto-17.3-analysis` remains unmerged at `231f932`
+- The design forbids proto wire/semantic changes and requires descriptor
+  equivalence for any generated confidence-comment synchronization
+- A requested read-only Opus review produced no usable verdict: one job stalled
+  and bounded retries exhausted their turn limits; no advisor changed files
+
+Next Steps:
+1. Review the committed design spec and approve any final corrections
+2. Create the executable implementation plan using the writing-plans workflow
+3. Implement with test-first failure slices, then run the aggregate and 17.3
+   release gates before merging to `main`
+
+Verification:
+- `test -f docs/superpowers/specs/2026-07-25-analysis-test-suite-recovery-design.md`
+  -> design spec present
+- Design marker scan for the six failure groups, descriptor-equivalence gate,
+  ignored-asset boundary, implementation order, and stop conditions -> all
+  required sections present
+- Roadmap path/reference scan -> aggregate-suite recovery is the first `Now`
+  item and names the existing analysis branch
+- `git diff --check` -> success
