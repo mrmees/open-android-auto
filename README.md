@@ -74,6 +74,21 @@ protoc --proto_path=. --go_out=generated/ --go_opt=paths=source_relative \
 find oaa -name '*.proto' | xargs protoc --proto_path=. --cpp_out=generated/
 ```
 
+### Verify the repository
+
+Create a local test environment, install the verification dependencies, and run
+the repository verification contract:
+
+```bash
+python3 -m venv .venv
+.venv/bin/python -m pip install -r requirements-test.txt
+make PYTHON=.venv/bin/python verify
+```
+
+`make PYTHON=.venv/bin/python test-integration` runs the optional historical
+APK-index checks. It prints explicit skips when the ignored local index
+snapshots are unavailable.
+
 ### Use in a CMake project
 
 ```cmake
