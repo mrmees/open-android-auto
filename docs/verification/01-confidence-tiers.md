@@ -76,6 +76,13 @@ obfuscated class in each version for at least two versions. A top-level
 `class_mapping` or a generic checker summary without those pairs is useful
 history, but does not by itself satisfy the Gold prerequisite.
 
+Version/class pairs use an explicit delimiter or marker, such as
+`v15.9:vra`, `15.9=vra`, or `APK 16.2 (class wcr)`; adjacent prose words after
+a version are not class mappings. A `cross_version` entry is supportive only
+when `status` is absent or `consistent`. `unmappable_16_4`,
+`unmappable_marker`, and `drift_detected` record negative results and count
+toward neither Silver corroboration nor the Gold prerequisite.
+
 Gold does NOT require OEM capture evidence. That was the pre-Phase-9
 definition; it's been moved up to Platinum. The move reflects reality: the
 deep-trace APK work was already producing ground-truth evidence, and calling

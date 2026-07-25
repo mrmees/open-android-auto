@@ -84,17 +84,17 @@ _No contradictions surfaced in this walk._
 | `oaa/bluetooth` | 3 | silver: 3 |
 | `oaa/carcontrol` | 2 | silver: 2 |
 | `oaa/carintent` | 1 | bronze: 1 |
-| `oaa/common` | 5 | silver: 5 |
-| `oaa/control` | 27 | gold: 3, retracted: 4, silver: 20 |
-| `oaa/generic` | 1 | silver: 1 |
+| `oaa/common` | 5 | bronze: 1, silver: 4 |
+| `oaa/control` | 27 | bronze: 1, gold: 3, retracted: 4, silver: 19 |
+| `oaa/generic` | 1 | bronze: 1 |
 | `oaa/input` | 17 | bronze: 4, gold: 1, silver: 12 |
 | `oaa/mic` | 1 | bronze: 1 |
 | `oaa/navigation` | 12 | silver: 12 |
-| `oaa/notification` | 1 | silver: 1 |
+| `oaa/notification` | 1 | bronze: 1 |
 | `oaa/phone` | 3 | gold: 3 |
 | `oaa/radio` | 1 | silver: 1 |
-| `oaa/sensor` | 37 | retracted: 1, silver: 36 |
-| `oaa/wifi` | 14 | bronze: 1, retracted: 2, silver: 11 |
+| `oaa/sensor` | 37 | bronze: 3, retracted: 1, silver: 33 |
+| `oaa/wifi` | 14 | bronze: 2, retracted: 2, silver: 10 |
 
 ## Walker run metadata
 

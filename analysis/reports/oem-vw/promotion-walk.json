@@ -41,7 +41,7 @@
     {
       "channel_kind": "av_channel",
       "contradiction_summary": null,
-      "current_tier": "silver",
+      "current_tier": "bronze",
       "matched_rules": [
         "MATCH-08"
       ],
@@ -113,7 +113,7 @@
     {
       "channel_kind": "av_channel",
       "contradiction_summary": null,
-      "current_tier": "silver",
+      "current_tier": "bronze",
       "matched_rules": [
         "MATCH-08"
       ],
@@ -802,17 +802,19 @@
       "total": 1
     },
     "oaa/common": {
-      "silver": 5,
+      "bronze": 1,
+      "silver": 4,
       "total": 5
     },
     "oaa/control": {
+      "bronze": 1,
       "gold": 3,
       "retracted": 4,
-      "silver": 20,
+      "silver": 19,
       "total": 27
     },
     "oaa/generic": {
-      "silver": 1,
+      "bronze": 1,
       "total": 1
     },
     "oaa/input": {
@@ -830,7 +832,7 @@
       "total": 12
     },
     "oaa/notification": {
-      "silver": 1,
+      "bronze": 1,
       "total": 1
     },
     "oaa/phone": {
@@ -842,14 +844,15 @@
       "total": 1
     },
     "oaa/sensor": {
+      "bronze": 3,
       "retracted": 1,
-      "silver": 36,
+      "silver": 33,
       "total": 37
     },
     "oaa/wifi": {
-      "bronze": 1,
+      "bronze": 2,
       "retracted": 2,
-      "silver": 11,
+      "silver": 10,
       "total": 14
     }
   }

@@ -122,11 +122,11 @@ evidence:
   - type: apk_static
     source: "APK 16.2 (jadx decompilation)"
     method: enum_match
-    detail: "Field number 3 maps to SPEED in SensorType enum across classes vfn, wab, xcd"
+    description: "Field number 3 maps to SPEED in SensorType enum across classes vfn, wab, xcd"
   - type: dhu_observation
     source: "DHU 2.1 (kitchen_sink.ini config)"
     method: logcat
-    detail: "CAR.SENSOR.LITE tag shows speed sensor events processed at 1Hz"
+    description: "CAR.SENSOR.LITE tag shows speed sensor events processed at 1Hz"
 ```
 
 ### When You Find Corroborating Information in an Excluded Source

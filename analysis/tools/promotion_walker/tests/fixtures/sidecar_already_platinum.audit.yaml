@@ -13,7 +13,7 @@ evidence:
     date: '2026-04-09'
     description: "Fixture already-Platinum: deep trace evidence"
   - type: cross_version
-    source: "APK 15.9 abc / APK 16.1 def / APK 16.2 ghi / APK 16.4 jkl"
+    source: "v15.9:abc / v16.1:def / v16.2:ghi / v16.4:jkl"
     date: '2026-04-09'
     description: "Fixture already-Platinum: cross-version consistent across 4 APK versions"
   - type: platinum_evidence

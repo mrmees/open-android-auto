@@ -2,6 +2,8 @@
   "evidence_type_breakdown": {
     "bronze": {
       "apk_deep_trace": 11,
+      "apk_static": 11,
+      "cross_version": 10,
       "deep_trace": 2
     },
     "gold": {
@@ -18,15 +20,15 @@
     },
     "silver": {
       "apk_deep_trace": 15,
-      "apk_static": 183,
-      "cross_version": 217,
+      "apk_static": 172,
+      "cross_version": 207,
       "deep_trace": 12,
       "dhu_observation": 1
     }
   },
   "metadata": {
-    "git_head": "f115356305dbfbff9dc3e9c3c65b6afceb0d79a8",
-    "run_date": "2026-07-25T20:00:00Z",
+    "git_head": "d62bebdb5c70d75a74ff42c26acc30b134e3f4ff",
+    "run_date": "2026-07-25T21:00:00Z",
     "sidecar_directory": "oaa/",
     "tool_version": "1.0.0",
     "total_protos": 247,
@@ -148,11 +150,11 @@
   "orphan_sidecars": {},
   "per_channel_tier_counts": {
     "audio": {
-      "bronze": 0,
+      "bronze": 2,
       "gold": 0,
       "platinum": 0,
       "retracted": 0,
-      "silver": 7,
+      "silver": 5,
       "superseded": 0,
       "total": 7
     },
@@ -193,29 +195,29 @@
       "total": 1
     },
     "common": {
-      "bronze": 0,
+      "bronze": 1,
       "gold": 0,
       "platinum": 0,
       "retracted": 0,
-      "silver": 5,
+      "silver": 4,
       "superseded": 0,
       "total": 5
     },
     "control": {
-      "bronze": 0,
+      "bronze": 1,
       "gold": 3,
       "platinum": 0,
       "retracted": 4,
-      "silver": 20,
+      "silver": 19,
       "superseded": 0,
       "total": 27
     },
     "generic": {
-      "bronze": 0,
+      "bronze": 1,
       "gold": 0,
       "platinum": 0,
       "retracted": 0,
-      "silver": 1,
+      "silver": 0,
       "superseded": 0,
       "total": 1
     },
@@ -265,11 +267,11 @@
       "total": 12
     },
     "notification": {
-      "bronze": 0,
+      "bronze": 1,
       "gold": 0,
       "platinum": 0,
       "retracted": 0,
-      "silver": 1,
+      "silver": 0,
       "superseded": 0,
       "total": 1
     },
@@ -292,11 +294,11 @@
       "total": 1
     },
     "sensor": {
-      "bronze": 0,
+      "bronze": 3,
       "gold": 0,
       "platinum": 0,
       "retracted": 1,
-      "silver": 36,
+      "silver": 33,
       "superseded": 0,
       "total": 37
     },
@@ -319,11 +321,11 @@
       "total": 12
     },
     "wifi": {
-      "bronze": 1,
+      "bronze": 2,
       "gold": 0,
       "platinum": 0,
       "retracted": 2,
-      "silver": 11,
+      "silver": 10,
       "superseded": 0,
       "total": 14
     }
@@ -332,11 +334,11 @@
     "coverage_pct": 68,
     "pending_gold_count": 0,
     "tiers": {
-      "bronze": 13,
+      "bronze": 23,
       "gold": 14,
       "platinum": 0,
       "retracted": 13,
-      "silver": 128,
+      "silver": 118,
       "superseded": 0
     },
     "total_protos": 247,

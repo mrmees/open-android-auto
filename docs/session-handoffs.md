@@ -2645,3 +2645,80 @@ Verification:
 - Coverage and all four OEM artifacts -> fixed-date/dry-run regeneration
   byte-identical to tracked files; matcher and runtime reports unchanged.
 - Cross-link dry-run -> five no-ops; `git diff --check` -> exit 0.
+
+## 2026-07-25 — Task 13 Fix Round 2: reject implicit and negative confidence evidence
+
+Date / Session: 2026-07-25 / android-auto-17.3-update-task-13-fix-2
+
+What Changed:
+- Restricted reproducible version/class mappings to explicit syntax: colon or
+  equals pairs, APK/Android Auto parenthetical forms, or labeled `class`/`jadx`
+  markers. Ordinary prose such as `version 16.2 checker...` can no longer be
+  parsed as a class mapping, and class tokens are bounded to 1-32 characters.
+- Added one shared supportive-evidence predicate for Silver and Gold. Evidence
+  is supportive only when `status` is absent or `consistent`; negative and
+  unknown statuses remain preserved in the audit trail but cannot satisfy an
+  evidence-type or reproducible-cross-version prerequisite.
+- Reconciled the ten affected audits from Silver to Bronze:
+  `AudioFocusChannelData`, `AudioStreamTypeEnum`, `DriverPositionEnum`,
+  `ByeByeResponseMessage`, `ChannelOpenAckMessage`,
+  `NotificationChannelData`, `SensorErrorStatusEnum`, `TrailerData`,
+  `VehicleEnergyModelData`, and `WifiInfoRequestMessage`.
+- Normalized the valid Gold mappings for
+  `IntegratedOverlayStartNotification`, `UpdateUiConfigRequestMessage`, and
+  `VideoFocusIndicationMessage` to explicit colon-pair syntax.
+- Corrected the source-provenance examples to use schema-valid `description`
+  fields and documented that MATCH-08/NOMATCH-02 service-only observations
+  live solely in the central OEM report, not sidecar `nomatch_rules`.
+- Regenerated the coverage dashboard and OEM promotion walk. The Task 13 Fix
+  Round 1 census of 13 Bronze / 128 Silver is superseded by this entry; total
+  coverage, Gold, Platinum, retracted, superseded, and pending counts do not
+  change.
+
+Why:
+- The former whitespace pattern accepted arbitrary prose after a version as a
+  class token, creating false reproducible-cross-version evidence.
+- Silver derivation counted negative evidence types, while Gold's cross-version
+  check independently ignored evidence status. Both tiers must use the same
+  definition of supportive evidence.
+- MATCH-08 identifies an enclosing SDP service binding and NOMATCH-02 records
+  the lack of message-level attribution; neither belongs in a message sidecar
+  without qualifying attributable evidence.
+
+Status:
+- GREEN: all four review findings are resolved within the protocol-reference,
+  documentation, analysis-tooling, and audit-sidecar scope.
+- Corrected coverage census: 168 sidecars / 247 protos / 68% coverage, 23
+  Bronze, 118 Silver, 14 Gold, 0 Platinum, 13 Retracted, 0 Superseded, 79
+  missing sidecars, and 0 pending-Gold entries.
+- The roadmap sequence is unchanged: Task 14 remains the next release gate.
+
+Next Steps:
+1. Run Task 14's full release gate against the stricter shared evidence policy.
+2. Express future version/class claims with one of the documented explicit
+   forms and use absent/`consistent` status only for supportive evidence.
+3. Keep service-only OEM observations in the central promotion report until
+   direct message- or field-attributable evidence exists.
+
+Verification:
+- Focused TDD RED -> 13 failed / 7 passed; whole-repository tier RED -> 13
+  failed / 192 passed; locked coverage RED -> expected 128 Silver, observed
+  118. These failures exactly exposed the parser, status, tier, and census gaps.
+- Canonical tier consistency -> 205 passed.
+- Exact Task 13 combined audit/tier/coverage/promotion/architecture/cross-link/
+  cross-version suite -> 825 passed.
+- Coverage regeneration at `2026-07-25T21:00:00Z` -> JSON and Markdown both
+  byte-identical; live census 168/247 with tiers 23/118/14/0 and pending 0.
+- Promotion-walker dry-run -> 34 service-binding-only observations, 3
+  out-of-SDP skips, 6 retractions, 0 promotions/pending mutations, 43 total;
+  all four generated OEM artifacts byte-identical.
+- Manifest verification -> 59/59 commands parse under `bash -n` and all 59
+  semantic commands pass.
+- Active proto compilation -> 247/247 protos, 494 generated C++ files, and a
+  105,152-byte descriptor set.
+- Comment-only AV descriptors -> parent/current SHA-256 both
+  `6adba02ecf62a8b0e9bbb298c25c96550f617a340ee82b34ddbf518cf0c9ee8e`.
+- Changed verification-doc links and five Markdown tables -> clean; provenance
+  `detail` scan -> zero; cross-link dry-run -> five no-ops.
+- Matcher/runtime reports -> unchanged from `d62bebd`; `git diff --check` ->
+  exit 0.

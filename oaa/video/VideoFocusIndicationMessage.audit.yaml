@@ -29,7 +29,7 @@ evidence:
     three historical APK versions.
 - type: cross_version
   method: structural_comparison
-  source: 15.9 vvj / 16.1 wdb / 16.2 wcr compared with 17.3 xnb
+  source: v15.9:vvj / v16.1:wdb / v16.2:wcr / v17.3:xnb
   date: '2026-07-25'
   description: >-
     Optional enum field 1 and optional bool field 2 remain structurally stable

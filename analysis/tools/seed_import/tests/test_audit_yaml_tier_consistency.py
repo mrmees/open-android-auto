@@ -8,6 +8,7 @@ import yaml
 from analysis.tools.seed_import.tier_policy import (
     expected_tier,
     pending_gold_violations,
+    version_class_pairs,
 )
 
 REPO_ROOT = Path(__file__).resolve().parents[4]
@@ -37,7 +38,7 @@ def _platinum(tmp_path: Path, rules: list[str] | None = None) -> dict:
 def _gold_evidence() -> list[dict]:
     return [
         {"type": "deep_trace", "source": "APK 16.2 ied.java:73 handler"},
-        {"type": "cross_version", "source": "APK 15.9 vvj / APK 16.2 wcr"},
+        {"type": "cross_version", "source": "v15.9:vvj / v16.2:wcr"},
     ]
 
 
@@ -59,6 +60,88 @@ def test_two_distinct_types_yield_silver():
     assert expected_tier(audit) == "silver"
 
 
+@pytest.mark.parametrize(
+    ("source", "expected"),
+    [
+        ("v15.9:vra", {("15.9", "vra")}),
+        ("15.9 = abc$1", {("15.9", "abc$1")}),
+        ("APK 16.2 (wcr)", {("16.2", "wcr")}),
+        ("APK v16.2 (class wcr$2)", {("16.2", "wcr$2")}),
+        ("Android Auto 17.3 (jadx: Xnd2)", {("17.3", "xnd2")}),
+        ("Android Auto 17.3 class xnd$Inner1", {("17.3", "xnd$inner1")}),
+        ("v1.0:a", {("1.0", "a")}),
+        (f"v1.0:{'a' * 32}", {("1.0", "a" * 32)}),
+    ],
+)
+def test_version_class_pairs_accept_only_explicit_supported_syntax(source, expected):
+    assert version_class_pairs({"source": source}) == expected
+
+
+@pytest.mark.parametrize(
+    "source",
+    [
+        "Android Auto 17.3 endpoint trace; 16.4 confirms the direction",
+        "17.3 canonical descriptor compared with 16.2 baseline",
+        "cross-version checker (15.9, 16.1, 16.2, 16.4)",
+        f"v1.0:{'a' * 33}",
+    ],
+)
+def test_version_class_pairs_reject_prose_and_out_of_bounds_tokens(source):
+    assert version_class_pairs({"source": source}) == set()
+
+
+@pytest.mark.parametrize(
+    "status",
+    ["unmappable_16_4", "unmappable_marker", "drift_detected", "unknown_status"],
+)
+def test_negative_or_unknown_evidence_status_is_not_supportive(status):
+    audit = {"evidence": [{"type": "cross_version", "status": status}]}
+    assert expected_tier(audit) == "unverified"
+
+
+@pytest.mark.parametrize("status", [None, "consistent"])
+def test_absent_or_consistent_evidence_status_is_supportive(status):
+    entry = {"type": "cross_version"}
+    if status is not None:
+        entry["status"] = status
+    assert expected_tier({"evidence": [entry]}) == "bronze"
+
+
+@pytest.mark.parametrize(
+    "status", ["unmappable_16_4", "unmappable_marker", "drift_detected"]
+)
+def test_negative_cross_version_status_supports_neither_silver_nor_gold(status):
+    bronze_audit = {
+        "evidence": [
+            {"type": "apk_static"},
+            {
+                "type": "cross_version",
+                "source": "v15.9:vvj / v16.2:wcr",
+                "status": status,
+            },
+        ]
+    }
+    silver_audit = {
+        "evidence": [
+            *bronze_audit["evidence"],
+            {"type": "deep_trace", "source": "APK 16.2 ied.java:73 handler"},
+        ]
+    }
+    assert expected_tier(bronze_audit) == "bronze"
+    assert expected_tier(silver_audit) == "silver"
+
+
+def test_same_type_supportive_evidence_does_not_promote_to_silver():
+    audit = {
+        "evidence": [
+            {"type": "apk_static"},
+            {"type": "apk_static", "status": "consistent"},
+            {"type": "cross_version", "status": "unmappable_16_4"},
+        ]
+    }
+    assert expected_tier(audit) == "bronze"
+
+
 def test_gold_requires_primary_handler_and_exact_cross_version_anchors():
     assert expected_tier({"evidence": _gold_evidence()}) == "gold"
 
@@ -68,7 +151,7 @@ def test_gold_requires_primary_handler_and_exact_cross_version_anchors():
     [
         [
             {"type": "apk_deep_trace", "source": "internal verification report"},
-            {"type": "cross_version", "source": "APK 15.9 vvj / APK 16.2 wcr"},
+            {"type": "cross_version", "source": "v15.9:vvj / v16.2:wcr"},
         ],
         [
             {
@@ -76,7 +159,7 @@ def test_gold_requires_primary_handler_and_exact_cross_version_anchors():
                 "source": "analysis/reports/proto-verification/video.md",
                 "description": "The summary cites handler ied.java:73.",
             },
-            {"type": "cross_version", "source": "APK 15.9 vvj / APK 16.2 wcr"},
+            {"type": "cross_version", "source": "v15.9:vvj / v16.2:wcr"},
         ],
         [
             {"type": "apk_deep_trace", "source": "JADX ied.java:73 handler"},

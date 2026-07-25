@@ -132,12 +132,12 @@ def test_live_snapshot() -> None:
         f"Expected 14 gold, got {total_gold}. "
         "Census changed? Update snapshot values after verifying the change is intentional."
     )
-    assert total_silver == 128, (
-        f"Expected 128 silver, got {total_silver}. "
+    assert total_silver == 118, (
+        f"Expected 118 silver, got {total_silver}. "
         "Census changed? Update snapshot values after verifying the change is intentional."
     )
-    assert total_bronze == 13, (
-        f"Expected 13 bronze, got {total_bronze}. "
+    assert total_bronze == 23, (
+        f"Expected 23 bronze, got {total_bronze}. "
         "Census changed? Update snapshot values after verifying the change is intentional."
     )
     assert total_retracted == 13, (

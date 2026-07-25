@@ -2,40 +2,40 @@
 
 ## Summary
 
-168 sidecars covering 247 protos (68% coverage). 0 Platinum / single-OEM, 14 Gold, 128 Silver, 13 Bronze.
+168 sidecars covering 247 protos (68% coverage). 0 Platinum / single-OEM, 14 Gold, 118 Silver, 23 Bronze.
 
 ## Per-Channel Tier Counts
 
 | Channel | Bronze | Silver | Gold | Platinum (s-OEM) | Retracted | Superseded | Total |
 |---------|--------|--------|------|------------------|-----------|------------|-------|
-| audio | 0 | 7 | 0 | 0 | 0 | 0 | 7 |
+| audio | 2 | 5 | 0 | 0 | 0 | 0 | 7 |
 | av | 2 | 9 | 2 | 0 | 0 | 0 | 13 |
 | bluetooth | 0 | 3 | 0 | 0 | 0 | 0 | 3 |
 | carcontrol | 0 | 2 | 0 | 0 | 0 | 0 | 2 |
 | carintent | 1 | 0 | 0 | 0 | 0 | 0 | 1 |
-| common | 0 | 5 | 0 | 0 | 0 | 0 | 5 |
-| control | 0 | 20 | 3 | 0 | 4 | 0 | 27 |
-| generic | 0 | 1 | 0 | 0 | 0 | 0 | 1 |
+| common | 1 | 4 | 0 | 0 | 0 | 0 | 5 |
+| control | 1 | 19 | 3 | 0 | 4 | 0 | 27 |
+| generic | 1 | 0 | 0 | 0 | 0 | 0 | 1 |
 | input | 4 | 12 | 1 | 0 | 0 | 0 | 17 |
 | media | 1 | 5 | 1 | 0 | 4 | 0 | 11 |
 | mediabrowser | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
 | mic | 1 | 0 | 0 | 0 | 0 | 0 | 1 |
 | navigation | 0 | 12 | 0 | 0 | 0 | 0 | 12 |
-| notification | 0 | 1 | 0 | 0 | 0 | 0 | 1 |
+| notification | 1 | 0 | 0 | 0 | 0 | 0 | 1 |
 | phone | 0 | 0 | 3 | 0 | 0 | 0 | 3 |
 | radio | 0 | 1 | 0 | 0 | 0 | 0 | 1 |
-| sensor | 0 | 36 | 0 | 0 | 1 | 0 | 37 |
+| sensor | 3 | 33 | 0 | 0 | 1 | 0 | 37 |
 | verification | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
 | video | 3 | 3 | 4 | 0 | 2 | 0 | 12 |
-| wifi | 1 | 11 | 0 | 0 | 2 | 0 | 14 |
-| **Total** | **13** | **128** | **14** | **0** | **13** | **0** | **168** |
+| wifi | 2 | 10 | 0 | 0 | 2 | 0 | 14 |
+| **Total** | **23** | **118** | **14** | **0** | **13** | **0** | **168** |
 
 ## Evidence Type Breakdown
 
 | Tier | apk_deep_trace | apk_static | cross_version | deep_trace | dhu_observation | Total |
 |------|----------------|------------|---------------|------------|-----------------|-------|
-| Bronze | 11 | 0 | 0 | 2 | 0 | 13 |
-| Silver | 15 | 183 | 217 | 12 | 1 | 428 |
+| Bronze | 11 | 11 | 10 | 2 | 0 | 34 |
+| Silver | 15 | 172 | 207 | 12 | 1 | 407 |
 | Gold | 11 | 15 | 17 | 7 | 0 | 50 |
 | Retracted | 8 | 23 | 14 | 1 | 0 | 46 |
 
@@ -176,9 +176,9 @@ No orphan sidecars found.
 
 ## Dashboard Metadata
 
-- **Run date:** 2026-07-25T20:00:00Z
+- **Run date:** 2026-07-25T21:00:00Z
 - **Tool version:** 1.0.0
 - **Total protos:** 247
 - **Total sidecars:** 168
 - **Sidecar directory:** oaa/
-- **Git HEAD:** f115356305dbfbff9dc3e9c3c65b6afceb0d79a8
+- **Git HEAD:** d62bebdb5c70d75a74ff42c26acc30b134e3f4ff

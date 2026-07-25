@@ -12,6 +12,6 @@ evidence:
     date: '2026-04-09'
     description: "Fixture clean Gold: handler deep trace confirms 3 fields (status, position_ms, duration_ms); proto matches wire format"
   - type: cross_version
-    source: "APK 15.9 abc / APK 16.1 def / APK 16.2 ghi / APK 16.4 jkl"
+    source: "v15.9:abc / v16.1:def / v16.2:ghi / v16.4:jkl"
     date: '2026-04-09'
     description: "Fixture clean Gold: consistent across all 4 APK versions (15.9/16.1/16.2/16.4); no schema drift"

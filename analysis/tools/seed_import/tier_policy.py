@@ -5,20 +5,22 @@ from __future__ import annotations
 import re
 from pathlib import Path
 
+_VERSION = r"(?P<version>\d+\.\d+(?:\.\d+)?)"
+_CLASS = r"(?P<class>[a-z][a-z0-9_$]{0,31})(?![a-z0-9_$])"
+
 _VERSION_CLASS_PATTERNS = (
     re.compile(
-        r"\bv?(?P<version>\d+\.\d+(?:\.\d+)?)\s*[:=/]\s*"
-        r"(?P<class>[a-z][a-z0-9_$]{1,7})\b",
+        rf"\bv?{_VERSION}\s*[:=]\s*{_CLASS}",
         re.IGNORECASE,
     ),
     re.compile(
-        r"\b(?:APK|Android Auto)\s+v?(?P<version>\d+\.\d+(?:\.\d+)?)"
-        r"\s*\(\s*(?:class\s+|jadx:\s*)?(?P<class>[a-z][a-z0-9_$]{1,7})\b",
+        rf"\b(?:APK|Android Auto)\s+v?{_VERSION}"
+        rf"\s*\(\s*(?:(?:class)\s+|jadx:\s*)?{_CLASS}\s*\)",
         re.IGNORECASE,
     ),
     re.compile(
-        r"\bv?(?P<version>\d+\.\d+(?:\.\d+)?)\s+"
-        r"(?P<class>[a-z][a-z0-9_$]{1,7})\b",
+        rf"\b(?:APK|Android Auto)\s+v?{_VERSION}"
+        rf"\s+(?:(?:class)\s+|jadx:\s*){_CLASS}",
         re.IGNORECASE,
     ),
 )
@@ -61,10 +63,15 @@ def version_class_pairs(entry: dict) -> set[tuple[str, str]]:
     return pairs
 
 
+def is_supportive_evidence(entry: dict) -> bool:
+    """Return whether an entry positively supports the audited claim."""
+    return entry.get("status") in {None, "consistent"}
+
+
 def has_reproducible_cross_version(evidence: list[dict]) -> bool:
     """Require one cross-version entry with exact classes for 2+ APK versions."""
     for entry in evidence:
-        if entry.get("type") != "cross_version":
+        if entry.get("type") != "cross_version" or not is_supportive_evidence(entry):
             continue
         pairs = version_class_pairs(entry)
         if len({version for version, _ in pairs}) >= 2:
@@ -110,7 +117,11 @@ def expected_tier(audit: dict, repo_root: Path | None = None) -> str:
     if has_retraction_record(audit):
         return "retracted"
     evidence = audit.get("evidence") or []
-    types = {entry.get("type") for entry in evidence if entry.get("type")}
+    types = {
+        entry.get("type")
+        for entry in evidence
+        if entry.get("type") and is_supportive_evidence(entry)
+    }
     gold = has_gold_prerequisites(evidence)
     platinum = any(qualifying_platinum_entry(entry, repo_root) for entry in evidence)
     if gold and platinum:

@@ -21,7 +21,7 @@ evidence:
     schema, not runtime traffic or downstream display-state effects.
 - type: cross_version
   method: structural_comparison
-  source: 16.1 vye / 16.2 vxq canonical descriptor compared with 17.3 xhw
+  source: v16.1:vye / v16.2:vxq / v17.3:xhw
   date: '2026-07-25'
   description: >-
     The single optional int32 field-1 shape is stable across the cited APK

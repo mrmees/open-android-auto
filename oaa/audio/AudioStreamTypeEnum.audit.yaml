@@ -1,6 +1,6 @@
 proto: oaa/audio/AudioStreamTypeEnum.proto
 message: AudioStreamTypeEnum
-confidence: silver
+confidence: bronze
 last_updated: '2026-07-25'
 evidence:
 - type: apk_static

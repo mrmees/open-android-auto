@@ -142,6 +142,9 @@ evidence list and retraction record:
 - An explicit retraction record yields the non-ordinal `retracted` state.
 - Gold requires both a primary handler/deep trace and one reproducible
   `cross_version` entry naming exact class mappings across 2+ APK versions.
+- Only evidence whose `status` is absent or `consistent` supports promotion.
+  Negative `unmappable_16_4`, `unmappable_marker`, and `drift_detected`
+  entries remain in the audit trail but do not contribute an evidence type.
 - Platinum requires every Gold prerequisite, qualifying message/field OEM
   evidence, and `platinum_scope`.
 - Otherwise, 2+ distinct evidence types yield Silver, one type yields Bronze,
