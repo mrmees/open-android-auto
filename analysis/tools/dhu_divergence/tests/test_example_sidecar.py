@@ -1,8 +1,8 @@
-"""Committed example Platinum sidecar validates against the migrated schema (TIER-01).
+"""Committed Platinum schema fixture validates against the migrated schema (TIER-01).
 
 This is TIER-01's 'schema validates, example sidecar passes' acceptance criterion.
-The example is a REAL committed sidecar under oaa/, not a fixture (per Pitfall 6
-in 09-RESEARCH.md).
+The example is an immutable committed fixture, so policy-derived production tiers
+cannot change this schema contract.
 """
 from __future__ import annotations
 
@@ -13,7 +13,11 @@ import yaml
 
 
 def test_example_sidecar_validates(repo_root: Path, schema: dict) -> None:
-    example_path = repo_root / "oaa/video/VideoFocusRequestMessage.audit.yaml"
+    example_path = (
+        Path(__file__).parent
+        / "fixtures"
+        / "example_platinum_sidecar.audit.yaml"
+    )
     assert example_path.exists(), f"Expected example sidecar at {example_path}"
     data = yaml.safe_load(example_path.read_text())
 
