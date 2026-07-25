@@ -3055,12 +3055,13 @@ Status:
 - Local implementation is green: the aggregate gate reports exactly 1,807
   passed and 3 skipped; the three skips are all caused by absent ignored
   APK-index SQLite snapshots
-- The explicit `apk_index_integration` selection reports 2 skipped and 1,808
-  deselected. Its exact skip reasons are `missing ignored APK-index SQLite
-  snapshot(s): 15.9, 16.1, 16.4` and `missing ignored APK-index SQLite
-  snapshot: Android Auto 16.4.661014`
-- The third aggregate skip is the pre-existing live-promotion snapshot with
-  reason `One or more APK index DBs unavailable`
+- The explicit `apk_index_integration` selection reports 3 skipped and 1,807
+  deselected. The matcher and live-promotion snapshots both report `missing
+  ignored APK-index SQLite snapshot(s): 15.9, 16.1, 16.4`; the canonical-build
+  lookup reports `missing ignored APK-index SQLite snapshot: Android Auto
+  16.4.661014`
+- All three aggregate skips now carry the `apk_index_integration` marker and
+  report their exact missing ignored assets
 - The historical release selection reports exactly 736 passed; all 247 active
   protos compile; annotation check reports 247 files and `Changed: 0`; and the
   retained 105,152-byte pre/post annotation descriptor sets are byte-identical
@@ -3084,15 +3085,12 @@ Verification:
 - `descriptor_dir="$(cat /tmp/oaa-annotation-descriptor-dir)"; cmp
   "$descriptor_dir/before.pb" "$descriptor_dir/after.pb"` -> exit 0; both
   retained descriptors are 105,152 bytes
-- `make PYTHON=.venv/bin/python test-integration` -> exit 0; 2 skipped and
-  1,808 deselected in 10.19s
+- `make PYTHON=.venv/bin/python test-integration` after the integration-inventory
+  correction -> exit 0; 3 skipped and 1,807 deselected in 10.25s
 - `PYTHONPATH=. .venv/bin/python -m pytest -q -rs -m
-  apk_index_integration analysis/tools` -> exit 0; 2 skipped and 1,808
-  deselected in 10.23s, with the exact two missing-snapshot reasons recorded
-  above
-- `PYTHONPATH=. .venv/bin/python -m pytest -q -rs analysis/tools` -> exit 0;
-  1,807 passed and 3 skipped in 50.54s, including the live-promotion snapshot
-  skip reason recorded above
+  apk_index_integration analysis/tools` after the correction -> exit 0; 3
+  skipped and 1,807 deselected in 10.31s, with all exact missing-snapshot
+  reasons recorded above
 - `PYTHONPATH=. .venv/bin/python -m analysis.tools.seed_import.annotate
   --check $(find oaa -mindepth 1 -maxdepth 1 -type d -print | sort)` -> exit 0;
   247 files checked and `Changed: 0`
@@ -3105,3 +3103,28 @@ Verification:
   1,807 passed, 3 skipped in 50.20s; annotation totals were 247 files and
   `Changed: 0`
 - Post-workflow `git diff --check` -> exit 0
+
+Fix Round 1:
+- Root cause: the APK-index integration inventory omitted
+  `analysis/tools/cross_version/tests/test_promote.py::test_live_promotion_snapshot`,
+  so marker selection collected no test from that file and its default-suite
+  skip used generic text
+- Added the `apk_index_integration` marker and derived a sorted missing-version
+  list before comparison without changing the snapshot assertions or behavior
+  when all indexes exist
+- RED: `PYTHONPATH=. .venv/bin/python -m pytest --collect-only -q -m
+  apk_index_integration analysis/tools/cross_version/tests/test_promote.py` ->
+  exit 5; no tests collected and 16 deselected in 1.10s
+- GREEN collection: the same command -> exit 0; selected
+  `test_live_promotion_snapshot`, with 1/16 collected and 15 deselected in
+  1.13s
+- GREEN execution: `PYTHONPATH=. .venv/bin/python -m pytest -q -rs -m
+  apk_index_integration analysis/tools/cross_version/tests/test_promote.py` ->
+  exit 0; 1 skipped and 15 deselected in 1.21s; exact reason `missing ignored
+  APK-index SQLite snapshot(s): 15.9, 16.1, 16.4`
+- Fresh `make PYTHON=.venv/bin/python verify` -> exit 0; 1,807 passed and 3
+  skipped in 50.46s; annotation totals were 247 files and `Changed: 0`
+- Fresh `make PYTHON=.venv/bin/python test-integration` -> exit 0; 3 skipped
+  and 1,807 deselected in 10.25s
+- Fresh `make PYTHON=.venv/bin/python test-release` -> exit 0; 736 passed in
+  29.44s

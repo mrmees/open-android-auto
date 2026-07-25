@@ -247,6 +247,7 @@ def test_bronze_no_164_outcome():
     assert classify_sidecar_outcome(m, r, "bronze") == "stayed_bronze_no_164"
 
 
+@pytest.mark.apk_index_integration
 def test_live_promotion_snapshot():
     """Empirical snapshot: how many ACTUAL Bronze sidecars promote under the strict rule.
 
@@ -272,8 +273,14 @@ def test_live_promotion_snapshot():
         "16.2": _find_db("16.2"),
         "16.4": _find_db("16.4"),
     }
-    if not all(db_paths.values()):
-        pytest.skip("One or more APK index DBs unavailable")
+    missing_versions = sorted(
+        version for version, db_path in db_paths.items() if db_path is None
+    )
+    if missing_versions:
+        pytest.skip(
+            "missing ignored APK-index SQLite snapshot(s): "
+            + ", ".join(missing_versions)
+        )
 
     mappings = load_mapping()
     results = run_comparison(db_paths, mappings)
