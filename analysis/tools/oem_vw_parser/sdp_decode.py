@@ -3,8 +3,9 @@ from __future__ import annotations
 from pathlib import Path
 from typing import Literal
 
-from google.protobuf import json_format, message_factory
+from google.protobuf import json_format
 
+from analysis.tools.protobuf_compat import message_class_for_descriptor
 from analysis.tools.proto_stream_validator.descriptors import DescriptorBundle
 
 from .models import (
@@ -41,12 +42,8 @@ _CHANNEL_SUB_FIELDS = (
 
 
 def _message_class(bundle: DescriptorBundle, fqn: str):
-    """Resolve a fully-qualified proto type to its message class via the
-    descriptor pool. Mirrors the validator's _message_class_for_descriptor
-    pattern but uses GetMessageClass directly.
-    """
     desc = bundle.pool.FindMessageTypeByName(fqn)
-    return message_factory.GetMessageClass(desc)
+    return message_class_for_descriptor(desc)
 
 
 def decode_sdp_response(bundle: DescriptorBundle, path: Path) -> SdpSnapshot:
