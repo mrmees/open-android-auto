@@ -39,7 +39,7 @@ conflicts without changing previously proven field tags or types:
 | 0x8011 | UiConfigRequest | Phone -> HU |
 | 0x8012 | UpdateHuUiConfigResponse | HU -> Phone |
 | 0x8013 | MediaStats | HU -> Phone |
-| 0x8014 | MediaOptions | Phone -> HU |
+| 0x8014 | MediaOptions | Phone -> HU; exact 13-field wire shape, field semantics unresolved |
 | 0x8015 | CriticalUiNotification | Phone -> HU; critical-UI-focus enum field 1 |
 
 The 0x8010 reservation is not permission to shift a later name into that slot.

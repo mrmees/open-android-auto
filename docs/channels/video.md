@@ -17,8 +17,10 @@
 | IntegratedOverlayStopNotification | **Gold** | deep_trace, handler_verified | [IntegratedOverlayStopNotification.audit.yaml](../../oaa/video/IntegratedOverlayStopNotification.audit.yaml) |
 | ~~VideoFocusNotification~~ | **Retracted** | Actually IntegratedOverlayStartNotification (0x800E) | -- |
 | ~~VideoFocusModeMessage~~ | **Retracted** | Actually UpdateHuUiConfigResponse (0x8012) | -- |
-| AudioUnderflowNotification | Bronze | apk_static | -- |
-| ActionTakenNotification | Bronze | apk_static | -- |
+| AudioUnderflowNotification | **Gold** | 17.3 endpoint trace | -- |
+| ActionTakenNotification | **Gold** | 17.3 endpoint trace | -- |
+| IntegratedOverlayParametersNotification | **Gold** | 17.3 endpoint + descriptor trace | -- |
+| AVChannelMediaOptions | **Gold** | 17.3 raw message info | -- (Task 13 audit sync) |
 | CriticalUiNotification | **Gold** | 17.3 apk_static | -- (Task 13 audit sync) |
 | VideoConfig | Silver | apk_static, cross_version, wire_capture | [VideoConfigData.audit.yaml](../../oaa/video/VideoConfigData.audit.yaml) |
 | AdditionalVideoConfig | **Gold** | deep_trace_verified | [AdditionalVideoConfigData.audit.yaml](../../oaa/video/AdditionalVideoConfigData.audit.yaml) |
@@ -55,7 +57,9 @@ The video channel is an **AV channel** (handler `ied.java` extends `icv.java` AV
 
 ### Video-Specific Messages (ch 3 -- raw wire IDs, no +1 offset)
 
-> Confidence: Gold [deep_trace, handler_verified] -- all messages verified via ied.java handler tracing
+> Confidence: Gold [17.3 endpoint trace, raw message info] -- accepted
+> directions come from `jdc`/`itt`/`its`/`jca`; the 16.2 `ied` trace is a
+> historical schema baseline.
 
 | Msg ID | Message | Direction | Purpose | Confidence |
 |--------|---------|-----------|---------|:---:|
@@ -72,8 +76,22 @@ The video channel is an **AV channel** (handler `ied.java` extends `icv.java` AV
 | 0x8011 | UiConfigRequest | Phone -> HU | Send theming tokens (Material Design key-value pairs) | **Gold** |
 | 0x8012 | UpdateHuUiConfigResponse | HU -> Phone | Accept/reject theming tokens | **Gold** |
 | 0x8013 | MediaStats | HU -> Phone | Playback statistics (15 fields) | **Gold** |
-| 0x8014 | MediaOptions | Phone -> HU | Feature flags / media options (13 fields) | Silver |
+| 0x8014 | MediaOptions | Phone -> HU | Exact 13-field wire envelope; field semantics unresolved | **Gold** |
 | 0x8015 | CriticalUiNotification | Phone -> HU | Critical-UI-focus enum field 1; no response implied | **Gold** |
+
+### MediaOptions wire envelope (0x8014)
+
+Android Auto 17.3 `xig` raw message info proves 13 optional proto2 fields:
+
+| Tags | Wire type |
+|---|---|
+| 1, 3, 4, 5, 6, 8, 10, 12, 13 | `PingConfiguration` message |
+| 2, 9, 11 | `bool` |
+| 7 | `uint32` |
+
+The canonical field names deliberately encode only tag and type. Field
+semantics remain unresolved; the schema does not promote feature-flag, timing,
+or gating interpretations from the historical 16.2 report.
 
 ### Retracted Video Messages
 
@@ -292,7 +310,7 @@ The session ID is passed to `qdd.mo30156e(int)` -- a display callback in the `co
 
 **IntegratedOverlayStopNotification (0x800F, HU -> Phone):**
 
-Empty message -- no fields. Triggers `qdd.mo30157f()` callback. The HU should dismiss any overlay-related display state when this arrives.
+Empty message -- no fields. On HU -> Phone arrival, the phone invokes its display-stopped callback and dismisses the corresponding phone-side overlay state.
 
 ---
 
@@ -640,10 +658,18 @@ config.hidden_ui_elements = { UI_ELEMENT_CLOCK, UI_ELEMENT_BATTERY_LEVEL };
 - [AVChannelSetupResponseMessage.proto](../../oaa/av/AVChannelSetupResponseMessage.proto)
 - [AVChannelStartIndicationMessage.proto](../../oaa/av/AVChannelStartIndicationMessage.proto)
 - [AVMediaAckIndicationMessage.proto](../../oaa/av/AVMediaAckIndicationMessage.proto)
+- [AVChannelMediaOptionsMessage.proto](../../oaa/av/AVChannelMediaOptionsMessage.proto)
 - [AVChannelMessageIdsEnum.proto](../../oaa/av/AVChannelMessageIdsEnum.proto)
 - [UiConfigMessages.proto](../../oaa/av/UiConfigMessages.proto) (Silver -- legacy definitions, canonical versions in oaa/video/)
 
-### APK Source References (16.2)
+### APK Source References (17.3 accepted matrix)
+- `jdc.java` -- direct phone receive/send branches for focus, UI config, overlays, and theming response
+- `itt.java` -- phone send builders for ActionTaken, OverlayParameters, UiConfigRequest, and CriticalUi
+- `its.java` -- phone callback handling for overlay and theming response branches
+- `jca.java` -- shared AV normalization for AudioUnderflow and MediaStats
+- `xig.java` -- exact 13-field MediaOptions raw message info
+
+### APK Source References (16.2 historical baseline)
 - `ied.java` -- Video endpoint handler (extends icv.java AV base)
 - `icv.java` -- AV channel setup base (AVChannelSetupRequest/Response)
 - `iav.java` -- Channel base class

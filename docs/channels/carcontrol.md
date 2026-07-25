@@ -525,8 +525,8 @@ When the user changes a control:
 ### 7. Car Actions
 
 Phone sends 0x8006 (`CarActionNotification`) for action buttons:
-- Triggers app launches on the phone (HVAC, media, control center, alerts)
-- Not property changes -- the HU consumes these requested actions
+- The phone only builds and sends the action wrapper
+- The HU handles and dispatches the requested action; this is not a property change
 
 ---
 

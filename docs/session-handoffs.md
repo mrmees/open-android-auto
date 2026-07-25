@@ -2087,7 +2087,7 @@ Verification:
   matcher unchanged, and only the manifest and this handoff changed
 - `git diff --check` -> exit 0
 
-## 2026-07-25 — Task 11: publish message IDs and directions
+## 2026-07-25 — Task 11 initial publication (superseded by Fix Round 1)
 
 Date / Session: 2026-07-25 / android-auto-17.3-update-task-11
 
@@ -2111,8 +2111,12 @@ Why:
   edited
 
 Status:
-- Task 11's 19-path canonical publication slice is GREEN and ready for its
-  bounded commit
+- Reopened after review of `884ff4d`: the 0x8014 proto remained empty while
+  the manifest claimed an existing 13-field schema, so the initial publication
+  is not the final GREEN state
+- Review also found phone-side action-handling prose, an HU-side overlay-stop
+  dismissal claim, contradictory 16.2/17.3 report labels, and video confidence
+  summary drift; the later Fix Round 1 entry records their resolution
 - The broad stale search still reports two Task 13-owned rows in
   `analysis/reports/proto-verification/PROGRESS.md` (car-control line 116 and
   sensor line 201); the Task 11-authorized canonical/report set has no hit
@@ -2134,7 +2138,8 @@ Verification:
 - RED manifest gates -> all 26 CHG-VID/CHG-CC/CHG-SEN commands exited 1 for
   missing accepted semantics; the 0x8010 descriptor assertion rejected the
   old assignment, with no shell/protoc syntax failure
-- GREEN manifest gates -> 26/26 pass
+- Pre-fix manifest gates -> 26/26 passed, but CHG-VID-8014 only required an
+  unchanged empty proto and therefore did not protect the claimed schema
 - Authorized targeted stale check -> no matches (expected `rg` exit 1)
 - Broad targeted stale check -> only the two Task 13-owned PROGRESS.md rows
   cited above
@@ -2146,3 +2151,57 @@ Verification:
 - Task 11 manifest statuses -> exactly 15 CHG-VID, 7 CHG-CC, and 4 CHG-SEN
   rows record Task 11 application; shared audit/report sync remains Task 13
 - `git diff --check` -> exit 0
+
+## 2026-07-25 — Task 11 Fix Round 1: publish MediaOptions schema
+
+Date / Session: 2026-07-25 / android-auto-17.3-update-task-11-fix-1
+
+What Changed:
+- Published the exact 13-field proto2 `AVChannelMediaOptions` wire envelope
+  recovered from the accepted Android Auto 17.3 `xig` message info: nine
+  `PingConfiguration` messages, three booleans, and one uint32 at their proven
+  tags, with neutral field names because application semantics remain unknown
+- Hardened CHG-VID-8014 to compile and assert the exact descriptor inventory,
+  expanded the CHG-VID-800C all-target enum scan to ten protos, and expanded
+  the Task 11/13 allowlists and changed-proto audit mapping to authorize the
+  MediaOptions proto now and its audit sidecar in Task 13
+- Corrected car-action and overlay-stop ownership prose, aligned video
+  confidence with the accepted evidence, and separated accepted 17.3 sources
+  from the historical 16.2 baseline in the video and car-control reports
+
+Why:
+- Review showed that the initial Task 11 commit claimed an existing 13-field
+  MediaOptions schema while leaving its proto empty, and that its gate could
+  not reject the omission
+- The remaining review findings were documentation provenance, direction, and
+  confidence errors that could misstate phone/HU behavior despite correct IDs
+
+Status:
+- GREEN: every Task 11 review finding is resolved within the revised 20-path
+  publication boundary; no audit YAML was created or edited
+- MediaOptions field meanings intentionally remain unresolved; the publication
+  claims only exact tags, labels, and wire types
+- The broad stale search still reports the two Task 13-owned PROGRESS.md rows
+  recorded by the superseded entry; no new Task 11 stale claim remains
+
+Next Steps:
+1. Task 12: publish only the manifest-authorized identity, compatibility, and
+   new-service changes
+2. Task 13: create/synchronize the 16 authorized audit sidecars, including
+   `AVChannelMediaOptionsMessage.audit.yaml`, and clear the two PROGRESS rows
+3. Preserve MediaOptions neutral names until direct evidence resolves semantics
+
+Verification:
+- RED descriptor test -> the pre-fix MediaOptions descriptor had zero fields,
+  and the required exact 13-field inventory assertion failed
+- GREEN descriptor test -> the exact inventory passes; mutated fixtures with
+  an extra field 14 or field 2 changed from bool to uint32 are both rejected
+- All 26 CHG-VID/CHG-CC/CHG-SEN manifest gate commands -> pass
+- MediaOptions-only, ten changed-proto, and complete Task 11 protocol compiles
+  -> exit 0
+- Exact allowlists -> Task 11/12/13 contain 20/20/40 literal paths; all 16
+  publication protos map one-to-one to the 16 Task 13 audit sidecars
+- Traceability -> 59 source IDs and 59 manifest IDs, symmetric difference 0,
+  duplicate counts 0/0
+- Scoped stale, report version-label, reference/path, Markdown-table, Task 12
+  pointer/gate, matcher verify-only, and `git diff --check` checks -> pass
