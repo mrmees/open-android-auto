@@ -1715,11 +1715,24 @@ Status:
   'versionName|longVersionCode'` -> exit 1; stdout empty; stderr exactly
   `adb: no devices/emulators found`.
 - `python3 -c 'import frida, cryptography; print("capture dependencies present")'`
-  -> exit 1; stdout empty; stderr is the recorded `ModuleNotFoundError: No
-  module named 'frida'` traceback.
+  -> exit 1; stdout empty; stderr:
+
+  ```text
+  Traceback (most recent call last):
+    File "<string>", line 1, in <module>
+      import frida, cryptography; print("capture dependencies present")
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  ModuleNotFoundError: No module named 'frida'
+  ```
 - `python3 /mnt/e/claude/personal/android-auto-dhu/phone_full_capture.py --help`
-  -> exit 1; stdout empty; stderr is the recorded line-15 `frida` import
-  traceback.
+  -> exit 1; stdout empty; stderr:
+
+  ```text
+  Traceback (most recent call last):
+    File "/mnt/e/claude/personal/android-auto-dhu/phone_full_capture.py", line 15, in <module>
+      import frida
+  ModuleNotFoundError: No module named 'frida'
+  ```
 - No capture artifact directory was created. The prescribed worktree
   `git check-ignore -q analysis/aa_apk_17.3.662804_apkm/runtime-validation`
   exits 128 because that `analysis/aa_apk_17.3.662804_apkm` entry is a symlink
