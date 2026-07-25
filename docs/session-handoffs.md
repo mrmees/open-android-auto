@@ -2392,9 +2392,55 @@ Verification:
 - Manifest integrity -> 59/59 traceability and command syntax, exact
   20/21/40 allowlists, 16 audit mappings, Task 13 pointer, and unchanged
   verify-only matcher pair
-- Independent review -> hardened CHG-ID-AV-F6 to positively require the
-  qualified transport-channel-3 example and reject an indented bare
-  `channel_id: 3`; the removal mutation is rejected and focused re-review found
-  no remaining Critical or Important issue
+- Independent review at Fix Round 1 -> required the qualified transport-channel
+  example and rejected its removal; superseded by Fix Round 2 after a later
+  review found spacing-dependent stale-line escapes and valid-format rejection
 - Scoped and broad stale-identity checks, local-link/path checks, Markdown
   table checks, and `git diff --check` -> pass
+
+## 2026-07-25 — Task 12 Fix Round 2: harden display identity gate
+
+Date / Session: 2026-07-25 / android-auto-17.3-update-task-12-fix-2
+
+What Changed:
+- Replaced CHG-ID-AV-F6's formatting-sensitive AV proto source assertion with
+  a compiled descriptor assertion for exact field-6 name `display_id`, tag 6,
+  optional label, and uint32 type
+- Made the guide schema and example assertions whitespace-flexible around
+  tokens, colons, values, and the equals sign
+- Made the transport example outcome-sensitive: exactly one line may encode
+  `channel_id: 3`, and that line must carry the `Transport video channel`
+  qualification
+- Kept the command cell Markdown-safe without a raw pipe character
+
+Why:
+- Review mutations showed that Fix Round 1 accepted spaced stale transport and
+  proto spellings while rejecting a semantically valid spaced `display_id: 0`
+  example
+
+Status:
+- GREEN: the canonical files are unchanged; only the manifest gate and this
+  handoff are tracked Fix Round 2 changes
+- Task 13 ownership and the two recorded audit follow-ups are unchanged
+
+Next Steps:
+1. Task 13: synchronize the authorized reports and audit sidecars
+2. Preserve the logical-display/transport-channel distinction in later guide
+   edits by rerunning CHG-ID-AV-F6
+
+Verification:
+- RED mutations -> Fix Round 1 missed spaced `channel_id : 3`, missed proto
+  `channel_id    =    6`, and rejected valid spaced `display_id : 0`
+- GREEN mutations -> both stale variants are rejected; valid whitespace-only
+  reformatting is accepted; removing the sole qualified transport example is
+  rejected
+- Exact changed/full descriptor sets -> exit 0, 5,085 and 105,152 bytes
+- Manifest commands -> all 10 fully Task 12-owned rows pass; all seven shared
+  Task 12-owned portions pass; full shared failures remain Task 13 report work
+- Manifest integrity -> 59/59 traceability and command syntax, exact
+  20/21/40 allowlists, 16 audit mappings, Task 13 pointer, and unchanged
+  verify-only matcher pair
+- Documentation/stale/scope -> 18 local links with zero missing, two consistent
+  Markdown tables, scoped and broad canonical stale scans pass, exact tracked
+  scope 2/2, and `git diff --check` passes
+- Independent review -> no Critical, Important, or Minor findings
