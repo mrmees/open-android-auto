@@ -1303,6 +1303,7 @@ Verification:
   files present
 - `git diff --check` -> exit 0
 
+
 ## 2026-07-24 — Close Android Auto 17.3 car-control direction matrix
 
 Date / Session: 2026-07-24 / android-auto-17.3-update-task-4
@@ -1367,6 +1368,7 @@ Verification:
 - Resume-pointer check -> Task 4 completed, Task 5 next, exact `jal.java`
   extraction command present
 - `git diff --check` -> exit 0
+
 
 ## 2026-07-24 — Task 4 Fix Round 1: complete conflict-anchor inventory
 
@@ -2009,4 +2011,77 @@ Verification:
   statuses 1 with add never reached; allowlists remain 19/20/39
 - Audit/gates/scope -> 15 audit mappings, exactly two open gates, Task 11 next,
   matcher unchanged, only manifest and handoff changed
+- `git diff --check` -> exit 0
+
+## 2026-07-25 — Task 10 Fix Round 4: descriptor-validated manifest
+
+Date / Session: 2026-07-25 / android-auto-17.3-update-task-10-fix-4
+
+What Changed:
+- Replaced the source-line cardinality checks in all 18 schema/enum rows with
+  compiled `FileDescriptorSet` assertions over exact field inventories
+  `(name, number, label, type, type_name)` and exact enum inventories
+  `(name, number)`
+- Made the future CriticalUi, CarIntent, and BufferedMedia gates compile
+  proto2 fixtures and enforce exact file/message/enum identities, field names,
+  field types, labels, type names, and enum values
+- Replaced the CarLocalMedia value-5 text count with an exact compiled enum
+  inventory, so aliases and duplicate numeric value 5 cannot pass
+- Replaced the 0x8010 text spellings with a compiled assertion against nested
+  `AVChannelMessage.Enum`, making comments and hexadecimal, decimal, or octal
+  source spellings converge on numeric value 32784
+- Replaced the 0x800C source-layout search with one descriptor compilation of
+  all nine exact Task 11 proto targets and recursive, case-insensitive
+  inspection of every top-level and nested enum name
+- Made every descriptor command fail closed through `protoc` `check=True`, a
+  required descriptor file/member lookup, and an immediately registered
+  `TemporaryDirectory` cleanup handler; no command cell contains a table pipe
+
+Why:
+- The Round 3 claim that whitespace-tolerant line counts were mutation
+  resistant was too broad: same-line declarations still preserved the expected
+  line count, and legal comments or octal values still escaped the reservation
+  matcher
+- Case-sensitive, same-line source matching could not reliably enforce the
+  unpublished action-enum boundary across legal protobuf formatting
+- The manifest needs to validate protobuf meaning after parsing, not one
+  particular source spelling or layout
+
+Status:
+- All 18 schema/enum rows now validate compiled descriptor inventories; no
+  `awk` or `rg -c` source cardinality gate remains in the manifest
+- The manifest contains 20 descriptor-backed rows total: the 18 inventory rows
+  plus 0x8010 and 0x800C
+- Canonical synthetic future-state fixtures pass all 20 descriptor commands;
+  24 mutated fixtures are rejected, including every affected structure row
+- Traceability, ownership, exact allowlists, audit coverage, runtime status,
+  two open gates, Task 11 pointer, and matcher verify-only rule are unchanged
+
+Next Steps:
+1. Task 11: publish the exact CriticalUi `focus` field and run the nine-target
+   0x800C and compiled 0x8010 gates from the manifest
+2. Task 12: publish exact CarIntent `metadata` field 2 and the six-field
+   BufferedMedia descriptor inventory without adding messages or enums
+3. Task 13: execute the final descriptor-backed gates and retain the six
+   runtime-unverified results
+
+Verification:
+- RED committed-gate simulation -> same-line extra declarations, comment-
+  separated decimal 32784, octal `0100020`, uppercase action enums, and
+  split-brace action enums were all accepted by the Round 3 source gates
+- GREEN canonical descriptor fixtures -> 20/20 commands pass with exact
+  CriticalUi, CarIntent, BufferedMedia, CLM, AV, video, car-control, and radio
+  inventories
+- GREEN mutations -> 24/24 rejected: extra fields across all 17 message-row
+  cases, CriticalUi/BufferedMedia extra enum values, CLM numeric-5 alias,
+  comment-separated and octal 32784, and uppercase/split-brace action enums
+- Cleanup checks -> descriptor success and missing-target failure both leave
+  their dedicated temporary parent empty
+- Full manifest -> 59 rows, traceability 59/59, symmetric difference 0,
+  duplicate counts 0/0, evidence-source errors 0, row-shape errors 0, shell
+  syntax errors 0, descriptor rows 20, and source cardinality gates 0
+- Runtime/guards -> runtime gates 6/6; Task 11/12/13 non-empty-index guard
+  statuses 1 with add never reached; allowlists remain 19/20/39
+- Audit/gates/scope -> 15 audit mappings, exactly two open gates, Task 11 next,
+  matcher unchanged, and only the manifest and this handoff changed
 - `git diff --check` -> exit 0
