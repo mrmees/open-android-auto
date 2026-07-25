@@ -1820,3 +1820,66 @@ Verification:
 - Owned-file scope check -> only the manifest, dossier README, and this handoff
   changed
 - `git diff --check` -> exit 0
+
+## 2026-07-25 — Task 10 Fix Round 1: make publication staging fail closed
+
+Date / Session: 2026-07-25 / android-auto-17.3-update-task-10-fix-1
+
+What Changed:
+- Recorded the user ruling that exact per-file manifest allowlists override all
+  broader directory, glob, and conditional staging examples in Tasks 11-13
+- Replaced each task allowlist with one authoritative literal-path `git add --`
+  command that first aborts when the index is non-empty
+- Narrowed Task 12 to 20 intentional publication paths: removed four
+  proto-verification reports and the already-correct CLM metadata/request
+  protos, and added the five required AV/input/descriptor/CLM/CarIntent audits
+- Assigned the numeric-5 wording cleanup to Task 12 and its audit
+  synchronization to Task 13 while retaining the unknown/deferred boundary
+- Expanded Task 13 to 39 exact paths and added a 15-proto audit coverage table,
+  including explicit create authorization for missing changed-proto sidecars
+- Replaced all 59 row verification cells with compound, outcome-sensitive
+  assertions that check intended semantics and reject known stale forms
+
+Why:
+- The original freeze allowed contradictions between row task statuses,
+  per-task allowlists, and broader downstream staging examples
+- Presence-only ID searches could pass against the stale state they were meant
+  to reject, so they were not valid publication gates
+- CLM metadata and request already state HU -> Phone and Phone -> HU,
+  respectively; changing them or their sidecars would create unnecessary work
+
+Status:
+- Task 11 has 19 exact staging paths, Task 12 has 20, and Task 13 has 39
+- Task 12 contains no proto-verification report and no CLM metadata/request
+  proto; it does contain all five audits its canonical publication requires
+- All 15 actually changed protos map to an authorized audit sidecar; ten future
+  create paths are explicit and all other authorized paths already exist
+- The matcher pair remains verify-only, research gates remain closed,
+  publication/final gates remain open, and the resume pointer remains Task 11
+
+Next Steps:
+1. Task 11: use the manifest's exact fail-closed staging command instead of the
+   brief's broader example
+2. Task 12: edit/stage only its 20-path canonical surface and preserve the
+   no-change CLM metadata/request protos
+3. Task 13: synchronize only its 39 literal paths and abort if any unauthorized
+   path is already staged
+
+Verification:
+- Bidirectional traceability -> 59 dossier IDs, 59 manifest evidence IDs,
+  symmetric difference 0, duplicate change IDs 0, duplicate evidence IDs 0
+- Manifest row/command check -> 59 rows, 0 shape/empty/compound-command errors,
+  0 mere-ID presence commands, and 0 shell-syntax errors
+- Exact staging check -> Task 11: 19 paths, Task 12: 20, Task 13: 39; each has
+  exactly one empty-index guard, one literal `git add --`, and no glob
+- Row-target coverage -> 48 unique semantic targets, 0 absent from the union of
+  exact staging sets; the six staging-only paths are dossier management,
+  coverage, roadmap, or handoff outputs
+- Task 12 narrowing check -> all four report paths and both no-change CLM protos
+  absent; all five required audit paths present
+- Audit coverage -> 15 changed protos, 15 mappings, symmetric difference 0,
+  authorization errors 0
+- Path check -> 10 explicitly authorized creates; every other path exists
+- Open-gate/pointer check -> only publication/final gates open; Task 11 next
+- Owned-file scope -> only the manifest and this permanent handoff changed
+- `git diff --check` -> exit 0
