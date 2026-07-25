@@ -13,10 +13,66 @@ from analysis.tools.seed_import.tier_policy import (
 
 REPO_ROOT = Path(__file__).resolve().parents[4]
 OAA_ROOT = REPO_ROOT / "oaa"
+CLASS_MAPPING_PATH = (
+    REPO_ROOT / "analysis" / "tools" / "proto_schema_validator" / "class_mapping.yaml"
+)
 
 
 def _find_audit_files() -> list[Path]:
     return sorted(OAA_ROOT.rglob("*.audit.yaml")) if OAA_ROOT.exists() else []
+
+
+def _canonical_mapping_index(mappings: list[dict]) -> dict[str, dict[str, str | None]]:
+    """Merge canonical mappings deterministically and reject contradictions."""
+    index: dict[str, dict[str, str | None]] = {}
+    ordered = sorted(
+        mappings,
+        key=lambda entry: (
+            str(entry.get("proto_message", "")),
+            str(entry.get("proto_file", "")),
+            str(entry.get("proto_fqn", "")),
+            tuple(
+                sorted(
+                    (str(version), "" if apk_class is None else str(apk_class).lower())
+                    for version, apk_class in (entry.get("apk_classes") or {}).items()
+                )
+            ),
+        ),
+    )
+    for entry in ordered:
+        message = entry.get("proto_message")
+        if not isinstance(message, str) or not message:
+            raise AssertionError("canonical mapping entry requires proto_message")
+        versions = index.setdefault(message, {})
+        for version, apk_class in sorted((entry.get("apk_classes") or {}).items()):
+            normalized = apk_class.lower() if isinstance(apk_class, str) else apk_class
+            if version in versions and versions[version] != normalized:
+                raise AssertionError(
+                    f"contradictory canonical mapping for {message} {version}: "
+                    f"{versions[version]!r} vs {normalized!r}"
+                )
+            versions[version] = normalized
+    return index
+
+
+def _canonical_pair_violations(
+    audit: dict, canonical: dict[str, dict[str, str | None]]
+) -> list[str]:
+    message = audit.get("message")
+    expected_by_version = canonical.get(message, {})
+    violations: list[str] = []
+    for entry in audit.get("evidence") or []:
+        if entry.get("type") != "cross_version":
+            continue
+        for version, apk_class in sorted(version_class_pairs(entry)):
+            if version not in expected_by_version:
+                continue
+            expected = expected_by_version[version]
+            if expected is not None and apk_class != expected:
+                violations.append(
+                    f"{message} {version}: parsed {apk_class!r}, canonical {expected!r}"
+                )
+    return violations
 
 
 def _platinum(tmp_path: Path, rules: list[str] | None = None) -> dict:
@@ -88,6 +144,68 @@ def test_version_class_pairs_accept_only_explicit_supported_syntax(source, expec
 )
 def test_version_class_pairs_reject_prose_and_out_of_bounds_tokens(source):
     assert version_class_pairs({"source": source}) == set()
+
+
+def test_canonical_mapping_index_merges_duplicate_messages_deterministically():
+    first = {
+        "proto_message": "Message",
+        "proto_file": "z.proto",
+        "apk_classes": {"16.2": "Abc"},
+    }
+    second = {
+        "proto_message": "Message",
+        "proto_file": "a.proto",
+        "apk_classes": {"16.1": "Def"},
+    }
+    expected = {"Message": {"16.1": "def", "16.2": "abc"}}
+    assert _canonical_mapping_index([first, second]) == expected
+    assert _canonical_mapping_index([second, first]) == expected
+
+
+@pytest.mark.parametrize(
+    "mappings",
+    [
+        [
+            {"proto_message": "Message", "apk_classes": {"16.1": "abc"}},
+            {"proto_message": "Message", "apk_classes": {"16.1": "def"}},
+        ],
+        [
+            {"proto_message": "Message", "apk_classes": {"16.1": "def"}},
+            {"proto_message": "Message", "apk_classes": {"16.1": "abc"}},
+        ],
+    ],
+)
+def test_canonical_mapping_index_rejects_contradictory_duplicate_messages(
+    mappings,
+):
+    with pytest.raises(
+        AssertionError,
+        match="contradictory canonical mapping for Message 16.1: 'abc' vs 'def'",
+    ):
+        _canonical_mapping_index(mappings)
+
+
+@pytest.mark.parametrize(
+    ("source", "expected"),
+    [
+        (
+            "v16.1:wcm / v16.2:wci / v17.3:xms",
+            ["UpdateUiConfigRequest 16.1: parsed 'wcm', canonical 'wcs'"],
+        ),
+        ("v16.1:wcs / v16.2:wci / v17.3:xms", []),
+    ],
+)
+def test_update_ui_config_request_pairs_match_independent_canonical_map(
+    source, expected
+):
+    canonical = {
+        "UpdateUiConfigRequest": {"16.1": "wcs", "16.2": "wci"}
+    }
+    audit = {
+        "message": "UpdateUiConfigRequest",
+        "evidence": [{"type": "cross_version", "source": source}],
+    }
+    assert _canonical_pair_violations(audit, canonical) == expected
 
 
 @pytest.mark.parametrize(
@@ -205,6 +323,8 @@ def test_invalid_pending_gold_flags_are_rejected(audit):
 
 
 AUDIT_FILES = _find_audit_files()
+CLASS_MAPPING = yaml.safe_load(CLASS_MAPPING_PATH.read_text())
+CANONICAL_MAPPING_INDEX = _canonical_mapping_index(CLASS_MAPPING["mappings"])
 
 
 @pytest.mark.skipif(not AUDIT_FILES, reason="No .audit.yaml files found under oaa/")
@@ -225,4 +345,14 @@ def test_each_audit_yaml_matches_canonical_confidence_policy(audit_path):
     assert not pending_gold_violations(audit, REPO_ROOT), (
         f"{audit_path.relative_to(REPO_ROOT)}: "
         f"{pending_gold_violations(audit, REPO_ROOT)}"
+    )
+
+
+@pytest.mark.skipif(not AUDIT_FILES, reason="No .audit.yaml files found under oaa/")
+@pytest.mark.parametrize("audit_path", AUDIT_FILES, ids=lambda p: str(p.relative_to(REPO_ROOT)))
+def test_cross_version_pairs_match_canonical_class_mapping(audit_path):
+    audit = yaml.safe_load(audit_path.read_text())
+    violations = _canonical_pair_violations(audit, CANONICAL_MAPPING_INDEX)
+    assert not violations, (
+        f"{audit_path.relative_to(REPO_ROOT)}: " + "; ".join(violations)
     )

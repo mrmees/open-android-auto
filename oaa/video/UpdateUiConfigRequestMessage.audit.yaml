@@ -21,7 +21,7 @@ evidence:
     traffic.
 - type: cross_version
   method: structural_comparison
-  source: v16.1:wcm / v16.2:wci / v17.3:xms
+  source: v16.1:wcs / v16.2:wci / v17.3:xms
   date: '2026-07-25'
   description: >-
     The one-field AdditionalVideoConfig wrapper remains structurally stable;

@@ -2722,3 +2722,64 @@ Verification:
   `detail` scan -> zero; cross-link dry-run -> five no-ops.
 - Matcher/runtime reports -> unchanged from `d62bebd`; `git diff --check` ->
   exit 0.
+
+## 2026-07-25 — Task 13 Fix Round 3: validate canonical cross-version classes
+
+Date / Session: 2026-07-25 / android-auto-17.3-update-task-13-fix-3
+
+What Changed:
+- Corrected `UpdateUiConfigRequest`'s 16.1 cross-version class from `wcm` to
+  canonical `wcs`, preserving the canonical 16.2 `wci` and syntax-validated
+  17.3 `xms` mappings. `wcm` belongs to `AdditionalVideoConfig`, not the
+  request wrapper.
+- Added a bounded repository-wide test that compares parsed cross-version pairs
+  with non-null classes in
+  `analysis/tools/proto_schema_validator/class_mapping.yaml`. Versions absent
+  from the canonical map remain eligible for syntax/evidence validation.
+- Made canonical-map indexing deterministic for duplicate message entries and
+  fail closed when duplicate entries disagree for the same version, including
+  stable contradiction diagnostics regardless of input order.
+
+Why:
+- Fix Round 2 proved that a version/class pair was syntactically explicit, but
+  explicit syntax alone could not distinguish the wrapper class from its
+  nested payload class.
+- Confidence must not remain Gold when a parsed class contradicts the existing
+  independent canonical mapping source.
+
+Status:
+- GREEN: the sole canonical-mapping mismatch is corrected; the generic check
+  exposed no unrelated pre-existing audit mismatches.
+- Coverage remains 168 sidecars / 247 protos / 68%, with 23 Bronze, 118
+  Silver, 14 Gold, 0 Platinum, 13 Retracted, 0 Superseded, 79 missing, and 0
+  pending-Gold entries.
+- Task ordering is unchanged; Task 14 remains the next release gate.
+
+Next Steps:
+1. Run Task 14's full release gate with canonical-class validation enabled.
+2. Keep canonical class mappings independent of audit confidence and update
+   the mapping source before citing a newly proven historical version.
+3. Resolve any future duplicate canonical entry conflict instead of selecting
+   one by file or input order.
+
+Verification:
+- Canonical-mapping RED -> 1 failed / 376 passed, exactly
+  `UpdateUiConfigRequest` 16.1 `wcm` versus canonical `wcs`; no unrelated
+  mismatches. Duplicate-order RED -> 1 failed / 1 passed for unstable conflict
+  diagnostics before the deterministic sort key.
+- Whole canonical tier/mapping suite -> 378 passed.
+- Exact Task 13 combined audit/tier/coverage/promotion/architecture/cross-link/
+  cross-version suite -> 998 passed.
+- Fixed-time coverage regeneration -> JSON and Markdown byte-identical; live
+  counts remain 168/247 and 23/118/14/0 with pending 0.
+- Promotion-walker dry-run -> all four artifacts byte-identical; 34
+  service-binding-only observations, 3 out-of-SDP skips, 6 retractions, 0
+  promotions/pending mutations, and 43 total verdicts.
+- Manifest verification -> 59/59 command strings parse and 59/59 semantic
+  commands pass.
+- Active proto compilation -> 247/247 protos, 494 generated C++ files, and a
+  105,152-byte descriptor set.
+- Comment-only AV descriptors -> parent/current SHA-256 both
+  `6adba02ecf62a8b0e9bbb298c25c96550f617a340ee82b34ddbf518cf0c9ee8e`.
+- Cross-link dry-run -> five no-ops; matcher/runtime reports unchanged;
+  changed-path/reference and `git diff --check` gates clean.
