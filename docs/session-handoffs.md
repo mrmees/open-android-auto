@@ -2177,8 +2177,10 @@ Why:
   confidence errors that could misstate phone/HU behavior despite correct IDs
 
 Status:
-- GREEN: every Task 11 review finding is resolved within the revised 20-path
-  publication boundary; no audit YAML was created or edited
+- Superseded by Fix Round 2: this round resolved the then-known findings, but
+  re-review found that its overlay-stop prose still claimed an unproven
+  phone-side state dismissal
+- No audit YAML was created or edited
 - MediaOptions field meanings intentionally remain unresolved; the publication
   claims only exact tags, labels, and wire types
 - The broad stale search still reports the two Task 13-owned PROGRESS.md rows
@@ -2205,3 +2207,46 @@ Verification:
   duplicate counts 0/0
 - Scoped stale, report version-label, reference/path, Markdown-table, Task 12
   pointer/gate, matcher verify-only, and `git diff --check` checks -> pass
+
+## 2026-07-25 — Task 11 Fix Round 2: bound overlay-stop behavior
+
+Date / Session: 2026-07-25 / android-auto-17.3-update-task-11-fix-2
+
+What Changed:
+- Replaced the 0x800F phone-side overlay-state dismissal claim with the exact
+  observed boundary: the phone endpoint queues handler message 9, and its
+  handler invokes the registered phone-side stopped callbacks
+- Explicitly states that direct evidence does not establish overlay-state
+  mutation or dismissal
+- Corrected the Fix Round 1 handoff status so it no longer claims that every
+  review finding was resolved
+
+Why:
+- `jdc.java` maps incoming raw ID 32783/0x800F to handler message 9
+- `its.java` case 9 iterates registered callbacks and invokes `rhs.f()`; its
+  only list mutation removes callback registrations that threw
+  `RemoteException`, not overlay display state
+
+Status:
+- GREEN: the sole Fix Round 2 finding is resolved in the two authorized
+  documentation paths; no protocol schema, manifest, audit YAML, or other
+  tracked file changed
+- Task 12 remains the next resume point and was not started
+
+Next Steps:
+1. Task 12: publish only the manifest-authorized identity, compatibility, and
+   new-service changes
+2. Task 13: create/synchronize the 16 authorized audit sidecars and clear the
+   two recorded PROGRESS.md direction residuals
+
+Verification:
+- RED boundary check -> found the old phone-side overlay-state dismissal claim;
+  the desired callback-only wording was absent
+- Direct evidence check -> `jdc.java` queues handler message 9 and `its.java`
+  case 9 invokes registered stopped callbacks; the bounded source contains no
+  overlay-state mutation or dismissal
+- GREEN boundary/stale check -> exact callback-only prose present and dismissal
+  or state-mutation overclaims absent
+- All 26 CHG-VID/CHG-CC/CHG-SEN manifest gates -> pass
+- Markdown table/link sanity, traceability 59/59, exact 20/20/40 allowlists,
+  16-entry audit mapping, two-file scope, and `git diff --check` -> pass

@@ -310,7 +310,10 @@ The session ID is passed to `qdd.mo30156e(int)` -- a display callback in the `co
 
 **IntegratedOverlayStopNotification (0x800F, HU -> Phone):**
 
-Empty message -- no fields. On HU -> Phone arrival, the phone invokes its display-stopped callback and dismisses the corresponding phone-side overlay state.
+Empty message -- no fields. On HU -> Phone arrival, the phone endpoint queues
+handler message 9, whose handler invokes the registered phone-side stopped
+callbacks. The direct evidence does not establish overlay-state mutation or
+dismissal.
 
 ---
 
