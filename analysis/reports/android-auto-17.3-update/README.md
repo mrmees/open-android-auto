@@ -14,12 +14,12 @@
 | Direction and video-ID audit | confirmed-static | All video, car-control, sensor, and radio DIR rows are closed in `message-matrix.md`; the sole bounded video slot remains explicitly deferred. |
 | Identity and compatibility | confirmed-static | All five ID rows are closed in `message-matrix.md`: AV/input identity is source-proven, field 18 is a compatible addition, and the unavailable 16.2 semantics for fields 16-17 are explicitly classified as insufficient evidence rather than inferred. |
 | New services | confirmed-static | All CarIntent, CarLocalMedia, and BufferedMedia rows are closed in `services.md`. CarLocalMedia value 5 and BufferedMedia IDs 1-3/outbound paths remain explicitly deferred; 17.3 directly proves a gated service-type-21 parser for incoming ID 4, not runtime activation or a complete transfer protocol. |
-| Runtime validation | open | `runtime-validation.md` RT rows |
+| Runtime validation | runtime-unverified | Task 9 recorded no ADB `device` row and an unavailable `frida` capture dependency; no traffic, logcat clear, or ignored capture artifact was attempted. See `runtime-validation.md`. |
 | Canonical publication | open | `change-manifest.md` accepted rows |
 | Final verification and handoff | open | final handoff entry |
 
 ## Resume Here
 
-- Last completed task: Task 8, CarLocalMedia and BufferedMedia classification
-- Next task: Task 9, focused runtime validation
-- Next command: `adb devices -l`
+- Last completed task: Task 9, focused runtime validation attempt
+- Next task: Task 10, freeze the canonical change manifest
+- Next command: `rg -n '\\| open \\|' analysis/reports/android-auto-17.3-update`

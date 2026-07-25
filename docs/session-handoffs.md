@@ -1685,3 +1685,60 @@ Verification:
 - Resume-pointer check -> Task 8 completed, Task 9 next, `adb devices -l`
 - Owned-file scope check -> only the three Task 8 owned files changed
 - `git diff --check` -> exit 0
+
+## 2026-07-24 — Task 9: attempt focused runtime validation
+
+Date / Session: 2026-07-24 / android-auto-17.3-update-task-9
+
+What Changed:
+- Closed all six `RT-*` rows in `runtime-validation.md` as
+  `runtime-unverified`; `RT-ENV` is deferred because there was no ADB
+  `device` row during execution.
+- Recorded each mandatory preflight command with exact stdout, stderr, and
+  exit code, including the missing Python module `frida` and the capture tool's
+  matching import failure.
+- Advanced the dossier pointer to Task 10 and explicitly recorded that no
+  logcat clear, scenario capture, artifact copy, converter, or validator was
+  attempted under the no-device branch.
+
+Why:
+- The Task 9 branch rule prohibits scenario captures and `adb logcat -c` when
+  no ADB `device` row exists. The capture environment also cannot start until
+  `frida` is installed for the Python interpreter used by the external tool.
+- An unavailable runtime service would be an activation result, not protocol
+  absence; here, no runtime activation was attempted or observed.
+
+Status:
+- `adb devices -l` -> exit 0; stdout exactly `List of devices attached` plus a
+  blank line; no `device` row.
+- `adb shell dumpsys package com.google.android.projection.gearhead | rg
+  'versionName|longVersionCode'` -> exit 1; stdout empty; stderr exactly
+  `adb: no devices/emulators found`.
+- `python3 -c 'import frida, cryptography; print("capture dependencies present")'`
+  -> exit 1; stdout empty; stderr is the recorded `ModuleNotFoundError: No
+  module named 'frida'` traceback.
+- `python3 /mnt/e/claude/personal/android-auto-dhu/phone_full_capture.py --help`
+  -> exit 1; stdout empty; stderr is the recorded line-15 `frida` import
+  traceback.
+- No capture artifact directory was created. The prescribed worktree
+  `git check-ignore -q analysis/aa_apk_17.3.662804_apkm/runtime-validation`
+  exits 128 because that `analysis/aa_apk_17.3.662804_apkm` entry is a symlink
+  beyond the worktree; the linked primary checkout check exits 0 under
+  `.gitignore:6:analysis/aa_*/`, and both candidate directories are absent.
+
+Next Steps:
+1. Task 10: freeze the canonical change manifest, retaining each Task 9 row as
+   runtime-unverified and accepting no fabricated runtime evidence.
+2. To retry runtime validation, attach a device running exactly
+   `17.3.662804-release` and re-run all four Task 9 preflight commands.
+3. Install `frida` for the `python3` interpreter used by
+   `phone_full_capture.py` before performing any capture step.
+
+Verification:
+- Exact Task 9 open-row guard -> exit 0; no `RT-*` row is `open`.
+- `git check-ignore -q analysis/aa_apk_17.3.662804_apkm/runtime-validation`
+  -> exit 128 with the documented worktree-symlink limitation; the linked
+  primary-checkout ignore check -> exit 0, and no runtime artifact exists.
+- `git diff --check` -> exit 0.
+- Tracked scope check -> exactly the three Task 9 owned reports changed;
+  task report is ignored and no ignored capture artifact is staged.
