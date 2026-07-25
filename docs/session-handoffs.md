@@ -2286,17 +2286,18 @@ Why:
   names and no longer mistakes unrelated media-info IDs for direction errors
 
 Status:
-- GREEN for every Task 12-owned canonical, documentation, audit, and manifest
-  surface in the exact 20-path allowlist
+- Superseded by Fix Round 1: the initial commit was GREEN for its then-frozen
+  20-path allowlist, but that allowlist omitted the active service-discovery
+  guide; the corrected Task 12 contract contains 21 paths
 - Shared full-command residuals are intentionally limited to Task 13-owned
   `sdp.md`, `sdp-progress.md`, `media.md`, and `PROGRESS.md`; the Task 13-owned
   `BufferedMediaSinkMessage.audit.yaml` is intentionally still absent
 - Static logical display/endpoint construction remains distinct from runtime
   concurrency; no simultaneous 17.3 streams, live CarIntent delivery, or live
   BufferedMedia activation were observed
-- The broad stale inventory still finds the historical AV field-6 spelling in
-  `docs/interactions/03-service-discovery.md`, which is outside all frozen Task
-  12/13 allowlists; no Task 12-scoped stale term remains
+- Resolved by Fix Round 1: the broad stale inventory exposed the historical AV
+  field-6 spelling in `docs/interactions/03-service-discovery.md`; the guide is
+  now an authorized Task 12 canonical target
 
 Next Steps:
 1. Task 13: synchronize SDP/media/PROGRESS reports and create the authorized
@@ -2332,10 +2333,68 @@ Verification:
   overclaim; the final wording says the consumer does not prove a response or
   completed transfer, and the hardened gate rejects the former wording;
   focused re-review returned clean
-- Manifest integrity -> 59/59 traceability, zero symmetric difference or
-  duplicates, 59/59 command syntax, exact 20/20/40 allowlists, 16 audit mappings,
-  Task 13 pointer, and unchanged verify-only matcher pair
+- Manifest integrity at initial commit -> 59/59 traceability, zero symmetric
+  difference or duplicates, 59/59 command syntax, and the superseded exact
+  20/20/40 allowlists; Fix Round 1 records the corrected 20/21/40 result
 - Documentation sanity -> 87 local links checked, zero missing; 52 Markdown
   table blocks have consistent column counts
 - Task 12 scoped stale search -> no matches; new identity/service terminology present
 - `git diff --check` -> exit 0
+
+## 2026-07-25 — Task 12 Fix Round 1: align service-discovery display identity
+
+Date / Session: 2026-07-25 / android-auto-17.3-update-task-12-fix-1
+
+What Changed:
+- Added `docs/interactions/03-service-discovery.md` to the CHG-ID-AV-F6
+  canonical targets and the exact Task 12 staging allowlist, correcting the
+  manifest allocation from 20 to 21 paths
+- Renamed only the active guide's nested AV field 6 from `channel_id` to
+  `display_id`; retained `ChannelDescriptor.channel_id` as the genuine
+  transport channel used in frame headers
+- Updated the example so transport video channel 3 contains logical MAIN
+  `display_id: 0`, and documented the logical identity join with
+  `InputChannelConfig.display_id` field 5
+- Split troubleshooting guidance between invalid transport channel IDs and
+  AV/input logical-display mismatches
+
+Why:
+- The initial Task 12 allowlist omitted an active protocol guide, leaving its
+  AV field-6 spelling stale and its example liable to conflate transport and
+  logical display identity domains
+
+Status:
+- GREEN: the guide, manifest target/gate, and corrected 21-path Task 12
+  allowlist agree; the original exact-20 completion claim is superseded
+- Task 13 still owns the seven shared report residuals and the missing
+  BufferedMedia audit sidecar
+- Reviewer minor follow-ups remain Task 13 work: add the CLM audit citation
+  after report synchronization, and reconcile the AV proto/audit evidence tier
+
+Next Steps:
+1. Task 13: synchronize SDP/media/PROGRESS reports and create the authorized
+   BufferedMedia audit sidecar
+2. After that report sync, add the resolvable CLM audit citation and reconcile
+   the AV proto/audit tier without changing the Task 12 wire schema
+
+Verification:
+- RED guide identity check -> found nested AV `channel_id = 6` and
+  `channel_id: 3`; the required logical-display join was absent
+- GREEN CHG-ID-AV-F6 gate -> field 6 is `display_id` in proto and guide,
+  transport `ChannelDescriptor.channel_id` remains explicit, the example uses
+  transport channel 3 plus logical MAIN display 0, and the AV/input join and
+  generated-API break are documented
+- Exact changed-proto descriptor set -> exit 0, 5,085 bytes; full proto-tree
+  descriptor set -> exit 0, 105,152 bytes
+- Manifest commands -> all 10 fully Task 12-owned rows pass; all Task 12-owned
+  portions of seven shared rows pass; full shared failures remain limited to
+  the four named Task 13 report files
+- Manifest integrity -> 59/59 traceability and command syntax, exact
+  20/21/40 allowlists, 16 audit mappings, Task 13 pointer, and unchanged
+  verify-only matcher pair
+- Independent review -> hardened CHG-ID-AV-F6 to positively require the
+  qualified transport-channel-3 example and reject an indented bare
+  `channel_id: 3`; the removal mutation is rejected and focused re-review found
+  no remaining Critical or Important issue
+- Scoped and broad stale-identity checks, local-link/path checks, Markdown
+  table checks, and `git diff --check` -> pass
