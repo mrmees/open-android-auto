@@ -1537,3 +1537,40 @@ Verification:
 - Owned-file and source-anchor checks -> only the three owned files changed;
   all cited 17.3 sources and 16.2 evidence files exist
 - `git diff --check` -> exit 0
+
+## 2026-07-24 — Task 6 Fix Round 1: correct descriptor source anchors
+
+Date / Session: 2026-07-24 / android-auto-17.3-update-task-6-fix-1
+
+What Changed:
+- Corrected the `xik` RawMessageInfo citation from line 36 to line 38
+- Corrected the `xhs` RawMessageInfo citation from line 36 to line 39
+- Extended the `xgi`, `xfq`, and `xgd` marker ranges from lines 4-24 to 4-25
+  so each range includes its empty RawMessageInfo descriptor call
+- Preserved every Task 6 semantic conclusion, status, disposition, and resume
+  pointer
+
+Why:
+- The former ranges ended immediately before the descriptor calls, making the
+  otherwise-correct field and marker claims harder to reproduce exactly
+
+Status:
+- All five near-miss anchors in the Task 6 matrix now cite the exact descriptor
+  lines
+- The Task 6 identity rows remain closed and unchanged apart from citations
+
+Next Steps:
+1. Continue with Task 7 from the unchanged dossier resume pointer
+2. Preserve the corrected anchors when publishing Task 6 conclusions in Task
+   10
+
+Verification:
+- `nl -ba .../xik.java | sed -n '34,40p'` -> RawMessageInfo call at line 38
+- `nl -ba .../xhs.java | sed -n '35,41p'` -> RawMessageInfo call at line 39
+- `nl -ba .../{xgi,xfq,xgd}.java | sed -n '21,27p'` (run as a loop) -> each
+  empty-marker RawMessageInfo call at line 25
+- Focused anchor `rg` over all three owned files -> only corrected
+  `xik.java:38`, `xhs.java:39`, and marker ranges `4-25` remain; the README and
+  prior handoff contain no equivalent stale anchor
+- Exact Task 6 open-row guard -> exit 0 with no open `ID-*` row
+- `git diff --check` -> exit 0
