@@ -1950,3 +1950,63 @@ Verification:
 - Audit/gates/scope -> 15 audit mappings, 0 errors; exactly two open gates;
   Task 11 next; matcher unchanged; only manifest and this handoff changed
 - `git diff --check` -> exit 0
+
+## 2026-07-25 — Task 10 Fix Round 3: close mutation escapes
+
+Date / Session: 2026-07-25 / android-auto-17.3-update-task-10-fix-3
+
+What Changed:
+- Replaced all 17 whitespace-sensitive message/enum cardinality matchers with
+  assignment patterns that accept compact legal formatting, optional signs,
+  and arbitrary whitespace around the value and semicolon
+- Added a whitespace-tolerant three-value cardinality check to the new
+  CriticalUiFocus enum and made the CarLocalMedia value-5 uniqueness check
+  whitespace tolerant
+- Expanded the deferred 0x8010 gate to reject assignments under any enum name
+  when the value is hexadecimal (case/leading-zero insensitive) or decimal
+  32784 (leading-zero insensitive)
+- Added a fail-closed negative schema search for action-named enum declarations
+  across all nine authorized Task 11 proto publication targets; every target
+  must exist before the negative search can pass
+
+Why:
+- The prior `/= [0-9]+;/` count ignored compact legal declarations such as
+  `escape=7;`, so extra fields or enum values could preserve the expected count
+- The prior 0x8010 check recognized only lowercase hexadecimal spelling, and
+  the 0x800C unpublished-enum boundary existed only as required prose
+
+Status:
+- No whitespace-sensitive cardinality matcher remains; 18 message/enum awk
+  matchers and the CLM uniqueness matcher accept compact assignments
+- Compact extra-field, empty-message, extra-enum-value, decimal/uppercase-hex
+  0x8010, and hidden public-action-enum mutations all make their gate exit 1
+- Traceability, ownership, exact allowlists, audit coverage, evidence
+  boundaries, runtime status, open gates, Task 11 pointer, and matcher rule are
+  unchanged
+
+Next Steps:
+1. Task 11: use the exact manifest gates, including the all-target 0x800C
+   negative enum search and both numeric forms of the 0x8010 reservation
+2. Task 12: preserve compact-format-resistant field/value cardinality checks
+   when publishing the bounded new-service schemas
+3. Task 13: execute all final gates without weakening the mutation-resistant
+   count patterns
+
+Verification:
+- RED cardinality simulation -> 17 old matchers; compact extra field preserved
+  expected-one count 1, compact field preserved expected-empty count 0, and
+  compact extra enum value preserved expected-five count 5
+- RED 0x8010 simulation -> decimal `32784` and uppercase `0X8010` both missed;
+  RED 0x800C check -> no Task 11 action-enum schema negative existed
+- GREEN mutation simulation -> old matchers 0, safe awk matchers 18; compact
+  mutation counts 2/1/6 and all three expected-count checks exit 1
+- GREEN 0x8010/action simulations -> decimal rejection 1, uppercase-hex
+  rejection 1, hidden-action-enum rejection 1, Task 11 proto targets 9/9
+- Full manifest -> 59 rows, traceability 59/59, symmetric difference 0,
+  duplicate counts 0/0, row-shape errors 0, syntax errors 0, semantic checks
+  59/59
+- Runtime/guards -> runtime gates 6/6; Task 11/12/13 non-empty-index guard
+  statuses 1 with add never reached; allowlists remain 19/20/39
+- Audit/gates/scope -> 15 audit mappings, exactly two open gates, Task 11 next,
+  matcher unchanged, only manifest and handoff changed
+- `git diff --check` -> exit 0
