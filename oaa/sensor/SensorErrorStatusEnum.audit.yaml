@@ -1,7 +1,7 @@
 proto: oaa/sensor/SensorErrorStatusEnum.proto
 message: SensorErrorStatus
-confidence: bronze
-last_updated: '2026-04-08'
+confidence: silver
+last_updated: '2026-07-25'
 evidence:
 - type: apk_static
   method: bfs_trace

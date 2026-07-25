@@ -23,15 +23,15 @@ historical schema baseline and do not supply the accepted 17.3 directions.
 | 0x8008 | HU -> Phone | xnb | VideoFocusIndication | Gold |
 | 0x8009 | HU -> Phone | xms | UpdateUiConfigRequest (inbound to phone) | Gold |
 | 0x800A | Phone -> HU | xms | UpdateUiConfigRequest (outbound from phone) | Gold |
-| 0x800B | HU -> Phone | — | AudioUnderflow; no payload parsed | Gold |
-| 0x800C | Phone -> HU | xex | ActionTaken; enum field 1 and public action enum unpublished | Gold |
-| 0x800D | Phone -> HU | xhv | OverlayParameters; repeated overlay-options field 1, nested semantics unpublished | Gold |
+| 0x800B | HU -> Phone | — | AudioUnderflow; no payload parsed | Bronze (17.3-only trace) |
+| 0x800C | Phone -> HU | xex | ActionTaken; enum field 1 and public action enum unpublished | Bronze (17.3-only trace) |
+| 0x800D | Phone -> HU | xhv | OverlayParameters; repeated overlay-options field 1, nested semantics unpublished | Bronze (17.3-only trace) |
 | 0x800E | HU -> Phone | xhw | IntegratedOverlayStartNotification | Gold |
-| 0x800F | HU -> Phone | — | OverlayStop; empty payload | Gold |
+| 0x800F | HU -> Phone | — | OverlayStop; empty payload | Bronze (17.3-only trace) |
 | 0x8010 | unknown | — | reserved; name/payload/direction unknown and deferred | deferred |
-| 0x8011 | Phone -> HU | xmt | UiConfigRequest (theming tokens) | Gold |
+| 0x8011 | Phone -> HU | xmt | UiConfigRequest (theming tokens) | Bronze (no qualifying primary anchor/cross-version entry) |
 | 0x8012 | HU -> Phone | xmu | UpdateHuUiConfigResponse | Gold |
-| 0x8013 | HU -> Phone | xim | MediaStats | Gold |
+| 0x8013 | HU -> Phone | xim | MediaStats | Silver |
 | 0x8014 | Phone -> HU | xig | MediaOptions | Bronze (17.3-only static trace) |
 | 0x8015 | Phone -> HU | xgu | CriticalUiNotification | Bronze (17.3-only static trace) |
 
@@ -52,11 +52,11 @@ cross-version conflict; they are not mislabeled as 17.3 evidence.
 
 | Wire ID | Direction | Proto Class (16.2) | Name | Confidence |
 |---------|-----------|-------------------|------|------------|
-| 0x8000 | Phone→HU | wbs | AVChannelSetupRequest | Gold (media ch) |
-| 0x8001 | Phone→HU | wbu | AVChannelStartIndication | Gold (media ch) |
+| 0x8000 | Phone→HU | wbs | AVChannelSetupRequest | Silver |
+| 0x8001 | Phone→HU | wbu | AVChannelStartIndication | Silver |
 | 0x8002 | Phone→HU | wbv | AVChannelStopIndication | Gold (media ch) |
-| 0x8003 | HU→Phone | vwn | AVChannelSetupResponse | Gold (media ch) |
-| 0x8004 | HU→Phone | vuw | AVMediaAckIndication | Gold (media ch) |
+| 0x8003 | HU→Phone | vwn | AVChannelSetupResponse | Silver |
+| 0x8004 | HU→Phone | vuw | AVMediaAckIndication | Silver |
 
 ## Historical 16.2 per-proto verification results
 
@@ -116,7 +116,7 @@ Historical direction: Phone -> HU.
 **Retracted:** VideoFocusNotificationMessage.proto (field 1 was wrongly called focus_mode)
 **Created:** IntegratedOverlayStartNotification.proto
 
-### IntegratedOverlayStopNotification (empty, historical 16.2) — Gold
+### IntegratedOverlayStopNotification (empty, historical 16.2) — Bronze
 
 Historical wire ID: 0x800F.
 Historical direction: Phone -> HU.
@@ -132,6 +132,10 @@ Historical direction: Phone -> HU.
 
 **vdp name:** `MEDIA_MESSAGE_INTEGRATED_OVERLAY_STOP_NOTIFICATION`
 **Created:** IntegratedOverlayStopNotification.proto
+
+The earlier Gold label is superseded. The 16.2 checks and the 17.3 callback
+trace are a single primary-trace evidence type; no `cross_version` entry names
+exact version-to-class pairs for this empty wrapper.
 
 ### UpdateUiConfigRequest (`wci`, historical 16.2) — Gold
 
@@ -262,7 +266,7 @@ All 11 fields match. Defaults: fps=1 (_60), margin_width=1, codec=1 (PCM).
 
 ## Historical 16.2 shared AV messages (`icv.java`)
 
-### AVChannelMediaStats (`vyg`, 0x8013, HU -> Phone) — Gold
+### AVChannelMediaStats (`vyg`, 0x8013, HU -> Phone) — Silver
 
 Existing proto structure confirmed correct (15 fields). Fixed:
 - Wire msg ID: 0x8014 → 0x8013 (was dispatch value, not wire value)

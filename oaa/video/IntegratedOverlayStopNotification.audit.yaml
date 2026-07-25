@@ -1,6 +1,6 @@
 proto: oaa/video/IntegratedOverlayStopNotification.proto
 message: IntegratedOverlayStopNotification
-confidence: gold
+confidence: bronze
 last_updated: '2026-07-25'
 wire_msg_id: 0x800F
 direction: HU->Phone
@@ -19,10 +19,3 @@ evidence:
     Raw ID 0x800F queues the phone handler's stopped-notification path without
     payload parsing and invokes registered stopped callbacks. Static source
     proves neither overlay-state mutation/dismissal nor runtime traffic.
-- type: cross_version
-  method: structural_comparison
-  source: 16.x empty canonical message compared with Android Auto 17.3 endpoint
-  date: '2026-07-25'
-  description: >-
-    The no-field message boundary is stable across the cited canonical and
-    17.3 paths; the endpoint trace corrects the historical direction.

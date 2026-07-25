@@ -1,7 +1,7 @@
 proto: oaa/phone/PhoneCallStateEnum.proto
 message: PhoneCallState
 confidence: gold
-last_updated: '2026-03-06'
+last_updated: '2026-07-25'
 evidence:
 - type: apk_static
   method: string_const
@@ -11,7 +11,7 @@ evidence:
     analysis.
 - type: cross_version
   method: structural_comparison
-  source: cross-version checker (15.9, 16.1, 16.2)
+  source: docs/cross-version/phone.md (15.9:vsm, 16.1:wae, 16.2:vzq, 16.4:wsd)
   date: '2026-03-03'
   description: Structural match confirmed across versions 15.9, 16.1, 16.2. Field
     numbers, types, and modifiers are consistent.

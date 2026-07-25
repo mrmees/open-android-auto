@@ -124,16 +124,16 @@ def test_live_snapshot() -> None:
     total_retracted = sum(c.retracted for c in result.per_channel.values())
     total_superseded = sum(c.superseded for c in result.per_channel.values())
 
-    assert total_platinum == 3, (
-        f"Expected 3 platinum, got {total_platinum}. "
+    assert total_platinum == 0, (
+        f"Expected 0 platinum, got {total_platinum}. "
         "Census changed? Update snapshot values after verifying the change is intentional."
     )
-    assert total_gold == 46, (
-        f"Expected 46 gold, got {total_gold}. "
+    assert total_gold == 14, (
+        f"Expected 14 gold, got {total_gold}. "
         "Census changed? Update snapshot values after verifying the change is intentional."
     )
-    assert total_silver == 93, (
-        f"Expected 93 silver, got {total_silver}. "
+    assert total_silver == 128, (
+        f"Expected 128 silver, got {total_silver}. "
         "Census changed? Update snapshot values after verifying the change is intentional."
     )
     assert total_bronze == 13, (
@@ -156,7 +156,7 @@ def test_live_snapshot() -> None:
     )
 
     # Pending gold count
-    assert result.pending_gold_count == 21, (
-        f"Expected 21 pending_gold, got {result.pending_gold_count}. "
+    assert result.pending_gold_count == 0, (
+        f"Expected 0 pending_gold, got {result.pending_gold_count}. "
         "Census changed? Update snapshot values after verifying the change is intentional."
     )

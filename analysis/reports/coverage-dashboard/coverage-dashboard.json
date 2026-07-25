@@ -1,23 +1,14 @@
 {
   "evidence_type_breakdown": {
     "bronze": {
-      "apk_deep_trace": 4,
-      "apk_static": 9,
-      "cross_version": 9
+      "apk_deep_trace": 11,
+      "deep_trace": 2
     },
     "gold": {
-      "apk_deep_trace": 30,
-      "apk_static": 48,
-      "cross_version": 39,
-      "deep_trace": 20,
-      "dhu_observation": 1
-    },
-    "platinum": {
-      "apk_deep_trace": 3,
-      "apk_static": 4,
-      "cross_version": 3,
-      "deep_trace": 1,
-      "platinum_evidence": 3
+      "apk_deep_trace": 11,
+      "apk_static": 15,
+      "cross_version": 17,
+      "deep_trace": 7
     },
     "retracted": {
       "apk_deep_trace": 8,
@@ -26,13 +17,16 @@
       "deep_trace": 1
     },
     "silver": {
-      "apk_static": 137,
-      "cross_version": 185
+      "apk_deep_trace": 15,
+      "apk_static": 183,
+      "cross_version": 217,
+      "deep_trace": 12,
+      "dhu_observation": 1
     }
   },
   "metadata": {
-    "git_head": "e11bdd6c227a61523dc4eac4fd1706304c3d4393",
-    "run_date": "2026-07-25T17:51:00Z",
+    "git_head": "f115356305dbfbff9dc3e9c3c65b6afceb0d79a8",
+    "run_date": "2026-07-25T20:00:00Z",
     "sidecar_directory": "oaa/",
     "tool_version": "1.0.0",
     "total_protos": 247,
@@ -154,17 +148,17 @@
   "orphan_sidecars": {},
   "per_channel_tier_counts": {
     "audio": {
-      "bronze": 2,
+      "bronze": 0,
       "gold": 0,
       "platinum": 0,
       "retracted": 0,
-      "silver": 5,
+      "silver": 7,
       "superseded": 0,
       "total": 7
     },
     "av": {
-      "bronze": 1,
-      "gold": 3,
+      "bronze": 2,
+      "gold": 2,
       "platinum": 0,
       "retracted": 0,
       "silver": 9,
@@ -173,19 +167,19 @@
     },
     "bluetooth": {
       "bronze": 0,
-      "gold": 1,
+      "gold": 0,
       "platinum": 0,
       "retracted": 0,
-      "silver": 2,
+      "silver": 3,
       "superseded": 0,
       "total": 3
     },
     "carcontrol": {
       "bronze": 0,
-      "gold": 2,
+      "gold": 0,
       "platinum": 0,
       "retracted": 0,
-      "silver": 0,
+      "silver": 2,
       "superseded": 0,
       "total": 2
     },
@@ -199,47 +193,47 @@
       "total": 1
     },
     "common": {
-      "bronze": 1,
+      "bronze": 0,
       "gold": 0,
       "platinum": 0,
       "retracted": 0,
-      "silver": 4,
+      "silver": 5,
       "superseded": 0,
       "total": 5
     },
     "control": {
-      "bronze": 1,
-      "gold": 4,
+      "bronze": 0,
+      "gold": 3,
       "platinum": 0,
       "retracted": 4,
-      "silver": 18,
+      "silver": 20,
       "superseded": 0,
       "total": 27
     },
     "generic": {
-      "bronze": 1,
+      "bronze": 0,
       "gold": 0,
       "platinum": 0,
       "retracted": 0,
-      "silver": 0,
+      "silver": 1,
       "superseded": 0,
       "total": 1
     },
     "input": {
-      "bronze": 0,
-      "gold": 13,
+      "bronze": 4,
+      "gold": 1,
       "platinum": 0,
       "retracted": 0,
-      "silver": 4,
+      "silver": 12,
       "superseded": 0,
       "total": 17
     },
     "media": {
       "bronze": 1,
-      "gold": 4,
-      "platinum": 2,
+      "gold": 1,
+      "platinum": 0,
       "retracted": 4,
-      "silver": 0,
+      "silver": 5,
       "superseded": 0,
       "total": 11
     },
@@ -253,8 +247,8 @@
       "total": 0
     },
     "mic": {
-      "bronze": 0,
-      "gold": 1,
+      "bronze": 1,
+      "gold": 0,
       "platinum": 0,
       "retracted": 0,
       "silver": 0,
@@ -263,19 +257,19 @@
     },
     "navigation": {
       "bronze": 0,
-      "gold": 2,
+      "gold": 0,
       "platinum": 0,
       "retracted": 0,
-      "silver": 10,
+      "silver": 12,
       "superseded": 0,
       "total": 12
     },
     "notification": {
-      "bronze": 1,
+      "bronze": 0,
       "gold": 0,
       "platinum": 0,
       "retracted": 0,
-      "silver": 0,
+      "silver": 1,
       "superseded": 0,
       "total": 1
     },
@@ -298,11 +292,11 @@
       "total": 1
     },
     "sensor": {
-      "bronze": 2,
-      "gold": 4,
+      "bronze": 0,
+      "gold": 0,
       "platinum": 0,
       "retracted": 1,
-      "silver": 30,
+      "silver": 36,
       "superseded": 0,
       "total": 37
     },
@@ -316,9 +310,9 @@
       "total": 0
     },
     "video": {
-      "bronze": 1,
-      "gold": 5,
-      "platinum": 1,
+      "bronze": 3,
+      "gold": 4,
+      "platinum": 0,
       "retracted": 2,
       "silver": 3,
       "superseded": 0,
@@ -326,23 +320,23 @@
     },
     "wifi": {
       "bronze": 1,
-      "gold": 4,
+      "gold": 0,
       "platinum": 0,
       "retracted": 2,
-      "silver": 7,
+      "silver": 11,
       "superseded": 0,
       "total": 14
     }
   },
   "summary": {
     "coverage_pct": 68,
-    "pending_gold_count": 21,
+    "pending_gold_count": 0,
     "tiers": {
       "bronze": 13,
-      "gold": 46,
-      "platinum": 3,
+      "gold": 14,
+      "platinum": 0,
       "retracted": 13,
-      "silver": 93,
+      "silver": 128,
       "superseded": 0
     },
     "total_protos": 247,

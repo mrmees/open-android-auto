@@ -1,7 +1,7 @@
 proto: oaa/navigation/NavigationImageOptionsData.proto
 message: NavigationImageOptions
-confidence: gold
-last_updated: '2026-07-16'
+confidence: silver
+last_updated: '2026-07-25'
 evidence:
 - type: apk_static
   method: enum_match

@@ -1,7 +1,7 @@
 proto: oaa/input/InputBindingNotificationMessage.proto
 message: InputBindingNotification
-confidence: gold
-last_updated: '2026-03-06'
+confidence: silver
+last_updated: '2026-07-25'
 channel: input (GAL service type 8)
 wire_msg_id: 0x8004
 direction: Phone->HU

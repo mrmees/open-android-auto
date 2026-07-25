@@ -20,7 +20,7 @@ import "oaa/common/PingConfigurationData.proto";
 
 package oaa.proto.messages;
 
-// confidence: gold [17.3_raw_message_info]
+// confidence: bronze [17.3_raw_message_info]
 message AVChannelMediaOptions {
     optional oaa.proto.data.PingConfiguration ping_configuration_1 = 1;
     optional bool bool_value_2 = 2;

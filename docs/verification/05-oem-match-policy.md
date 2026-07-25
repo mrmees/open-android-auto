@@ -110,9 +110,11 @@ rather than per-message layer evidence.
 **Example.** VW SDP declares `sensor_channel` on channel 8; `SensorRequest`'s
 proto claims the Sensor service binding → MATCH-08.
 
-**Phase 10 citation.** Always citable when the declared service appears in
-VW's SDP response, even if no specific message was observed on the wire. The
-minimum honest citation for any proto bound to a service that VW exercised.
+**Phase 10 citation.** Always citable in the central promotion-walk report
+when the declared service appears in VW's SDP response, even if no specific
+message was observed. MATCH-08 is a service/channel-binding signal only. It
+MUST NOT appear by itself as message/field `platinum_evidence`, promote a
+message sidecar, or create `oem_match_pending_gold` sidecar state.
 
 ---
 
@@ -200,8 +202,10 @@ and was observed `N >= 2` times during the session (`MATCH-06`). Phase 10 MUST
 cite every rule it satisfied — cherry-picking a subset is not allowed because
 audit trails need full detail to survive re-examination.
 
-A minimum honest citation when only SDP-level evidence is available is
-`match_rules: [MATCH-08]`, with `applicability: message` (no `fields` list).
+When only SDP-level evidence is available, record `MATCH-08` in the central
+service-binding report and classify the message itself as not observed
+(`NOMATCH-02`). There is no honest `applicability: message` or
+`applicability: fields` sidecar entry for service-only evidence.
 
 ---
 

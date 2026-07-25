@@ -2510,9 +2510,9 @@ What Changed:
   because Task 1 rejected the three unreviewed fresh-delta rows; likewise left
   the six-row runtime matrix and runtime artifact set unchanged
 - Regenerated the coverage dashboard at a fixed timestamp and updated its
-  outcome-sensitive census test: 168 sidecars / 247 protos / 68% coverage, 3
-  Platinum, 46 Gold, 93 Silver, 13 Bronze, 13 Retracted, 0 Superseded, 79
-  missing sidecars, and 21 pending-Gold entries
+  outcome-sensitive census test. **Superseded by the Task 13 Fix Round 1 entry
+  below:** the earlier 3 Platinum / 46 Gold / 93 Silver / 21 pending-Gold
+  counts incorrectly treated MATCH-08 service bindings as message evidence.
 - Synchronized SDP, media, PROGRESS, video, channel-map, channel architecture,
   radio, car-control, cross-version, roadmap, dossier index, and Prodigy
   handoff surfaces. The radio documentation now describes a phone-side AA
@@ -2540,13 +2540,11 @@ Status:
   CarLocalMedia state 5, BufferedMedia IDs 1-3/outbound paths, the CarIntent
   raw ID/response, multi-display concurrency, and all six runtime probes remain
   deferred or runtime-unverified as recorded
-- No active proto changed in Task 13. The Task 12 generated-API rename remains
-  `AVChannel.channel_id` -> `display_id` at wire-stable uint32 tag 6
-- The legacy audit-tier consistency test remains a known non-gating pre-Phase-9
-  snapshot: it reports 108 passed / 71 failed because it encodes OEM-capture
-  Gold semantics and ordinal treatment of retractions that conflict with
-  `docs/verification/01-confidence-tiers.md`; the current-rule assertions and
-  audit schema suite pass
+- The Task 13 fix changes comments in two active AV protos but leaves their
+  compiled descriptors byte-identical. The Task 12 generated-API rename remains
+  `AVChannel.channel_id` -> `display_id` at wire-stable uint32 tag 6.
+- **Superseded:** the tier-consistency suite is now canonical and gating; its
+  prior 108 passed / 71 failed characterization is no longer accepted.
 
 Next Steps:
 1. Task 14: run the complete proto/tool/baseline release gate and record exact
@@ -2572,7 +2570,7 @@ Verification:
   compile successfully with `protoc --proto_path=. --cpp_out=...`
 - Manifest integrity -> 59/59 source IDs map uniquely to 59 rows; 59/59 command
   strings pass `bash -n`; all 59 semantic commands pass; exact staging blocks
-  are 20/21/60 literal unique paths with one fail-closed index guard each; the
+  are 20/21/133 literal unique paths with one fail-closed index guard each; the
   16 changed-proto audit mappings and 21 legacy migrations are exact/unique
 - Matcher/runtime immutability -> committed matcher JSON/Markdown and runtime
   matrix match `HEAD` byte-for-byte; no runtime capture artifacts were added
@@ -2582,3 +2580,68 @@ Verification:
   stale-claim scans are clean; the required broad scan's remaining 12 hits are
   confined to frozen plan/handoff/manifest verification history
 - `git diff --check` -> exit 0
+
+## 2026-07-25 — Task 13 Fix Round 1: reconcile confidence and OEM evidence policy
+
+Date / Session: 2026-07-25 / android-auto-17.3-update-task-13-fix-1
+
+What Changed:
+- Made `docs/verification/01-confidence-tiers.md` the canonical confidence
+  contract and added an executable derivation shared by repository-wide tests
+  and the OEM promotion walker.
+- Reconciled all 168 sidecars independently: Bronze requires one evidence
+  type, Silver two distinct types, Gold a primary `.java` handler/deep trace
+  plus one exact version-to-class `cross_version` entry, and Platinum those
+  Gold prerequisites plus scoped message/field OEM evidence.
+- Removed MATCH-08-only message Platinum/pending claims. The VW service signal
+  remains in the central promotion report as `NOMATCH-02` / service-binding-only,
+  producing zero promotions and zero pending-Gold mutations.
+- Preserved nine of the 16 Task 13 publication audits at Gold only where exact
+  published class mappings and primary handler anchors are both reproducible;
+  the remaining publication set is six Bronze and one Silver.
+- Corrected AV enum and MediaOptions confidence comments, synchronized video
+  current/historical confidence statements, and regenerated the OEM and
+  coverage JSON/Markdown artifacts.
+
+Why:
+- MATCH-08 proves the enclosing SDP service/channel binding, not the identity
+  or fields of every message associated with that service.
+- The earlier completion record trusted stated confidence and generic checker
+  summaries instead of deriving tiers from independently reproducible evidence.
+
+Status:
+- GREEN: Task 13 evidence-policy reconciliation is complete; Task 14 remains
+  the next release gate.
+- Coverage census: 168 sidecars / 247 protos / 68% coverage, 0 Platinum, 14
+  Gold, 128 Silver, 13 Bronze, 13 Retracted, 0 Superseded, 79 missing
+  sidecars, and 0 pending-Gold entries.
+- Runtime/matcher artifacts remain outside the behavior change; no new capture
+  or runtime claim was introduced.
+
+Next Steps:
+1. Run Task 14's full release gate against the reconciled policy and exact
+   Task 13 manifest.
+2. Preserve MATCH-08 as service-level evidence unless a direct message/field
+   observation lands.
+3. Add future Gold/Platinum claims only with the exact evidence anchors encoded
+   by the canonical executable policy.
+
+Verification:
+- Canonical tier consistency -> 183 passed.
+- Cross-version Silver contract -> 386 passed.
+- Promotion walker -> 45 passed; dry-run emitted 34 service-binding-only
+  observations, 0 promotions, and 0 pending flags across 43 verdicts.
+- Combined audit/tier/coverage/promotion/architecture/cross-link/cross-version
+  suite -> 833 passed.
+- Coverage live snapshot -> 168/247, tiers 13/128/14/0, pending 0.
+- Exact staging allowlists -> Task 11/12/13 contain 20/21/133 literal paths;
+  Task 13 equals the 60-path prior set union every Fix Round 1 tracked change.
+- Manifest verification -> 59/59 commands parse under `bash -n` and all 59
+  semantic commands pass.
+- Active proto compilation -> 247/247 protos, 494 generated C++ files, and a
+  105,152-byte descriptor set.
+- Comment-only AV changes -> parent/current descriptor SHA-256 both
+  `6adba02ecf62a8b0e9bbb298c25c96550f617a340ee82b34ddbf518cf0c9ee8e`.
+- Coverage and all four OEM artifacts -> fixed-date/dry-run regeneration
+  byte-identical to tracked files; matcher and runtime reports unchanged.
+- Cross-link dry-run -> five no-ops; `git diff --check` -> exit 0.

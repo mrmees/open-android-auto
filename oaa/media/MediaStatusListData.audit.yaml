@@ -1,7 +1,8 @@
 proto: oaa/media/MediaStatusListData.proto
 message: MediaStatusList
 confidence: retracted
-last_updated: '2026-03-06'
+retracted: true
+last_updated: '2026-07-25'
 evidence:
 - type: apk_static
   method: bfs_trace

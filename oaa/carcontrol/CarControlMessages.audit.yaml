@@ -1,6 +1,6 @@
 proto: oaa/carcontrol/CarControlMessages.proto
 message: CarControlMessages (all)
-confidence: gold
+confidence: silver
 last_updated: '2026-07-25'
 evidence:
 - type: deep_trace
@@ -50,8 +50,11 @@ evidence:
     1db7ce995aa52b2cde47a01abfb0364220fb57fc60217de3ec714e3034795344;
     base.apk SHA-256
     5557827f259898bdab97b489e1a0aef937fd6ec711d87361cf25d51af6f48619;
-    JADX iip.java:216-268,568-746,904-935; ixb.java:31-178;
-    xlz.java, xma.java, xli.java, xlj.java, xgj.java, xfw.java, xga.java
+    JADX iip.java I(List):251-268, n(CarAction):566-591,
+    v(CarProperty,CarPropertyValue,rgu):798-935;
+    ixb.java a(int,ByteBuffer):22-178; xlz.java:7-10,29;
+    xma.java:7-11,30; xli.java:7,26; xlj.java:7,26;
+    xgj.java:7-10,29; xfw.java:7-8,27; xga.java:7-8,27
   date: '2026-07-25'
   description: >-
     Direct 17.3 phone endpoint branches prove 0x8001/0x8003/0x8006

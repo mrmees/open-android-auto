@@ -13,7 +13,9 @@ evidence:
     1db7ce995aa52b2cde47a01abfb0364220fb57fc60217de3ec714e3034795344;
     base.apk SHA-256
     5557827f259898bdab97b489e1a0aef937fd6ec711d87361cf25d51af6f48619;
-    JADX jaz.java:18-63, xkg.java RawMessageInfo, xkf.java:4-34
+    JADX jaz.java a(int,ByteBuffer):15-63;
+    xkg.java a(int,Object) RawMessageInfo:25-32;
+    xkf.java b(int):17-33
   date: '2026-07-25'
   description: >-
     The phone accepts incoming raw ID 4, parses xkg, and reads exactly fields

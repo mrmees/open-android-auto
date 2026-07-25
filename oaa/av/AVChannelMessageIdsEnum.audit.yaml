@@ -1,6 +1,6 @@
 proto: oaa/av/AVChannelMessageIdsEnum.proto
 message: AVChannelMessage.Enum
-confidence: gold
+confidence: bronze
 last_updated: '2026-07-25'
 channel: video/shared AV
 evidence:
@@ -19,12 +19,3 @@ evidence:
     identities and directions, with 0x8010 left reserved because the inherited
     receive path rejects its shifted value. The trace proves no payload schema
     for 0x800B, no public action enum for 0x800C, and no runtime traffic.
-- type: cross_version
-  method: bounded_message_matrix_reconciliation
-  source: analysis/reports/android-auto-17.3-update/message-matrix.md
-  date: '2026-07-25'
-  description: >-
-    Compared the accepted 17.3 endpoint branches with the 16.x enum and
-    canonical message set. Historical labels and directions were corrected
-    only where direct 17.3 branches contradicted them; 0x8010 and unproven
-    payload semantics remain unpublished.

@@ -11,19 +11,19 @@
 | VideoFocusRequest | **Gold** | deep_trace, handler_verified | [VideoFocusRequestMessage.audit.yaml](../../oaa/video/VideoFocusRequestMessage.audit.yaml) |
 | VideoFocusIndication | **Gold** | deep_trace, handler_verified | [VideoFocusIndicationMessage.audit.yaml](../../oaa/video/VideoFocusIndicationMessage.audit.yaml) |
 | UpdateUiConfigRequest | **Gold** | deep_trace, handler_verified | [UpdateUiConfigRequestMessage.audit.yaml](../../oaa/video/UpdateUiConfigRequestMessage.audit.yaml) |
-| UiConfigRequest | **Gold** | deep_trace, handler_verified | [UiConfigRequestMessage.audit.yaml](../../oaa/video/UiConfigRequestMessage.audit.yaml) |
+| UiConfigRequest | Bronze | one legacy deep trace; no qualifying primary `.java` anchor or exact cross-version entry | [UiConfigRequestMessage.audit.yaml](../../oaa/video/UiConfigRequestMessage.audit.yaml) |
 | UpdateHuUiConfigResponse | **Gold** | deep_trace, handler_verified | -- |
 | IntegratedOverlayStartNotification | **Gold** | deep_trace, handler_verified | [IntegratedOverlayStartNotification.audit.yaml](../../oaa/video/IntegratedOverlayStartNotification.audit.yaml) |
-| IntegratedOverlayStopNotification | **Gold** | deep_trace, handler_verified | [IntegratedOverlayStopNotification.audit.yaml](../../oaa/video/IntegratedOverlayStopNotification.audit.yaml) |
+| IntegratedOverlayStopNotification | Bronze | 17.3 receive/callback trace; no reproducible cross-version entry | [IntegratedOverlayStopNotification.audit.yaml](../../oaa/video/IntegratedOverlayStopNotification.audit.yaml) |
 | ~~VideoFocusNotification~~ | **Retracted** | Actually IntegratedOverlayStartNotification (0x800E) | -- |
 | ~~VideoFocusModeMessage~~ | **Retracted** | Actually UpdateHuUiConfigResponse (0x8012) | -- |
-| AudioUnderflowNotification | **Gold** | 17.3 endpoint trace | -- |
-| ActionTakenNotification | **Gold** | 17.3 endpoint trace | -- |
-| IntegratedOverlayParametersNotification | **Gold** | 17.3 endpoint + descriptor trace | -- |
+| AudioUnderflowNotification | Bronze | 17.3-only endpoint trace | -- |
+| ActionTakenNotification | Bronze | 17.3-only endpoint/descriptor trace | -- |
+| IntegratedOverlayParametersNotification | Bronze | 17.3-only endpoint/descriptor trace | -- |
 | AVChannelMediaOptions | Bronze | 17.3 apk_deep_trace; runtime-unverified | [AVChannelMediaOptionsMessage.audit.yaml](../../oaa/av/AVChannelMediaOptionsMessage.audit.yaml) |
 | CriticalUiNotification | Bronze | 17.3 apk_deep_trace; runtime-unverified | [CriticalUiNotification.audit.yaml](../../oaa/video/CriticalUiNotification.audit.yaml) |
 | VideoConfig | Silver | apk_static, cross_version, wire_capture | [VideoConfigData.audit.yaml](../../oaa/video/VideoConfigData.audit.yaml) |
-| AdditionalVideoConfig | **Gold** | deep_trace_verified | [AdditionalVideoConfigData.audit.yaml](../../oaa/video/AdditionalVideoConfigData.audit.yaml) |
+| AdditionalVideoConfig | Silver | apk_static, cross_version | [AdditionalVideoConfigData.audit.yaml](../../oaa/video/AdditionalVideoConfigData.audit.yaml) |
 | VideoFocusMode (enum) | **Gold** | deep_trace, handler_verified | -- |
 | VideoFocusReason (enum) | **Gold** | deep_trace, handler_verified | -- |
 | VideoResolution (enum) | **Gold** | deep_trace (full rewrite from aasdk) | -- |
@@ -39,8 +39,8 @@
 
 ## Overview
 
-> Confidence: Mixed -- most established messages are Gold; newly published
-> MediaOptions and CriticalUiNotification are Bronze from 17.3-only static traces.
+> Confidence: Mixed -- established messages with qualifying primary and exact
+> cross-version anchors are Gold; 17.3-only static claims remain Bronze.
 
 The video channel carries the **projected display** from the phone to the head unit. The phone renders its entire Android Auto UI (Coolwalk layout, maps, media cards, assistant) into a video surface, encodes it as H.264 (or VP9/AV1/H.265), and streams the compressed frames to the HU over channel 3. The HU decodes and displays them.
 
@@ -68,15 +68,15 @@ The video channel is an **AV channel** (handler `ied.java` extends `icv.java` AV
 | 0x8008 | VideoFocusIndication | HU -> Phone | Report current video focus state | **Gold** |
 | 0x8009 | UpdateUiConfigRequest (inbound to phone) | HU -> Phone | Runtime UI config update (margins, theme) | **Gold** |
 | 0x800A | UpdateUiConfigRequest (outbound from phone) | Phone -> HU | Runtime UI config update (margins, theme) | **Gold** |
-| 0x800B | AudioUnderflowNotification | HU -> Phone | Audio underflow callback; no payload parsed | **Gold** |
-| 0x800C | ActionTakenNotification | Phone -> HU | ActionTaken wrapper with enum field 1; public action enum remains unpublished | **Gold** |
-| 0x800D | IntegratedOverlayParametersNotification | Phone -> HU | OverlayParameters wrapper with repeated overlay-options field 1; nested overlay-option semantics remain unpublished | **Gold** |
+| 0x800B | AudioUnderflowNotification | HU -> Phone | Audio underflow callback; no payload parsed | Bronze |
+| 0x800C | ActionTakenNotification | Phone -> HU | ActionTaken wrapper with enum field 1; public action enum remains unpublished | Bronze |
+| 0x800D | IntegratedOverlayParametersNotification | Phone -> HU | OverlayParameters wrapper with repeated overlay-options field 1; nested overlay-option semantics remain unpublished | Bronze |
 | 0x800E | IntegratedOverlayStartNotification | HU -> Phone | Overlay projection session started | **Gold** |
-| 0x800F | IntegratedOverlayStopNotification | HU -> Phone | OverlayStop notification; empty payload | **Gold** |
+| 0x800F | IntegratedOverlayStopNotification | HU -> Phone | OverlayStop notification; empty payload | Bronze |
 | 0x8010 | Reserved | unknown | Name, payload, and direction unknown; deferred | deferred |
-| 0x8011 | UiConfigRequest | Phone -> HU | Send theming tokens (Material Design key-value pairs) | **Gold** |
+| 0x8011 | UiConfigRequest | Phone -> HU | Send theming tokens (Material Design key-value pairs) | Bronze |
 | 0x8012 | UpdateHuUiConfigResponse | HU -> Phone | Accept/reject theming tokens | **Gold** |
-| 0x8013 | MediaStats | HU -> Phone | Playback statistics (15 fields) | **Gold** |
+| 0x8013 | MediaStats | HU -> Phone | Playback statistics (15 fields) | Silver |
 | 0x8014 | MediaOptions | Phone -> HU | Exact 13-field wire envelope; field semantics unresolved | Bronze |
 | 0x8015 | CriticalUiNotification | Phone -> HU | Critical-UI-focus enum field 1; no response implied | Bronze |
 
@@ -222,7 +222,7 @@ The HU can send a VideoFocusIndication with `unrequested = true` when its focus 
 
 ## UI Configuration
 
-> Confidence: Gold [deep_trace, handler_verified]
+> Confidence: Start notification Gold; stop notification Bronze.
 
 The video channel carries two distinct UI configuration mechanisms. They share similar names but serve different purposes:
 

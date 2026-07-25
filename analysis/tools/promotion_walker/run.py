@@ -27,6 +27,11 @@ DEFAULT_SCOPE_DIRS = ("oaa/av", "oaa/media", "oaa/video", "oaa/audio")
 
 
 def _build_platinum_evidence_entry(verdict: Verdict, capture_path: str, run_date: str) -> dict[str, Any]:
+    if set(verdict.matched_rules) <= {"MATCH-08"}:
+        raise ValueError(
+            "MATCH-08 is service-binding evidence and cannot create message-level "
+            "platinum_evidence"
+        )
     return {
         "type": "platinum_evidence",
         "source": f"{capture_path}/messages.jsonl",
@@ -45,7 +50,7 @@ def _build_platinum_evidence_entry(verdict: Verdict, capture_path: str, run_date
         "msg_seq": list(verdict.msg_seq) or [0],
         "ts_ms": list(verdict.ts_ms) or [0],
         "message_completeness": verdict.message_completeness or "full",
-        "attribution_method": "sdp_service_id",
+        "attribution_method": "msg_type_fingerprint",
         "oem_scope": "single",
         "applicability": "message",
         "match_rules": list(verdict.matched_rules),
@@ -68,8 +73,10 @@ def _apply_verdict(
     ):
         return False
 
-    sidecar = yaml.safe_load(sidecar_path.read_text())
+    if verdict.kind in (VerdictKind.NOMATCH_OBSERVATION, VerdictKind.CONTRADICTION_REVIEW):
+        return False
 
+    sidecar = yaml.safe_load(sidecar_path.read_text())
     entry = _build_platinum_evidence_entry(verdict, capture_path, run_date)
     new_hash = content_hash(entry)
 
@@ -91,10 +98,6 @@ def _apply_verdict(
         sidecar["oem_match_pending_gold"] = True
         sidecar["last_updated"] = run_date
         sidecar.setdefault("pending_platinum_evidence", []).append(entry)
-    else:
-        # NOMATCH / CONTRADICTION: not expected to fire on Phase 10 real data
-        return False
-
     # Validate BEFORE writing -- raise if walker produced an invalid sidecar
     try:
         validate_audit(sidecar)

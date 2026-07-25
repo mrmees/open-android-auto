@@ -1,7 +1,7 @@
 proto: oaa/carcontrol/CarPropertyData.proto
 message: CarPropertyData (all sub-messages)
-confidence: gold
-last_updated: '2026-03-07'
+confidence: silver
+last_updated: '2026-07-25'
 evidence:
 - type: deep_trace
   method: db_schema_verification

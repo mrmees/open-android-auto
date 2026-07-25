@@ -1,7 +1,7 @@
 proto: oaa/media/MediaPlaybackStatusEventMessage.proto
 message: MediaPlaybackStatusEvent
-confidence: gold
-last_updated: '2026-03-06'
+confidence: silver
+last_updated: '2026-07-25'
 evidence:
 - type: apk_deep_trace
   method: proto_verification_pipeline

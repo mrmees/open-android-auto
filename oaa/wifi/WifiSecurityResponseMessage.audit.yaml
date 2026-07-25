@@ -1,7 +1,7 @@
 proto: oaa/wifi/WifiSecurityResponseMessage.proto
 message: WifiSecurityResponse
-confidence: gold
-last_updated: '2026-07-16'
+confidence: silver
+last_updated: '2026-07-25'
 evidence:
 - type: dhu_observation
   method: protobuf_decode

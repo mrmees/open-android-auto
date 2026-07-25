@@ -1,7 +1,7 @@
 proto: oaa/bluetooth/BluetoothPairingResponseMessage.proto
 message: BluetoothPairingResponse
-confidence: gold
-last_updated: '2026-07-15'
+confidence: silver
+last_updated: '2026-07-25'
 evidence:
 - type: apk_static
   method: proto_access

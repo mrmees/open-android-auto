@@ -23,7 +23,7 @@ evidence:
   description: Mapped InputChannelConfig via string_const.
 - type: cross_version
   method: structural_comparison
-  source: docs/cross-version/input.md (15.9, 16.1, 16.2, 16.4)
+  source: docs/cross-version/input.md (15.9:vqi, 16.1:vya, 16.2:vxm, 16.4:wpy)
   date: '2026-04-08'
   description: >
     Structural comparison across 15.9, 16.1, 16.2, and 16.4 confirms the

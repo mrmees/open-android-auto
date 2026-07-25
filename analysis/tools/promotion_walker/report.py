@@ -10,7 +10,7 @@ MAIN_REPORT_SECTION_HEADERS = (
     "## Summary",
     "## Platinum promotions",
     "## oem_match_pending_gold (Silver + Bronze flagged)",
-    "## Explicitly unmatched (Silver in observed service, not seen)",
+    "## Service-binding-only and unmatched message claims",
     "## Retraction review queue",
     "## Skipped sidecars",
     "## Unobserved services \u2014 no claim either way",
@@ -155,13 +155,18 @@ def emit_md(report: dict[str, Any], out_path: Path) -> None:
         lines.append("_No Silver/Bronze flagged for deep-trace in this walk._")
     lines.append("")
 
-    # Section 4: Explicitly unmatched
+    # Section 4: Service binding retained without a message-level claim
     lines.append(MAIN_REPORT_SECTION_HEADERS[3])
     lines.append("")
     if report["nomatch_observations"]:
         for p in report["nomatch_observations"]:
-            rules = ", ".join(p["nomatch_rules"])
-            lines.append(f"- `{p['sidecar_path']}` \u2014 {rules}")
+            matched = ", ".join(p["matched_rules"])
+            nomatch = ", ".join(p["nomatch_rules"])
+            reason = p["skip_reason"] or "message not observed"
+            lines.append(
+                f"- `{p['sidecar_path']}` \u2014 service signal `{matched}`; "
+                f"message classification `{nomatch}`; {reason}"
+            )
     else:
         lines.append("_No explicitly unmatched entries in this walk._")
     lines.append("")

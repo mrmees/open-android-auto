@@ -1,7 +1,7 @@
 proto: oaa/input/TouchLocationData.proto
 message: TouchLocation
-confidence: gold
-last_updated: '2026-03-06'
+confidence: silver
+last_updated: '2026-07-25'
 class_mapping:
   '16.2': wby
   '16.1': wci

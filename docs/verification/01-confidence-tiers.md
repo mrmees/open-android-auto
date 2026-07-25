@@ -15,7 +15,7 @@ cannot jump directly to Platinum — it must earn Gold first.
 | Tier | Evidence required | Meaning |
 |------|-------------------|---------|
 | **Platinum** | Gold prerequisites AND OEM wire capture confirmation | Production-verified on at least one OEM. Badge ALWAYS shows scope qualifier: `Platinum / single-OEM` or `Platinum / multi-OEM`. |
-| **Gold** | Deep-trace APK analysis + cross-version verified across 2+ APK versions | Handler-level trace produces unambiguous proto identity; structure is stable across versions. Matches the 32 existing Gold sidecars (no migration required by the Phase 9 rewrite). |
+| **Gold** | Primary handler/deep-trace APK analysis + reproducible cross-version evidence with exact classes across 2+ APK versions | Handler-level trace produces unambiguous proto identity; the cited version/class pairs make structural stability independently reproducible. |
 | **Silver** | 2+ distinct evidence types | Corroborated from independent sources (e.g., `apk_static` + `cross_version`). |
 | **Bronze** | Any single piece of evidence | Supported by one source; directionally correct. |
 | **Unverified** | None yet | Known to exist but not yet confirmed. |
@@ -68,13 +68,13 @@ the v1.x milestone work.
 
 ## Gold
 
-**Phase 9 redefinition.** Gold is "deep-trace APK analysis + cross-version
-verified." This matches what the 32 existing Gold sidecars already represent:
-each one has a handler-level trace through the APK (e.g., `ied.java m20258P`
-for `VideoFocusRequest`) that unambiguously pins the obfuscated class to a
-proto, plus structural consistency across 2+ APK versions. No migration of
-existing Gold sidecars is required — the rewrite matches them, not the other
-way around.
+**Phase 9 redefinition.** Gold is "primary handler/deep-trace APK analysis +
+reproducible cross-version verification." The deep trace must cite a
+decompiled handler/class location rather than an internal summary report. A
+qualifying `cross_version` entry must name the exact APK versions and mapped
+obfuscated class in each version for at least two versions. A top-level
+`class_mapping` or a generic checker summary without those pairs is useful
+history, but does not by itself satisfy the Gold prerequisite.
 
 Gold does NOT require OEM capture evidence. That was the pre-Phase-9
 definition; it's been moved up to Platinum. The move reflects reality: the
@@ -97,10 +97,15 @@ Platinum is **strictly above Gold**. It requires BOTH:
    it must earn Gold first (via deep-trace APK work + cross-version
    verification), and THEN receive a Platinum promotion once OEM capture
    evidence lands.
-2. **OEM wire capture confirmation** — at least one `platinum_evidence` entry
-   in the sidecar's evidence array, citing a real capture file and at least
-   one `MATCH-*` rule from
+2. **OEM wire capture confirmation of the audited message/fields** — at least
+   one `platinum_evidence` entry in the sidecar's evidence array, citing a real
+   capture file and at least one message-level or field-level `MATCH-*` rule from
    [05-oem-match-policy.md](05-oem-match-policy.md).
+
+`MATCH-08` alone proves only the enclosing SDP service/channel binding. It is
+retained in the central OEM walk report but cannot substantiate an arbitrary
+message payload, create a message-level Platinum promotion, or create a
+pending-Gold sidecar flag.
 
 The Platinum tier was introduced in Phase 9 to honestly represent the jump
 from "we're confident this is the proto because the APK says so across
@@ -175,12 +180,12 @@ it keeps the single-OEM trap visible rather than buried in methodology prose.
 
 ### `oem_match_pending_gold` flag
 
-Phase 10 will find protos that match in the VW capture but don't yet have
-Gold prerequisites (Bronze or Silver protos that were seen on the wire). They
+Phase 10 may find Bronze or Silver protos that were directly observed at the
+message/field level in the VW capture but do not yet have Gold prerequisites. They
 cannot be promoted to Platinum directly, because the ladder is strict: no
 skipping Gold.
 
-Instead, such sidecars get a top-level boolean flag
+Instead, only such directly observed sidecars get a top-level boolean flag
 `oem_match_pending_gold: true`. The flag is a sidecar-level property (NOT an
 entry inside the evidence array), so it can be queried cheaply. Phase 10
 emits a worklist report listing every sidecar carrying the flag; future
@@ -250,8 +255,8 @@ compatibility.
 
 **Usage going forward.** New Gold-tier work should use `apk_static` with a
 method tag like `handler_trace` or `deep_trace`. The two dedicated evidence
-types are kept in the enum to avoid a mass rewrite of 32 existing Gold
-sidecars.
+types are kept in the enum for backward-compatible audit parsing. Their type
+name alone does not waive the primary-anchor requirement above.
 
 ### `platinum_evidence` (new in Phase 9)
 
@@ -286,9 +291,10 @@ Tier assignment is mostly deterministic. Given a set of evidence entries for
 a claim, the tier is computed as follows:
 
 ```text
-if any evidence.type == "platinum_evidence" AND confidence_was_gold:
-    tier = platinum                # Phase 10 responsibility
-elif has_deep_trace AND has_cross_version:
+if has_primary_deep_trace AND has_exact_cross_version_pairs
+   AND has_qualifying_message_or_field_platinum_evidence:
+    tier = platinum
+elif has_primary_deep_trace AND has_exact_cross_version_pairs:
     tier = gold
 elif count(distinct evidence.type values) >= 2:
     tier = silver
@@ -298,10 +304,10 @@ else:
     tier = unverified
 ```
 
-**Platinum promotion is NOT automatic** — Phase 10's walker explicitly checks
-that the proto is already Gold before adding a `platinum_evidence` entry. A
-Silver proto that matches in the OEM capture receives
-`oem_match_pending_gold: true` instead.
+The promotion walker applies the same prerequisites independently of the
+stated tier. A Silver/Bronze proto receives `oem_match_pending_gold: true`
+only after a qualifying message/field observation. MATCH-08-only service
+bindings remain report evidence and produce no sidecar mutation.
 
 ### Combinations Table
 
@@ -311,7 +317,7 @@ Silver proto that matches in the OEM capture receives
 | `apk_static` alone | Bronze |
 | `apk_static` + `cross_version` | Silver |
 | `apk_static` + `cross_version` + `deep_trace` | Gold |
-| Gold sidecar + `platinum_evidence` (with `platinum_scope: single_oem`) | Platinum / single-OEM |
+| Gold prerequisites + qualifying message/field `platinum_evidence` and scope | Platinum / single-OEM or multi-OEM |
 | Previously promoted sidecar, now invalidated | Retracted |
 
 ---

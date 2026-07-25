@@ -1,6 +1,9 @@
 # 03 -- Verification Procedures
 
-Step-by-step procedures for gathering each of the four evidence types. A contributor should be able to follow these instructions to verify any proto field or message and produce a valid evidence entry for an [audit trail file](02-audit-trail-format.md).
+Step-by-step procedures for gathering the seven accepted/legacy evidence
+types. A contributor should be able to follow these instructions to verify any
+proto field or message and produce a valid entry for an
+[audit trail file](02-audit-trail-format.md).
 
 For evidence type definitions and promotion logic, see [01-confidence-tiers.md](01-confidence-tiers.md). For which sources are valid and excluded, see [04-source-provenance.md](04-source-provenance.md).
 
@@ -182,13 +185,19 @@ For evidence type definitions and promotion logic, see [01-confidence-tiers.md](
 
 ### Current Status
 
-**No OEM captures are available yet in this project.** This procedure is documented for when they become available. Contributors with access to OEM head units are encouraged to capture and contribute wire data.
-
-See the project roadmap for planned capture tooling (TOOL-03).
+The repository contains one scoped VW MIB3 OI capture. Its SDP response proves
+service/channel bindings, while only accepted, attributable message payload
+observations can support message/field Platinum evidence.
 
 ### Important Notes
 
-- OEM capture is the **only evidence type** that can directly promote a claim to Gold tier. A single OEM capture is sufficient.
+- OEM capture never skips Gold. Gold still requires primary handler/deep-trace
+  APK evidence plus reproducible exact version/class cross-version evidence.
+  A qualifying OEM message/field observation promotes that Gold-qualified
+  claim to scoped Platinum.
+- MATCH-08 alone is service-binding evidence. It stays in the central OEM walk
+  report and cannot create message-level `platinum_evidence` or pending-Gold
+  sidecar state.
 - Always redact personal information (GPS coordinates, contact names, etc.) from captures before sharing.
 - Document the head unit model specifically -- different OEM implementations may behave differently.
 
@@ -237,7 +246,9 @@ See the project roadmap for planned capture tooling (TOOL-03).
 
    - **`structure_match`** -- Use this method tag when the proto structure is confirmed identical across versions.
 
-6. **Create the evidence entry:**
+6. **Create the evidence entry.** Name the exact version-to-class mapping in
+   the entry itself; a generic checker name or top-level `class_mapping` does
+   not satisfy the reproducible Gold prerequisite:
 
    ```yaml
    - type: cross_version
@@ -303,22 +314,24 @@ this procedure cites. See
 
 ### Prerequisites
 
-A proto MUST be at `confidence: gold` BEFORE it can receive a
-`platinum_evidence` entry and be promoted to `confidence: platinum`. The
-promotion ladder is strict: Bronze → Silver → Gold → Platinum. Bronze/Silver
-protos that get matched in an OEM capture but lack Gold prerequisites
-receive the sidecar-level flag `oem_match_pending_gold: true` and wait for
-deep-trace analysis to land first.
+A proto MUST independently satisfy the Gold evidence prerequisites BEFORE it
+can receive a `platinum_evidence` entry and be promoted to `confidence:
+platinum`. The ladder is strict: Bronze → Silver → Gold → Platinum.
+Bronze/Silver protos with a qualifying message/field observation but missing
+Gold prerequisites receive `oem_match_pending_gold: true`. MATCH-08-only SDP
+service matches receive neither mutation.
 
 The walker that consumes the `oem_match_pending_gold` worklist lives in
 Phase 10.
 
 ### Procedure
 
-1. **Verify the proto is already Gold.** Read the sidecar's `confidence:`
-   field. If it is `silver` or `bronze`, set `oem_match_pending_gold: true`
-   at the sidecar top level and stop — this proto is not eligible for
-   Platinum promotion yet.
+1. **Verify Gold prerequisites independently.** Confirm a primary `.java`
+   handler/deep-trace anchor and a reproducible cross-version entry naming
+   exact version/class pairs across 2+ APKs. Do not trust `confidence: gold`
+   by itself. If the proto has qualifying message/field OEM evidence but lacks
+   those prerequisites, set `oem_match_pending_gold: true`; if it has only
+   MATCH-08, make no sidecar change.
 
 2. **Locate the proto in the OEM capture.** Use
    `analysis/reports/oem-vw/coverage.json` and
@@ -344,8 +357,8 @@ Phase 10.
 5. **Enumerate the satisfied MATCH rules.** Cross-reference
    [05-oem-match-policy.md](05-oem-match-policy.md) and cite EVERY rule that
    the observation satisfies. Cherry-picking a subset is not allowed. The
-   minimum honest citation when only SDP-level evidence is available is
-   `match_rules: [MATCH-08]`.
+   MATCH-08 may be cited in the central service-binding report, but MATCH-08
+   alone is not a valid message/field `platinum_evidence` entry.
 
 6. **Add the `platinum_evidence` entry.** Append a new entry to the
    sidecar's `evidence:` array. Required fields: `capture_path`,
@@ -369,10 +382,8 @@ Phase 10.
 
 ### Worked examples
 
-Worked examples land in Phase 10 after the first batch of real Platinum
-promotions are produced. See `.planning/phases/10-gold-tier-promotion-walk/`
-for the Phase 10 plan artifacts. Phase 9 Plan 01 committed one reference
-example: `oaa/video/VideoFocusRequestMessage.audit.yaml`, promoted from
-Gold to Platinum with a single-OEM `MATCH-08` (SDP descriptor match)
-citation. Phase 10 will extend that entry with the real `msg_seq` /
-`ts_ms` indices after deep inspection of `messages.jsonl`.
+Earlier Phase 9/10 reports treated MATCH-08 service declarations as
+message-level Platinum evidence. That classification is superseded: the
+service match remains in the central OEM report, while message sidecars remain
+at the tier independently supported by their APK evidence until attributable
+message/field observations exist.

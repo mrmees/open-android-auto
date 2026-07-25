@@ -29,7 +29,7 @@ In practice, most proto files define a single message. Keep it simple -- use `fi
 | `evidence` | No | list | Ordered list of evidence entries. Defaults to empty list `[]`. |
 | `fields` | No | map | Per-field overrides. Keys are field names, values are override objects. |
 | `platinum_scope` | Conditional | string | `single_oem` or `multi_oem`. REQUIRED when `confidence: platinum`; omitted otherwise. See [01-confidence-tiers.md](01-confidence-tiers.md) for the single-OEM trap explanation. |
-| `oem_match_pending_gold` | No | bool | Phase 10 worklist flag — `true` if a Silver/Bronze proto was matched in an OEM capture but lacks Gold prerequisites. |
+| `oem_match_pending_gold` | No | bool | Phase 10 worklist flag — `true` only when a Silver/Bronze proto has qualifying message/field OEM evidence but lacks Gold prerequisites. MATCH-08-only service bindings do not qualify. |
 
 ### Evidence Entry Fields
 
@@ -125,20 +125,31 @@ Two distinct evidence types (`apk_static` + `dhu_observation`) promote the claim
 
 ### What would it take to reach Gold?
 
-Adding `cross_version` evidence (confirming NightMode structure across APK 15.9, 16.1, 16.2) would add a third evidence type but the tier would remain **Silver**. Three distinct non-OEM evidence types still result in Silver.
-
-Only an `oem_capture` entry -- a wire capture from a production OEM head unit showing NightMode data on the wire -- would promote the claim to **Gold**. See the promotion logic in [01-confidence-tiers.md](01-confidence-tiers.md).
+Adding a reproducible `cross_version` entry with exact APK-version/class pairs
+would still leave this claim at **Silver** until a primary handler/deep trace
+also pins the message identity. Those two prerequisites promote it to Gold.
+A qualifying message/field OEM capture can then promote the Gold-qualified
+claim to scoped Platinum; OEM evidence does not skip Gold.
 
 ---
 
 ## Confidence Consistency Rule
 
-The `confidence` field MUST match the promotion logic from [01-confidence-tiers.md](01-confidence-tiers.md) applied to the evidence list. Specifically:
+The `confidence` field MUST match the promotion logic from
+[01-confidence-tiers.md](01-confidence-tiers.md) applied independently to the
+evidence list and retraction record:
 
-- If any evidence entry has `type: oem_capture`, confidence must be `gold`.
-- Else if the evidence list contains 2+ distinct `type` values, confidence must be `silver`.
-- Else if the evidence list contains 1+ entries, confidence must be `bronze`.
-- Else (empty or missing evidence list), confidence must be `unverified`.
+- An explicit retraction record yields the non-ordinal `retracted` state.
+- Gold requires both a primary handler/deep trace and one reproducible
+  `cross_version` entry naming exact class mappings across 2+ APK versions.
+- Platinum requires every Gold prerequisite, qualifying message/field OEM
+  evidence, and `platinum_scope`.
+- Otherwise, 2+ distinct evidence types yield Silver, one type yields Bronze,
+  and no evidence yields Unverified. Duplicate entries of one type still count
+  as one type.
+- `oem_match_pending_gold` is valid only for Bronze/Silver sidecars with
+  qualifying pending message/field OEM evidence; it is invalid for Gold,
+  Platinum, Retracted, and MATCH-08-only service bindings.
 
 If the `confidence` field and the evidence list disagree, the audit file is **invalid**. Future tooling will enforce this automatically. For now, contributors must self-verify before committing.
 

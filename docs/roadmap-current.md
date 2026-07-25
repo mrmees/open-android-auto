@@ -16,10 +16,10 @@
 
 ## Now
 
-- Android Auto 17.3 canonical publication is synchronized through Task 13:
-  publication audits, proto-verification reports, coverage dashboard,
-  channel/cross-version docs, and the Prodigy implementation handoff now share
-  the accepted static evidence and runtime-unverified boundaries.
+- Android Auto 17.3 Task 13 evidence-policy reconciliation is complete:
+  confidence tiers now derive from one executable policy, MATCH-08-only SDP
+  bindings remain central-report evidence rather than message promotions, and
+  audits, OEM reports, coverage, and video documentation share that boundary.
 - Consolidate remaining session-specific notes into permanent docs.
 - Publish a minimal `dist` branch for downstream proto consumers without the research archive.
 - Android Auto 17.3 static schema-matching baseline operational: 175 mappings resolved without a live session, including 39 dispatch-backed and 73 graph-resolved mappings, plus 13 unique enum-domain mappings. Every graph-resolved row now records its exact parent/field evidence.
@@ -35,7 +35,8 @@
 
 - Run Task 14's final release gate over the full proto tree, analysis tools,
   manifest commands, links, matcher immutability, and exact publication scope;
-  do not reopen Task 13 evidence boundaries without new direct evidence.
+  do not reopen the reconciled Task 13 evidence boundaries without new direct
+  message/field evidence.
 - Reconstruct any real protocol-facing capability or connection schemas only from trusted service/channel parents or wire evidence; do not reuse the retracted bundled-library names.
 - Trace the remaining 149 structural collisions from cross-version parents or semantic call sites; do not promote globally unique local shapes without contextual evidence.
 - Add verifier recovery for enum multiplexers whose switch bodies JADX could not decompile.

@@ -149,6 +149,10 @@ git add -- \
   analysis/reports/coverage-dashboard/coverage-dashboard.json \
   analysis/reports/coverage-dashboard/coverage-dashboard.md \
   analysis/reports/multi-display/prodigy-maintainer-handoff.md \
+  analysis/reports/oem-vw/oem-match-pending-gold-worklist.json \
+  analysis/reports/oem-vw/oem-match-pending-gold-worklist.md \
+  analysis/reports/oem-vw/promotion-walk.json \
+  analysis/reports/oem-vw/promotion-walk.md \
   analysis/reports/proto-verification/PROGRESS.md \
   analysis/reports/proto-verification/carcontrol.md \
   analysis/reports/proto-verification/media.md \
@@ -157,6 +161,18 @@ git add -- \
   analysis/reports/proto-verification/sensor.md \
   analysis/reports/proto-verification/video.md \
   analysis/tools/coverage_dashboard/tests/test_run.py \
+  analysis/tools/cross_version/tests/test_promoted_sidecars.py \
+  analysis/tools/promotion_walker/report.py \
+  analysis/tools/promotion_walker/run.py \
+  analysis/tools/promotion_walker/tests/fixtures/sidecar_already_platinum.audit.yaml \
+  analysis/tools/promotion_walker/tests/fixtures/sidecar_gold_clean.audit.yaml \
+  analysis/tools/promotion_walker/tests/test_live_walk_snapshot.py \
+  analysis/tools/promotion_walker/tests/test_schema_migration.py \
+  analysis/tools/promotion_walker/tests/test_verdict.py \
+  analysis/tools/promotion_walker/tests/test_walk_report.py \
+  analysis/tools/promotion_walker/verdict.py \
+  analysis/tools/seed_import/tests/test_audit_yaml_tier_consistency.py \
+  analysis/tools/seed_import/tier_policy.py \
   docs/channel-map.md \
   docs/channels/architecture.md \
   docs/channels/carcontrol.md \
@@ -169,14 +185,44 @@ git add -- \
   docs/cross-version/video.md \
   docs/roadmap-current.md \
   docs/session-handoffs.md \
+  docs/verification/01-confidence-tiers.md \
+  docs/verification/02-audit-trail-format.md \
+  docs/verification/03-verification-procedures.md \
+  docs/verification/04-source-provenance.md \
+  docs/verification/05-oem-match-policy.md \
+  oaa/audio/AudioConfigData.audit.yaml \
+  oaa/audio/AudioFocusChannelData.audit.yaml \
+  oaa/audio/AudioFocusRequestMessage.audit.yaml \
+  oaa/audio/AudioFocusResponseMessage.audit.yaml \
+  oaa/audio/AudioFocusStateMessage.audit.yaml \
+  oaa/audio/AudioStreamTypeEnum.audit.yaml \
+  oaa/audio/AudioStreamTypeMessage.audit.yaml \
   oaa/av/AVChannelData.audit.yaml \
+  oaa/av/AVChannelMediaConfigMessage.audit.yaml \
   oaa/av/AVChannelMediaOptionsMessage.audit.yaml \
+  oaa/av/AVChannelMediaOptionsMessage.proto \
+  oaa/av/AVChannelMediaStatsMessage.audit.yaml \
   oaa/av/AVChannelMessageIdsEnum.audit.yaml \
+  oaa/av/AVChannelMessageIdsEnum.proto \
+  oaa/av/AVChannelSetupRequestMessage.audit.yaml \
+  oaa/av/AVChannelSetupResponseMessage.audit.yaml \
+  oaa/av/AVChannelStartIndicationMessage.audit.yaml \
+  oaa/av/AVInputChannelData.audit.yaml \
+  oaa/av/AVInputOpenRequestMessage.audit.yaml \
+  oaa/av/AVInputOpenResponseMessage.audit.yaml \
+  oaa/av/AVMediaAckIndicationMessage.audit.yaml \
   oaa/av/UiConfigMessages.audit.yaml \
+  oaa/bluetooth/BluetoothPairingResponseMessage.audit.yaml \
   oaa/carcontrol/CarControlMessages.audit.yaml \
   oaa/carcontrol/CarPropertyData.audit.yaml \
   oaa/carintent/CarIntentMessage.audit.yaml \
+  oaa/common/DriverPositionEnum.audit.yaml \
+  oaa/control/ByeByeResponseMessage.audit.yaml \
+  oaa/control/CallAvailabilityMessage.audit.yaml \
   oaa/control/ChannelDescriptorData.audit.yaml \
+  oaa/control/RadioChannelData.audit.yaml \
+  oaa/control/VoiceSessionRequestMessage.audit.yaml \
+  oaa/generic/ChannelOpenAckMessage.audit.yaml \
   oaa/input/AbsoluteInputEventData.audit.yaml \
   oaa/input/AbsoluteInputEventsData.audit.yaml \
   oaa/input/ButtonEventData.audit.yaml \
@@ -192,19 +238,54 @@ git add -- \
   oaa/input/TouchLocationData.audit.yaml \
   oaa/media/BufferedMediaSinkMessage.audit.yaml \
   oaa/media/CarLocalMediaPlaybackEnum.audit.yaml \
+  oaa/media/CarLocalMediaPlaybackMetadataMessage.audit.yaml \
+  oaa/media/CarLocalMediaPlaybackRequestMessage.audit.yaml \
   oaa/media/CarLocalMediaPlaybackStatusMessage.audit.yaml \
+  oaa/media/MediaPlaybackMetadataMessage.audit.yaml \
   oaa/media/MediaPlaybackStatusEventMessage.audit.yaml \
+  oaa/media/MediaPlaybackStatusMessage.audit.yaml \
+  oaa/media/MediaStatusListData.audit.yaml \
+  oaa/media/MediaTrackIdentifierData.audit.yaml \
   oaa/mic/MicrophoneOpenResponse.audit.yaml \
+  oaa/navigation/NavigationChannelData.audit.yaml \
   oaa/navigation/NavigationDistanceMessage.audit.yaml \
+  oaa/navigation/NavigationImageOptionsData.audit.yaml \
+  oaa/notification/NotificationChannelData.audit.yaml \
+  oaa/phone/PhoneCallStateEnum.audit.yaml \
+  oaa/phone/PhoneStatusInputMessage.audit.yaml \
+  oaa/phone/PhoneStatusMessage.audit.yaml \
+  oaa/sensor/SensorChannelConfigData.audit.yaml \
+  oaa/sensor/SensorChannelData.audit.yaml \
+  oaa/sensor/SensorErrorStatusEnum.audit.yaml \
+  oaa/sensor/SensorRequestMessage.audit.yaml \
   oaa/sensor/SensorStartRequestMessage.audit.yaml \
+  oaa/sensor/TrailerData.audit.yaml \
   oaa/sensor/VehicleEnergyModelData.audit.yaml \
+  oaa/video/AdditionalVideoConfigData.audit.yaml \
   oaa/video/CriticalUiNotification.audit.yaml \
   oaa/video/IntegratedOverlayStartNotification.audit.yaml \
   oaa/video/IntegratedOverlayStopNotification.audit.yaml \
+  oaa/video/UiConfigRequestMessage.audit.yaml \
   oaa/video/UpdateUiConfigRequestMessage.audit.yaml \
+  oaa/video/VideoConfigData.audit.yaml \
   oaa/video/VideoFocusIndicationMessage.audit.yaml \
-  oaa/video/VideoFocusRequestMessage.audit.yaml
+  oaa/video/VideoFocusRequestMessage.audit.yaml \
+  oaa/video/VideoMarginsData.audit.yaml \
+  oaa/wifi/WifiChannelData.audit.yaml \
+  oaa/wifi/WifiCredentialsResponseMessage.audit.yaml \
+  oaa/wifi/WifiInfoRequestMessage.audit.yaml \
+  oaa/wifi/WifiProjectionChannelData.audit.yaml \
+  oaa/wifi/WifiSecurityResponseMessage.audit.yaml \
+  oaa/wifi/WifiSetupInfoMessage.audit.yaml
 ```
+
+Task 13 Fix Round 1 expands this authoritative block from 60 to **133 exact
+literal paths**. The additions are the canonical policy implementation/tests,
+every audit whose derived tier or invalid MATCH-08 metadata changed, the four
+OEM walker artifacts and their producer/tests/fixtures, the coverage outputs/snapshot,
+the two comment-only AV proto corrections, and synchronized verification,
+roadmap, and handoff documentation. The block remains fail-closed and contains
+no directory, glob, or broad staging entry.
 
 ## Changed-proto audit coverage
 
