@@ -1627,3 +1627,61 @@ Verification:
   NAVIGATE, and AdasRouteInfoFeature all present
 - Owned-file scope check -> only the three Task 7 owned files changed
 - `git diff --check` -> exit 0
+
+## 2026-07-24 — Task 8: close CarLocalMedia and classify BufferedMedia
+
+Date / Session: 2026-07-24 / android-auto-17.3-update-task-8
+
+What Changed:
+- Closed `SVC-CLM-STATE5`, `SVC-CLM-FLOW`, and every `SVC-BUF-*` row with
+  exact static anchors, runtime status, row status, and publication disposition
+- Traced CarLocalMedia service type 20: status `0x8001` and metadata `0x8002`
+  parse HU -> Phone, while request `0x8003` is built and sent Phone -> HU
+- Kept CarLocalMedia playback-state value 5 numeric and deferred after the
+  complete required source search found acceptance/passthrough but no name
+- Classified BufferedMedia field 17/service type 21, incoming raw message ID 4,
+  its six-field `xkg` schema and `xkf` state enum, and the separate magic-value,
+  descriptor-presence, and worker-start lifecycle gates
+- Advanced the dossier pointer to Task 9 without modifying canonical media
+  protos/docs before the Task 10 manifest gate
+
+Why:
+- Android Auto 17.3 contains a field-consuming BufferedMedia ID-4 parser, so a
+  universal or current “discard-only stub” characterization is stale
+- The static endpoint still proves neither runtime activation nor a complete
+  media-transfer protocol; IDs 1-3, outbound builders, URL/transport behavior,
+  response pairing, and runtime success remain unobserved
+- BufferedMedia's named `xkf` enum is separate from the unnamed CarLocalMedia
+  state mapping and cannot resolve CarLocalMedia numeric value 5
+
+Status:
+- `SVC-CLM-FLOW`, `SVC-BUF-DESCRIPTOR`, `SVC-BUF-ENDPOINT`,
+  `SVC-BUF-SCHEMAS`, and `SVC-BUF-GATE` are `confirmed-static`
+- `SVC-CLM-STATE5` is `deferred`; `SVC-BUF-IDS` confirms incoming ID 4 and
+  explicitly defers IDs 1-3 and every outbound path
+- All runtime claims remain runtime-unverified; no framed traffic was captured
+- No canonical file was published or historical CarIntent row modified
+
+Next Steps:
+1. Task 9: run the ADB/capture-environment preflight and record runtime limits
+2. Task 10: admit only manifest-accepted ID-4/schema and CarLocalMedia facts
+3. Runtime validation: capture service type 21 before claiming live activation
+
+Verification:
+- Required CarLocalMedia ID search -> `0x8001`/`xgh` and `0x8002`/`xgf`
+  incoming parse branches plus the `0x8003`/`xgg` send call found
+- Complete playback-state search over focused classes and all 17.3 Java sources
+  -> no unobfuscated CarLocalMedia label for numeric value 5
+- Required BufferedMedia source reads -> service type 21 directly parses raw
+  message ID 4 as `xkg`; `xkf` names state values 0 through 4
+- RawMessageInfo decoder -> proto2 optional fields 1 `int32`, 2-3 `uint64`,
+  4 enum, and 5-6 `uint64`
+- Required activation/ID searches -> magic value `834952858`, descriptor bit
+  `0x10000`, and `BUFFERED_MEDIA_WORKER` found; no direct `.k(1..4)` send
+- Exact Task 8 open-row guard -> exit 0 with no open `SVC-CLM-*` or
+  `SVC-BUF-*` rows
+- Required dossier-term check -> message ID 4, `xkg`, service types 20/21,
+  runtime-unverified, and deferred boundaries present
+- Resume-pointer check -> Task 8 completed, Task 9 next, `adb devices -l`
+- Owned-file scope check -> only the three Task 8 owned files changed
+- `git diff --check` -> exit 0
