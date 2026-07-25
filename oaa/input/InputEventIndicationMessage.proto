@@ -12,15 +12,15 @@ package oaa.proto.messages;
 
 // APK class: vxj (16.2), vxx (16.1) — msg 0x8001, HU→Phone
 // No field 2 (skipped in proto numbering)
-// confidence: gold [handler_trace, deep_apk]
+// confidence: silver [apk_deep_trace, apk_static]
 message InputEventIndication
 {
-    required uint64 timestamp = 1;                                    // elapsedRealtime in microseconds; required in 17.3
-    optional data.TouchEvent touch_event = 3;                         // touchscreen input
-    optional data.ButtonEvents button_event = 4;                      // hardware button press/release
-    optional data.AbsoluteInputEvents absolute_input_event = 5;       // touchpad primary click
-    optional data.RelativeInputEvents relative_input_event = 6;       // rotary scroll
-    optional data.TouchEvent touchpad_event = 7;                      // touchpad surface input (same proto as field 3)
+    required uint64 timestamp = 1; // elapsedRealtime in microseconds; required in 17.3  // confidence: silver [apk_deep_trace, apk_static]
+    optional data.TouchEvent touch_event = 3; // touchscreen input  // confidence: silver [apk_deep_trace, apk_static]
+    optional data.ButtonEvents button_event = 4; // hardware button press/release  // confidence: silver [apk_deep_trace, apk_static]
+    optional data.AbsoluteInputEvents absolute_input_event = 5; // touchpad primary click  // confidence: silver [apk_deep_trace, apk_static]
+    optional data.RelativeInputEvents relative_input_event = 6; // rotary scroll  // confidence: silver [apk_deep_trace, apk_static]
+    optional data.TouchEvent touchpad_event = 7; // touchpad surface input (same proto as field 3)  // confidence: silver [apk_deep_trace, apk_static]
 }
 
 // RETRACTED: AbsInputEvent (was vvh in 16.1) — vvh in 16.2 is a different proto (1 int32 field)

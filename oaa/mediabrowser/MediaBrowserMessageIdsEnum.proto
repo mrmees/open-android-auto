@@ -22,9 +22,9 @@ syntax = "proto2";
 
 package oaa.proto.enums;
 
-// confidence: silver [cross_referenced, apk_confirmed_dead]
+// confidence: unverified
 message MediaBrowserMessageId {
-    // confidence: silver [cross_referenced, apk_confirmed_dead]
+    // confidence: unverified
     enum Enum {
         MEDIA_ROOT_NODE = 0x8001;
         MEDIA_SOURCE_NODE = 0x8002;

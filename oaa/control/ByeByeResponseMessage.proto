@@ -17,7 +17,7 @@ syntax="proto2";
 
 package oaa.proto.messages;
 
-// confidence: gold [apk_deep_trace]
+// confidence: bronze [apk_static, cross_version]
 message ByeByeResponse
 {
 }

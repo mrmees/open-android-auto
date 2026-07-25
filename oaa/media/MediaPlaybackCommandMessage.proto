@@ -42,7 +42,7 @@ package oaa.proto.messages;
 
 // RETRACTED — misidentified enum. Actual class vuy is ActionTakenNotification
 // on the video channel (0x800D), not a media playback command.
-// confidence: retracted [apk_deep_trace, 2026-03-06]
+// confidence: unverified
 enum PlaybackCommandType {
     PLAYBACK_COMMAND_UNKNOWN = 0;
     PLAYBACK_COMMAND_PAUSE = 1;
@@ -50,8 +50,8 @@ enum PlaybackCommandType {
 }
 
 // RETRACTED — this message does not exist in the AA protocol.
-// confidence: retracted [apk_deep_trace, 2026-03-06]
+// confidence: unverified
 message MediaPlaybackCommand
 {
-    optional PlaybackCommandType command = 1;
+    optional PlaybackCommandType command = 1;  // confidence: unverified
 }

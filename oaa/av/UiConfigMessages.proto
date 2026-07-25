@@ -32,7 +32,7 @@ syntax = "proto2";
 package oaa.proto.messages;
 
 // UI theme mode
-// confidence: silver [apk_static, cross_version]
+// confidence: gold [apk_deep_trace, apk_static, cross_version]
 enum UiTheme {
     UI_THEME_AUTOMATIC = 0;
     UI_THEME_LIGHT = 1;
@@ -40,21 +40,21 @@ enum UiTheme {
 }
 
 // Display area insets (pixels from edge)
-// confidence: silver [apk_static, cross_version]
+// confidence: gold [apk_deep_trace, apk_static, cross_version]
 message Insets {
-    optional uint32 top = 1;  // confidence: silver [apk_static, cross_version]
-    optional uint32 bottom = 2;  // confidence: silver [apk_static, cross_version]
-    optional uint32 left = 3;  // confidence: silver [apk_static, cross_version]
-    optional uint32 right = 4;  // confidence: silver [apk_static, cross_version]
+    optional uint32 top = 1;  // confidence: gold [apk_deep_trace, apk_static, cross_version]
+    optional uint32 bottom = 2;  // confidence: gold [apk_deep_trace, apk_static, cross_version]
+    optional uint32 left = 3;  // confidence: gold [apk_deep_trace, apk_static, cross_version]
+    optional uint32 right = 4;  // confidence: gold [apk_deep_trace, apk_static, cross_version]
 }
 
 // UI configuration — margins, content area, theme
-// confidence: silver [apk_static, cross_version]
+// confidence: gold [apk_deep_trace, apk_static, cross_version]
 message UiConfig {
-    optional Insets margins = 1;  // confidence: silver [apk_static, cross_version]
-    optional Insets content_insets = 2;  // confidence: silver [apk_static, cross_version]
-    optional Insets stable_content_insets = 3;  // confidence: silver [apk_static, cross_version]
-    optional UiTheme ui_theme = 4;  // confidence: silver [apk_static, cross_version]
+    optional Insets margins = 1;  // confidence: gold [apk_deep_trace, apk_static, cross_version]
+    optional Insets content_insets = 2;  // confidence: gold [apk_deep_trace, apk_static, cross_version]
+    optional Insets stable_content_insets = 3;  // confidence: gold [apk_deep_trace, apk_static, cross_version]
+    optional UiTheme ui_theme = 4;  // confidence: gold [apk_deep_trace, apk_static, cross_version]
 }
 
 // 0x8009: UpdateUiConfigRequest (HU->Phone)

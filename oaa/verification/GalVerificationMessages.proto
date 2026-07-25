@@ -29,7 +29,7 @@ import "oaa/video/VideoFocusModeEnum.proto";
 
 // Message IDs for the GAL Verification vendor extension channel.
 // All IDs are in the 0x8001-0x800B range.
-// confidence: silver [cross_referenced, dhu_only]
+// confidence: unverified
 enum GalVerificationMessageId {
     GAL_VERIFICATION_SET_SENSOR                   = 0x8001;  // 32769
     GAL_VERIFICATION_MEDIA_SINK_STATUS             = 0x8002;  // 32770
@@ -47,74 +47,74 @@ enum GalVerificationMessageId {
 // Injects sensor data into the DHU for testing.
 // Field 1 is a serialized SensorBatch (oaa/sensor/SensorMessages.proto),
 // passed as raw bytes to avoid cross-package dependency for a test-only channel.
-// confidence: silver [cross_referenced, dhu_only]
+// confidence: unverified
 message GalVerificationSetSensor {
-    optional bytes sensors = 1;  // serialized SensorBatch
+    optional bytes sensors = 1; // serialized SensorBatch  // confidence: unverified
 }
 
 // Reports media sink status for a given channel.
 // Field 2 is the media Config.Status value (int32 rather than importing the
 // media config enum — this is test infrastructure only).
-// confidence: silver [cross_referenced, dhu_only]
+// confidence: unverified
 message GalVerificationMediaSinkStatus {
-    optional int32 channel = 1;  // confidence: silver [cross_referenced, dhu_only]
-    optional int32 status  = 2;  // media Config.Status value; confidence: bronze [external_reference]
+    optional int32 channel = 1;  // confidence: unverified
+    optional int32 status  = 2; // media Config.Status value; confidence: bronze [external_reference]  // confidence: unverified
 }
 
 // Controls video focus state for testing.
-// confidence: silver [cross_referenced, dhu_only]
+// confidence: unverified
 message GalVerificationVideoFocus {
-    optional oaa.proto.enums.VideoFocusMode.Enum video_focus_mode = 1;  // confidence: silver [cross_referenced, dhu_only]
-    optional bool deny                                             = 2;  // confidence: silver [cross_referenced, dhu_only]
-    optional bool unsolicited                                      = 3;  // confidence: silver [cross_referenced, dhu_only]
+    optional oaa.proto.enums.VideoFocusMode.Enum video_focus_mode = 1;  // confidence: unverified
+    optional bool deny                                             = 2;  // confidence: unverified
+    optional bool unsolicited                                      = 3;  // confidence: unverified
 }
 
 // Controls audio focus state for testing.
-// confidence: silver [cross_referenced, dhu_only]
+// confidence: unverified
 message GalVerificationAudioFocus {
-    optional oaa.proto.enums.AudioFocusState.Enum audio_focus_state = 1;  // confidence: silver [cross_referenced, dhu_only]
-    optional int32 channel                                          = 2;  // confidence: silver [cross_referenced, dhu_only]
-    optional bool  unsolicited                                      = 3;  // confidence: silver [cross_referenced, dhu_only]
+    optional oaa.proto.enums.AudioFocusState.Enum audio_focus_state = 1;  // confidence: unverified
+    optional int32 channel                                          = 2;  // confidence: unverified
+    optional bool  unsolicited                                      = 3;  // confidence: unverified
 }
 
 // Injects an input event into the DHU for testing.
 // Field 1 is a serialized InputReport (oaa/input/InputMessages.proto),
 // passed as raw bytes to avoid cross-package dependency for a test-only channel.
-// confidence: silver [cross_referenced, dhu_only]
+// confidence: unverified
 message GalVerificationInjectInput {
-    optional bytes input = 1;  // serialized InputReport
+    optional bytes input = 1; // serialized InputReport  // confidence: unverified
 }
 
 // Requests a bug report from the DHU.
-// confidence: silver [cross_referenced, dhu_only]
+// confidence: unverified
 message GalVerificationBugReportRequest {
 }
 
 // Bug report response from the DHU.
-// confidence: silver [cross_referenced, dhu_only]
+// confidence: unverified
 message GalVerificationBugReportResponse {
-    optional string bug_report = 1;  // confidence: silver [cross_referenced, dhu_only]
+    optional string bug_report = 1;  // confidence: unverified
 }
 
 // Requests a screen capture from the DHU.
-// confidence: silver [cross_referenced, dhu_only]
+// confidence: unverified
 message GalVerificationScreenCaptureRequest {
 }
 
 // Screen capture response from the DHU (raw image bytes).
-// confidence: silver [cross_referenced, dhu_only]
+// confidence: unverified
 message GalVerificationScreenCaptureResponse {
-    optional bytes screen_capture = 1;  // confidence: silver [cross_referenced, dhu_only]
+    optional bytes screen_capture = 1;  // confidence: unverified
 }
 
 // Requests display information from the DHU.
-// confidence: silver [cross_referenced, dhu_only]
+// confidence: unverified
 message GalVerificationDisplayInformationRequest {
 }
 
 // Display information response from the DHU.
-// confidence: silver [cross_referenced, dhu_only]
+// confidence: unverified
 message GalVerificationDisplayInformationResponse {
-    optional int32 native_width  = 1;  // confidence: silver [cross_referenced, dhu_only]
-    optional int32 native_height = 2;  // confidence: silver [cross_referenced, dhu_only]
+    optional int32 native_width  = 1;  // confidence: unverified
+    optional int32 native_height = 2;  // confidence: unverified
 }

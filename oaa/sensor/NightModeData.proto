@@ -11,8 +11,8 @@ package oaa.proto.data;
 // Night mode also triggers generic "sensor event while no listener, sensor:10" path
 // in addition to the dedicated processing pipeline.
 // APK class: vzi (AA v16.2)
-// confidence: gold [deep_trace, 16.2 DB verified]
+// confidence: silver [apk_static, cross_version]
 message NightMode
 {
-    optional bool is_night = 1;  // confidence: gold
+    optional bool is_night = 1;  // confidence: silver [apk_static, cross_version]
 }

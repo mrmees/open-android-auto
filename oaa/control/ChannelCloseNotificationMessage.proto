@@ -29,6 +29,6 @@ package oaa.proto.messages;
 // 0x0009: ChannelCloseNotification (transport-layer, not GAL-dispatched)
 // 16.2: vik.java msg ID 9 = MESSAGE_CHANNEL_CLOSE_NOTIFICATION
 // 16.2: icp.java (send), ico.java (receive), icj interface (callback)
-// confidence: gold [deep_trace, transport_layer]
+// confidence: unverified
 message ChannelCloseNotification {
 }

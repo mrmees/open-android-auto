@@ -15,10 +15,12 @@ syntax="proto3";
 package oaa.proto.data;
 
 // 17.3 xep — integer watt-hour quantity used for level and capacity.
+// confidence: bronze [apk_static, cross_version]
 message VehicleEnergyValue {
-    int32 value = 1;  // confidence: gold [17.3_raw_message_info]
+    int32 value = 1;  // confidence: bronze [apk_static, cross_version]
 }
 
+// confidence: bronze [apk_static, cross_version]
 enum VehicleEnergyHvacStatus {
     UNKNOWN_HVAC_STATUS = 0;
     OFF_HVAC_STATUS = 1;
@@ -26,15 +28,16 @@ enum VehicleEnergyHvacStatus {
 }
 
 // 17.3 xer — diagnostic formatter names and prints each of these fields.
+// confidence: bronze [apk_static, cross_version]
 message VehicleEnergyInfo {
-    VehicleEnergyValue battery_level_wh = 3;
-    VehicleEnergyValue battery_capacity_wh = 4;
-    VehicleEnergyHvacStatus hvac_status = 5;
-    float external_temp_celsius = 7;
-    float battery_temp_celsius = 8;
+    VehicleEnergyValue battery_level_wh = 3;  // confidence: bronze [apk_static, cross_version]
+    VehicleEnergyValue battery_capacity_wh = 4;  // confidence: bronze [apk_static, cross_version]
+    VehicleEnergyHvacStatus hvac_status = 5;  // confidence: bronze [apk_static, cross_version]
+    float external_temp_celsius = 7;  // confidence: bronze [apk_static, cross_version]
+    float battery_temp_celsius = 8;  // confidence: bronze [apk_static, cross_version]
 }
 
-// confidence: gold [17.3_raw_message_info, 17.3_diagnostic_formatter]
+// confidence: bronze [apk_static, cross_version]
 message VehicleEnergyModelData {
-    VehicleEnergyInfo vehicle_info = 1;
+    VehicleEnergyInfo vehicle_info = 1;  // confidence: bronze [apk_static, cross_version]
 }

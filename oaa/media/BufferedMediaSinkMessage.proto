@@ -20,6 +20,7 @@ syntax = "proto2";
 
 package oaa.proto.messages;
 
+// confidence: bronze [apk_deep_trace]
 enum BufferedMediaState {
     BUFFERED_MEDIA_STATE_UNKNOWN = 0;
     BUFFERED_MEDIA_STATE_PLAYING = 1;
@@ -30,11 +31,12 @@ enum BufferedMediaState {
 
 // Incoming raw ID 4, HU -> Phone: 17.3 parses and consumes these fields.
 // IDs 1-3 are accepted by a range validator but their meanings are unknown.
+// confidence: bronze [apk_deep_trace]
 message BufferedMediaSinkMessage {
-    optional int32 session_id = 1;
-    optional uint64 uid = 2;
-    optional uint64 current_position_ms = 3;
-    optional BufferedMediaState state = 4;
-    optional uint64 buffered_position_ms = 5;
-    optional uint64 content_duration_ms = 6;
+    optional int32 session_id = 1;  // confidence: bronze [apk_deep_trace]
+    optional uint64 uid = 2;  // confidence: bronze [apk_deep_trace]
+    optional uint64 current_position_ms = 3;  // confidence: bronze [apk_deep_trace]
+    optional BufferedMediaState state = 4;  // confidence: bronze [apk_deep_trace]
+    optional uint64 buffered_position_ms = 5;  // confidence: bronze [apk_deep_trace]
+    optional uint64 content_duration_ms = 6;  // confidence: bronze [apk_deep_trace]
 }

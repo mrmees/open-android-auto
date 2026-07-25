@@ -7,7 +7,7 @@ package oaa.proto.data;
 
 // APK class: vyr (16.1) / vyd (16.2) — empty proto2 message
 // ChannelDescriptor field 9 (media_info_channel)
-// confidence: gold [apk_deep_trace, 2026-03-06]
+// confidence: unverified
 message MediaInfoChannel
 {
 }

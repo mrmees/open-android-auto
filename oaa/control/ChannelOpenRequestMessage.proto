@@ -15,9 +15,9 @@ syntax="proto2";
 
 package oaa.proto.messages;
 
-// confidence: gold [apk_deep_trace]
+// confidence: silver [apk_static, cross_version]
 message ChannelOpenRequest
 {
-    required sint32 priority = 1;  // zigzag encoded  // confidence: gold [apk_deep_trace]
-    required int32 channel_id = 2;  // confidence: gold [apk_deep_trace]
+    required sint32 priority = 1; // zigzag encoded  // confidence: silver [apk_static, cross_version]
+    required int32 channel_id = 2;  // confidence: silver [apk_static, cross_version]
 }

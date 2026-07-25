@@ -12,20 +12,20 @@ import "oaa/video/DisplayTypeEnum.proto";
 import "oaa/video/ColorSchemeSupportEnum.proto";
 package oaa.proto.data;
 
-// confidence: gold [deep_trace_verified, 16.2_jadx]
+// confidence: gold [apk_deep_trace, apk_static, cross_version]
 message AVChannel
 {
-    optional enums.AVStreamType.Enum stream_type = 1;  // confidence: gold [deep_trace_verified, 16.2_jadx]
-    optional enums.AudioType.Enum audio_type = 2;  // confidence: gold [deep_trace_verified, 16.2_jadx]
-    repeated AudioConfig audio_configs = 3;  // confidence: gold [deep_trace_verified, 16.2_jadx]
-    repeated VideoConfig video_configs = 4;  // confidence: gold [deep_trace_verified, 16.2_jadx]
+    optional enums.AVStreamType.Enum stream_type = 1;  // confidence: gold [apk_deep_trace, apk_static, cross_version]
+    optional enums.AudioType.Enum audio_type = 2;  // confidence: gold [apk_deep_trace, apk_static, cross_version]
+    repeated AudioConfig audio_configs = 3;  // confidence: gold [apk_deep_trace, apk_static, cross_version]
+    repeated VideoConfig video_configs = 4;  // confidence: gold [apk_deep_trace, apk_static, cross_version]
     // Field 5: APK has uint32 here, not bool. Not present in phone-side proto. Removed.
 
     // Fields 6-9 discovered via APK decompilation (vye in 16.2, vys in 16.1).
     // 17.3 reads field 6 and immediately constructs a CarDisplayId. This is a
     // logical display ID, not ChannelDescriptor.channel_id or a GAL service type.
-    optional uint32 display_id = 6; // Logical display identity; referenced by InputChannelConfig.display_id field 5.  // confidence: gold [deep_trace_verified, 17.3_jadx]
-    optional enums.DisplayType.Enum display_type = 7; // MAIN, CLUSTER, AUXILIARY  // confidence: gold [deep_trace_verified, 16.2_jadx]
-    optional enums.AndroidKeycode.Enum keycode = 8; // Android keycode (APK enum: vyh.java)  // confidence: gold [deep_trace_verified, 16.2_jadx]
-    optional enums.ColorSchemeSupport.Enum color_scheme_support = 9; // Material You palette version — gates theming (0x8011). Set to 2 for Material You v2.  // confidence: gold [deep_trace, multi-agent verified]
+    optional uint32 display_id = 6; // Logical display identity; referenced by InputChannelConfig.display_id field 5.  // confidence: gold [apk_deep_trace, apk_static, cross_version]
+    optional enums.DisplayType.Enum display_type = 7; // MAIN, CLUSTER, AUXILIARY  // confidence: gold [apk_deep_trace, apk_static, cross_version]
+    optional enums.AndroidKeycode.Enum keycode = 8; // Android keycode (APK enum: vyh.java)  // confidence: gold [apk_deep_trace, apk_static, cross_version]
+    optional enums.ColorSchemeSupport.Enum color_scheme_support = 9; // Material You palette version — gates theming (0x8011). Set to 2 for Material You v2.  // confidence: gold [apk_deep_trace, apk_static, cross_version]
 }

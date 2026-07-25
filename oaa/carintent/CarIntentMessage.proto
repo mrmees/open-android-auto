@@ -14,6 +14,7 @@ syntax = "proto2";
 
 package oaa.proto.messages;
 
+// confidence: bronze [apk_deep_trace]
 message CarIntentMessage {
-    optional string metadata = 2;
+    optional string metadata = 2;  // confidence: bronze [apk_deep_trace]
 }

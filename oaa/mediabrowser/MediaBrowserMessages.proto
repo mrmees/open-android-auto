@@ -44,7 +44,7 @@ package oaa.proto.messages;
 // ============================================================================
 
 // Media list/collection type
-// confidence: silver [cross_referenced, apk_confirmed_dead]
+// confidence: unverified
 enum MediaListType {
     MEDIA_LIST_TYPE_UNKNOWN = 0;
     MEDIA_LIST_TYPE_PLAYLIST = 1;
@@ -56,7 +56,7 @@ enum MediaListType {
 
 // Instrument cluster input action for media browsing
 // Used by MediaBrowseInput to navigate the media tree from the cluster display.
-// confidence: silver [cross_referenced, apk_confirmed_dead]
+// confidence: unverified
 enum InstrumentClusterAction {
     CLUSTER_ACTION_UNKNOWN = 0;
     CLUSTER_ACTION_UP = 1;
@@ -73,29 +73,29 @@ enum InstrumentClusterAction {
 // ============================================================================
 
 // A media source (e.g., Spotify, local music library)
-// confidence: silver [cross_referenced, apk_confirmed_dead]
+// confidence: unverified
 message MediaSource {
-    optional string path = 1;
-    optional string name = 2;
-    optional bytes album_art = 3;
+    optional string path = 1;  // confidence: unverified
+    optional string name = 2;  // confidence: unverified
+    optional bytes album_art = 3;  // confidence: unverified
 }
 
 // A media list/collection (playlist, album, artist, etc.)
-// confidence: silver [cross_referenced, apk_confirmed_dead]
+// confidence: unverified
 message MediaList {
-    optional string path = 1;
-    optional MediaListType type = 2;
-    optional string name = 3;
-    optional bytes album_art = 4;
+    optional string path = 1;  // confidence: unverified
+    optional MediaListType type = 2;  // confidence: unverified
+    optional string name = 3;  // confidence: unverified
+    optional bytes album_art = 4;  // confidence: unverified
 }
 
 // A single song/track
-// confidence: silver [cross_referenced, apk_confirmed_dead]
+// confidence: unverified
 message MediaSong {
-    optional string path = 1;
-    optional string name = 2;
-    optional string artist = 3;
-    optional string album = 4;
+    optional string path = 1;  // confidence: unverified
+    optional string name = 2;  // confidence: unverified
+    optional string artist = 3;  // confidence: unverified
+    optional string album = 4;  // confidence: unverified
 }
 
 // ============================================================================
@@ -104,39 +104,39 @@ message MediaSong {
 
 // 0x8001: MediaRootNode
 // Lists available media sources at the root level.
-// confidence: silver [cross_referenced, apk_confirmed_dead]
+// confidence: unverified
 message MediaRootNode {
-    optional string path = 1;
-    repeated MediaSource media_sources = 2;
+    optional string path = 1;  // confidence: unverified
+    repeated MediaSource media_sources = 2;  // confidence: unverified
 }
 
 // 0x8002: MediaSourceNode
 // Lists collections within a specific media source (paginated).
-// confidence: silver [cross_referenced, apk_confirmed_dead]
+// confidence: unverified
 message MediaSourceNode {
-    optional MediaSource source = 1;
-    optional int32 start = 2;       // Pagination offset
-    optional int32 total = 3;       // Total items available
-    repeated MediaList lists = 4;   // Page of lists
+    optional MediaSource source = 1;  // confidence: unverified
+    optional int32 start = 2; // Pagination offset  // confidence: unverified
+    optional int32 total = 3; // Total items available  // confidence: unverified
+    repeated MediaList lists = 4; // Page of lists  // confidence: unverified
 }
 
 // 0x8003: MediaListNode
 // Lists songs within a specific collection (paginated).
-// confidence: silver [cross_referenced, apk_confirmed_dead]
+// confidence: unverified
 message MediaListNode {
-    optional MediaList list = 1;
-    optional int32 start = 2;       // Pagination offset
-    optional int32 total = 3;       // Total items available
-    repeated MediaSong songs = 4;   // Page of songs
+    optional MediaList list = 1;  // confidence: unverified
+    optional int32 start = 2; // Pagination offset  // confidence: unverified
+    optional int32 total = 3; // Total items available  // confidence: unverified
+    repeated MediaSong songs = 4; // Page of songs  // confidence: unverified
 }
 
 // 0x8004: MediaSongNode
 // Detailed info for a single song including album art and duration.
-// confidence: silver [cross_referenced, apk_confirmed_dead]
+// confidence: unverified
 message MediaSongNode {
-    optional MediaSong song = 1;
-    optional bytes album_art = 2;
-    optional uint32 duration_seconds = 3;
+    optional MediaSong song = 1;  // confidence: unverified
+    optional bytes album_art = 2;  // confidence: unverified
+    optional uint32 duration_seconds = 3;  // confidence: unverified
 }
 
 // ============================================================================
@@ -145,17 +145,17 @@ message MediaSongNode {
 
 // 0x8005: MediaGetNode
 // Request to navigate to a specific path in the media tree.
-// confidence: silver [cross_referenced, apk_confirmed_dead]
+// confidence: unverified
 message MediaGetNode {
-    optional string path = 1;
-    optional int32 start = 2;                           // Pagination offset
+    optional string path = 1;  // confidence: unverified
+    optional int32 start = 2; // Pagination offset  // confidence: unverified
     optional bool get_album_art = 3 [default = true];   // Include album art in response
 }
 
 // 0x8006: MediaBrowseInput
 // Cluster display input (rotary/button) for browsing the media tree.
-// confidence: silver [cross_referenced, apk_confirmed_dead]
+// confidence: unverified
 message MediaBrowseInput {
-    optional InstrumentClusterAction action = 1;
-    optional string path = 2;   // Current path context for the input
+    optional InstrumentClusterAction action = 1;  // confidence: unverified
+    optional string path = 2; // Current path context for the input  // confidence: unverified
 }

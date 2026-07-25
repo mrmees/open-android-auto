@@ -14,8 +14,8 @@ syntax="proto2";
 
 package oaa.proto.messages;
 
-// confidence: gold [handler_trace, deep_apk]
+// confidence: bronze [apk_deep_trace]
 message InputBindingResponse
 {
-    required int32 status = 1;  // binding result status code
+    required int32 status = 1; // binding result status code  // confidence: bronze [apk_deep_trace]
 }

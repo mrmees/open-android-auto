@@ -33,15 +33,15 @@ syntax="proto2";
 
 package oaa.proto.enums;
 
-// confidence: gold [deep_trace, multi-agent verified]
+// confidence: unverified
 message ColorSchemeSupport
 {
-    // confidence: gold [deep_trace]
+    // confidence: unverified
     enum Enum
     {
         COLOR_SCHEME_BASIC = 0;             // No Material You — HU version 0
         // 1 is not used (maps to internal 0 = unsupported)
-        COLOR_SCHEME_MATERIAL_YOU_V2 = 2;   // Material You v2 — HU version 2
-        COLOR_SCHEME_MATERIAL_YOU_V3 = 3;   // Material You v3 — HU version 3
+        COLOR_SCHEME_MATERIAL_YOU_V2 = 2; // Material You v2 — HU version 2  // confidence: unverified
+        COLOR_SCHEME_MATERIAL_YOU_V3 = 3; // Material You v3 — HU version 3  // confidence: unverified
     }
 }

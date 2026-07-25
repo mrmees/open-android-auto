@@ -17,18 +17,18 @@ import "oaa/sensor/EVConnectorTypeEnum.proto";
 package oaa.proto.data;
 
 // APK class: wbu (AA v16.1), wbk (AA v16.2) — sensor channel config
-// confidence: gold [deep_trace, 16.2 DB verified]
+// confidence: silver [apk_static, cross_version]
 message SensorChannelConfig
 {
-    repeated SensorTypeEntry supported_sensors = 1; // 16.2: wbj  // confidence: gold
-    optional uint32 location_characterization = 2;  // 16.2: wbk.f74959e, logged as "locationCharacterization" by qlz.java:185  // confidence: gold
-    repeated enums.FuelType.Enum fuel_types = 3; // 16.2: vxa enum  // confidence: gold
-    repeated enums.EVConnectorType.Enum ev_connector_types = 4; // 16.2: vwx enum  // confidence: gold
+    repeated SensorTypeEntry supported_sensors = 1; // 16.2: wbj  // confidence: silver [apk_static, cross_version]
+    optional uint32 location_characterization = 2; // 16.2: wbk.f74959e, logged as "locationCharacterization" by qlz.java:185  // confidence: silver [apk_static, cross_version]
+    repeated enums.FuelType.Enum fuel_types = 3; // 16.2: vxa enum  // confidence: silver [apk_static, cross_version]
+    repeated enums.EVConnectorType.Enum ev_connector_types = 4; // 16.2: vwx enum  // confidence: silver [apk_static, cross_version]
 }
 
 // APK class: wbt (AA v16.1), wbj (AA v16.2) — individual sensor type entry
-// confidence: gold [deep_trace, 16.2 DB verified]
+// confidence: silver [apk_static, cross_version]
 message SensorTypeEntry
 {
-    required enums.SensorType.Enum sensor_type = 1; // 17.3: xls.b, required enum via xlu verifier  // confidence: gold [17.3_jadx]
+    required enums.SensorType.Enum sensor_type = 1; // 17.3: xls.b, required enum via xlu verifier  // confidence: silver [apk_static, cross_version]
 }

@@ -5,10 +5,10 @@ syntax="proto2";
 
 package oaa.proto.data;
 
-// confidence: gold [deep_trace_verified, 16.2_jadx]
+// confidence: silver [apk_static, cross_version]
 message NavigationImageOptions
 {
-    required int32 height = 1; // 17.3 service log: xji.c  // confidence: gold [17.3_semantic_trace]
-    required int32 width = 2; // 17.3 service log: xji.d  // confidence: gold [17.3_semantic_trace]
-    required int32 colour_depth_bits = 3; // 17.3 service log: xji.e  // confidence: gold [17.3_semantic_trace]
+    required int32 height = 1; // 17.3 service log: xji.c  // confidence: silver [apk_static, cross_version]
+    required int32 width = 2; // 17.3 service log: xji.d  // confidence: silver [apk_static, cross_version]
+    required int32 colour_depth_bits = 3; // 17.3 service log: xji.e  // confidence: silver [apk_static, cross_version]
 }

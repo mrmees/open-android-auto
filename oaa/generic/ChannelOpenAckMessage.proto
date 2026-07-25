@@ -15,7 +15,7 @@ syntax="proto2";
 
 package oaa.proto.messages;
 
-// confidence: bronze [apk_static]
+// confidence: bronze [apk_static, cross_version]
 message ChannelOpenAck
 {
 }

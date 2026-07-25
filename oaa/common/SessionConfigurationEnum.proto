@@ -36,7 +36,7 @@ package oaa.proto.enums;
 // Bitmask values — combine with bitwise OR
 // 16.2: ServiceDiscoveryResponse field 13, class wbo field f75036n
 // Extracted via CarInfoInternal.m11798a() bitwise AND check
-// confidence: gold [deep_trace]
+// confidence: unverified
 enum SessionConfiguration {
     SESSION_UI_CONFIG_HIDE_CLOCK = 1;               // Hide clock from AA status bar
     SESSION_UI_CONFIG_HIDE_PHONE_SIGNAL = 2;        // Hide phone signal strength

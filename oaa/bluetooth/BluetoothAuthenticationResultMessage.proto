@@ -25,9 +25,9 @@ import "oaa/common/StatusEnum.proto";
 
 package oaa.proto.messages;
 
-// confidence: gold [apk_deep_trace]
+// confidence: unverified
 message BluetoothAuthenticationResult
 {
     // Shared AA StatusCode enum (vyh)
-    required enums.Status.Enum status = 1;  // confidence: gold [17.3_raw_message_info]
+    required enums.Status.Enum status = 1;  // confidence: unverified
 }

@@ -17,8 +17,8 @@ import "oaa/common/StatusEnum.proto";
 
 package oaa.proto.messages;
 
-// confidence: gold [deep_trace, 16.2 handler ibi.java]
+// confidence: silver [apk_static, cross_version]
 message SensorStartResponseMessage
 {
-    required enums.Status.Enum status = 1;  // 16.2: vyh enum  // confidence: gold
+    required enums.Status.Enum status = 1; // 16.2: vyh enum  // confidence: silver [apk_static, cross_version]
 }

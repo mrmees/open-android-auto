@@ -10,9 +10,9 @@ package oaa.proto.messages;
 // APK class: wdb (16.1) / wcr (16.2) — focus mode + unrequested flag
 // Wire msg 0x8008, HU->Phone (video channel)
 // vdp internal name: MEDIA_MESSAGE_VIDEO_FOCUS_NOTIFICATION
-// confidence: gold [deep_trace, handler_verified]
+// confidence: gold [apk_deep_trace, apk_static, cross_version, deep_trace]
 message VideoFocusIndication
 {
-    optional enums.VideoFocusMode.Enum focus_mode = 1;  // wcq enum via wcrVar.f75227c  // confidence: gold [deep_trace]
-    optional bool unrequested = 2;  // wcrVar.f75228d  // confidence: gold [deep_trace]
+    optional enums.VideoFocusMode.Enum focus_mode = 1; // wcq enum via wcrVar.f75227c  // confidence: gold [apk_deep_trace, apk_static, cross_version, deep_trace]
+    optional bool unrequested = 2; // wcrVar.f75228d  // confidence: gold [apk_deep_trace, apk_static, cross_version, deep_trace]
 }

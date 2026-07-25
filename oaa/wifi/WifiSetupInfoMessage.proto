@@ -31,17 +31,17 @@ message WifiNetworkInfo {
 
 // Wireless projection endpoint supplied by the HU.
 // 17.3: xnq, consumed as WPP IP/port by peu.java.
-// confidence: gold [17.3_semantic_trace]
+// confidence: silver [apk_static, cross_version]
 message WifiProjectionEndpoint {
-    optional string ip_address = 1; // 17.3: xnq.c  // confidence: gold [17.3_semantic_trace]
-    optional int32 port = 2; // 17.3: xnq.d  // confidence: gold [17.3_semantic_trace]
+    optional string ip_address = 1; // 17.3: xnq.c  // confidence: silver [apk_static, cross_version]
+    optional int32 port = 2; // 17.3: xnq.d  // confidence: silver [apk_static, cross_version]
 }
 
 // confidence: silver [apk_static, cross_version]
 message WifiSetupInfo {
-    optional int32 major_version = 1; // 17.3: xns.b  // confidence: gold [17.3_semantic_trace]
-    optional int32 minor_version = 2; // 17.3: xns.c  // confidence: gold [17.3_semantic_trace]
-    optional bytes setup_token = 3; // 17.3: xns.d, logged as token  // confidence: gold [17.3_semantic_trace]
-    optional WifiProjectionEndpoint wpp_endpoint = 4; // 17.3: xns.e -> xnq  // confidence: gold [17.3_semantic_trace]
-    optional WifiNetworkInfo access_point_info = 5; // 17.3: xns.f -> xni  // confidence: gold [17.3_semantic_trace]
+    optional int32 major_version = 1; // 17.3: xns.b  // confidence: silver [apk_static, cross_version]
+    optional int32 minor_version = 2; // 17.3: xns.c  // confidence: silver [apk_static, cross_version]
+    optional bytes setup_token = 3; // 17.3: xns.d, logged as token  // confidence: silver [apk_static, cross_version]
+    optional WifiProjectionEndpoint wpp_endpoint = 4; // 17.3: xns.e -> xnq  // confidence: silver [apk_static, cross_version]
+    optional WifiNetworkInfo access_point_info = 5; // 17.3: xns.f -> xni  // confidence: silver [apk_static, cross_version]
 }

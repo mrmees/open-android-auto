@@ -33,35 +33,35 @@ syntax="proto2";
 package oaa.proto.messages;
 
 // APK class: wcf (16.2) — config entry value wrapper
-// confidence: gold [deep_trace, handler_verified]
+// confidence: bronze [deep_trace]
 message UiConfigValue
 {
-    optional uint32 value = 1;  // confidence: gold [deep_trace]
+    optional uint32 value = 1;  // confidence: bronze [deep_trace]
 }
 
 // APK class: wcq (16.1) / wcg (16.2) — config entry with key and value
 // NOTE: wcq in 16.2 = VideoFocusMode enum (different type entirely!)
-// confidence: gold [deep_trace, handler_verified]
+// confidence: bronze [deep_trace]
 message UiConfigEntry
 {
-    optional string key = 1;  // confidence: gold [deep_trace]
+    optional string key = 1;  // confidence: bronze [deep_trace]
     oneof value {
-        UiConfigValue config_value = 2; // oneof message (type_id=60)  // confidence: gold [deep_trace]
+        UiConfigValue config_value = 2; // oneof message (type_id=60)  // confidence: bronze [deep_trace]
     }
 }
 
 // APK class: wco (16.1) / wce (16.2) — config data with two lists of entries
 // NOTE: wco in 16.2 = VideoResolution enum (different type entirely!)
-// confidence: gold [deep_trace, handler_verified]
+// confidence: bronze [deep_trace]
 message UiConfigData
 {
-    repeated UiConfigEntry primary_configs = 1;  // light mode tokens  // confidence: gold [deep_trace]
-    repeated UiConfigEntry secondary_configs = 2;  // dark mode tokens  // confidence: gold [deep_trace]
+    repeated UiConfigEntry primary_configs = 1; // light mode tokens  // confidence: bronze [deep_trace]
+    repeated UiConfigEntry secondary_configs = 2; // dark mode tokens  // confidence: bronze [deep_trace]
 }
 
 // APK class: wct (16.1) / wcj (16.2)
-// confidence: gold [deep_trace, handler_verified]
+// confidence: bronze [deep_trace]
 message UiConfigRequest
 {
-    optional UiConfigData config = 1;  // confidence: gold [deep_trace]
+    optional UiConfigData config = 1;  // confidence: bronze [deep_trace]
 }

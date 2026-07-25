@@ -10,7 +10,7 @@ package oaa.proto.messages;
 // Empty message — no deserialization in ied.java.
 // Triggers the phone-side display-stopped callback.
 // Companion to IntegratedOverlayStartNotification (0x800E).
-// confidence: gold [deep_trace, handler_verified]
+// confidence: bronze [apk_deep_trace]
 message IntegratedOverlayStopNotification
 {
     // Empty — no fields

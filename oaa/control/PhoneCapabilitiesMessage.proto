@@ -25,19 +25,19 @@ package oaa.proto.data;
 
 // APK enum for phone_identifier field (field 7, packed repeated)
 // Actual enum values TBD — APK uses type_id=44 (packed enum).
-// confidence: gold [deep_trace_verified, 16.2_jadx]
+// confidence: retracted [apk_deep_trace, apk_static, cross_version]
 enum PhoneIdentifierType {
     PHONE_IDENTIFIER_UNKNOWN = 0;
 }
 
-// confidence: gold [deep_trace_verified, 16.2_jadx]
+// confidence: retracted [apk_deep_trace, apk_static, cross_version]
 message PhoneCapabilities
 {
-    CapabilityFlag feature_flags = 1;  // 16.2: aafn  // confidence: gold [deep_trace_verified, 16.2_jadx]
-    DeviceInfo device_info = 2;  // 16.2: aaey  // confidence: gold [deep_trace_verified, 16.2_jadx]
-    PhoneConnectionConfig connection_config = 3;  // 16.2: aafa  // confidence: gold [deep_trace_verified, 16.2_jadx]
-    CapabilityPair display_capabilities = 4;  // 16.2: aafy  // confidence: gold [deep_trace_verified, 16.2_jadx]
-    repeated CapabilityEntry capabilities = 5;  // 16.2: aagb  // confidence: gold [deep_trace_verified, 16.2_jadx]
+    CapabilityFlag feature_flags = 1; // 16.2: aafn  // confidence: retracted [apk_deep_trace, apk_static, cross_version]
+    DeviceInfo device_info = 2; // 16.2: aaey  // confidence: retracted [apk_deep_trace, apk_static, cross_version]
+    PhoneConnectionConfig connection_config = 3; // 16.2: aafa  // confidence: retracted [apk_deep_trace, apk_static, cross_version]
+    CapabilityPair display_capabilities = 4; // 16.2: aafy  // confidence: retracted [apk_deep_trace, apk_static, cross_version]
+    repeated CapabilityEntry capabilities = 5; // 16.2: aagb  // confidence: retracted [apk_deep_trace, apk_static, cross_version]
     // field 6: absent in both 16.1 and 16.2
     repeated PhoneIdentifierType phone_identifier = 7 [packed = true];  // confidence: gold [deep_trace_verified, 16.2_jadx]
 }

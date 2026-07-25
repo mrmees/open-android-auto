@@ -18,9 +18,9 @@ syntax="proto2";
 
 package oaa.proto.messages;
 
-// confidence: gold [apk_deep_trace]
+// confidence: unverified
 message BatteryStatusNotification {
-    optional uint32 battery_level = 1;  // percentage  // confidence: gold [apk_deep_trace]
-    optional uint32 time_remaining_s = 2;  // discharge time in seconds  // confidence: gold [apk_deep_trace]
-    optional bool critical_battery = 3;  // confidence: gold [apk_deep_trace]
+    optional uint32 battery_level = 1; // percentage  // confidence: unverified
+    optional uint32 time_remaining_s = 2; // discharge time in seconds  // confidence: unverified
+    optional bool critical_battery = 3;  // confidence: unverified
 }

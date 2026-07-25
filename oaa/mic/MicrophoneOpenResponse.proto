@@ -19,8 +19,8 @@ syntax = "proto2";
 
 package oaa.proto.messages;
 
-// confidence: gold [apk_deep_trace]
+// confidence: bronze [apk_deep_trace]
 message MicrophoneOpenResponse {
-    required int32 status = 1;         // 0 = success, non-zero = error  // confidence: gold [apk_deep_trace]
-    optional int32 session_config = 2; // stored in ict.f36646d  // confidence: gold [apk_deep_trace]
+    required int32 status = 1; // 0 = success, non-zero = error  // confidence: bronze [apk_deep_trace]
+    optional int32 session_config = 2; // stored in ict.f36646d  // confidence: bronze [apk_deep_trace]
 }

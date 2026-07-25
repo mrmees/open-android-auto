@@ -15,44 +15,42 @@ from pathlib import Path
 
 import pytest
 
+from analysis.tools.seed_import.annotate import render_annotated_content
+
 REPO_ROOT = Path(__file__).resolve().parents[4]
 OAA_ROOT = REPO_ROOT / "oaa"
 
-def _find_annotated_protos_without_sidecar() -> list[Path]:
+
+def _find_protos_without_sidecar_drifting_from_renderer() -> list[Path]:
     """
-    Find .proto files with '// confidence:' annotations but no corresponding
-    .audit.yaml sidecar. Annotations without backing sidecars are orphans.
+    Find protos without sidecars whose confidence comments are not canonical.
     """
     if not OAA_ROOT.exists():
         return []
 
-    orphans = []
+    drifting = []
     for proto in sorted(OAA_ROOT.rglob("*.proto")):
-        content = proto.read_text(encoding="utf-8")
-        if "// confidence:" not in content:
-            continue
         sidecar = proto.with_suffix(".audit.yaml")
-        if not sidecar.exists():
-            # Check if confidence is "unverified" — that's expected without a sidecar
-            if "// confidence: unverified" in content:
-                continue
-            orphans.append(proto)
+        if sidecar.exists():
+            continue
+        content = proto.read_text(encoding="utf-8")
+        expected, _ = render_annotated_content(content, None)
+        if content != expected:
+            drifting.append(proto)
 
-    return orphans
+    return drifting
 
 
-ORPHAN_FILES = _find_annotated_protos_without_sidecar()
+ORPHAN_FILES = _find_protos_without_sidecar_drifting_from_renderer()
 
 
 @pytest.mark.skipif(
     not OAA_ROOT.exists(),
     reason="oaa/ directory not found — skipping annotation scope check",
 )
-def test_annotated_protos_with_non_unverified_tiers_have_sidecars():
+def test_protos_without_sidecars_match_unverified_renderer():
     """
-    Every proto file annotated with a non-unverified confidence tier must have
-    a corresponding .audit.yaml sidecar. Files annotated as 'unverified' are
-    allowed to lack sidecars (the annotation documents the absence of evidence).
+    Every proto without a sidecar must use the canonical unverified comments.
     """
     if not ORPHAN_FILES:
         return
@@ -63,8 +61,8 @@ def test_annotated_protos_with_non_unverified_tiers_have_sidecars():
     extra = f"\n  ... and {len(ORPHAN_FILES) - 20} more" if len(ORPHAN_FILES) > 20 else ""
 
     pytest.fail(
-        f"Found {len(ORPHAN_FILES)} proto file(s) with non-unverified confidence annotations "
-        f"but no corresponding .audit.yaml sidecar:\n  {file_list}{extra}"
+        f"Found {len(ORPHAN_FILES)} proto file(s) without sidecars whose confidence "
+        f"comments drift from the unverified renderer:\n  {file_list}{extra}"
     )
 
 

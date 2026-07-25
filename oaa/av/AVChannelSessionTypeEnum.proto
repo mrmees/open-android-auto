@@ -16,10 +16,10 @@ package oaa.proto.enums;
 
 // Verified via C0000a.m124bs/m104bY (16.2) — values 0, 1, 2 accepted.
 // Value 2 set when PDK >= 5.0 (hqg.java line 226).
-// confidence: gold [apk_deep_trace, 2026-03-06]
+// confidence: unverified
 message AVChannelSessionType
 {
-    // confidence: gold [apk_deep_trace, 2026-03-06]
+    // confidence: unverified
     enum Enum
     {
         SESSION_TYPE_UNKNOWN = 0;

@@ -17,10 +17,10 @@ package oaa.proto.messages;
  *
  * Verified: 2026-03-06, proto-verification pipeline
  */
-// confidence: gold [apk_deep_trace, 2026-03-06]
+// confidence: silver [apk_static, cross_version]
 message AVChannelSetupResponse
 {
-    required enums.AVChannelSetupStatus.Enum media_status = 1;  // Default=FAIL(1). Value 0 (NONE) is treated as invalid.  // confidence: gold [apk_deep_trace]
-    optional uint32 max_unacked = 2;  // Flow control window size. Must be > 0. Forced to 24 in ackless mode.  // confidence: gold [apk_deep_trace]
-    repeated uint32 configs = 3;  // Display/stream indices (used on video channel)  // confidence: gold [apk_deep_trace]
+    required enums.AVChannelSetupStatus.Enum media_status = 1; // Default=FAIL(1). Value 0 (NONE) is treated as invalid.  // confidence: silver [apk_static, cross_version]
+    optional uint32 max_unacked = 2; // Flow control window size. Must be > 0. Forced to 24 in ackless mode.  // confidence: silver [apk_static, cross_version]
+    repeated uint32 configs = 3; // Display/stream indices (used on video channel)  // confidence: silver [apk_static, cross_version]
 }

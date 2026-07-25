@@ -14,10 +14,10 @@ syntax="proto2";
 
 package oaa.proto.enums;
 
-// confidence: gold [deep_trace, 16.2 APK verified 2026-03-06]
+// confidence: gold [apk_static, cross_version, deep_trace]
 message PhoneCallState
 {
-    // confidence: gold [deep_trace, 16.2 APK verified 2026-03-06]
+    // confidence: gold [apk_static, cross_version, deep_trace]
     enum Enum
     {
         UNKNOWN = 0;

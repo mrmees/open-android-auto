@@ -11,14 +11,14 @@ package oaa.proto.messages;
 // APK class: wcu (AA v16.2), wde (AA v16.1)
 // Handler: hzh.java (control), method mo20034f
 // Value 0 is invalid (throws null in APK). Only 1 (START) and 2 (STOP) are valid.
-// confidence: gold [deep_trace, 16.2 APK verified 2026-03-06]
+// confidence: gold [apk_static, cross_version, deep_trace]
 enum VoiceSessionType {
     VOICE_SESSION_START = 1;
     VOICE_SESSION_STOP = 2;
 }
 
-// confidence: gold [deep_trace, 16.2 APK verified 2026-03-06]
+// confidence: gold [apk_static, cross_version, deep_trace]
 message VoiceSessionRequest
 {
-    optional VoiceSessionType session_type = 1;  // confidence: gold [deep_trace]
+    optional VoiceSessionType session_type = 1;  // confidence: gold [apk_static, cross_version, deep_trace]
 }

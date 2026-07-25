@@ -10,8 +10,8 @@ package oaa.proto.messages;
 // Direction: HU->Phone
 // Handler: hzh.java case 4 — status resolved via vyh (ProtocolStatus enum)
 // Also deserialized by qmg.java (alternate handler) and qex.java (debug printer)
-// confidence: gold [apk_deep_trace]
+// confidence: silver [apk_static, cross_version]
 message AuthCompleteIndication
 {
-    required int32 status = 1;  // vyh/ProtocolStatus enum value  // confidence: gold [apk_deep_trace]
+    required int32 status = 1; // vyh/ProtocolStatus enum value  // confidence: silver [apk_static, cross_version]
 }

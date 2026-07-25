@@ -6,9 +6,9 @@ syntax="proto2";
 package oaa.proto.data;
 
 // APK class: vzj (AA v16.2)
-// confidence: gold [deep_trace, 16.2 DB verified]
+// confidence: silver [apk_static, cross_version]
 message Odometer
 {
-    required int32 total_mileage = 1;  // confidence: gold
-    optional int32 trip_mileage = 2;  // confidence: gold
+    required int32 total_mileage = 1;  // confidence: silver [apk_static, cross_version]
+    optional int32 trip_mileage = 2;  // confidence: silver [apk_static, cross_version]
 }

@@ -8,8 +8,8 @@ import "oaa/sensor/GearEnum.proto";
 package oaa.proto.data;
 
 // APK class: vxb (AA v16.2) — uses closed enum (zxo.f90982a)
-// confidence: gold [deep_trace, 16.2 DB verified]
+// confidence: silver [apk_static, cross_version]
 message Gear
 {
-    required enums.Gear.Enum gear = 1;  // confidence: gold
+    required enums.Gear.Enum gear = 1;  // confidence: silver [apk_static, cross_version]
 }

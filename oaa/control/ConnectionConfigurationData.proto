@@ -22,164 +22,164 @@ import "oaa/common/PingConfigurationData.proto";
 
 package oaa.proto.data;
 
-// confidence: gold [16.2_db_verified]
+// confidence: retracted [apk_deep_trace, apk_static, cross_version]
 message ConnectionConfiguration {
-    optional PingConfiguration ping_configuration = 1; // APK: zyd (16.1) → zxk (16.2)  // confidence: gold
+    optional PingConfiguration ping_configuration = 1; // APK: zyd (16.1) → zxk (16.2)  // confidence: retracted [apk_deep_trace, apk_static, cross_version]
 
     oneof config_type {
-        ConnectionSecurityConfig security_config = 2; // APK: aajj (16.1) → aaip (16.2)  // confidence: gold
-        ConnectionTransportConfig transport_config = 3; // APK: aajh (16.1) → aain (16.2)  // confidence: gold
-        ConnectionFeatureFlags feature_flags = 4; // APK: aaja (16.1) → aaig (16.2)  // confidence: gold
-        ConnectionTuningConfig tuning_config = 5; // APK: aajg (16.1) → aaim (16.2)  // confidence: gold
-        ConnectionReservedConfig reserved_config = 6; // APK: aaji (16.1) → aaio (16.2, empty)  // confidence: gold
+        ConnectionSecurityConfig security_config = 2; // APK: aajj (16.1) → aaip (16.2)  // confidence: retracted [apk_deep_trace, apk_static, cross_version]
+        ConnectionTransportConfig transport_config = 3; // APK: aajh (16.1) → aain (16.2)  // confidence: retracted [apk_deep_trace, apk_static, cross_version]
+        ConnectionFeatureFlags feature_flags = 4; // APK: aaja (16.1) → aaig (16.2)  // confidence: retracted [apk_deep_trace, apk_static, cross_version]
+        ConnectionTuningConfig tuning_config = 5; // APK: aajg (16.1) → aaim (16.2)  // confidence: retracted [apk_deep_trace, apk_static, cross_version]
+        ConnectionReservedConfig reserved_config = 6; // APK: aaji (16.1) → aaio (16.2, empty)  // confidence: retracted [apk_deep_trace, apk_static, cross_version]
     }
 }
 
 // Connection security mode for the AA protocol link
 // APK class: aajj (16.1) → aaip (16.2)
-// confidence: gold [16.2_db_verified]
+// confidence: retracted [apk_deep_trace, apk_static, cross_version]
 enum ConnectionSecurityMode {
     CONNECTION_SECURITY_UNKNOWN = 0;
     CONNECTION_SECURITY_ENCRYPTED = 1;
 }
 
 // APK class: aajj (16.1) → aaip (16.2) — 1 enum field
-// confidence: gold [16.2_db_verified]
+// confidence: retracted [apk_deep_trace, apk_static, cross_version]
 message ConnectionSecurityConfig {
-    optional ConnectionSecurityMode security_mode = 1;  // confidence: gold
+    optional ConnectionSecurityMode security_mode = 1;  // confidence: retracted [apk_deep_trace, apk_static, cross_version]
 }
 
 // APK class: aajh (16.1) → aain (16.2) — 2 sub-message fields (fields 2-3, no field 1)
-// confidence: gold [16.2_db_verified]
+// confidence: retracted [apk_deep_trace, apk_static, cross_version]
 message ConnectionTransportConfig {
-    optional TransportMetadata transport_metadata = 2; // APK: aajt (16.1) → aaiz (16.2)  // confidence: gold
-    optional TransportSecurityConfig transport_security = 3; // APK: aakd (16.1) → aajj (16.2)  // confidence: gold
+    optional TransportMetadata transport_metadata = 2; // APK: aajt (16.1) → aaiz (16.2)  // confidence: retracted [apk_deep_trace, apk_static, cross_version]
+    optional TransportSecurityConfig transport_security = 3; // APK: aakd (16.1) → aajj (16.2)  // confidence: retracted [apk_deep_trace, apk_static, cross_version]
 }
 
 // APK class: aaja (16.1) → aaig (16.2) — single bool
-// confidence: gold [16.2_db_verified]
+// confidence: retracted [apk_deep_trace, apk_static, cross_version]
 message ConnectionFeatureFlags {
-    optional bool enabled = 1;  // confidence: gold
+    optional bool enabled = 1;  // confidence: retracted [apk_deep_trace, apk_static, cross_version]
 }
 
 // APK class: aajg (16.1) → aaim (16.2) — uint32 + oneof with 4 sub-messages
-// confidence: gold [16.2_db_verified]
+// confidence: retracted [apk_deep_trace, apk_static, cross_version]
 message ConnectionTuningConfig {
-    optional uint32 timeout_ms = 1;  // confidence: gold
+    optional uint32 timeout_ms = 1;  // confidence: retracted [apk_deep_trace, apk_static, cross_version]
 
     oneof tuning_params {
-        TuningParamsA tuning_a = 2; // APK: aajf (16.1) → aail (16.2)  // confidence: gold
-        TuningParamsB tuning_b = 3; // APK: aajb (16.1) → aaih (16.2)  // confidence: gold
-        TuningParamsC tuning_c = 4; // APK: aajd (16.1) → aaij (16.2)  // confidence: gold
-        TuningParamsD tuning_d = 5; // APK: aajc (16.1) → aaii (16.2)  // confidence: gold
+        TuningParamsA tuning_a = 2; // APK: aajf (16.1) → aail (16.2)  // confidence: retracted [apk_deep_trace, apk_static, cross_version]
+        TuningParamsB tuning_b = 3; // APK: aajb (16.1) → aaih (16.2)  // confidence: retracted [apk_deep_trace, apk_static, cross_version]
+        TuningParamsC tuning_c = 4; // APK: aajd (16.1) → aaij (16.2)  // confidence: retracted [apk_deep_trace, apk_static, cross_version]
+        TuningParamsD tuning_d = 5; // APK: aajc (16.1) → aaii (16.2)  // confidence: retracted [apk_deep_trace, apk_static, cross_version]
     }
 }
 
 // APK class: aaji (16.1) → aaio (16.2) — empty message
-// confidence: gold [16.2_db_verified]
+// confidence: retracted [apk_deep_trace, apk_static, cross_version]
 message ConnectionReservedConfig {
 }
 
 // APK class: aajt (16.1) → aaiz (16.2) — transport metadata
-// confidence: gold [16.2_db_verified]
+// confidence: retracted [apk_deep_trace, apk_static, cross_version]
 message TransportMetadata {
-    optional TransportCapabilities capabilities = 1; // APK: aajs (16.1) → aaiy (16.2)  // confidence: gold
-    string transport_name = 2;  // confidence: gold
+    optional TransportCapabilities capabilities = 1; // APK: aajs (16.1) → aaiy (16.2)  // confidence: retracted [apk_deep_trace, apk_static, cross_version]
+    string transport_name = 2;  // confidence: retracted [apk_deep_trace, apk_static, cross_version]
 }
 
 // APK class: aajs (16.1) → aaiy (16.2) — transport capability details
-// confidence: gold [16.2_db_verified]
+// confidence: retracted [apk_deep_trace, apk_static, cross_version]
 message TransportCapabilities {
-    repeated TransportCapabilityEntry entries = 1;  // confidence: gold
-    repeated string supported_protocols = 2;  // confidence: gold
+    repeated TransportCapabilityEntry entries = 1;  // confidence: retracted [apk_deep_trace, apk_static, cross_version]
+    repeated string supported_protocols = 2;  // confidence: retracted [apk_deep_trace, apk_static, cross_version]
 }
 
 // APK class: aaix (16.2) — transport capability entry
-// confidence: gold [16.2_db_verified]
+// confidence: retracted [apk_deep_trace, apk_static, cross_version]
 message TransportCapabilityEntry {
-    string key = 1;    // confidence: gold
-    string value = 2;  // confidence: gold
+    string key = 1;  // confidence: retracted [apk_deep_trace, apk_static, cross_version]
+    string value = 2;  // confidence: retracted [apk_deep_trace, apk_static, cross_version]
 }
 
 // APK class: aakd (16.1) → aajj (16.2) — transport security configuration
-// confidence: gold [16.2_db_verified]
+// confidence: retracted [apk_deep_trace, apk_static, cross_version]
 message TransportSecurityConfig {
-    optional TransportSecurityEntry security_entry = 1;  // confidence: gold
+    optional TransportSecurityEntry security_entry = 1;  // confidence: retracted [apk_deep_trace, apk_static, cross_version]
 }
 
 // APK class: aakc (16.1) → aaji (16.2) — security entry wrapper
-// confidence: gold [16.2_db_verified]
+// confidence: retracted [apk_deep_trace, apk_static, cross_version]
 message TransportSecurityEntry {
-    optional TransportSecurityDetail detail = 2;  // confidence: gold
+    optional TransportSecurityDetail detail = 2;  // confidence: retracted [apk_deep_trace, apk_static, cross_version]
 }
 
 // APK class: aakb (16.1) → aajh (16.2) — security detail with 2 sub-messages
-// confidence: gold [16.2_db_verified]
+// confidence: retracted [apk_deep_trace, apk_static, cross_version]
 message TransportSecurityDetail {
-    optional TransportSecurityCertChain cert_chain = 1;  // APK: aajg (5 strings)  // confidence: gold
-    optional TransportSecurityParams params = 2;         // APK: aajf (repeated aaje)  // confidence: gold
+    optional TransportSecurityCertChain cert_chain = 1; // APK: aajg (5 strings)  // confidence: retracted [apk_deep_trace, apk_static, cross_version]
+    optional TransportSecurityParams params = 2; // APK: aajf (repeated aaje)  // confidence: retracted [apk_deep_trace, apk_static, cross_version]
 }
 
 // APK class: aajg (16.2) — certificate/security strings (5 fields)
-// confidence: gold [16.2_db_verified]
+// confidence: retracted [apk_deep_trace, apk_static, cross_version]
 message TransportSecurityCertChain {
-    string field_1 = 1;  // confidence: gold
-    string field_2 = 2;  // confidence: gold
-    string field_3 = 3;  // confidence: gold
-    string field_4 = 4;  // confidence: gold
-    string field_5 = 5;  // confidence: gold
+    string field_1 = 1;  // confidence: retracted [apk_deep_trace, apk_static, cross_version]
+    string field_2 = 2;  // confidence: retracted [apk_deep_trace, apk_static, cross_version]
+    string field_3 = 3;  // confidence: retracted [apk_deep_trace, apk_static, cross_version]
+    string field_4 = 4;  // confidence: retracted [apk_deep_trace, apk_static, cross_version]
+    string field_5 = 5;  // confidence: retracted [apk_deep_trace, apk_static, cross_version]
 }
 
 // APK class: aajf (16.2) — security parameters
-// confidence: gold [16.2_db_verified]
+// confidence: retracted [apk_deep_trace, apk_static, cross_version]
 message TransportSecurityParams {
-    repeated TransportSecurityParamEntry entries = 1;  // APK: aaje  // confidence: gold
+    repeated TransportSecurityParamEntry entries = 1; // APK: aaje  // confidence: retracted [apk_deep_trace, apk_static, cross_version]
 }
 
 // APK class: aaje (16.2) — security param key/value pair
-// confidence: gold [16.2_db_verified, jadx_confirmed]
+// confidence: retracted [apk_deep_trace, apk_static, cross_version]
 message TransportSecurityParamEntry {
-    string key = 1;    // confidence: gold
-    string value = 2;  // confidence: gold
+    string key = 1;  // confidence: retracted [apk_deep_trace, apk_static, cross_version]
+    string value = 2;  // confidence: retracted [apk_deep_trace, apk_static, cross_version]
 }
 
 // APK class: aajf (16.1) → aail (16.2) — 1 optional message field
-// confidence: gold [16.2_db_verified]
+// confidence: retracted [apk_deep_trace, apk_static, cross_version]
 message TuningParamsA {
-    optional TuningEntry detail = 1;  // APK: aaik  // confidence: gold
+    optional TuningEntry detail = 1; // APK: aaik  // confidence: retracted [apk_deep_trace, apk_static, cross_version]
 }
 
 // APK class: aajb (16.1) → aaih (16.2) — 1 repeated message field
-// confidence: gold [16.2_db_verified]
+// confidence: retracted [apk_deep_trace, apk_static, cross_version]
 message TuningParamsB {
-    repeated TuningEntry entries = 1;  // APK: aaik  // confidence: gold
+    repeated TuningEntry entries = 1; // APK: aaik  // confidence: retracted [apk_deep_trace, apk_static, cross_version]
 }
 
 // APK class: aajd (16.1) → aaij (16.2) — 1 optional message field
-// confidence: gold [16.2_db_verified]
+// confidence: retracted [apk_deep_trace, apk_static, cross_version]
 message TuningParamsC {
-    optional TuningEntry detail = 1;  // APK: aaik  // confidence: gold
+    optional TuningEntry detail = 1; // APK: aaik  // confidence: retracted [apk_deep_trace, apk_static, cross_version]
 }
 
 // APK class: aajc (16.1) → aaii (16.2) — 1 string field
-// confidence: gold [16.2_db_verified]
+// confidence: retracted [apk_deep_trace, apk_static, cross_version]
 message TuningParamsD {
-    string value = 1;  // confidence: gold
+    string value = 1;  // confidence: retracted [apk_deep_trace, apk_static, cross_version]
 }
 
 // APK class: aaik (16.2) — shared tuning entry used by TuningParamsA/B/C
 // All three reference the same APK class.
-// confidence: gold [16.2_db_verified]
+// confidence: retracted [apk_deep_trace, apk_static, cross_version]
 message TuningEntry {
-    optional TuningEntryType type = 1;   // enum  // confidence: gold
-    optional uint32 value = 2;           // confidence: gold
-    string label = 3;                    // confidence: gold
+    optional TuningEntryType type = 1; // enum  // confidence: retracted [apk_deep_trace, apk_static, cross_version]
+    optional uint32 value = 2;  // confidence: retracted [apk_deep_trace, apk_static, cross_version]
+    string label = 3;  // confidence: retracted [apk_deep_trace, apk_static, cross_version]
 }
 
 // Enum for TuningEntry field 1
 // Wire decoder: C0000a.m131bz() maps wire 0→2, 1→3, 2→4, 3→5, else→0
 // Semantic meaning of values 2-5 unknown (timeout? retry? buffer size?)
-// confidence: gold [16.2_code_traced]
+// confidence: retracted [apk_deep_trace, apk_static, cross_version]
 enum TuningEntryType {
     TUNING_ENTRY_UNKNOWN = 0;
     // value 1 unused (fallback when decode fails)

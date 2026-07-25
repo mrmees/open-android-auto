@@ -34,7 +34,7 @@ import "oaa/media/CarLocalMediaPlaybackStatusMessage.proto";
 package oaa.proto.messages;
 
 // APK class: vwr (16.1) / vwd (16.2)
-// confidence: gold [apk_deep_trace, 2026-03-06]
+// confidence: silver [apk_deep_trace, apk_static, cross_version]
 message CarLocalMediaPlaybackRequest {
-    optional CarLocalMediaPlaybackAction action = 1;  // confidence: gold [apk_deep_trace]
+    optional CarLocalMediaPlaybackAction action = 1;  // confidence: silver [apk_deep_trace, apk_static, cross_version]
 }

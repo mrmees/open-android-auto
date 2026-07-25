@@ -29,7 +29,7 @@ package oaa.proto.enums;
 // Bitmask values — combine with bitwise OR
 // 16.2: field 2 of wbk (SensorChannelConfig), uint32
 // Phone stores as opaque value — individual bits only meaningful to HU
-// confidence: silver [cross_referenced, apk_field_confirmed]
+// confidence: unverified
 enum LocationCharacterization {
     LOCATION_PRIOR_LOCATIONS = 1;           // Uses prior location history
     LOCATION_GYROSCOPE_FUSION = 2;          // Gyroscope-aided positioning

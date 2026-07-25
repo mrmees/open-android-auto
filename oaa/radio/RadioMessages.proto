@@ -48,7 +48,7 @@ package oaa.proto.messages;
 // ============================================================================
 
 // Radio program identifier type (16.2: wai, 16.1: waq)
-// confidence: gold [apk_deep_trace]
+// confidence: silver [apk_static, cross_version]
 enum RadioIdentifierType {
     IDENTIFIER_TYPE_INVALID = 0;
     IDENTIFIER_TYPE_AMFM_FREQUENCY = 1;
@@ -63,7 +63,7 @@ enum RadioIdentifierType {
 }
 
 // Tune response status (16.2: C0000a.m80bA, 16.1: a.by, values 1-4)
-// confidence: gold [apk_deep_trace]
+// confidence: silver [apk_static, cross_version]
 enum RadioTuneStatus {
     RADIO_TUNE_STATUS_UNKNOWN = 0;
     RADIO_TUNE_STATUS_SUCCESS = 1;
@@ -73,7 +73,7 @@ enum RadioTuneStatus {
 }
 
 // Tune direction for seek/step (16.2: vdp.m36490W, 16.1: viz.M, values 1-2)
-// confidence: gold [apk_deep_trace]
+// confidence: silver [apk_static, cross_version]
 enum RadioTuneDirection {
     RADIO_TUNE_DIRECTION_UNKNOWN = 0;
     RADIO_TUNE_DIRECTION_UP = 1;
@@ -86,72 +86,72 @@ enum RadioTuneDirection {
 
 // Identifies a specific radio program/station.
 // 16.2: waj, 16.1: war
-// confidence: gold [apk_deep_trace]
+// confidence: silver [apk_static, cross_version]
 message RadioProgramIdentifier {
-    optional RadioIdentifierType type = 1;  // confidence: gold [apk_deep_trace]
-    optional uint64 value = 2; // Frequency in Hz for AM/FM, or station ID for HD/DAB  // confidence: gold [apk_deep_trace]
+    optional RadioIdentifierType type = 1;  // confidence: silver [apk_static, cross_version]
+    optional uint64 value = 2; // Frequency in Hz for AM/FM, or station ID for HD/DAB  // confidence: silver [apk_static, cross_version]
 }
 
 // Selects a program via primary + optional secondary identifiers.
 // 16.2: wan, 16.1: wav
-// confidence: gold [apk_deep_trace]
+// confidence: silver [apk_static, cross_version]
 message RadioProgramSelector {
-    optional RadioProgramIdentifier primary_identifier = 1;  // confidence: gold [apk_deep_trace]
-    repeated RadioProgramIdentifier secondary_identifiers = 2;  // confidence: gold [apk_deep_trace]
+    optional RadioProgramIdentifier primary_identifier = 1;  // confidence: silver [apk_static, cross_version]
+    repeated RadioProgramIdentifier secondary_identifiers = 2;  // confidence: silver [apk_static, cross_version]
 }
 
 // Station icon or album art image data.
 // 16.2: wae, 16.1: wam
-// confidence: gold [apk_deep_trace]
+// confidence: silver [apk_static, cross_version]
 message RadioImage {
-    optional bytes image_data = 1;  // confidence: gold [apk_deep_trace]
+    optional bytes image_data = 1;  // confidence: silver [apk_static, cross_version]
 }
 
 // Program type classification (RDS PTY / ITU).
 // 16.2: wao, 16.1: waw
-// confidence: gold [apk_deep_trace]
+// confidence: silver [apk_static, cross_version]
 message RadioProgramType {
-    optional enums.RadioProgramTypeSchema.Enum schema = 1; // 1=RDS_PTY, 2=ITU  // confidence: gold [apk_deep_trace]
-    optional uint32 code = 2;  // confidence: gold [apk_deep_trace]
+    optional enums.RadioProgramTypeSchema.Enum schema = 1; // 1=RDS_PTY, 2=ITU  // confidence: silver [apk_static, cross_version]
+    optional uint32 code = 2;  // confidence: silver [apk_static, cross_version]
 }
 
 // Currently playing song information.
 // 16.2: was, 16.1: wbb
-// confidence: gold [apk_deep_trace]
+// confidence: silver [apk_static, cross_version]
 message RadioSongMetadata {
-    optional string title = 1;  // confidence: gold [apk_deep_trace]
-    optional string artist = 2;  // confidence: gold [apk_deep_trace]
-    optional string album = 3;  // confidence: gold [apk_deep_trace]
-    optional string genre = 4;  // confidence: gold [apk_deep_trace]
-    optional RadioImage album_art = 5;  // confidence: gold [apk_deep_trace]
-    optional uint64 duration_seconds = 6;  // confidence: gold [apk_deep_trace]
+    optional string title = 1;  // confidence: silver [apk_static, cross_version]
+    optional string artist = 2;  // confidence: silver [apk_static, cross_version]
+    optional string album = 3;  // confidence: silver [apk_static, cross_version]
+    optional string genre = 4;  // confidence: silver [apk_static, cross_version]
+    optional RadioImage album_art = 5;  // confidence: silver [apk_static, cross_version]
+    optional uint64 duration_seconds = 6;  // confidence: silver [apk_static, cross_version]
 }
 
 // Full station metadata including HD Radio and DAB fields.
 // 16.2: waf, 16.1: wan
-// confidence: gold [apk_deep_trace]
+// confidence: silver [apk_static, cross_version]
 message RadioMetadata {
-    optional string station_name = 1;  // confidence: gold [apk_deep_trace]
-    optional string station_name_short = 2;  // confidence: gold [apk_deep_trace]
-    optional string station_name_long = 3;  // confidence: gold [apk_deep_trace]
-    optional RadioProgramType program_type = 4;  // confidence: gold [apk_deep_trace]
-    optional RadioImage station_icon = 5;  // confidence: gold [apk_deep_trace]
-    optional RadioSongMetadata song_metadata = 6;  // confidence: gold [apk_deep_trace]
-    optional string message = 7; // Station text message / RDS RadioText  // confidence: gold [apk_deep_trace]
-    optional string service_name = 8; // DAB service name  // confidence: gold [apk_deep_trace]
-    optional uint32 hd_sub_channels_available = 9;  // confidence: gold [apk_deep_trace]
-    optional bool hd_signal_acquired = 10;  // confidence: gold [apk_deep_trace]
-    optional bool hd_audio_acquired = 11;  // confidence: gold [apk_deep_trace]
-    optional string dab_component_name = 12;  // confidence: gold [apk_deep_trace]
-    optional bool dts_autostage_enriched = 13;  // confidence: gold [apk_deep_trace]
+    optional string station_name = 1;  // confidence: silver [apk_static, cross_version]
+    optional string station_name_short = 2;  // confidence: silver [apk_static, cross_version]
+    optional string station_name_long = 3;  // confidence: silver [apk_static, cross_version]
+    optional RadioProgramType program_type = 4;  // confidence: silver [apk_static, cross_version]
+    optional RadioImage station_icon = 5;  // confidence: silver [apk_static, cross_version]
+    optional RadioSongMetadata song_metadata = 6;  // confidence: silver [apk_static, cross_version]
+    optional string message = 7; // Station text message / RDS RadioText  // confidence: silver [apk_static, cross_version]
+    optional string service_name = 8; // DAB service name  // confidence: silver [apk_static, cross_version]
+    optional uint32 hd_sub_channels_available = 9;  // confidence: silver [apk_static, cross_version]
+    optional bool hd_signal_acquired = 10;  // confidence: silver [apk_static, cross_version]
+    optional bool hd_audio_acquired = 11;  // confidence: silver [apk_static, cross_version]
+    optional string dab_component_name = 12;  // confidence: silver [apk_static, cross_version]
+    optional bool dts_autostage_enriched = 13;  // confidence: silver [apk_static, cross_version]
 }
 
 // A radio program entry — selector + metadata.
 // 16.2: wak, 16.1: was
-// confidence: gold [apk_deep_trace]
+// confidence: silver [apk_static, cross_version]
 message RadioProgramInfo {
-    optional RadioProgramSelector program_selector = 1;  // confidence: gold [apk_deep_trace]
-    optional RadioMetadata metadata = 2;  // confidence: gold [apk_deep_trace]
+    optional RadioProgramSelector program_selector = 1;  // confidence: silver [apk_static, cross_version]
+    optional RadioMetadata metadata = 2;  // confidence: silver [apk_static, cross_version]
 }
 
 // ============================================================================
@@ -160,39 +160,39 @@ message RadioProgramInfo {
 
 // 0x801A: RadioProgramListNotification (16.2: wam, 16.1: wau)
 // Full list of available radio programs.
-// confidence: gold [apk_deep_trace]
+// confidence: silver [apk_static, cross_version]
 message RadioProgramListNotification {
-    repeated RadioProgramInfo programs = 1;  // confidence: gold [apk_deep_trace]
+    repeated RadioProgramInfo programs = 1;  // confidence: silver [apk_static, cross_version]
 }
 
 // 0x801B: RadioProgramInfoNotification (16.2: wal, 16.1: wat)
 // Current program info update (e.g., station changed, metadata updated).
-// confidence: gold [apk_deep_trace]
+// confidence: silver [apk_static, cross_version]
 message RadioProgramInfoNotification {
-    optional RadioProgramInfo program_info = 1;  // confidence: gold [apk_deep_trace]
-    optional bool is_muted = 2;  // confidence: gold [apk_deep_trace]
-    optional bool has_audio_focus = 3;  // confidence: gold [apk_deep_trace]
+    optional RadioProgramInfo program_info = 1;  // confidence: silver [apk_static, cross_version]
+    optional bool is_muted = 2;  // confidence: silver [apk_static, cross_version]
+    optional bool has_audio_focus = 3;  // confidence: silver [apk_static, cross_version]
 }
 
 // 0x801D: RadioMuteResponse (16.2: wah, 16.1: wap)
 // Response to mute request.
-// confidence: gold [apk_deep_trace]
+// confidence: silver [apk_static, cross_version]
 message RadioMuteResponse {
-    optional bool is_muted = 1;  // confidence: gold [apk_deep_trace]
+    optional bool is_muted = 1;  // confidence: silver [apk_static, cross_version]
 }
 
 // 0x801F: RadioTuneResponse (16.2: wau, 16.1: wbd)
 // Response to tune request with status.
-// confidence: gold [apk_deep_trace]
+// confidence: silver [apk_static, cross_version]
 message RadioTuneResponse {
-    optional RadioTuneStatus status = 1;  // confidence: gold [apk_deep_trace]
+    optional RadioTuneStatus status = 1;  // confidence: silver [apk_static, cross_version]
 }
 
 // 0x8020: RadioFavoriteListNotification (16.2: wad, 16.1: wal)
 // List of favorite/preset programs.
-// confidence: gold [apk_deep_trace]
+// confidence: silver [apk_static, cross_version]
 message RadioFavoriteListNotification {
-    repeated RadioProgramInfo favorites = 1;  // confidence: gold [apk_deep_trace]
+    repeated RadioProgramInfo favorites = 1;  // confidence: silver [apk_static, cross_version]
 }
 
 // ============================================================================
@@ -200,35 +200,35 @@ message RadioFavoriteListNotification {
 // ============================================================================
 
 // 0x801C: RadioMuteRequest (16.2: wag, 16.1: wao)
-// confidence: gold [apk_deep_trace]
+// confidence: silver [apk_static, cross_version]
 message RadioMuteRequest {
-    optional bool mute = 1;  // confidence: gold [apk_deep_trace]
+    optional bool mute = 1;  // confidence: silver [apk_static, cross_version]
 }
 
 // 0x801E: RadioTuneRequest (16.2: wat, 16.1: wbc)
 // Tune to a specific program by selector.
-// confidence: gold [apk_deep_trace]
+// confidence: silver [apk_static, cross_version]
 message RadioTuneRequest {
-    optional RadioProgramSelector program_selector = 1;  // confidence: gold [apk_deep_trace]
+    optional RadioProgramSelector program_selector = 1;  // confidence: silver [apk_static, cross_version]
 }
 
 // 0x8021: RadioFavoriteToggleRequest (16.2: waq, 16.1: waz)
 // Toggle current program as favorite.
-// confidence: gold [apk_deep_trace]
+// confidence: silver [apk_static, cross_version]
 message RadioFavoriteToggleRequest {
-    optional bool is_favorite = 1;  // confidence: gold [apk_deep_trace]
+    optional bool is_favorite = 1;  // confidence: silver [apk_static, cross_version]
 }
 
 // 0x8022: RadioTuneDirectionRequest (16.2: war, 16.1: wba)
 // Seek up/down to next available station.
-// confidence: gold [apk_deep_trace]
+// confidence: silver [apk_static, cross_version]
 message RadioTuneDirectionRequest {
-    optional RadioTuneDirection direction = 1;  // confidence: gold [apk_deep_trace]
+    optional RadioTuneDirection direction = 1;  // confidence: silver [apk_static, cross_version]
 }
 
 // 0x8023: RadioSearchRequest (16.2: wac — NEW in 16.2)
 // Search for radio stations by query string.
-// confidence: gold [apk_deep_trace]
+// confidence: silver [apk_static, cross_version]
 message RadioSearchRequest {
-    optional string query = 1;  // confidence: gold [apk_deep_trace]
+    optional string query = 1;  // confidence: silver [apk_static, cross_version]
 }

@@ -27,7 +27,8 @@ package oaa.proto.messages;
  *
  * confidence: gold [deep_trace, handler_verified]
  */
+// confidence: gold [apk_deep_trace, cross_version]
 message UpdateUiConfigRequest
 {
-    optional oaa.proto.data.AdditionalVideoConfig config = 1;  // wcb (16.2) / wcm (16.1)  // confidence: gold [deep_trace]
+    optional oaa.proto.data.AdditionalVideoConfig config = 1; // wcb (16.2) / wcm (16.1)  // confidence: gold [apk_deep_trace, cross_version]
 }

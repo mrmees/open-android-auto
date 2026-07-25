@@ -11,8 +11,8 @@ package oaa.proto.messages;
 // Notifies the phone that integrated overlay projection has started.
 // Field 1 is passed to the phone-side display callback.
 // Previously misidentified as VideoFocusNotification — field 1 is NOT a focus mode.
-// confidence: gold [deep_trace, handler_verified]
+// confidence: gold [apk_deep_trace, cross_version]
 message IntegratedOverlayStartNotification
 {
-    optional int32 display_session_id = 1;  // confidence: gold [deep_trace]
+    optional int32 display_session_id = 1;  // confidence: gold [apk_deep_trace, cross_version]
 }
