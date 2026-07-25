@@ -2419,8 +2419,8 @@ Why:
   example
 
 Status:
-- GREEN: the canonical files are unchanged; only the manifest gate and this
-  handoff are tracked Fix Round 2 changes
+- Superseded by Fix Round 3: the canonical files remained unchanged, but later
+  review found suffix-dependent escapes in the transport cardinality matcher
 - Task 13 ownership and the two recorded audit follow-ups are unchanged
 
 Next Steps:
@@ -2444,3 +2444,53 @@ Verification:
   Markdown tables, scoped and broad canonical stale scans pass, exact tracked
   scope 2/2, and `git diff --check` passes
 - Independent review -> no Critical, Important, or Minor findings
+
+## 2026-07-25 — Task 12 Fix Round 3: close display example comment escape
+
+Date / Session: 2026-07-25 / android-auto-17.3-update-task-12-fix-3
+
+What Changed:
+- Strengthened CHG-ID-AV-F6 to count every guide line whose first identifier
+  is `channel_id` followed by optional whitespace and a colon, independent of
+  value or comment suffix, and require exactly one such line
+- Separately requires that sole line to encode numeric value 3 and contain the
+  `Transport video channel` qualification anywhere after the value
+- Made the logical MAIN `display_id` example tolerant of no-gap and alternate
+  comment formatting while still requiring exact numeric value 0
+- Retained the compiled AV field-6 descriptor assertion from Fix Round 2 and
+  kept the Markdown command cell free of raw pipe characters
+
+Why:
+- Review found that suffixes beginning immediately after value 3 could evade
+  the prior value-specific count, while valid no-gap comments were rejected
+
+Status:
+- GREEN: only the manifest gate and this handoff are tracked changes; no
+  canonical protocol file or Task 13-owned surface changed
+
+Next Steps:
+1. Task 13: synchronize only its authorized reports and audit sidecars
+2. Continue to treat the guide's single transport example and nested logical
+   display example as separate identity domains
+
+Verification:
+- RED mutations -> appended `channel_id:3//`, `channel_id:3; //`, and
+  `channel_id:3/* */` variants escaped the Fix Round 2 count; qualified no-gap
+  transport and logical-display comments were rejected
+- GREEN matrix -> all appended or duplicate `channel_id` example/value lines,
+  removal, and unqualified sole lines are rejected; qualified no-gap transport
+  and harmless logical-display spacing/comment variants are accepted
+- Independent review -> corrected an overbroad non-digit boundary that accepted
+  malformed `3garbage`/`0garbage` values; the final matcher requires a
+  whitespace, slash-comment, or semicolon delimiter after the exact value
+- Focused re-review -> no remaining Critical or Important findings; the
+  expanded matrix accepts the intended formats and rejects 9/9 duplicate,
+  removal, unqualified, and malformed variants
+- Exact changed/full descriptor sets -> exit 0, 5,085 and 105,152 bytes
+- Manifest commands -> all 10 fully Task 12-owned rows pass; all seven shared
+  Task 12-owned portions pass; full shared failures remain Task 13 report work
+- Manifest integrity -> 59/59 traceability and command syntax, exact
+  20/21/40 allowlists, 16 audit mappings, and unchanged Task 13 ownership
+- Documentation/stale/scope -> local-link and Markdown-table checks, scoped and
+  broad canonical stale scans, exact tracked scope 2/2, and `git diff --check`
+  pass
