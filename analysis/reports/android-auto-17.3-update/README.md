@@ -16,10 +16,22 @@
 | New services | closed (confirmed-static) | All CarIntent, CarLocalMedia, and BufferedMedia rows are closed in [`services.md`](services.md). CarLocalMedia value 5 and BufferedMedia IDs 1-3/outbound paths remain explicitly deferred; 17.3 directly proves a gated service-type-21 parser for incoming ID 4, not runtime activation or a complete transfer protocol. |
 | Runtime validation | closed (runtime-unverified) | [`runtime-validation.md`](runtime-validation.md) records no ADB `device` row and an unavailable `frida` capture dependency; no traffic, logcat clear, or ignored capture artifact was attempted. |
 | Canonical publication | closed (confirmed-static) | Tasks 11-13 synchronized canonical protos, 17.3 audit provenance, shared verification reports, coverage, channel/cross-version docs, and the downstream Prodigy handoff. The committed matcher pair remains verify-only because Task 1 rejected the three unreviewed fresh-delta rows. |
-| Final verification and handoff | open | final handoff entry |
+| Final verification and handoff | closed (confirmed-static; runtime evidence unchanged) | Task 14 compiled all 247 active protos, ran the expanded 736-test tool suite, validated all five non-media baselines after a closed nine-group normalized-name refresh, passed all 66 manifest commands, and preserved the six explicit runtime-unverified probes. |
+
+## Final Claim Census
+
+The dossier contains 50 rows with confirmed-static content, 0
+runtime-confirmed rows, 4 deferred-bearing rows, and 6 runtime-unverified probe
+rows. This is a dimensional count: the mixed `SVC-BUF-IDS` row contributes to
+both confirmed-static (incoming ID 4) and deferred (IDs 1-3/outbound), matching
+its explicit status instead of flattening it into either category. The source
+breakdown is 40 confirmed-static plus 1 deferred message/identity row; 9
+confirmed-static-only, 2 deferred-only, and 1 mixed service row; and 6
+runtime-unverified runtime-probe rows.
+
+Runtime capture remained conditional and unavailable. No Task 14 result
+promotes static source evidence to runtime confirmation.
 
 ## Resume Here
 
-- Last completed task: Task 13, audit/report/coverage/documentation synchronization
-- Next task: Task 14, run the final release gate and complete the release handoff
-- Next command: `mkdir -p /tmp/oaa-17-3-release && protoc --proto_path=. --descriptor_set_out=/tmp/oaa-17-3-release/all.pb $(find oaa -name '*.proto' -print | sort)`
+Release complete; next work is downstream Prodigy integration or a future capture-confidence pass.

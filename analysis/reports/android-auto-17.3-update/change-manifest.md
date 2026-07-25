@@ -1,8 +1,9 @@
 # Change Manifest
 
-This is the frozen publication contract for Tasks 11-13. A later task may
-modify only a file in its exact allowed-file set below, and only for the
-semantic change attached to the cited change ID. `planned` means accepted for
+This is the frozen publication contract for Tasks 11-13 plus the bounded Task
+14 baseline-refresh extension. A later task may modify only a file in its exact
+allowed-file set below, and only for the semantic change attached to the cited
+change ID. `planned` means accepted for
 static publication, not runtime-confirmed. `no canonical change` and
 `deferred` rows are retained so closed evidence cannot disappear silently.
 When a row spans tasks, a task may touch only the row paths also present in
@@ -67,12 +68,122 @@ the other task's files.
 | CHG-BUF-IDS | SVC-BUF-IDS | `oaa/media/BufferedMediaSinkMessage.proto`; `docs/channels/media.md`; `analysis/reports/proto-verification/media.md` | Publish only incoming raw ID 4; explicitly leave IDs 1-3 and every outbound path unknown. | Validator range acceptance is not endpoint meaning or send evidence. | `for target in oaa/media/BufferedMediaSinkMessage.proto docs/channels/media.md analysis/reports/proto-verification/media.md; do if ! rg -n 'raw ID 4.*HU -> Phone' "$target"; then exit 1; fi; if ! rg -n 'IDs 1-3.*unknown' "$target"; then exit 1; fi; done && rg -n 'outbound.*unknown' docs/channels/media.md && rg -n 'outbound.*unknown' analysis/reports/proto-verification/media.md` | ID 4 canonical/docs applied and IDs 1-3/outbound deferred (Task 12); media report synchronized (Task 13) |
 | CHG-BUF-SCHEMAS | SVC-BUF-SCHEMAS | `oaa/media/BufferedMediaSinkMessage.proto`; `oaa/media/BufferedMediaSinkMessage.audit.yaml`; `docs/channels/media.md`; `analysis/reports/proto-verification/media.md` | Add only the six optional ID-4 fields and state enum values 0-4 proven by the parser. | No URL, request/response, lifecycle, transport/data-plane, or session semantics beyond the six consumed fields. | `python3 -c 'from google.protobuf import descriptor_pb2 as d;import atexit,pathlib,subprocess,tempfile;t=tempfile.TemporaryDirectory();atexit.register(t.cleanup);p=pathlib.Path(t.name)/"schema.pb";subprocess.run(["protoc","--proto_path=.","--descriptor_set_out="+str(p),"oaa/media/BufferedMediaSinkMessage.proto"],check=True);s=d.FileDescriptorSet();s.ParseFromString(p.read_bytes());f=next(x for x in s.file if x.name=="oaa/media/BufferedMediaSinkMessage.proto");m=next(x for x in f.message_type if x.name=="BufferedMediaSinkMessage");assert [[x.name,x.number,x.label,x.type,x.type_name] for x in m.field]==[["session_id",1,1,5,""],["uid",2,1,4,""],["current_position_ms",3,1,4,""],["state",4,1,14,".oaa.proto.messages.BufferedMediaState"],["buffered_position_ms",5,1,4,""],["content_duration_ms",6,1,4,""]];e=next(x for x in f.enum_type if x.name=="BufferedMediaState");assert [[x.name,x.number] for x in e.value]==[["BUFFERED_MEDIA_STATE_UNKNOWN",0],["BUFFERED_MEDIA_STATE_PLAYING",1],["BUFFERED_MEDIA_STATE_PAUSED",2],["BUFFERED_MEDIA_STATE_STOPPED",3],["BUFFERED_MEDIA_STATE_BUFFERING",4]];assert f.syntax!="proto3";assert f.package=="oaa.proto.messages";assert [x.name for x in f.message_type]==["BufferedMediaSinkMessage"];assert [x.name for x in f.enum_type]==["BufferedMediaState"]' && for target in oaa/media/BufferedMediaSinkMessage.proto docs/channels/media.md analysis/reports/proto-verification/media.md; do if ! rg -n 'IDs 1-3.*unknown' "$target"; then exit 1; fi; done && rg -n 'outbound.*unknown' docs/channels/media.md && rg -n 'outbound.*unknown' analysis/reports/proto-verification/media.md` | proto/docs applied (Task 12); BufferedMedia audit and media report synchronized (Task 13) |
 | CHG-BUF-GATE | SVC-BUF-GATE | `oaa/media/BufferedMediaSinkMessage.proto`; `docs/channels/media.md`; `docs/channels/architecture.md` | Document the distinct magic-value construction, descriptor-presence, registration, endpoint attachment, and worker-start gates. | Defaults/branches are static; do not claim production enablement, live descriptor advertisement, open endpoint, or running worker. | `rg -n '834952858.*construction' oaa/media/BufferedMediaSinkMessage.proto docs/channels/media.md && rg -n '0x10000.*descriptor' docs/channels/media.md docs/channels/architecture.md && rg -n 'registration.*endpoint attachment.*worker start' docs/channels/media.md docs/channels/architecture.md && rg -n 'BUFFERED_MEDIA_WORKER.*runtime-unverified' docs/channels/media.md && ! rg -n 'enabled in production' docs/channels/media.md docs/channels/architecture.md` | applied static boundary (Task 12) |
+| CHG-BASELINE-ADDITIONAL-VIDEO | historical canonical normalization | `oaa/video/AdditionalVideoConfigData.proto`; `oaa/video/AdditionalVideoConfigData.audit.yaml`; four converted-scenario normalized baselines listed below | Refresh `min_resolution`/`max_resolution`/`preferred_resolution` to the canonical `display_insets`/`field_2_insets`/`field_3_insets` rendering introduced by `8a0861a`. | Fields 1-3 remain length-delimited messages whose four child fields remain uint32 tags 1-4; this is normalized schema naming/semantics, not capture-byte mutation. | `rg -n -e 'display_insets = 1' -e 'field_2_insets = 2' -e 'field_3_insets = 3' oaa/video/AdditionalVideoConfigData.proto && ! rg -n -e 'min_resolution' -e 'max_resolution' -e 'preferred_resolution' analysis/baselines/non_media/general.normalized.json analysis/baselines/non_media/idle-baseline.normalized.json analysis/baselines/non_media/music-playback.normalized.json analysis/baselines/non_media/active-navigation.normalized.json` | applied baseline refresh (Task 14) |
+| CHG-BASELINE-NAV-TYPE | historical canonical normalization | `oaa/navigation/NavigationChannelData.proto`; `oaa/navigation/NavigationChannelData.audit.yaml`; all five normalized baselines listed below | Render NavigationChannel field 2 numeric value 1 as canonical enum `TURN_BY_TURN`, from `72ed02c`. | Field 2 remains protobuf varint tag 2; int32-to-enum changes the decoded label, not captured bytes. | `rg -n 'required enums.NavigationType.Enum type = 2' oaa/navigation/NavigationChannelData.proto && python3 -c 'import pathlib;ps=list(pathlib.Path("analysis/baselines/non_media").glob("*.normalized.json"));assert sum("\"type\": \"TURN_BY_TURN\"" in p.read_text() for p in ps)==5'` | applied baseline refresh (Task 14) |
+| CHG-BASELINE-SENSOR-TYPE | historical canonical normalization | `oaa/sensor/SensorChannelConfigData.proto`; `oaa/sensor/SensorChannelConfigData.audit.yaml`; all five normalized baselines listed below | Refresh stale SensorTypeEntry field key `type` to canonical `sensor_type`; `f494172` introduced that spelling and `72ed02c` added the 17.3 required-field proof. | Enum field 1 stays varint tag 1; optional-to-required validation and generated-name correction do not alter the captured encoding. | `rg -n 'required enums.SensorType.Enum sensor_type = 1' oaa/sensor/SensorChannelConfigData.proto && python3 -c 'import pathlib;ps=list(pathlib.Path("analysis/baselines/non_media").glob("*.normalized.json"));assert sum("\"sensor_type\":" in p.read_text() for p in ps)==5'` | applied baseline refresh (Task 14) |
+| CHG-BASELINE-INPUT-KEYCODES | historical canonical normalization | `oaa/input/InputBindingRequestMessage.proto`; `oaa/input/InputBindingRequestMessage.audit.yaml`; four converted-scenario normalized baselines listed below | Refresh input-binding request field key `scan_codes` to canonical `keycodes`, selected by the service-aware resolver in `1340b0b`. | Both legacy and canonical views use repeated packed int32 field 1; only normalized API identity changes. | `rg -n 'repeated int32 keycodes = 1' oaa/input/InputBindingRequestMessage.proto && ! rg -n '"scan_codes":' analysis/baselines/non_media/general.normalized.json analysis/baselines/non_media/idle-baseline.normalized.json analysis/baselines/non_media/music-playback.normalized.json analysis/baselines/non_media/active-navigation.normalized.json` | applied baseline refresh (Task 14) |
+| CHG-BASELINE-NAV-STEP-DISTANCE | historical canonical normalization | `oaa/navigation/NavigationTurnEventMessage.proto`; `oaa/navigation/NavigationTurnEventMessage.audit.yaml`; `general` and `active-navigation` normalized baselines | Refresh NavigationNextTurnDistanceEvent field 1 from stale `remaining_distance` to source-proven `step_distance`, introduced by `72ed02c`. | Field 1 stays a length-delimited message and the captured child remains NavigationTurnDistance at child tag 1; this reclassifies the same bytes. | `rg -n 'NavigationStepDistance step_distance = 1' oaa/navigation/NavigationTurnEventMessage.proto && ! rg -n '"remaining_distance":' analysis/baselines/non_media/general.normalized.json analysis/baselines/non_media/active-navigation.normalized.json` | applied baseline refresh (Task 14) |
+| CHG-BASELINE-INPUT-BINDING | historical canonical normalization | `analysis/tools/proto_stream_validator/message_map.py`; `oaa/input/InputBindingRequestMessage.proto`; `oaa/input/InputBindingResponseMessage.proto`; their audit sidecars; four converted-scenario normalized baselines listed below | Refresh `BindingRequest`/`BindingResponse` identities to `InputBindingRequest`/`InputBindingResponse` and render response status as its canonical int32 value, following `1340b0b`. | Request remains packed int32 tag 1; response remains varint tag 1. Message/API names and enum-vs-int presentation change without changing capture bytes. | `rg -n 'input_source.*0x8002.*InputBindingRequest' analysis/tools/proto_stream_validator/message_map.py && rg -n 'input_source.*0x8003.*InputBindingResponse' analysis/tools/proto_stream_validator/message_map.py && ! rg -n -e 'oaa.proto.messages.BindingRequest' -e 'oaa.proto.messages.BindingResponse' analysis/baselines/non_media/general.normalized.json analysis/baselines/non_media/idle-baseline.normalized.json analysis/baselines/non_media/music-playback.normalized.json analysis/baselines/non_media/active-navigation.normalized.json` | applied baseline refresh (Task 14) |
+| CHG-BASELINE-BT-STATUS | historical canonical normalization | `oaa/bluetooth/BluetoothPairingResponseMessage.proto`; `oaa/bluetooth/BluetoothPairingResponseMessage.audit.yaml`; `2026-02-28-s25-cleanbuild` normalized baseline | Render BluetoothPairingResponse status value 1 as shared enum `UNSOLICITED_MESSAGE`, corrected by `1340b0b`. | Field 1 remains a varint at tag 1; int32-to-enum changes normalized display only. | `rg -n 'required enums.Status.Enum status = 1' oaa/bluetooth/BluetoothPairingResponseMessage.proto && rg -n '"status": "UNSOLICITED_MESSAGE"' analysis/baselines/non_media/2026-02-28-s25-cleanbuild.normalized.json` | applied baseline refresh (Task 14) |
 | CHG-REPORT-RT-ENV | RT-ENV | none | Explicit no canonical change: runtime environment validation was unavailable. | No device/version or capture-dependency claim can be promoted. | `rg -n -P '^\x7c RT-ENV \x7c.*\x7c runtime-unverified \x7c.*no ADB device was available.*\x7c runtime-unverified: no ADB device available during execution;.*frida.*\x7c$' analysis/reports/android-auto-17.3-update/runtime-validation.md` | runtime-unverified |
 | CHG-REPORT-RT-VIDEO-FOCUS | RT-VIDEO-FOCUS | none | Explicit no canonical change: no framed video-focus traffic was captured. | Static direction remains static, not runtime-confirmed. | `rg -n -P '^\x7c RT-VIDEO-FOCUS \x7c.*aa-17\.3-video-focus-ui.*\x7c runtime-unverified \x7c No capture artifact exists;.*\x7c runtime-unverified: no ADB device available during execution \x7c$' analysis/reports/android-auto-17.3-update/runtime-validation.md` | runtime-unverified |
 | CHG-REPORT-RT-VIDEO-UI | RT-VIDEO-UI | none | Explicit no canonical change: no framed video-UI transition was captured. | Static UI/overlay direction remains static, not runtime-confirmed. | `rg -n -P '^\x7c RT-VIDEO-UI \x7c.*day/night or blended-UI transition.*aa-17\.3-video-focus-ui.*\x7c runtime-unverified \x7c No capture artifact exists;.*\x7c runtime-unverified: no ADB device available during execution \x7c$' analysis/reports/android-auto-17.3-update/runtime-validation.md` | runtime-unverified |
 | CHG-REPORT-RT-RADIO | RT-RADIO | none | Explicit no canonical change: no runtime radio activation or traffic was observed. | Static radio mappings are not runtime-confirmed. | `rg -n -P '^\x7c RT-RADIO \x7c.*radio service activation.*aa-17\.3-radio.*\x7c runtime-unverified \x7c No capture artifact exists;.*\x7c runtime-unverified: no ADB device available during execution \x7c$' analysis/reports/android-auto-17.3-update/runtime-validation.md` | runtime-unverified |
 | CHG-REPORT-RT-CARCONTROL | RT-CARCONTROL | none | Explicit no canonical change: no runtime car-control activation or traffic was observed. | Static car-control directions are not runtime-confirmed. | `rg -n -P '^\x7c RT-CARCONTROL \x7c.*car-control service activation.*aa-17\.3-car-control.*\x7c runtime-unverified \x7c No capture artifact exists;.*\x7c runtime-unverified: no ADB device available during execution \x7c$' analysis/reports/android-auto-17.3-update/runtime-validation.md` | runtime-unverified |
 | CHG-REPORT-RT-MULTIDISPLAY | RT-MULTIDISPLAY | none | Explicit no canonical change: no simultaneous multi-display discovery, streams, or focus were captured. | Static logical-display construction does not prove runtime concurrency. | `rg -n -P '^\x7c RT-MULTIDISPLAY \x7c.*MAIN, CLUSTER, and AUXILIARY.*aa-17\.3-multi-display.*\x7c runtime-unverified \x7c No capture artifact exists;.*\x7c runtime-unverified: no ADB device available during execution \x7c$' analysis/reports/android-auto-17.3-update/runtime-validation.md` | runtime-unverified |
+
+## Task 14 baseline refresh
+
+Task 14 found that all five committed non-media baselines predated accepted
+canonical decoder names. The validator first regenerated candidates under
+`/tmp`, the complete old-to-candidate diff was classified against this closed
+nine-group allowlist, and only then were the tracked baselines regenerated with
+`--bless --reason`. No capture JSONL was edited.
+
+| Drift group | Manifest mapping | Origin | Normalized change | Wire-invariance boundary | Diff issues |
+|---|---|---|---|---|---:|
+| AV display identity | CHG-ID-AV-F6 | `a4fcef7` | `AVChannel.channel_id` -> `display_id` | uint32 tag 6 unchanged | 24 |
+| Active sensor request identity | CHG-SEN-8001 | `1340b0b` plus the existing `SensorRequest` audit | `SensorStartRequestMessage` -> `SensorRequest` | enum tag 1 and int64 tag 2 unchanged; active schema replaces the retracted duplicate | 47 |
+| Additional-video inset identity | CHG-BASELINE-ADDITIONAL-VIDEO | `8a0861a` | resolution-range names -> three inset names | parent tags 1-3 remain messages; child tags 1-4 remain uint32 | 72 |
+| Navigation channel enum rendering | CHG-BASELINE-NAV-TYPE | `72ed02c` | numeric `1` -> `TURN_BY_TURN` | varint tag 2 unchanged | 5 |
+| Sensor type-entry field identity | CHG-BASELINE-SENSOR-TYPE | `f494172`, with required-field proof in `72ed02c` | `type` -> `sensor_type` | enum varint tag 1 unchanged | 110 |
+| Input keycode field identity | CHG-BASELINE-INPUT-KEYCODES | canonical input schema in `f494172`, resolver selection in `1340b0b` | `scan_codes` -> `keycodes` | repeated packed int32 tag 1 unchanged | 16 |
+| Navigation current-position semantics | CHG-BASELINE-NAV-STEP-DISTANCE | `72ed02c` | `remaining_distance` -> `step_distance` | captured field 1 and its field-1 distance child remain length-delimited | 72 |
+| Active input-binding message identity | CHG-BASELINE-INPUT-BINDING | canonical input schemas in `f494172`, resolver selection in `1340b0b` | message names become `InputBinding*`; response `OK` becomes int32 `0` | request packed-int32 tag 1 and response varint tag 1 unchanged | 36 |
+| Bluetooth shared-status rendering | CHG-BASELINE-BT-STATUS | `1340b0b` | numeric `1` -> `UNSOLICITED_MESSAGE` | varint tag 1 unchanged | 1 |
+
+The closed inventory is **383 diff issues**: 11 for
+`2026-02-28-s25-cleanbuild`, 111 each for `general` and
+`active-navigation`, and 75 each for `idle-baseline` and `music-playback`.
+Normalized record counts remain 516, 3,107, 3,107, 2,098, and 2,521
+respectively (`general` and `active-navigation` share the 3,107-row capture).
+
+Capture inputs are unchanged:
+
+| Capture | SHA-256 |
+|---|---|
+| `analysis/captures/non_media/2026-02-28-s25-cleanbuild.jsonl` | `0cc5cee30a6b4b614fc041c360eadd35bc706c5fb47fc1875fd0bde07aca8a81` |
+| `analysis/captures/non_media/general.converted.jsonl` | `5654cce4b48b85c0c4c60546f3ca37948f63089fc4cc9b46decd4e9ba5ca2817` |
+| `analysis/captures/non_media/idle-baseline.converted.jsonl` | `6b1d6572729f5913dac3f3f617924fb2656f4b0ce4eb29badc5dc1a7f8efb1e9` |
+| `analysis/captures/non_media/music-playback.converted.jsonl` | `ad76653d2c58b2f7555834d0d86dfa3da18e2c009d2f7e3871bcaa4ca22f873d` |
+| `analysis/captures/non_media/active-navigation.converted.jsonl` | `5654cce4b48b85c0c4c60546f3ca37948f63089fc4cc9b46decd4e9ba5ca2817` |
+
+The durable allowlist gate compares pre-release commit `0812713` with the
+refreshed files. It must report exactly the nine groups and counts above, no
+other diff signature, unchanged row counts, and the five capture hashes:
+
+```sh
+PYTHONPATH=. python3 - <<'PY'
+import json, re, subprocess
+from collections import Counter
+from pathlib import Path
+from analysis.tools.proto_stream_validator.diffing import diff_normalized
+
+base = "08127131f26393441364630e51c4936c036c55ba"
+names = ["2026-02-28-s25-cleanbuild", "general", "idle-baseline", "music-playback", "active-navigation"]
+expected_diffs = {"2026-02-28-s25-cleanbuild": 11, "general": 111, "idle-baseline": 75, "music-playback": 75, "active-navigation": 111}
+expected_rows = {"2026-02-28-s25-cleanbuild": 516, "general": 3107, "idle-baseline": 2098, "music-playback": 2521, "active-navigation": 3107}
+groups = Counter()
+
+for name in names:
+    rel = f"analysis/baselines/non_media/{name}.normalized.json"
+    old = json.loads(subprocess.check_output(["git", "show", f"{base}:{rel}"], text=True))
+    new = json.loads(Path(rel).read_text())
+    assert len(old) == len(new) == expected_rows[name]
+    diffs = diff_normalized(old, new)
+    assert len(diffs) == expected_diffs[name]
+    for diff in diffs:
+        path = diff.path
+        row_match = re.match(r"\[(\d+)\]", path)
+        row = int(row_match.group(1)) if row_match else -1
+        old_type = old[row].get("message_type", "") if row >= 0 else ""
+        new_type = new[row].get("message_type", "") if row >= 0 else ""
+        if ".av_channel.channel_id" in path or ".av_channel.display_id" in path:
+            group = "av_display"
+        elif ".additional_config." in path:
+            group = "additional_video"
+        elif path.endswith(".navigation_channel.type"):
+            group = "nav_type"
+        elif ".sensor_channel.sensors[" in path and (path.endswith(".type") or path.endswith(".sensor_type")):
+            group = "sensor_type"
+        elif path.endswith(".scan_codes") or path.endswith(".keycodes"):
+            group = "input_keycodes"
+        elif path.endswith(".remaining_distance") or path.endswith(".step_distance"):
+            group = "nav_step_distance"
+        elif path.endswith(".message_type") and old_type.endswith("SensorStartRequestMessage") and new_type.endswith("SensorRequest"):
+            group = "sensor_request"
+        elif (path.endswith(".message_type") and "Binding" in old_type + new_type) or (path.endswith(".decoded.status") and old_type.endswith("BindingResponse")):
+            group = "input_binding"
+        elif path.endswith(".decoded.status") and old_type.endswith("BluetoothPairingResponse"):
+            group = "bt_status"
+        else:
+            raise AssertionError((name, diff))
+        groups[group] += 1
+
+assert groups == Counter({"sensor_type": 110, "additional_video": 72, "nav_step_distance": 72, "sensor_request": 47, "input_binding": 36, "av_display": 24, "input_keycodes": 16, "nav_type": 5, "bt_status": 1}), groups
+captures = {
+    "analysis/captures/non_media/2026-02-28-s25-cleanbuild.jsonl": "0cc5cee30a6b4b614fc041c360eadd35bc706c5fb47fc1875fd0bde07aca8a81",
+    "analysis/captures/non_media/general.converted.jsonl": "5654cce4b48b85c0c4c60546f3ca37948f63089fc4cc9b46decd4e9ba5ca2817",
+    "analysis/captures/non_media/idle-baseline.converted.jsonl": "6b1d6572729f5913dac3f3f617924fb2656f4b0ce4eb29badc5dc1a7f8efb1e9",
+    "analysis/captures/non_media/music-playback.converted.jsonl": "ad76653d2c58b2f7555834d0d86dfa3da18e2c009d2f7e3871bcaa4ca22f873d",
+    "analysis/captures/non_media/active-navigation.converted.jsonl": "5654cce4b48b85c0c4c60546f3ca37948f63089fc4cc9b46decd4e9ba5ca2817",
+}
+import hashlib
+for rel, expected in captures.items():
+    assert hashlib.sha256(Path(rel).read_bytes()).hexdigest() == expected
+print(f"baseline_refresh groups={dict(groups)} diffs={sum(groups.values())} captures=5/5")
+PY
+```
 
 ## Exact allowed-file sets
 
@@ -287,6 +398,25 @@ the two comment-only AV proto corrections, and synchronized verification,
 roadmap, and handoff documentation. The block remains fail-closed and contains
 no directory, glob, or broad staging entry.
 
+### Task 14: final release gate and baseline refresh
+
+```sh
+git diff --cached --quiet || { printf '%s\n' 'Refusing to stage Task 14: index is not empty.' >&2; exit 1; }
+git add -- \
+  analysis/baselines/non_media/2026-02-28-s25-cleanbuild.normalized.json \
+  analysis/baselines/non_media/active-navigation.normalized.json \
+  analysis/baselines/non_media/general.normalized.json \
+  analysis/baselines/non_media/idle-baseline.normalized.json \
+  analysis/baselines/non_media/music-playback.normalized.json \
+  analysis/reports/android-auto-17.3-update/README.md \
+  analysis/reports/android-auto-17.3-update/change-manifest.md \
+  docs/session-handoffs.md
+```
+
+This eight-path extension is limited to Task 14 release evidence and the five
+mechanically regenerated non-media baselines. Roadmap sequencing did not
+change, so `docs/roadmap-current.md` is intentionally excluded.
+
 ## Changed-proto audit coverage
 
 Every proto that the publication tasks may actually change has an explicitly
@@ -362,6 +492,6 @@ The committed matcher baseline is intentionally verify-only and is not in an
 allowed modification set: Task 1 retained
 `analysis/reports/cross-version/17-3-schema-match.json` and
 `analysis/reports/cross-version/17-3-schema-match.md` after rejecting promotion
-of the three unreviewed fresh-delta rows. Task 13 must confirm both files remain
-unchanged. Runtime validation is likewise not a publication target; its six
-rows remain the explicit runtime-unverified boundary.
+of the three unreviewed fresh-delta rows. Tasks 13-14 confirmed both files
+remain unchanged. Runtime validation is likewise not a publication target; its
+six rows remain the explicit runtime-unverified boundary.

@@ -2783,3 +2783,192 @@ Verification:
   `6adba02ecf62a8b0e9bbb298c25c96550f617a340ee82b34ddbf518cf0c9ee8e`.
 - Cross-link dry-run -> five no-ops; matcher/runtime reports unchanged;
   changed-path/reference and `git diff --check` gates clean.
+
+## 2026-07-25 — Task 14: verify the Android Auto 17.3 release
+
+Date / Session: 2026-07-25 / android-auto-17.3-update-task-14
+
+What Changed:
+- Closed the dossier's final verification/handoff gate without changing its
+  runtime-evidence boundary. The final row-level census is 50 rows containing
+  confirmed-static evidence, 0 runtime-confirmed rows, 4 deferred-bearing
+  rows, and 6 runtime-unverified probes. `SVC-BUF-IDS` is intentionally counted
+  in both static and deferred dimensions because ID 4 is source-confirmed while
+  IDs 1-3 and outbound behavior remain deferred.
+- Found five stale normalized non-media baselines, generated independent `/tmp`
+  candidates, and classified all 383 old-to-current differences into a closed
+  nine-group allowlist before using the validator's documented `--bless
+  --reason` path. Added seven `CHG-BASELINE-*` rows for historical canonical
+  normalization changes; the AV display and active SensorRequest groups map to
+  existing `CHG-ID-AV-F6` and `CHG-SEN-8001` rows.
+- Preserved every capture input byte. The five SHA-256 values are recorded in
+  the manifest, normalized row counts remain 516 / 3,107 / 2,098 / 2,521 /
+  3,107, and all five refreshed baselines reproduce independently generated
+  candidates byte-for-byte.
+- Left `docs/roadmap-current.md` unchanged because execution did not alter the
+  planned priority or sequence. The release pointer is exactly: `Release
+  complete; next work is downstream Prodigy integration or a future
+  capture-confidence pass.`
+
+Why:
+- Task 14 must prove the published protocol tree, evidence policy, reports,
+  matcher, and regression baselines agree. The baseline RED exposed stale
+  generated names from already-reviewed canonical commits, not capture drift;
+  accepting them required explicit provenance and a fail-closed signature gate.
+- Runtime capture was conditional and unavailable in Task 9. This release gate
+  therefore verifies static and regression consistency without claiming live
+  Android Auto 17.3 behavior that was not observed.
+
+Exact Task 1-13 commits, including fix rounds:
+- Task 1: `8103f15` (`docs(analysis): preserve Android Auto 17.3 display
+  evidence`); `aa6c5df` (`docs(analysis): qualify multi-display runtime
+  evidence`).
+- Task 2: `c08bce5` (`docs(analysis): establish Android Auto 17.3 release
+  dossier`).
+- Task 3: `a564857` (`docs(video): close Android Auto 17.3 message matrix`);
+  `0d41784` (`docs(video): clarify unresolved 0x8010 classification`).
+- Task 4: `298828d` (`docs(carcontrol): correct 17.3 endpoint direction
+  evidence`); `faa8b17` (`docs(carcontrol): inventory stale direction
+  narratives`).
+- Task 5: `80ef446` (`docs(protocol): close sensor and radio direction matrix`).
+- Task 6: `6fb92a7` (`docs(display): close 17.3 protocol identity matrix`);
+  `d0297f7` (`docs(display): correct descriptor source anchors`).
+- Task 7: `0cf98ee` (`docs(carintent): reconstruct Android Auto 17.3 service`).
+- Task 8: `c48b28d` (`docs(media): classify 17.3 local and buffered media
+  services`).
+- Task 9: `a560982` (`docs(capture): record 17.3 runtime validation attempt`);
+  `45a6929` (`docs(capture): preserve runtime preflight tracebacks`).
+- Task 10: `1bb3eaa` (`docs(protocol): freeze Android Auto 17.3 change
+  manifest`); `16e7731` (`docs(protocol): tighten Android Auto 17.3 manifest
+  gates`); `0776ac6` (`docs(protocol): harden manifest verification gates`);
+  `358eacf` (`docs(protocol): close manifest mutation escapes`); `3126ca1`
+  (`docs(protocol): validate manifest via descriptors`).
+- Task 11: `884ff4d` (`fix(proto): correct Android Auto 17.3 message
+  directions`); `0a1a198` (`fix(proto): publish Android Auto 17.3 media options
+  schema`); `607e3ef` (`docs(video): bound overlay stop behavior`).
+- Task 12: `a4fcef7` (`feat(proto): publish Android Auto 17.3 service
+  identities`); `b68cb5b` (`docs(display): align service discovery display
+  identity`); `b372467` (`docs(protocol): harden display identity gate`);
+  `e11bdd6` (`docs(protocol): close display example comment escape`).
+- Task 13: `f115356` (`docs(protocol): synchronize Android Auto 17.3
+  evidence`); `d62bebd` (`fix(protocol): reconcile confidence evidence
+  policy`); `a074562` (`fix(protocol): reject negative confidence evidence`);
+  `0812713` (`fix(protocol): validate canonical audit class mappings`).
+
+Changed protos and generated APIs:
+- The 16 publication proto paths were
+  `oaa/av/AVChannelMediaOptionsMessage.proto`,
+  `oaa/av/AVChannelMessageIdsEnum.proto`, `oaa/av/UiConfigMessages.proto`,
+  `oaa/carcontrol/CarControlMessages.proto`,
+  `oaa/video/CriticalUiNotification.proto`,
+  `oaa/video/IntegratedOverlayStartNotification.proto`,
+  `oaa/video/IntegratedOverlayStopNotification.proto`,
+  `oaa/video/UpdateUiConfigRequestMessage.proto`,
+  `oaa/video/VideoFocusIndicationMessage.proto`,
+  `oaa/video/VideoFocusRequestMessage.proto`, `oaa/av/AVChannelData.proto`,
+  `oaa/carintent/CarIntentMessage.proto`,
+  `oaa/control/ChannelDescriptorData.proto`,
+  `oaa/input/InputChannelConfigData.proto`,
+  `oaa/media/BufferedMediaSinkMessage.proto`, and
+  `oaa/media/CarLocalMediaPlaybackStatusMessage.proto`.
+- The breaking generated-API rename is `AVChannel.channel_id` ->
+  `AVChannel.display_id` at wire-stable uint32 tag 6.
+- `AVChannelMessage.Enum` now publishes `UPDATE_UI_CONFIG_REQUEST` (0x8009),
+  `AUDIO_UNDERFLOW` (0x800B), `ACTION_TAKEN` (0x800C),
+  `OVERLAY_PARAMETERS` (0x800D), `OVERLAY_START` (0x800E), `OVERLAY_STOP`
+  (0x800F), `UI_CONFIG_REQUEST` (0x8011),
+  `UPDATE_HU_UI_CONFIG_RESPONSE` (0x8012), `MEDIA_STATS` (0x8013),
+  `MEDIA_OPTIONS` (0x8014), and `CRITICAL_UI_NOTIFICATION` (0x8015), while
+  0x8010 remains unnamed/reserved.
+- Added or completed generated surfaces are
+  `AVChannelMediaOptions` with its exact neutral 13-field inventory (nine
+  ping-configuration fields, three booleans, and one uint32 field);
+  `CriticalUiNotification.focus` / `CriticalUiFocus`;
+  `IntegratedOverlayStartNotification.display_session_id` and empty
+  `IntegratedOverlayStopNotification`; `UpdateUiConfigRequest.config`;
+  `CarIntentMessage.metadata`; `ChannelDescriptor.car_local_media_channel`,
+  `.buffered_media_channel`, and `.car_intent_channel` at tags 16-18;
+  `BufferedMediaSinkMessage` plus `BufferedMediaState`; and
+  `CarLocalMediaPlaybackState.CAR_LOCAL_PLAYBACK_UNKNOWN_5`.
+- `UiConfigMessages`, `CarControlMessages`, the two VideoFocus messages, and
+  `InputChannelConfig.display_id` received direction/identity/documentation
+  synchronization without an additional wire-breaking generated-API rename.
+
+Status:
+- Release verification is closed on static evidence. The canonical matcher
+  pair remains intentionally verify-only; the ignored Task 14 rerun is
+  377 canonical messages / 114 canonical enums against 1,957 APK messages /
+  134 APK enums, with 178 resolved matches (39 high / 139 medium), 135
+  dispatch observations, 13 unique enum domains, zero dispatch-schema or
+  direct-child conflicts, one explicitly unresolved `BluetoothChannel`
+  constraint-conflict status, and one already-known resolved parent/child
+  `VideoConfig` schema difference. The committed matcher pair remains the
+  frozen reviewed release artifact.
+- Runtime-confirmed count remains zero. CarLocalMedia state 5, CarIntent raw
+  ID/response, BufferedMedia IDs 1-3/outbound behavior, multi-display
+  concurrency, and all six runtime probes remain deferred or
+  runtime-unverified exactly as published.
+- Downstream Prodigy handoff:
+  `analysis/reports/multi-display/prodigy-maintainer-handoff.md`.
+
+Next Steps:
+1. Integrate the published display/session identities in Prodigy using
+   `analysis/reports/multi-display/prodigy-maintainer-handoff.md`.
+2. When a target 17.3 device and validated Frida environment are available,
+   run the six focused capture probes and promote only directly observed rows.
+3. Preserve the conservative committed matcher pair until any fresh delta is
+   reviewed row-by-row against direct message/field evidence.
+
+Verification:
+- Worktree preflight -> linked worktree
+  `/mnt/e/claude/personal/github/open-android-auto-clean/.worktrees/android-auto-17.3-release`,
+  branch `dev/android-auto-17.3-release`, clean expected HEAD `0812713`.
+- `protoc --proto_path=. --descriptor_set_out=/tmp/oaa-17-3-release/all.pb
+  $(find oaa -name '*.proto' -print | sort)` plus `test -s` -> 247/247 protos,
+  105,152-byte descriptor set.
+- Initial task-venv pytest invocation -> collection stopped with two
+  `ModuleNotFoundError: google` errors, confirming the documented environment
+  split; no tests ran. The venv has pytest 9.1.1 but no protobuf runtime.
+- Expanded pytest command covering every Task 14 directory plus
+  `test_audit_yaml_tier_consistency.py` and all promotion-walker tests, using
+  task-venv pytest with validated `/usr/lib/python3/dist-packages` protobuf
+  4.21.12 on `PYTHONPATH` -> 736 passed, 3 protobuf deprecation warnings.
+- Durable matcher command to ignored
+  `analysis/aa_apk_17.3.662804_apkm/validation/17-3-schema-match-release.{json,md}`
+  -> PASS; fresh counts are 178 resolved (39 high / 139 medium), 135 dispatch
+  observations, zero dispatch-schema conflicts, zero direct-child conflicts,
+  one unresolved `BluetoothChannel` constraint-conflict status, and one
+  resolved parent/child `VideoConfig` schema difference. Relative to the
+  frozen committed matcher: canonical inventory +1 message / +2 enums,
+  resolved +3 / medium +3, dispatch observations +6; the committed pair was
+  not rewritten.
+- Initial five baseline validations -> RED at 11 / 111 / 75 / 75 / 111
+  diffs, while every mapped proto frame still decoded. Root cause was stale
+  normalized identity/enum rendering from five baselines introduced at
+  `f494172`, not a capture-byte change.
+- Independent `/tmp` candidate regeneration, read-only git provenance, and the
+  closed allowlist gate -> exactly 383 issues in nine groups
+  (`sensor_type` 110, AdditionalVideoConfig 72, navigation step distance 72,
+  SensorRequest 47, input binding 36, AV display 24, input keycodes 16,
+  navigation type 5, Bluetooth status 1); no unclassified signature; capture
+  hashes 5/5 unchanged; old/current record counts identical.
+- Mechanical five-file `--bless --reason` plus candidate `cmp` -> all five
+  tracked baselines byte-identical to independent candidates. Final five
+  baseline validations -> PASS; decoded mapped-proto counts 516/516,
+  3107/3107, 2098/2098, 2521/2521, and 3107/3107.
+- Manifest checks -> 66/66 rows have stable shape, 66/66 commands parse under
+  `bash -n`, and 66/66 semantic commands pass. Original dossier traceability
+  remains 59/59 with zero symmetric difference/duplicates, plus seven unique
+  Task 14 baseline extensions; no accepted/pending manifest status remains.
+- Fixed-time coverage regeneration -> JSON/Markdown byte-identical; 168
+  sidecars / 247 protos / 68%, 23 Bronze / 118 Silver / 14 Gold / 0 Platinum,
+  13 Retracted / 0 Superseded / 79 missing / 0 pending.
+- Promotion-walker dry-run -> all four JSON/Markdown artifacts byte-identical;
+  34 service-binding-only observations, 3 out-of-SDP skips, 6 retractions, 0
+  promotions, 0 pending mutations, 43 total verdicts.
+- Architecture walker -> 0 modified / 14 skipped; cross-link dry-run -> five
+  no-ops. Committed matcher JSON/Markdown and the runtime matrix each match
+  `HEAD` byte-for-byte.
+- Final open/stale/reference, Markdown link/table, exact tracked-scope,
+  `git diff --check`, cached diff, commit, and clean-worktree checks are
+  recorded in the Task 14 ignored report and release commit.

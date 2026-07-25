@@ -105,13 +105,13 @@
           "sensor_channel": {
             "sensors": [
               {
-                "type": "NIGHT_DATA"
+                "sensor_type": "NIGHT_DATA"
               },
               {
-                "type": "DRIVING_STATUS"
+                "sensor_type": "DRIVING_STATUS"
               },
               {
-                "type": "PARKING_BRAKE"
+                "sensor_type": "PARKING_BRAKE"
               }
             ]
           }
@@ -151,7 +151,7 @@
               "width": 64
             },
             "minimum_interval_ms": 500,
-            "type": 1
+            "type": "TURN_BY_TURN"
           }
         },
         {
@@ -619,7 +619,7 @@
     "frame_index": 42,
     "message_id": 32769,
     "message_name": "SENSOR_START_REQUEST",
-    "message_type": "oaa.proto.messages.SensorStartRequestMessage"
+    "message_type": "oaa.proto.messages.SensorRequest"
   },
   {
     "channel_id": 5,
@@ -732,7 +732,7 @@
     "frame_index": 51,
     "message_id": 32769,
     "message_name": "SENSOR_START_REQUEST",
-    "message_type": "oaa.proto.messages.SensorStartRequestMessage"
+    "message_type": "oaa.proto.messages.SensorRequest"
   },
   {
     "channel_id": 3,
@@ -782,7 +782,7 @@
     "frame_index": 55,
     "message_id": 32769,
     "message_name": "SENSOR_START_REQUEST",
-    "message_type": "oaa.proto.messages.SensorStartRequestMessage"
+    "message_type": "oaa.proto.messages.SensorRequest"
   },
   {
     "channel_id": 0,
@@ -5349,7 +5349,7 @@
     "channel_id": 8,
     "decoded": {
       "already_paired": true,
-      "status": 1
+      "status": "UNSOLICITED_MESSAGE"
     },
     "direction": "HU->Phone",
     "frame_index": 4464,
