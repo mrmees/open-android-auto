@@ -1199,3 +1199,38 @@ Verification:
 - Path/reference `rg` checks -> no active `/tmp/android-auto-17.3-jadx` smoke
   path; durable 17.3 paths and display concepts present
 - `git diff --check` -> success
+
+## 2026-07-24 — Establish Android Auto 17.3 release dossier
+
+Date / Session: 2026-07-24 / android-auto-17.3-update-task-2
+
+What Changed:
+- Added the Android Auto 17.3 release dossier index at
+  `analysis/reports/android-auto-17.3-update/README.md`
+- Added stable message, service, and runtime-validation matrix contracts, plus
+  an empty canonical change manifest
+- Seeded the message matrix with DIR-VID, DIR-CC, DIR-SEN, DIR-RAD, and ID
+  claim IDs; seeded the service and runtime matrices with their planned claim
+  IDs, all at `open`
+
+Why:
+- Subsequent 17.3 tasks need one stable, evidence-gated place to update rows
+  without creating competing report formats
+- The fixed claim IDs and manifest rule preserve traceability from raw evidence
+  through accepted canonical publication decisions
+
+Status:
+- Dossier layout established; baseline preservation remains `confirmed-static`
+  and all later research/publication gates remain `open`
+- Resume pointer is Task 3, video message direction and ID audit
+
+Next Steps:
+1. Task 3: trace and close the video-direction rows in `message-matrix.md`
+2. Task 4: trace and close the car-control direction rows
+3. Task 5: trace and close the sensor and radio direction rows
+
+Verification:
+- Dossier non-empty-file loop -> all five required dossier files present
+- Required message, service, and runtime claim-ID `rg` checks -> all requested
+  IDs present
+- `git diff --check` -> success
