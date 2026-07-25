@@ -2250,3 +2250,92 @@ Verification:
 - All 26 CHG-VID/CHG-CC/CHG-SEN manifest gates -> pass
 - Markdown table/link sanity, traceability 59/59, exact 20/20/40 allowlists,
   16-entry audit mapping, two-file scope, and `git diff --check` -> pass
+
+## 2026-07-25 — Task 12: publish 17.3 service identities
+
+Date / Session: 2026-07-25 / android-auto-17.3-update-task-12
+
+What Changed:
+- Renamed `AVChannel` field 6 from `channel_id` to `display_id` while preserving
+  tag 6 and optional uint32 wire identity; documented the breaking generated
+  API rename and kept `InputChannelConfig.display_id` field 5 as its reference
+- Published exact 17.3 `ChannelDescriptor` markers at fields 16-18 for
+  CarLocalMedia, BufferedMedia, and CarIntent service types 20-22, preserving
+  the insufficient-evidence boundary for 16.2 fields 16-17 and the compatible
+  optional field-18 addition relative to the available 16.2 descriptor
+- Added the proto2 `CarIntentMessage` with only optional string `metadata = 2`
+  and documented field 18/bit `0x20000`, HU-to-Phone parse/log/callback flow,
+  false named-flag default versus the actual descriptor-presence factory gate,
+  unknown raw ID, and the absence of proven acknowledgement/response/runtime delivery
+- Published the 17.3 BufferedMedia incoming raw-ID-4 HU-to-Phone parser with
+  its exact six-field proto2 payload and state enum values 0-4; kept IDs 1-3,
+  outbound use, responses, completed transfer, downstream operation, and
+  runtime activation unknown or unverified
+- Kept CarLocalMedia numeric state 5 explicitly `UNKNOWN_5` and deferred while
+  publishing the static service-type-20 directions in Task 12 documentation
+- Updated the five Task-12-authorized audit sidecars with direct 17.3 anchors,
+  hardened shared manifest gates to test each Task 13 report independently,
+  and advanced the dossier pointer to Task 13
+
+Why:
+- The accepted 17.3 static dossiers resolve logical-display and new-service
+  identities precisely enough for canonical proto/documentation publication,
+  while runtime captures and several raw-ID/activation boundaries remain absent
+- Per-target manifest checks prevent a correct Task 12 document from masking an
+  unsynchronized Task 13 report; the CarLocalMedia gate now anchors full message
+  names and no longer mistakes unrelated media-info IDs for direction errors
+
+Status:
+- GREEN for every Task 12-owned canonical, documentation, audit, and manifest
+  surface in the exact 20-path allowlist
+- Shared full-command residuals are intentionally limited to Task 13-owned
+  `sdp.md`, `sdp-progress.md`, `media.md`, and `PROGRESS.md`; the Task 13-owned
+  `BufferedMediaSinkMessage.audit.yaml` is intentionally still absent
+- Static logical display/endpoint construction remains distinct from runtime
+  concurrency; no simultaneous 17.3 streams, live CarIntent delivery, or live
+  BufferedMedia activation were observed
+- The broad stale inventory still finds the historical AV field-6 spelling in
+  `docs/interactions/03-service-discovery.md`, which is outside all frozen Task
+  12/13 allowlists; no Task 12-scoped stale term remains
+
+Next Steps:
+1. Task 13: synchronize SDP/media/PROGRESS reports and create the authorized
+   BufferedMedia audit sidecar without changing the canonical Task 12 schemas
+2. Run the full audit schema suite when `pytest` and `jsonschema` are available;
+   no dependency was installed during this task
+3. Preserve CarIntent raw-ID, CarLocalMedia state-5, BufferedMedia IDs 1-3 and
+   outbound behavior, and all runtime activation/concurrency boundaries until
+   direct evidence resolves them
+
+Verification:
+- RED identity scan -> found AV `channel_id = 6`, the ambiguous display/channel
+  comment, 16.2 descriptor-label ambiguity, BufferedMedia discard-only stub
+  text, and the CarLocalMedia `needs wire capture` comment before production edits
+- RED descriptors -> AV field 6 was optional uint32 `channel_id`; CarIntent did
+  not exist; BufferedMedia was proto3 with no message; the desired assertions
+  failed for the intended missing semantics
+- Exact descriptor/adversarial suite -> AV wire inventory unchanged except the
+  field-6 name, ChannelDescriptor fields 16-18 exact, CarIntent sole field 2,
+  BufferedMedia six fields/enum 0-4, and CarLocalMedia `UNKNOWN_5` all pass;
+  10/10 extra-field, wrong-field/type, enum, and transferred-meaning mutations rejected
+- 16.2 compatibility assertion -> indexed `wbm` has tags 1-17; tag 18 is an
+  optional-message addition in 17.3; historical semantics for tags 16-17 remain unresolved
+- Exact six changed protos compile -> exit 0; non-empty descriptor set, 5,085 bytes
+- Full `oaa/**/*.proto` compile -> exit 0; non-empty descriptor set, 105,152 bytes
+- Manifest commands -> all 10 fully Task 12-owned rows pass; all Task 12-owned
+  portions of the seven shared rows pass; full shared commands fail only on the
+  four named Task 13 reports
+- Audit tooling -> canonical pytest command unavailable (`pytest` and
+  `jsonschema` not installed); schema-derived PyYAML parse/key/type/date/style
+  sanity passes for all five edited Task 12 audits
+- Independent review -> corrected one BufferedMedia absence-of-evidence
+  overclaim; the final wording says the consumer does not prove a response or
+  completed transfer, and the hardened gate rejects the former wording;
+  focused re-review returned clean
+- Manifest integrity -> 59/59 traceability, zero symmetric difference or
+  duplicates, 59/59 command syntax, exact 20/20/40 allowlists, 16 audit mappings,
+  Task 13 pointer, and unchanged verify-only matcher pair
+- Documentation sanity -> 87 local links checked, zero missing; 52 Markdown
+  table blocks have consistent column counts
+- Task 12 scoped stale search -> no matches; new identity/service terminology present
+- `git diff --check` -> exit 0

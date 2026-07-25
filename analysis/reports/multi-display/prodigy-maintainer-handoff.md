@@ -60,17 +60,16 @@ mechanism that labels rectangles of one stream as separate physical displays.
 | Identifier | Wire location | Meaning | Prodigy use |
 |---|---|---|---|
 | Transport channel ID | `ChannelDescriptor.channel_id`, field 1 | Ephemeral multiplexed channel used to route frames and messages | Key the protocol handler/session routing table |
-| Display ID / `CarDisplayId` | `AVChannel` field 6, currently named `channel_id` in this repository | Stable identity of one logical display within the projection session | Key the display registry and join video to input |
+| Display ID / `CarDisplayId` | `AVChannel.display_id`, field 6 | Stable identity of one logical display within the projection session | Key the display registry and join video to input |
 | Display type | `AVChannel.display_type`, field 7 | `MAIN=0`, `CLUSTER=1`, or `AUXILIARY=2` | Select content role and endpoint behavior |
 | Input display ID | `InputChannelConfig.display_id`, field 5 | Reference to the logical display that receives this input | Must equal the corresponding AV display ID |
 | Video config index | AV setup/start messages | Selected entry from that display's `VideoConfig` list | Keep inside the individual video session; it is not a display ID |
 
-The field-6 name in `oaa/av/AVChannelData.proto` is historically ambiguous.
-The 17.3 phone code reads that field and immediately constructs
+The 17.3 phone code reads AVChannel field 6 and immediately constructs
 `new CarDisplayId(value)`. Prodigy must therefore treat it as a display ID, not
-as a duplicate of `ChannelDescriptor.channel_id`. Renaming the canonical proto
-field is a separate compatibility/API decision; no wire schema change is
-needed.
+as a duplicate of `ChannelDescriptor.channel_id`. The canonical rename from
+`channel_id` to `display_id` is a breaking generated API rename only: protobuf
+tag 6 and uint32 wire type are unchanged.
 
 ## Display configuration matrix
 

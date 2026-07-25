@@ -1,12 +1,13 @@
 proto: oaa/input/InputChannelConfigData.proto
 message: InputChannelConfig
 confidence: gold
-last_updated: '2026-03-06'
-class_16_2: vxm
-class_16_1: vya
-class_15_9: vqi
+last_updated: '2026-07-25'
+class_mapping:
+  v15.9: vqi
+  v16.1: vya
+  v16.2: vxm
 evidence:
-- type: handler_trace
+- type: apk_deep_trace
   method: deep_apk
   source: hlg.java:211-302 (mo18712a processes InputChannelConfig from SDP)
   date: '2026-03-06'
@@ -20,8 +21,14 @@ evidence:
   source: class_mapping.yaml (v15.9:vqi, v16.1:vya, v16.2:vxm)
   date: '2026-03-03'
   description: Mapped InputChannelConfig via string_const.
-changes:
-- date: '2026-03-06'
+- type: apk_static
+  method: semantic_display_binding_trace
+  source: Android Auto 17.3 xhs.java:39; jnb.java:263-308; iiv.java:163-171,254
+  date: '2026-07-25'
   description: >
-    Renamed fields: input_type→supported_keycodes, key_configs→supported_haptic_types,
-    capabilities→display_id. Updated APK class refs. Promoted silver→gold.
+    The 17.3 descriptor decodes field 5 as optional uint32. The input matcher
+    accepts it only when it equals the target CarDisplayId derived from
+    AVChannel field 6, while logging the descriptor transport channel ID
+    separately.
+corrections:
+- '2026-03-06: Renamed input_type to supported_keycodes, key_configs to supported_haptic_types, and capabilities to display_id; updated APK class references and promoted silver to gold.'

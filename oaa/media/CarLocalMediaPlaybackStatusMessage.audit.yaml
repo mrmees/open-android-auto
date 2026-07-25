@@ -1,7 +1,7 @@
 proto: oaa/media/CarLocalMediaPlaybackStatusMessage.proto
 message: CarLocalMediaPlaybackStatus
 confidence: gold
-last_updated: '2026-03-06'
+last_updated: '2026-07-25'
 evidence:
 - type: apk_static
   method: string_const
@@ -24,8 +24,17 @@ evidence:
     PlaybackState enum is NOT shared with MediaPlaybackStatus — CarLocal uses
     own enum (values 1-5, C0000a.m83bD). Action enum vwb confirmed with
     unobfuscated names. SafeParcelable toString confirms field names.
-  corrections:
-    - "Direction: Phone->HU was WRONG, actually HU->Phone"
-    - "PlaybackState: removed shared import, created CarLocalMediaPlaybackState (1-5)"
-    - "16.2 class: vwe (not vws)"
-    - "Handler: hyh.java in 16.2 (not hxu.java)"
+- type: apk_static
+  method: bounded_state_and_endpoint_trace
+  source: Android Auto 17.3 xgh.java:30-32; syn.java:88-89; a.java:367-384; iiy.java:41-60; ixi.java:42-137
+  date: '2026-07-25'
+  description: >
+    The 17.3 validator accepts playback-state integers 1 through 5 and passes
+    them through without naming value 5. The endpoint statically confirms
+    0x8001 and 0x8002 HU-to-Phone and 0x8003 Phone-to-HU. BufferedMedia state
+    names are unrelated and provide no label for CarLocalMedia value 5.
+corrections:
+- 'Direction: Phone->HU was wrong; corrected to HU->Phone.'
+- 'PlaybackState: removed shared import and created CarLocalMediaPlaybackState values 1-5.'
+- '16.2 class corrected to vwe, not vws.'
+- '16.2 handler corrected to hyh.java, not hxu.java.'

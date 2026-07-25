@@ -23,6 +23,14 @@ Android Auto multiplexes all communication over a single TCP connection using ch
 | 15 | Radio | `radio` | AM/FM/DAB radio program info, tuning, favorites |
 | 19 | Car Control | `carcontrol` | HVAC, seat temp, door locks, mirror heat via VHAL |
 | 20 | Car Local Media | `media` | Local media (car's own source) status/metadata |
+| 21 | Buffered Media Sink | `media` | 17.3 incoming raw-ID-4 buffered playback status |
+| 22 | CarIntent | `carintent` | 17.3 incoming intent metadata; raw message ID unknown |
+
+`ChannelDescriptor.channel_id` field 1 is the transport channel ID, not the
+stable GAL type shown above. For video/input pairing, `AVChannel.display_id`
+field 6 is the logical display identity and `InputChannelConfig.display_id`
+field 5 references it. Static 17.3 code constructs separate logical
+display/endpoint pairs; simultaneous runtime streams remain unverified.
 
 ## Channel Details
 
@@ -187,6 +195,24 @@ Note: `CallAvailabilityStatus` and `VoiceSessionRequest` are on the **control ch
 | `CarLocalMediaPlaybackStatus` | HU -> Phone | Local media playback state |
 | `CarLocalMediaPlaybackMetadata` | HU -> Phone | Local media track info |
 | `CarLocalMediaPlaybackRequest` | Phone -> HU | Request playback action |
+
+Playback-state numeric value 5 remains unknown and deferred. The directions are
+confirmed by the 17.3 static endpoint chain, not a runtime frame capture.
+
+### Channel 21: Buffered Media Sink (GAL type 21)
+
+Descriptor field 17/bit `0x10000` identifies this service. Android Auto 17.3
+parses and consumes incoming raw ID 4 HU -> Phone as a six-field playback-status
+message. IDs 1-3 and every outbound path remain unknown. Construction requires
+the separate magic-value gate `834952858`; runtime activation and completed
+media behavior are unverified.
+
+### Channel 22: CarIntent (GAL type 22)
+
+Descriptor field 18/bit `0x20000` identifies this service. The phone parses a
+sole optional string field 2 HU -> Phone, logs it as intent metadata, and invokes
+callbacks. The raw message ID is unknown; no acknowledgement, response, or
+runtime delivery is proven. See [carintent.md](channels/carintent.md).
 
 > **Capture evidence boundary:** The VW capture cannot validate claims about this surface.
 > The on-phone hook lives inside the AA framing layer; `channel_id`, `flags`, and outer

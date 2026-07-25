@@ -1,7 +1,7 @@
 proto: oaa/av/AVChannelData.proto
 message: AVChannel
 confidence: silver
-last_updated: '2026-04-11'
+last_updated: '2026-07-25'
 evidence:
 - type: apk_static
   method: proto_access
@@ -21,6 +21,15 @@ evidence:
   description: Structural match confirmed across versions 15.9, 16.1, 16.2, 16.4.
     Field numbers, types, and modifiers are consistent across all 6 pairwise comparisons.
   status: consistent
+- type: apk_static
+  method: semantic_display_identity_trace
+  source: Android Auto 17.3 itq.java:213-238; xik.java:38
+  date: '2026-07-25'
+  description: >
+    The 17.3 AVChannel descriptor decodes field 6 as optional uint32. The phone
+    reads that member and immediately constructs CarDisplayId, proving logical
+    display identity. Renaming channel_id to display_id breaks generated APIs
+    but preserves protobuf tag 6 and uint32 wire type.
 oem_match_pending_gold: true
 pending_platinum_evidence:
 - type: platinum_evidence

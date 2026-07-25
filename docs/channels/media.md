@@ -15,12 +15,12 @@
 | MediaEventIdWrapper | Silver | apk_static + cross_version | [MediaPlaybackStatusMessage.audit.yaml](../../oaa/media/MediaPlaybackStatusMessage.audit.yaml) |
 | MediaStatusList | Silver | apk_static + cross_version | [MediaStatusListData.audit.yaml](../../oaa/media/MediaStatusListData.audit.yaml) |
 | MediaTrackIdentifier | Silver | apk_static + cross_version | [MediaTrackIdentifierData.audit.yaml](../../oaa/media/MediaTrackIdentifierData.audit.yaml) |
-| CarLocalMediaPlaybackStatus | Silver | apk_static + cross_version | [CarLocalMediaPlaybackStatusMessage.audit.yaml](../../oaa/media/CarLocalMediaPlaybackStatusMessage.audit.yaml) |
-| CarLocalMediaPlaybackMetadata | Silver | apk_static + cross_version | [CarLocalMediaPlaybackMetadataMessage.audit.yaml](../../oaa/media/CarLocalMediaPlaybackMetadataMessage.audit.yaml) |
-| CarLocalMediaPlaybackRequest | Silver | apk_static + cross_version | [CarLocalMediaPlaybackRequestMessage.audit.yaml](../../oaa/media/CarLocalMediaPlaybackRequestMessage.audit.yaml) |
+| CarLocalMediaPlaybackStatus | **Gold** | deep trace + cross-version + 17.3 endpoint trace | [CarLocalMediaPlaybackStatusMessage.audit.yaml](../../oaa/media/CarLocalMediaPlaybackStatusMessage.audit.yaml) |
+| CarLocalMediaPlaybackMetadata | **Gold** | apk_deep_trace + cross_version | [CarLocalMediaPlaybackMetadataMessage.audit.yaml](../../oaa/media/CarLocalMediaPlaybackMetadataMessage.audit.yaml) |
+| CarLocalMediaPlaybackRequest | **Gold** | apk_deep_trace + cross_version | [CarLocalMediaPlaybackRequestMessage.audit.yaml](../../oaa/media/CarLocalMediaPlaybackRequestMessage.audit.yaml) |
 | CarLocalMediaPlaybackEnum | Bronze | apk_static | [CarLocalMediaPlaybackEnum.audit.yaml](../../oaa/media/CarLocalMediaPlaybackEnum.audit.yaml) |
 | MediaInfoChannel | Unverified | -- | -- |
-| BufferedMediaSinkMessage | Unverified | -- | -- |
+| BufferedMediaSinkMessage | Bronze | 17.3 static parser trace | Task 13 audit sync pending |
 
 ---
 
@@ -34,8 +34,8 @@ Android Auto carries media information across several channel types. Two are com
 |---------|----------|---------|---------|--------|
 | CAR.GAL.INST | 11 | iai.java / hvx.java | **Media info channel** — playback status, metadata, HU input events | Primary — active in all sessions |
 | CAR.GAL.MEDIA | (AV) | qnf.java | **AV audio stream endpoint** — setup, config, ACKs for the audio pipe | AV infrastructure — not media status |
-| CAR.GAL.CAR_LOCAL_MEDIA | 20 | (separate) | Car-local media: FM radio, USB, CD | Niche — most HUs don't implement |
-| (n/a) | 21 | (stub) | Buffered media sink — stub, not implemented in AA v16.x | Inactive |
+| CAR.GAL.CAR_LOCAL_MEDIA | 20 | `ixi` (17.3) | Car-local media: FM radio, USB, CD | Static endpoint flow; runtime-unverified |
+| CAR.MEDIA.BUFFERED | 21 | `jaz` (17.3) | Buffered playback-status consumer | Incoming ID 4 parsed statically; runtime-unverified |
 
 **Important:** `CAR.GAL.MEDIA` is the AV audio streaming endpoint (setup/ACK/config), NOT the media status channel. Media playback status and metadata flow through `CAR.GAL.INST` (GAL type 11). These are distinct channels with different handlers and message catalogs.
 
@@ -221,25 +221,29 @@ All media transport controls (play, pause, skip, previous, stop) flow through th
 
 ---
 
-## CarLocalMediaPlayback (GAL Type 20)
+## CarLocalMediaPlayback (GAL service type 20)
 
-> Confidence: Silver [apk_static, cross_version] -- CarLocalMediaPlaybackEnum is Bronze
+> Confidence: confirmed-static for the 17.3 endpoint flow; runtime activation,
+> framed traffic, and callback delivery remain unverified.
 
-CarLocalMediaPlayback is a separate channel for head units with built-in media sources (FM tuner, USB music, CD changer). It runs on GAL type 20 with its own handler (`hxu.java`, log tag not specified). This is a niche feature -- most AA head units rely solely on phone-sourced media.
+CarLocalMediaPlayback is a separate channel for head units with built-in media
+sources (FM tuner, USB music, CD changer). `ChannelDescriptor` field 16, presence
+bit `0x8000`, selects service type 20. Android Auto 17.3 constructs the phone
+endpoint as `ixi`; the following directions are statically proven.
 
 ### Messages
 
 | Msg ID | Message | Direction | Purpose | Confidence |
 |--------|---------|-----------|---------|:---:|
-| 0x8001 | CarLocalMediaPlaybackStatus | Phone -> HU | Playback state, source, position, available actions | Silver |
-| 0x8002 | CarLocalMediaPlaybackMetadata | Phone -> HU | Track title, artist, album, album art, duration | Silver |
-| 0x8003 | CarLocalMediaPlaybackRequest | HU -> Phone | Transport action command (play/pause/skip/stop) | Silver |
+| 0x8001 | CarLocalMediaPlaybackStatus | HU -> Phone | Parse, cache, and notify playback state | confirmed-static |
+| 0x8002 | CarLocalMediaPlaybackMetadata | HU -> Phone | Parse, cache, and notify track metadata | confirmed-static |
+| 0x8003 | CarLocalMediaPlaybackRequest | Phone -> HU | Build and send a transport action request | confirmed-static |
 
 #### CarLocalMediaPlaybackStatus
 
 ```protobuf
 message CarLocalMediaPlaybackStatus {
-    optional PlaybackState playback_state = 1;     // Shared enum with MediaPlaybackStatus
+    optional CarLocalMediaPlaybackState playback_state = 1; // Separate values 1-5
     optional string media_source = 2;              // e.g. "FM Radio", "USB"
     optional int32 playback_position = 3;          // Elapsed seconds
     repeated CarLocalMediaPlaybackAction actions = 4;  // Available transport actions
@@ -247,6 +251,10 @@ message CarLocalMediaPlaybackStatus {
 ```
 
 Unlike phone-sourced `MediaPlaybackStatus`, this message includes a list of available transport actions (PLAY, PAUSE, PREVIOUS, NEXT, STOP). The phone uses these to determine which media controls to display.
+
+Playback-state numeric value 5 remains unknown and deferred. The 17.3 validator
+accepts it but supplies no unobfuscated semantic label; the separate
+BufferedMedia enum must not be transferred to CarLocalMedia.
 
 #### CarLocalMediaPlaybackMetadata
 
@@ -280,7 +288,52 @@ The `CarLocalMediaPlaybackAction` enum maps to Android `PlaybackStateCompat.ACTI
 | 3 | NEXT | ACTION_SKIP_TO_NEXT (32L) |
 | 4 | STOP | ACTION_STOP (1L) |
 
-The phone-side handler logs "Received unexpected car local media message CAR_LOCAL_MEDIA_PLAYBACK_REQUEST" and drops incoming 0x8003 messages -- this confirms it is an HU-to-phone outbound-only message.
+The phone builds and sends 0x8003 to the HU. An inbound copy is recognized but
+logged as unexpected. This asymmetry confirms Phone -> HU ownership; it does not
+establish an acknowledgement or response.
+
+## BufferedMedia (GAL service type 21)
+
+`ChannelDescriptor` field 17 uses bit `0x10000` and identifies service type 21.
+The available 16.2 descriptor also contains field 17, but its historical
+semantics and marker lineage are insufficiently evidenced; no voice alias or
+semantic reuse is published.
+
+### Proven 17.3 message boundary
+
+Incoming raw ID 4 is HU -> Phone and the endpoint performs parse and consume of
+the six-field `BufferedMediaSinkMessage`. IDs 1-3 remain unknown, and every
+outbound path is unknown. Validator range acceptance alone does not establish
+their names, payloads, directions, or pairing.
+
+| Field | Proto2 type | Consumer meaning |
+|------:|-------------|------------------|
+| 1 | optional `int32` | session ID |
+| 2 | optional `uint64` | UID |
+| 3 | optional `uint64` | current position ms |
+| 4 | optional `BufferedMediaState` | UNKNOWN=0, PLAYING=1, PAUSED=2, STOPPED=3, BUFFERING=4 |
+| 5 | optional `uint64` | buffered position ms |
+| 6 | optional `uint64` | content duration ms |
+
+The bounded consumer does not prove a response or completed transfer and remains runtime-unverified;
+it also does not establish callback delivery, a downstream media operation,
+URL behavior, a data plane, or session lifecycle.
+
+### Construction and lifecycle gates
+
+The static 17.3 path separates these steps:
+
+1. `NeoplanFeature__enabled == 834952858` is the construction gate; its declared
+   default is 0.
+2. Descriptor bit `0x10000` gates discovery, after which the instance performs
+   manager registration.
+3. The factory creates the service-type-21 endpoint.
+4. Endpoint attachment triggers `BUFFERED_MEDIA_WORKER` worker start.
+
+These are separate registration, endpoint attachment, and worker start stages.
+`BUFFERED_MEDIA_WORKER` execution is runtime-unverified, as are the effective
+flag value, live descriptor advertisement, and opened endpoint. Static branches
+do not establish production enablement.
 
 ---
 
@@ -294,7 +347,10 @@ The phone-side handler logs "Received unexpected car local media message CAR_LOC
 
 > **Gotcha:** `MediaEventIdWrapper` and `MediaTrackIdentifier` are structurally verified (Silver) but their sub-message content is not decoded. `MediaEventIdWrapper` uses field number 13 (unusually high, suggesting it was added later). `MediaTrackIdentifier` has 3 message-type fields whose internal structure is placeholder. Do not assume these sub-messages are empty at runtime -- they contain data, but we cannot yet describe its layout.
 
-> **Gotcha:** `BufferedMediaSinkMessage` (GAL type 21) is a **stub channel**. The phone-side handler in AA v16.x logs receipt and discards all data. Do not invest implementation effort in this channel. It is feature-gated behind flag `abey` (834952858) and not active in current AA versions.
+> **Gotcha:** The AA 16.1 handler was characterized historically as discard-only,
+> but that statement is not valid for 17.3. The 17.3 phone has a bounded incoming
+> raw-ID-4 parse branch; this still does not establish a complete or live transfer
+> protocol.
 
 ---
 
