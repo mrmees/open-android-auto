@@ -11,7 +11,7 @@
 | Gate | Status | Exit evidence |
 |---|---|---|
 | Baseline preservation | confirmed-static | Durable provenance and matcher smoke recorded in Task 1 handoff. |
-| Direction and video-ID audit | open | `message-matrix.md` DIR rows |
+| Direction and video-ID audit | open | Video rows closed by Task 3; car-control, sensor, and radio DIR rows remain open in `message-matrix.md`. |
 | Identity and compatibility | open | `message-matrix.md` ID rows |
 | New services | open | `services.md` SVC rows |
 | Runtime validation | open | `runtime-validation.md` RT rows |
@@ -20,6 +20,6 @@
 
 ## Resume Here
 
-- Last completed task: Task 1
-- Next task: Task 3, video message direction and ID audit
-- Next command: `rg -n "k\\(327|i == 327|case 327" analysis/aa_apk_17.3.662804_apkm/jadx-output/sources/defpackage/{jdc,itt,its,jca}.java`
+- Last completed task: Task 3, video message direction and ID audit
+- Next task: Task 4, car-control direction matrix
+- Next command: `rg -n 'case 3276|case 3277|Received unexpected car control|\.q\(\)' analysis/aa_apk_17.3.662804_apkm/jadx-output/sources/defpackage/ixb.java`

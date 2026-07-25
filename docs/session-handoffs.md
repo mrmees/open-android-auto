@@ -1234,3 +1234,70 @@ Verification:
 - Required message, service, and runtime claim-ID `rg` checks -> all requested
   IDs present
 - `git diff --check` -> success
+
+## 2026-07-24 — Close Android Auto 17.3 video message matrix
+
+Date / Session: 2026-07-24 / android-auto-17.3-update-task-3
+
+What Changed:
+- Replaced the nine seeded video placeholders with the complete fifteen-row
+  `DIR-VID-8007` through `DIR-VID-8015` matrix, including the previously
+  omitted hexadecimal `800A` through `800F` claim rows
+- Traced every direct 17.3 phone send/receive branch through its complete
+  builder/parser block and recorded the concrete protobuf-lite class,
+  descriptor field layout, normalized direction, exact source anchors, 16.x
+  conflict, status, and future canonical disposition
+- Documented inherited raw-ID normalization through `wru.S(raw)` for received
+  AudioUnderflow at raw `32779`/`0x800B` and MediaStats at raw
+  `32787`/`0x8013`
+- Added a bounded-search ledger for decimal IDs `32779`, `32784`, `32786`,
+  `32787`, and `32788`, plus an exact old-versus-17.3 canonical conflict table
+- Advanced the release dossier resume pointer to Task 4 without editing any
+  canonical video proto or channel documentation
+
+Why:
+- The 16.x canonical sources mix raw wire IDs with the inherited AV handler's
+  +1 internal dispatch values and repeatedly invert phone endpoint direction
+- Android Auto 17.3 directly proves fourteen mappings; preserving those
+  findings in the dossier gives Task 10 an evidence-ranked publication input
+  while keeping the sole absent endpoint slot explicitly bounded
+
+Status:
+- Fourteen video rows are `confirmed-static`; no claim implies framed runtime
+  observation
+- `0x8007` VideoFocusRequest, `0x800A` UpdateUiConfigRequest, `0x800C`
+  ActionTaken, `0x800D` IntegratedOverlayParameters, `0x8011` UiConfigRequest,
+  `0x8014` MediaOptions, and `0x8015` CriticalUiNotification are Phone -> HU
+- `0x8008` VideoFocusIndication, `0x8009` UpdateUiConfigRequest, `0x800B`
+  AudioUnderflow, `0x800E` OverlayStart, `0x800F` OverlayStop, `0x8012`
+  UpdateHuUiConfigResponse, and `0x8013` MediaStats are HU -> Phone
+- Raw `0x8010`/`32784` is `deferred`: the bounded source search found only
+  `wru.java` enum/offset bookkeeping, then `jdc` delegates and `jca` rejects
+  the shifted value; no 17.3 send, parser, or payload class was found
+- The exact numeric search root was
+  `analysis/aa_apk_17.3.662804_apkm/jadx-output/sources/defpackage` with
+  `-g '*.java'`. Results were: `32779` only `wru.java:234,292-293`; `32784`
+  only `wru.java:244,302-303`; `32786` `jdc.java:278` plus
+  `wru.java:248,306-307`; `32787` only `wru.java:250,308-309`; and `32788`
+  `jca.java:191,454`, `wru.java:252,310-311`, plus an unrelated negative
+  constant substring at `kdv.java:160`
+
+Next Steps:
+1. Task 4: trace `ixb` phone receive branches and `iip` phone sends to close
+   `DIR-CC-8001` through `DIR-CC-8007`
+2. Task 10: publish the accepted video enum/name/direction corrections from
+   this matrix; leave `0x8010` unnamed/reserved unless stronger evidence lands
+3. Runtime validation: capture framed video-control traffic to supplement, not
+   relabel, these static endpoint findings
+
+Verification:
+- Exact Task 3 open-row guard -> exit 0 with no `DIR-VID` open rows
+- Exact required-decimal `rg` check -> all of `32775`, `32776`, `32777`,
+  `32778`, `32780`, `32781`, `32782`, `32783`, `32785`, and `32789` present in
+  `message-matrix.md`
+- Video row/status count -> 15 rows: 14 `confirmed-static`, 1 `deferred`
+- Resume-pointer `rg` -> Task 3 completed, Task 4 next, exact `ixb.java`
+  extraction command present
+- Source-anchor existence loop -> 15/15 referenced primary payload/endpoint
+  files present
+- `git diff --check` -> exit 0
