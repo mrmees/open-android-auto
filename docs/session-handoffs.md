@@ -1367,3 +1367,42 @@ Verification:
 - Resume-pointer check -> Task 4 completed, Task 5 next, exact `jal.java`
   extraction command present
 - `git diff --check` -> exit 0
+
+## 2026-07-24 — Task 4 Fix Round 1: complete conflict-anchor inventory
+
+Date / Session: 2026-07-24 / android-auto-17.3-update-task-4-fix-1
+
+What Changed:
+- Expanded every car-control conflict-ledger ID row to inventory the active
+  stale direction and endpoint-perspective claims exposed by the bounded
+  canonical search and their immediately surrounding narrative blocks
+- Added the omitted proto handler comments, channel request/response prose,
+  change-mode entries, complete lifecycle workflow, UUID-correlation note, and
+  group-replacement note to their affected IDs
+- Preserved all seven Android Auto 17.3 directions, payload classes, static
+  classifications, canonical dispositions, and the Task 5 resume pointer
+
+Why:
+- Task 10 needs a complete stale-anchor inventory; representative table claims
+  alone could leave contradictory overview, workflow, and gotcha prose behind
+
+Status:
+- The existing seven-row ledger is now exact for the bounded canonical search:
+  each stale proto, channel-doc, and verification-report claim is mapped to one
+  or more of `0x8001` through `0x8007`
+- Canonical files remain unchanged in this evidence task
+
+Next Steps:
+1. Continue with Task 5 from the existing dossier resume pointer
+2. In Task 10, use the expanded per-ID anchor inventory to update every stale
+   car-control direction and endpoint-perspective statement together
+
+Verification:
+- Brief canonical-direction `rg` -> inventoried all stale matched claims and
+  reviewed each matching narrative block; cross-version hits remain
+  direction-free class mappings
+- Matrix anchor `rg` -> omitted proto/channel anchors now present in their
+  corresponding conflict rows
+- Task 4 open-row guard -> exit 0; direction check -> all seven proven rows
+  unchanged
+- `git diff --check` -> exit 0
