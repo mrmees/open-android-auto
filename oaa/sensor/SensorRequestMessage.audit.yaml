@@ -1,7 +1,7 @@
 proto: oaa/sensor/SensorRequestMessage.proto
 message: SensorRequest
-confidence: gold
-last_updated: '2026-07-15'
+confidence: silver
+last_updated: '2026-07-25'
 evidence:
 - type: apk_static
   method: bfs_trace

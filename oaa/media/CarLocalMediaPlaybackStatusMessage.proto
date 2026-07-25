@@ -42,7 +42,8 @@ enum CarLocalMediaPlaybackState {
     CAR_LOCAL_PLAYBACK_PLAYING = 2;
     CAR_LOCAL_PLAYBACK_PAUSED = 3;
     CAR_LOCAL_PLAYBACK_ERROR = 4;
-    CAR_LOCAL_PLAYBACK_UNKNOWN_5 = 5; // Semantic name TBD — needs wire capture
+    // Numeric value 5 is accepted by 17.3 but remains semantically unknown and deferred.
+    CAR_LOCAL_PLAYBACK_UNKNOWN_5 = 5;
 }
 
 // Available transport actions (APK enum: vwp (16.1) / vwb (16.2), UNOBFUSCATED)

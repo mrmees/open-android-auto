@@ -2,42 +2,68 @@
 
 **Channel:** Video (AV sink)
 **GAL Tag:** `CAR.GAL.VIDEO`
-**Handler:** `ied.java` (16.2) extends `icv.java` (AV base) extends `iav.java`
-**Date:** 2026-03-06
+**Updated:** 2026-07-25 from Android Auto `17.3.662804-release`
 
-## Complete Message ID Table (Ground Truth)
+## Accepted Android Auto 17.3 evidence
 
-### Video-Specific Messages (ied.java — raw wire IDs, no +1 offset)
+The accepted directions and 17.3 class names below come from
+`analysis/reports/android-auto-17.3-update/message-matrix.md` and the direct
+phone endpoint sources under
+`analysis/aa_apk_17.3.662804_apkm/jadx-output/sources/defpackage/`:
+`jdc.java`, `itt.java`, `its.java`, and shared AV handler `jca.java`. Payload
+descriptors are in the named `x*.java` file, including `xig.java:7-20,39` for
+the exact MediaOptions shape. The later 16.2 sections are retained as a
+historical schema baseline and do not supply the accepted 17.3 directions.
+
+### Video-specific and shared AV messages
+
+| Wire ID | Direction | 17.3 Class | Name | Confidence |
+|---------|-----------|-------------------|------|------------|
+| 0x8007 | Phone -> HU | xnd | VideoFocusRequest | Gold |
+| 0x8008 | HU -> Phone | xnb | VideoFocusIndication | Gold |
+| 0x8009 | HU -> Phone | xms | UpdateUiConfigRequest (inbound to phone) | Gold |
+| 0x800A | Phone -> HU | xms | UpdateUiConfigRequest (outbound from phone) | Gold |
+| 0x800B | HU -> Phone | — | AudioUnderflow; no payload parsed | Bronze (17.3-only trace) |
+| 0x800C | Phone -> HU | xex | ActionTaken; enum field 1 and public action enum unpublished | Bronze (17.3-only trace) |
+| 0x800D | Phone -> HU | xhv | OverlayParameters; repeated overlay-options field 1, nested semantics unpublished | Bronze (17.3-only trace) |
+| 0x800E | HU -> Phone | xhw | IntegratedOverlayStartNotification | Gold |
+| 0x800F | HU -> Phone | — | OverlayStop; empty payload | Bronze (17.3-only trace) |
+| 0x8010 | unknown | — | reserved; name/payload/direction unknown and deferred | deferred |
+| 0x8011 | Phone -> HU | xmt | UiConfigRequest (theming tokens) | Bronze (no qualifying primary anchor/cross-version entry) |
+| 0x8012 | HU -> Phone | xmu | UpdateHuUiConfigResponse | Gold |
+| 0x8013 | HU -> Phone | xim | MediaStats | Silver |
+| 0x8014 | Phone -> HU | xig | MediaOptions | Bronze (17.3-only static trace) |
+| 0x8015 | Phone -> HU | xgu | CriticalUiNotification | Bronze (17.3-only static trace) |
+
+#### 0x8014 MediaOptions descriptor inventory
+
+`xig.java:7-20,39` proves message fields 1, 3, 4, 5, 6, 8, 10, 12,
+and 13 referencing 17.3 `abmh` (`oaa.proto.data.PingConfiguration`), bool
+fields 2, 9, and 11, and uint32 field 7. The canonical neutral names expose
+only tag and type; field semantics remain unresolved.
+
+## Historical Android Auto 16.2 baseline
+
+The remaining class names and trace attributions in this report are explicitly
+the older 16.2 `ied`/`icv` baseline. They document prior schema work and the
+cross-version conflict; they are not mislabeled as 17.3 evidence.
+
+### Inherited AV Messages (`icv.java` — 16.2 baseline)
 
 | Wire ID | Direction | Proto Class (16.2) | Name | Confidence |
 |---------|-----------|-------------------|------|------------|
-| 0x8007 | HU→Phone | wct | VideoFocusRequest | Gold |
-| 0x8008 | Phone→HU | wcr | VideoFocusIndication | Gold |
-| 0x8009 | Phone→HU | wci | UpdateUiConfigRequest (inbound) | Gold |
-| 0x800A | HU→Phone | wci | UpdateUiConfigRequest (outbound) | Gold |
-| 0x800C | HU→Phone | vuy | AudioUnderflowNotification | Bronze |
-| 0x800D | HU→Phone | vxp | ActionTakenNotification | Bronze |
-| 0x800E | Phone→HU | vxq | IntegratedOverlayStartNotification | Gold |
-| 0x800F | Phone→HU | — | IntegratedOverlayStopNotification (empty) | Gold |
-| 0x8011 | HU→Phone | wcj | UiConfigRequest (theming tokens) | Gold |
-| 0x8012 | Phone→HU | wck | UpdateHuUiConfigResponse | Gold |
-
-### Inherited AV Messages (icv.java — +1 offset via vdp.m36513at)
-
-| Wire ID | Direction | Proto Class (16.2) | Name | Confidence |
-|---------|-----------|-------------------|------|------------|
-| 0x8000 | Phone→HU | wbs | AVChannelSetupRequest | Gold (media ch) |
-| 0x8001 | Phone→HU | wbu | AVChannelStartIndication | Gold (media ch) |
+| 0x8000 | Phone→HU | wbs | AVChannelSetupRequest | Silver |
+| 0x8001 | Phone→HU | wbu | AVChannelStartIndication | Silver |
 | 0x8002 | Phone→HU | wbv | AVChannelStopIndication | Gold (media ch) |
-| 0x8003 | HU→Phone | vwn | AVChannelSetupResponse | Gold (media ch) |
-| 0x8004 | HU→Phone | vuw | AVMediaAckIndication | Gold (media ch) |
-| 0x800B | — | — | Signal/heartbeat (no proto) | Gold (media ch) |
-| 0x8013 | HU→Phone | vyg | AVChannelMediaStats | Gold |
-| 0x8014 | Phone→HU | vya | AVChannelMediaOptions | Silver |
+| 0x8003 | HU→Phone | vwn | AVChannelSetupResponse | Silver |
+| 0x8004 | HU→Phone | vuw | AVMediaAckIndication | Silver |
 
-## Per-Proto Verification Results
+## Historical 16.2 per-proto verification results
 
-### VideoFocusRequest (wct, 0x8007, HU→Phone) — Gold
+### VideoFocusRequest (`wct`, historical 16.2) — Gold
+
+Historical wire ID: 0x8007.
+Historical direction: HU -> Phone.
 
 All 6 checks pass. No changes needed to field schema.
 
@@ -52,7 +78,10 @@ All 6 checks pass. No changes needed to field schema.
 
 **Changes:** Updated 16.2 class from wdd→wct, upgraded to Gold.
 
-### VideoFocusIndication (wcr, 0x8008, Phone→HU) — Gold
+### VideoFocusIndication (`wcr`, historical 16.2) — Gold
+
+Historical wire ID: 0x8008.
+Historical direction: Phone -> HU.
 
 All 6 checks pass. No changes needed to field schema.
 
@@ -67,7 +96,10 @@ All 6 checks pass. No changes needed to field schema.
 
 **Note:** vdp internal name is `MEDIA_MESSAGE_VIDEO_FOCUS_NOTIFICATION`, but we use "Indication" to match aasdk convention. Both are valid.
 
-### IntegratedOverlayStartNotification (vxq, 0x800E, Phone→HU) — Gold
+### IntegratedOverlayStartNotification (`vxq`, historical 16.2) — Gold
+
+Historical wire ID: 0x800E.
+Historical direction: Phone -> HU.
 
 **Previously misidentified as VideoFocusNotification.**
 
@@ -84,7 +116,10 @@ All 6 checks pass. No changes needed to field schema.
 **Retracted:** VideoFocusNotificationMessage.proto (field 1 was wrongly called focus_mode)
 **Created:** IntegratedOverlayStartNotification.proto
 
-### IntegratedOverlayStopNotification (empty, 0x800F, Phone→HU) — Gold
+### IntegratedOverlayStopNotification (empty, historical 16.2) — Bronze
+
+Historical wire ID: 0x800F.
+Historical direction: Phone -> HU.
 
 | Check | Result | Details |
 |-------|--------|---------|
@@ -98,7 +133,14 @@ All 6 checks pass. No changes needed to field schema.
 **vdp name:** `MEDIA_MESSAGE_INTEGRATED_OVERLAY_STOP_NOTIFICATION`
 **Created:** IntegratedOverlayStopNotification.proto
 
-### UpdateUiConfigRequest (wci, 0x8009/0x800A, bidirectional) — Gold
+The earlier Gold label is superseded. The 16.2 checks and the 17.3 callback
+trace are a single primary-trace evidence type; no `cross_version` entry names
+exact version-to-class pairs for this empty wrapper.
+
+### UpdateUiConfigRequest (`wci`, historical 16.2) — Gold
+
+Historical wire IDs: 0x8009 and 0x800A.
+Historical directions: Phone -> HU and HU -> Phone, respectively.
 
 **New discovery — not in any previous proto.**
 
@@ -114,7 +156,10 @@ All 6 checks pass. No changes needed to field schema.
 **vdp name:** `MEDIA_MESSAGE_UPDATE_UI_CONFIG`
 **Created:** UpdateUiConfigRequestMessage.proto (references existing AdditionalVideoConfig)
 
-### UiConfigRequest (wcj, 0x8011, HU→Phone) — Gold
+### UiConfigRequest (`wcj`, historical 16.2) — Gold
+
+Historical wire ID: 0x8011.
+Historical direction: HU -> Phone.
 
 Existing proto structure confirmed correct. Updated class refs and added field to UiConfigValue.
 
@@ -122,7 +167,7 @@ Existing proto structure confirmed correct. Updated class refs and added field t
 |-------|--------|---------|
 | Channel binding | PASS | Sent by huz.mo19796n → ied.m20106k(32785) |
 | Message ID | PASS | m20106k(32785) = wire 0x8011 |
-| Direction | PASS | HU→Phone only (built from UiStyle by hum.java) |
+| Direction | PASS | Historical HU -> Phone send in the 16.2 endpoint |
 | Field schema | CORRECTED | UiConfigValue was empty, now has `optional uint32 value = 1` |
 | Cross-references | PASS | hum→huz→ied send chain, response at 0x8012 |
 | Enum values | N/A | String key-value pairs |
@@ -130,7 +175,10 @@ Existing proto structure confirmed correct. Updated class refs and added field t
 **vdp name:** `MEDIA_MESSAGE_INTEGRATED_OVERLAY_SESSION_DATA_UPDATE`
 **WARNING:** 16.1 class names (wct, wco, wcq) all refer to DIFFERENT protos in 16.2 (VideoFocusRequest, VideoResolution enum, VideoFocusMode enum respectively).
 
-### UpdateHuUiConfigResponse (wck, 0x8012, Phone→HU) — Gold
+### UpdateHuUiConfigResponse (`wck`, historical 16.2) — Gold
+
+Historical wire ID: 0x8012.
+Historical direction: Phone -> HU.
 
 **Previously misidentified as VideoFocusModeMessage.**
 
@@ -216,18 +264,21 @@ All 11 fields match. Defaults: fps=1 (_60), margin_width=1, codec=1 (PCM).
 
 2 values (_60=1, _30=2), exact match.
 
-## Shared AV Messages (icv.java)
+## Historical 16.2 shared AV messages (`icv.java`)
 
-### AVChannelMediaStats (vyg, 0x8013, HU→Phone) — Gold
+### AVChannelMediaStats (`vyg`, 0x8013, HU -> Phone) — Silver
 
 Existing proto structure confirmed correct (15 fields). Fixed:
 - Wire msg ID: 0x8014 → 0x8013 (was dispatch value, not wire value)
 - 16.2 class: vyu → vyg
 - Sub-message class: vvo → vva (StatsEntry)
 
-### AVChannelMediaOptions (vya, 0x8014, Phone→HU) — Silver
+### AVChannelMediaOptions (`vya`, 0x8014, Phone -> HU) — historical Silver
 
-New discovery. 13 fields (mostly PhenotypeFlag wrappers). Built by hnc.java from feature flags. Gated by PDK version (>= 5.0/5.1/6.0). Placeholder proto created — full field schema deferred to audio channel pass.
+The 16.2 pass established 13 fields but left their types approximate. Direct
+17.3 `xig.java:7-20,39` evidence now proves nine PingConfiguration messages,
+three bools, and one uint32. The canonical proto publishes that exact shape
+with neutral names; application semantics for all 13 fields remain unresolved.
 
 ## Retracted Protos
 
@@ -236,12 +287,15 @@ New discovery. 13 fields (mostly PhenotypeFlag wrappers). Built by hnc.java from
 | VideoFocusNotification | Actually IntegratedOverlayStartNotification | IntegratedOverlayStartNotification.proto |
 | VideoFocusModeMessage | Actually UpdateHuUiConfigResponse | UpdateHuUiConfigResponse.proto |
 
-## Additional Messages Not Fully Verified
+## Additional 17.3 message boundaries
 
 | Wire ID | Direction | Name | Notes |
 |---------|-----------|------|-------|
-| 0x800C | HU→Phone | AudioUnderflowNotification (vuy) | From huz.java, Bronze |
-| 0x800D | HU→Phone | ActionTakenNotification (vxp) | From huz.java, Bronze |
+| 0x800B | HU -> Phone | AudioUnderflowNotification | Phone callback parses no payload; no additional signal semantics are inferred |
+| 0x800C | Phone -> HU | ActionTakenNotification | Wrapper has enum field 1; public action enum is unpublished |
+| 0x800D | Phone -> HU | IntegratedOverlayParametersNotification | Wrapper has repeated overlay-options field 1; nested overlay-option semantics are unpublished |
+| 0x8010 | unknown | reserved | Name, payload, and direction are unknown; publication is deferred |
+| 0x8015 | Phone -> HU | CriticalUiNotification | Optional critical-UI-focus enum field 1; no acknowledgement or response implied |
 
 ## Key Discoveries
 

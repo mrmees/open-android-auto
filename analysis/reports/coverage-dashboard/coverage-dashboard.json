@@ -1,45 +1,38 @@
 {
   "evidence_type_breakdown": {
     "bronze": {
-      "apk_static": 10,
-      "cross_version": 10
+      "apk_deep_trace": 11,
+      "apk_static": 11,
+      "cross_version": 10,
+      "deep_trace": 2
     },
     "gold": {
-      "apk_deep_trace": 5,
-      "apk_static": 21,
-      "cross_version": 10,
-      "deep_trace": 20,
-      "handler_trace": 13
-    },
-    "platinum": {
-      "apk_deep_trace": 2,
-      "apk_static": 4,
-      "cross_version": 3,
-      "deep_trace": 1,
-      "platinum_evidence": 3
+      "apk_deep_trace": 11,
+      "apk_static": 15,
+      "cross_version": 17,
+      "deep_trace": 7
     },
     "retracted": {
-      "apk_deep_trace": 2,
-      "apk_static": 3,
-      "cross_version": 2,
+      "apk_deep_trace": 8,
+      "apk_static": 23,
+      "cross_version": 14,
       "deep_trace": 1
     },
     "silver": {
-      "apk_static": 167,
-      "cross_version": 221
-    },
-    "superseded": {
-      "apk_deep_trace": 1,
-      "apk_static": 1
+      "apk_deep_trace": 15,
+      "apk_static": 172,
+      "cross_version": 207,
+      "deep_trace": 12,
+      "dhu_observation": 1
     }
   },
   "metadata": {
-    "git_head": "4e9dadd69ce00100c07ae73bf116f2f868643f44",
-    "run_date": "2026-04-12T16:59:26Z",
+    "git_head": "d62bebdb5c70d75a74ff42c26acc30b134e3f4ff",
+    "run_date": "2026-07-25T21:00:00Z",
     "sidecar_directory": "oaa/",
     "tool_version": "1.0.0",
-    "total_protos": 245,
-    "total_sidecars": 160
+    "total_protos": 247,
+    "total_sidecars": 168
   },
   "missing_sidecars": {
     "audio": [
@@ -48,8 +41,6 @@
       "AudioTypeEnum.proto"
     ],
     "av": [
-      "AVChannelMediaOptionsMessage.proto",
-      "AVChannelMessageIdsEnum.proto",
       "AVChannelSessionTypeEnum.proto",
       "AVChannelSetupStatusEnum.proto",
       "AVChannelStopIndicationMessage.proto",
@@ -100,7 +91,6 @@
       "TouchScreenConfigData.proto"
     ],
     "media": [
-      "BufferedMediaSinkMessage.proto",
       "MediaChannelData.proto"
     ],
     "mediabrowser": [
@@ -139,10 +129,7 @@
     "video": [
       "ColorSchemeSupportEnum.proto",
       "DisplayTypeEnum.proto",
-      "IntegratedOverlayStartNotification.proto",
-      "IntegratedOverlayStopNotification.proto",
       "UpdateHuUiConfigResponse.proto",
-      "UpdateUiConfigRequestMessage.proto",
       "VideoFPSEnum.proto",
       "VideoFocusModeEnum.proto",
       "VideoFocusReasonEnum.proto",
@@ -172,13 +159,13 @@
       "total": 7
     },
     "av": {
-      "bronze": 0,
-      "gold": 0,
+      "bronze": 2,
+      "gold": 2,
       "platinum": 0,
       "retracted": 0,
-      "silver": 11,
+      "silver": 9,
       "superseded": 0,
-      "total": 11
+      "total": 13
     },
     "bluetooth": {
       "bronze": 0,
@@ -191,12 +178,21 @@
     },
     "carcontrol": {
       "bronze": 0,
-      "gold": 2,
+      "gold": 0,
+      "platinum": 0,
+      "retracted": 0,
+      "silver": 2,
+      "superseded": 0,
+      "total": 2
+    },
+    "carintent": {
+      "bronze": 1,
+      "gold": 0,
       "platinum": 0,
       "retracted": 0,
       "silver": 0,
       "superseded": 0,
-      "total": 2
+      "total": 1
     },
     "common": {
       "bronze": 1,
@@ -209,10 +205,10 @@
     },
     "control": {
       "bronze": 1,
-      "gold": 2,
+      "gold": 3,
       "platinum": 0,
-      "retracted": 0,
-      "silver": 24,
+      "retracted": 4,
+      "silver": 19,
       "superseded": 0,
       "total": 27
     },
@@ -226,22 +222,22 @@
       "total": 1
     },
     "input": {
-      "bronze": 0,
-      "gold": 13,
+      "bronze": 4,
+      "gold": 1,
       "platinum": 0,
       "retracted": 0,
-      "silver": 4,
+      "silver": 12,
       "superseded": 0,
       "total": 17
     },
     "media": {
-      "bronze": 0,
-      "gold": 4,
-      "platinum": 2,
-      "retracted": 3,
-      "silver": 0,
-      "superseded": 1,
-      "total": 10
+      "bronze": 1,
+      "gold": 1,
+      "platinum": 0,
+      "retracted": 4,
+      "silver": 5,
+      "superseded": 0,
+      "total": 11
     },
     "mediabrowser": {
       "bronze": 0,
@@ -253,8 +249,8 @@
       "total": 0
     },
     "mic": {
-      "bronze": 0,
-      "gold": 1,
+      "bronze": 1,
+      "gold": 0,
       "platinum": 0,
       "retracted": 0,
       "silver": 0,
@@ -301,8 +297,8 @@
       "bronze": 3,
       "gold": 0,
       "platinum": 0,
-      "retracted": 0,
-      "silver": 34,
+      "retracted": 1,
+      "silver": 33,
       "superseded": 0,
       "total": 37
     },
@@ -316,36 +312,36 @@
       "total": 0
     },
     "video": {
-      "bronze": 0,
-      "gold": 2,
-      "platinum": 1,
+      "bronze": 3,
+      "gold": 4,
+      "platinum": 0,
       "retracted": 2,
       "silver": 3,
       "superseded": 0,
-      "total": 8
+      "total": 12
     },
     "wifi": {
-      "bronze": 1,
-      "gold": 2,
+      "bronze": 2,
+      "gold": 0,
       "platinum": 0,
-      "retracted": 1,
+      "retracted": 2,
       "silver": 10,
       "superseded": 0,
       "total": 14
     }
   },
   "summary": {
-    "coverage_pct": 65,
-    "pending_gold_count": 21,
+    "coverage_pct": 68,
+    "pending_gold_count": 0,
     "tiers": {
-      "bronze": 10,
-      "gold": 29,
-      "platinum": 3,
-      "retracted": 6,
-      "silver": 111,
-      "superseded": 1
+      "bronze": 23,
+      "gold": 14,
+      "platinum": 0,
+      "retracted": 13,
+      "silver": 118,
+      "superseded": 0
     },
-    "total_protos": 245,
-    "total_sidecars": 160
+    "total_protos": 247,
+    "total_sidecars": 168
   }
 }

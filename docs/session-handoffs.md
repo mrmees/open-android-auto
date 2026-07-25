@@ -1009,3 +1009,1966 @@ Verification:
 - 16.2 Layer-1 validator -> 215 active mappings, 203 with a 16.2 class, 24
   errors and 13 warnings; the added warning is expected because blended UI
   field 8 is new after 16.2
+
+## 2026-07-24 — Android Auto 17.3 durable multi-display analysis
+
+Date / Session: 2026-07-24 / 17.3-multi-display-durable-research
+
+What Changed:
+- Recovered the Android Auto `17.3.662804-release` APKM bundle from `/mnt/e/tmp`
+  and copied it into the ignored, versioned local analysis directory
+  `analysis/aa_apk_17.3.662804_apkm/`
+- Extracted and preserved `base.apk`, recorded both SHA-256 identities, and
+  generated a durable JADX 1.5.5 tree with 26,115 Java files
+- Added local `PROVENANCE.md` covering bundle identity, tool versions,
+  decompilation status, source anchors, and reproduction commands
+- Added `analysis/reports/multi-display/android-auto-17.3.md` with exact 17.3
+  source evidence for per-display `CarDisplayId`, `Surface`, video endpoint,
+  configuration, encoder, focus, and input-binding state
+- Updated the schema-matcher smoke command to use the durable local tree and to
+  write fresh results into the ignored validation directory before promotion
+- Updated the roadmap to make live MAIN + CLUSTER + AUXILIARY verification an
+  explicit next step
+
+Why:
+- The previous 17.3 source lived under `/tmp`, so schema reports survived but
+  source-level call-flow research depended on a transient decompile
+- Multi-display implementation planning for OpenAuto Prodigy needs a durable,
+  independently reviewable answer to whether AA uses separate displays or one
+  cropped panoramic canvas
+- Fresh 17.3 source proves that AA creates separate logical display/video
+  instances; retaining the full ignored tree and a tracked evidence summary
+  prevents that conclusion from being trapped in chat history
+
+Status:
+- The APKM hash is
+  `1db7ce995aa52b2cde47a01abfb0364220fb57fc60217de3ec714e3034795344`,
+  matching the existing 17.3 cross-version report; `base.apk` is
+  `5557827f259898bdab97b489e1a0aef937fd6ec711d87361cf25d51af6f48619`
+- 17.3 `itq` creates an `iti`/`itt` display/video pair for every video-capable
+  `ChannelDescriptor`; `itt` owns the display's surface/config/encoder state,
+  and `jdc` maps it to VIDEO, VIDEO_CLUSTER, or VIDEO_AUXILIARY
+- 17.3 `jnb` enforces unique display IDs, display 0 as MAIN, exactly one MAIN,
+  at most one CLUSTER, and exactly one matching input config per display
+- The architecture conclusion is separate logical displays and media streams,
+  not one HU-cropped mega-canvas; blended UI/insets are intra-display layout
+- JADX completed with 57 errors, but all multi-display anchor classes used by
+  the report are readable
+- A fresh matcher run from the durable tree recovered 1,957 APK messages, 134
+  enums, 135 observations, and 176 mappings (39 high, 137 medium). Its outputs
+  are preserved under `validation/` and were not promoted because they differ
+  from the committed 175/129 baseline at `BluetoothChannel`,
+  `PhoneConnectionConfig`, and `WifiInfoResponse`
+
+Next Steps:
+1. Capture a live 17.3 MAIN + CLUSTER + AUXILIARY session and correlate distinct
+   channel IDs, AV setup handshakes, media streams, focus changes, and logcat
+   `CarDisplayId` activity launches
+2. Review the three fresh-matcher delta rows before deciding whether the more
+   complete JADX evidence should update the canonical 17.3 schema report
+3. Translate the proven model into a Prodigy `DisplayRegistry` design with one
+   video session/decoder/sink/input route per logical display, beginning with
+   native semantic cluster widgets
+
+Verification:
+- Android reverse-engineering dependency check -> Java 21 and JADX 1.5.5 OK;
+  optional Vineflower, dex2jar, and apktool absent
+- Fingerprint of the APKM bundle -> native Android Java/Kotlin, Android Auto
+  `17.3.662804-release`, suitable for JADX
+- `sha256sum analysis/aa_apk_17.3.662804_apkm/input/android-auto-17.3.662804-release.apkm analysis/aa_apk_17.3.662804_apkm/input/base.apk` -> hashes match the values above
+- JADX wrapper against the preserved `base.apk` -> usable partial success,
+  26,115 Java files, 57 errors
+- Durable-path `proto_schema_matcher` smoke command -> success; 376 canonical
+  messages, 112 canonical enums, 1,957 APK messages, 134 APK enums, 135 static
+  observations, 6 lineage anchors, and 176 resolved mappings
+- Source-anchor existence checks for `jdc.java`, `itt.java`, `itq.java`,
+  `iti.java`, `its.java`, and `jnb.java` -> all present
+- `git diff --check` -> success
+- Path/reference `rg` checks for the new durable path and report -> success; no
+  active `/tmp/android-auto-17.3-jadx` smoke path remains
+
+## 2026-07-24 — Prodigy multi-display maintainer handoff
+
+Date / Session: 2026-07-24 / prodigy-multi-display-maintainer-handoff
+
+What Changed:
+- Added `analysis/reports/multi-display/prodigy-maintainer-handoff.md`, a
+  standalone transfer document for the OpenAuto Prodigy maintainer
+- Documented MAIN-only, MAIN + CLUSTER, MAIN + AUXILIARY, combined projected,
+  single-display blended-UI, and native semantic-widget configurations
+- Separated the multiplexed `ChannelDescriptor.channel_id` from the
+  `CarDisplayId` carried in `AVChannel` field 6 and its matching
+  `InputChannelConfig.display_id`
+- Added a proposed Prodigy `DisplayRegistry`/`DisplaySession` model, archived
+  integration seams, staged delivery order, acceptance tests, and failure modes
+- Linked the handoff from `analysis/reports/multi-display/README.md`
+
+Why:
+- A Prodigy implementation can route and decode multiple streams incorrectly
+  if it assumes one panoramic phone canvas or conflates a wire channel ID with
+  a logical display ID
+- The maintainer needs a self-contained document that preserves both the
+  confirmed 17.3 evidence and the boundary between static proof, implementation
+  recommendations, and unverified runtime behavior
+
+Status:
+- The maintainer handoff confirms separate logical display/video instances,
+  surfaces, endpoints, focus state, and input matching in Android Auto 17.3
+- Static topology support is distinguished from the still-missing simultaneous
+  MAIN + CLUSTER + AUXILIARY wire capture
+- No protobuf schema or Prodigy runtime code changed; the historical
+  `AVChannel` field-6 name is recorded as a future API/naming decision only
+- The current roadmap already prioritizes the required live multi-display
+  capture, so this documentation pass did not change sequencing
+
+Next Steps:
+1. Give `analysis/reports/multi-display/prodigy-maintainer-handoff.md` to the
+   Prodigy maintainer and map its responsibility-level seams to the current
+   Prodigy source tree
+2. Capture a live 17.3 MAIN + CLUSTER + AUXILIARY session to confirm concurrent
+   channel lifecycle, stream separation, focus transitions, and content policy
+3. Decide in a compatibility-focused proto/API pass whether `AVChannel` field 6
+   should be renamed from `channel_id` to `display_id`
+
+Verification:
+- All 14 repository files linked by the maintainer handoff -> present
+- Handoff evidence-anchor check -> all 14 cited 17.3 class/line spans present in
+  the document
+- Fresh JADX semantic check -> `xik.g` and `xik.h` are read before
+  `new CarDisplayId(i4)` in `itq.java:213-220`
+- Fresh JADX topology-message check -> unique display IDs, MAIN ID 0, MAIN type,
+  one MAIN, at most one CLUSTER, and exactly one matched input all present in
+  `jnb.java`
+- `git diff --check` -> success
+
+## 2026-07-24 — Preserve Android Auto 17.3 display evidence baseline
+
+Date / Session: 2026-07-24 / android-auto-17.3-update-task-1
+
+What Changed:
+- Preserved the durable 17.3 APK/JADX provenance and source-cited multi-display
+  reports as the committed evidence checkpoint for subsequent update work
+- Documented the matcher smoke command against the ignored, version-scoped
+  JADX tree and retained its fresh output only under the ignored `validation/`
+  directory
+- Reviewed the three fresh-matcher deltas without changing any canonical proto
+  claims or replacing the committed cross-version report
+
+Why:
+- Later 17.3 analysis needs reproducible local source evidence while retaining
+  the already reviewed 175-mapping/129-observation report as its stable
+  comparison baseline
+- The fresh output has more recovered evidence, but its three changed rows need
+  deliberate review before it can affect canonical protocol documentation
+
+Status:
+- APKM SHA-256:
+  `1db7ce995aa52b2cde47a01abfb0364220fb57fc60217de3ec714e3034795344`
+- `base.apk` SHA-256:
+  `5557827f259898bdab97b489e1a0aef937fd6ec711d87361cf25d51af6f48619`
+- Durable JADX tree contains 26,115 Java files; all six required display
+  anchors (`jdc`, `itt`, `itq`, `iti`, `its`, and `jnb`) are present
+- Fresh matcher result: 1,957 APK messages, 134 APK enums, 135 dispatch
+  observations, and 176 resolved mappings (39 high, 137 medium)
+- Delta disposition: retain
+  `analysis/reports/cross-version/17-3-schema-match.{json,md}` as canonical
+  for this task and do not stage the fresh ignored output. Relative to that
+  baseline, fresh `oaa.proto.data.BluetoothChannel` changes from
+  `unique_structural` / `xfp` / `medium` to `constraint_conflict` / `-` /
+  `none`; fresh `oaa.proto.data.PhoneConnectionConfig` changes from
+  `ambiguous_structural` / `-` / `none` to `graph_resolved` / `xnm` /
+  `medium`; and fresh `oaa.proto.messages.WifiInfoResponse` changes from
+  `ambiguous_structural` / `-` / `none` to `graph_resolved` / `xnm` /
+  `medium`
+
+Next Steps:
+1. Task 2: establish the 17.3 Release Dossier from this preserved evidence
+   checkpoint
+2. Review the three fresh-matcher delta rows before any report promotion or
+   canonical proto claim
+3. Capture a live MAIN + CLUSTER + AUXILIARY session to validate the static
+   multi-display model at runtime
+
+Verification:
+- Durable artifact checksum and source-count commands -> expected two hashes
+  and 26,115 Java files; all six anchor-file checks passed
+- Documented durable-path matcher smoke command -> exit 0; 176 resolved
+  mappings and 135 dispatch observations
+- Three-row committed-versus-fresh `jq` comparison -> exact disposition
+  recorded above; committed report retained as canonical
+- Path/reference `rg` checks -> no active `/tmp/android-auto-17.3-jadx` smoke
+  path; durable 17.3 paths and display concepts present
+- `git diff --check` -> success
+
+## 2026-07-24 — Establish Android Auto 17.3 release dossier
+
+Date / Session: 2026-07-24 / android-auto-17.3-update-task-2
+
+What Changed:
+- Added the Android Auto 17.3 release dossier index at
+  `analysis/reports/android-auto-17.3-update/README.md`
+- Added stable message, service, and runtime-validation matrix contracts, plus
+  an empty canonical change manifest
+- Seeded the message matrix with DIR-VID, DIR-CC, DIR-SEN, DIR-RAD, and ID
+  claim IDs; seeded the service and runtime matrices with their planned claim
+  IDs, all at `open`
+
+Why:
+- Subsequent 17.3 tasks need one stable, evidence-gated place to update rows
+  without creating competing report formats
+- The fixed claim IDs and manifest rule preserve traceability from raw evidence
+  through accepted canonical publication decisions
+
+Status:
+- Dossier layout established; baseline preservation remains `confirmed-static`
+  and all later research/publication gates remain `open`
+- Resume pointer is Task 3, video message direction and ID audit
+
+Next Steps:
+1. Task 3: trace and close the video-direction rows in `message-matrix.md`
+2. Task 4: trace and close the car-control direction rows
+3. Task 5: trace and close the sensor and radio direction rows
+
+Verification:
+- Dossier non-empty-file loop -> all five required dossier files present
+- Required message, service, and runtime claim-ID `rg` checks -> all requested
+  IDs present
+- `git diff --check` -> success
+
+## 2026-07-24 — Close Android Auto 17.3 video message matrix
+
+Date / Session: 2026-07-24 / android-auto-17.3-update-task-3
+
+What Changed:
+- Replaced the nine seeded video placeholders with the complete fifteen-row
+  `DIR-VID-8007` through `DIR-VID-8015` matrix, including the previously
+  omitted hexadecimal `800A` through `800F` claim rows
+- Traced every direct 17.3 phone send/receive branch through its complete
+  builder/parser block and recorded the concrete protobuf-lite class,
+  descriptor field layout, normalized direction, exact source anchors, 16.x
+  conflict, status, and future canonical disposition
+- Documented inherited raw-ID normalization through `wru.S(raw)` for received
+  AudioUnderflow at raw `32779`/`0x800B` and MediaStats at raw
+  `32787`/`0x8013`
+- Added a bounded-search ledger for decimal IDs `32779`, `32784`, `32786`,
+  `32787`, and `32788`, plus an exact old-versus-17.3 canonical conflict table
+- Advanced the release dossier resume pointer to Task 4 without editing any
+  canonical video proto or channel documentation
+
+Why:
+- The 16.x canonical sources mix raw wire IDs with the inherited AV handler's
+  +1 internal dispatch values and repeatedly invert phone endpoint direction
+- Android Auto 17.3 directly proves fourteen mappings; preserving those
+  findings in the dossier gives Task 10 an evidence-ranked publication input
+  while keeping the sole absent endpoint slot explicitly bounded
+
+Status:
+- Fourteen video rows are `confirmed-static`; no claim implies framed runtime
+  observation
+- `0x8007` VideoFocusRequest, `0x800A` UpdateUiConfigRequest, `0x800C`
+  ActionTaken, `0x800D` IntegratedOverlayParameters, `0x8011` UiConfigRequest,
+  `0x8014` MediaOptions, and `0x8015` CriticalUiNotification are Phone -> HU
+- `0x8008` VideoFocusIndication, `0x8009` UpdateUiConfigRequest, `0x800B`
+  AudioUnderflow, `0x800E` OverlayStart, `0x800F` OverlayStop, `0x8012`
+  UpdateHuUiConfigResponse, and `0x8013` MediaStats are HU -> Phone
+- Raw `0x8010`/`32784` is `unresolved-with-bounded-search` with status
+  `deferred`: the bounded source search found only `wru.java` enum/offset
+  bookkeeping, then `jdc` delegates and `jca` rejects internal `32785`; no
+  17.3 send, parser, or payload class was found
+- The exact numeric search root was
+  `analysis/aa_apk_17.3.662804_apkm/jadx-output/sources/defpackage` with
+  `-g '*.java'`. Results were: `32779` only `wru.java:234,292-293`; `32784`
+  only `wru.java:244,302-303`; `32786` `jdc.java:278` plus
+  `wru.java:248,306-307`; `32787` only `wru.java:250,308-309`; and `32788`
+  `jca.java:191,454`, `wru.java:252,310-311`, plus an unrelated negative
+  constant substring at `kdv.java:160`
+
+Next Steps:
+1. Task 4: trace `ixb` phone receive branches and `iip` phone sends to close
+   `DIR-CC-8001` through `DIR-CC-8007`
+2. Task 10: publish the accepted video enum/name/direction corrections from
+   this matrix; leave `0x8010` unnamed/reserved unless stronger evidence lands
+3. Runtime validation: capture framed video-control traffic to supplement, not
+   relabel, these static endpoint findings
+
+Verification:
+- Exact Task 3 open-row guard -> exit 0 with no `DIR-VID` open rows
+- Exact required-decimal `rg` check -> all of `32775`, `32776`, `32777`,
+  `32778`, `32780`, `32781`, `32782`, `32783`, `32785`, and `32789` present in
+  `message-matrix.md`
+- Video row/status count -> 15 rows: 14 `confirmed-static`, 1 `deferred`
+- Resume-pointer `rg` -> Task 3 completed, Task 4 next, exact `ixb.java`
+  extraction command present
+- Source-anchor existence loop -> 15/15 referenced primary payload/endpoint
+  files present
+- `git diff --check` -> exit 0
+
+
+
+## 2026-07-24 — Close Android Auto 17.3 car-control direction matrix
+
+Date / Session: 2026-07-24 / android-auto-17.3-update-task-4
+
+What Changed:
+- Closed `DIR-CC-8001` through `DIR-CC-8007` with raw/decimal IDs, canonical
+  names, Android Auto 17.3 payload classes, phone endpoint actions, normalized
+  directions, exact source anchors, historical conflicts, static status, and
+  canonical dispositions
+- Traced the `ixb.java` phone receive branches and `iip.java` phone send
+  builders through `xlz`, `xma`, `xli`, `xlj`, `xgj`, `xfw`, and `xga`, plus
+  their nested protobuf-lite descriptor references
+- Added a phone-endpoint normalization note that keeps the unexpected inbound
+  `32771` and `32774` cases distinct from the direct phone-side sends
+- Added an exact seven-row conflict ledger covering the inverted canonical
+  proto comments, channel documentation, and prior Gold verification labels
+- Advanced the dossier resume pointer to Task 5 without modifying canonical
+  car-control protos/docs or changing roadmap sequencing
+
+Why:
+- The historical sources describe direction from the opposite endpoint
+  perspective: Android Auto 17.3 directly sends `0x8001`, `0x8003`, and
+  `0x8006` from the phone and directly parses `0x8002`, `0x8004`, `0x8005`,
+  and `0x8007` on the phone
+- Direct 17.3 endpoint and descriptor evidence outranks older comments and
+  audit labels, while remaining explicitly static rather than runtime-captured
+
+Status:
+- `0x8001` `xlz` SetCarPropertyValueRequest, `0x8003` `xli`
+  RegisterCarPropertyListenersRequest, and `0x8006` `xfw`
+  CarActionNotification are `confirmed-static`, Phone -> HU
+- `0x8002` `xma` SetCarPropertyValueResponse, `0x8004` `xlj`
+  RegisterCarPropertyListenersResponse, `0x8005` `xgj`
+  CarPropertyChangeEvent, and `0x8007` `xga` CarControlGroupUpdate are
+  `confirmed-static`, HU -> Phone
+- `ixb.java:95-99` explicitly rejects inbound `32771` and `32774`; those
+  unexpected receive branches do not negate the sends at `iip.java:251-268`
+  and `iip.java:568-591`
+- No runtime traffic was captured or implied, and all canonical edits remain
+  deferred to Task 10
+
+Next Steps:
+1. Task 5: trace `jal`, `jai`, and `iji` to close the sensor and radio direction
+   rows
+2. Task 10: publish the accepted car-control direction reversals from this
+   conflict ledger without changing the evidence-ranked names or schemas
+3. Runtime validation: capture framed car-control traffic to supplement these
+   static phone-endpoint findings
+
+Verification:
+- Exact Task 4 receive extraction -> direct parsers for `32770`, `32772`,
+  `32773`, and `32775`; explicit unexpected cases for `32771` and `32774`
+- Exact Task 4 send extraction -> `ixb.k(...)` calls for `32769`, `32771`, and
+  `32774` with complete `xlz`, `xli`, and `xfw` builders
+- Exact canonical comparison -> all seven active directions are opposite the
+  normalized Android Auto 17.3 phone-endpoint directions
+- Exact Task 4 open-row guard -> exit 0 with no `DIR-CC` open rows
+- Exact Task 4 direction `rg` -> all seven rows present with the required
+  `Phone -> HU` or `HU -> Phone` direction
+- Descriptor/source-anchor checks -> all referenced endpoint and protobuf-lite
+  files and cited descriptor lines present
+- Resume-pointer check -> Task 4 completed, Task 5 next, exact `jal.java`
+  extraction command present
+- `git diff --check` -> exit 0
+
+
+## 2026-07-24 — Task 4 Fix Round 1: complete conflict-anchor inventory
+
+Date / Session: 2026-07-24 / android-auto-17.3-update-task-4-fix-1
+
+What Changed:
+- Expanded every car-control conflict-ledger ID row to inventory the active
+  stale direction and endpoint-perspective claims exposed by the bounded
+  canonical search and their immediately surrounding narrative blocks
+- Added the omitted proto handler comments, channel request/response prose,
+  change-mode entries, complete lifecycle workflow, UUID-correlation note, and
+  group-replacement note to their affected IDs
+- Preserved all seven Android Auto 17.3 directions, payload classes, static
+  classifications, canonical dispositions, and the Task 5 resume pointer
+
+Why:
+- Task 10 needs a complete stale-anchor inventory; representative table claims
+  alone could leave contradictory overview, workflow, and gotcha prose behind
+
+Status:
+- The existing seven-row ledger is now exact for the bounded canonical search:
+  each stale proto, channel-doc, and verification-report claim is mapped to one
+  or more of `0x8001` through `0x8007`
+- Canonical files remain unchanged in this evidence task
+
+Next Steps:
+1. Continue with Task 5 from the existing dossier resume pointer
+2. In Task 10, use the expanded per-ID anchor inventory to update every stale
+   car-control direction and endpoint-perspective statement together
+
+Verification:
+- Brief canonical-direction `rg` -> inventoried all stale matched claims and
+  reviewed each matching narrative block; cross-version hits remain
+  direction-free class mappings
+- Matrix anchor `rg` -> omitted proto/channel anchors now present in their
+  corresponding conflict rows
+- Task 4 open-row guard -> exit 0; direction check -> all seven proven rows
+  unchanged
+- `git diff --check` -> exit 0
+
+## 2026-07-24 — Close Android Auto 17.3 sensor and radio direction matrix
+
+Date / Session: 2026-07-24 / android-auto-17.3-update-task-5
+
+What Changed:
+- Closed `DIR-SEN-8001` through `DIR-SEN-8004` and `DIR-RAD-801A` through
+  `DIR-RAD-8023` with exact IDs, payload names/classes, phone endpoint actions,
+  normalized directions, source anchors, version deltas, static status, and
+  canonical dispositions
+- Added complete top-level protobuf-lite descriptor inventories for all four
+  sensor and ten radio payloads
+- Recorded the exact four inverted sensor verification-report directions while
+  preserving the already-correct sensor proto comments and channel catalog
+- Recorded no canonical mapping change for all ten radio messages because the
+  proto mapping, channel catalog, and verification table agree with 17.3; also
+  inventoried the later radio channel prose that reverses endpoint ownership
+- Advanced the dossier resume pointer and next command to Task 6 and marked the
+  direction/video-ID audit gate `confirmed-static`
+
+Why:
+- Android Auto 17.3 directly sends SensorRequest plus five radio requests from
+  the phone and directly parses the three sensor response/event/error messages
+  plus five radio notifications/responses on the phone
+- Separating the correct radio protocol mapping from contradictory narrative
+  prose prevents Task 10 from reversing correct IDs while still ensuring the
+  endpoint-ownership descriptions are repaired
+
+Status:
+- All 14 Task 5 rows are `confirmed-static`; no runtime capture is claimed
+- Sensor: `0x8001` is Phone -> HU; `0x8002` through `0x8004` are HU -> Phone
+- Radio: `0x801A`, `0x801B`, `0x801D`, `0x801F`, and `0x8020` are HU -> Phone;
+  `0x801C`, `0x801E`, and `0x8021` through `0x8023` are Phone -> HU
+- Radio remains an AA control/status bridge to HU-managed radio functionality;
+  the static evidence does not establish phone-owned RF tuner implementation
+  details or any backup-camera behavior
+
+Next Steps:
+1. Task 6: close display, transport-channel, service-type, input-binding, and
+   descriptor fields 16-18 identity rows
+2. Task 10: correct the four sensor verification rows and the inventoried radio
+   narrative conflicts while preserving all ten radio mappings
+3. Runtime validation: supplement these static findings with framed traffic;
+   do not relabel the current evidence as runtime-captured
+
+Verification:
+- Exact Task 5 sensor extraction -> constants `32769` through `32772`, direct
+  `xlq` send, and `xlr`/`xln`/`xlo` phone receive parsers found
+- Exact Task 5 radio receive extraction -> phone parsers for `32794`, `32795`,
+  `32797`, `32799`, and `32800`; `32796` and `32798` inbound copies unhandled
+- Exact Task 5 radio send extraction -> `jai.k(...)` sends for `32796`, `32798`,
+  and `32801` through `32803`
+- Canonical comparison `rg` -> sensor proto/channel mapping agrees with 17.3,
+  sensor verification rows 13-16 are inverted; radio proto/catalog/report
+  mapping agrees for all ten, with contradictory channel prose inventoried
+- Exact Task 5 open-row guard -> exit 0 with no `DIR-SEN` or `DIR-RAD` open rows
+- Row/status counts -> 4 sensor plus 10 radio rows, all `confirmed-static`;
+  radio `No canonical change` count 10
+- Resume-pointer check -> Task 5 completed, Task 6 next, exact `itq.java`
+  extraction command present
+- Source-file existence check -> all 22 referenced endpoint/helper/descriptor
+  Java files present
+- `git diff --check` -> exit 0
+
+## 2026-07-24 — Close Android Auto 17.3 display and descriptor identity matrix
+
+Date / Session: 2026-07-24 / android-auto-17.3-update-task-6
+
+What Changed:
+- Closed `ID-AV-F6` by decoding `xik.g` as optional `uint32` field 6 and
+  tracing it directly into `new CarDisplayId(...)`, the accepted per-display
+  bridge, and the video endpoint construction path
+- Closed `ID-INPUT-F5` by decoding `xhs.g` as optional `uint32` field 5 and
+  tracing the exact equality match against each accepted AV `CarDisplayId`,
+  including the zero/multiple-input topology failures
+- Defined separate semantic domains for transport channel ID, GAL service
+  type, logical display ID, and input-to-display binding ID
+- Closed `ID-CD-F16` through `ID-CD-F18` with direct 17.3 descriptor-member,
+  presence-bit, service-factory, and endpoint service-type chains
+- Compared the 17.3 fields against the available 16.2 `wbm` index evidence:
+  fields 16-17 retain source-proven 17.3 meanings but receive the conservative
+  `insufficient evidence` cross-version disposition; optional field 18 is a
+  `compatible addition/removal` relative to the 16.2 17-field descriptor
+- Advanced the dossier resume pointer and identity gate to Task 7 without
+  changing canonical protos, historical reports, or runtime claims
+
+Why:
+- `AVChannel` field 6 is a logical display ID, not the
+  `ChannelDescriptor.channel_id` transport route, and input field 5 is the
+  binding reference that joins an input service to that logical display
+- The historical 16.2 `generic_notification` and `voice` labels do not have a
+  trustworthy consumer or marker lineage in the preserved evidence, so
+  classifying fields 16-17 as semantic reuse would overstate the record
+- The 17.3 source directly ties descriptor fields 16-18 to CarLocalMedia,
+  BufferedMedia, and CarIntent through bits `32768`, `65536`, and `131072` and
+  endpoint service types 20, 21, and 22
+
+Status:
+- All five Task 6 ID rows are closed with exact source chains and canonical
+  dispositions; the identity/compatibility gate is `confirmed-static`
+- Accepted video-capable descriptors receive separate logical display and
+  endpoint objects in the static construction path
+- No framed simultaneous streams were observed; runtime concurrency remains
+  unverified
+- Canonical publication of the AV rename and descriptor version notes remains
+  deferred to Task 10
+
+Next Steps:
+1. Task 7: reconstruct the bounded CarIntent service contract, starting with
+   service type 22 and descriptor presence bit `131072`
+2. Task 10: rename AV field 6 to `display_id` and publish only the supported
+   fields 16-18 compatibility notes
+3. Runtime validation: capture framed multi-display traffic before making any
+   simultaneous-stream claim
+
+Verification:
+- Exact Task 6 source searches -> `xik.g` consumed by `new CarDisplayId`,
+  `xhs.g` matched to that ID, and fields 16-18 tied to the three service bits
+- Descriptor decoder -> `xik` field 6 and `xhs` field 5 are optional `uint32`;
+  `xlv` contains optional message fields 16-18
+- 16.2 index comparison -> `wbm` has 17 fields; fields 16-17 are messages;
+  `vwf` and `vvp` remain `insufficient_evidence`; no field 18 is present
+- Exact Task 6 open-row guard -> exit 0 with no open `ID-*` rows
+- Terminology check -> transport channel ID, service type, display ID, and
+  input-to-display binding language all present
+- Identity table column check -> all five rows have the expected 11 columns
+- Resume-pointer check -> Task 6 completed, Task 7 next, exact CarIntent
+  extraction command present
+- Owned-file and source-anchor checks -> only the three owned files changed;
+  all cited 17.3 sources and 16.2 evidence files exist
+- `git diff --check` -> exit 0
+
+## 2026-07-24 — Task 6 Fix Round 1: correct descriptor source anchors
+
+Date / Session: 2026-07-24 / android-auto-17.3-update-task-6-fix-1
+
+What Changed:
+- Corrected the `xik` RawMessageInfo citation from line 36 to line 38
+- Corrected the `xhs` RawMessageInfo citation from line 36 to line 39
+- Extended the `xgi`, `xfq`, and `xgd` marker ranges from lines 4-24 to 4-25
+  so each range includes its empty RawMessageInfo descriptor call
+- Preserved every Task 6 semantic conclusion, status, disposition, and resume
+  pointer
+
+Why:
+- The former ranges ended immediately before the descriptor calls, making the
+  otherwise-correct field and marker claims harder to reproduce exactly
+
+Status:
+- All five near-miss anchors in the Task 6 matrix now cite the exact descriptor
+  lines
+- The Task 6 identity rows remain closed and unchanged apart from citations
+
+Next Steps:
+1. Continue with Task 7 from the unchanged dossier resume pointer
+2. Preserve the corrected anchors when publishing Task 6 conclusions in Task
+   10
+
+Verification:
+- `nl -ba .../xik.java | sed -n '34,40p'` -> RawMessageInfo call at line 38
+- `nl -ba .../xhs.java | sed -n '35,41p'` -> RawMessageInfo call at line 39
+- `nl -ba .../{xgi,xfq,xgd}.java | sed -n '21,27p'` (run as a loop) -> each
+  empty-marker RawMessageInfo call at line 25
+- Focused anchor `rg` over all three owned files -> only corrected
+  `xik.java:38`, `xhs.java:39`, and marker ranges `4-25` remain; the README and
+  prior handoff contain no equivalent stale anchor
+- Exact Task 6 open-row guard -> exit 0 with no open `ID-*` row
+- `git diff --check` -> exit 0
+
+## 2026-07-24 — Task 7: reconstruct the CarIntent service
+
+Date / Session: 2026-07-24 / android-auto-17.3-update-task-7
+
+What Changed:
+- Closed all five `SVC-CI-*` rows with the descriptor, endpoint, raw-ID,
+  payload-schema, and activation evidence boundaries
+- Traced descriptor field 18 and presence bit `0x20000` through service type
+  22 endpoint construction to the phone's incoming `xgc` parse and callback
+  notification
+- Decoded `xgc` as one optional field-2 string (wire type 2/tag `0x12`) and
+  separated that wire fact from the consumer log's fixed NAVIGATE label
+- Recorded the bounded raw-ID search as deferred and advanced the dossier
+  resume pointer to Task 8
+
+Why:
+- The 17.3 sources prove a bounded HU -> Phone CarIntent payload contract, but
+  no sender enum, dispatch comparison, or resource mapping proves its raw ID
+- Publishing conventional `0x8001`, an intent-type enum, field 1 meaning, or
+  acknowledgement would go beyond the available wire evidence
+- The named `AdasRouteInfoFeature__car_intent_enabled` flag defaults false,
+  while the actual decompiled factory path accepts or suppresses the service
+  solely through descriptor field-18 presence
+
+Status:
+- `SVC-CI-DESCRIPTOR`, `SVC-CI-ENDPOINT`, `SVC-CI-SCHEMA`, and `SVC-CI-GATE`
+  are `confirmed-static`
+- `SVC-CI-ID` is `deferred`; the raw message ID remains unknown
+- No canonical CarIntent proto or channel documentation was created before the
+  Task 10 manifest gate
+- Static evidence is not a runtime capture; live activation and framed traffic
+  remain unverified
+
+Next Steps:
+1. Task 8: close CarLocalMedia state/flow and classify BufferedMedia
+2. Task 10: publish only CarIntent rows accepted by the change manifest
+3. Runtime validation: capture a framed CarIntent message to resolve its raw ID
+
+Verification:
+- Required descriptor/service search -> field-18 bit `131072`, service type
+  22, and `CarIntentService` construction anchors found
+- Required sender/dispatcher/resource searches -> no sender enum or raw-ID
+  comparison; `SVC-CI-ID` remains deferred
+- RawMessageInfo decoder -> proto2 optional field 2 `string`, wire type 2,
+  encoded tag `0x12`
+- Required activation search -> flag default false; no feature-name reference
+  in `jnb` or `iix`; factory acceptance follows descriptor bit `0x20000`
+- Exact Task 7 open-row guard -> exit 0 with no open `SVC-CI-*` rows
+- Required contract-term check -> service type 22, field 2, HU -> Phone,
+  NAVIGATE, and AdasRouteInfoFeature all present
+- Owned-file scope check -> only the three Task 7 owned files changed
+- `git diff --check` -> exit 0
+
+## 2026-07-24 — Task 8: close CarLocalMedia and classify BufferedMedia
+
+Date / Session: 2026-07-24 / android-auto-17.3-update-task-8
+
+What Changed:
+- Closed `SVC-CLM-STATE5`, `SVC-CLM-FLOW`, and every `SVC-BUF-*` row with
+  exact static anchors, runtime status, row status, and publication disposition
+- Traced CarLocalMedia service type 20: status `0x8001` and metadata `0x8002`
+  parse HU -> Phone, while request `0x8003` is built and sent Phone -> HU
+- Kept CarLocalMedia playback-state value 5 numeric and deferred after the
+  complete required source search found acceptance/passthrough but no name
+- Classified BufferedMedia field 17/service type 21, incoming raw message ID 4,
+  its six-field `xkg` schema and `xkf` state enum, and the separate magic-value,
+  descriptor-presence, and worker-start lifecycle gates
+- Advanced the dossier pointer to Task 9 without modifying canonical media
+  protos/docs before the Task 10 manifest gate
+
+Why:
+- Android Auto 17.3 contains a field-consuming BufferedMedia ID-4 parser, so a
+  universal or current “discard-only stub” characterization is stale
+- The static endpoint still proves neither runtime activation nor a complete
+  media-transfer protocol; IDs 1-3, outbound builders, URL/transport behavior,
+  response pairing, and runtime success remain unobserved
+- BufferedMedia's named `xkf` enum is separate from the unnamed CarLocalMedia
+  state mapping and cannot resolve CarLocalMedia numeric value 5
+
+Status:
+- `SVC-CLM-FLOW`, `SVC-BUF-DESCRIPTOR`, `SVC-BUF-ENDPOINT`,
+  `SVC-BUF-SCHEMAS`, and `SVC-BUF-GATE` are `confirmed-static`
+- `SVC-CLM-STATE5` is `deferred`; `SVC-BUF-IDS` confirms incoming ID 4 and
+  explicitly defers IDs 1-3 and every outbound path
+- All runtime claims remain runtime-unverified; no framed traffic was captured
+- No canonical file was published or historical CarIntent row modified
+
+Next Steps:
+1. Task 9: run the ADB/capture-environment preflight and record runtime limits
+2. Task 10: admit only manifest-accepted ID-4/schema and CarLocalMedia facts
+3. Runtime validation: capture service type 21 before claiming live activation
+
+Verification:
+- Required CarLocalMedia ID search -> `0x8001`/`xgh` and `0x8002`/`xgf`
+  incoming parse branches plus the `0x8003`/`xgg` send call found
+- Complete playback-state search over focused classes and all 17.3 Java sources
+  -> no unobfuscated CarLocalMedia label for numeric value 5
+- Required BufferedMedia source reads -> service type 21 directly parses raw
+  message ID 4 as `xkg`; `xkf` names state values 0 through 4
+- RawMessageInfo decoder -> proto2 optional fields 1 `int32`, 2-3 `uint64`,
+  4 enum, and 5-6 `uint64`
+- Required activation/ID searches -> magic value `834952858`, descriptor bit
+  `0x10000`, and `BUFFERED_MEDIA_WORKER` found; no direct `.k(1..4)` send
+- Exact Task 8 open-row guard -> exit 0 with no open `SVC-CLM-*` or
+  `SVC-BUF-*` rows
+- Required dossier-term check -> message ID 4, `xkg`, service types 20/21,
+  runtime-unverified, and deferred boundaries present
+- Resume-pointer check -> Task 8 completed, Task 9 next, `adb devices -l`
+- Owned-file scope check -> only the three Task 8 owned files changed
+- `git diff --check` -> exit 0
+
+## 2026-07-24 — Task 9: attempt focused runtime validation
+
+Date / Session: 2026-07-24 / android-auto-17.3-update-task-9
+
+What Changed:
+- Closed all six `RT-*` rows in `runtime-validation.md` as
+  `runtime-unverified`; `RT-ENV` is deferred because there was no ADB
+  `device` row during execution.
+- Recorded each mandatory preflight command with exact stdout, stderr, and
+  exit code, including the missing Python module `frida` and the capture tool's
+  matching import failure.
+- Advanced the dossier pointer to Task 10 and explicitly recorded that no
+  logcat clear, scenario capture, artifact copy, converter, or validator was
+  attempted under the no-device branch.
+
+Why:
+- The Task 9 branch rule prohibits scenario captures and `adb logcat -c` when
+  no ADB `device` row exists. The capture environment also cannot start until
+  `frida` is installed for the Python interpreter used by the external tool.
+- An unavailable runtime service would be an activation result, not protocol
+  absence; here, no runtime activation was attempted or observed.
+
+Status:
+- `adb devices -l` -> exit 0; stdout exactly `List of devices attached` plus a
+  blank line; no `device` row.
+- `adb shell dumpsys package com.google.android.projection.gearhead | rg
+  'versionName|longVersionCode'` -> exit 1; stdout empty; stderr exactly
+  `adb: no devices/emulators found`.
+- `python3 -c 'import frida, cryptography; print("capture dependencies present")'`
+  -> exit 1; stdout empty; stderr:
+
+  ```text
+  Traceback (most recent call last):
+    File "<string>", line 1, in <module>
+      import frida, cryptography; print("capture dependencies present")
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  ModuleNotFoundError: No module named 'frida'
+  ```
+- `python3 /mnt/e/claude/personal/android-auto-dhu/phone_full_capture.py --help`
+  -> exit 1; stdout empty; stderr:
+
+  ```text
+  Traceback (most recent call last):
+    File "/mnt/e/claude/personal/android-auto-dhu/phone_full_capture.py", line 15, in <module>
+      import frida
+  ModuleNotFoundError: No module named 'frida'
+  ```
+- No capture artifact directory was created. The prescribed worktree
+  `git check-ignore -q analysis/aa_apk_17.3.662804_apkm/runtime-validation`
+  exits 128 because that `analysis/aa_apk_17.3.662804_apkm` entry is a symlink
+  beyond the worktree; the linked primary checkout check exits 0 under
+  `.gitignore:6:analysis/aa_*/`, and both candidate directories are absent.
+
+Next Steps:
+1. Task 10: freeze the canonical change manifest, retaining each Task 9 row as
+   runtime-unverified and accepting no fabricated runtime evidence.
+2. To retry runtime validation, attach a device running exactly
+   `17.3.662804-release` and re-run all four Task 9 preflight commands.
+3. Install `frida` for the `python3` interpreter used by
+   `phone_full_capture.py` before performing any capture step.
+
+Verification:
+- Exact Task 9 open-row guard -> exit 0; no `RT-*` row is `open`.
+- `git check-ignore -q analysis/aa_apk_17.3.662804_apkm/runtime-validation`
+  -> exit 128 with the documented worktree-symlink limitation; the linked
+  primary-checkout ignore check -> exit 0, and no runtime artifact exists.
+- `git diff --check` -> exit 0.
+- Tracked scope check -> exactly the three Task 9 owned reports changed;
+  task report is ignored and no ignored capture artifact is staged.
+
+## 2026-07-24 — Task 10: freeze the canonical change manifest
+
+Date / Session: 2026-07-24 / android-auto-17.3-update-task-10
+
+What Changed:
+- Froze 59 stable change rows with one dossier evidence ID per row: 15 video,
+  7 car-control, 4 sensor, 10 radio-report, 5 identity, 5 CarIntent,
+  2 CarLocalMedia, 5 BufferedMedia, and 6 runtime-report rows
+- Added exact semantic changes, compatibility boundaries, per-row verification
+  commands, and explicit deferred/no-change/runtime-unverified dispositions
+- Defined closed exact allowed-file sets for Tasks 11-13, including the audit,
+  coverage, proto-verification, Prodigy handoff, and documentation outputs
+- Kept the Task 1 matcher baseline verify-only because its three fresh-delta
+  rows were not accepted for promotion
+- Closed the four research gates, left canonical publication/final verification
+  open, and advanced the resume pointer to Task 11
+
+Why:
+- Tasks 11-13 need one load-bearing publication contract that prevents closed
+  evidence, deferred findings, and runtime limitations from disappearing
+- Exact file authorization prevents speculative CarIntent, BufferedMedia,
+  CarLocalMedia state-5, descriptor-history, or runtime claims from entering
+  the canonical tree
+- Radio mappings are already correct, but their contradictory active prose
+  must still be corrected without rewriting the mappings
+
+Status:
+- The dossier inventory contains 59 claims: the message/identity matrix has
+  40 confirmed-static and 1 deferred row; services has 9 confirmed-static,
+  2 deferred, and 1 mixed confirmed-ID-4/deferred-ID-1-3 row; runtime has
+  6 runtime-unverified rows
+- The manifest has 59 unique change IDs and 59 unique evidence IDs; every
+  dossier table row maps to exactly one manifest row and every manifest
+  evidence ID resolves to exactly one of the three dossier source files
+- CarIntent is bounded to optional string field 2 and an unknown raw ID;
+  BufferedMedia is bounded to service/descriptor facts and incoming ID 4;
+  all runtime behavior remains unverified
+- Task 11 authorizes 19 exact paths, Task 12 authorizes 21, and Task 13
+  authorizes 35; six authorized paths are intentional future creations
+
+Next Steps:
+1. Task 11: apply only the frozen video, car-control, and sensor rows
+2. Task 12: publish the bounded identity and new-service rows without expanding
+   any deferred schema, ID, flow, or runtime boundary
+3. Task 13: synchronize only the exact frozen audit/report/documentation set
+   and confirm the committed matcher pair remains unchanged
+
+Verification:
+- Open-claim check -> only canonical publication and final verification gates
+  remain open; no direction, identity, service, or runtime claim row is open
+- Claim inventory -> 59 dossier rows and 59 manifest rows
+- Bidirectional set comparison -> symmetric difference 0
+- Uniqueness checks -> 0 duplicate change IDs, 0 duplicate manifest evidence
+  IDs, and 0 evidence-source errors
+- Manifest table-shape check -> all 59 rows have the expected seven columns
+- Change-group count -> 15 video, 7 car-control, 4 sensor, 5 identity,
+  5 CarIntent, 2 CarLocalMedia, 5 BufferedMedia, and 16 report rows
+- Allowed-path existence check -> all current targets exist; the only missing
+  paths are the six explicitly authorized Task 11-13 creations
+- Gate/resume check -> four research gates closed, publication/final gates
+  open, Task 10 completed, and Task 11 next
+- Owned-file scope check -> only the manifest, dossier README, and this handoff
+  changed
+- `git diff --check` -> exit 0
+
+## 2026-07-25 — Task 10 Fix Round 1: make publication staging fail closed
+
+Date / Session: 2026-07-25 / android-auto-17.3-update-task-10-fix-1
+
+What Changed:
+- Recorded the user ruling that exact per-file manifest allowlists override all
+  broader directory, glob, and conditional staging examples in Tasks 11-13
+- Replaced each task allowlist with one authoritative literal-path `git add --`
+  command that first aborts when the index is non-empty
+- Narrowed Task 12 to 20 intentional publication paths: removed four
+  proto-verification reports and the already-correct CLM metadata/request
+  protos, and added the five required AV/input/descriptor/CLM/CarIntent audits
+- Assigned the numeric-5 wording cleanup to Task 12 and its audit
+  synchronization to Task 13 while retaining the unknown/deferred boundary
+- Expanded Task 13 to 39 exact paths and added a 15-proto audit coverage table,
+  including explicit create authorization for missing changed-proto sidecars
+- Replaced all 59 row verification cells with compound, outcome-sensitive
+  assertions that check intended semantics and reject known stale forms
+
+Why:
+- The original freeze allowed contradictions between row task statuses,
+  per-task allowlists, and broader downstream staging examples
+- Presence-only ID searches could pass against the stale state they were meant
+  to reject, so they were not valid publication gates
+- CLM metadata and request already state HU -> Phone and Phone -> HU,
+  respectively; changing them or their sidecars would create unnecessary work
+
+Status:
+- Task 11 has 19 exact staging paths, Task 12 has 20, and Task 13 has 39
+- Task 12 contains no proto-verification report and no CLM metadata/request
+  proto; it does contain all five audits its canonical publication requires
+- All 15 actually changed protos map to an authorized audit sidecar; ten future
+  create paths are explicit and all other authorized paths already exist
+- The matcher pair remains verify-only, research gates remain closed,
+  publication/final gates remain open, and the resume pointer remains Task 11
+
+Next Steps:
+1. Task 11: use the manifest's exact fail-closed staging command instead of the
+   brief's broader example
+2. Task 12: edit/stage only its 20-path canonical surface and preserve the
+   no-change CLM metadata/request protos
+3. Task 13: synchronize only its 39 literal paths and abort if any unauthorized
+   path is already staged
+
+Verification:
+- Bidirectional traceability -> 59 dossier IDs, 59 manifest evidence IDs,
+  symmetric difference 0, duplicate change IDs 0, duplicate evidence IDs 0
+- Manifest row/command check -> 59 rows, 0 shape/empty/compound-command errors,
+  0 mere-ID presence commands, and 0 shell-syntax errors
+- Exact staging check -> Task 11: 19 paths, Task 12: 20, Task 13: 39; each has
+  exactly one empty-index guard, one literal `git add --`, and no glob
+- Row-target coverage -> 48 unique semantic targets, 0 absent from the union of
+  exact staging sets; the six staging-only paths are dossier management,
+  coverage, roadmap, or handoff outputs
+- Task 12 narrowing check -> all four report paths and both no-change CLM protos
+  absent; all five required audit paths present
+- Audit coverage -> 15 changed protos, 15 mappings, symmetric difference 0,
+  authorization errors 0
+- Path check -> 10 explicitly authorized creates; every other path exists
+- Open-gate/pointer check -> only publication/final gates open; Task 11 next
+- Owned-file scope -> only the manifest and this permanent handoff changed
+- `git diff --check` -> exit 0
+
+## 2026-07-25 — Task 10 Fix Round 2: executable staging guards and discriminating gates
+
+Date / Session: 2026-07-25 / android-auto-17.3-update-task-10-fix-2
+
+What Changed:
+- Replaced each standalone empty-index `test` with a self-contained
+  `git diff --cached --quiet` failure branch that prints the task number and
+  exits 1 before its literal `git add --` command
+- Strengthened the named video gates: 0x8009 now proves the exact field-1
+  AdditionalVideoConfig wrapper, 0x800C proves the enum-field-1 unpublished
+  boundary, 0x800F counts zero declared fields, and 0x8010 rejects every enum
+  assignment while requiring reserved, unknown, and deferred documentation
+- Strengthened RadioSearchRequest to require its exact ID/name/direction and
+  exactly one string field at tag 1, while proving the radio proto is unchanged
+- Restricted CarIntent to proto2 with exactly one declaration, optional string
+  tag 2, no tag 1, and no enum
+- Restricted BufferedMedia ID 4 to all six exact optional fields and the five
+  exact state values 0-4, with exact field/value counts and the IDs 1-3 and
+  outbound-unknown boundaries retained
+- Replaced the six shared runtime artifact searches with row-specific,
+  whole-row-anchored assertions containing each probe's concrete scenario or
+  environment limitation and no-device status
+- Re-audited adjacent video, all seven car-control, nine radio prose, CLM, and
+  BufferedMedia commands so retained schemas, unchanged mappings, negative
+  boundaries, and exact directions are discriminating rather than token-only
+
+Why:
+- A bare failing `test` does not stop a pasted shell block without `set -e`, so
+  a pre-existing staged path could survive and the following add still run
+- Shell-syntax validity alone did not prove that a row command rejected extra
+  fields, missing enum values, a non-empty canonical message, or a wrong
+  runtime row
+
+Status:
+- Task 11, 12, and 13 staging blocks each exit 1 before add when the modeled
+  index is non-empty; each retains exactly 19, 20, and 39 literal paths
+- All 59 manifest rows remain traceable and Markdown-table safe; all row
+  commands and complete staging blocks are shell-syntax valid
+- The audit coverage, task ownership, evidence boundaries, two open gates,
+  Task 11 pointer, and matcher verify-only rule are unchanged
+
+Next Steps:
+1. Task 11: paste the complete Task 11 block so its explicit guard and exact
+   add execute together
+2. Task 12: implement the exact CarIntent and BufferedMedia declarations now
+   enforced by their count-sensitive gates
+3. Task 13: run every row gate and preserve the row-specific runtime-unverified
+   results without promoting unavailable captures
+
+Verification:
+- RED guard simulation before edit -> all three old blocks returned 0 and
+  called add with a modeled non-empty index
+- RED semantic coverage before edit -> 16 required discriminator fragments
+  missing across the cited video/radio/CarIntent/BufferedMedia/runtime rows
+- Guard GREEN simulation -> Tasks 11/12/13 each returned 1 and `add=not-called`
+- Row/staging syntax -> 59 row commands and all three complete blocks pass
+  `bash -n -c`; 59 rows have the expected seven columns
+- Semantic coverage -> 59 named schema/direction/runtime assertions, 0 missing;
+  all six row-specific runtime commands execute successfully against the matrix
+- Traceability -> source 59, manifest 59, symmetric difference 0, duplicate
+  change/evidence IDs 0, evidence-source errors 0
+- Allowlists -> 19/20/39 literal paths, one explicit guard and one add each,
+  zero globs; non-empty simulations all exit 1 without reaching add
+- Audit/gates/scope -> 15 audit mappings, 0 errors; exactly two open gates;
+  Task 11 next; matcher unchanged; only manifest and this handoff changed
+- `git diff --check` -> exit 0
+
+## 2026-07-25 — Task 10 Fix Round 3: close mutation escapes
+
+Date / Session: 2026-07-25 / android-auto-17.3-update-task-10-fix-3
+
+What Changed:
+- Replaced all 17 whitespace-sensitive message/enum cardinality matchers with
+  assignment patterns that accept compact legal formatting, optional signs,
+  and arbitrary whitespace around the value and semicolon
+- Added a whitespace-tolerant three-value cardinality check to the new
+  CriticalUiFocus enum and made the CarLocalMedia value-5 uniqueness check
+  whitespace tolerant
+- Expanded the deferred 0x8010 gate to reject assignments under any enum name
+  when the value is hexadecimal (case/leading-zero insensitive) or decimal
+  32784 (leading-zero insensitive)
+- Added a fail-closed negative schema search for action-named enum declarations
+  across all nine authorized Task 11 proto publication targets; every target
+  must exist before the negative search can pass
+
+Why:
+- The prior `/= [0-9]+;/` count ignored compact legal declarations such as
+  `escape=7;`, so extra fields or enum values could preserve the expected count
+- The prior 0x8010 check recognized only lowercase hexadecimal spelling, and
+  the 0x800C unpublished-enum boundary existed only as required prose
+
+Status:
+- No whitespace-sensitive cardinality matcher remains; 18 message/enum awk
+  matchers and the CLM uniqueness matcher accept compact assignments
+- Compact extra-field, empty-message, extra-enum-value, decimal/uppercase-hex
+  0x8010, and hidden public-action-enum mutations all make their gate exit 1
+- Traceability, ownership, exact allowlists, audit coverage, evidence
+  boundaries, runtime status, open gates, Task 11 pointer, and matcher rule are
+  unchanged
+
+Next Steps:
+1. Task 11: use the exact manifest gates, including the all-target 0x800C
+   negative enum search and both numeric forms of the 0x8010 reservation
+2. Task 12: preserve compact-format-resistant field/value cardinality checks
+   when publishing the bounded new-service schemas
+3. Task 13: execute all final gates without weakening the mutation-resistant
+   count patterns
+
+Verification:
+- RED cardinality simulation -> 17 old matchers; compact extra field preserved
+  expected-one count 1, compact field preserved expected-empty count 0, and
+  compact extra enum value preserved expected-five count 5
+- RED 0x8010 simulation -> decimal `32784` and uppercase `0X8010` both missed;
+  RED 0x800C check -> no Task 11 action-enum schema negative existed
+- GREEN mutation simulation -> old matchers 0, safe awk matchers 18; compact
+  mutation counts 2/1/6 and all three expected-count checks exit 1
+- GREEN 0x8010/action simulations -> decimal rejection 1, uppercase-hex
+  rejection 1, hidden-action-enum rejection 1, Task 11 proto targets 9/9
+- Full manifest -> 59 rows, traceability 59/59, symmetric difference 0,
+  duplicate counts 0/0, row-shape errors 0, syntax errors 0, semantic checks
+  59/59
+- Runtime/guards -> runtime gates 6/6; Task 11/12/13 non-empty-index guard
+  statuses 1 with add never reached; allowlists remain 19/20/39
+- Audit/gates/scope -> 15 audit mappings, exactly two open gates, Task 11 next,
+  matcher unchanged, only manifest and handoff changed
+- `git diff --check` -> exit 0
+
+## 2026-07-25 — Task 10 Fix Round 4: descriptor-validated manifest
+
+Date / Session: 2026-07-25 / android-auto-17.3-update-task-10-fix-4
+
+What Changed:
+- Replaced the source-line cardinality checks in all 18 schema/enum rows with
+  compiled `FileDescriptorSet` assertions over exact field inventories
+  `(name, number, label, type, type_name)` and exact enum inventories
+  `(name, number)`
+- Made the future CriticalUi, CarIntent, and BufferedMedia gates compile
+  proto2 fixtures and enforce exact file/message/enum identities, field names,
+  field types, labels, type names, and enum values
+- Replaced the CarLocalMedia value-5 text count with an exact compiled enum
+  inventory, so aliases and duplicate numeric value 5 cannot pass
+- Replaced the 0x8010 text spellings with a compiled assertion against nested
+  `AVChannelMessage.Enum`, making comments and hexadecimal, decimal, or octal
+  source spellings converge on numeric value 32784
+- Replaced the 0x800C source-layout search with one descriptor compilation of
+  all nine exact Task 11 proto targets and recursive, case-insensitive
+  inspection of every top-level and nested enum name
+- Made every descriptor command fail closed through `protoc` `check=True`, a
+  required descriptor file/member lookup, and an immediately registered
+  `TemporaryDirectory` cleanup handler; no command cell contains a table pipe
+
+Why:
+- The Round 3 claim that whitespace-tolerant line counts were mutation
+  resistant was too broad: same-line declarations still preserved the expected
+  line count, and legal comments or octal values still escaped the reservation
+  matcher
+- Case-sensitive, same-line source matching could not reliably enforce the
+  unpublished action-enum boundary across legal protobuf formatting
+- The manifest needs to validate protobuf meaning after parsing, not one
+  particular source spelling or layout
+
+Status:
+- All 18 schema/enum rows now validate compiled descriptor inventories; no
+  `awk` or `rg -c` source cardinality gate remains in the manifest
+- The manifest contains 20 descriptor-backed rows total: the 18 inventory rows
+  plus 0x8010 and 0x800C
+- Canonical synthetic future-state fixtures pass all 20 descriptor commands;
+  24 mutated fixtures are rejected, including every affected structure row
+- Traceability, ownership, exact allowlists, audit coverage, runtime status,
+  two open gates, Task 11 pointer, and matcher verify-only rule are unchanged
+
+Next Steps:
+1. Task 11: publish the exact CriticalUi `focus` field and run the nine-target
+   0x800C and compiled 0x8010 gates from the manifest
+2. Task 12: publish exact CarIntent `metadata` field 2 and the six-field
+   BufferedMedia descriptor inventory without adding messages or enums
+3. Task 13: execute the final descriptor-backed gates and retain the six
+   runtime-unverified results
+
+Verification:
+- RED committed-gate simulation -> same-line extra declarations, comment-
+  separated decimal 32784, octal `0100020`, uppercase action enums, and
+  split-brace action enums were all accepted by the Round 3 source gates
+- GREEN canonical descriptor fixtures -> 20/20 commands pass with exact
+  CriticalUi, CarIntent, BufferedMedia, CLM, AV, video, car-control, and radio
+  inventories
+- GREEN mutations -> 24/24 rejected: extra fields across all 17 message-row
+  cases, CriticalUi/BufferedMedia extra enum values, CLM numeric-5 alias,
+  comment-separated and octal 32784, and uppercase/split-brace action enums
+- Cleanup checks -> descriptor success and missing-target failure both leave
+  their dedicated temporary parent empty
+- Full manifest -> 59 rows, traceability 59/59, symmetric difference 0,
+  duplicate counts 0/0, evidence-source errors 0, row-shape errors 0, shell
+  syntax errors 0, descriptor rows 20, and source cardinality gates 0
+- Runtime/guards -> runtime gates 6/6; Task 11/12/13 non-empty-index guard
+  statuses 1 with add never reached; allowlists remain 19/20/39
+- Audit/gates/scope -> 15 audit mappings, exactly two open gates, Task 11 next,
+  matcher unchanged, and only the manifest and this handoff changed
+- `git diff --check` -> exit 0
+
+## 2026-07-25 — Task 11 initial publication (superseded by Fix Round 1)
+
+Date / Session: 2026-07-25 / android-auto-17.3-update-task-11
+
+What Changed:
+- Published the accepted 17.3 video matrix for 0x8007-0x8015, including the
+  corrected shifted names, normalized phone/HU directions, exact
+  CriticalUiNotification proto2 payload, unpublished ActionTaken enum
+  boundary, and reserved/unknown/deferred 0x8010 slot
+- Corrected all seven car-control message directions and phone-side ownership
+  prose without changing their wire schemas
+- Corrected only the four inverted sensor rows in the verification report;
+  sensor protos and channel documentation remain untouched
+- Marked the Task 11 manifest rows applied and moved the dossier resume pointer
+  to Task 12
+
+Why:
+- Android Auto 17.3 phone-endpoint send/parser evidence supersedes the older
+  shifted video enum and inverted endpoint-perspective claims
+- The frozen manifest is the publication contract; no audit YAML, sensor
+  canonical file, radio/service/identity file, or other Task 12/13 path was
+  edited
+
+Status:
+- Reopened after review of `884ff4d`: the 0x8014 proto remained empty while
+  the manifest claimed an existing 13-field schema, so the initial publication
+  is not the final GREEN state
+- Review also found phone-side action-handling prose, an HU-side overlay-stop
+  dismissal claim, contradictory 16.2/17.3 report labels, and video confidence
+  summary drift; the later Fix Round 1 entry records their resolution
+- The broad stale search still reports two Task 13-owned rows in
+  `analysis/reports/proto-verification/PROGRESS.md` (car-control line 116 and
+  sensor line 201); the Task 11-authorized canonical/report set has no hit
+- Four pre-existing video audit links remain pending the Task 13 audit files;
+  Task 11 added no missing local reference
+
+Next Steps:
+1. Task 12: publish only the manifest-authorized identity, compatibility, and
+   new-service changes
+2. Task 13: synchronize audit YAML and PROGRESS/report rows, including the two
+   scoped stale-direction residuals
+3. Preserve 0x8010 as unnamed/reserved until direct endpoint or framed evidence
+   resolves it
+
+Verification:
+- RED stale-claim command -> found `VIDEO_FOCUS_NOTIFICATION = 0x8009`, the
+  old `UPDATE_UI_CONFIG_REQUEST = 0x800A`, and inverted car-control direction
+  comments before production edits
+- RED manifest gates -> all 26 CHG-VID/CHG-CC/CHG-SEN commands exited 1 for
+  missing accepted semantics; the 0x8010 descriptor assertion rejected the
+  old assignment, with no shell/protoc syntax failure
+- Pre-fix manifest gates -> 26/26 passed, but CHG-VID-8014 only required an
+  unchanged empty proto and therefore did not protect the claimed schema
+- Authorized targeted stale check -> no matches (expected `rg` exit 1)
+- Broad targeted stale check -> only the two Task 13-owned PROGRESS.md rows
+  cited above
+- Exact changed-proto compile (`protoc --proto_path=.` over the nine changed
+  proto targets) -> exit 0
+- Complete Task 11 protocol compile (AV/UI config, car control, four sensor
+  messages, and every `oaa/video/*.proto`) -> exit 0
+- New-reference path sanity -> exit 0; no newly added local link is missing
+- Task 11 manifest statuses -> exactly 15 CHG-VID, 7 CHG-CC, and 4 CHG-SEN
+  rows record Task 11 application; shared audit/report sync remains Task 13
+- `git diff --check` -> exit 0
+
+## 2026-07-25 — Task 11 Fix Round 1: publish MediaOptions schema
+
+Date / Session: 2026-07-25 / android-auto-17.3-update-task-11-fix-1
+
+What Changed:
+- Published the exact 13-field proto2 `AVChannelMediaOptions` wire envelope
+  recovered from the accepted Android Auto 17.3 `xig` message info: nine
+  `PingConfiguration` messages, three booleans, and one uint32 at their proven
+  tags, with neutral field names because application semantics remain unknown
+- Hardened CHG-VID-8014 to compile and assert the exact descriptor inventory,
+  expanded the CHG-VID-800C all-target enum scan to ten protos, and expanded
+  the Task 11/13 allowlists and changed-proto audit mapping to authorize the
+  MediaOptions proto now and its audit sidecar in Task 13
+- Corrected car-action and overlay-stop ownership prose, aligned video
+  confidence with the accepted evidence, and separated accepted 17.3 sources
+  from the historical 16.2 baseline in the video and car-control reports
+
+Why:
+- Review showed that the initial Task 11 commit claimed an existing 13-field
+  MediaOptions schema while leaving its proto empty, and that its gate could
+  not reject the omission
+- The remaining review findings were documentation provenance, direction, and
+  confidence errors that could misstate phone/HU behavior despite correct IDs
+
+Status:
+- Superseded by Fix Round 2: this round resolved the then-known findings, but
+  re-review found that its overlay-stop prose still claimed an unproven
+  phone-side state dismissal
+- No audit YAML was created or edited
+- MediaOptions field meanings intentionally remain unresolved; the publication
+  claims only exact tags, labels, and wire types
+- The broad stale search still reports the two Task 13-owned PROGRESS.md rows
+  recorded by the superseded entry; no new Task 11 stale claim remains
+
+Next Steps:
+1. Task 12: publish only the manifest-authorized identity, compatibility, and
+   new-service changes
+2. Task 13: create/synchronize the 16 authorized audit sidecars, including
+   `AVChannelMediaOptionsMessage.audit.yaml`, and clear the two PROGRESS rows
+3. Preserve MediaOptions neutral names until direct evidence resolves semantics
+
+Verification:
+- RED descriptor test -> the pre-fix MediaOptions descriptor had zero fields,
+  and the required exact 13-field inventory assertion failed
+- GREEN descriptor test -> the exact inventory passes; mutated fixtures with
+  an extra field 14 or field 2 changed from bool to uint32 are both rejected
+- All 26 CHG-VID/CHG-CC/CHG-SEN manifest gate commands -> pass
+- MediaOptions-only, ten changed-proto, and complete Task 11 protocol compiles
+  -> exit 0
+- Exact allowlists -> Task 11/12/13 contain 20/20/40 literal paths; all 16
+  publication protos map one-to-one to the 16 Task 13 audit sidecars
+- Traceability -> 59 source IDs and 59 manifest IDs, symmetric difference 0,
+  duplicate counts 0/0
+- Scoped stale, report version-label, reference/path, Markdown-table, Task 12
+  pointer/gate, matcher verify-only, and `git diff --check` checks -> pass
+
+## 2026-07-25 — Task 11 Fix Round 2: bound overlay-stop behavior
+
+Date / Session: 2026-07-25 / android-auto-17.3-update-task-11-fix-2
+
+What Changed:
+- Replaced the 0x800F phone-side overlay-state dismissal claim with the exact
+  observed boundary: the phone endpoint queues handler message 9, and its
+  handler invokes the registered phone-side stopped callbacks
+- Explicitly states that direct evidence does not establish overlay-state
+  mutation or dismissal
+- Corrected the Fix Round 1 handoff status so it no longer claims that every
+  review finding was resolved
+
+Why:
+- `jdc.java` maps incoming raw ID 32783/0x800F to handler message 9
+- `its.java` case 9 iterates registered callbacks and invokes `rhs.f()`; its
+  only list mutation removes callback registrations that threw
+  `RemoteException`, not overlay display state
+
+Status:
+- GREEN: the sole Fix Round 2 finding is resolved in the two authorized
+  documentation paths; no protocol schema, manifest, audit YAML, or other
+  tracked file changed
+- Task 12 remains the next resume point and was not started
+
+Next Steps:
+1. Task 12: publish only the manifest-authorized identity, compatibility, and
+   new-service changes
+2. Task 13: create/synchronize the 16 authorized audit sidecars and clear the
+   two recorded PROGRESS.md direction residuals
+
+Verification:
+- RED boundary check -> found the old phone-side overlay-state dismissal claim;
+  the desired callback-only wording was absent
+- Direct evidence check -> `jdc.java` queues handler message 9 and `its.java`
+  case 9 invokes registered stopped callbacks; the bounded source contains no
+  overlay-state mutation or dismissal
+- GREEN boundary/stale check -> exact callback-only prose present and dismissal
+  or state-mutation overclaims absent
+- All 26 CHG-VID/CHG-CC/CHG-SEN manifest gates -> pass
+- Markdown table/link sanity, traceability 59/59, exact 20/20/40 allowlists,
+  16-entry audit mapping, two-file scope, and `git diff --check` -> pass
+
+## 2026-07-25 — Task 12: publish 17.3 service identities
+
+Date / Session: 2026-07-25 / android-auto-17.3-update-task-12
+
+What Changed:
+- Renamed `AVChannel` field 6 from `channel_id` to `display_id` while preserving
+  tag 6 and optional uint32 wire identity; documented the breaking generated
+  API rename and kept `InputChannelConfig.display_id` field 5 as its reference
+- Published exact 17.3 `ChannelDescriptor` markers at fields 16-18 for
+  CarLocalMedia, BufferedMedia, and CarIntent service types 20-22, preserving
+  the insufficient-evidence boundary for 16.2 fields 16-17 and the compatible
+  optional field-18 addition relative to the available 16.2 descriptor
+- Added the proto2 `CarIntentMessage` with only optional string `metadata = 2`
+  and documented field 18/bit `0x20000`, HU-to-Phone parse/log/callback flow,
+  false named-flag default versus the actual descriptor-presence factory gate,
+  unknown raw ID, and the absence of proven acknowledgement/response/runtime delivery
+- Published the 17.3 BufferedMedia incoming raw-ID-4 HU-to-Phone parser with
+  its exact six-field proto2 payload and state enum values 0-4; kept IDs 1-3,
+  outbound use, responses, completed transfer, downstream operation, and
+  runtime activation unknown or unverified
+- Kept CarLocalMedia numeric state 5 explicitly `UNKNOWN_5` and deferred while
+  publishing the static service-type-20 directions in Task 12 documentation
+- Updated the five Task-12-authorized audit sidecars with direct 17.3 anchors,
+  hardened shared manifest gates to test each Task 13 report independently,
+  and advanced the dossier pointer to Task 13
+
+Why:
+- The accepted 17.3 static dossiers resolve logical-display and new-service
+  identities precisely enough for canonical proto/documentation publication,
+  while runtime captures and several raw-ID/activation boundaries remain absent
+- Per-target manifest checks prevent a correct Task 12 document from masking an
+  unsynchronized Task 13 report; the CarLocalMedia gate now anchors full message
+  names and no longer mistakes unrelated media-info IDs for direction errors
+
+Status:
+- Superseded by Fix Round 1: the initial commit was GREEN for its then-frozen
+  20-path allowlist, but that allowlist omitted the active service-discovery
+  guide; the corrected Task 12 contract contains 21 paths
+- Shared full-command residuals are intentionally limited to Task 13-owned
+  `sdp.md`, `sdp-progress.md`, `media.md`, and `PROGRESS.md`; the Task 13-owned
+  `BufferedMediaSinkMessage.audit.yaml` is intentionally still absent
+- Static logical display/endpoint construction remains distinct from runtime
+  concurrency; no simultaneous 17.3 streams, live CarIntent delivery, or live
+  BufferedMedia activation were observed
+- Resolved by Fix Round 1: the broad stale inventory exposed the historical AV
+  field-6 spelling in `docs/interactions/03-service-discovery.md`; the guide is
+  now an authorized Task 12 canonical target
+
+Next Steps:
+1. Task 13: synchronize SDP/media/PROGRESS reports and create the authorized
+   BufferedMedia audit sidecar without changing the canonical Task 12 schemas
+2. Run the full audit schema suite when `pytest` and `jsonschema` are available;
+   no dependency was installed during this task
+3. Preserve CarIntent raw-ID, CarLocalMedia state-5, BufferedMedia IDs 1-3 and
+   outbound behavior, and all runtime activation/concurrency boundaries until
+   direct evidence resolves them
+
+Verification:
+- RED identity scan -> found AV `channel_id = 6`, the ambiguous display/channel
+  comment, 16.2 descriptor-label ambiguity, BufferedMedia discard-only stub
+  text, and the CarLocalMedia `needs wire capture` comment before production edits
+- RED descriptors -> AV field 6 was optional uint32 `channel_id`; CarIntent did
+  not exist; BufferedMedia was proto3 with no message; the desired assertions
+  failed for the intended missing semantics
+- Exact descriptor/adversarial suite -> AV wire inventory unchanged except the
+  field-6 name, ChannelDescriptor fields 16-18 exact, CarIntent sole field 2,
+  BufferedMedia six fields/enum 0-4, and CarLocalMedia `UNKNOWN_5` all pass;
+  10/10 extra-field, wrong-field/type, enum, and transferred-meaning mutations rejected
+- 16.2 compatibility assertion -> indexed `wbm` has tags 1-17; tag 18 is an
+  optional-message addition in 17.3; historical semantics for tags 16-17 remain unresolved
+- Exact six changed protos compile -> exit 0; non-empty descriptor set, 5,085 bytes
+- Full `oaa/**/*.proto` compile -> exit 0; non-empty descriptor set, 105,152 bytes
+- Manifest commands -> all 10 fully Task 12-owned rows pass; all Task 12-owned
+  portions of the seven shared rows pass; full shared commands fail only on the
+  four named Task 13 reports
+- Audit tooling -> canonical pytest command unavailable (`pytest` and
+  `jsonschema` not installed); schema-derived PyYAML parse/key/type/date/style
+  sanity passes for all five edited Task 12 audits
+- Independent review -> corrected one BufferedMedia absence-of-evidence
+  overclaim; the final wording says the consumer does not prove a response or
+  completed transfer, and the hardened gate rejects the former wording;
+  focused re-review returned clean
+- Manifest integrity at initial commit -> 59/59 traceability, zero symmetric
+  difference or duplicates, 59/59 command syntax, and the superseded exact
+  20/20/40 allowlists; Fix Round 1 records the corrected 20/21/40 result
+- Documentation sanity -> 87 local links checked, zero missing; 52 Markdown
+  table blocks have consistent column counts
+- Task 12 scoped stale search -> no matches; new identity/service terminology present
+- `git diff --check` -> exit 0
+
+## 2026-07-25 — Task 12 Fix Round 1: align service-discovery display identity
+
+Date / Session: 2026-07-25 / android-auto-17.3-update-task-12-fix-1
+
+What Changed:
+- Added `docs/interactions/03-service-discovery.md` to the CHG-ID-AV-F6
+  canonical targets and the exact Task 12 staging allowlist, correcting the
+  manifest allocation from 20 to 21 paths
+- Renamed only the active guide's nested AV field 6 from `channel_id` to
+  `display_id`; retained `ChannelDescriptor.channel_id` as the genuine
+  transport channel used in frame headers
+- Updated the example so transport video channel 3 contains logical MAIN
+  `display_id: 0`, and documented the logical identity join with
+  `InputChannelConfig.display_id` field 5
+- Split troubleshooting guidance between invalid transport channel IDs and
+  AV/input logical-display mismatches
+
+Why:
+- The initial Task 12 allowlist omitted an active protocol guide, leaving its
+  AV field-6 spelling stale and its example liable to conflate transport and
+  logical display identity domains
+
+Status:
+- GREEN: the guide, manifest target/gate, and corrected 21-path Task 12
+  allowlist agree; the original exact-20 completion claim is superseded
+- Task 13 still owns the seven shared report residuals and the missing
+  BufferedMedia audit sidecar
+- Reviewer minor follow-ups remain Task 13 work: add the CLM audit citation
+  after report synchronization, and reconcile the AV proto/audit evidence tier
+
+Next Steps:
+1. Task 13: synchronize SDP/media/PROGRESS reports and create the authorized
+   BufferedMedia audit sidecar
+2. After that report sync, add the resolvable CLM audit citation and reconcile
+   the AV proto/audit tier without changing the Task 12 wire schema
+
+Verification:
+- RED guide identity check -> found nested AV `channel_id = 6` and
+  `channel_id: 3`; the required logical-display join was absent
+- GREEN CHG-ID-AV-F6 gate -> field 6 is `display_id` in proto and guide,
+  transport `ChannelDescriptor.channel_id` remains explicit, the example uses
+  transport channel 3 plus logical MAIN display 0, and the AV/input join and
+  generated-API break are documented
+- Exact changed-proto descriptor set -> exit 0, 5,085 bytes; full proto-tree
+  descriptor set -> exit 0, 105,152 bytes
+- Manifest commands -> all 10 fully Task 12-owned rows pass; all Task 12-owned
+  portions of seven shared rows pass; full shared failures remain limited to
+  the four named Task 13 report files
+- Manifest integrity -> 59/59 traceability and command syntax, exact
+  20/21/40 allowlists, 16 audit mappings, Task 13 pointer, and unchanged
+  verify-only matcher pair
+- Independent review at Fix Round 1 -> required the qualified transport-channel
+  example and rejected its removal; superseded by Fix Round 2 after a later
+  review found spacing-dependent stale-line escapes and valid-format rejection
+- Scoped and broad stale-identity checks, local-link/path checks, Markdown
+  table checks, and `git diff --check` -> pass
+
+## 2026-07-25 — Task 12 Fix Round 2: harden display identity gate
+
+Date / Session: 2026-07-25 / android-auto-17.3-update-task-12-fix-2
+
+What Changed:
+- Replaced CHG-ID-AV-F6's formatting-sensitive AV proto source assertion with
+  a compiled descriptor assertion for exact field-6 name `display_id`, tag 6,
+  optional label, and uint32 type
+- Made the guide schema and example assertions whitespace-flexible around
+  tokens, colons, values, and the equals sign
+- Made the transport example outcome-sensitive: exactly one line may encode
+  `channel_id: 3`, and that line must carry the `Transport video channel`
+  qualification
+- Kept the command cell Markdown-safe without a raw pipe character
+
+Why:
+- Review mutations showed that Fix Round 1 accepted spaced stale transport and
+  proto spellings while rejecting a semantically valid spaced `display_id: 0`
+  example
+
+Status:
+- Superseded by Fix Round 3: the canonical files remained unchanged, but later
+  review found suffix-dependent escapes in the transport cardinality matcher
+- Task 13 ownership and the two recorded audit follow-ups are unchanged
+
+Next Steps:
+1. Task 13: synchronize the authorized reports and audit sidecars
+2. Preserve the logical-display/transport-channel distinction in later guide
+   edits by rerunning CHG-ID-AV-F6
+
+Verification:
+- RED mutations -> Fix Round 1 missed spaced `channel_id : 3`, missed proto
+  `channel_id    =    6`, and rejected valid spaced `display_id : 0`
+- GREEN mutations -> both stale variants are rejected; valid whitespace-only
+  reformatting is accepted; removing the sole qualified transport example is
+  rejected
+- Exact changed/full descriptor sets -> exit 0, 5,085 and 105,152 bytes
+- Manifest commands -> all 10 fully Task 12-owned rows pass; all seven shared
+  Task 12-owned portions pass; full shared failures remain Task 13 report work
+- Manifest integrity -> 59/59 traceability and command syntax, exact
+  20/21/40 allowlists, 16 audit mappings, Task 13 pointer, and unchanged
+  verify-only matcher pair
+- Documentation/stale/scope -> 18 local links with zero missing, two consistent
+  Markdown tables, scoped and broad canonical stale scans pass, exact tracked
+  scope 2/2, and `git diff --check` passes
+- Independent review -> no Critical, Important, or Minor findings
+
+## 2026-07-25 — Task 12 Fix Round 3: close display example comment escape
+
+Date / Session: 2026-07-25 / android-auto-17.3-update-task-12-fix-3
+
+What Changed:
+- Strengthened CHG-ID-AV-F6 to count every guide line whose first identifier
+  is `channel_id` followed by optional whitespace and a colon, independent of
+  value or comment suffix, and require exactly one such line
+- Separately requires that sole line to encode numeric value 3 and contain the
+  `Transport video channel` qualification anywhere after the value
+- Made the logical MAIN `display_id` example tolerant of no-gap and alternate
+  comment formatting while still requiring exact numeric value 0
+- Retained the compiled AV field-6 descriptor assertion from Fix Round 2 and
+  kept the Markdown command cell free of raw pipe characters
+
+Why:
+- Review found that suffixes beginning immediately after value 3 could evade
+  the prior value-specific count, while valid no-gap comments were rejected
+
+Status:
+- GREEN: only the manifest gate and this handoff are tracked changes; no
+  canonical protocol file or Task 13-owned surface changed
+
+Next Steps:
+1. Task 13: synchronize only its authorized reports and audit sidecars
+2. Continue to treat the guide's single transport example and nested logical
+   display example as separate identity domains
+
+Verification:
+- RED mutations -> appended `channel_id:3//`, `channel_id:3; //`, and
+  `channel_id:3/* */` variants escaped the Fix Round 2 count; qualified no-gap
+  transport and logical-display comments were rejected
+- GREEN matrix -> all appended or duplicate `channel_id` example/value lines,
+  removal, and unqualified sole lines are rejected; qualified no-gap transport
+  and harmless logical-display spacing/comment variants are accepted
+- Independent review -> corrected an overbroad non-digit boundary that accepted
+  malformed `3garbage`/`0garbage` values; the final matcher requires a
+  whitespace, slash-comment, or semicolon delimiter after the exact value
+- Focused re-review -> no remaining Critical or Important findings; the
+  expanded matrix accepts the intended formats and rejects 9/9 duplicate,
+  removal, unqualified, and malformed variants
+- Exact changed/full descriptor sets -> exit 0, 5,085 and 105,152 bytes
+- Manifest commands -> all 10 fully Task 12-owned rows pass; all seven shared
+  Task 12-owned portions pass; full shared failures remain Task 13 report work
+- Manifest integrity -> 59/59 traceability and command syntax, exact
+  20/21/40 allowlists, 16 audit mappings, and unchanged Task 13 ownership
+- Documentation/stale/scope -> local-link and Markdown-table checks, scoped and
+  broad canonical stale scans, exact tracked scope 2/2, and `git diff --check`
+  pass
+
+## 2026-07-25 — Task 13: synchronize Android Auto 17.3 publication evidence
+
+Date / Session: 2026-07-25 / android-auto-17.3-update-task-13
+
+What Changed:
+- Synchronized all 16 publication sidecars with Android Auto
+  `17.3.662804-release`, exact APKM/base hashes, JADX anchors, accepted
+  directions or schemas, and explicit static/runtime-unverified boundaries;
+  created the seven missing authorized sidecars
+- Migrated the exact 21 legacy sidecars to the existing audit schema without
+  changing wire claims or expanding `docs/verification/audit-schema.json`
+- Retained the conservative committed 17.3 matcher JSON/Markdown byte-for-byte
+  because Task 1 rejected the three unreviewed fresh-delta rows; likewise left
+  the six-row runtime matrix and runtime artifact set unchanged
+- Regenerated the coverage dashboard at a fixed timestamp and updated its
+  outcome-sensitive census test. **Superseded by the Task 13 Fix Round 1 entry
+  below:** the earlier 3 Platinum / 46 Gold / 93 Silver / 21 pending-Gold
+  counts incorrectly treated MATCH-08 service bindings as message evidence.
+- Synchronized SDP, media, PROGRESS, video, channel-map, channel architecture,
+  radio, car-control, cross-version, roadmap, dossier index, and Prodigy
+  handoff surfaces. The radio documentation now describes a phone-side AA
+  control/status bridge to an HU-managed tuner, not phone-owned radio hardware
+- Recorded the existing 15.9/16.1/16.2/16.4 InputChannelConfig comparison in
+  its audit so the Gold label satisfies the published deep-trace plus
+  cross-version rule; kept the 17.3-only MediaOptions, CriticalUiNotification,
+  CarIntent, and BufferedMedia publications at honest Bronze
+- Expanded the exact Task 13 manifest allowlist from 40 to 59 paths for the
+  authorized legacy/publication audits and then to 60 for the literal coverage
+  snapshot test; Task 11/12 remain exact 20/21-path sets
+
+Why:
+- Tasks 11-12 had applied the canonical protocol changes, but audits, shared
+  reports, coverage, active documentation, and the downstream implementation
+  handoff still needed one evidence-consistent publication view
+- The original Task 13 audit precondition exposed 21 legacy sidecars rejected
+  by the current schema, and the new publication sidecars necessarily changed
+  the locked live-census test values
+
+Status:
+- GREEN: Task 13 publication synchronization is complete; Task 14 remains the
+  final release gate
+- Static evidence is published without inventing runtime confirmation.
+  CarLocalMedia state 5, BufferedMedia IDs 1-3/outbound paths, the CarIntent
+  raw ID/response, multi-display concurrency, and all six runtime probes remain
+  deferred or runtime-unverified as recorded
+- The Task 13 fix changes comments in two active AV protos but leaves their
+  compiled descriptors byte-identical. The Task 12 generated-API rename remains
+  `AVChannel.channel_id` -> `display_id` at wire-stable uint32 tag 6.
+- **Superseded:** the tier-consistency suite is now canonical and gating; its
+  prior 108 passed / 71 failed characterization is no longer accepted.
+
+Next Steps:
+1. Task 14: run the complete proto/tool/baseline release gate and record exact
+   Task 1-13 commit lineage
+2. Preserve the matcher/runtime verify-only boundaries unless new reviewed
+   static evidence or framed target-version captures become available
+3. Hand `analysis/reports/multi-display/prodigy-maintainer-handoff.md` to the
+   downstream Prodigy implementation after Task 14 closes the release
+
+Verification:
+- RED audit baseline -> 149 passed / 21 failed (170 sidecars); failures were
+  exactly the manifest-authorized legacy schema migrations
+- GREEN audit schema -> 177 passed; `docs/verification/audit-schema.json`
+  unchanged
+- RED combined audit/dashboard/link-walker suite -> 218 passed / 1 failed at
+  the old literal `160` sidecar census; GREEN -> 219 passed
+- Coverage snapshot suite -> 26 passed; two fixed-date regenerations
+  byte-match the tracked JSON/Markdown
+- Publication audit assertions -> 16/16 include exact 17.3 hashes/JADX/static
+  boundaries; four Bronze audits are single-source, and 11 Gold plus one
+  Platinum audit satisfy deep-trace plus cross-version prerequisites
+- Protobuf compilation -> all 16 publication protos and all 247 active protos
+  compile successfully with `protoc --proto_path=. --cpp_out=...`
+- Manifest integrity -> 59/59 source IDs map uniquely to 59 rows; 59/59 command
+  strings pass `bash -n`; all 59 semantic commands pass; exact staging blocks
+  are 20/21/133 literal unique paths with one fail-closed index guard each; the
+  16 changed-proto audit mappings and 21 legacy migrations are exact/unique
+- Matcher/runtime immutability -> committed matcher JSON/Markdown and runtime
+  matrix match `HEAD` byte-for-byte; no runtime capture artifacts were added
+- Cross-link walker dry-run -> five no-ops; architecture walker -> 0 modified / 14 skipped
+- Documentation sanity -> all local link targets in changed Markdown exist,
+  all changed Markdown tables have stable columns, and active publication
+  stale-claim scans are clean; the required broad scan's remaining 12 hits are
+  confined to frozen plan/handoff/manifest verification history
+- `git diff --check` -> exit 0
+
+## 2026-07-25 — Task 13 Fix Round 1: reconcile confidence and OEM evidence policy
+
+Date / Session: 2026-07-25 / android-auto-17.3-update-task-13-fix-1
+
+What Changed:
+- Made `docs/verification/01-confidence-tiers.md` the canonical confidence
+  contract and added an executable derivation shared by repository-wide tests
+  and the OEM promotion walker.
+- Reconciled all 168 sidecars independently: Bronze requires one evidence
+  type, Silver two distinct types, Gold a primary `.java` handler/deep trace
+  plus one exact version-to-class `cross_version` entry, and Platinum those
+  Gold prerequisites plus scoped message/field OEM evidence.
+- Removed MATCH-08-only message Platinum/pending claims. The VW service signal
+  remains in the central promotion report as `NOMATCH-02` / service-binding-only,
+  producing zero promotions and zero pending-Gold mutations.
+- Preserved nine of the 16 Task 13 publication audits at Gold only where exact
+  published class mappings and primary handler anchors are both reproducible;
+  the remaining publication set is six Bronze and one Silver.
+- Corrected AV enum and MediaOptions confidence comments, synchronized video
+  current/historical confidence statements, and regenerated the OEM and
+  coverage JSON/Markdown artifacts.
+
+Why:
+- MATCH-08 proves the enclosing SDP service/channel binding, not the identity
+  or fields of every message associated with that service.
+- The earlier completion record trusted stated confidence and generic checker
+  summaries instead of deriving tiers from independently reproducible evidence.
+
+Status:
+- GREEN: Task 13 evidence-policy reconciliation is complete; Task 14 remains
+  the next release gate.
+- Coverage census: 168 sidecars / 247 protos / 68% coverage, 0 Platinum, 14
+  Gold, 128 Silver, 13 Bronze, 13 Retracted, 0 Superseded, 79 missing
+  sidecars, and 0 pending-Gold entries.
+- Runtime/matcher artifacts remain outside the behavior change; no new capture
+  or runtime claim was introduced.
+
+Next Steps:
+1. Run Task 14's full release gate against the reconciled policy and exact
+   Task 13 manifest.
+2. Preserve MATCH-08 as service-level evidence unless a direct message/field
+   observation lands.
+3. Add future Gold/Platinum claims only with the exact evidence anchors encoded
+   by the canonical executable policy.
+
+Verification:
+- Canonical tier consistency -> 183 passed.
+- Cross-version Silver contract -> 386 passed.
+- Promotion walker -> 45 passed; dry-run emitted 34 service-binding-only
+  observations, 0 promotions, and 0 pending flags across 43 verdicts.
+- Combined audit/tier/coverage/promotion/architecture/cross-link/cross-version
+  suite -> 833 passed.
+- Coverage live snapshot -> 168/247, tiers 13/128/14/0, pending 0.
+- Exact staging allowlists -> Task 11/12/13 contain 20/21/133 literal paths;
+  Task 13 equals the 60-path prior set union every Fix Round 1 tracked change.
+- Manifest verification -> 59/59 commands parse under `bash -n` and all 59
+  semantic commands pass.
+- Active proto compilation -> 247/247 protos, 494 generated C++ files, and a
+  105,152-byte descriptor set.
+- Comment-only AV changes -> parent/current descriptor SHA-256 both
+  `6adba02ecf62a8b0e9bbb298c25c96550f617a340ee82b34ddbf518cf0c9ee8e`.
+- Coverage and all four OEM artifacts -> fixed-date/dry-run regeneration
+  byte-identical to tracked files; matcher and runtime reports unchanged.
+- Cross-link dry-run -> five no-ops; `git diff --check` -> exit 0.
+
+## 2026-07-25 — Task 13 Fix Round 2: reject implicit and negative confidence evidence
+
+Date / Session: 2026-07-25 / android-auto-17.3-update-task-13-fix-2
+
+What Changed:
+- Restricted reproducible version/class mappings to explicit syntax: colon or
+  equals pairs, APK/Android Auto parenthetical forms, or labeled `class`/`jadx`
+  markers. Ordinary prose such as `version 16.2 checker...` can no longer be
+  parsed as a class mapping, and class tokens are bounded to 1-32 characters.
+- Added one shared supportive-evidence predicate for Silver and Gold. Evidence
+  is supportive only when `status` is absent or `consistent`; negative and
+  unknown statuses remain preserved in the audit trail but cannot satisfy an
+  evidence-type or reproducible-cross-version prerequisite.
+- Reconciled the ten affected audits from Silver to Bronze:
+  `AudioFocusChannelData`, `AudioStreamTypeEnum`, `DriverPositionEnum`,
+  `ByeByeResponseMessage`, `ChannelOpenAckMessage`,
+  `NotificationChannelData`, `SensorErrorStatusEnum`, `TrailerData`,
+  `VehicleEnergyModelData`, and `WifiInfoRequestMessage`.
+- Normalized the valid Gold mappings for
+  `IntegratedOverlayStartNotification`, `UpdateUiConfigRequestMessage`, and
+  `VideoFocusIndicationMessage` to explicit colon-pair syntax.
+- Corrected the source-provenance examples to use schema-valid `description`
+  fields and documented that MATCH-08/NOMATCH-02 service-only observations
+  live solely in the central OEM report, not sidecar `nomatch_rules`.
+- Regenerated the coverage dashboard and OEM promotion walk. The Task 13 Fix
+  Round 1 census of 13 Bronze / 128 Silver is superseded by this entry; total
+  coverage, Gold, Platinum, retracted, superseded, and pending counts do not
+  change.
+
+Why:
+- The former whitespace pattern accepted arbitrary prose after a version as a
+  class token, creating false reproducible-cross-version evidence.
+- Silver derivation counted negative evidence types, while Gold's cross-version
+  check independently ignored evidence status. Both tiers must use the same
+  definition of supportive evidence.
+- MATCH-08 identifies an enclosing SDP service binding and NOMATCH-02 records
+  the lack of message-level attribution; neither belongs in a message sidecar
+  without qualifying attributable evidence.
+
+Status:
+- GREEN: all four review findings are resolved within the protocol-reference,
+  documentation, analysis-tooling, and audit-sidecar scope.
+- Corrected coverage census: 168 sidecars / 247 protos / 68% coverage, 23
+  Bronze, 118 Silver, 14 Gold, 0 Platinum, 13 Retracted, 0 Superseded, 79
+  missing sidecars, and 0 pending-Gold entries.
+- The roadmap sequence is unchanged: Task 14 remains the next release gate.
+
+Next Steps:
+1. Run Task 14's full release gate against the stricter shared evidence policy.
+2. Express future version/class claims with one of the documented explicit
+   forms and use absent/`consistent` status only for supportive evidence.
+3. Keep service-only OEM observations in the central promotion report until
+   direct message- or field-attributable evidence exists.
+
+Verification:
+- Focused TDD RED -> 13 failed / 7 passed; whole-repository tier RED -> 13
+  failed / 192 passed; locked coverage RED -> expected 128 Silver, observed
+  118. These failures exactly exposed the parser, status, tier, and census gaps.
+- Canonical tier consistency -> 205 passed.
+- Exact Task 13 combined audit/tier/coverage/promotion/architecture/cross-link/
+  cross-version suite -> 825 passed.
+- Coverage regeneration at `2026-07-25T21:00:00Z` -> JSON and Markdown both
+  byte-identical; live census 168/247 with tiers 23/118/14/0 and pending 0.
+- Promotion-walker dry-run -> 34 service-binding-only observations, 3
+  out-of-SDP skips, 6 retractions, 0 promotions/pending mutations, 43 total;
+  all four generated OEM artifacts byte-identical.
+- Manifest verification -> 59/59 commands parse under `bash -n` and all 59
+  semantic commands pass.
+- Active proto compilation -> 247/247 protos, 494 generated C++ files, and a
+  105,152-byte descriptor set.
+- Comment-only AV descriptors -> parent/current SHA-256 both
+  `6adba02ecf62a8b0e9bbb298c25c96550f617a340ee82b34ddbf518cf0c9ee8e`.
+- Changed verification-doc links and five Markdown tables -> clean; provenance
+  `detail` scan -> zero; cross-link dry-run -> five no-ops.
+- Matcher/runtime reports -> unchanged from `d62bebd`; `git diff --check` ->
+  exit 0.
+
+## 2026-07-25 — Task 13 Fix Round 3: validate canonical cross-version classes
+
+Date / Session: 2026-07-25 / android-auto-17.3-update-task-13-fix-3
+
+What Changed:
+- Corrected `UpdateUiConfigRequest`'s 16.1 cross-version class from `wcm` to
+  canonical `wcs`, preserving the canonical 16.2 `wci` and syntax-validated
+  17.3 `xms` mappings. `wcm` belongs to `AdditionalVideoConfig`, not the
+  request wrapper.
+- Added a bounded repository-wide test that compares parsed cross-version pairs
+  with non-null classes in
+  `analysis/tools/proto_schema_validator/class_mapping.yaml`. Versions absent
+  from the canonical map remain eligible for syntax/evidence validation.
+- Made canonical-map indexing deterministic for duplicate message entries and
+  fail closed when duplicate entries disagree for the same version, including
+  stable contradiction diagnostics regardless of input order.
+
+Why:
+- Fix Round 2 proved that a version/class pair was syntactically explicit, but
+  explicit syntax alone could not distinguish the wrapper class from its
+  nested payload class.
+- Confidence must not remain Gold when a parsed class contradicts the existing
+  independent canonical mapping source.
+
+Status:
+- GREEN: the sole canonical-mapping mismatch is corrected; the generic check
+  exposed no unrelated pre-existing audit mismatches.
+- Coverage remains 168 sidecars / 247 protos / 68%, with 23 Bronze, 118
+  Silver, 14 Gold, 0 Platinum, 13 Retracted, 0 Superseded, 79 missing, and 0
+  pending-Gold entries.
+- Task ordering is unchanged; Task 14 remains the next release gate.
+
+Next Steps:
+1. Run Task 14's full release gate with canonical-class validation enabled.
+2. Keep canonical class mappings independent of audit confidence and update
+   the mapping source before citing a newly proven historical version.
+3. Resolve any future duplicate canonical entry conflict instead of selecting
+   one by file or input order.
+
+Verification:
+- Canonical-mapping RED -> 1 failed / 376 passed, exactly
+  `UpdateUiConfigRequest` 16.1 `wcm` versus canonical `wcs`; no unrelated
+  mismatches. Duplicate-order RED -> 1 failed / 1 passed for unstable conflict
+  diagnostics before the deterministic sort key.
+- Whole canonical tier/mapping suite -> 378 passed.
+- Exact Task 13 combined audit/tier/coverage/promotion/architecture/cross-link/
+  cross-version suite -> 998 passed.
+- Fixed-time coverage regeneration -> JSON and Markdown byte-identical; live
+  counts remain 168/247 and 23/118/14/0 with pending 0.
+- Promotion-walker dry-run -> all four artifacts byte-identical; 34
+  service-binding-only observations, 3 out-of-SDP skips, 6 retractions, 0
+  promotions/pending mutations, and 43 total verdicts.
+- Manifest verification -> 59/59 command strings parse and 59/59 semantic
+  commands pass.
+- Active proto compilation -> 247/247 protos, 494 generated C++ files, and a
+  105,152-byte descriptor set.
+- Comment-only AV descriptors -> parent/current SHA-256 both
+  `6adba02ecf62a8b0e9bbb298c25c96550f617a340ee82b34ddbf518cf0c9ee8e`.
+- Cross-link dry-run -> five no-ops; matcher/runtime reports unchanged;
+  changed-path/reference and `git diff --check` gates clean.
+
+## 2026-07-25 — Task 14: verify the Android Auto 17.3 release
+
+Date / Session: 2026-07-25 / android-auto-17.3-update-task-14
+
+What Changed:
+- Closed the dossier's final verification/handoff gate without changing its
+  runtime-evidence boundary. The final row-level census is 50 rows containing
+  confirmed-static evidence, 0 runtime-confirmed rows, 4 deferred-bearing
+  rows, and 6 runtime-unverified probes. `SVC-BUF-IDS` is intentionally counted
+  in both static and deferred dimensions because ID 4 is source-confirmed while
+  IDs 1-3 and outbound behavior remain deferred.
+- Found five stale normalized non-media baselines, generated independent `/tmp`
+  candidates, and classified all 383 old-to-current differences into a closed
+  nine-group allowlist before using the validator's documented `--bless
+  --reason` path. Added seven `CHG-BASELINE-*` rows for historical canonical
+  normalization changes; the AV display and active SensorRequest groups map to
+  existing `CHG-ID-AV-F6` and `CHG-SEN-8001` rows.
+- Preserved every capture input byte. The five SHA-256 values are recorded in
+  the manifest, normalized row counts remain 516 / 3,107 / 2,098 / 2,521 /
+  3,107, and all five refreshed baselines reproduce independently generated
+  candidates byte-for-byte.
+- Left `docs/roadmap-current.md` unchanged because execution did not alter the
+  planned priority or sequence. The release pointer is exactly: `Release
+  complete; next work is downstream Prodigy integration or a future
+  capture-confidence pass.`
+
+Why:
+- Task 14 must prove the published protocol tree, evidence policy, reports,
+  matcher, and regression baselines agree. The baseline RED exposed stale
+  generated names from already-reviewed canonical commits, not capture drift;
+  accepting them required explicit provenance and a fail-closed signature gate.
+- Runtime capture was conditional and unavailable in Task 9. This release gate
+  therefore verifies static and regression consistency without claiming live
+  Android Auto 17.3 behavior that was not observed.
+
+Exact Task 1-13 commits, including fix rounds:
+- Task 1: `8103f15` (`docs(analysis): preserve Android Auto 17.3 display
+  evidence`); `aa6c5df` (`docs(analysis): qualify multi-display runtime
+  evidence`).
+- Task 2: `c08bce5` (`docs(analysis): establish Android Auto 17.3 release
+  dossier`).
+- Task 3: `a564857` (`docs(video): close Android Auto 17.3 message matrix`);
+  `0d41784` (`docs(video): clarify unresolved 0x8010 classification`).
+- Task 4: `298828d` (`docs(carcontrol): correct 17.3 endpoint direction
+  evidence`); `faa8b17` (`docs(carcontrol): inventory stale direction
+  narratives`).
+- Task 5: `80ef446` (`docs(protocol): close sensor and radio direction matrix`).
+- Task 6: `6fb92a7` (`docs(display): close 17.3 protocol identity matrix`);
+  `d0297f7` (`docs(display): correct descriptor source anchors`).
+- Task 7: `0cf98ee` (`docs(carintent): reconstruct Android Auto 17.3 service`).
+- Task 8: `c48b28d` (`docs(media): classify 17.3 local and buffered media
+  services`).
+- Task 9: `a560982` (`docs(capture): record 17.3 runtime validation attempt`);
+  `45a6929` (`docs(capture): preserve runtime preflight tracebacks`).
+- Task 10: `1bb3eaa` (`docs(protocol): freeze Android Auto 17.3 change
+  manifest`); `16e7731` (`docs(protocol): tighten Android Auto 17.3 manifest
+  gates`); `0776ac6` (`docs(protocol): harden manifest verification gates`);
+  `358eacf` (`docs(protocol): close manifest mutation escapes`); `3126ca1`
+  (`docs(protocol): validate manifest via descriptors`).
+- Task 11: `884ff4d` (`fix(proto): correct Android Auto 17.3 message
+  directions`); `0a1a198` (`fix(proto): publish Android Auto 17.3 media options
+  schema`); `607e3ef` (`docs(video): bound overlay stop behavior`).
+- Task 12: `a4fcef7` (`feat(proto): publish Android Auto 17.3 service
+  identities`); `b68cb5b` (`docs(display): align service discovery display
+  identity`); `b372467` (`docs(protocol): harden display identity gate`);
+  `e11bdd6` (`docs(protocol): close display example comment escape`).
+- Task 13: `f115356` (`docs(protocol): synchronize Android Auto 17.3
+  evidence`); `d62bebd` (`fix(protocol): reconcile confidence evidence
+  policy`); `a074562` (`fix(protocol): reject negative confidence evidence`);
+  `0812713` (`fix(protocol): validate canonical audit class mappings`).
+
+Changed protos and generated APIs:
+- The 16 publication proto paths were
+  `oaa/av/AVChannelMediaOptionsMessage.proto`,
+  `oaa/av/AVChannelMessageIdsEnum.proto`, `oaa/av/UiConfigMessages.proto`,
+  `oaa/carcontrol/CarControlMessages.proto`,
+  `oaa/video/CriticalUiNotification.proto`,
+  `oaa/video/IntegratedOverlayStartNotification.proto`,
+  `oaa/video/IntegratedOverlayStopNotification.proto`,
+  `oaa/video/UpdateUiConfigRequestMessage.proto`,
+  `oaa/video/VideoFocusIndicationMessage.proto`,
+  `oaa/video/VideoFocusRequestMessage.proto`, `oaa/av/AVChannelData.proto`,
+  `oaa/carintent/CarIntentMessage.proto`,
+  `oaa/control/ChannelDescriptorData.proto`,
+  `oaa/input/InputChannelConfigData.proto`,
+  `oaa/media/BufferedMediaSinkMessage.proto`, and
+  `oaa/media/CarLocalMediaPlaybackStatusMessage.proto`.
+- The breaking generated-API rename is `AVChannel.channel_id` ->
+  `AVChannel.display_id` at wire-stable uint32 tag 6.
+- `AVChannelMessage.Enum` now publishes `UPDATE_UI_CONFIG_REQUEST` (0x8009),
+  `AUDIO_UNDERFLOW` (0x800B), `ACTION_TAKEN` (0x800C),
+  `OVERLAY_PARAMETERS` (0x800D), `OVERLAY_START` (0x800E), `OVERLAY_STOP`
+  (0x800F), `UI_CONFIG_REQUEST` (0x8011),
+  `UPDATE_HU_UI_CONFIG_RESPONSE` (0x8012), `MEDIA_STATS` (0x8013),
+  `MEDIA_OPTIONS` (0x8014), and `CRITICAL_UI_NOTIFICATION` (0x8015), while
+  0x8010 remains unnamed/reserved.
+- Added or completed generated surfaces are
+  `AVChannelMediaOptions` with its exact neutral 13-field inventory (nine
+  ping-configuration fields, three booleans, and one uint32 field);
+  `CriticalUiNotification.focus` / `CriticalUiFocus`;
+  `IntegratedOverlayStartNotification.display_session_id` and empty
+  `IntegratedOverlayStopNotification`; `UpdateUiConfigRequest.config`;
+  `CarIntentMessage.metadata`; `ChannelDescriptor.car_local_media_channel`,
+  `.buffered_media_channel`, and `.car_intent_channel` at tags 16-18;
+  `BufferedMediaSinkMessage` plus `BufferedMediaState`; and
+  `CarLocalMediaPlaybackState.CAR_LOCAL_PLAYBACK_UNKNOWN_5`.
+- `UiConfigMessages`, `CarControlMessages`, the two VideoFocus messages, and
+  `InputChannelConfig.display_id` received direction/identity/documentation
+  synchronization without an additional wire-breaking generated-API rename.
+
+Status:
+- Release verification is closed on static evidence. The canonical matcher
+  pair remains intentionally verify-only; the ignored Task 14 rerun is
+  377 canonical messages / 114 canonical enums against 1,957 APK messages /
+  134 APK enums, with 178 resolved matches (39 high / 139 medium), 135
+  dispatch observations, 13 unique enum domains, zero dispatch-schema or
+  direct-child conflicts, one explicitly unresolved `BluetoothChannel`
+  constraint-conflict status, and one already-known resolved parent/child
+  `VideoConfig` schema difference. The committed matcher pair remains the
+  frozen reviewed release artifact.
+- Runtime-confirmed count remains zero. CarLocalMedia state 5, CarIntent raw
+  ID/response, BufferedMedia IDs 1-3/outbound behavior, multi-display
+  concurrency, and all six runtime probes remain deferred or
+  runtime-unverified exactly as published.
+- Downstream Prodigy handoff:
+  `analysis/reports/multi-display/prodigy-maintainer-handoff.md`.
+
+Next Steps:
+1. Integrate the published display/session identities in Prodigy using
+   `analysis/reports/multi-display/prodigy-maintainer-handoff.md`.
+2. When a target 17.3 device and validated Frida environment are available,
+   run the six focused capture probes and promote only directly observed rows.
+3. Preserve the conservative committed matcher pair until any fresh delta is
+   reviewed row-by-row against direct message/field evidence.
+
+Verification:
+- Worktree preflight -> linked worktree
+  `/mnt/e/claude/personal/github/open-android-auto-clean/.worktrees/android-auto-17.3-release`,
+  branch `dev/android-auto-17.3-release`, clean expected HEAD `0812713`.
+- `protoc --proto_path=. --descriptor_set_out=/tmp/oaa-17-3-release/all.pb
+  $(find oaa -name '*.proto' -print | sort)` plus `test -s` -> 247/247 protos,
+  105,152-byte descriptor set.
+- Initial task-venv pytest invocation -> collection stopped with two
+  `ModuleNotFoundError: google` errors, confirming the documented environment
+  split; no tests ran. The venv has pytest 9.1.1 but no protobuf runtime.
+- Expanded pytest command covering every Task 14 directory plus
+  `test_audit_yaml_tier_consistency.py` and all promotion-walker tests, using
+  task-venv pytest with validated `/usr/lib/python3/dist-packages` protobuf
+  4.21.12 on `PYTHONPATH` -> 736 passed, 3 protobuf deprecation warnings.
+- Durable matcher command to ignored
+  `analysis/aa_apk_17.3.662804_apkm/validation/17-3-schema-match-release.{json,md}`
+  -> PASS; fresh counts are 178 resolved (39 high / 139 medium), 135 dispatch
+  observations, zero dispatch-schema conflicts, zero direct-child conflicts,
+  one unresolved `BluetoothChannel` constraint-conflict status, and one
+  resolved parent/child `VideoConfig` schema difference. Relative to the
+  frozen committed matcher: canonical inventory +1 message / +2 enums,
+  resolved +3 / medium +3, dispatch observations +6; the committed pair was
+  not rewritten.
+- Initial five baseline validations -> RED at 11 / 111 / 75 / 75 / 111
+  diffs, while every mapped proto frame still decoded. Root cause was stale
+  normalized identity/enum rendering from five baselines introduced at
+  `f494172`, not a capture-byte change.
+- Independent `/tmp` candidate regeneration, read-only git provenance, and the
+  closed allowlist gate -> exactly 383 issues in nine groups
+  (`sensor_type` 110, AdditionalVideoConfig 72, navigation step distance 72,
+  SensorRequest 47, input binding 36, AV display 24, input keycodes 16,
+  navigation type 5, Bluetooth status 1); no unclassified signature; capture
+  hashes 5/5 unchanged; old/current record counts identical.
+- Mechanical five-file `--bless --reason` plus candidate `cmp` -> all five
+  tracked baselines byte-identical to independent candidates. Final five
+  baseline validations -> PASS; decoded mapped-proto counts 516/516,
+  3107/3107, 2098/2098, 2521/2521, and 3107/3107.
+- Manifest checks -> 66/66 rows have stable shape, 66/66 commands parse under
+  `bash -n`, and 66/66 semantic commands pass. Original dossier traceability
+  remains 59/59 with zero symmetric difference/duplicates, plus seven unique
+  Task 14 baseline extensions; no accepted/pending manifest status remains.
+- Fixed-time coverage regeneration -> JSON/Markdown byte-identical; 168
+  sidecars / 247 protos / 68%, 23 Bronze / 118 Silver / 14 Gold / 0 Platinum,
+  13 Retracted / 0 Superseded / 79 missing / 0 pending.
+- Promotion-walker dry-run -> all four JSON/Markdown artifacts byte-identical;
+  34 service-binding-only observations, 3 out-of-SDP skips, 6 retractions, 0
+  promotions, 0 pending mutations, 43 total verdicts.
+- Architecture walker -> 0 modified / 14 skipped; cross-link dry-run -> five
+  no-ops. Committed matcher JSON/Markdown and the runtime matrix each match
+  `HEAD` byte-for-byte.
+- Final open/stale/reference, Markdown link/table, exact tracked-scope,
+  `git diff --check`, cached diff, commit, and clean-worktree checks are
+  recorded in the Task 14 ignored report and release commit.

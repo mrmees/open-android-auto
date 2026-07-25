@@ -1,0 +1,28 @@
+proto: oaa/video/UpdateUiConfigRequestMessage.proto
+message: UpdateUiConfigRequest
+confidence: gold
+last_updated: '2026-07-25'
+direction: bidirectional (0x8009 HU->Phone; 0x800A Phone->HU)
+channel: video
+evidence:
+- type: apk_deep_trace
+  method: receive_parse_and_send_trace
+  source: >-
+    Android Auto 17.3.662804-release; APKM SHA-256
+    1db7ce995aa52b2cde47a01abfb0364220fb57fc60217de3ec714e3034795344;
+    base.apk SHA-256
+    5557827f259898bdab97b489e1a0aef937fd6ec711d87361cf25d51af6f48619;
+    JADX jdc.java:125-135,191-215, xms.java:7-8,27, xml.java:8-16,38
+  date: '2026-07-25'
+  description: >-
+    The phone parses xms with required field-1 AdditionalVideoConfig at raw ID
+    0x8009 and builds the same wrapper for raw ID 0x800A. This proves the
+    opposite static directions and shared schema, not a reply pair or runtime
+    traffic.
+- type: cross_version
+  method: structural_comparison
+  source: v16.1:wcs / v16.2:wci / v17.3:xms
+  date: '2026-07-25'
+  description: >-
+    The one-field AdditionalVideoConfig wrapper remains structurally stable;
+    17.3 endpoint branches resolve the previously inverted directions.

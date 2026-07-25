@@ -1,7 +1,7 @@
 proto: oaa/media/MediaPlaybackStatusEventMessage.proto
 message: MediaPlaybackStatusEvent
-confidence: gold
-last_updated: '2026-03-06'
+confidence: silver
+last_updated: '2026-07-25'
 evidence:
 - type: apk_deep_trace
   method: proto_verification_pipeline
@@ -21,7 +21,7 @@ evidence:
     in vzs as field 1). Same enum verifier (index 17, vve.f73609r). C0000a.m128bw
     validates values 0-7 (d-pad actions: UNKNOWN, UP, DOWN, LEFT, RIGHT, ENTER,
     BACK, CALL). Previous note "Enum values TBD" is now resolved.
-notes:
-  - "vxo is shared: standalone on media channel, wrapped in vzs on phone channel"
-  - "Both channels dispatch via C0000a.m128bw(value) - 1 to their respective listeners"
-  - "Value 7 (CALL) probably unused in media context but valid per verifier"
+corrections:
+- "vxo is shared: standalone on media channel, wrapped in vzs on phone channel"
+- "Both channels dispatch via C0000a.m128bw(value) - 1 to their respective listeners"
+- "Value 7 (CALL) probably unused in media context but valid per verifier"

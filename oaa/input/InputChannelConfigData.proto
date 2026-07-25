@@ -7,7 +7,8 @@
  *
  * APK class: vxm (16.2), vya (16.1)
  * Used in ServiceDiscoveryResponse ChannelDescriptor.
- * display_id (field 5) matches VideoChannelDescriptor display.
+ * display_id (field 5) references AVChannel.display_id (field 6). It is not
+ * ChannelDescriptor.channel_id (the transport channel ID) or GAL service type 8.
  */
 
 syntax="proto2";
@@ -25,5 +26,5 @@ message InputChannelConfig
     repeated TouchScreenConfig touch_screen_configs = 2;             // touchscreen resolution per display
     repeated TouchPadConfig touchpad_configs = 3;                    // touchpad config (at most 1)
     repeated enums.HapticFeedbackType.Enum supported_haptic_types = 4;  // haptic feedback types HU supports
-    optional uint32 display_id = 5;                                  // matches video channel display ID
+    optional uint32 display_id = 5;                                  // references AVChannel field 6 logical display ID
 }

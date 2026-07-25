@@ -19,10 +19,25 @@
 | CarPropertyConfig | `vnf` | `vux` | `vuj` | `wmv` | 7/7/7/7 |
 | CarPropertyControl | `vng` | `vuy` | `vuk` | `wmw` | 3/3/3/3 |
 | CarPropertyValue | `vnl` | `vvd` | `vup` | `wnb` | 8/8/8/8 |
-| FloatValues | `vnk` | `vvc` | `vuo` | -- | 1/1/1/0 |
+| FloatValues | `vnk` | `vvc` | `vum` | -- | 1/1/1/0 |
 | IntValues | `vnj` | `vvb` | `vun` | -- | 1/1/1/0 |
-| LongValues | `vni` | `vva` | `vum` | -- | 1/1/1/0 |
-| RegisterCarPropertyListenersResponse | `xeg` | `wbk` | -- | -- | 1/1/0/0 |
+| LongValues | `vni` | `vva` | `vuo` | -- | 1/1/1/0 |
+| RegisterCarPropertyListenersResponse | `xeg` | `wbk` | `wba` | -- | 1/1/1/0 |
 | SetCarPropertyListenerResult | `vpd` | `vwv` | `vwh` | `wot` | 2/2/2/2 |
 | SetCarPropertyValueRequest | `vui` | `wca` | `wbq` | `wud` | 3/3/3/3 |
 | SetCarPropertyValueResponse | `vuj` | `wcb` | `wbr` | `wue` | 4/4/4/4 |
+
+## Android Auto 17.3 endpoint corrections
+
+Android Auto 17.3 preserves the seven existing message schemas while proving
+the phone-endpoint directions below:
+
+| Wire ID | Message | 17.3 direction | Phone-side behavior |
+|---|---|---|---|
+| 0x8001 | SetCarPropertyValueRequest | Phone -> HU | Creates and owns request correlation |
+| 0x8002 | SetCarPropertyValueResponse | HU -> Phone | Matches the request UUID |
+| 0x8003 | RegisterCarPropertyListenersRequest | Phone -> HU | Sends registrations; inbound copies are unexpected |
+| 0x8004 | RegisterCarPropertyListenersResponse | HU -> Phone | Updates registration state |
+| 0x8005 | CarPropertyChangeEvent | HU -> Phone | Updates property state and listeners |
+| 0x8006 | CarActionNotification | Phone -> HU | Sends the action; inbound copies are unexpected |
+| 0x8007 | CarControlGroupUpdate | HU -> Phone | Replaces the matching control group |

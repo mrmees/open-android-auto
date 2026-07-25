@@ -7,17 +7,16 @@
  * Flows on video channel alongside media data.
  *
  * Controls display margins, content insets, and theme (light/dark/auto)
- * for the projected AA UI. Two pairs exist:
+ * for the projected AA UI.
  *
  * Message IDs (on AV channel):
- *   0x800A = UpdateUiConfigRequest        (HU->Phone)
- *   0x800B = UpdateUiConfigReply          (Phone->HU)
- *   0x8012 = UpdateHuUiConfigRequest      (HU->Phone, HU-initiated push)
- *   0x8013 = UpdateHuUiConfigResponse     (Phone->HU)
+ *   0x8009 = UpdateUiConfigRequest        (HU->Phone)
+ *   0x800A = UpdateUiConfigRequest        (Phone->HU)
+ *   0x8012 = UpdateHuUiConfigResponse     (HU->Phone)
  *
- * The regular pair (0x800A/B) may be phone-initiated config negotiation.
- * The HU pair (0x8012/13) is for the head unit to proactively push
- * UI config changes (e.g., day/night mode switch).
+ * The same UpdateUiConfigRequest payload is used in opposite directions at
+ * 0x8009 and 0x800A. No reply is implied. The theming-token response at
+ * 0x8012 has its canonical definition under oaa/video/.
  *
  * Related: VideoConfigData.proto field 11 (additional_config) is likely
  * a UiConfig sub-message in the service discovery video config.
@@ -58,23 +57,11 @@ message UiConfig {
     optional UiTheme ui_theme = 4;  // confidence: silver [apk_static, cross_version]
 }
 
-// 0x800A: UpdateUiConfigRequest (HU->Phone)
+// 0x8009: UpdateUiConfigRequest (HU->Phone)
+// 0x800A: UpdateUiConfigRequest (Phone->HU)
 // Canonical definition moved to oaa/video/UpdateUiConfigRequestMessage.proto (Gold confidence).
 // Field 1 is AdditionalVideoConfig, NOT UiConfig (deep trace verified).
 
-// 0x800B: UpdateUiConfigReply (Phone->HU)
-// confidence: silver [apk_static, cross_version]
-message UpdateUiConfigReply {
-    optional UiConfig ui_config = 1;  // confidence: silver [apk_static, cross_version]
-}
-
-// 0x8012: UpdateHuUiConfigRequest (HU->Phone)
-// HU proactively pushes UI config changes (e.g., day/night switch).
-// confidence: silver [apk_static, cross_version]
-message UpdateHuUiConfigRequest {
-    optional UiConfig ui_config = 1;  // confidence: silver [apk_static, cross_version]
-}
-
-// 0x8013: UpdateHuUiConfigResponse (Phone->HU)
+// 0x8012: UpdateHuUiConfigResponse (HU->Phone)
 // Canonical definition moved to oaa/video/UpdateHuUiConfigResponse.proto (Gold confidence).
 // Field 1 is ThemingTokensStatus, NOT UiConfig (deep trace verified).

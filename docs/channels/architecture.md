@@ -161,6 +161,8 @@ channel handles a specific protocol domain.
 | 17 | -- | WiFi Projection | `wifi_channel` | HU -> Phone |
 | 19 | -- | Car Control | (not in SDP captures) | Bidirectional |
 | 20 | -- | Car Local Media | (not in SDP captures) | HU -> Phone (status), Phone -> HU (request) |
+| 21 | -- | Buffered Media Sink | `buffered_media_channel` | HU -> Phone (raw ID 4 only) |
+| 22 | -- | CarIntent | `car_intent_channel` | HU -> Phone (raw ID unknown) |
 
 ([aasdk: ChannelId.hpp:30-42](https://github.com/f1xpl/aasdk/blob/046b3b3/include/f1x/aasdk/Messenger/ChannelId.hpp#L30),
 [channel-map.md](../channel-map.md),
@@ -173,14 +175,22 @@ VW MIB3 OI + DHU SDP captures)
   `MessageType::SPECIFIC`.
 - **aasdk defines 9 channels** (CONTROL through BLUETOOTH,
   [ChannelId.hpp](https://github.com/f1xpl/aasdk/blob/046b3b3/include/f1x/aasdk/Messenger/ChannelId.hpp#L30)).
-  Modern AA has 15+ GAL service types. Channels 10-20 are post-aasdk additions
-  discovered via APK analysis (APK 16.2).
+  Modern AA has 15+ GAL service types. Types 10-22 include post-aasdk additions
+  discovered through APK analysis; the type-21 and type-22 identities here are
+  direct 17.3 static evidence.
 - **GAL service type is the stable identifier.** Wire channel IDs are assigned
   dynamically per-session by the HU based on SDP response order. A given service
   (e.g., media audio) might be wire channel 4 in one session and 7 in another.
-- **Radio (15), Car Control (19), and Car Local Media (20)** exist in the APK handler
-  code but were not declared in either the VW or DHU SDP captures. They likely require
-  specific HU hardware (radio tuner, VHAL interface, local media source).
+- **Radio (15), Car Control (19), Car Local Media (20), BufferedMedia (21), and
+  CarIntent (22)** exist in APK handler code but were not declared in the
+  available VW or DHU captures. Static presence does not establish live service
+  activation.
+- **Radio is a control/status bridge to an HU-managed tuner.** The phone-side
+  AA endpoint sends tune/mute/favorite/seek/search requests and receives HU
+  program/status notifications; it does not establish phone-owned FM hardware.
+- **Car Control is a vehicle-control bridge.** The phone sends property writes,
+  listener registrations, and car actions; the HU returns responses, changes,
+  and group updates. These directions are static and do not prove runtime use.
 
 ### Direction Semantics
 
@@ -232,6 +242,26 @@ Each service in the SDP response is a `ChannelDescriptor` with:
 The `channel_kind` field is the binding mechanism: it tells the HU what type of
 service this channel provides and includes the channel-specific configuration
 (supported codecs, sensor types, input capabilities, etc.).
+
+Three identity domains must remain separate:
+
+- `ChannelDescriptor.channel_id` field 1 is the transport channel ID.
+- GAL service type is the endpoint semantic number.
+- `AVChannel.display_id` field 6 is a logical display identity, referenced by
+  `InputChannelConfig.display_id` field 5.
+
+The 17.3 static construction path creates a separate logical display/endpoint
+pair for each accepted AV descriptor. Runtime concurrency across those endpoints
+is unverified.
+
+In the 17.3 descriptor, fields 16, 17, and 18 identify CarLocalMedia service
+type 20, BufferedMedia service type 21, and CarIntent service type 22. Field 18
+is a compatible optional addition relative to the available 16.2 descriptor;
+the 16.2 meanings of fields 16-17 are not promoted as aliases or semantic reuse.
+
+BufferedMedia has distinct `0x10000` descriptor, construction, registration,
+endpoint attachment, and worker start gates. CarIntent has a distinct `0x20000`
+descriptor-presence gate. These static branches do not prove live activation.
 
 14 channels were observed across VW MIB3 OI and DHU 2.1 SDP captures. The control
 channel is implicit (always channel 0, not in SDP).

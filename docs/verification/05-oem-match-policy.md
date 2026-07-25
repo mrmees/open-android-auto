@@ -110,17 +110,25 @@ rather than per-message layer evidence.
 **Example.** VW SDP declares `sensor_channel` on channel 8; `SensorRequest`'s
 proto claims the Sensor service binding → MATCH-08.
 
-**Phase 10 citation.** Always citable when the declared service appears in
-VW's SDP response, even if no specific message was observed on the wire. The
-minimum honest citation for any proto bound to a service that VW exercised.
+**Phase 10 citation.** Always citable in the central promotion-walk report
+when the declared service appears in VW's SDP response, even if no specific
+message was observed. MATCH-08 is a service/channel-binding signal only. It
+MUST NOT appear by itself as message/field `platinum_evidence`, promote a
+message sidecar, or create `oem_match_pending_gold` sidecar state.
 
 ---
 
 ## NOMATCH rules
 
-NOMATCH rules record the reason a claim is explicitly NOT made. They appear
-in the optional `nomatch_rules` list on a `platinum_evidence` entry. The
-following four rules form the complete, closed enum.
+NOMATCH rules record the reason a claim is explicitly NOT made. A sidecar's
+optional `nomatch_rules` list is not a general negative-results log: it may
+only bound a qualifying OEM evidence entry that is already attributable to
+the audited message or fields. If there is no attributable message/field
+observation, retain the negative result in the central walk report and do not
+create a sidecar evidence entry. In particular, the service-only
+`MATCH-08` / message-not-observed `NOMATCH-02` pairing is central-report-only
+and MUST NOT appear as sidecar `platinum_evidence` or pending-Gold evidence.
+The following four rules form the complete, closed enum.
 
 ### NOMATCH-01 — Below framing layer
 
@@ -200,8 +208,11 @@ and was observed `N >= 2` times during the session (`MATCH-06`). Phase 10 MUST
 cite every rule it satisfied — cherry-picking a subset is not allowed because
 audit trails need full detail to survive re-examination.
 
-A minimum honest citation when only SDP-level evidence is available is
-`match_rules: [MATCH-08]`, with `applicability: message` (no `fields` list).
+When only SDP-level evidence is available, record `MATCH-08` in the central
+service-binding report and classify the message itself as not observed
+(`NOMATCH-02`). That pairing exists only in the central report; there is no
+honest sidecar `nomatch_rules`, `applicability: message`, or
+`applicability: fields` entry for service-only evidence.
 
 ---
 
@@ -214,4 +225,5 @@ empty lists are all rejected at schema load. This prevents ad-hoc citation
 drift over time: a future contributor cannot invent an out-of-enum rule ID
 or pass an empty list without the schema validator catching it.
 
-The `nomatch_rules` list uses the same pattern with the 4 NOMATCH IDs.
+When a qualifying attributable sidecar entry has a bounded non-claim, its
+`nomatch_rules` list uses the same closed-enum pattern with the 4 NOMATCH IDs.

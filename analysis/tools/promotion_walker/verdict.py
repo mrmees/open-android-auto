@@ -7,6 +7,7 @@ from pathlib import Path
 from typing import Any
 
 from analysis.tools.seed_import.generate import validate_audit
+from analysis.tools.seed_import.tier_policy import expected_tier, has_gold_prerequisites
 from jsonschema.exceptions import ValidationError
 
 
@@ -130,17 +131,6 @@ def resolve_channel_binding(
     return None
 
 
-def _has_gold_prereqs(sidecar: dict[str, Any]) -> tuple[bool, bool]:
-    """Return (has_static, has_cross_version)."""
-    evidence = sidecar.get("evidence", [])
-    has_static = any(
-        e.get("type") in ("apk_static", "apk_deep_trace", "deep_trace")
-        for e in evidence
-    )
-    has_cv = any(e.get("type") == "cross_version" for e in evidence)
-    return has_static, has_cv
-
-
 def _pre_validate(sidecar: dict[str, Any], schema: dict) -> tuple[bool, str | None]:
     """Validate against schema before any edit. Returns (ok, reason)."""
     try:
@@ -174,6 +164,18 @@ def walker_decide(
 
     # (1) Tier-state skips
     if current_tier == "platinum":
+        derived_tier = expected_tier(sidecar)
+        if derived_tier != "platinum":
+            return Verdict(
+                sidecar_path=str(sidecar_path),
+                proto_message=proto_msg,
+                current_tier=current_tier,
+                kind=VerdictKind.CONTRADICTION_REVIEW,
+                contradiction_summary=(
+                    "stated Platinum conflicts with canonical evidence policy; "
+                    f"derived tier is {derived_tier}"
+                ),
+            )
         return Verdict(
             sidecar_path=str(sidecar_path),
             proto_message=proto_msg,
@@ -268,28 +270,39 @@ def walker_decide(
                     msg_seq_list.append(seq)
                     ts_ms_list.append(ts)
 
-    if completeness is None:
-        completeness = "full"  # MATCH-08 only; Phase 9 precedent
-    if not msg_seq_list:
-        msg_seq_list = [0]
-        ts_ms_list = [0]
-
     # Repeat / cross-direction (MATCH-06 / MATCH-07)
     if len(msg_seq_list) >= 2:
         if "MATCH-06" not in matched_rules:
             matched_rules.append("MATCH-06")
 
+    # MATCH-08 confirms only the enclosing SDP service/channel binding. With
+    # no accepted message observation, retain it in the central report but do
+    # not promote a message or create a pending-Gold sidecar flag.
+    if set(matched_rules) == {"MATCH-08"}:
+        return Verdict(
+            sidecar_path=str(sidecar_path),
+            proto_message=proto_msg,
+            current_tier=current_tier,
+            kind=VerdictKind.NOMATCH_OBSERVATION,
+            matched_rules=("MATCH-08",),
+            nomatch_rules=("NOMATCH-02",),
+            channel_kind=channel_kind,
+            skip_reason="service_binding_only: MATCH-08 does not substantiate a message claim",
+        )
+
     # (5) Tier-specific routing
     if current_tier == "gold":
-        has_static, has_cv = _has_gold_prereqs(sidecar)
-        if not (has_static and has_cv):
+        if not has_gold_prerequisites(sidecar.get("evidence", [])):
             return Verdict(
                 sidecar_path=str(sidecar_path),
                 proto_message=proto_msg,
                 current_tier=current_tier,
                 kind=VerdictKind.SKIP_MISSING_GOLD_PREREQ,
                 channel_kind=channel_kind,
-                skip_reason=f"static={has_static}, cross_version={has_cv}",
+                skip_reason=(
+                    "missing canonical Gold prerequisites: primary handler/deep "
+                    "trace plus exact version/class cross-version evidence"
+                ),
             )
         return Verdict(
             sidecar_path=str(sidecar_path),

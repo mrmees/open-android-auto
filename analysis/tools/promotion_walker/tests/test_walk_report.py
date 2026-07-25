@@ -11,9 +11,9 @@ from analysis.tools.promotion_walker.verdict import Verdict, VerdictKind
 def _synthetic_verdicts() -> list[Verdict]:
     return [
         Verdict("oaa/media/A.audit.yaml", "A", "gold", VerdictKind.PROMOTE_TO_PLATINUM,
-                matched_rules=("MATCH-08",), channel_kind="media_info_channel"),
+                matched_rules=("MATCH-08", "MATCH-02"), channel_kind="media_info_channel"),
         Verdict("oaa/av/B.audit.yaml", "B", "silver", VerdictKind.FLAG_PENDING_GOLD,
-                matched_rules=("MATCH-08",), channel_kind="av_channel"),
+                matched_rules=("MATCH-08", "MATCH-02"), channel_kind="av_channel"),
         Verdict("oaa/video/C.audit.yaml", "C", "platinum", VerdictKind.SKIP_ALREADY_PLATINUM,
                 skip_reason="already_platinum"),
     ]

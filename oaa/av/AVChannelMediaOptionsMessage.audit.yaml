@@ -1,0 +1,22 @@
+proto: oaa/av/AVChannelMediaOptionsMessage.proto
+message: AVChannelMediaOptions
+confidence: bronze
+last_updated: '2026-07-25'
+wire_msg_id: 0x8014
+direction: Phone->HU
+channel: video/shared AV
+evidence:
+- type: apk_deep_trace
+  method: raw_message_info_and_send_trace
+  source: >-
+    Android Auto 17.3.662804-release; APKM SHA-256
+    1db7ce995aa52b2cde47a01abfb0364220fb57fc60217de3ec714e3034795344;
+    base.apk SHA-256
+    5557827f259898bdab97b489e1a0aef937fd6ec711d87361cf25d51af6f48619;
+    JADX itt.java:748-755, its.java:182-190, xig.java:7-20,39
+  date: '2026-07-25'
+  description: >-
+    The phone builds and sends xig at raw ID 0x8014. RawMessageInfo proves
+    exactly nine optional PingConfiguration fields, three optional bools, and
+    one optional uint32 at tags 1-13. Field meanings remain unresolved. This
+    static trace does not prove runtime delivery or HU consumption.

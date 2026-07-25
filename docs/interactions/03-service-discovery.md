@@ -125,7 +125,9 @@ The final service slots are version-dependent. Android Auto 17.3 identifies
 them through active service factories as CarLocalMedia, BufferedMedia, and
 CarIntent; older 16.x catalogs used different names for fields 16-17.
 
-Only ONE of the channel-type fields is set per descriptor. The `channel_id` determines the channel number used in frame headers.
+Only ONE of the channel-type fields is set per descriptor.
+`ChannelDescriptor.channel_id` is the transport channel ID used in frame
+headers. It is separate from any logical display ID inside the channel config.
 
 > **Gotcha:** Channel IDs in `ChannelDescriptor` are phone-assigned after the HU sends them, not fixed protocol constants. The HU proposes IDs (typically 1-14 matching the field numbers above), but the phone's channel open flow uses whatever IDs the HU advertised. Do not hardcode channel ID assumptions -- always reference the IDs from the service discovery exchange.
 
@@ -159,7 +161,7 @@ message AVChannel {
     optional AudioStreamType audio_type = 2;  // (not used for video)
     repeated AudioConfig audio_configs = 3;   // (not used for video)
     repeated VideoConfig video_configs = 4;   // Resolution/fps/dpi options
-    optional uint32 channel_id = 6;
+    optional uint32 display_id = 6;         // Logical display identity
     optional DisplayType display_type = 7;    // MAIN=0, CLUSTER=1, AUXILIARY=2
 }
 
@@ -176,17 +178,27 @@ message VideoConfig {
 
 **Example configuration:**
 ```
-channel_id: 3
-stream_type: H264_BP (3)
-video_configs: [{
-    video_resolution: VIDEO_800x480 (1)
-    video_fps: _30 (2)
-    margin_width: 0
-    margin_height: 70      // 35px top + bottom black bars
-    dpi: 140
-}]
-display_type: MAIN (0)
+ChannelDescriptor {
+    channel_id: 3             // Transport video channel used in frame headers
+    av_channel {
+        display_id: 0         // Logical MAIN display identity
+        stream_type: H264_BP (3)
+        video_configs: [{
+            video_resolution: VIDEO_800x480 (1)
+            video_fps: _30 (2)
+            margin_width: 0
+            margin_height: 70 // 35px top + bottom black bars
+            dpi: 140
+        }]
+        display_type: MAIN (0)
+    }
+}
 ```
+
+`AVChannel.display_id` field 6 joins the video config to
+`InputChannelConfig.display_id` field 5. Both use logical display value 0 for
+this MAIN example; neither is the transport channel ID or a frame-header
+channel number.
 
 **Video resolution enum:**
 
@@ -354,7 +366,8 @@ The phone is tolerant of missing optional channels. It logs warnings but does no
 | No driving status sensor | SDK adds it automatically | Non-issue if using SDK correctly |
 | No night mode sensor | AA stays in day mode permanently | UX issue, not fatal |
 | No audio channels | Phone cannot play media | Severely degraded but may still project |
-| Invalid channel_id | Phone ignores the descriptor | Channel will not be opened |
+| Invalid `ChannelDescriptor.channel_id` transport ID | Phone ignores the descriptor | Channel will not be opened |
+| AV/input `display_id` mismatch | Phone cannot bind the input config to the logical display | Display topology is rejected |
 
 ## Log Tags
 

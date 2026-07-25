@@ -1,7 +1,7 @@
 proto: oaa/sensor/VehicleEnergyModelData.proto
 message: VehicleEnergyModelData
-confidence: gold
-last_updated: '2026-07-15'
+confidence: bronze
+last_updated: '2026-07-25'
 evidence:
 - type: apk_static
   method: bfs_trace
@@ -24,9 +24,9 @@ evidence:
     Recovered the 17.3 structured vehicle-info payload. RawMessageInfo provides
     all field numbers, types, and nesting; the diagnostic formatter names battery
     level/capacity, HVAC status, external temperature, and battery temperature.
-changes:
-- date: '2026-07-15'
-  description: >
+corrections:
+- >-
+  2026-07-15:
     Replaced the 16.2-era empty message with the structured schema present in
     Android Auto 17.3. The earlier 16.4 unmappable result is consistent with this
     protocol evolution having already begun by that release.

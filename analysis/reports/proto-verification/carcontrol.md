@@ -1,37 +1,50 @@
 # Car Control Channel Verification Report
 
 **Channel:** CAR.GAL.CAR_CONTROL (GAL type 19)
-**Handler:** hyc.java (16.2) / hxp.java (16.1)
-**Service manager:** hlb.java (CAR.CarControlService)
-**Msg ID enum:** vik.m36843p/m36844q (no offset — maps IDs unchanged)
-**Verified:** 2026-03-07
+**Updated:** 2026-07-25 from Android Auto `17.3.662804-release`
 **Status:** COMPLETE
 
-## Message Dispatch Table
+## Accepted Android Auto 17.3 endpoint evidence
 
-| Wire ID | Internal ID | Name | Direction | 16.2 Class | Handler Action |
+Directions and 17.3 classes come from the direct phone receive endpoint
+`analysis/aa_apk_17.3.662804_apkm/jadx-output/sources/defpackage/ixb.java`,
+phone send builders in the sibling `iip.java`, and payload descriptors
+`xlz.java`, `xma.java`, `xli.java`, `xlj.java`, `xgj.java`, `xfw.java`, and
+`xga.java`. The source-backed disposition is recorded in
+`analysis/reports/android-auto-17.3-update/message-matrix.md`. The later
+sub-message, enum, and critical-fix sections are explicitly the historical
+16.2 schema baseline.
+
+### Message Dispatch Table
+
+| Wire ID | Internal ID | Name | Direction | 17.3 Class | Phone Endpoint Action |
 |---------|-------------|------|-----------|------------|----------------|
-| 0x8001 | 32769 | SET_CAR_PROPERTY_VALUE_REQUEST | HU→Phone | wbq | Send-only |
-| 0x8002 | 32770 | SET_CAR_PROPERTY_VALUE_RESPONSE | Phone→HU | wbr | Parsed, UUID-matched callback |
-| 0x8003 | 32771 | REGISTER_CAR_PROPERTY_LISTENERS_REQUEST | HU→Phone | waz | Send-only (logs "unexpected" if received) |
-| 0x8004 | 32772 | REGISTER_CAR_PROPERTY_LISTENERS_RESPONSE | Phone→HU | wba | Parsed, per-property results |
-| 0x8005 | 32773 | CAR_PROPERTY_CHANGE_EVENT | Phone→HU | vwg | Parsed, updates cached property state |
-| 0x8006 | 32774 | CAR_ACTION_NOTIFICATION | HU→Phone | vvv | Send-only (logs "unexpected" if received) |
-| 0x8007 | 32775 | CAR_CONTROL_GROUP_UPDATE | Phone→HU | vvz | Parsed, replaces control group by type |
+| 0x8001 | 32769 | SET_CAR_PROPERTY_VALUE_REQUEST | Phone→HU | xlz | Phone sends and owns request correlation |
+| 0x8002 | 32770 | SET_CAR_PROPERTY_VALUE_RESPONSE | HU→Phone | xma | Phone parses and matches UUID callback |
+| 0x8003 | 32771 | REGISTER_CAR_PROPERTY_LISTENERS_REQUEST | Phone→HU | xli | Phone sends; inbound copies are unexpected |
+| 0x8004 | 32772 | REGISTER_CAR_PROPERTY_LISTENERS_RESPONSE | HU→Phone | xlj | Phone parses per-property results |
+| 0x8005 | 32773 | CAR_PROPERTY_CHANGE_EVENT | HU→Phone | xgj | Phone parses and updates cached property state |
+| 0x8006 | 32774 | CAR_ACTION_NOTIFICATION | Phone→HU | xfw | Phone sends; inbound copies are unexpected |
+| 0x8007 | 32775 | CAR_CONTROL_GROUP_UPDATE | HU→Phone | xga | Phone parses and replaces control group by type |
 
-## Top-Level Messages (7 Gold)
+### Top-Level Messages (7 Gold)
 
-| Proto | Wire ID | Direction | 16.2 Class | Confidence | Result |
+| Proto | Wire ID | Direction | 17.3 Class | Confidence | Result |
 |-------|---------|-----------|------------|------------|--------|
-| SetCarPropertyValueRequest | 0x8001 | HU→Phone | wbq | Gold | Correct (3 fields) |
-| SetCarPropertyValueResponse | 0x8002 | Phone→HU | wbr | Gold | **FIX**: status field uses vyh (ProtocolStatus), not CarControlStatus |
-| RegisterCarPropertyListenersRequest | 0x8003 | HU→Phone | waz | Gold | **NEW** — was missing from proto |
-| RegisterCarPropertyListenersResponse | 0x8004 | Phone→HU | wba | Gold | Correct (1 field) |
-| CarPropertyChangeEvent | 0x8005 | Phone→HU | vwg | Gold | Correct (3 fields) |
-| CarActionNotification | 0x8006 | HU→Phone | vvv | Gold | Correct (1 field) |
-| CarControlGroupUpdate | 0x8007 | Phone→HU | vvz | Gold | Correct (1 field) |
+| SetCarPropertyValueRequest | 0x8001 | Phone→HU | xlz | Gold | Correct (3 fields); phone-owned request correlation |
+| SetCarPropertyValueResponse | 0x8002 | HU→Phone | xma | Gold | Correct (4 fields); phone matches UUID |
+| RegisterCarPropertyListenersRequest | 0x8003 | Phone→HU | xli | Gold | Correct (1 field); inbound copies unexpected |
+| RegisterCarPropertyListenersResponse | 0x8004 | HU→Phone | xlj | Gold | Correct (1 field); phone updates state |
+| CarPropertyChangeEvent | 0x8005 | HU→Phone | xgj | Gold | Correct (3 fields) |
+| CarActionNotification | 0x8006 | Phone→HU | xfw | Gold | Correct (1 field); inbound copies unexpected |
+| CarControlGroupUpdate | 0x8007 | HU→Phone | xga | Gold | Correct (1 field); replacement-style update |
 
-## Sub-Messages (12 Gold)
+## Historical Android Auto 16.2 schema baseline
+
+The tables below retain the 16.2 database class names and schema corrections.
+They do not relabel the accepted 17.3 `x*` endpoint classes as 16.2 evidence.
+
+### Sub-Messages (12 Gold)
 
 | Proto | 16.2 Class | 16.1 Class | Confidence | Result |
 |-------|-----------|-----------|------------|--------|
@@ -48,7 +61,7 @@
 | CarPropertyControl | vuk | vuy | Gold | Correct (3 fields) |
 | SetCarPropertyListenerResult | vwh | vwv | Gold | **FIX**: status field uses vyh |
 
-## Layout Sub-Messages (4 Gold)
+### Layout Sub-Messages (4 Gold)
 
 | Proto | 16.2 Class | 16.1 Class | Confidence | Result |
 |-------|-----------|-----------|------------|--------|
@@ -57,7 +70,7 @@
 | CarActionControl | vvu | vwi | Gold | Correct (1 field) |
 | CarControlChannelDescriptor | vwa | vwo | Gold | **FIX**: field 2 is CarControl, not CarControlGroup |
 
-## Enums (3 Gold, 8 Silver)
+### Enums (3 Gold, 8 Silver)
 
 | Enum | 16.2 Class | Values | Confidence | Result |
 |------|-----------|--------|------------|--------|
@@ -77,9 +90,9 @@
 | CarControlGroupType | — | 2 (0-1) | Silver | No named enum class in DB |
 | CarControlStatus | — | — | RETRACTED | Wire uses shared ProtocolStatus (vyh) |
 
-## Critical Fixes Applied
+### Critical Fixes Applied to the 16.2 baseline
 
-### 1. CarPropertyId enum values — ALL WRONG (sequential → VHAL IDs)
+#### 1. CarPropertyId enum values — ALL WRONG (sequential → VHAL IDs)
 
 The proto had sequential values (1=HVAC_TEMPERATURE_SET, 2=HVAC_AUTO_ON, etc.) but the actual APK enum (vul) uses raw Android VHAL property IDs:
 
@@ -91,7 +104,7 @@ The proto had sequential values (1=HVAC_TEMPERATURE_SET, 2=HVAC_AUTO_ON, etc.) b
 | DOOR_LOCK | 24 | 371198722 |
 | ... | ... | (all 25 values changed) |
 
-### 2. CarPropertyValue oneof 6-8 — empty placeholders → real types
+#### 2. CarPropertyValue oneof 6-8 — empty placeholders → real types
 
 Source `vup.java` descriptor constructor passes `vun.class, vuo.class, vum.class` for fields 6-8:
 - Field 6: `IntValues int_array` (was `CarPropertyValueMsg msg_value_6`)
@@ -100,34 +113,34 @@ Source `vup.java` descriptor constructor passes `vun.class, vuo.class, vum.class
 
 `CarPropertyValueMsg` (empty placeholder message) **REMOVED**.
 
-### 3. CarControlChannelDescriptor field 2 — wrong type
+#### 3. CarControlChannelDescriptor field 2 — wrong type
 
 SDP descriptor field 2 references `vvx.class` (CarControl), NOT `vvy.class` (CarControlGroup).
 - Was: `repeated CarControlGroup control_groups = 2;`
 - Now: `repeated CarControl controls = 2;`
 
-### 4. CarPropertyConfig fields 4/7 restructured (16.1 → 16.2)
+#### 4. CarPropertyConfig fields 4/7 restructured (16.1 → 16.2)
 
 | Field | 16.1 Type | 16.2 Type |
 |-------|-----------|-----------|
 | 4 | `repeated CarPropertyAreaConfig` (area + min/max) | `repeated CarAreaId` (bare area IDs) |
 | 7 | `repeated CarPropertyValue` (supported values) | `repeated CarPropertyAreaConfig` (area + min/max moved here) |
 
-### 5. Status fields use shared ProtocolStatus (vyh)
+#### 5. Status fields use shared ProtocolStatus (vyh)
 
 Both `SetCarPropertyValueResponse.status` and `SetCarPropertyListenerResult.status` use the shared AA ProtocolStatus enum (vyh, 34 values), NOT the 3-value `CarControlStatus`. Confirmed via `vyh.m37369b()` calls in handler and `vik.m36848u()` builder.
 
 `CarControlStatus` enum **RETRACTED**.
 
-### 6. RegisterCarPropertyListenersRequest — NEW proto
+#### 6. RegisterCarPropertyListenersRequest — NEW proto
 
 Class `waz` exists in 16.2 DB with 1 field (repeated CarProperty). Was missing from proto file.
 
-### 7. CarControlMetadataType — missing value
+#### 7. CarControlMetadataType — missing value
 
 `vug` enum has 3 values: METADATA_PREFER_STATUS_BAR=2 was missing.
 
-### 8. VehicleAreaSeat — extra value
+#### 8. VehicleAreaSeat — extra value
 
 ROW_3_CENTER (512) is in AOSP spec but NOT in AA's proto enum (vud). Removed.
 

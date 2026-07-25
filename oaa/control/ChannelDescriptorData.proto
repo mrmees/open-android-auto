@@ -15,10 +15,12 @@
  *   1=channel_id, 2=sensor(wbk), 3=av(vye), 4=input(vxm),
  *   5=av_input(vyf), 6=bluetooth(vvo), 7=radio(wap), 8=navigation(vzd),
  *   9=media_info(vyd), 10=phone_status(vzt), 11=media_browser(vxy),
- *   12=vendor_ext, 13=notification(wah), 14=wifi(wcx), 15=car_control(vwa),
- *   16=generic_notification(vwf), 17=voice(vvp)
- *   (16.2 class names above; 16.1 class names differ). In 17.3, fields 16-18
- *   are CarLocalMedia (xgi), BufferedMedia (xfq), and CarIntent (xgd).
+ *   12=vendor_ext, 13=notification(wah), 14=wifi(wcx), 15=car_control(vwa).
+ * The available 16.2 descriptor has optional message fields 16 and 17, but
+ * preserved evidence does not establish their service semantics or marker
+ * lineage. In 17.3, fields 16-18 are exactly CarLocalMedia (xgi),
+ * BufferedMedia (xfq), and CarIntent (xgd). Field 18 is a compatible optional
+ * addition relative to the available 16.2 descriptor, which ends at tag 17.
  *
  * Original aasdk copyright (field names/structure):
  * Copyright (C) 2018 f1x.studio (Michal Szwaj), GPLv3
@@ -62,9 +64,9 @@ message ChannelDescriptor
     optional NotificationChannel notification_channel = 13;  // confidence: gold [deep_trace_verified, 16.2_jadx]
     optional WifiChannel wifi_channel = 14;  // confidence: gold [deep_trace_verified, 16.2_jadx]
     optional CarControlChannel car_control_channel = 15; // APK: vwo (3 fields)  // confidence: gold [deep_trace_verified, 16.2_jadx]
-    optional CarLocalMediaChannel car_local_media_channel = 16; // 17.3: xgi, service presence bit 0x8000  // confidence: gold [17.3_semantic_trace]
-    optional BufferedMediaChannel buffered_media_channel = 17; // 17.3: xfq, service presence bit 0x10000  // confidence: gold [17.3_semantic_trace]
-    optional CarIntentChannel car_intent_channel = 18; // 17.3: xgd, service presence bit 0x20000  // confidence: gold [17.3_semantic_trace]
+    optional CarLocalMediaChannel car_local_media_channel = 16; // 17.3: xgi, bit 0x8000, service type 20  // confidence: gold [17.3_semantic_trace]
+    optional BufferedMediaChannel buffered_media_channel = 17; // 17.3: xfq, bit 0x10000, service type 21  // confidence: gold [17.3_semantic_trace]
+    optional CarIntentChannel car_intent_channel = 18; // 17.3: xgd, bit 0x20000, service type 22  // confidence: gold [17.3_semantic_trace]
 }
 
 // APK class: vzt (16.2), wan (16.1) — empty message

@@ -1,16 +1,16 @@
 proto: oaa/input/InputBindingRequestMessage.proto
 message: InputBindingRequest
-confidence: gold
-last_updated: '2026-03-06'
-channel: input
-channel_gal_type: 8
-msg_id: 0x8002
+confidence: bronze
+last_updated: '2026-07-25'
+channel: input (GAL service type 8)
+wire_msg_id: 0x8002
 direction: Phone->HU
-class_16_2: vxr
-class_16_1: wbl
-class_15_9: vtt
+class_mapping:
+  '16.2': vxr
+  '16.1': wbl
+  '15.9': vtt
 evidence:
-- type: handler_trace
+- type: apk_deep_trace
   method: deep_apk
   source: hlg.java:531-543 (sends msg 32770 as vxr)
   date: '2026-03-06'
@@ -18,9 +18,9 @@ evidence:
     hlg.mo18727r builds vxr from this.f34174c (supported keycodes int[]),
     converts to list via xot.m38622X, populates vxrVar.f74008b (IntList),
     sends via iaeVar.m20106k(32770, vxr). Single field: repeated packed int32.
-changes:
-- date: '2026-03-06'
-  description: >
+corrections:
+- >-
+  2026-03-06:
     COMPLETE REWRITE. Was display_id(1,uint32)+binding_type(2,int32) — actually
     keycodes(1,repeated packed int32). Previous audit had wrong 16.2 class (wbb=RelativeInputEvent).
     Promoted silver→gold.

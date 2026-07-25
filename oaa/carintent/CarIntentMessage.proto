@@ -1,0 +1,19 @@
+// Android Auto Protocol Buffer Definitions
+// https://github.com/mrmees/open-android-auto
+// SPDX-License-Identifier: GPL-3.0-or-later
+
+/*
+ * Android Auto 17.3 CarIntent payload, parsed HU -> Phone.
+ *
+ * Static source proves only optional string field 2. The raw message ID is
+ * unknown. No field 1, intent-type enum, acknowledgement, or response is
+ * established by the bounded endpoint trace.
+ */
+
+syntax = "proto2";
+
+package oaa.proto.messages;
+
+message CarIntentMessage {
+    optional string metadata = 2;
+}
