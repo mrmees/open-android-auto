@@ -1755,3 +1755,68 @@ Verification:
 - `git diff --check` -> exit 0.
 - Tracked scope check -> exactly the three Task 9 owned reports changed;
   task report is ignored and no ignored capture artifact is staged.
+
+## 2026-07-24 — Task 10: freeze the canonical change manifest
+
+Date / Session: 2026-07-24 / android-auto-17.3-update-task-10
+
+What Changed:
+- Froze 59 stable change rows with one dossier evidence ID per row: 15 video,
+  7 car-control, 4 sensor, 10 radio-report, 5 identity, 5 CarIntent,
+  2 CarLocalMedia, 5 BufferedMedia, and 6 runtime-report rows
+- Added exact semantic changes, compatibility boundaries, per-row verification
+  commands, and explicit deferred/no-change/runtime-unverified dispositions
+- Defined closed exact allowed-file sets for Tasks 11-13, including the audit,
+  coverage, proto-verification, Prodigy handoff, and documentation outputs
+- Kept the Task 1 matcher baseline verify-only because its three fresh-delta
+  rows were not accepted for promotion
+- Closed the four research gates, left canonical publication/final verification
+  open, and advanced the resume pointer to Task 11
+
+Why:
+- Tasks 11-13 need one load-bearing publication contract that prevents closed
+  evidence, deferred findings, and runtime limitations from disappearing
+- Exact file authorization prevents speculative CarIntent, BufferedMedia,
+  CarLocalMedia state-5, descriptor-history, or runtime claims from entering
+  the canonical tree
+- Radio mappings are already correct, but their contradictory active prose
+  must still be corrected without rewriting the mappings
+
+Status:
+- The dossier inventory contains 59 claims: the message/identity matrix has
+  40 confirmed-static and 1 deferred row; services has 9 confirmed-static,
+  2 deferred, and 1 mixed confirmed-ID-4/deferred-ID-1-3 row; runtime has
+  6 runtime-unverified rows
+- The manifest has 59 unique change IDs and 59 unique evidence IDs; every
+  dossier table row maps to exactly one manifest row and every manifest
+  evidence ID resolves to exactly one of the three dossier source files
+- CarIntent is bounded to optional string field 2 and an unknown raw ID;
+  BufferedMedia is bounded to service/descriptor facts and incoming ID 4;
+  all runtime behavior remains unverified
+- Task 11 authorizes 19 exact paths, Task 12 authorizes 21, and Task 13
+  authorizes 35; six authorized paths are intentional future creations
+
+Next Steps:
+1. Task 11: apply only the frozen video, car-control, and sensor rows
+2. Task 12: publish the bounded identity and new-service rows without expanding
+   any deferred schema, ID, flow, or runtime boundary
+3. Task 13: synchronize only the exact frozen audit/report/documentation set
+   and confirm the committed matcher pair remains unchanged
+
+Verification:
+- Open-claim check -> only canonical publication and final verification gates
+  remain open; no direction, identity, service, or runtime claim row is open
+- Claim inventory -> 59 dossier rows and 59 manifest rows
+- Bidirectional set comparison -> symmetric difference 0
+- Uniqueness checks -> 0 duplicate change IDs, 0 duplicate manifest evidence
+  IDs, and 0 evidence-source errors
+- Manifest table-shape check -> all 59 rows have the expected seven columns
+- Change-group count -> 15 video, 7 car-control, 4 sensor, 5 identity,
+  5 CarIntent, 2 CarLocalMedia, 5 BufferedMedia, and 16 report rows
+- Allowed-path existence check -> all current targets exist; the only missing
+  paths are the six explicitly authorized Task 11-13 creations
+- Gate/resume check -> four research gates closed, publication/final gates
+  open, Task 10 completed, and Task 11 next
+- Owned-file scope check -> only the manifest, dossier README, and this handoff
+  changed
+- `git diff --check` -> exit 0
