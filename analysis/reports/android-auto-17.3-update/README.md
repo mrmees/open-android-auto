@@ -12,7 +12,7 @@
 |---|---|---|
 | Baseline preservation | confirmed-static | Durable provenance and matcher smoke recorded in Task 1 handoff. |
 | Direction and video-ID audit | confirmed-static | All video, car-control, sensor, and radio DIR rows are closed in `message-matrix.md`; the sole bounded video slot remains explicitly deferred. |
-| Identity and compatibility | open | `message-matrix.md` ID rows |
+| Identity and compatibility | confirmed-static | All five ID rows are closed in `message-matrix.md`: AV/input identity is source-proven, field 18 is a compatible addition, and the unavailable 16.2 semantics for fields 16-17 are explicitly classified as insufficient evidence rather than inferred. |
 | New services | open | `services.md` SVC rows |
 | Runtime validation | open | `runtime-validation.md` RT rows |
 | Canonical publication | open | `change-manifest.md` accepted rows |
@@ -20,6 +20,6 @@
 
 ## Resume Here
 
-- Last completed task: Task 5, sensor and radio direction matrix
-- Next task: Task 6, display, channel, and descriptor identity
-- Next command: `rg -n 'CarDisplayId|xik\.|new iti|new itt|display' analysis/aa_apk_17.3.662804_apkm/jadx-output/sources/defpackage/itq.java`
+- Last completed task: Task 6, display, channel, and descriptor identity
+- Next task: Task 7, CarIntent service reconstruction
+- Next command: `rg -n 'CAR_INTENT\(22\)|case 22|131072|CarIntentService discovered' analysis/aa_apk_17.3.662804_apkm/jadx-output/sources/defpackage/{rpq,iix,jnb}.java`

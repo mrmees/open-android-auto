@@ -38,11 +38,62 @@
 | DIR-RAD-8021 | radio | 0x8021 / 32801 | RadioFavoriteToggleRequest | `xky` | send: builds requested favorite boolean | Phone -> HU | `iji.java:349-362`; `xky.java:7-8,27` | Canonical proto, catalog, and verification table agree; 17.3 class is `xky` rather than 16.2 `waq`. Narrative at `docs/channels/radio.md:159,421` reverses the sender. | confirmed-static | No canonical change to the mapping: keep ID, name, schema, and Phone -> HU; correct the contradictory channel prose. |
 | DIR-RAD-8022 | radio | 0x8022 / 32802 | RadioTuneDirectionRequest | `xkz` | send: builds tune-direction enum | Phone -> HU | `iji.java:370-387`; `xkz.java:7-8,27` | Canonical proto, catalog, and verification table agree; 17.3 class is `xkz` rather than 16.2 `war`. Narrative at `docs/channels/radio.md:173,411-412` reverses endpoint ownership. | confirmed-static | No canonical change to the mapping: keep ID, name, schema, and Phone -> HU; correct the contradictory workflow prose. |
 | DIR-RAD-8023 | radio | 0x8023 / 32803 | RadioSearchRequest | `xkk` | send: builds field-1 search/custom-action string | Phone -> HU | `iji.java:290-303`; `xkk.java:7-8,27` | Canonical ID, name, one-string schema, direction, and search action agree; 17.3 class is `xkk` rather than 16.2 `wac`. | confirmed-static | No canonical change: keep ID, name, schema, Phone -> HU direction, and added-in-16.2 history. |
-| ID-AV-F6 | | | | | | | | | open | |
-| ID-INPUT-F5 | | | | | | | | | open | |
-| ID-CD-F16 | | | | | | | | | open | |
-| ID-CD-F17 | | | | | | | | | open | |
-| ID-CD-F18 | | | | | | | | | open | |
+| ID-AV-F6 | identity / video | field 6 | logical display ID (`display_id`) | `xik.g` | consume: constructs `CarDisplayId`, then one accepted display/video object pair | — | `xik.java:7-17,36`; decoded descriptor proof below; `itq.java:95-111,213-238,286-312` | Canonical field name is `channel_id`, which collides with the separate transport channel ID at `ChannelDescriptor` field 1. | confirmed-static | Rename AV field 6 to `display_id` without changing tag or wire type; it is the logical display ID, not a transport channel ID or GAL service type. |
+| ID-INPUT-F5 | identity / input | field 5 | input-to-display binding ID (`display_id`) | `xhs.g` | accept only when field 5 equals the target `CarDisplayId`; topology requires exactly one match per accepted display | — | `xhs.java:7-17,36`; decoded descriptor proof below; `jnb.java:263-308`; `iiv.java:70-76,163-171,254-258` | Canonical input field 5 already says it matches the video display ID. | confirmed-static | Keep `display_id` at tag 5; document it as a reference to AV field 6, distinct from the input descriptor's transport channel ID and service type 8. |
+| ID-CD-F16 | descriptor identity | field 16 | CarLocalMedia service marker | `xgi` | presence bit `0x8000` selects `CarLocalMediaService`; endpoint uses GAL service type 20 | — | `xlv.java:7-25,44-45`; `xgi.java:4-24`; `jnb.java:394-397`; `iiy.java:17-29,74-80`; `ixi.java:7-14`; `rpq.java:25,78-79` | The 16.2 `wbm` descriptor has a message field 16, but available indexed evidence does not prove the historical `generic_notification` meaning or a trusted marker lineage. | confirmed-static | **Insufficient evidence** for the 16.2→17.3 compatibility relationship. Keep the source-proven 17.3 CarLocalMedia meaning; do not publish the historical field-16 label as a universal alias or assert semantic reuse. |
+| ID-CD-F17 | descriptor identity | field 17 | BufferedMedia service marker | `xfq` | presence bit `0x10000` selects `CAR.MEDIA.BUFFERED`; endpoint uses GAL service type 21 | — | `xlv.java:7-25,44-45`; `xfq.java:4-24`; `jnb.java:403-413`; `isi.java:8-18,47-52`; `jaz.java:7-12`; `rpq.java:26,80-81` | The 16.2 `wbm` descriptor has a message field 17, but available indexed evidence does not prove the historical `voice` meaning or a trusted marker lineage. | confirmed-static | **Insufficient evidence** for the 16.2→17.3 compatibility relationship. Keep the source-proven 17.3 BufferedMedia meaning; do not publish the historical field-17 label as a universal alias or assert semantic reuse. |
+| ID-CD-F18 | descriptor identity | field 18 | CarIntent service marker | `xgd` | presence bit `0x20000` selects `CarIntentService`; endpoint uses GAL service type 22 | — | `xlv.java:7-25,44-45`; `xgd.java:4-24`; `jnb.java:398-402`; `iix.java:8-21`; `ixg.java:7-14`; `rpq.java:27,82-83` | The decoded 16.2 `wbm` descriptor ends at field 17; 17.3 `xlv` adds optional message field 18. | confirmed-static | **Compatible addition/removal**: retain CarIntent at tag 18 and document it as added by 17.3 relative to the available 16.2 descriptor. |
+
+## Display, channel, and service identity boundaries
+
+The four numeric domains are independent even when values happen to be equal:
+
+| Domain | Wire/source location | Proven meaning |
+|---|---|---|
+| Transport channel ID | `ChannelDescriptor` (`xlv`) field 1, member `c` | Required multiplexed service/channel number. `iya.java:116-121` logs it as `Service id`, and `jae.java:231` uses it to identify an existing registered service. It routes framed traffic; it is not a display ID. |
+| GAL service type | Endpoint constructor / `rpq` | Semantic endpoint kind carried by `izy.u`: video is 2 (`jdc.java:19-23`), input is 8 (`izh.java:16-18`), CarLocalMedia is 20, BufferedMedia is 21, and CarIntent is 22 (`rpq.java:5-27`). `jae.java:388-391` converts that value through `rpq` when opening the transport channel. It is neither a descriptor tag nor the transport channel ID. |
+| Logical display ID | `AVChannel` (`xik`) field 6, member `g` | Stable per-session display identity. The phone constructs `new CarDisplayId(xik.g)` and uses it for the accepted logical display/endpoint objects. |
+| Input-to-display binding ID | `InputChannelConfig` (`xhs`) field 5, member `g` | Reference that selects which logical display receives an input descriptor. It must equal the corresponding AV field-6 display ID. |
+
+For video, `itq.java:95-111` first accepts a descriptor with an AV service and
+non-empty video configurations. It then reads `xik.g`, constructs
+`CarDisplayId`, and builds separate `iti` and `itt` objects for that accepted
+video-capable descriptor (`itq.java:213-238,286-312`). This is static logical
+display/endpoint construction evidence only. It does not show framed
+simultaneous media streams; runtime concurrency remains unobserved.
+
+## Exact AV and input field-number proof
+
+The `xik` protobuf-lite descriptor at `xik.java:36` decodes to fields
+`1,2,3,4,6,7,8,9`. Its field-6 entry is optional `uint32`; the descriptor
+object order assigns it to member `g`. `itq.java:213-220` reads that exact
+member into `i4` immediately before `new CarDisplayId(i4)`. Therefore AV field
+6 is the logical display ID despite the current canonical `channel_id` name.
+
+The `xhs` descriptor at `xhs.java:36` decodes to fields `1,2,3,4,5`; its
+field-5 entry is optional `uint32` assigned to member `g`. `jnb.java:263-304`
+passes each accepted AV `CarDisplayId` into a dedicated `iiv` matcher, and
+`iiv.java:163-171` accepts an input descriptor only when `xhs.g` equals that
+ID. `jnb.java:305-308` rejects zero or multiple matches. This proves field 5
+is an input-to-display binding rather than the descriptor's field-1 transport
+channel ID; the successful log prints both values separately at
+`iiv.java:254`.
+
+## ChannelDescriptor fields 16–18 across 16.2 and 17.3
+
+| Field | 16.2 evidence | Direct 17.3 chain | Disposition |
+|---:|---|---|---|
+| 16 | `proto_classes.json` decodes `wbm` as a 17-field descriptor with optional message field 16. The historical canonical comment calls it `generic_notification`/`vwf`, but `proto_unknowns.json` marks `vwf` `insufficient_evidence`, while `16-4-mapping-candidates.md:151` finds no marker lineage. No 16.2 semantic consumer is available. | `xlv` field 16/member `s` is `xgi`; presence bit `32768` is accepted by `iiy`, whose class/import/log semantics are CarLocalMedia; `ixi` constructs endpoint service type 20. | **Insufficient evidence** for the cross-version relationship; 17.3 CarLocalMedia is confirmed. |
+| 17 | `proto_classes.json` decodes the same `wbm` descriptor with optional message field 17. The historical comment calls it `voice`/`vvp`, but `proto_unknowns.json` marks `vvp` `insufficient_evidence`, while `16-4-mapping-candidates.md:152` finds no marker lineage. No 16.2 semantic consumer is available. | `xlv` field 17/member `t` is `xfq`; presence bit `65536` is accepted by `isi`, which logs `CAR.MEDIA.BUFFERED` and starts `BUFFERED_MEDIA_WORKER`; `jaz` constructs endpoint service type 21. | **Insufficient evidence** for the cross-version relationship; 17.3 BufferedMedia is confirmed. |
+| 18 | The decoded `wbm` descriptor has maximum field 17, so field 18 is absent from the available 16.2 schema. | `xlv` field 18/member `u` is `xgd`; presence bit `131072` is accepted by `iix`/`CarIntentService`; `ixg` constructs endpoint service type 22. | **Compatible addition/removal**: optional CarIntent marker added in 17.3 relative to 16.2. |
+
+The 16.2 evidence paths used above are
+`analysis/android_auto_16.2.660604-release_162660604/apk-index/json/proto_classes.json`
+(`wbm`, `vwf`, and `vvp` entries), `proto_unknowns.json` (`vwf`/`vvp`), and
+`analysis/reports/cross-version/16-4-mapping-candidates.md:151-152`. The older
+canonical comments and SDP verification summaries are comparison inputs, not
+authority for marker semantics. In particular, an empty-message shape cannot
+establish lineage or semantic reuse by itself.
 
 ## Video protobuf-lite descriptor evidence
 

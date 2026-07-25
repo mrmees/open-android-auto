@@ -1469,3 +1469,71 @@ Verification:
 - Source-file existence check -> all 22 referenced endpoint/helper/descriptor
   Java files present
 - `git diff --check` -> exit 0
+
+## 2026-07-24 — Close Android Auto 17.3 display and descriptor identity matrix
+
+Date / Session: 2026-07-24 / android-auto-17.3-update-task-6
+
+What Changed:
+- Closed `ID-AV-F6` by decoding `xik.g` as optional `uint32` field 6 and
+  tracing it directly into `new CarDisplayId(...)`, the accepted per-display
+  bridge, and the video endpoint construction path
+- Closed `ID-INPUT-F5` by decoding `xhs.g` as optional `uint32` field 5 and
+  tracing the exact equality match against each accepted AV `CarDisplayId`,
+  including the zero/multiple-input topology failures
+- Defined separate semantic domains for transport channel ID, GAL service
+  type, logical display ID, and input-to-display binding ID
+- Closed `ID-CD-F16` through `ID-CD-F18` with direct 17.3 descriptor-member,
+  presence-bit, service-factory, and endpoint service-type chains
+- Compared the 17.3 fields against the available 16.2 `wbm` index evidence:
+  fields 16-17 retain source-proven 17.3 meanings but receive the conservative
+  `insufficient evidence` cross-version disposition; optional field 18 is a
+  `compatible addition/removal` relative to the 16.2 17-field descriptor
+- Advanced the dossier resume pointer and identity gate to Task 7 without
+  changing canonical protos, historical reports, or runtime claims
+
+Why:
+- `AVChannel` field 6 is a logical display ID, not the
+  `ChannelDescriptor.channel_id` transport route, and input field 5 is the
+  binding reference that joins an input service to that logical display
+- The historical 16.2 `generic_notification` and `voice` labels do not have a
+  trustworthy consumer or marker lineage in the preserved evidence, so
+  classifying fields 16-17 as semantic reuse would overstate the record
+- The 17.3 source directly ties descriptor fields 16-18 to CarLocalMedia,
+  BufferedMedia, and CarIntent through bits `32768`, `65536`, and `131072` and
+  endpoint service types 20, 21, and 22
+
+Status:
+- All five Task 6 ID rows are closed with exact source chains and canonical
+  dispositions; the identity/compatibility gate is `confirmed-static`
+- Accepted video-capable descriptors receive separate logical display and
+  endpoint objects in the static construction path
+- No framed simultaneous streams were observed; runtime concurrency remains
+  unverified
+- Canonical publication of the AV rename and descriptor version notes remains
+  deferred to Task 10
+
+Next Steps:
+1. Task 7: reconstruct the bounded CarIntent service contract, starting with
+   service type 22 and descriptor presence bit `131072`
+2. Task 10: rename AV field 6 to `display_id` and publish only the supported
+   fields 16-18 compatibility notes
+3. Runtime validation: capture framed multi-display traffic before making any
+   simultaneous-stream claim
+
+Verification:
+- Exact Task 6 source searches -> `xik.g` consumed by `new CarDisplayId`,
+  `xhs.g` matched to that ID, and fields 16-18 tied to the three service bits
+- Descriptor decoder -> `xik` field 6 and `xhs` field 5 are optional `uint32`;
+  `xlv` contains optional message fields 16-18
+- 16.2 index comparison -> `wbm` has 17 fields; fields 16-17 are messages;
+  `vwf` and `vvp` remain `insufficient_evidence`; no field 18 is present
+- Exact Task 6 open-row guard -> exit 0 with no open `ID-*` rows
+- Terminology check -> transport channel ID, service type, display ID, and
+  input-to-display binding language all present
+- Identity table column check -> all five rows have the expected 11 columns
+- Resume-pointer check -> Task 6 completed, Task 7 next, exact CarIntent
+  extraction command present
+- Owned-file and source-anchor checks -> only the three owned files changed;
+  all cited 17.3 sources and 16.2 evidence files exist
+- `git diff --check` -> exit 0
