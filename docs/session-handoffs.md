@@ -3378,3 +3378,41 @@ Verification:
   1,812 passed, 3 expected APK-index skips; all 247 protos compiled;
   annotation check reported `Changed: 0`
 - `git diff --check` -> exit 0
+
+## 2026-07-26 — Integrated-overlay schema and stale tombstones
+
+What changed:
+- Added the missing 0x800D `IntegratedOverlayParametersNotification` schema:
+  repeated options containing type, signed Rect bounds, and a wrapped float
+- Added aligned Android Auto 16.4/17.3 audit evidence from the concrete builder
+  and Phone-to-HU send paths
+- Corrected the remaining `ActionTakenNotification` tombstones from 0x800D to
+  0x800C and linked the retracted MediaStatusList note to the canonical schema
+
+Why:
+- Current `main` already contains the broad 17.3 video direction corrections,
+  but it intentionally left the nested overlay payload unpublished and retained
+  a few stale historical references
+- The old research branch's schema shape was useful, but its 16.4 obfuscated
+  class mapping was not; the new sidecar cites the actual versioned classes
+
+Status:
+- The nested wire graph is structurally consistent in 16.4 and 17.3
+- Overlay-type values, coordinate space, units, and runtime delivery remain
+  unresolved; 17.3 also calls the source float `cornerRadius` while the
+  canonical schema retains the historical `scale` label
+- No already-merged direction, channel-ID, codec, GAL 4.3, or bit-16 conclusion
+  was replayed or changed
+
+Next steps:
+1. Capture a real 0x800D exchange and correlate its values with rendered UI
+2. Resolve the `scale` versus `cornerRadius` semantic label from runtime or a
+   public API contract before renaming a wire-compatible field
+
+Verification:
+- Audit schema and tier tests -> 558 passed
+- Focused overlay descriptor compilation -> exit 0
+- `make verify PYTHON=/tmp/oaa-salvage-verify-2rikKu/bin/python` -> exit 0;
+  1,816 passed, 3 expected APK-index skips; all 248 protos compiled;
+  annotation check reported `Changed: 0`
+- `git diff --check` -> exit 0

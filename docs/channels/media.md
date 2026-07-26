@@ -140,7 +140,7 @@ Sent by the phone when the track changes. Fields 5-7 exist in the proto schema a
 
 #### ~~MediaPlaybackCommand~~ (RETRACTED)
 
-This message was retracted on 2026-03-06. The APK class `vuy` was misidentified — it is `ActionTakenNotification` on the video channel (0x800D), not a media playback command. See [MediaPlaybackCommandMessage.audit.yaml](../../oaa/media/MediaPlaybackCommandMessage.audit.yaml). The proto file is retained as a tombstone.
+This message was retracted on 2026-03-06. The APK class `vuy` was misidentified — it is `ActionTakenNotification` on the video channel (0x800C), not a media playback command. See [MediaPlaybackCommandMessage.audit.yaml](../../oaa/media/MediaPlaybackCommandMessage.audit.yaml). The proto file is retained as a tombstone.
 
 Note: msg ID 0x8002 on the media-info channel does exist as `MediaPlaybackStatusEvent` (above), which is a different proto class (`vxo`) serving a different purpose.
 

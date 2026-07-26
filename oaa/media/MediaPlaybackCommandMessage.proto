@@ -14,7 +14,7 @@
  * vvm (16.1). Deep APK trace (2026-03-06) revealed:
  *
  *   1. vuy is only referenced from huz.java (CAR.VIDEO handler) in
- *      sendActionTakenNotification(), sent with msg ID 0x800D
+ *      sendActionTakenNotification(), sent with wire msg ID 0x800C
  *      (ACTION_TAKEN on the AV channel) — NOT 0x8002 on media.
  *
  *   2. The phone-side media handler (qnf.java, CAR.GAL.MEDIA) only
@@ -41,7 +41,7 @@ syntax="proto2";
 package oaa.proto.messages;
 
 // RETRACTED — misidentified enum. Actual class vuy is ActionTakenNotification
-// on the video channel (0x800D), not a media playback command.
+// on the video channel (0x800C), not a media playback command.
 // confidence: unverified
 enum PlaybackCommandType {
     PLAYBACK_COMMAND_UNKNOWN = 0;

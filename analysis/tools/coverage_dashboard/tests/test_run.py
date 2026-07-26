@@ -95,12 +95,12 @@ def test_live_snapshot() -> None:
     result = scan_audit_tree(repo_root)
 
     # Total counts
-    assert result.total_sidecars == 168, (
-        f"Expected 168 sidecars, got {result.total_sidecars}. "
+    assert result.total_sidecars == 169, (
+        f"Expected 169 sidecars, got {result.total_sidecars}. "
         "Census changed? Update snapshot values after verifying the change is intentional."
     )
-    assert result.total_protos == 247, (
-        f"Expected 247 protos, got {result.total_protos}. "
+    assert result.total_protos == 248, (
+        f"Expected 248 protos, got {result.total_protos}. "
         "Census changed? Update snapshot values after verifying the change is intentional."
     )
 
@@ -128,8 +128,8 @@ def test_live_snapshot() -> None:
         f"Expected 0 platinum, got {total_platinum}. "
         "Census changed? Update snapshot values after verifying the change is intentional."
     )
-    assert total_gold == 14, (
-        f"Expected 14 gold, got {total_gold}. "
+    assert total_gold == 15, (
+        f"Expected 15 gold, got {total_gold}. "
         "Census changed? Update snapshot values after verifying the change is intentional."
     )
     assert total_silver == 118, (
