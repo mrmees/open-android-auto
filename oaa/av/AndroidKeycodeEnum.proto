@@ -61,6 +61,8 @@ message AndroidKeycode
         KEYCODE_SENTINEL = 65535;
         KEYCODE_ROTARY_CONTROLLER = 65536;
         KEYCODE_MEDIA = 65537;
+        // AVChannel field 8 AUXILIARY initial-content selector.
+        KEYCODE_NAVIGATION = 65538;
         KEYCODE_TERTIARY_BUTTON = 65543;
         KEYCODE_TURN_CARD = 65544;
     }
