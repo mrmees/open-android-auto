@@ -1,7 +1,7 @@
 proto: oaa/control/ServiceDiscoveryUpdateMessage.proto
 message: ServiceDiscoveryUpdate
 confidence: silver
-last_updated: '2026-04-08'
+last_updated: '2026-07-25'
 evidence:
 - type: apk_static
   method: call_graph
@@ -22,3 +22,19 @@ evidence:
   description: Structural match confirmed across versions 15.9, 16.1, 16.2, 16.4.
     Field numbers, types, and modifiers are consistent across all 6 pairwise comparisons.
   status: consistent
+- type: apk_static
+  method: receive_parse_and_consumer_trace
+  source: >-
+    Android Auto 17.3.662804-release; APKM SHA-256
+    1db7ce995aa52b2cde47a01abfb0364220fb57fc60217de3ec714e3034795344;
+    base.apk SHA-256
+    5557827f259898bdab97b489e1a0aef937fd6ec711d87361cf25d51af6f48619;
+    JADX iyk.java:386-409, xly.java:4-35, img.java:193-198,
+    jae.java:225-250, ixj.java:3-6, iiv.java:27,380-403
+  date: '2026-07-25'
+  description: >-
+    Control message 26 parses as xly with field-1 ChannelDescriptor xlv and is
+    matched to an already registered transport channel ID. Existing endpoints
+    receive the descriptor only when they implement ixj; iiv, the input
+    endpoint, is the only 17.3 implementation. AV/video endpoints are not
+    replaceable, and unregistered channel IDs are rejected.

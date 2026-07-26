@@ -6,6 +6,9 @@ multi-display protocol and phone-side rendering architecture.
 - [`android-auto-17.3.md`](android-auto-17.3.md) — Android Auto
   `17.3.662804-release` display instances, surfaces, stream endpoints, topology
   validation, and OpenAuto Prodigy implications
+- [`android-auto-17.3-runtime-cluster-policy.md`](android-auto-17.3-runtime-cluster-policy.md)
+  — message-26 update boundaries, phone-side power policy, geometry separation,
+  and the distinct cluster-turn-card UI-feature path
 - [`prodigy-maintainer-handoff.md`](prodigy-maintainer-handoff.md) — standalone
   configuration matrix, identifier model, Prodigy integration seams, delivery
   sequence, and acceptance tests for transferring the findings to the Prodigy

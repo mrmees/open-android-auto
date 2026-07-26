@@ -3295,3 +3295,49 @@ Verification:
   APK-index integration skips; all 247 protos compiled; annotation check
   reported `Changed: 0`
 - `git diff --check` -> exit 0
+
+## 2026-07-25 — Issue #10 runtime CLUSTER policy trace
+
+What changed:
+- Added an Android Auto 17.3 source trace covering live service-discovery
+  updates, CLUSTER power policy, geometry, and turn-card display features
+- Corrected the protocol reference to keep `session_configuration` value 16
+  distinct from `AdditionalVideoConfig.UIElement` value 5
+- Documented that AA 17.3 gates `hidden_ui_elements` on the GAL version the HU
+  requested, not the separately negotiated result; the captured Prodigy
+  session requested 1.1 and negotiated 1.7
+- Extended the affected audit sidecars with exact 17.3 consumer anchors
+
+Why:
+- Issue #10 needs an evidence-backed answer about whether Prodigy can replace
+  CLUSTER geometry live and control projected map-versus-turn-card behavior
+- Prodigy may need to request GAL 4.3 through the supported maximum 6.1 before
+  the phone will consume `hidden_ui_elements` and `hasClusterTurnCard`
+
+Status:
+- No field tag, type, cardinality, package, direction, or message ID changed;
+  generated descriptors remain byte-identical
+- The source branch completed both allowed Opus review passes. All supported
+  blockers and majors were corrected; one nonblocking resize/OEM-version
+  research item is deferred
+- The issue-only publication branch excludes three unrelated local workflow
+  commits that are not present on `origin/main`
+
+Next steps:
+1. Publish and merge the issue #10 PR
+2. Post the conclusions to issue #10, including the Prodigy 1.1 request and
+   the need to assess a safe requested-version upgrade
+3. Inspect Prodigy's higher-version protocol obligations before changing its
+   VersionRequest
+
+Verification:
+- Pre-publication source branch `make verify` -> exit 0; 1,812 passed, 3
+  expected APK-index snapshot skips; all 247 protos compiled; annotation check
+  reported `Changed: 0`
+- Targeted `protoc`, base/current descriptor comparison, audit YAML parse, and
+  `git diff --check` -> exit 0
+- Publication branch patch comparison against the reviewed source branch ->
+  identical outside this handoff entry
+- Publication branch `make verify PYTHON=/tmp/tmp.MpdHrVDMeU/bin/python` ->
+  exit 0; 1,812 passed, 3 expected skips; all 247 protos compiled; annotation
+  check reported `Changed: 0`

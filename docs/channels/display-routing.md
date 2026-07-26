@@ -115,14 +115,19 @@ The `vtr.java` prototype activity confirms only two states:
 
 ## Cluster Display Routing
 
-From `lpc.java` — the cluster has a priority-based fallback chain:
+The 16.2 `lpc.java` path and the 17.3 `mnw.java` path use the same
+priority-based fallback chain:
 
 1. **Power saving + battery optimized** → `ClusterTurnCardCarActivityService` (lightweight)
 2. **Default nav app has a cluster service** → use it (discovered via `CATEGORY_PROJECTION_NAVIGATION` intent)
 3. **Google Maps fallback** → `GmmCarAuxiliaryProjectionService` (hardcoded GMM component)
 4. **Ultimate fallback** → `ClusterTurnCardCarActivityService`
 
-### Navigation App Discovery (`lak.java`)
+The 17.3 selector is `mnw.e()` (`mnw.java:15-42`). It reads phone-side power
+settings and navigation-service availability only. It does not receive or
+inspect the CLUSTER `VideoConfig`.
+
+### Navigation App Discovery (`lak.java` / `lyu.java`)
 
 The cluster/auxiliary navigation service discovery queries for:
 ```
@@ -139,9 +144,9 @@ This means third-party nav apps (Waze, etc.) can provide their own cluster rende
 
 ---
 
-## Display Mode Enums
+## Phone-side Display Mode Policy
 
-### Auxiliary Display Mode (`ieu.java`)
+### Auxiliary Display Mode (`ieu.java` in 16.2, `jdr.java` in 17.3)
 
 | Value | Name | Effect |
 |-------|------|--------|
@@ -149,7 +154,7 @@ This means third-party nav apps (Waze, etc.) can provide their own cluster rende
 | 1 | BATTERY_OPTIMIZED | Battery-saving mode |
 | 2 | ON | Fully enabled |
 
-### Cluster Display Mode (`iev.java`)
+### Cluster Display Mode (`iev.java` in 16.2, `jds.java` in 17.3)
 
 | Value | Name | Effect |
 |-------|------|--------|
@@ -157,12 +162,23 @@ This means third-party nav apps (Waze, etc.) can provide their own cluster rende
 | 1 | BATTERY_OPTIMIZED | Battery-saving mode (forces turn card only) |
 | 2 | ON | Fully enabled |
 
-Stored via car service keys:
+The master power-saving state is `iex.java` in 16.2 and `jdu.java` in 17.3.
+These values are stored through phone-side car-service keys:
+
 - `"auxiliary_display_mode"` → `ieu` enum
 - `"cluster_display_mode"` → `iev` enum
 - `"power_saving_mode"` → `iex` enum
 
-Managed by `llp.java` (Power Savings Configuration Manager).
+In 17.3, `mkg.java:29-67` reads and writes the keys through the phone car
+service, `mks.java:92-112` maps the phone settings UI to `ON`,
+`BATTERY_OPTIMIZED`, or `OFF`, and missing values use phone-side flag defaults.
+The initial display factory also reads the phone's `carservice`
+`SharedPreferences` (`ijs.java:20-23`, `itq.java:307-324`).
+
+No `ChannelDescriptor`, `AVChannel`, `VideoConfig`, SDP scalar, or HU
+capability is read in these mode lookups. The HU can advertise or omit a
+CLUSTER display, but no supported HU wire signal is known to assign
+`cluster_display_mode` or force `BATTERY_OPTIMIZED`.
 
 ---
 
@@ -183,19 +199,66 @@ The SDP munger (`ilf.java`) creates separate `vye` (AVChannel) proto objects for
 
 ---
 
-## session_configuration Bitmask
+## Runtime Descriptor and Layout Updates
 
-From `hve.java` — the SDR `session_configuration` field (field 13) contains a bitmask of UI elements:
+Control message 26 (`ServiceDiscoveryUpdate`) does not replace a live AV
+descriptor in Android Auto 17.3. The phone matches the embedded descriptor to
+an already registered transport channel ID. Only the input endpoint implements
+the update interface; an existing AV/video endpoint is logged as not
+updatable, and an unregistered channel ID is rejected.
 
-| Bit | Value | Name | Description |
-|-----|-------|------|-------------|
-| 0 | 1 | UI_ELEMENT_CLOCK | Show clock on phone |
-| 1 | 2 | UI_ELEMENT_BATTERY_LEVEL | Show battery on phone |
-| 2 | 4 | UI_ELEMENT_PHONE_SIGNAL | Show signal strength on phone |
-| 3 | 8 | UI_ELEMENT_NATIVE_UI_AFFORDANCE | Native UI affordance |
-| 4 | 16 | UI_ELEMENT_NAVIGATION_TURN_DATA_AVAILABLE | Turn data available for cluster |
+`UpdateUiConfigRequest` on the existing video channel is a separate supported
+path for changing `AdditionalVideoConfig` state such as insets, margins,
+resize actions, and UI-feature flags. It does not carry the outer
+`VideoConfig`, `AVChannel`, or `ChannelDescriptor`, so it cannot change
+resolution, DPI/density, display ID, display type, or transport channel ID.
 
-Bit 4 (`NAVIGATION_TURN_DATA_AVAILABLE`) signals that the HU can receive turn-by-turn data — relevant for cluster turn card rendering.
+See [Android Auto 17.3 Runtime Cluster Policy](../../analysis/reports/multi-display/android-auto-17.3-runtime-cluster-policy.md)
+for the complete call chains.
+
+---
+
+## `session_configuration` and Display UI Features
+
+`ServiceDiscoveryResponse.session_configuration` field 13 is a four-bit
+legacy session mask. Android Auto 17.3 reads it as `xlx.n` in both the
+`dsi.java:478-487` and `ryu.java:260-269` `CarInfo` construction paths. Both
+consume only:
+
+| Value | Published name | Phone-side effect |
+|-----:|------|-------------|
+| 1 | `SESSION_UI_CONFIG_HIDE_CLOCK` | `CarInfo` clock/status capability |
+| 2 | `SESSION_UI_CONFIG_HIDE_PHONE_SIGNAL` | `CarInfo` phone-signal capability |
+| 4 | `SESSION_UI_CONFIG_HIDE_BATTERY_LEVEL` | `CarInfo` battery capability |
+| 8 | `SESSION_CAN_PLAY_NATIVE_MEDIA_DURING_VR` | Native media during voice recognition |
+
+There is no field-13 value-16 read in either 17.3 consumer.
+
+The display-feature source then depends on the version requested by the HU in
+`VersionRequest`, not the separately selected negotiated result. For an HU
+request of 4.3 or newer, the phone maps
+`VideoConfig.AdditionalVideoConfig.hidden_ui_elements` to
+`CarDisplayUiFeatures` as follows:
+
+| UIElement enum value | CarDisplayUiFeatures flag | Runtime name |
+|---:|---:|---|
+| 1 | 1 | `hasClock` |
+| 2 | 2 | `hasBatteryLevel` |
+| 3 | 4 | `hasPhoneSignal` |
+| 4 | 8 | `hasNativeUiAffordance` |
+| 5 | 16 | `hasClusterTurnCard` |
+
+For an HU request below 4.3, `itt.java:288-299` ignores
+`hidden_ui_elements`. It instead maps `session_configuration` mask 1 to clock
+flag 1, mask 4 to battery flag 2, and mask 2 to phone-signal flag 4. That
+legacy branch has no flag 16; mask 8 retains its separate
+native-media-during-VR meaning.
+
+For a CLUSTER controller whose HU requested 4.3 or newer, flag 16 is inverted
+into `EXTRA_SHOW_TURN_CARD`: advertising `hasClusterTurnCard` causes the phone
+to pass `false` for the phone-rendered turn-card extra. This can affect
+turn-card presentation after service selection, but the flag is not consulted
+by `mnw.e()` when choosing the cluster activity service.
 
 ---
 
@@ -244,7 +307,10 @@ The `widget_type` field (AVChannel field 8 / vye field 9) exists in the proto bu
 | `ilf` | `p000/ilf.java` | SDP munger — creates per-display channel configs |
 | `iom` | `p000/iom.java` | Display validation constraints |
 | `mno` | `p000/mno.java` | DisplayLayout — per-display layout management |
-| `hve` | `p000/hve.java` | session_configuration bitmask mapping |
+| `hve` | `p000/hve.java` | AdditionalVideoConfig UI-element to display-feature mapping (historically misattributed to `session_configuration`) |
 | `llp` | `p000/llp.java` | Power savings config manager |
 | `vtr` | `p000/vtr.java` | Prototype auxiliary display activity |
 | `lro` | `p000/lro.java` | ContextManagerImpl — display initialization |
+
+Current 17.3 source anchors and the corrected cross-path trace are recorded in
+[Android Auto 17.3 Runtime Cluster Policy](../../analysis/reports/multi-display/android-auto-17.3-runtime-cluster-policy.md).

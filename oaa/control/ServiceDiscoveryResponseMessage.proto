@@ -43,6 +43,11 @@ message ServiceDiscoveryResponse
     optional string sw_version = 10;  // confidence: silver [apk_static, cross_version]
     optional bool can_play_native_media_during_vr = 11;  // confidence: silver [apk_static, cross_version]
     // Field 12 not in APK v16.1.
+    // 17.3 consumes values 1, 2, 4, and 8. When the HU-requested GAL version
+    // is below 4.3, masks 1/2/4 also seed clock/signal/battery display
+    // features. For a request of 4.3+, those features instead come from
+    // AdditionalVideoConfig; its UIElement value 5 becomes display-UI flag 16,
+    // which is not a field-13 mask.
     optional int32 session_configuration = 13;  // confidence: silver [apk_static, cross_version]
     optional string display_name = 14;  // confidence: silver [apk_static, cross_version]
     optional bool probe_for_support = 15;  // confidence: silver [apk_static, cross_version]

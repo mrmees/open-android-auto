@@ -156,6 +156,10 @@ This is the part of AA that can reserve native chrome or arrange multiple
 Coolwalk regions on one screen. It should not be conflated with physical
 multi-display routing.
 
+The follow-up [runtime cluster policy report](android-auto-17.3-runtime-cluster-policy.md)
+traces live descriptor-update limits, phone-side power policy, geometry versus
+service selection, and the distinct cluster-turn-card UI-feature flag.
+
 ## Projected displays versus native semantic displays
 
 Two useful architectures coexist:
@@ -216,8 +220,9 @@ high-value tests are runtime/wire observations:
    handshakes, and media NAL streams.
 2. Toggle focus independently and verify which encoder/stream pauses.
 3. Record `CarDisplayId` and activity-service launches in logcat.
-4. Determine current 17.3 content policy for CLUSTER and AUXILIARY, including
-   navigation-app compatibility and power-saving modes.
+4. Capture the selected CLUSTER/AUXILIARY activity and navigation provider's
+   response to `EXTRA_SHOW_TURN_CARD`; the static selection and UI-feature
+   paths are now traced separately.
 5. Measure Prodigy's concurrent decoder and compositor budget on target hardware.
 
 The fresh durable-tree schema run also surfaced a small unrelated catalog delta:
