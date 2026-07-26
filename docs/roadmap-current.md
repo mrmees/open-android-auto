@@ -16,11 +16,11 @@
 
 ## Now
 
-- Recover the aggregate `analysis/tools` verification contract before merging
-  `dev/android-auto-17.3-analysis` into `main`: remove ignored-asset
-  requirements from the default gate, synchronize generated confidence
-  comments with canonical audit sidecars, restore protobuf 4.21 compatibility,
-  and make one clean-checkout verification command authoritative.
+- Publish the reviewed Android Auto 17.3 analysis and recovered aggregate
+  `analysis/tools` verification contract to `main`. The clean-checkout gate is
+  authoritative and green: ignored APK-index assets are isolated behind an
+  explicit integration marker, generated confidence comments match canonical
+  audit sidecars, and protobuf 4.21 compatibility is restored.
 - Android Auto 17.3 Task 13 evidence-policy reconciliation is complete:
   confidence tiers now derive from one executable policy, MATCH-08-only SDP
   bindings remain central-report evidence rather than message promotions, and
@@ -38,9 +38,9 @@
 
 ## Next
 
-- Run Task 14's final release gate over the full proto tree, analysis tools,
-  manifest commands, links, matcher immutability, and exact publication scope;
-  do not reopen the reconciled Task 13 evidence boundaries without new direct
+- Triage the repository's open issues against the merged Android Auto 17.3
+  baseline and investigate the highest-value actionable gaps.
+- Do not reopen the reconciled Task 13 evidence boundaries without new direct
   message/field evidence.
 - Reconstruct any real protocol-facing capability or connection schemas only from trusted service/channel parents or wire evidence; do not reuse the retracted bundled-library names.
 - Trace the remaining 149 structural collisions from cross-version parents or semantic call sites; do not promote globally unique local shapes without contextual evidence.

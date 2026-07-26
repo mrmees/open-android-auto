@@ -3197,3 +3197,30 @@ Final Review Fix Wave:
   bytes, byte-identical, SHA-256
   `50ebb5948d14e543e9d8d24c3d9f61ed57fd4cd76be2593627e8a64bcf38de59`
 - Final `git diff --check` -> exit 0
+
+## 2026-07-25 — Android Auto 17.3 publication readiness
+
+What changed:
+- Updated `docs/roadmap-current.md` to mark the aggregate analysis verification
+  recovery and final Android Auto 17.3 release gate complete
+- Replaced the obsolete pending-gate next step with post-merge issue triage and
+  investigation, as requested for the next repository work phase
+
+Why:
+- The roadmap still described freshly verified work as pending immediately
+  before publication to `main`
+
+Status:
+- The reviewed publication branch is ready for a pull request to `main`
+- No protocol schema, wire descriptor, analysis behavior, or test selection
+  changed in this documentation-only update
+
+Next steps:
+1. Open the pull request to `main`
+2. Merge only after GitHub Actions reports all required checks successful
+3. Triage and investigate the repository's open issues against merged `main`
+
+Verification:
+- `rg -n "Run Task 14|Recover the aggregate" docs/roadmap-current.md` -> no
+  stale pending-gate references
+- `git diff --check` -> exit 0
