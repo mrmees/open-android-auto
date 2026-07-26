@@ -2,7 +2,7 @@
 
 ## Summary
 
-168 sidecars covering 247 protos (68% coverage). 0 Platinum / single-OEM, 14 Gold, 118 Silver, 23 Bronze.
+169 sidecars covering 248 protos (68% coverage). 0 Platinum / single-OEM, 15 Gold, 118 Silver, 23 Bronze.
 
 ## Per-Channel Tier Counts
 
@@ -26,17 +26,17 @@
 | radio | 0 | 1 | 0 | 0 | 0 | 0 | 1 |
 | sensor | 3 | 33 | 0 | 0 | 1 | 0 | 37 |
 | verification | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
-| video | 3 | 3 | 4 | 0 | 2 | 0 | 12 |
+| video | 3 | 3 | 5 | 0 | 2 | 0 | 13 |
 | wifi | 2 | 10 | 0 | 0 | 2 | 0 | 14 |
-| **Total** | **23** | **118** | **14** | **0** | **13** | **0** | **168** |
+| **Total** | **23** | **118** | **15** | **0** | **13** | **0** | **169** |
 
 ## Evidence Type Breakdown
 
 | Tier | apk_deep_trace | apk_static | cross_version | deep_trace | dhu_observation | Total |
 |------|----------------|------------|---------------|------------|-----------------|-------|
 | Bronze | 11 | 11 | 10 | 2 | 0 | 34 |
-| Silver | 15 | 172 | 207 | 12 | 1 | 407 |
-| Gold | 11 | 15 | 17 | 7 | 0 | 50 |
+| Silver | 16 | 175 | 207 | 12 | 1 | 411 |
+| Gold | 13 | 15 | 18 | 7 | 0 | 53 |
 | Retracted | 8 | 23 | 14 | 1 | 0 | 46 |
 
 ## Missing Sidecars
@@ -176,9 +176,9 @@ No orphan sidecars found.
 
 ## Dashboard Metadata
 
-- **Run date:** 2026-07-25T21:00:00Z
+- **Run date:** 2026-07-26T14:47:47Z
 - **Tool version:** 1.0.0
-- **Total protos:** 247
-- **Total sidecars:** 168
+- **Total protos:** 248
+- **Total sidecars:** 169
 - **Sidecar directory:** oaa/
-- **Git HEAD:** d62bebdb5c70d75a74ff42c26acc30b134e3f4ff
+- **Git HEAD:** 7a924e1c2df86e24ad3db0415c5e0c91aa7edfad

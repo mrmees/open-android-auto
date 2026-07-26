@@ -7,9 +7,9 @@
       "deep_trace": 2
     },
     "gold": {
-      "apk_deep_trace": 11,
+      "apk_deep_trace": 13,
       "apk_static": 15,
-      "cross_version": 17,
+      "cross_version": 18,
       "deep_trace": 7
     },
     "retracted": {
@@ -19,20 +19,20 @@
       "deep_trace": 1
     },
     "silver": {
-      "apk_deep_trace": 15,
-      "apk_static": 172,
+      "apk_deep_trace": 16,
+      "apk_static": 175,
       "cross_version": 207,
       "deep_trace": 12,
       "dhu_observation": 1
     }
   },
   "metadata": {
-    "git_head": "d62bebdb5c70d75a74ff42c26acc30b134e3f4ff",
-    "run_date": "2026-07-25T21:00:00Z",
+    "git_head": "7a924e1c2df86e24ad3db0415c5e0c91aa7edfad",
+    "run_date": "2026-07-26T14:47:47Z",
     "sidecar_directory": "oaa/",
     "tool_version": "1.0.0",
-    "total_protos": 247,
-    "total_sidecars": 168
+    "total_protos": 248,
+    "total_sidecars": 169
   },
   "missing_sidecars": {
     "audio": [
@@ -313,12 +313,12 @@
     },
     "video": {
       "bronze": 3,
-      "gold": 4,
+      "gold": 5,
       "platinum": 0,
       "retracted": 2,
       "silver": 3,
       "superseded": 0,
-      "total": 12
+      "total": 13
     },
     "wifi": {
       "bronze": 2,
@@ -335,13 +335,13 @@
     "pending_gold_count": 0,
     "tiers": {
       "bronze": 23,
-      "gold": 14,
+      "gold": 15,
       "platinum": 0,
       "retracted": 13,
       "silver": 118,
       "superseded": 0
     },
-    "total_protos": 247,
-    "total_sidecars": 168
+    "total_protos": 248,
+    "total_sidecars": 169
   }
 }

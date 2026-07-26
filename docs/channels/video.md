@@ -19,7 +19,7 @@
 | ~~VideoFocusModeMessage~~ | **Retracted** | Actually UpdateHuUiConfigResponse (0x8012) | -- |
 | AudioUnderflowNotification | Bronze | 17.3-only endpoint trace | -- |
 | ActionTakenNotification | Bronze | 17.3-only endpoint/descriptor trace | -- |
-| IntegratedOverlayParametersNotification | Bronze | 17.3-only endpoint/descriptor trace | -- |
+| IntegratedOverlayParametersNotification | **Gold** | deep_trace, cross_version | [IntegratedOverlayParametersNotification.audit.yaml](../../oaa/video/IntegratedOverlayParametersNotification.audit.yaml) |
 | AVChannelMediaOptions | Bronze | 17.3 apk_deep_trace; runtime-unverified | [AVChannelMediaOptionsMessage.audit.yaml](../../oaa/av/AVChannelMediaOptionsMessage.audit.yaml) |
 | CriticalUiNotification | Bronze | 17.3 apk_deep_trace; runtime-unverified | [CriticalUiNotification.audit.yaml](../../oaa/video/CriticalUiNotification.audit.yaml) |
 | VideoConfig | Silver | apk_static, cross_version, wire_capture | [VideoConfigData.audit.yaml](../../oaa/video/VideoConfigData.audit.yaml) |
@@ -70,7 +70,7 @@ The video channel is an **AV channel** (handler `ied.java` extends `icv.java` AV
 | 0x800A | UpdateUiConfigRequest (outbound from phone) | Phone -> HU | Runtime UI config update (margins, theme) | **Gold** |
 | 0x800B | AudioUnderflowNotification | HU -> Phone | Audio underflow callback; no payload parsed | Bronze |
 | 0x800C | ActionTakenNotification | Phone -> HU | ActionTaken wrapper with enum field 1; public action enum remains unpublished | Bronze |
-| 0x800D | IntegratedOverlayParametersNotification | Phone -> HU | OverlayParameters wrapper with repeated overlay-options field 1; nested overlay-option semantics remain unpublished | Bronze |
+| 0x800D | IntegratedOverlayParametersNotification | Phone -> HU | Repeated content type, bounds, and corner-radius options | **Gold** |
 | 0x800E | IntegratedOverlayStartNotification | HU -> Phone | Overlay projection session started | **Gold** |
 | 0x800F | IntegratedOverlayStopNotification | HU -> Phone | OverlayStop notification; empty payload | Bronze |
 | 0x8010 | Reserved | unknown | Name, payload, and direction unknown; deferred | deferred |
@@ -301,6 +301,21 @@ If field 1 is missing, the phone returns `PROTOCOL_WRONG_MESSAGE` / `INVALID_UI_
 > Confidence: Gold [deep_trace, handler_verified]
 
 Integrated overlays are phone-rendered UI layers displayed on top of the HU's native content. The HU notifies the phone when overlay sessions start and stop.
+
+**IntegratedOverlayParametersNotification (0x800D, Phone -> HU):**
+
+| Field | Type | Description |
+|-------|------|-------------|
+| 1 | repeated IntegratedOverlayParameters | Overlay options |
+
+Each option contains an `int32 content_type` at field 1, a bounds message at
+field 2 (`left`, `top`, `right`, `bottom` as signed int32 fields 1-4), and a
+corner-radius message at field 3 containing a float at field 1. The 16.4 and
+17.3 GMS `OverlayParameters` Parcelable names these values `contentType`,
+`bounds`, and `cornerRadius`; both phone versions copy them unchanged into the
+same nested graph before sending raw wire ID 0x800D. The static trace does not
+yet establish content-type values, coordinate space, radius units, or runtime
+behavior.
 
 **IntegratedOverlayStartNotification (0x800E, HU -> Phone):**
 
@@ -670,6 +685,7 @@ and phone-signal features and cannot advertise the cluster-turn-card flag.
 - [UiConfigRequestMessage.proto](../../oaa/video/UiConfigRequestMessage.proto)
 - [UpdateUiConfigRequestMessage.proto](../../oaa/video/UpdateUiConfigRequestMessage.proto)
 - [UpdateHuUiConfigResponse.proto](../../oaa/video/UpdateHuUiConfigResponse.proto)
+- [IntegratedOverlayParametersNotification.proto](../../oaa/video/IntegratedOverlayParametersNotification.proto)
 - [IntegratedOverlayStartNotification.proto](../../oaa/video/IntegratedOverlayStartNotification.proto)
 - [IntegratedOverlayStopNotification.proto](../../oaa/video/IntegratedOverlayStopNotification.proto)
 

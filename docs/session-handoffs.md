@@ -3378,3 +3378,75 @@ Verification:
   1,812 passed, 3 expected APK-index skips; all 247 protos compiled;
   annotation check reported `Changed: 0`
 - `git diff --check` -> exit 0
+
+## 2026-07-26 — Integrated-overlay schema and stale tombstones
+
+What changed:
+- Added the missing 0x800D `IntegratedOverlayParametersNotification` schema:
+  repeated options containing content type, signed Rect bounds, and corner radius
+- Added aligned Android Auto 16.4/17.3 audit evidence from the concrete builder
+  and Phone-to-HU send paths
+- Corrected the remaining `ActionTakenNotification` tombstones from 0x800D to
+  0x800C and linked the retracted MediaStatusList note to the canonical schema
+
+Why:
+- Current `main` already contains the broad 17.3 video direction corrections,
+  but it intentionally left the nested overlay payload unpublished and retained
+  a few stale historical references
+- The old research branch's schema shape was useful, but its original 16.4
+  provenance was inconsistent; the sidecar now cites the canonical retained
+  16.4.661014 artifact and exact versioned classes
+
+Status:
+- The nested wire graph is structurally consistent in 16.4 and 17.3
+- Content-type values, coordinate space, corner-radius units, and runtime
+  delivery remain unresolved
+- No already-merged direction, channel-ID, codec, GAL 4.3, or bit-16 conclusion
+  was replayed or changed
+
+Next steps:
+1. Capture a real 0x800D exchange and correlate its values with rendered UI
+2. Resolve corner-radius units from runtime evidence or a public API contract
+
+Verification:
+- Audit schema and tier tests -> 558 passed
+- Focused overlay descriptor compilation -> exit 0
+- `make verify PYTHON=/tmp/oaa-salvage-verify-2rikKu/bin/python` -> exit 0;
+  1,816 passed, 3 expected APK-index skips; all 248 protos compiled;
+  annotation check reported `Changed: 0`
+- `git diff --check` -> exit 0
+
+## 2026-07-26 — PR #17 semantic and provenance remediation
+
+What changed:
+- Renamed field 1 from `overlay_type` to `content_type` and field 3 from
+  `scale` to `corner_radius`; renamed the nested wrapper to
+  `IntegratedOverlayCornerRadius` without changing tags or wire types
+- Replaced the noncanonical 16.4.661034 class mapping with the retained
+  16.4.661014 artifact and its `wqb`/`wry`/`wrx`/`wrz` builder graph
+- Added manifest and DEX hashes plus exact 16.4/17.3 Parcelable and send anchors
+
+Why:
+- Both GMS `OverlayParameters` Parcelables identify the values as
+  `contentType`, `bounds`, and `cornerRadius`; treating the float as scale could
+  cause a head unit to apply the value incorrectly
+- The first PR draft cited a different 16.4 build than the canonical retained
+  research artifact
+
+Status:
+- Both blocking review findings are addressed in one bounded remediation
+- Content-type numeric values, coordinate space, radius units, and runtime
+  delivery remain unresolved without weakening the verified wire schema
+
+Next steps:
+1. Run the single permitted remediation review after CI is green
+2. Capture a real 0x800D exchange to resolve the remaining semantic values
+
+Verification:
+- Pre/post descriptor shape comparison -> field numbers, labels, scalar/message
+  types, and nested-message positions unchanged
+- Audit schema and tier tests -> 558 passed
+- `make verify PYTHON=/tmp/oaa-salvage-verify-2rikKu/bin/python` -> exit 0;
+  1,816 passed, 3 expected APK-index skips; all 248 protos compiled;
+  annotation check reported `Changed: 0`
+- `git diff --check` -> exit 0
