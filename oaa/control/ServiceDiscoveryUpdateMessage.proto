@@ -5,8 +5,12 @@
 /*
  * Service discovery update message (msg ID 0x001a = SERVICE_DISCOVERY_UPDATE).
  *
- * Sent to update channel descriptors after the initial service discovery
- * exchange. Allows dynamic capability advertisement.
+ * Sent after the initial service discovery exchange with a descriptor for an
+ * already registered transport channel ID. The Android Auto 17.3 consumer
+ * dispatches updates only to endpoint types that explicitly implement its
+ * update interface; the input endpoint is the sole implementation in that
+ * release. AV/video endpoints are not replaceable through this message, and a
+ * descriptor for an unregistered channel is rejected.
  *
  * APK class: wbz (AA v16.1)
  * Field numbers decoded from protobuf-lite RawMessageInfo descriptor.
@@ -21,5 +25,5 @@ package oaa.proto.messages;
 // confidence: silver [apk_static, cross_version]
 message ServiceDiscoveryUpdate
 {
-    optional data.ChannelDescriptor descriptor = 1; // APK: wbw  // confidence: silver [apk_static, cross_version]
+    optional data.ChannelDescriptor descriptor = 1; // Existing transport channel ID; 17.3: xly.c -> xlv  // confidence: silver [apk_static, cross_version]
 }

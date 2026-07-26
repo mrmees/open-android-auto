@@ -1,7 +1,7 @@
 proto: oaa/control/ServiceDiscoveryResponseMessage.proto
 message: ServiceDiscoveryResponse
 confidence: silver
-last_updated: '2026-04-08'
+last_updated: '2026-07-25'
 evidence:
 - type: apk_static
   method: bfs_trace
@@ -46,3 +46,17 @@ evidence:
   description: Structural match confirmed across versions 15.9, 16.1, 16.2, 16.4.
     Field numbers, types, and modifiers are consistent across all 6 pairwise comparisons.
   status: consistent
+- type: apk_static
+  method: field_consumer_trace
+  source: >-
+    Android Auto 17.3.662804-release; APKM SHA-256
+    1db7ce995aa52b2cde47a01abfb0364220fb57fc60217de3ec714e3034795344;
+    base.apk SHA-256
+    5557827f259898bdab97b489e1a0aef937fd6ec711d87361cf25d51af6f48619;
+    JADX xlx.java:4-73, dsi.java:478-491
+  date: '2026-07-25'
+  description: >-
+    ServiceDiscoveryResponse field 13 is xlx.n. CarInfo construction consumes
+    only masks 1, 2, 4, and 8. No mask-16 read exists in this 17.3 consumer;
+    the cluster-turn-card flag 16 is derived separately from
+    AdditionalVideoConfig.UIElement value 5.

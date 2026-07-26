@@ -57,3 +57,20 @@ evidence:
     not resolution ranges. Field 8 is a blended-UI configuration containing
     corner radii and native-UI element positions; the full child graph remains
     stable from 17.1 xol/xhj/xir/xkq/xnh to 17.3 xml/xfi/xgs/xir/xlh.
+- type: apk_static
+  method: ui_feature_consumer_trace
+  source: >-
+    Android Auto 17.3.662804-release; APKM SHA-256
+    1db7ce995aa52b2cde47a01abfb0364220fb57fc60217de3ec714e3034795344;
+    base.apk SHA-256
+    5557827f259898bdab97b489e1a0aef937fd6ec711d87361cf25d51af6f48619;
+    JADX xmm.java:4-37, ity.java:14, itv.java:6-12,
+    itt.java:274-299, CarDisplayUiFeatures.java:40-41,
+    ovw.java:20-29, ovv.java:16-34, owa.java:6-27
+  date: '2026-07-25'
+  description: >-
+    AdditionalVideoConfig field 5 is converted into CarDisplayUiFeatures.
+    UI_ELEMENT_NAVIGATION_TURN_DATA_AVAILABLE (enum value 5) maps to feature
+    flag 16, named hasClusterTurnCard. The CLUSTER display controller passes
+    the inverse as EXTRA_SHOW_TURN_CARD to its selected and fallback intents.
+    This is separate from ServiceDiscoveryResponse session_configuration.
