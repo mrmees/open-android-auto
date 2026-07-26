@@ -44,7 +44,7 @@ before implementation.
 - Consumes: `build_descriptor_bundle(repo_root: Path, out_dir: Path) -> DescriptorBundle`.
 - Produces: two parametrized regression cases asserting that AV field 1 resolves to `oaa.proto.enums.MediaCodecType.Enum`.
 
-- [ ] **Step 1: Create the descriptor contract test**
+- [x] **Step 1: Create the descriptor contract test**
 
 ```python
 from __future__ import annotations
@@ -88,7 +88,7 @@ def test_stream_type_uses_media_codec_enum(descriptor_bundle, message_name):
     assert field.enum_type.full_name == "oaa.proto.enums.MediaCodecType.Enum"
 ```
 
-- [ ] **Step 2: Run the test and verify the expected RED result**
+- [x] **Step 2: Run the test and verify the expected RED result**
 
 Run:
 
@@ -118,7 +118,7 @@ invalid RED result and must be fixed in the test before proceeding.
 - Consumes: the failing field-1 descriptor contract from Task 1 and the 17.3 `xik`/`xil` -> `orw.u` -> `xif.b` validator trace.
 - Produces: both field-1 descriptors targeting `oaa.proto.enums.MediaCodecType.Enum`; AVInputChannel retains Silver confidence while adding the newly proven deep-trace evidence type.
 
-- [ ] **Step 1: Replace the two imports and field types**
+- [x] **Step 1: Replace the two imports and field types**
 
 In both AV message files, replace:
 
@@ -141,7 +141,7 @@ optional enums.MediaCodecType.Enum stream_type = 1;
 Retain the existing confidence comment on the same line until the annotation
 renderer is run in Step 4.
 
-- [ ] **Step 2: Update the MediaCodecType usage comment**
+- [x] **Step 2: Update the MediaCodecType usage comment**
 
 Replace the comment at `oaa/av/MediaCodecTypeEnum.proto:9` with:
 
@@ -150,7 +150,7 @@ Replace the comment at `oaa/av/MediaCodecTypeEnum.proto:9` with:
 // AVChannelSetupRequest field 1, and VideoConfig field 10.
 ```
 
-- [ ] **Step 3: Append the 17.3 semantic validator evidence**
+- [x] **Step 3: Append the 17.3 semantic validator evidence**
 
 Append this entry to `oaa/av/AVChannelData.audit.yaml`:
 
@@ -191,7 +191,7 @@ top-level `confidence` at `silver`:
     the repository's machine-readable Gold prerequisite.
 ```
 
-- [ ] **Step 4: Synchronize and check AV confidence annotations**
+- [x] **Step 4: Synchronize and check AV confidence annotations**
 
 Run:
 
@@ -205,7 +205,7 @@ labels to `silver [apk_deep_trace, apk_static, cross_version]`; the check
 reports `Changed: 0`. If the tier changes or any unrelated AV file changes,
 stop and inspect the sidecar/renderer boundary.
 
-- [ ] **Step 5: Run the descriptor contract and verify GREEN**
+- [x] **Step 5: Run the descriptor contract and verify GREEN**
 
 Run:
 
@@ -216,13 +216,12 @@ PYTHONPATH=. .venv/bin/python -m pytest -q \
 
 Expected: `2 passed`.
 
-- [ ] **Step 6: Compile both changed message schemas**
+- [x] **Step 6: Compile both changed message schemas**
 
 Run:
 
 ```bash
-issue8_cpp_dir="$(mktemp -d)"
-trap 'rm -rf "$issue8_cpp_dir"' EXIT
+issue8_cpp_dir="$(mktemp -d /tmp/oaa-issue-8-cpp.XXXXXX)"
 protoc --proto_path=. --cpp_out="$issue8_cpp_dir" \
   oaa/av/AVChannelData.proto \
   oaa/av/AVInputChannelData.proto
@@ -233,7 +232,7 @@ test -s "$issue8_cpp_dir/oaa/av/AVInputChannelData.pb.cc"
 Expected: exit 0 and generated C++ files under
 the task-scoped temporary directory.
 
-- [ ] **Step 7: Validate both audit sidecars and canonical tiers**
+- [x] **Step 7: Validate both audit sidecars and canonical tiers**
 
 Run:
 
@@ -246,7 +245,7 @@ PYTHONPATH=. .venv/bin/python -m pytest -q \
 
 Expected: all selected tests pass with no confidence drift.
 
-- [ ] **Step 8: Re-bless and revalidate all affected decoded baselines**
+- [x] **Step 8: Re-bless and revalidate all affected decoded baselines**
 
 Run:
 
@@ -279,7 +278,7 @@ contain only `stream_type` label replacements: `VIDEO` becomes
 `MEDIA_CODEC_VIDEO_H264_BP`, and `AUDIO` becomes
 `MEDIA_CODEC_AUDIO_PCM`.
 
-- [ ] **Step 9: Commit the verified schema correction**
+- [x] **Step 9: Commit the verified schema correction**
 
 Run:
 
@@ -311,12 +310,13 @@ five directly affected decoded baselines.
 **Files:**
 - Modify: `docs/roadmap-current.md:17-53`
 - Modify: `docs/session-handoffs.md` (append only)
+- Modify: `docs/superpowers/plans/2026-07-25-issue-8-media-codec-type-fix.md` (record the environment-safe temporary output command)
 
 **Interfaces:**
 - Consumes: the verified schema commit from Task 2 and exact command outcomes from this task.
 - Produces: a current roadmap that separates issue #8 completion from issue #10 investigation, plus the repository-required session handoff.
 
-- [ ] **Step 1: Update the roadmap without reordering unrelated work**
+- [x] **Step 1: Update the roadmap without reordering unrelated work**
 
 Add this first bullet under `## Now`:
 
@@ -334,7 +334,7 @@ Replace the generic open-issue triage bullet under `## Next` with:
   locally by the vehicle before acquiring a matching Google Maps APK.
 ```
 
-- [ ] **Step 2: Run the complete verification gate**
+- [x] **Step 2: Run the complete verification gate**
 
 Run:
 
@@ -348,7 +348,7 @@ If the collected test count differs only because pytest counts the two
 parametrized cases differently, record the exact observed count instead of
 forcing this expectation.
 
-- [ ] **Step 3: Append the required handoff entry**
+- [x] **Step 3: Append the required handoff entry**
 
 Append this structure to `docs/session-handoffs.md`, replacing the aggregate
 test count only if Step 2 produced a different exact value:
@@ -398,7 +398,7 @@ Verification:
 - `git diff --check` -> exit 0
 ```
 
-- [ ] **Step 4: Re-run final checks after documentation changes**
+- [x] **Step 4: Re-run final checks after documentation changes**
 
 Run:
 
@@ -412,14 +412,17 @@ git status --short
 
 Expected: full verification remains green; the path/reference scan shows the
 new roadmap and handoff records; diff checking exits 0; status lists only the
-two intended documentation files.
+roadmap, handoff, and reviewed-plan command correction.
 
-- [ ] **Step 5: Commit the workflow records**
+- [x] **Step 5: Commit the workflow records**
 
 Run:
 
 ```bash
-git add docs/roadmap-current.md docs/session-handoffs.md
+git add \
+  docs/roadmap-current.md \
+  docs/session-handoffs.md \
+  docs/superpowers/plans/2026-07-25-issue-8-media-codec-type-fix.md
 git commit -m "docs: record issue 8 codec type fix"
 ```
 
@@ -437,7 +440,7 @@ Expected: a documentation-only commit following the focused schema commit.
 - Consumes: the approved design and Tasks 1-3 commits.
 - Produces: evidence that every approved requirement is implemented and no issue #10 behavior or GitHub state was changed.
 
-- [ ] **Step 1: Inspect the complete branch delta**
+- [x] **Step 1: Inspect the complete branch delta**
 
 Run:
 
@@ -452,7 +455,7 @@ the descriptor test, two corrected AV schemas, one codec comment, two updated
 audit sidecars, five refreshed decoded baselines, roadmap, and handoff; the
 worktree is clean.
 
-- [ ] **Step 2: Confirm the obsolete enum has no active message consumers**
+- [x] **Step 2: Confirm the obsolete enum has no active message consumers**
 
 Run:
 
@@ -463,7 +466,7 @@ rg -n "AVStreamType" oaa --glob '*.proto'
 Expected: only the declaration in `oaa/av/AVStreamTypeEnum.proto` remains; no
 active message imports or field references remain.
 
-- [ ] **Step 3: Confirm no GitHub or issue #10 mutation occurred**
+- [x] **Step 3: Confirm no GitHub or issue #10 mutation occurred**
 
 Run:
 
