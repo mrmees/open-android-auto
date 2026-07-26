@@ -126,23 +126,34 @@ Phone responds: 00 02 00 01 00 07 00 00    (negotiated v1.7, MATCH)
 
 ### Version Negotiation Behavior
 
-- The phone's preferred version is **v1.7** (`hzh.java:33`)
-- If the HU requests > v1.7, the phone negotiates up to **v6.0** (`hzh.java:36`)
-- The HU sends its minimum supported version
-- The phone responds with the **highest version it supports** that is compatible
-- If the phone's major version differs from the HU's -> MISMATCH
+- Android Auto 17.3's preferred legacy response is **v1.7**
+- If the HU requests > v1.7, Android Auto 17.3 responds with **v6.1**
+- The phone retains the HU's raw requested version separately and uses that
+  value, not the response, for later feature gates
+- The HU's request must therefore describe the behavior it actually implements;
+  it is not merely a request for the highest mutually supported response
+- Android Auto 17.3's inspected handler returns SUCCESS for a parsed request,
+  even when logging that the request exceeds its 6.1 maximum
 - Protocol version affects feature availability:
 
 | Min Version | Feature Unlocked | APK Evidence |
 |-------------|-----------------|--------------|
 | v1.4 | Unknown gate | `hna.java:1347` checks `>= 1.4` |
-| v1.6 | WireConfig appended to version response | `hzh.java:199-200` gates on `>= 1.6` |
-| v1.7 | Default preferred version | `hzh.java:33` |
-| v6.0 | Extended feature set (widespread gates) | `huw.java`, `huz.java`, `hna.java`, `hnt.java` |
+| v1.6 | WireConfig appended to version response | 17.3 `iyk.java:149-193` gates on the raw request `>= 1.6` |
+| v1.7 | Default preferred response | 17.3 `iyk.java:24-26,134-148` |
+| v4.3 | AdditionalVideoConfig UI/resize policy | 17.3 `itt.java:277-299` |
+| v5.0 | Ackless audio and extended AV start data | 17.3 `ipq.java:154-164`, `ipe.java:371-400` |
+| v5.1 | Audio MediaOptions updates and VehicleEnergyForecast | 17.3 `ipe.java:541-551`, `ija.java:1101-1117` |
+| v6.0 | Modern media-options/video paths, including conditional H.265 | 17.3 `iky.java`, `itq.java`, `its.java` |
+| v6.1 | Maximum response; no exact 6.1 feature gate found | 17.3 `iyk.java:24-26,134-148` |
 
 ### Implementation Notes
 
-- aasdk hardcodes v1.1. Bumping to v1.7 is safe -- the phone already negotiates 1.7 regardless. Requesting > v1.7 triggers v6.0 negotiation with additional feature gates.
+- aasdk hardcodes v1.1. Bumping the request changes phone behavior even when
+  the response jumps to a different value. See the
+  [Android Auto 17.3 gate audit](../../analysis/reports/gal-version-gates-above-4.3.md)
+  before changing the request; for the cluster-turn-card experiment, 4.3 is the
+  narrowest justified request.
 - The version exchange MUST complete before any other message is sent.
 - If MISMATCH is received, the connection must be torn down immediately.
 

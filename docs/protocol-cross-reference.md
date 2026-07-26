@@ -535,7 +535,9 @@ VP9, AV1, and H.265 are newer additions. The Sony firmware only supports H.264 B
 
 ### Protocol Version (confirmed both sides)
 
-- Phone supports: v1.6 (minimum) → v1.7 (preferred), fallback cap v6.0
+- Android Auto 17.3 responds with v1.7 for requests through v1.7 and v6.1 for
+  higher requests; it retains the raw HU request for feature gating (see the
+  [17.3 gate audit](../analysis/reports/gal-version-gates-above-4.3.md))
 - Sony firmware: Newer than tamul v1.4.1 (Alpine), likely v1.5 or v1.6 era
 - aasdk: v1.6 era
 

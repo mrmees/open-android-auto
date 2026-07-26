@@ -3450,3 +3450,49 @@ Verification:
   1,816 passed, 3 expected APK-index skips; all 248 protos compiled;
   annotation check reported `Changed: 0`
 - `git diff --check` -> exit 0
+
+## 2026-07-26 — Audit GAL feature gates above 4.3
+
+What changed:
+- Added a static Android Auto 17.3 audit of requested-version gates from GAL
+  4.3 through the supported response ceiling of 6.1
+- Recorded the associated HU obligations for display policy, phone-key UX,
+  ackless audio, extended AV start indications, MediaOptions,
+  VehicleEnergyForecast, and conditional H.265/video paths
+- Corrected the central version-negotiation and protocol cross-reference docs
+  from the stale 6.0 ceiling to the 17.3 behavior: response 1.7 through a 1.7
+  request, otherwise 6.1, while the raw request remains the feature selector
+
+Why:
+- Prodigy needs GAL 4.3 for `hidden_ui_elements` and `hasClusterTurnCard`, but
+  requesting the maximum would opt it into unrelated behavior it may not yet
+  implement
+- At the start of the audit, the neighboring `open-android-auto` checkout was
+  69 commits behind `origin/main` and obscured by filesystem-mode changes, so
+  the initial report was intentionally saved in `open-android-auto-clean`
+
+Status:
+- The evidence supports requesting exactly GAL 4.3 for the first cluster
+  experiment; 5.0, 5.1, and 6.0 should be separate compatibility increments
+- No explicit feature branch at exactly 6.1 was found in the Android Auto 17.3
+  source tree; 6.1 is the maximum response
+- The audit was committed locally as `5f7530e` before workspace consolidation;
+  this handoff is retained while replaying it on current `origin/main`
+- Findings are static; a framed runtime capture is still required before a
+  higher-version Prodigy path is production-safe
+
+Next steps:
+1. Implement and capture an isolated Prodigy request change from 1.1 to 4.3
+2. Verify cluster turn-card ownership and check for protocol errors in the
+   resulting session
+3. Add focused compatibility tests before considering 5.0 or newer
+
+Verification:
+- Referenced report, proto, and Android Auto 17.3 source-path existence checks
+  -> exit 0
+- Threshold/content `rg` checks across the new report and updated reference
+  docs -> exit 0
+- Stale active-doc claim scan for a 6.0 maximum/negotiation result -> no matches
+- `git diff --check` -> exit 0
+- Standalone untracked-report whitespace check -> exit 0 after removing two
+  Markdown hard-break spaces found by the final gate
