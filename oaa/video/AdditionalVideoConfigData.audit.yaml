@@ -64,15 +64,17 @@ evidence:
     1db7ce995aa52b2cde47a01abfb0364220fb57fc60217de3ec714e3034795344;
     base.apk SHA-256
     5557827f259898bdab97b489e1a0aef937fd6ec711d87361cf25d51af6f48619;
-    JADX iyk.java:232-234, dsi.java:478-491, xmm.java:4-37,
-    jaf.java:36-42, ity.java:14, itv.java:6-12, itt.java:274-299,
-    CarDisplayUiFeatures.java:40-41,
+    JADX iyk.java:123-148, iyk.java:232-234, dsi.java:478-491,
+    CarInfo.java:38-54, xmm.java:4-37, jaf.java:36-42, ity.java:14,
+    itv.java:6-12, itt.java:274-299, CarDisplayUiFeatures.java:40-41,
     ovw.java:20-29, ovv.java:16-34, owa.java:6-27
   date: '2026-07-25'
   description: >-
-    At negotiated HU protocol 4.3+, AdditionalVideoConfig field 5 is converted
-    into CarDisplayUiFeatures. UI_ELEMENT_NAVIGATION_TURN_DATA_AVAILABLE (enum
-    value 5) maps to feature flag 16, named hasClusterTurnCard. The CLUSTER
-    display controller passes the inverse as EXTRA_SHOW_TURN_CARD. Below 4.3,
-    field 5 is ignored and session_configuration masks 1, 4, and 2 seed clock,
-    battery, and phone-signal flags; that legacy path has no flag 16.
+    When the HU requests GAL version 4.3+, AdditionalVideoConfig field 5 is
+    converted into CarDisplayUiFeatures.
+    UI_ELEMENT_NAVIGATION_TURN_DATA_AVAILABLE (enum value 5) maps to feature
+    flag 16, named hasClusterTurnCard. The CLUSTER display controller passes
+    the inverse as EXTRA_SHOW_TURN_CARD. For a lower HU request, field 5 is
+    ignored and session_configuration masks 1, 4, and 2 seed clock, battery,
+    and phone-signal flags; that legacy path has no flag 16. The gate uses the
+    retained requested version, not the separately selected negotiated result.

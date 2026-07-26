@@ -21,10 +21,10 @@ message AdditionalVideoConfig
     optional VideoInsets field_2_insets = 2; // 17.3: xml.e -> xht  // confidence: silver [apk_static, cross_version]
     optional VideoInsets field_3_insets = 3; // 17.3: xml.f -> xht  // confidence: silver [apk_static, cross_version]
     optional UITheme ui_theme = 4; // APK: wcr enum (16.1) — light/dark/auto (0=auto, 1=light, 2=dark)  // confidence: silver [apk_static, cross_version]
-    // HU-provided native UI features. At negotiated protocol 4.3+, the phone
-    // uses these flags to avoid duplicating the corresponding projected
-    // element. Android Auto 17.3 ignores this list below 4.3. The historical
-    // field name is retained for source compatibility.
+    // HU-provided native UI features. When the HU requests GAL version 4.3+,
+    // the phone uses these flags to avoid duplicating the corresponding
+    // projected element. Android Auto 17.3 ignores this list for a lower
+    // request. The historical field name is retained for source compatibility.
     repeated UIElement hidden_ui_elements = 5; // 17.3: xml.h -> CarDisplayUiFeatures  // confidence: silver [apk_static, cross_version]
     repeated VideoResizeAction resize_actions = 6; // APK: vux (16.2), vvl (16.1) — supported resize behaviors  // confidence: silver [apk_static, cross_version]
     repeated VideoMarginConfig margin_configs = 7; // APK: vwp (16.2), vxd (16.1) — margin/inset configs  // confidence: silver [apk_static, cross_version]
@@ -119,9 +119,10 @@ enum UIElement
     UI_ELEMENT_BATTERY_LEVEL = 2;
     UI_ELEMENT_PHONE_SIGNAL = 3;
     UI_ELEMENT_NATIVE_UI_AFFORDANCE = 4;
-    // At negotiated protocol 4.3+, converts to
-    // CarDisplayUiFeatures.hasClusterTurnCard (flag 16). Below 4.3 the list is
-    // ignored; no equivalent ServiceDiscoveryResponse mask 16 is consumed.
+    // When the HU requests GAL version 4.3+, converts to
+    // CarDisplayUiFeatures.hasClusterTurnCard (flag 16). For a lower request,
+    // the list is ignored; no equivalent ServiceDiscoveryResponse mask 16 is
+    // consumed.
     UI_ELEMENT_NAVIGATION_TURN_DATA_AVAILABLE = 5;
 }
 

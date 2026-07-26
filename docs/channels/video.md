@@ -289,7 +289,7 @@ The payload is an `AdditionalVideoConfig` message -- the same data structure use
 - Day/night theme switching (`ui_theme` field)
 - Margin/inset adjustments (`margin_configs` field)
 - Display UI feature changes (`hidden_ui_elements` field; historical field
-  name; AA 17.3 consumes it when the negotiated HU protocol is >= 4.3)
+  name; AA 17.3 consumes it when the HU requested GAL version >= 4.3)
 - Resize action updates (`resize_actions` field)
 
 If field 1 is missing, the phone returns `PROTOCOL_WRONG_MESSAGE` / `INVALID_UI_CONFIG` error.
@@ -409,7 +409,7 @@ Landscape resolutions (values 1-5) have width > height. Portrait resolutions (va
 
 ### AdditionalVideoConfig (wcb, 16.2) -- Gold
 
-Extended configuration for display insets, theming, HU-provided UI features, and resize behavior. Used both in `VideoConfig` field 11 (initial SDP setup) and as the payload of `UpdateUiConfigRequest` (runtime updates). Phone-side consumers in 17.1 and 17.3 prove that fields 1-3 are Rect-style insets; the older “minimum/maximum/preferred resolution” labels were incorrect. In 17.3, field 5 is consumed only when the negotiated HU protocol is at least 4.3.
+Extended configuration for display insets, theming, HU-provided UI features, and resize behavior. Used both in `VideoConfig` field 11 (initial SDP setup) and as the payload of `UpdateUiConfigRequest` (runtime updates). Phone-side consumers in 17.1 and 17.3 prove that fields 1-3 are Rect-style insets; the older “minimum/maximum/preferred resolution” labels were incorrect. In 17.3, field 5 is consumed only when the HU-requested GAL version is at least 4.3.
 
 | Field | Type | Description |
 |-------|------|-------------|
@@ -417,7 +417,7 @@ Extended configuration for display insets, theming, HU-provided UI features, and
 | 2 | VideoInsets | Additional inset rectangle (semantic label not recovered) |
 | 3 | VideoInsets | Additional inset rectangle (semantic label not recovered) |
 | 4 | UITheme | Theme mode (auto=0, light=1, dark=2) |
-| 5 | repeated UIElement | HU-provided UI features the phone should not duplicate; AA 17.3 consumes them at negotiated protocol >= 4.3 and ignores them below it (`hidden_ui_elements` historical field name) |
+| 5 | repeated UIElement | HU-provided UI features the phone should not duplicate; AA 17.3 consumes them when the HU requested GAL version >= 4.3 and ignores them for a lower request (`hidden_ui_elements` historical field name) |
 | 6 | repeated VideoResizeAction | Supported resize behaviors |
 | 7 | repeated VideoMarginConfig | Margin/inset configurations |
 | 8 | BlendedUIConfig | Display corner radii and native UI element rectangles (17.1+) |
@@ -456,13 +456,14 @@ neutral value names.
 | 4 | UI_ELEMENT_NATIVE_UI_AFFORDANCE | HU provides a native UI affordance |
 | 5 | UI_ELEMENT_NAVIGATION_TURN_DATA_AVAILABLE | Maps to `hasClusterTurnCard` flag 16; CLUSTER passes the inverse as `EXTRA_SHOW_TURN_CARD` |
 
-In AA 17.3 at negotiated HU protocol >= 4.3, these enum values are converted
-to `CarDisplayUiFeatures` flags 1, 2, 4, 8, and 16. Below 4.3, that phone
-ignores this list and instead derives clock, battery, and phone-signal flags
-from `ServiceDiscoveryResponse.session_configuration` masks 1, 4, and 2,
-respectively. No value-16 session mask is consumed in either branch. The
-reference capture in [Phone-Side Debugging](../phone-side-debug.md) negotiated
-protocol 1.7 and therefore used this legacy branch.
+In AA 17.3 when the HU requested GAL version >= 4.3, these enum values are
+converted to `CarDisplayUiFeatures` flags 1, 2, 4, 8, and 16. For a lower HU
+request, that phone ignores this list and instead derives clock, battery, and
+phone-signal flags from `ServiceDiscoveryResponse.session_configuration`
+masks 1, 4, and 2, respectively. No value-16 session mask is consumed in
+either branch. The reference capture in
+[Phone-Side Debugging](../phone-side-debug.md) requested 1.1 and negotiated
+1.7, so the requested value selected the legacy branch.
 
 **ResizeActionType:**
 
@@ -610,9 +611,9 @@ The phone will apply the theme change to its projected rendering. No response me
 
 ### Advertising HU-provided UI Elements
 
-For AA 17.3 at negotiated HU protocol >= 4.3, if the HU renders its own clock,
-battery, or signal indicators, advertise them so the phone can avoid
-duplicating them in the projected UI:
+For AA 17.3 after the HU requested GAL version 4.3 through the supported
+maximum 6.1, if the HU renders its own clock, battery, or signal indicators,
+advertise them so the phone can avoid duplicating them in the projected UI:
 
 ```c
 AdditionalVideoConfig config;
@@ -620,9 +621,9 @@ config.hidden_ui_elements = { UI_ELEMENT_CLOCK, UI_ELEMENT_BATTERY_LEVEL };
 // Set in VideoConfig field 11 during SDP, or send via UpdateUiConfigRequest at runtime
 ```
 
-In AA 17.3 below protocol 4.3, `hidden_ui_elements` is ignored; the legacy
-`session_configuration` masks provide only clock, battery, and phone-signal
-features and cannot advertise the cluster-turn-card flag.
+In AA 17.3 when the HU requested a version below 4.3, `hidden_ui_elements` is
+ignored; the legacy `session_configuration` masks provide only clock, battery,
+and phone-signal features and cannot advertise the cluster-turn-card flag.
 
 ---
 

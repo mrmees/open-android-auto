@@ -234,8 +234,9 @@ consume only:
 
 There is no field-13 value-16 read in either 17.3 consumer.
 
-The display-feature source then depends on the negotiated HU protocol. At
-protocol 4.3 or newer, the phone maps
+The display-feature source then depends on the version requested by the HU in
+`VersionRequest`, not the separately selected negotiated result. For an HU
+request of 4.3 or newer, the phone maps
 `VideoConfig.AdditionalVideoConfig.hidden_ui_elements` to
 `CarDisplayUiFeatures` as follows:
 
@@ -247,16 +248,17 @@ protocol 4.3 or newer, the phone maps
 | 4 | 8 | `hasNativeUiAffordance` |
 | 5 | 16 | `hasClusterTurnCard` |
 
-Below protocol 4.3, `itt.java:288-299` ignores `hidden_ui_elements`. It instead
-maps `session_configuration` mask 1 to clock flag 1, mask 4 to battery flag 2,
-and mask 2 to phone-signal flag 4. That legacy branch has no flag 16; mask 8
-retains its separate native-media-during-VR meaning.
+For an HU request below 4.3, `itt.java:288-299` ignores
+`hidden_ui_elements`. It instead maps `session_configuration` mask 1 to clock
+flag 1, mask 4 to battery flag 2, and mask 2 to phone-signal flag 4. That
+legacy branch has no flag 16; mask 8 retains its separate
+native-media-during-VR meaning.
 
-For a protocol-4.3-or-newer CLUSTER controller, flag 16 is inverted into
-`EXTRA_SHOW_TURN_CARD`: advertising `hasClusterTurnCard` causes the phone to
-pass `false` for the phone-rendered turn-card extra. This can affect turn-card
-presentation after service selection, but the flag is not consulted by
-`mnw.e()` when choosing the cluster activity service.
+For a CLUSTER controller whose HU requested 4.3 or newer, flag 16 is inverted
+into `EXTRA_SHOW_TURN_CARD`: advertising `hasClusterTurnCard` causes the phone
+to pass `false` for the phone-rendered turn-card extra. This can affect
+turn-card presentation after service selection, but the flag is not consulted
+by `mnw.e()` when choosing the cluster activity service.
 
 ---
 
