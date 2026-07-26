@@ -14,10 +14,10 @@ syntax="proto3";
 
 package oaa.proto.enums;
 
-// confidence: gold [apk_deep_trace]
+// confidence: unverified
 message AudioFocusState
 {
-    // confidence: gold [apk_deep_trace]
+    // confidence: unverified
     enum Enum
     {
         INVALID = 0;  // APK: AUDIO_FOCUS_STATE_INVALID

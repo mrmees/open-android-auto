@@ -1,0 +1,21 @@
+proto: oaa/av/AVChannelMessageIdsEnum.proto
+message: AVChannelMessage.Enum
+confidence: bronze
+last_updated: '2026-07-25'
+channel: video/shared AV
+evidence:
+- type: apk_deep_trace
+  method: endpoint_dispatch_and_send_matrix
+  source: >-
+    Android Auto 17.3.662804-release; APKM SHA-256
+    1db7ce995aa52b2cde47a01abfb0364220fb57fc60217de3ec714e3034795344;
+    base.apk SHA-256
+    5557827f259898bdab97b489e1a0aef937fd6ec711d87361cf25d51af6f48619;
+    JADX jdc.java:73-118,191-297; itt.java:532-650,748-755;
+    jca.java:285-286,450-485
+  date: '2026-07-25'
+  description: >-
+    Direct phone endpoint branches establish the accepted 0x8007-0x8015
+    identities and directions, with 0x8010 left reserved because the inherited
+    receive path rejects its shifted value. The trace proves no payload schema
+    for 0x800B, no public action enum for 0x800C, and no runtime traffic.

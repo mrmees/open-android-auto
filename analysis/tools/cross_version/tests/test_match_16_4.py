@@ -11,9 +11,35 @@ from pathlib import Path
 import pytest
 
 FIXTURES = Path(__file__).parent / "fixtures"
+_HISTORICAL_VERSIONS = ("15.9", "16.1", "16.2", "16.4")
 
 
-def test_match_snapshot() -> None:
+def _historical_db_paths_or_skip() -> tuple[dict[str, Path], Path]:
+    """Resolve real APK-index snapshots or skip before invoking the matcher."""
+    from analysis.tools.cross_version.run import _find_db
+
+    db_paths = {version: _find_db(version) for version in _HISTORICAL_VERSIONS}
+    missing_versions = sorted(
+        version for version, db_path in db_paths.items() if db_path is None
+    )
+    if missing_versions:
+        pytest.skip(
+            "missing ignored APK-index SQLite snapshot(s): "
+            + ", ".join(missing_versions)
+        )
+
+    return (
+        {
+            version: db_paths[version]
+            for version in _HISTORICAL_VERSIONS[:-1]
+            if db_paths[version] is not None
+        },
+        db_paths["16.4"],
+    )
+
+
+@pytest.mark.apk_index_integration
+def test_match_snapshot(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
     """Snapshot test: matcher output against the real 4 APK DBs matches committed snapshot.
 
     Source of truth: analysis/tools/cross_version/tests/fixtures/match_snapshot.json
@@ -21,10 +47,37 @@ def test_match_snapshot() -> None:
         PYTHONPATH=. python3 -m analysis.tools.cross_version.match_16_4 \
           > analysis/tools/cross_version/tests/fixtures/match_snapshot.json
     """
-    from analysis.tools.cross_version.match_16_4 import run_matcher
-
+    db_paths_prior, db_164 = _historical_db_paths_or_skip()
     snapshot = json.loads((FIXTURES / "match_snapshot.json").read_text())
-    result = run_matcher()
+    from analysis.tools.cross_version import match_16_4
+
+    tracked_mapping = match_16_4.MAPPING_YAML
+    tracked_candidates = match_16_4.CANDIDATES_MD
+    tracked_mapping_bytes = tracked_mapping.read_bytes()
+    tracked_candidates_bytes = tracked_candidates.read_bytes()
+
+    temp_mapping_input = tmp_path / "class_mapping-input.yaml"
+    temp_mapping = tmp_path / "class_mapping.yaml"
+    temp_candidates = tmp_path / "16-4-mapping-candidates.md"
+    temp_mapping_input.write_bytes(tracked_mapping_bytes)
+
+    load_mapping = match_16_4.load_mapping
+    monkeypatch.setattr(match_16_4, "MAPPING_YAML", temp_mapping)
+    monkeypatch.setattr(match_16_4, "CANDIDATES_MD", temp_candidates)
+    monkeypatch.setattr(
+        match_16_4,
+        "load_mapping",
+        lambda: load_mapping(temp_mapping_input),
+    )
+
+    result = match_16_4.run_matcher(db_paths_prior=db_paths_prior, db_164=db_164)
+
+    assert temp_mapping.read_bytes()
+    assert temp_candidates.read_text(encoding="utf-8").startswith(
+        "# 16.4 Mapping Candidates"
+    )
+    assert tracked_mapping.read_bytes() == tracked_mapping_bytes
+    assert tracked_candidates.read_bytes() == tracked_candidates_bytes
 
     # Allow ±5 slack on total committable. Empirical baseline: 93-96 depending
     # on Pass 2 feedback-loop behavior. The RESEARCH.md target is 93 ± 5.
@@ -113,12 +166,10 @@ def test_source_class_prefers_16_2() -> None:
     assert _source_class(m3) == (None, "")
 
 
-def test_candidates_md_has_table_rows() -> None:
-    """After run_matcher(), 16-4-mapping-candidates.md has a row per unresolved mapping."""
+def test_committed_candidates_md_has_table_rows() -> None:
+    """The committed candidates report has a row per unresolved mapping."""
     from analysis.tools.cross_version.match_16_4 import CANDIDATES_MD
 
-    # The matcher should already have been run by test_match_snapshot.
-    # This test just checks the side-effect file shape.
     assert CANDIDATES_MD.exists(), f"Missing {CANDIDATES_MD}"
     content = CANDIDATES_MD.read_text()
     assert "Total unresolved:" in content

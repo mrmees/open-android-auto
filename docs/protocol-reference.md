@@ -3,6 +3,12 @@
 *Auto-generated from AA APK v16.1.660414-release*
 *80 messages, 8 enums (of 1940 total in APK)*
 
+> **Legacy snapshot warning (2026-07):** `ConnectionConfiguration`,
+> `PhoneCapabilities`, `CapabilityEntry`, and their displayed child graphs were
+> retracted after exact class lineages tied them to GoogleAuth/Google Surveys.
+> The `WifiDirectConfig` section was likewise radio song metadata. Use the
+> current proto audits and 17.3 schema-match report instead of those sections.
+
 ## Table of Contents
 
 - [Control Channel (0)](#control) — 28 messages, 2 enums
@@ -37,19 +43,22 @@ Session management, service discovery, auth, ping, shutdown, audio/nav focus
 | 7 | head_unit_software_build | string |  |
 | 8 | head_unit_software_version | string |  |
 
-### ServiceDiscoveryRequest (`aahi`)
+### ServiceDiscoveryRequest
 
-***seed***
+***gold***
 
 | # | Name | Type | Notes |
 |---|------|------|-------|
-| 1 | phone_icon_small | message | → SessionInfo (`aahd`) |
-| 2 | phone_icon_medium | message | → PhoneCapabilities (`aagr`) |
-| 3 | phone_icon_large | string |  |
+| 1 | phone_icon_small | bytes | 32×32 PNG |
+| 2 | phone_icon_medium | bytes | 64×64 PNG |
+| 3 | phone_icon_large | bytes | 128×128 PNG |
 | 4 | device_name | string |  |
 | 5 | device_brand | string |  |
+| 6 | session_info | message | → SessionInfo |
 
 ### ConnectionConfiguration (`aajk`)
+
+***retracted — GoogleAuth data, not Android Auto protocol***
 
 ***seed***
 
@@ -137,6 +146,8 @@ Session management, service discovery, auth, ping, shutdown, audio/nav focus
 
 ### PhoneCapabilities (`aagr`)
 
+***retracted — Google Surveys client context, not service discovery***
+
 *Referenced by: `aahi` (ServiceDiscoveryRequest) | depth 1*
 
 | # | Name | Type | Notes |
@@ -148,14 +159,16 @@ Session management, service discovery, auth, ping, shutdown, audio/nav focus
 | 5 | g | repeated message | → CapabilityEntry (`aagv`) |
 | 7 | h | string |  |
 
-### SessionInfo (`aahd`)
+### SessionInfo
 
 *Referenced by: `aahi` (ServiceDiscoveryRequest) | depth 1*
 
 | # | Name | Type | Notes |
 |---|------|------|-------|
-| 1 | b | string |  |
-| 2 | c | bytes |  |
+| 1 | session_uuid | string | capture-confirmed UUID |
+| 2 | unknown_2 | string |  |
+| 3 | unknown_3 | string |  |
+| 4 | unknown_4 | string |  |
 
 ### AudioConfig (`vvp`)
 
@@ -268,6 +281,8 @@ Session management, service discovery, auth, ping, shutdown, audio/nav focus
 | 2 | c | bool |  |
 
 ### CapabilityEntry (`aagv`)
+
+***retracted — Google Surveys client capability***
 
 *Referenced by: `aagr` (PhoneCapabilities) | depth 2*
 
@@ -1124,53 +1139,21 @@ BT pairing requests/responses
 
 WiFi credential exchange for wireless AA
 
-### WifiSecurityResponse (`wan`)
+### WifiSecurityResponse (wire capture)
 
-***seed***
+***gold***
 
 | # | Name | Type | Notes |
 |---|------|------|-------|
 | 1 | ssid | string |  |
 | 2 | key | string |  |
 | 3 | bssid | string |  |
-| 4 | security_mode | message | → WifiSecurity (`waw`) |
-| 5 | access_point_type | message | → AccessPointType (`wam`) |
-| 6 | wifi_direct_config | message | → WifiDirectConfig (`wbb`) |
-| 7 | ip_address | string |  |
-| 8 | gateway | string |  |
-| 9 | prefix_length | uint32 |  |
-| 10 | hidden_network | bool |  |
-| 11 | band_5ghz | bool |  |
+| 4 | security_mode | enum | OPEN/WEP/WPA family |
+| 5 | access_point_type | enum | STATIC or DYNAMIC |
 
-### AccessPointType (`wam`)
-
-*Referenced by: `wan` (WifiSecurityResponse), `wbb` (WifiDirectConfig) | depth 1*
-
-| # | Name | Type | Notes |
-|---|------|------|-------|
-| 1 | c | bytes |  |
-
-### WifiSecurity (`waw`)
-
-*Referenced by: `wan` (WifiSecurityResponse) | depth 1*
-
-| # | Name | Type | Notes |
-|---|------|------|-------|
-| 1 | b | enum | *VideoFPS (NONE=0, _60=1, _30=2) — builder/helper class, not proto enum* |
-| 2 | c | uint32 |  |
-
-### WifiDirectConfig (`wbb`)
-
-*Referenced by: `wan` (WifiSecurityResponse) | depth 1*
-
-| # | Name | Type | Notes |
-|---|------|------|-------|
-| 1 | c | string |  |
-| 2 | d | string |  |
-| 3 | e | string |  |
-| 4 | f | string |  |
-| 5 | g | message | → AccessPointType (`wam`) |
-| 6 | h | uint64 |  |
+The former fields 6-13 and `wan`/`waf`/`wss` APK mapping were retracted in
+2026-07. Those classes are radio metadata; their field-6 child
+`was`/`wtf`/`xla` is `RadioSongMetadata`.
 
 ---
 

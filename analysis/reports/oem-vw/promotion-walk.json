@@ -1,10 +1,10 @@
 {
   "gold_counts_delta": {
-    "gold_after": 6,
-    "gold_before": 8,
-    "platinum_after": 3,
-    "platinum_before": 1,
-    "promotion_count": 2
+    "gold_after": 7,
+    "gold_before": 7,
+    "platinum_after": 0,
+    "platinum_before": 0,
+    "promotion_count": 0
   },
   "metadata": {
     "capture_path": "captures/oem-vw-mib3oi-2026-04-06",
@@ -16,11 +16,10 @@
       "oaa/video",
       "oaa/audio"
     ],
-    "walker_run_date": "2026-04-11",
+    "walker_run_date": "2026-07-25",
     "walker_version": "10.02"
   },
-  "nomatch_observations": [],
-  "pending_gold_flags": [
+  "nomatch_observations": [
     {
       "channel_kind": "av_channel",
       "contradiction_summary": null,
@@ -28,18 +27,16 @@
       "matched_rules": [
         "MATCH-08"
       ],
-      "message_completeness": "full",
-      "msg_seq": [
-        0
+      "message_completeness": null,
+      "msg_seq": [],
+      "nomatch_rules": [
+        "NOMATCH-02"
       ],
-      "nomatch_rules": [],
       "proto_message": "AudioConfig",
       "sidecar_path": "oaa/audio/AudioConfigData.audit.yaml",
-      "skip_reason": null,
-      "ts_ms": [
-        0
-      ],
-      "verdict_kind": "flag_pending_gold"
+      "skip_reason": "service_binding_only: MATCH-08 does not substantiate a message claim",
+      "ts_ms": [],
+      "verdict_kind": "nomatch_observation"
     },
     {
       "channel_kind": "av_channel",
@@ -48,18 +45,16 @@
       "matched_rules": [
         "MATCH-08"
       ],
-      "message_completeness": "full",
-      "msg_seq": [
-        0
+      "message_completeness": null,
+      "msg_seq": [],
+      "nomatch_rules": [
+        "NOMATCH-02"
       ],
-      "nomatch_rules": [],
       "proto_message": "AudioFocusChannel",
       "sidecar_path": "oaa/audio/AudioFocusChannelData.audit.yaml",
-      "skip_reason": null,
-      "ts_ms": [
-        0
-      ],
-      "verdict_kind": "flag_pending_gold"
+      "skip_reason": "service_binding_only: MATCH-08 does not substantiate a message claim",
+      "ts_ms": [],
+      "verdict_kind": "nomatch_observation"
     },
     {
       "channel_kind": "av_channel",
@@ -68,18 +63,16 @@
       "matched_rules": [
         "MATCH-08"
       ],
-      "message_completeness": "full",
-      "msg_seq": [
-        0
+      "message_completeness": null,
+      "msg_seq": [],
+      "nomatch_rules": [
+        "NOMATCH-02"
       ],
-      "nomatch_rules": [],
       "proto_message": "AudioFocusRequest",
       "sidecar_path": "oaa/audio/AudioFocusRequestMessage.audit.yaml",
-      "skip_reason": null,
-      "ts_ms": [
-        0
-      ],
-      "verdict_kind": "flag_pending_gold"
+      "skip_reason": "service_binding_only: MATCH-08 does not substantiate a message claim",
+      "ts_ms": [],
+      "verdict_kind": "nomatch_observation"
     },
     {
       "channel_kind": "av_channel",
@@ -88,18 +81,16 @@
       "matched_rules": [
         "MATCH-08"
       ],
-      "message_completeness": "full",
-      "msg_seq": [
-        0
+      "message_completeness": null,
+      "msg_seq": [],
+      "nomatch_rules": [
+        "NOMATCH-02"
       ],
-      "nomatch_rules": [],
       "proto_message": "AudioFocusResponse",
       "sidecar_path": "oaa/audio/AudioFocusResponseMessage.audit.yaml",
-      "skip_reason": null,
-      "ts_ms": [
-        0
-      ],
-      "verdict_kind": "flag_pending_gold"
+      "skip_reason": "service_binding_only: MATCH-08 does not substantiate a message claim",
+      "ts_ms": [],
+      "verdict_kind": "nomatch_observation"
     },
     {
       "channel_kind": "av_channel",
@@ -108,18 +99,16 @@
       "matched_rules": [
         "MATCH-08"
       ],
-      "message_completeness": "full",
-      "msg_seq": [
-        0
+      "message_completeness": null,
+      "msg_seq": [],
+      "nomatch_rules": [
+        "NOMATCH-02"
       ],
-      "nomatch_rules": [],
       "proto_message": "AudioFocusState",
       "sidecar_path": "oaa/audio/AudioFocusStateMessage.audit.yaml",
-      "skip_reason": null,
-      "ts_ms": [
-        0
-      ],
-      "verdict_kind": "flag_pending_gold"
+      "skip_reason": "service_binding_only: MATCH-08 does not substantiate a message claim",
+      "ts_ms": [],
+      "verdict_kind": "nomatch_observation"
     },
     {
       "channel_kind": "av_channel",
@@ -128,18 +117,16 @@
       "matched_rules": [
         "MATCH-08"
       ],
-      "message_completeness": "full",
-      "msg_seq": [
-        0
+      "message_completeness": null,
+      "msg_seq": [],
+      "nomatch_rules": [
+        "NOMATCH-02"
       ],
-      "nomatch_rules": [],
       "proto_message": "AudioStreamTypeEnum",
       "sidecar_path": "oaa/audio/AudioStreamTypeEnum.audit.yaml",
-      "skip_reason": null,
-      "ts_ms": [
-        0
-      ],
-      "verdict_kind": "flag_pending_gold"
+      "skip_reason": "service_binding_only: MATCH-08 does not substantiate a message claim",
+      "ts_ms": [],
+      "verdict_kind": "nomatch_observation"
     },
     {
       "channel_kind": "av_channel",
@@ -148,38 +135,34 @@
       "matched_rules": [
         "MATCH-08"
       ],
-      "message_completeness": "full",
-      "msg_seq": [
-        0
+      "message_completeness": null,
+      "msg_seq": [],
+      "nomatch_rules": [
+        "NOMATCH-02"
       ],
-      "nomatch_rules": [],
       "proto_message": "AudioStreamType",
       "sidecar_path": "oaa/audio/AudioStreamTypeMessage.audit.yaml",
-      "skip_reason": null,
-      "ts_ms": [
-        0
-      ],
-      "verdict_kind": "flag_pending_gold"
+      "skip_reason": "service_binding_only: MATCH-08 does not substantiate a message claim",
+      "ts_ms": [],
+      "verdict_kind": "nomatch_observation"
     },
     {
       "channel_kind": "av_channel",
       "contradiction_summary": null,
-      "current_tier": "silver",
+      "current_tier": "gold",
       "matched_rules": [
         "MATCH-08"
       ],
-      "message_completeness": "full",
-      "msg_seq": [
-        0
+      "message_completeness": null,
+      "msg_seq": [],
+      "nomatch_rules": [
+        "NOMATCH-02"
       ],
-      "nomatch_rules": [],
       "proto_message": "AVChannel",
       "sidecar_path": "oaa/av/AVChannelData.audit.yaml",
-      "skip_reason": null,
-      "ts_ms": [
-        0
-      ],
-      "verdict_kind": "flag_pending_gold"
+      "skip_reason": "service_binding_only: MATCH-08 does not substantiate a message claim",
+      "ts_ms": [],
+      "verdict_kind": "nomatch_observation"
     },
     {
       "channel_kind": "av_channel",
@@ -188,18 +171,34 @@
       "matched_rules": [
         "MATCH-08"
       ],
-      "message_completeness": "full",
-      "msg_seq": [
-        0
+      "message_completeness": null,
+      "msg_seq": [],
+      "nomatch_rules": [
+        "NOMATCH-02"
       ],
-      "nomatch_rules": [],
       "proto_message": "AVChannelMediaConfig",
       "sidecar_path": "oaa/av/AVChannelMediaConfigMessage.audit.yaml",
-      "skip_reason": null,
-      "ts_ms": [
-        0
+      "skip_reason": "service_binding_only: MATCH-08 does not substantiate a message claim",
+      "ts_ms": [],
+      "verdict_kind": "nomatch_observation"
+    },
+    {
+      "channel_kind": "av_channel",
+      "contradiction_summary": null,
+      "current_tier": "bronze",
+      "matched_rules": [
+        "MATCH-08"
       ],
-      "verdict_kind": "flag_pending_gold"
+      "message_completeness": null,
+      "msg_seq": [],
+      "nomatch_rules": [
+        "NOMATCH-02"
+      ],
+      "proto_message": "AVChannelMediaOptions",
+      "sidecar_path": "oaa/av/AVChannelMediaOptionsMessage.audit.yaml",
+      "skip_reason": "service_binding_only: MATCH-08 does not substantiate a message claim",
+      "ts_ms": [],
+      "verdict_kind": "nomatch_observation"
     },
     {
       "channel_kind": "av_channel",
@@ -208,18 +207,34 @@
       "matched_rules": [
         "MATCH-08"
       ],
-      "message_completeness": "full",
-      "msg_seq": [
-        0
+      "message_completeness": null,
+      "msg_seq": [],
+      "nomatch_rules": [
+        "NOMATCH-02"
       ],
-      "nomatch_rules": [],
       "proto_message": "AVChannelMediaStats",
       "sidecar_path": "oaa/av/AVChannelMediaStatsMessage.audit.yaml",
-      "skip_reason": null,
-      "ts_ms": [
-        0
+      "skip_reason": "service_binding_only: MATCH-08 does not substantiate a message claim",
+      "ts_ms": [],
+      "verdict_kind": "nomatch_observation"
+    },
+    {
+      "channel_kind": "av_channel",
+      "contradiction_summary": null,
+      "current_tier": "bronze",
+      "matched_rules": [
+        "MATCH-08"
       ],
-      "verdict_kind": "flag_pending_gold"
+      "message_completeness": null,
+      "msg_seq": [],
+      "nomatch_rules": [
+        "NOMATCH-02"
+      ],
+      "proto_message": "AVChannelMessage.Enum",
+      "sidecar_path": "oaa/av/AVChannelMessageIdsEnum.audit.yaml",
+      "skip_reason": "service_binding_only: MATCH-08 does not substantiate a message claim",
+      "ts_ms": [],
+      "verdict_kind": "nomatch_observation"
     },
     {
       "channel_kind": "av_channel",
@@ -228,18 +243,16 @@
       "matched_rules": [
         "MATCH-08"
       ],
-      "message_completeness": "full",
-      "msg_seq": [
-        0
+      "message_completeness": null,
+      "msg_seq": [],
+      "nomatch_rules": [
+        "NOMATCH-02"
       ],
-      "nomatch_rules": [],
       "proto_message": "AVChannelSetupRequest",
       "sidecar_path": "oaa/av/AVChannelSetupRequestMessage.audit.yaml",
-      "skip_reason": null,
-      "ts_ms": [
-        0
-      ],
-      "verdict_kind": "flag_pending_gold"
+      "skip_reason": "service_binding_only: MATCH-08 does not substantiate a message claim",
+      "ts_ms": [],
+      "verdict_kind": "nomatch_observation"
     },
     {
       "channel_kind": "av_channel",
@@ -248,18 +261,16 @@
       "matched_rules": [
         "MATCH-08"
       ],
-      "message_completeness": "full",
-      "msg_seq": [
-        0
+      "message_completeness": null,
+      "msg_seq": [],
+      "nomatch_rules": [
+        "NOMATCH-02"
       ],
-      "nomatch_rules": [],
       "proto_message": "AVChannelSetupResponse",
       "sidecar_path": "oaa/av/AVChannelSetupResponseMessage.audit.yaml",
-      "skip_reason": null,
-      "ts_ms": [
-        0
-      ],
-      "verdict_kind": "flag_pending_gold"
+      "skip_reason": "service_binding_only: MATCH-08 does not substantiate a message claim",
+      "ts_ms": [],
+      "verdict_kind": "nomatch_observation"
     },
     {
       "channel_kind": "av_channel",
@@ -268,18 +279,16 @@
       "matched_rules": [
         "MATCH-08"
       ],
-      "message_completeness": "full",
-      "msg_seq": [
-        0
+      "message_completeness": null,
+      "msg_seq": [],
+      "nomatch_rules": [
+        "NOMATCH-02"
       ],
-      "nomatch_rules": [],
       "proto_message": "AVChannelStartIndication",
       "sidecar_path": "oaa/av/AVChannelStartIndicationMessage.audit.yaml",
-      "skip_reason": null,
-      "ts_ms": [
-        0
-      ],
-      "verdict_kind": "flag_pending_gold"
+      "skip_reason": "service_binding_only: MATCH-08 does not substantiate a message claim",
+      "ts_ms": [],
+      "verdict_kind": "nomatch_observation"
     },
     {
       "channel_kind": "av_channel",
@@ -288,18 +297,16 @@
       "matched_rules": [
         "MATCH-08"
       ],
-      "message_completeness": "full",
-      "msg_seq": [
-        0
+      "message_completeness": null,
+      "msg_seq": [],
+      "nomatch_rules": [
+        "NOMATCH-02"
       ],
-      "nomatch_rules": [],
       "proto_message": "AVInputChannel",
       "sidecar_path": "oaa/av/AVInputChannelData.audit.yaml",
-      "skip_reason": null,
-      "ts_ms": [
-        0
-      ],
-      "verdict_kind": "flag_pending_gold"
+      "skip_reason": "service_binding_only: MATCH-08 does not substantiate a message claim",
+      "ts_ms": [],
+      "verdict_kind": "nomatch_observation"
     },
     {
       "channel_kind": "av_channel",
@@ -308,18 +315,16 @@
       "matched_rules": [
         "MATCH-08"
       ],
-      "message_completeness": "full",
-      "msg_seq": [
-        0
+      "message_completeness": null,
+      "msg_seq": [],
+      "nomatch_rules": [
+        "NOMATCH-02"
       ],
-      "nomatch_rules": [],
       "proto_message": "AVInputOpenRequest",
       "sidecar_path": "oaa/av/AVInputOpenRequestMessage.audit.yaml",
-      "skip_reason": null,
-      "ts_ms": [
-        0
-      ],
-      "verdict_kind": "flag_pending_gold"
+      "skip_reason": "service_binding_only: MATCH-08 does not substantiate a message claim",
+      "ts_ms": [],
+      "verdict_kind": "nomatch_observation"
     },
     {
       "channel_kind": "av_channel",
@@ -328,18 +333,16 @@
       "matched_rules": [
         "MATCH-08"
       ],
-      "message_completeness": "full",
-      "msg_seq": [
-        0
+      "message_completeness": null,
+      "msg_seq": [],
+      "nomatch_rules": [
+        "NOMATCH-02"
       ],
-      "nomatch_rules": [],
       "proto_message": "AVInputOpenResponse",
       "sidecar_path": "oaa/av/AVInputOpenResponseMessage.audit.yaml",
-      "skip_reason": null,
-      "ts_ms": [
-        0
-      ],
-      "verdict_kind": "flag_pending_gold"
+      "skip_reason": "service_binding_only: MATCH-08 does not substantiate a message claim",
+      "ts_ms": [],
+      "verdict_kind": "nomatch_observation"
     },
     {
       "channel_kind": "av_channel",
@@ -348,162 +351,310 @@
       "matched_rules": [
         "MATCH-08"
       ],
-      "message_completeness": "full",
-      "msg_seq": [
-        0
+      "message_completeness": null,
+      "msg_seq": [],
+      "nomatch_rules": [
+        "NOMATCH-02"
       ],
-      "nomatch_rules": [],
       "proto_message": "AVMediaAckIndication",
       "sidecar_path": "oaa/av/AVMediaAckIndicationMessage.audit.yaml",
-      "skip_reason": null,
-      "ts_ms": [
-        0
-      ],
-      "verdict_kind": "flag_pending_gold"
+      "skip_reason": "service_binding_only: MATCH-08 does not substantiate a message claim",
+      "ts_ms": [],
+      "verdict_kind": "nomatch_observation"
     },
     {
       "channel_kind": "av_channel",
       "contradiction_summary": null,
-      "current_tier": "silver",
+      "current_tier": "gold",
       "matched_rules": [
         "MATCH-08"
       ],
-      "message_completeness": "full",
-      "msg_seq": [
-        0
+      "message_completeness": null,
+      "msg_seq": [],
+      "nomatch_rules": [
+        "NOMATCH-02"
       ],
-      "nomatch_rules": [],
       "proto_message": "UpdateUiConfigRequest",
       "sidecar_path": "oaa/av/UiConfigMessages.audit.yaml",
-      "skip_reason": null,
-      "ts_ms": [
-        0
-      ],
-      "verdict_kind": "flag_pending_gold"
+      "skip_reason": "service_binding_only: MATCH-08 does not substantiate a message claim",
+      "ts_ms": [],
+      "verdict_kind": "nomatch_observation"
     },
-    {
-      "channel_kind": "av_channel",
-      "contradiction_summary": null,
-      "current_tier": "silver",
-      "matched_rules": [
-        "MATCH-08"
-      ],
-      "message_completeness": "full",
-      "msg_seq": [
-        0
-      ],
-      "nomatch_rules": [],
-      "proto_message": "AdditionalVideoConfig",
-      "sidecar_path": "oaa/video/AdditionalVideoConfigData.audit.yaml",
-      "skip_reason": null,
-      "ts_ms": [
-        0
-      ],
-      "verdict_kind": "flag_pending_gold"
-    },
-    {
-      "channel_kind": "av_channel",
-      "contradiction_summary": null,
-      "current_tier": "silver",
-      "matched_rules": [
-        "MATCH-08"
-      ],
-      "message_completeness": "full",
-      "msg_seq": [
-        0
-      ],
-      "nomatch_rules": [],
-      "proto_message": "VideoConfig",
-      "sidecar_path": "oaa/video/VideoConfigData.audit.yaml",
-      "skip_reason": null,
-      "ts_ms": [
-        0
-      ],
-      "verdict_kind": "flag_pending_gold"
-    },
-    {
-      "channel_kind": "av_channel",
-      "contradiction_summary": null,
-      "current_tier": "silver",
-      "matched_rules": [
-        "MATCH-08"
-      ],
-      "message_completeness": "full",
-      "msg_seq": [
-        0
-      ],
-      "nomatch_rules": [],
-      "proto_message": "VideoMargins",
-      "sidecar_path": "oaa/video/VideoMarginsData.audit.yaml",
-      "skip_reason": null,
-      "ts_ms": [
-        0
-      ],
-      "verdict_kind": "flag_pending_gold"
-    }
-  ],
-  "platinum_promotions": [
     {
       "channel_kind": "media_info_channel",
       "contradiction_summary": null,
-      "current_tier": "gold",
+      "current_tier": "bronze",
       "matched_rules": [
         "MATCH-08"
       ],
-      "message_completeness": "full",
-      "msg_seq": [
-        0
+      "message_completeness": null,
+      "msg_seq": [],
+      "nomatch_rules": [
+        "NOMATCH-02"
       ],
-      "nomatch_rules": [],
+      "proto_message": "BufferedMediaSinkMessage",
+      "sidecar_path": "oaa/media/BufferedMediaSinkMessage.audit.yaml",
+      "skip_reason": "service_binding_only: MATCH-08 does not substantiate a message claim",
+      "ts_ms": [],
+      "verdict_kind": "nomatch_observation"
+    },
+    {
+      "channel_kind": "media_info_channel",
+      "contradiction_summary": null,
+      "current_tier": "silver",
+      "matched_rules": [
+        "MATCH-08"
+      ],
+      "message_completeness": null,
+      "msg_seq": [],
+      "nomatch_rules": [
+        "NOMATCH-02"
+      ],
       "proto_message": "MediaPlaybackMetadata",
       "sidecar_path": "oaa/media/MediaPlaybackMetadataMessage.audit.yaml",
-      "skip_reason": null,
-      "ts_ms": [
-        0
-      ],
-      "verdict_kind": "promote_to_platinum"
+      "skip_reason": "service_binding_only: MATCH-08 does not substantiate a message claim",
+      "ts_ms": [],
+      "verdict_kind": "nomatch_observation"
     },
     {
       "channel_kind": "media_info_channel",
+      "contradiction_summary": null,
+      "current_tier": "silver",
+      "matched_rules": [
+        "MATCH-08"
+      ],
+      "message_completeness": null,
+      "msg_seq": [],
+      "nomatch_rules": [
+        "NOMATCH-02"
+      ],
+      "proto_message": "MediaPlaybackStatusEvent",
+      "sidecar_path": "oaa/media/MediaPlaybackStatusEventMessage.audit.yaml",
+      "skip_reason": "service_binding_only: MATCH-08 does not substantiate a message claim",
+      "ts_ms": [],
+      "verdict_kind": "nomatch_observation"
+    },
+    {
+      "channel_kind": "media_info_channel",
+      "contradiction_summary": null,
+      "current_tier": "silver",
+      "matched_rules": [
+        "MATCH-08"
+      ],
+      "message_completeness": null,
+      "msg_seq": [],
+      "nomatch_rules": [
+        "NOMATCH-02"
+      ],
+      "proto_message": "MediaPlaybackStatus",
+      "sidecar_path": "oaa/media/MediaPlaybackStatusMessage.audit.yaml",
+      "skip_reason": "service_binding_only: MATCH-08 does not substantiate a message claim",
+      "ts_ms": [],
+      "verdict_kind": "nomatch_observation"
+    },
+    {
+      "channel_kind": "av_channel",
+      "contradiction_summary": null,
+      "current_tier": "silver",
+      "matched_rules": [
+        "MATCH-08"
+      ],
+      "message_completeness": null,
+      "msg_seq": [],
+      "nomatch_rules": [
+        "NOMATCH-02"
+      ],
+      "proto_message": "AdditionalVideoConfig",
+      "sidecar_path": "oaa/video/AdditionalVideoConfigData.audit.yaml",
+      "skip_reason": "service_binding_only: MATCH-08 does not substantiate a message claim",
+      "ts_ms": [],
+      "verdict_kind": "nomatch_observation"
+    },
+    {
+      "channel_kind": "av_channel",
+      "contradiction_summary": null,
+      "current_tier": "bronze",
+      "matched_rules": [
+        "MATCH-08"
+      ],
+      "message_completeness": null,
+      "msg_seq": [],
+      "nomatch_rules": [
+        "NOMATCH-02"
+      ],
+      "proto_message": "CriticalUiNotification",
+      "sidecar_path": "oaa/video/CriticalUiNotification.audit.yaml",
+      "skip_reason": "service_binding_only: MATCH-08 does not substantiate a message claim",
+      "ts_ms": [],
+      "verdict_kind": "nomatch_observation"
+    },
+    {
+      "channel_kind": "av_channel",
       "contradiction_summary": null,
       "current_tier": "gold",
       "matched_rules": [
         "MATCH-08"
       ],
-      "message_completeness": "full",
-      "msg_seq": [
-        0
+      "message_completeness": null,
+      "msg_seq": [],
+      "nomatch_rules": [
+        "NOMATCH-02"
       ],
-      "nomatch_rules": [],
-      "proto_message": "MediaPlaybackStatus",
-      "sidecar_path": "oaa/media/MediaPlaybackStatusMessage.audit.yaml",
-      "skip_reason": null,
-      "ts_ms": [
-        0
+      "proto_message": "IntegratedOverlayStartNotification",
+      "sidecar_path": "oaa/video/IntegratedOverlayStartNotification.audit.yaml",
+      "skip_reason": "service_binding_only: MATCH-08 does not substantiate a message claim",
+      "ts_ms": [],
+      "verdict_kind": "nomatch_observation"
+    },
+    {
+      "channel_kind": "av_channel",
+      "contradiction_summary": null,
+      "current_tier": "bronze",
+      "matched_rules": [
+        "MATCH-08"
       ],
-      "verdict_kind": "promote_to_platinum"
+      "message_completeness": null,
+      "msg_seq": [],
+      "nomatch_rules": [
+        "NOMATCH-02"
+      ],
+      "proto_message": "IntegratedOverlayStopNotification",
+      "sidecar_path": "oaa/video/IntegratedOverlayStopNotification.audit.yaml",
+      "skip_reason": "service_binding_only: MATCH-08 does not substantiate a message claim",
+      "ts_ms": [],
+      "verdict_kind": "nomatch_observation"
+    },
+    {
+      "channel_kind": "av_channel",
+      "contradiction_summary": null,
+      "current_tier": "bronze",
+      "matched_rules": [
+        "MATCH-08"
+      ],
+      "message_completeness": null,
+      "msg_seq": [],
+      "nomatch_rules": [
+        "NOMATCH-02"
+      ],
+      "proto_message": "UiConfigRequest",
+      "sidecar_path": "oaa/video/UiConfigRequestMessage.audit.yaml",
+      "skip_reason": "service_binding_only: MATCH-08 does not substantiate a message claim",
+      "ts_ms": [],
+      "verdict_kind": "nomatch_observation"
+    },
+    {
+      "channel_kind": "av_channel",
+      "contradiction_summary": null,
+      "current_tier": "gold",
+      "matched_rules": [
+        "MATCH-08"
+      ],
+      "message_completeness": null,
+      "msg_seq": [],
+      "nomatch_rules": [
+        "NOMATCH-02"
+      ],
+      "proto_message": "UpdateUiConfigRequest",
+      "sidecar_path": "oaa/video/UpdateUiConfigRequestMessage.audit.yaml",
+      "skip_reason": "service_binding_only: MATCH-08 does not substantiate a message claim",
+      "ts_ms": [],
+      "verdict_kind": "nomatch_observation"
+    },
+    {
+      "channel_kind": "av_channel",
+      "contradiction_summary": null,
+      "current_tier": "silver",
+      "matched_rules": [
+        "MATCH-08"
+      ],
+      "message_completeness": null,
+      "msg_seq": [],
+      "nomatch_rules": [
+        "NOMATCH-02"
+      ],
+      "proto_message": "VideoConfig",
+      "sidecar_path": "oaa/video/VideoConfigData.audit.yaml",
+      "skip_reason": "service_binding_only: MATCH-08 does not substantiate a message claim",
+      "ts_ms": [],
+      "verdict_kind": "nomatch_observation"
+    },
+    {
+      "channel_kind": "av_channel",
+      "contradiction_summary": null,
+      "current_tier": "gold",
+      "matched_rules": [
+        "MATCH-08"
+      ],
+      "message_completeness": null,
+      "msg_seq": [],
+      "nomatch_rules": [
+        "NOMATCH-02"
+      ],
+      "proto_message": "VideoFocusIndication",
+      "sidecar_path": "oaa/video/VideoFocusIndicationMessage.audit.yaml",
+      "skip_reason": "service_binding_only: MATCH-08 does not substantiate a message claim",
+      "ts_ms": [],
+      "verdict_kind": "nomatch_observation"
+    },
+    {
+      "channel_kind": "av_channel",
+      "contradiction_summary": null,
+      "current_tier": "gold",
+      "matched_rules": [
+        "MATCH-08"
+      ],
+      "message_completeness": null,
+      "msg_seq": [],
+      "nomatch_rules": [
+        "NOMATCH-02"
+      ],
+      "proto_message": "VideoFocusRequest",
+      "sidecar_path": "oaa/video/VideoFocusRequestMessage.audit.yaml",
+      "skip_reason": "service_binding_only: MATCH-08 does not substantiate a message claim",
+      "ts_ms": [],
+      "verdict_kind": "nomatch_observation"
+    },
+    {
+      "channel_kind": "av_channel",
+      "contradiction_summary": null,
+      "current_tier": "silver",
+      "matched_rules": [
+        "MATCH-08"
+      ],
+      "message_completeness": null,
+      "msg_seq": [],
+      "nomatch_rules": [
+        "NOMATCH-02"
+      ],
+      "proto_message": "VideoMargins",
+      "sidecar_path": "oaa/video/VideoMarginsData.audit.yaml",
+      "skip_reason": "service_binding_only: MATCH-08 does not substantiate a message claim",
+      "ts_ms": [],
+      "verdict_kind": "nomatch_observation"
     }
   ],
+  "pending_gold_flags": [],
+  "platinum_promotions": [],
   "retraction_review_queue": [],
   "skipped_sidecars": [
     {
       "channel_kind": null,
       "contradiction_summary": null,
-      "current_tier": "superseded",
+      "current_tier": "retracted",
       "matched_rules": [],
       "message_completeness": null,
       "msg_seq": [],
       "nomatch_rules": [],
       "proto_message": "CarLocalMediaPlayback",
       "sidecar_path": "oaa/media/CarLocalMediaPlaybackEnum.audit.yaml",
-      "skip_reason": "confidence: superseded",
+      "skip_reason": "confidence: retracted",
       "ts_ms": [],
-      "verdict_kind": "skip_superseded"
+      "verdict_kind": "skip_retracted"
     },
     {
       "channel_kind": "car_local_media_channel",
       "contradiction_summary": null,
-      "current_tier": "gold",
+      "current_tier": "silver",
       "matched_rules": [],
       "message_completeness": null,
       "msg_seq": [],
@@ -517,7 +668,7 @@
     {
       "channel_kind": "car_local_media_channel",
       "contradiction_summary": null,
-      "current_tier": "gold",
+      "current_tier": "silver",
       "matched_rules": [],
       "message_completeness": null,
       "msg_seq": [],
@@ -559,20 +710,6 @@
     {
       "channel_kind": null,
       "contradiction_summary": null,
-      "current_tier": "gold",
-      "matched_rules": [],
-      "message_completeness": null,
-      "msg_seq": [],
-      "nomatch_rules": [],
-      "proto_message": "MediaPlaybackStatusEvent",
-      "sidecar_path": "oaa/media/MediaPlaybackStatusEventMessage.audit.yaml",
-      "skip_reason": "pre_existing_invalid: Additional properties are not allowed ('notes' was unexpected)",
-      "ts_ms": [],
-      "verdict_kind": "skip_schema_invalid"
-    },
-    {
-      "channel_kind": null,
-      "contradiction_summary": null,
       "current_tier": "retracted",
       "matched_rules": [],
       "message_completeness": null,
@@ -597,34 +734,6 @@
       "skip_reason": "confidence: retracted",
       "ts_ms": [],
       "verdict_kind": "skip_retracted"
-    },
-    {
-      "channel_kind": "av_channel",
-      "contradiction_summary": null,
-      "current_tier": "gold",
-      "matched_rules": [],
-      "message_completeness": null,
-      "msg_seq": [],
-      "nomatch_rules": [],
-      "proto_message": "UiConfigRequest",
-      "sidecar_path": "oaa/video/UiConfigRequestMessage.audit.yaml",
-      "skip_reason": "static=True, cross_version=False",
-      "ts_ms": [],
-      "verdict_kind": "skip_missing_gold_prereq"
-    },
-    {
-      "channel_kind": null,
-      "contradiction_summary": null,
-      "current_tier": "gold",
-      "matched_rules": [],
-      "message_completeness": null,
-      "msg_seq": [],
-      "nomatch_rules": [],
-      "proto_message": "VideoFocusIndication",
-      "sidecar_path": "oaa/video/VideoFocusIndicationMessage.audit.yaml",
-      "skip_reason": "pre_existing_invalid: 'description' is a required property",
-      "ts_ms": [],
-      "verdict_kind": "skip_schema_invalid"
     },
     {
       "channel_kind": null,
@@ -653,45 +762,31 @@
       "skip_reason": "confidence: retracted",
       "ts_ms": [],
       "verdict_kind": "skip_retracted"
-    },
-    {
-      "channel_kind": null,
-      "contradiction_summary": null,
-      "current_tier": "platinum",
-      "matched_rules": [],
-      "message_completeness": null,
-      "msg_seq": [],
-      "nomatch_rules": [],
-      "proto_message": "VideoFocusRequest",
-      "sidecar_path": "oaa/video/VideoFocusRequestMessage.audit.yaml",
-      "skip_reason": "already_platinum",
-      "ts_ms": [],
-      "verdict_kind": "skip_already_platinum"
     }
   ],
   "summary": {
     "by_kind": {
       "contradiction_review": 0,
-      "flag_pending_gold": 21,
-      "nomatch_observation": 0,
-      "promote_to_platinum": 2,
-      "skip_already_platinum": 1,
-      "skip_missing_gold_prereq": 1,
+      "flag_pending_gold": 0,
+      "nomatch_observation": 34,
+      "promote_to_platinum": 0,
+      "skip_already_platinum": 0,
+      "skip_missing_gold_prereq": 0,
       "skip_out_of_sdp_scope": 3,
-      "skip_retracted": 5,
-      "skip_schema_invalid": 2,
-      "skip_superseded": 1
+      "skip_retracted": 6,
+      "skip_schema_invalid": 0,
+      "skip_superseded": 0
     },
     "gold_counts_delta": {
-      "gold_after": 6,
-      "gold_before": 8,
-      "platinum_after": 3,
-      "platinum_before": 1,
-      "promotion_count": 2
+      "gold_after": 7,
+      "gold_before": 7,
+      "platinum_after": 0,
+      "platinum_before": 0,
+      "promotion_count": 0
     },
-    "pending_gold_flag_count": 21,
-    "skipped_count": 13,
-    "total_verdicts": 36
+    "pending_gold_flag_count": 0,
+    "skipped_count": 9,
+    "total_verdicts": 43
   },
   "unobserved_services": {
     "oaa/bluetooth": {
@@ -699,8 +794,12 @@
       "total": 3
     },
     "oaa/carcontrol": {
-      "gold": 2,
+      "silver": 2,
       "total": 2
+    },
+    "oaa/carintent": {
+      "bronze": 1,
+      "total": 1
     },
     "oaa/common": {
       "bronze": 1,
@@ -709,8 +808,9 @@
     },
     "oaa/control": {
       "bronze": 1,
-      "gold": 2,
-      "silver": 24,
+      "gold": 3,
+      "retracted": 4,
+      "silver": 19,
       "total": 27
     },
     "oaa/generic": {
@@ -718,12 +818,13 @@
       "total": 1
     },
     "oaa/input": {
-      "gold": 13,
-      "silver": 4,
+      "bronze": 4,
+      "gold": 1,
+      "silver": 12,
       "total": 17
     },
     "oaa/mic": {
-      "gold": 1,
+      "bronze": 1,
       "total": 1
     },
     "oaa/navigation": {
@@ -744,13 +845,13 @@
     },
     "oaa/sensor": {
       "bronze": 3,
-      "silver": 34,
+      "retracted": 1,
+      "silver": 33,
       "total": 37
     },
     "oaa/wifi": {
-      "bronze": 1,
-      "gold": 2,
-      "retracted": 1,
+      "bronze": 2,
+      "retracted": 2,
       "silver": 10,
       "total": 14
     }

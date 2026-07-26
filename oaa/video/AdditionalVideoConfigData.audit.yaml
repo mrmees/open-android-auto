@@ -1,7 +1,7 @@
 proto: oaa/video/AdditionalVideoConfigData.proto
 message: AdditionalVideoConfig
 confidence: silver
-last_updated: '2026-04-11'
+last_updated: '2026-07-25'
 evidence:
 - type: apk_static
   method: call_graph
@@ -13,7 +13,9 @@ evidence:
   method: string_const
   source: class_mapping.yaml (v15.9:vtq, v16.1:wbi, v16.2:way)
   date: '2026-03-03'
-  description: Mapped VideoInsets to obfuscated APK class(es) via string_const analysis.
+  description: >-
+    Historically named VideoInsets; 17.1/17.3 consumption shows this distinct
+    class is the position type used by margin configs and native UI elements.
 - type: apk_static
   method: string_const
   source: class_mapping.yaml (v15.9:vpl, v16.1:vxd, v16.2:vwp)
@@ -30,8 +32,9 @@ evidence:
   method: string_const
   source: class_mapping.yaml (v15.9:vqj, v16.1:vyb, v16.2:vxn)
   date: '2026-03-03'
-  description: Mapped VideoResolutionRange to obfuscated APK class(es) via string_const
-    analysis.
+  description: >-
+    Historically named VideoResolutionRange; 17.1/17.3 display construction
+    proves the four scalars are top/bottom/left/right display insets.
 - type: cross_version
   method: structural_comparison
   source: cross-version checker (15.9, 16.1, 16.2)
@@ -45,26 +48,12 @@ evidence:
   description: Unmappable in 16.4 (matcher found no candidate meeting structural fingerprint
     + field count match, or candidate was ambiguous).
   status: unmappable_16_4
-oem_match_pending_gold: true
-pending_platinum_evidence:
-- type: platinum_evidence
-  source: captures/oem-vw-mib3oi-2026-04-06/messages.jsonl
-  date: '2026-04-11'
-  description: 'VW MIB3 OI capture: MATCH-08 citation for av_channel. Phase 10 walker
-    verdict. See analysis/reports/oem-vw/promotion-walk.md.'
-  capture_path: captures/oem-vw-mib3oi-2026-04-06/
-  vehicle_metadata:
-    make: Volkswagen
-    model: MIB3 OI
-    year: '2024'
-    aa_version: 16.4.661034
-  msg_seq:
-  - 0
-  ts_ms:
-  - 0
-  message_completeness: full
-  attribution_method: sdp_service_id
-  oem_scope: single
-  applicability: message
-  match_rules:
-  - MATCH-08
+- type: apk_static
+  method: call_graph
+  source: 17.1 irw.java:260-324 and 17.3 itl.java:43-71 / itx.java:24-88
+  date: '2026-07-16'
+  description: >-
+    Phone-side display construction consumes fields 1-3 as Rect-style insets,
+    not resolution ranges. Field 8 is a blended-UI configuration containing
+    corner radii and native-UI element positions; the full child graph remains
+    stable from 17.1 xol/xhj/xir/xkq/xnh to 17.3 xml/xfi/xgs/xir/xlh.

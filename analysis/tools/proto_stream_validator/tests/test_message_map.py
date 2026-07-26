@@ -17,14 +17,52 @@ def test_resolve_by_service_type():
     assert fqcn == "oaa.proto.messages.InputEventIndication"
 
 
+def test_resolve_input_binding_by_service_type():
+    request = resolve_message_type(
+        "Phone->HU", 99, 0x8002, service_type="input_source"
+    )
+    response = resolve_message_type(
+        "HU->Phone", 99, 0x8003, service_type="input_source"
+    )
+    assert request == "oaa.proto.messages.InputBindingRequest"
+    assert response == "oaa.proto.messages.InputBindingResponse"
+
+
 def test_resolve_sensor_by_service_type():
     fqcn = resolve_message_type("HU->Phone", 1, 0x8003, service_type="sensor_source")
     assert fqcn == "oaa.proto.messages.SensorEventIndication"
 
 
+def test_resolve_sensor_request_uses_non_retracted_schema():
+    fqcn = resolve_message_type(
+        "Phone->HU", 1, 0x8001, service_type="sensor_source"
+    )
+    assert fqcn == "oaa.proto.messages.SensorRequest"
+
+
 def test_resolve_av_by_service_type():
     fqcn = resolve_message_type("Phone->HU", 2, 0x8000, service_type="media_sink")
     assert fqcn == "oaa.proto.messages.AVChannelSetupRequest"
+
+
+@pytest.mark.parametrize(
+    ("service_type", "message_id", "expected"),
+    [
+        ("bluetooth", 0x8004, "BluetoothAuthenticationResult"),
+        ("radio", 0x801F, "RadioTuneResponse"),
+        ("car_control", 0x8005, "CarPropertyChangeEvent"),
+        ("car_local_media", 0x8002, "CarLocalMediaPlaybackMetadata"),
+        ("wifi_projection", 0x8002, "WifiCredentialsResponse"),
+    ],
+)
+def test_resolve_additional_explicit_services(service_type, message_id, expected):
+    fqcn = resolve_message_type(
+        "Phone->HU",
+        99,
+        message_id,
+        service_type=service_type,
+    )
+    assert fqcn == f"oaa.proto.messages.{expected}"
 
 
 def test_resolve_nav_by_service_type():

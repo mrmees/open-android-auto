@@ -1,7 +1,7 @@
 proto: oaa/navigation/NavigationImageOptionsData.proto
 message: NavigationImageOptions
 confidence: silver
-last_updated: '2026-04-08'
+last_updated: '2026-07-25'
 evidence:
 - type: apk_static
   method: enum_match
@@ -22,3 +22,9 @@ evidence:
   description: Unmappable in 16.4 (matcher found no candidate meeting structural fingerprint
     + field count match, or candidate was ambiguous).
   status: unmappable_16_4
+- type: apk_static
+  method: semantic_service_log
+  source: Android Auto 17.3 xji.java and rrb/iya service logging
+  date: '2026-07-16'
+  description: RawMessageInfo marks all three dimensions required; service logging
+    identifies field order as height, width, and colour depth bits.

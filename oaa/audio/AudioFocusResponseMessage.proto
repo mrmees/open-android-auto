@@ -17,9 +17,9 @@ import "oaa/audio/AudioFocusStateEnum.proto";
 
 package oaa.proto.messages;
 
-// confidence: gold [apk_deep_trace]
+// confidence: silver [apk_static, cross_version]
 message AudioFocusResponse
 {
-    required enums.AudioFocusState.Enum audio_focus_state = 1;  // confidence: gold [apk_deep_trace]
-    optional bool granted = 2;  // confidence: gold [apk_deep_trace]
+    required enums.AudioFocusState.Enum audio_focus_state = 1;  // confidence: silver [apk_static, cross_version]
+    optional bool granted = 2;  // confidence: silver [apk_static, cross_version]
 }

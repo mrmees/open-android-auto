@@ -8,6 +8,7 @@ import yaml
 from analysis.tools.promotion_walker.verdict import (
     Verdict, VerdictKind, walker_decide, content_hash,
 )
+from analysis.tools.promotion_walker.run import _build_platinum_evidence_entry
 
 FIXTURES = Path(__file__).parent / "fixtures"
 
@@ -21,6 +22,23 @@ def test_already_platinum_skip(schema: dict, mock_sdp: dict) -> None:
     sdp_kinds = {c["channel_kind"] for c in mock_sdp["response"]["channels"]}
     verdict = walker_decide(sidecar, Path("oaa/video/test.audit.yaml"), {}, sdp_kinds, {}, schema)
     assert verdict.kind == VerdictKind.SKIP_ALREADY_PLATINUM
+
+
+def test_stated_platinum_without_derived_prerequisites_routes_review(
+    schema: dict, mock_sdp: dict
+) -> None:
+    sidecar = _load("sidecar_already_platinum.audit.yaml")
+    sidecar["evidence"][-1]["match_rules"] = ["MATCH-08"]
+    verdict = walker_decide(
+        sidecar,
+        Path("oaa/video/test.audit.yaml"),
+        {},
+        {"av_channel"},
+        {},
+        schema,
+    )
+    assert verdict.kind == VerdictKind.CONTRADICTION_REVIEW
+    assert "canonical evidence policy" in (verdict.contradiction_summary or "")
 
 
 def test_retracted_skip(schema: dict, mock_sdp: dict) -> None:
@@ -65,31 +83,72 @@ def test_out_of_sdp_scope_verdict(schema: dict, mock_sdp: dict) -> None:
 
 def test_gold_prereq_missing_cv(schema: dict, mock_sdp: dict) -> None:
     sidecar = _load("sidecar_gold_no_cv.audit.yaml")
+    sidecar["wire_msg_id"] = "0x8001"
     sdp_kinds = {"av_channel", "media_info_channel"}
-    verdict = walker_decide(sidecar, Path("oaa/video/test.audit.yaml"), {}, sdp_kinds, {}, schema)
+    verdict = walker_decide(
+        sidecar,
+        Path("oaa/video/test.audit.yaml"),
+        {("av_channel", 0x8001, "in"): [(2, 20)]},
+        sdp_kinds,
+        {(0x8001, "in"): "standalone"},
+        schema,
+    )
     assert verdict.kind == VerdictKind.SKIP_MISSING_GOLD_PREREQ
-    assert "cross_version=False" in (verdict.skip_reason or "")
+    assert "Gold prerequisites" in (verdict.skip_reason or "")
 
 
-def test_promote_clean_gold(schema: dict, mock_sdp: dict) -> None:
+def test_match08_only_gold_is_service_binding_not_platinum(schema: dict, mock_sdp: dict) -> None:
     sidecar = _load("sidecar_gold_clean.audit.yaml")
     sdp_kinds = {"av_channel", "media_info_channel"}
-    # The fixture is oaa/media/FixtureMediaPlaybackStatusMessage -- should resolve to media_info_channel
     verdict = walker_decide(sidecar, Path("oaa/media/fixture.audit.yaml"), {}, sdp_kinds, {}, schema)
-    assert verdict.kind == VerdictKind.PROMOTE_TO_PLATINUM
-    assert "MATCH-08" in verdict.matched_rules
-    # Walker never cites MATCH-04 or MATCH-05
-    assert "MATCH-04" not in verdict.matched_rules
-    assert "MATCH-05" not in verdict.matched_rules
+    assert verdict.kind == VerdictKind.NOMATCH_OBSERVATION
+    assert verdict.matched_rules == ("MATCH-08",)
+    assert verdict.nomatch_rules == ("NOMATCH-02",)
+    assert "service_binding_only" in (verdict.skip_reason or "")
 
 
-def test_silver_pending_gold(schema: dict, mock_sdp: dict) -> None:
+def test_match08_only_silver_is_not_pending_gold(schema: dict, mock_sdp: dict) -> None:
     sidecar = _load("sidecar_silver_clean.audit.yaml")
     sdp_kinds = {"av_channel", "media_info_channel"}
-    # Fixture is oaa/audio/ -> av_channel binding
     verdict = walker_decide(sidecar, Path("oaa/audio/fixture.audit.yaml"), {}, sdp_kinds, {}, schema)
-    assert verdict.kind == VerdictKind.FLAG_PENDING_GOLD
+    assert verdict.kind == VerdictKind.NOMATCH_OBSERVATION
     assert verdict.matched_rules == ("MATCH-08",)
+    assert verdict.nomatch_rules == ("NOMATCH-02",)
+
+
+def test_message_observation_can_promote_eligible_gold(schema: dict) -> None:
+    sidecar = _load("sidecar_gold_clean.audit.yaml")
+    sidecar["wire_msg_id"] = "0x8001"
+    index = {("media_info_channel", 0x8001, "in"): [(7, 1234)]}
+    classification = {(0x8001, "in"): "standalone"}
+    verdict = walker_decide(
+        sidecar,
+        Path("oaa/media/fixture.audit.yaml"),
+        index,
+        {"media_info_channel"},
+        classification,
+        schema,
+    )
+    assert verdict.kind == VerdictKind.PROMOTE_TO_PLATINUM
+    assert verdict.matched_rules == ("MATCH-08", "MATCH-01", "MATCH-02")
+    assert verdict.msg_seq == (7,)
+    assert verdict.ts_ms == (1234,)
+
+
+def test_evidence_builder_rejects_match08_only_verdict() -> None:
+    verdict = Verdict(
+        sidecar_path="oaa/video/example.audit.yaml",
+        proto_message="Example",
+        current_tier="gold",
+        kind=VerdictKind.PROMOTE_TO_PLATINUM,
+        matched_rules=("MATCH-08",),
+        msg_seq=(0,),
+        ts_ms=(0,),
+        message_completeness="full",
+        channel_kind="av_channel",
+    )
+    with pytest.raises(ValueError, match="MATCH-08"):
+        _build_platinum_evidence_entry(verdict, "captures/example", "2026-07-25")
 
 
 def test_content_hash_is_date_independent() -> None:

@@ -49,33 +49,33 @@ import "oaa/sensor/RawEvTripSettingsData.proto";
 
 package oaa.proto.messages;
 
-// confidence: gold [deep_trace, 16.2 handler ibi.java + wbe.java zzq descriptor]
+// confidence: silver [apk_static, cross_version]
 message SensorEventIndication
 {
-    repeated data.GPSLocation gps_location = 1;         // LOCATION — 16.2: vxx  // confidence: gold
-    repeated data.Compass compass = 2;                   // COMPASS — 16.2: vwm  // confidence: gold
-    repeated data.Speed speed = 3;                       // CAR_SPEED — 16.2: wbt  // confidence: gold
-    repeated data.RPM rpm = 4;                           // RPM — 16.2: wbd  // confidence: gold
-    repeated data.Odometer odometer = 5;                 // ODOMETER — 16.2: vzj  // confidence: gold
-    repeated data.FuelLevel fuel_level = 6;              // FUEL_LEVEL — 16.2: vwz  // confidence: gold
-    repeated data.ParkingBrake parking_brake = 7;        // PARKING_BRAKE — 16.2: vzn  // confidence: gold
-    repeated data.Gear gear = 8;                         // GEAR — 16.2: vxb  // confidence: gold
-    repeated data.Diagnostics diagnostics = 9;           // DIAGNOSTICS — 16.2: vwr  // confidence: gold
-    repeated data.NightMode night_mode = 10;             // NIGHT_DATA — 16.2: vzi  // confidence: gold
-    repeated data.Environment enviorment = 11;           // ENVIRONMENT — 16.2: vww  // confidence: gold
-    repeated data.HVAC hvac = 12;                        // HVAC — 16.2: vxh  // confidence: gold
-    repeated data.DrivingStatus driving_status = 13;     // DRIVING_STATUS — 16.2: vwv  // confidence: gold
-    repeated data.SteeringWheel steering_wheel = 14;     // DEAD_RECKONING — 16.2: vwq  // confidence: gold
-    repeated data.Passenger passenger = 15;              // PASSENGER — 16.2: vzo  // confidence: gold
-    repeated data.Door door = 16;                        // DOOR — 16.2: vwt  // confidence: gold
-    repeated data.Light light = 17;                      // LIGHT — 16.2: vxw  // confidence: gold
-    repeated data.TirePressure tire_pressure = 18;       // TIRE_PRESSURE — 16.2: wbw  // confidence: gold
-    repeated data.Accel accel = 19;                      // ACCELEROMETER — 16.2: vuv  // confidence: gold
-    repeated data.Gyro gyro = 20;                        // GYROSCOPE — 16.2: vxf  // confidence: gold
-    repeated data.GpsSatelliteData gps_satellite = 21;   // GPS_SATELLITE — 16.2: vxe  // confidence: gold
-    repeated data.TollCardData toll_card = 22;           // TOLL_CARD — 16.2: wbx  // confidence: gold
-    repeated data.VehicleEnergyModelData vehicle_energy_model = 23;  // VEHICLE_ENERGY_MODEL — 16.2: vus  // confidence: gold
-    repeated data.TrailerData trailer = 24;              // TRAILER — 16.2: wca  // confidence: gold
-    repeated data.RawVehicleEnergyModel raw_vehicle_energy_model = 25;  // RAW_VEHICLE_ENERGY_MODEL — 16.2: wax  // confidence: gold
-    repeated data.RawEvTripSettings raw_ev_trip_settings = 26;  // RAW_EV_TRIP_SETTINGS — 16.2: wav  // confidence: gold
+    repeated data.GPSLocation gps_location = 1; // LOCATION — 16.2: vxx  // confidence: silver [apk_static, cross_version]
+    repeated data.Compass compass = 2; // COMPASS — 16.2: vwm  // confidence: silver [apk_static, cross_version]
+    repeated data.Speed speed = 3; // CAR_SPEED — 16.2: wbt  // confidence: silver [apk_static, cross_version]
+    repeated data.RPM rpm = 4; // RPM — 16.2: wbd  // confidence: silver [apk_static, cross_version]
+    repeated data.Odometer odometer = 5; // ODOMETER — 16.2: vzj  // confidence: silver [apk_static, cross_version]
+    repeated data.FuelLevel fuel_level = 6; // FUEL_LEVEL — 16.2: vwz  // confidence: silver [apk_static, cross_version]
+    repeated data.ParkingBrake parking_brake = 7; // PARKING_BRAKE — 16.2: vzn  // confidence: silver [apk_static, cross_version]
+    repeated data.Gear gear = 8; // GEAR — 16.2: vxb  // confidence: silver [apk_static, cross_version]
+    repeated data.Diagnostics diagnostics = 9; // DIAGNOSTICS — 16.2: vwr  // confidence: silver [apk_static, cross_version]
+    repeated data.NightMode night_mode = 10; // NIGHT_DATA — 16.2: vzi  // confidence: silver [apk_static, cross_version]
+    repeated data.Environment enviorment = 11; // ENVIRONMENT — 16.2: vww  // confidence: silver [apk_static, cross_version]
+    repeated data.HVAC hvac = 12; // HVAC — 16.2: vxh  // confidence: silver [apk_static, cross_version]
+    repeated data.DrivingStatus driving_status = 13; // DRIVING_STATUS — 16.2: vwv  // confidence: silver [apk_static, cross_version]
+    repeated data.SteeringWheel steering_wheel = 14; // DEAD_RECKONING — 16.2: vwq  // confidence: silver [apk_static, cross_version]
+    repeated data.Passenger passenger = 15; // PASSENGER — 16.2: vzo  // confidence: silver [apk_static, cross_version]
+    repeated data.Door door = 16; // DOOR — 16.2: vwt  // confidence: silver [apk_static, cross_version]
+    repeated data.Light light = 17; // LIGHT — 16.2: vxw  // confidence: silver [apk_static, cross_version]
+    repeated data.TirePressure tire_pressure = 18; // TIRE_PRESSURE — 16.2: wbw  // confidence: silver [apk_static, cross_version]
+    repeated data.Accel accel = 19; // ACCELEROMETER — 16.2: vuv  // confidence: silver [apk_static, cross_version]
+    repeated data.Gyro gyro = 20; // GYROSCOPE — 16.2: vxf  // confidence: silver [apk_static, cross_version]
+    repeated data.GpsSatelliteData gps_satellite = 21; // GPS_SATELLITE — 16.2: vxe  // confidence: silver [apk_static, cross_version]
+    repeated data.TollCardData toll_card = 22; // TOLL_CARD — 16.2: wbx  // confidence: silver [apk_static, cross_version]
+    repeated data.VehicleEnergyModelData vehicle_energy_model = 23; // VEHICLE_ENERGY_MODEL — 16.2: vus  // confidence: silver [apk_static, cross_version]
+    repeated data.TrailerData trailer = 24; // TRAILER — 16.2: wca  // confidence: silver [apk_static, cross_version]
+    repeated data.RawVehicleEnergyModel raw_vehicle_energy_model = 25; // RAW_VEHICLE_ENERGY_MODEL — 16.2: wax  // confidence: silver [apk_static, cross_version]
+    repeated data.RawEvTripSettings raw_ev_trip_settings = 26; // RAW_EV_TRIP_SETTINGS — 16.2: wav  // confidence: silver [apk_static, cross_version]
 }

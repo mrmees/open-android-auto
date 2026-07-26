@@ -45,12 +45,17 @@ _MESSAGE_TYPE_BY_SERVICE: dict[ServiceKey, str] = {
     ("control", 0x0018): "oaa.proto.messages.CallAvailabilityStatus",
     # Input
     ("input_source", 0x8001): "oaa.proto.messages.InputEventIndication",
-    ("input_source", 0x8002): "oaa.proto.messages.BindingRequest",
-    ("input_source", 0x8003): "oaa.proto.messages.BindingResponse",
+    ("input_source", 0x8002): "oaa.proto.messages.InputBindingRequest",
+    ("input_source", 0x8003): "oaa.proto.messages.InputBindingResponse",
     # Sensor source
-    ("sensor_source", 0x8001): "oaa.proto.messages.SensorStartRequestMessage",
+    ("sensor_source", 0x8001): "oaa.proto.messages.SensorRequest",
     ("sensor_source", 0x8002): "oaa.proto.messages.SensorStartResponseMessage",
     ("sensor_source", 0x8003): "oaa.proto.messages.SensorEventIndication",
+    # Bluetooth
+    ("bluetooth", 0x8001): "oaa.proto.messages.BluetoothPairingRequest",
+    ("bluetooth", 0x8002): "oaa.proto.messages.BluetoothPairingResponse",
+    ("bluetooth", 0x8003): "oaa.proto.messages.BluetoothAuthenticationData",
+    ("bluetooth", 0x8004): "oaa.proto.messages.BluetoothAuthenticationResult",
     # AV / media sink (video, audio, mic)
     ("media_sink", 0x8000): "oaa.proto.messages.AVChannelSetupRequest",
     ("media_sink", 0x8001): "oaa.proto.messages.AVChannelStartIndication",
@@ -81,6 +86,31 @@ _MESSAGE_TYPE_BY_SERVICE: dict[ServiceKey, str] = {
     ("media_info", 0x8001): "oaa.proto.messages.MediaPlaybackStatus",
     ("media_info", 0x8002): "oaa.proto.messages.MediaPlaybackStatusEvent",
     ("media_info", 0x8003): "oaa.proto.messages.MediaPlaybackMetadata",
+    # Radio
+    ("radio", 0x801A): "oaa.proto.messages.RadioProgramListNotification",
+    ("radio", 0x801B): "oaa.proto.messages.RadioProgramInfoNotification",
+    ("radio", 0x801C): "oaa.proto.messages.RadioMuteRequest",
+    ("radio", 0x801D): "oaa.proto.messages.RadioMuteResponse",
+    ("radio", 0x801E): "oaa.proto.messages.RadioTuneRequest",
+    ("radio", 0x801F): "oaa.proto.messages.RadioTuneResponse",
+    ("radio", 0x8020): "oaa.proto.messages.RadioFavoriteListNotification",
+    ("radio", 0x8021): "oaa.proto.messages.RadioFavoriteToggleRequest",
+    ("radio", 0x8022): "oaa.proto.messages.RadioTuneDirectionRequest",
+    ("radio", 0x8023): "oaa.proto.messages.RadioSearchRequest",
+    # Car control
+    ("car_control", 0x8001): "oaa.proto.messages.SetCarPropertyValueRequest",
+    ("car_control", 0x8002): "oaa.proto.messages.SetCarPropertyValueResponse",
+    ("car_control", 0x8003): "oaa.proto.messages.RegisterCarPropertyListenersRequest",
+    ("car_control", 0x8004): "oaa.proto.messages.RegisterCarPropertyListenersResponse",
+    ("car_control", 0x8005): "oaa.proto.messages.CarPropertyChangeEvent",
+    ("car_control", 0x8006): "oaa.proto.messages.CarActionNotification",
+    ("car_control", 0x8007): "oaa.proto.messages.CarControlGroupUpdate",
+    # Car-local media
+    ("car_local_media", 0x8001): "oaa.proto.messages.CarLocalMediaPlaybackStatus",
+    ("car_local_media", 0x8002): "oaa.proto.messages.CarLocalMediaPlaybackMetadata",
+    ("car_local_media", 0x8003): "oaa.proto.messages.CarLocalMediaPlaybackRequest",
+    # Wi-Fi projection GAL endpoint
+    ("wifi_projection", 0x8002): "oaa.proto.messages.WifiCredentialsResponse",
     # Sensor (WiFi/BT)
     ("sensor", 0x8001): "oaa.proto.messages.WifiSecurityRequest",
     ("sensor", 0x8002): "oaa.proto.messages.WifiSecurityResponse",
@@ -108,7 +138,7 @@ _MESSAGE_TYPE_BY_NAME: dict[str, str] = {
     "INPUT_EVENT_INDICATION": "oaa.proto.messages.InputEventIndication",
     "BINDING_REQUEST": "oaa.proto.messages.BindingRequest",
     "BINDING_RESPONSE": "oaa.proto.messages.BindingResponse",
-    "SENSOR_START_REQUEST": "oaa.proto.messages.SensorStartRequestMessage",
+    "SENSOR_START_REQUEST": "oaa.proto.messages.SensorRequest",
     "SENSOR_START_RESPONSE": "oaa.proto.messages.SensorStartResponseMessage",
     "SENSOR_EVENT_INDICATION": "oaa.proto.messages.SensorEventIndication",
     "AV_SETUP_REQUEST": "oaa.proto.messages.AVChannelSetupRequest",

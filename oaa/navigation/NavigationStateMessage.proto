@@ -11,7 +11,7 @@ package oaa.proto.messages;
 // Proto wire values 0-3 map to internal 1-4 via m130by().
 // Consumer (efn.java): checks internal==2 (ACTIVE) and ==4 (REROUTING) to show nav.
 // Log strings confirm names: "Using UNAVAILABLE", "Suppressing REROUTING".
-// confidence: gold [apk_deep_trace, wire_verified]
+// confidence: silver [apk_static, cross_version]
 enum NavigationStateType {
     NAV_STATE_UNAVAILABLE = 0; // Log: "Using UNAVAILABLE for unknown NavigationStatusEnum value"
     NAV_STATE_ACTIVE = 1;
@@ -24,7 +24,7 @@ enum NavigationStateType {
 // APK class: vzb (16.2), 1 field (enum), proto2
 // Handler: hlj.mo18763i() → ian.m20106k(32771, vzb)
 // SDK path: NavigationSummary → lad.m24734h() → hlj.mo18763i()
-// confidence: gold [apk_deep_trace]
+// confidence: silver [apk_static, cross_version]
 message NavigationState {
-    optional NavigationStateType state = 1;  // confidence: gold [apk_deep_trace]
+    optional NavigationStateType state = 1;  // confidence: silver [apk_static, cross_version]
 }

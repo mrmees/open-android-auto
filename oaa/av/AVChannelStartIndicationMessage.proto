@@ -18,11 +18,11 @@ import "oaa/av/AVChannelSessionTypeEnum.proto";
  *
  * Verified: 2026-03-06, proto-verification pipeline
  */
-// confidence: gold [apk_deep_trace, 2026-03-06]
+// confidence: silver [apk_static, cross_version]
 message AVChannelStartIndication
 {
-    required int32 session = 1;  // Session ID counter  // confidence: gold [apk_deep_trace]
-    required uint32 config = 2;  // Config/codec index  // confidence: gold [apk_deep_trace]
-    optional enums.AVChannelSessionType.Enum session_type = 3; // Values 0-2. Value 2 set when PDK >= 5.0.  // confidence: gold [apk_deep_trace]
-    optional AVChannelMediaConfig media_config = 4; // APK: vya (16.2) / vyo (16.1). 13 fields, only sent PDK >= 5.0.  // confidence: gold [apk_deep_trace]
+    required int32 session = 1; // Session ID counter  // confidence: silver [apk_static, cross_version]
+    required uint32 config = 2; // Config/codec index  // confidence: silver [apk_static, cross_version]
+    optional enums.AVChannelSessionType.Enum session_type = 3; // Values 0-2. Value 2 set when PDK >= 5.0.  // confidence: silver [apk_static, cross_version]
+    optional AVChannelMediaConfig media_config = 4; // APK: vya (16.2) / vyo (16.1). 13 fields, only sent PDK >= 5.0.  // confidence: silver [apk_static, cross_version]
 }

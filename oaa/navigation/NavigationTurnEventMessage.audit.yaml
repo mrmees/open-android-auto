@@ -1,7 +1,7 @@
 proto: oaa/navigation/NavigationTurnEventMessage.proto
 message: NavigationTurnEvent
 confidence: silver
-last_updated: '2026-04-08'
+last_updated: '2026-07-16'
 evidence:
 - type: apk_static
   method: bfs_trace
@@ -55,3 +55,11 @@ evidence:
   description: Structural match confirmed across versions 15.9, 16.1, 16.2, 16.4.
     Field numbers, types, and modifiers are consistent across all 6 pairwise comparisons.
   status: consistent
+- type: apk_static
+  method: semantic_sender_trace
+  source: Android Auto 17.3 ija.h(NavigationCurrentPosition) -> xiw (0x8007)
+  date: '2026-07-16'
+  description: Direct sender trace identifies xiw field 1 as StepDistance (xjo),
+    field 2 as repeated DestinationDistance (xiy), and field 3 as current-road
+    NavigationText (xjf). The source API toString methods also name ETA and
+    time-to-arrival/time-to-step fields.

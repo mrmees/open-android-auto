@@ -20,9 +20,9 @@ import "oaa/sensor/SensorErrorStatusEnum.proto";
 
 package oaa.proto.messages;
 
-// confidence: gold [deep_trace, 16.2 handler ibi.java]
+// confidence: silver [apk_static, cross_version]
 message SensorError
 {
-    required enums.SensorType.Enum sensor_type = 1;  // 16.2: wbl  // confidence: gold
-    required enums.SensorErrorStatus.Enum error_status = 2;  // 16.2: wbg  // confidence: gold
+    required enums.SensorType.Enum sensor_type = 1; // 16.2: wbl  // confidence: silver [apk_static, cross_version]
+    required enums.SensorErrorStatus.Enum error_status = 2; // 16.2: wbg  // confidence: silver [apk_static, cross_version]
 }

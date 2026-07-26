@@ -19,7 +19,7 @@
  * Source: opencardev/aasdk (GPLv3)
  * Original: aap_protobuf/service/control/message/FragInfo.proto
  *
- * confidence: silver [cross_referenced, aasdk_confirmed]
+ * confidence: unverified
  */
 
 syntax = "proto2";
@@ -28,7 +28,7 @@ package oaa.proto.enums;
 
 // Bits 0-1 of the frame header flags byte
 // aasdk C++ equivalent: FrameType enum (FrameType.hpp)
-// confidence: silver [cross_referenced, aasdk_confirmed]
+// confidence: unverified
 enum FragInfo {
     FRAG_CONTINUATION = 0;  // Middle fragment — more to follow
     FRAG_FIRST = 1;         // First fragment of a multi-frame message

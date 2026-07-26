@@ -172,14 +172,18 @@ message WifiVersionResponse {         // APK class: wdm
 Replaces the deprecated WifiInfoRequest/WifiInfoResponse pair.
 
 ```protobuf
-message WifiSetupInfo {               // APK class: wdi
-    optional int32 majorVersion                  = 2;
-    optional int32 minorVersion                  = 3;
-    optional bytes unknown_field_4               = 4;
-    optional WifiDirectGroupInfo wifiDirectGroupInfo = 5;
-    optional AccessPointInfo accessPointInfo      = 6;
+message WifiSetupInfo {               // 17.3 APK class: xns
+    optional int32 major_version                 = 1;
+    optional int32 minor_version                 = 2;
+    optional bytes setup_token                   = 3;
+    optional WifiProjectionEndpoint wpp_endpoint = 4; // IP address + TCP port
+    optional WifiNetworkInfo access_point_info   = 5; // SSID/BSSID/passphrase/security/channels
 }
 ```
+
+The 17.3 RFCOMM consumer validates the WPP endpoint before persisting the setup
+token and starting projection over TCP. It also validates the access-point
+credentials and security mode before attempting the Wi-Fi connection.
 
 ---
 

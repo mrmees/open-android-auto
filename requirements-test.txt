@@ -1,0 +1,4 @@
+pytest>=9,<10
+PyYAML>=6,<7
+jsonschema>=4.23,<5
+protobuf>=4.21.12,<7

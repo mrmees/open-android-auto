@@ -1,7 +1,7 @@
 proto: oaa/sensor/SensorStartRequestMessage.proto
 message: SensorStartRequestMessage
-confidence: silver
-last_updated: '2026-04-08'
+confidence: retracted
+last_updated: '2026-07-15'
 evidence:
 - type: apk_static
   method: proto_access
@@ -22,3 +22,11 @@ evidence:
   description: Structural match confirmed across versions 15.9, 16.1, 16.2, 16.4.
     Field numbers, types, and modifiers are consistent across all 6 pairwise comparisons.
   status: consistent
+retracted: true
+retraction:
+  date: '2026-07-15'
+  reason: >-
+    Corrected stale audit status to match the proto's existing retraction. The
+    active message is SensorRequest; Android Auto 17.3 dispatch and RawMessageInfo
+    independently confirm its required enum and int64 fields.
+  replaced_by: oaa/sensor/SensorRequestMessage.proto

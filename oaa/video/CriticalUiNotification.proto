@@ -1,0 +1,20 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
+// Copyright (C) 2024-2026 Open Android Auto contributors
+syntax = "proto2";
+
+package oaa.proto.messages;
+
+// Critical UI focus selected by the phone for the head unit.
+// confidence: bronze [apk_deep_trace]
+enum CriticalUiFocus {
+    CRITICAL_UI_FOCUS_UNKNOWN = 0;
+    CRITICAL_UI_FOCUS_PROJECTED = 1;
+    CRITICAL_UI_FOCUS_NATIVE = 2;
+}
+
+// Wire msg 0x8015, Phone->HU (video channel).
+// No acknowledgement or response is implied.
+// confidence: bronze [apk_deep_trace]
+message CriticalUiNotification {
+    optional CriticalUiFocus focus = 1;  // confidence: bronze [apk_deep_trace]
+}

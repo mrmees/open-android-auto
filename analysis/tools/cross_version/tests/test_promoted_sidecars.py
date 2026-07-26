@@ -1,7 +1,7 @@
-"""Parametric integration test: all silver-tier .audit.yaml sidecars pass schema validation.
+"""Parametric integration tests for all Silver-tier audit sidecars.
 
-Gap 2 (TOOL-02): Finds all silver-tier sidecars under oaa/ and validates each against
-docs/verification/audit-schema.json. Also verifies they contain cross_version evidence entries.
+Silver means two distinct evidence types under the canonical confidence policy;
+it is not synonymous with having a cross-version entry.
 """
 from __future__ import annotations
 
@@ -67,14 +67,14 @@ def test_silver_sidecar_validates_against_schema(sidecar_path: Path):
 
 
 @pytest.mark.parametrize("sidecar_path", _SILVER_SIDECARS, ids=lambda p: p.relative_to(OAA_ROOT).as_posix())
-def test_silver_sidecar_has_cross_version_evidence(sidecar_path: Path):
-    """Every silver-tier sidecar must have at least one cross_version evidence entry."""
+def test_silver_sidecar_has_two_distinct_evidence_types(sidecar_path: Path):
+    """Every Silver sidecar has at least two distinct evidence types."""
     data = yaml.safe_load(sidecar_path.read_text())
     evidence = data.get("evidence", [])
-    cross_version_entries = [e for e in evidence if e.get("type") == "cross_version"]
-    assert len(cross_version_entries) >= 1, (
-        f"{sidecar_path.name}: silver-tier sidecar has no cross_version evidence. "
-        f"Evidence types present: {[e.get('type') for e in evidence]}"
+    evidence_types = {entry.get("type") for entry in evidence if entry.get("type")}
+    assert len(evidence_types) >= 2, (
+        f"{sidecar_path.name}: Silver sidecar has fewer than two distinct evidence "
+        f"types: {sorted(evidence_types)}"
     )
 
 

@@ -8,7 +8,22 @@
 
 Android Auto supports up to three display types: MAIN, CLUSTER, and AUXILIARY. The phone controls what content is rendered on each — the HU advertises displays via ServiceDiscoveryResponse, but has **no mechanism to request specific content types** on secondary displays.
 
-This document covers the phone-side content routing architecture as reverse-engineered from the AA 16.2 APK.
+This document combines the established 16.2 content-policy trace with the 17.3
+logical-display identity trace. Content policy and endpoint identity are separate
+layers.
+
+## 17.3 identity model
+
+`AVChannel.display_id` field 6 is the logical display identity: Android Auto
+17.3 reads it and immediately constructs `CarDisplayId`. The matching
+`InputChannelConfig.display_id` field 5 references that AVChannel field 6 value.
+Neither value is `ChannelDescriptor.channel_id`, which is the transport channel
+ID used for multiplexed frame routing, nor GAL service type 8 (AV input).
+
+For each accepted video-capable descriptor, static 17.3 code constructs a
+separate logical display/endpoint pair with per-instance configuration, surface,
+and focus state. Concurrent streams across MAIN, CLUSTER, and AUXILIARY remain
+runtime-unverified because no simultaneous framed 17.3 capture is available.
 
 ---
 

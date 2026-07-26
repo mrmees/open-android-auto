@@ -27,7 +27,7 @@ package oaa.proto.messages;
 // D-pad input actions — shared with PhoneInputAction (same APK class vxo)
 // Values confirmed via C0000a.m128bw switch (0-7 valid, default=0)
 // Dispatched as (value - 1) to the listener, so value 1 = action 0, etc.
-// confidence: gold [deep_trace, 16.2 APK verified 2026-03-06]
+// confidence: silver [apk_deep_trace, deep_trace]
 enum MediaPlaybackStatusEventType {
     MEDIA_EVENT_UNKNOWN = 0;
     MEDIA_EVENT_UP = 1;
@@ -40,7 +40,7 @@ enum MediaPlaybackStatusEventType {
 }
 
 // APK class: vxo (shared with PhoneInputType — same class, different channel context)
-// confidence: gold [deep_trace, 16.2 APK verified 2026-03-06]
+// confidence: silver [apk_deep_trace, deep_trace]
 message MediaPlaybackStatusEvent {
-    required MediaPlaybackStatusEventType event_type = 1;  // confidence: gold [deep_trace]
+    required MediaPlaybackStatusEventType event_type = 1;  // confidence: silver [apk_deep_trace, deep_trace]
 }

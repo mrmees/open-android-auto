@@ -29,30 +29,20 @@ def test_worklist_emitted(repo_root: Path) -> None:
 def test_live_promotion_count(repo_root: Path) -> None:
     report = _load_report(repo_root)
     n = len(report["platinum_promotions"])
-    assert n == 2, (
-        f"expected 2 Platinum promotions (MediaPlaybackStatusMessage + MediaPlaybackMetadataMessage), "
-        f"got {n}. Regenerate: {REGEN_CMD}"
-    )
+    assert n == 0, f"MATCH-08-only service bindings cannot promote messages; got {n}"
 
 
 def test_live_pending_count(repo_root: Path) -> None:
     report = _load_report(repo_root)
     n = len(report["pending_gold_flags"])
-    assert n == 21, (
-        f"expected 21 oem_match_pending_gold flags (11 av + 5 audio_silver + 2 audio_bronze + 3 video), "
-        f"got {n}. Regenerate: {REGEN_CMD}"
-    )
+    assert n == 0, f"MATCH-08-only service bindings cannot create pending flags; got {n}"
 
 
-def test_live_already_platinum_skip(repo_root: Path) -> None:
+def test_live_has_no_match08_only_platinum_skip(repo_root: Path) -> None:
     report = _load_report(repo_root)
     skipped = report["skipped_sidecars"]
     already = [s for s in skipped if s["verdict_kind"] == "skip_already_platinum"]
-    assert len(already) == 1, (
-        f"expected exactly 1 skip_already_platinum (VideoFocusRequestMessage), "
-        f"got {len(already)}. Regenerate: {REGEN_CMD}"
-    )
-    assert "VideoFocusRequestMessage" in already[0]["sidecar_path"]
+    assert already == [], "service-binding-only Platinum sidecars must be reconciled"
 
 
 def test_live_out_of_sdp_count(repo_root: Path) -> None:

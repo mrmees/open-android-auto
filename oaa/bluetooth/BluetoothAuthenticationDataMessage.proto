@@ -17,8 +17,8 @@ syntax = "proto2";
 
 package oaa.proto.messages;
 
-// confidence: gold [apk_deep_trace]
+// confidence: unverified
 message BluetoothAuthenticationData
 {
-    required string auth_data = 1;  // confidence: gold [apk_deep_trace]
+    required string auth_data = 1;  // confidence: unverified
 }

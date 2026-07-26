@@ -11,9 +11,8 @@ Reads .audit.yaml sidecar files and inserts confidence comments:
 The audit YAML is the source of truth; proto comments are a convenience mirror.
 """
 
-import os
+import argparse
 import re
-import sys
 from pathlib import Path
 
 import yaml
@@ -79,24 +78,20 @@ def is_confidence_comment(line: str) -> bool:
     return bool(re.match(r'^\s*// confidence:', line))
 
 
-def annotate_proto(proto_path: Path, audit: dict | None) -> dict:
-    """Annotate a single proto file. Returns stats dict."""
+def render_annotated_content(
+    content: str,
+    audit: dict | None,
+) -> tuple[str, dict[str, int]]:
+    """Return generated proto text and declaration/field counts without I/O."""
     stats = {'messages': 0, 'fields': 0, 'enums': 0}
 
-    if audit:
-        tier = audit.get('confidence', 'unverified')
-        evidence = audit.get('evidence', [])
-        # Check for field-level overrides
-        field_overrides = audit.get('fields', {})
-    else:
-        tier = 'unverified'
-        evidence = []
-        field_overrides = {}
+    tier = audit.get('confidence', 'unverified') if audit else 'unverified'
+    evidence = audit.get('evidence', []) if audit else []
+    field_overrides = audit.get('fields', {}) if audit else {}
 
     confidence_comment = format_confidence(tier, evidence)
 
-    with open(proto_path) as f:
-        lines = f.readlines()
+    lines = content.splitlines(keepends=True)
 
     new_lines = []
     i = 0
@@ -112,15 +107,18 @@ def annotate_proto(proto_path: Path, audit: dict | None) -> dict:
             # Determine indent
             indent = re.match(r'^(\s*)', line).group(1)
             # Insert confidence comment above declaration
-            new_lines.append(f'{indent}{confidence_comment}\n')
+            line_ending = '\r\n' if line.endswith('\r\n') else '\n'
+            new_lines.append(f'{indent}{confidence_comment}{line_ending}')
             new_lines.append(line)
-            if 'message' in line:
+            if line.lstrip().startswith('message '):
                 stats['messages'] += 1
             else:
                 stats['enums'] += 1
         elif is_field_line(line):
             # Strip any existing confidence comment
-            clean = strip_existing_confidence(line).rstrip('\n')
+            line_ending = '\r\n' if line.endswith('\r\n') else '\n' if line.endswith('\n') else ''
+            line_body = line[:-len(line_ending)] if line_ending else line
+            clean = strip_existing_confidence(line_body)
             # Check for field-level override
             field_match = re.search(r'(\w+)\s*=\s*\d+', clean)
             if field_match and field_match.group(1) in field_overrides:
@@ -144,24 +142,48 @@ def annotate_proto(proto_path: Path, audit: dict | None) -> dict:
                 code_part = clean[:comment_match.start() + 1]
 
             if existing_comment:
-                new_lines.append(f'{code_part} {existing_comment}  {fc}\n')
+                new_lines.append(f'{code_part} {existing_comment}  {fc}{line_ending}')
             else:
-                new_lines.append(f'{code_part}  {fc}\n')
+                new_lines.append(f'{code_part}  {fc}{line_ending}')
             stats['fields'] += 1
         else:
             new_lines.append(line)
 
         i += 1
 
-    with open(proto_path, 'w') as f:
-        f.writelines(new_lines)
-
-    return stats
+    return ''.join(new_lines), stats
 
 
-def annotate_directory(dir_path: Path) -> dict:
-    """Annotate all proto files in a directory."""
-    totals = {'files': 0, 'messages': 0, 'fields': 0, 'enums': 0, 'with_audit': 0, 'without_audit': 0}
+def annotate_proto(
+    proto_path: Path,
+    audit: dict | None,
+    *,
+    check: bool = False,
+) -> dict[str, int | bool]:
+    """Write generated content, or report drift without writing in check mode."""
+    with proto_path.open(encoding='utf-8', newline='') as proto_file:
+        content = proto_file.read()
+    rendered, stats = render_annotated_content(content, audit)
+    changed = rendered != content
+
+    if changed and not check:
+        with proto_path.open('w', encoding='utf-8', newline='') as proto_file:
+            proto_file.write(rendered)
+
+    return {**stats, 'changed': changed}
+
+
+def annotate_directory(dir_path: Path, *, check: bool = False) -> dict[str, int]:
+    """Process direct child protos and include a changed-file count."""
+    totals = {
+        'files': 0,
+        'messages': 0,
+        'fields': 0,
+        'enums': 0,
+        'with_audit': 0,
+        'without_audit': 0,
+        'changed': 0,
+    }
 
     proto_files = sorted(dir_path.glob('*.proto'))
     for proto_path in proto_files:
@@ -171,30 +193,46 @@ def annotate_directory(dir_path: Path) -> dict:
         else:
             totals['without_audit'] += 1
 
-        stats = annotate_proto(proto_path, audit)
+        stats = annotate_proto(proto_path, audit, check=check)
         totals['files'] += 1
-        totals['messages'] += stats['messages']
-        totals['fields'] += stats['fields']
-        totals['enums'] += stats['enums']
+        totals['messages'] += int(stats['messages'])
+        totals['fields'] += int(stats['fields'])
+        totals['enums'] += int(stats['enums'])
+        totals['changed'] += int(stats['changed'])
+        if check and stats['changed']:
+            print(f'DRIFT: {proto_path}')
 
     return totals
 
 
-def main():
-    if len(sys.argv) < 2:
-        print("Usage: python -m analysis.tools.seed_import.annotate <dir1> [dir2] ...")
-        sys.exit(1)
+def main(argv: list[str] | None = None) -> int:
+    """Return 1 when --check finds drift, otherwise 0."""
+    parser = argparse.ArgumentParser(
+        description='Add confidence annotations to direct-child proto files.'
+    )
+    parser.add_argument('--check', action='store_true', help='report drift without writing')
+    parser.add_argument('directories', nargs='+', help='directories containing proto files')
+    args = parser.parse_args(argv)
 
-    grand_totals = {'files': 0, 'messages': 0, 'fields': 0, 'enums': 0, 'with_audit': 0, 'without_audit': 0}
+    grand_totals = {
+        'files': 0,
+        'messages': 0,
+        'fields': 0,
+        'enums': 0,
+        'with_audit': 0,
+        'without_audit': 0,
+        'changed': 0,
+    }
 
-    for dir_arg in sys.argv[1:]:
+    for dir_arg in args.directories:
         dir_path = Path(dir_arg)
         if not dir_path.is_dir():
             print(f"Warning: {dir_arg} is not a directory, skipping")
             continue
 
-        print(f"\n--- Annotating {dir_path} ---")
-        totals = annotate_directory(dir_path)
+        action = 'Checking' if args.check else 'Annotating'
+        print(f"\n--- {action} {dir_path} ---")
+        totals = annotate_directory(dir_path, check=args.check)
 
         for key in grand_totals:
             grand_totals[key] += totals[key]
@@ -205,6 +243,7 @@ def main():
         print(f"  Fields annotated: {totals['fields']}")
         print(f"  With audit YAML: {totals['with_audit']}")
         print(f"  Without audit (unverified): {totals['without_audit']}")
+        print(f"  Changed: {totals['changed']}")
 
     print(f"\n=== TOTALS ===")
     print(f"  Files: {grand_totals['files']}")
@@ -213,7 +252,10 @@ def main():
     print(f"  Fields annotated: {grand_totals['fields']}")
     print(f"  With audit YAML: {grand_totals['with_audit']}")
     print(f"  Without audit (unverified): {grand_totals['without_audit']}")
+    print(f"  Changed: {grand_totals['changed']}")
+
+    return 1 if args.check and grand_totals['changed'] else 0
 
 
 if __name__ == '__main__':
-    main()
+    raise SystemExit(main())

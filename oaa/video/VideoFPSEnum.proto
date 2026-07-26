@@ -6,14 +6,14 @@ syntax="proto3";
 package oaa.proto.enums;
 
 // APK class: vdp (16.2) — 2 values, validated by vdp.m36490W
-// confidence: gold [deep_trace]
+// confidence: unverified
 message VideoFPS
 {
-    // confidence: gold [deep_trace]
+    // confidence: unverified
     enum Enum
     {
         NONE = 0;  // proto3 default only
-        _60 = 1;  // 60 fps
-        _30 = 2;  // 30 fps
+        _60 = 1; // 60 fps  // confidence: unverified
+        _30 = 2; // 30 fps  // confidence: unverified
     }
 }

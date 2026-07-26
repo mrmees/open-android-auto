@@ -18,14 +18,24 @@ _REPO_ROOT = Path(__file__).resolve().parents[3]
 _MAPPING_FILE = Path(__file__).resolve().parent / "class_mapping.yaml"
 
 
+def _is_retracted_proto(proto_file: str) -> bool:
+    audit_path = (_REPO_ROOT / proto_file).with_suffix(".audit.yaml")
+    if not audit_path.exists():
+        return False
+    data = yaml.safe_load(audit_path.read_text(encoding="utf-8"))
+    return isinstance(data, dict) and data.get("confidence") == "retracted"
+
+
 def load_mapping(path: Path | None = None) -> list[ProtoMapping]:
-    """Load class_mapping.yaml into ProtoMapping objects."""
+    """Load active class mappings, excluding file-level retractions."""
     path = path or _MAPPING_FILE
     with open(path) as f:
         data = yaml.safe_load(f)
 
     mappings = []
     for entry in data.get("mappings", []):
+        if _is_retracted_proto(entry["proto_file"]):
+            continue
         apk = entry.get("apk_classes", {})
         mappings.append(ProtoMapping(
             proto_message=entry["proto_message"],

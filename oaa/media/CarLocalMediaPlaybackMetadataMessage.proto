@@ -30,16 +30,16 @@ syntax="proto2";
 package oaa.proto.messages;
 
 // APK class: vwq (16.1) / vwc (16.2)
-// confidence: gold [apk_deep_trace, 2026-03-06]
+// confidence: silver [apk_deep_trace, apk_static, cross_version]
 message CarLocalMediaPlaybackMetadata {
     // Track title (falls back to default "missing song name" string if empty)
-    optional string song = 1;  // confidence: gold [apk_deep_trace]
+    optional string song = 1;  // confidence: silver [apk_deep_trace, apk_static, cross_version]
     // Artist name
-    optional string artist = 2;  // confidence: gold [apk_deep_trace]
+    optional string artist = 2;  // confidence: silver [apk_deep_trace, apk_static, cross_version]
     // Album name
-    optional string album = 3;  // confidence: gold [apk_deep_trace]
+    optional string album = 3;  // confidence: silver [apk_deep_trace, apk_static, cross_version]
     // Album art as image data (decoded via BitmapFactory on phone side)
-    optional bytes album_art = 4;  // confidence: gold [apk_deep_trace]
+    optional bytes album_art = 4;  // confidence: silver [apk_deep_trace, apk_static, cross_version]
     // Total track duration in seconds (-1 = no duration available)
-    optional uint32 duration_seconds = 5;  // confidence: gold [apk_deep_trace]
+    optional uint32 duration_seconds = 5;  // confidence: silver [apk_deep_trace, apk_static, cross_version]
 }

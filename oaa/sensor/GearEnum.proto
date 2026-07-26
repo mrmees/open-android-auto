@@ -6,10 +6,10 @@ syntax="proto2";
 package oaa.proto.enums;
 
 // APK class: vxb uses closed enum (enum_closed=1 in DB). 16.2 validator: vik.m36840m
-// confidence: gold [deep_trace, 16.2 DB verified, 14 values confirmed]
+// confidence: unverified
 message Gear
 {
-    // confidence: gold
+    // confidence: unverified
     enum Enum
     {
         NEUTRAL = 0;

@@ -18,9 +18,9 @@ import "oaa/sensor/SensorTypeEnum.proto";
 
 package oaa.proto.messages;
 
-// confidence: gold [deep_trace, 16.2 handler ibi.java]
+// confidence: silver [apk_static, cross_version]
 message SensorRequest
 {
-    required enums.SensorType.Enum sensor_type = 1;  // 16.2: wbl enum  // confidence: gold
-    required int64 refresh_interval = 2;  // Refresh interval in milliseconds  // confidence: gold
+    required enums.SensorType.Enum sensor_type = 1; // 16.2: wbl enum  // confidence: silver [apk_static, cross_version]
+    required int64 refresh_interval = 2; // Refresh interval in milliseconds  // confidence: silver [apk_static, cross_version]
 }

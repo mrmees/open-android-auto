@@ -6,9 +6,11 @@ These are the only sources accepted as evidence for verification claims. Each ma
 
 ### APK (Any Available Version)
 
-**Evidence types:** `apk_static`, `cross_version`
+**Evidence types:** `apk_static`, `deep_trace`, `apk_deep_trace`, `cross_version`
 
-Decompiled Android Auto APKs obtained via jadx from publicly available APK distributions. Currently available versions: 15.9, 16.1, 16.2.
+Decompiled Android Auto APKs obtained via jadx from publicly available APK
+distributions. Active evidence includes versions 15.9, 16.1, 16.2, 16.4, and
+17.3 where cited by the relevant sidecar.
 
 Provides proto structure, field names and numbers, enum values, string constants, call graphs, class references, and type relationships. Cross-version comparison of these artifacts produces `cross_version` evidence.
 
@@ -28,7 +30,11 @@ Provides behavioral evidence that complements static analysis. However, the DHU 
 
 Packet captures from production OEM Android Auto head units. This is the highest-fidelity source — it captures the actual protocol behavior between a phone and a real head unit in a production environment.
 
-OEM captures are the only evidence type that can directly promote a claim to Gold tier. A single OEM capture confirming a behavior is sufficient.
+OEM capture evidence never skips Gold. Gold is established from primary
+handler/deep-trace APK evidence plus reproducible cross-version APK evidence.
+A qualifying message/field OEM observation then promotes the Gold-qualified
+claim to scoped Platinum. An SDP service declaration (MATCH-08) proves only
+service/channel binding and is not message payload evidence.
 
 ### Official Google Documentation
 
@@ -102,10 +108,12 @@ Head unit developers depending on this reference need confidence that the proven
 
 Every evidence entry should include:
 
-- **type** — One of the four evidence types (`apk_static`, `dhu_observation`, `oem_capture`, `cross_version`)
+- **type** — One of the seven accepted/legacy evidence types (`apk_static`,
+  `dhu_observation`, `cross_version`, `deep_trace`, `apk_deep_trace`,
+  `platinum_evidence`, or deprecated `oem_capture`)
 - **source** — Specific source (e.g., `APK 16.2`, `DHU 2.1`, `OEM [unit model]`)
 - **method** — How the evidence was obtained (e.g., `bfs_trace`, `logcat capture`, `pcap analysis`)
-- **detail** — What was observed and why it supports the claim
+- **description** — What was observed and why it supports the claim
 
 Example:
 
@@ -114,11 +122,11 @@ evidence:
   - type: apk_static
     source: "APK 16.2 (jadx decompilation)"
     method: enum_match
-    detail: "Field number 3 maps to SPEED in SensorType enum across classes vfn, wab, xcd"
+    description: "Field number 3 maps to SPEED in SensorType enum across classes vfn, wab, xcd"
   - type: dhu_observation
     source: "DHU 2.1 (kitchen_sink.ini config)"
     method: logcat
-    detail: "CAR.SENSOR.LITE tag shows speed sensor events processed at 1Hz"
+    description: "CAR.SENSOR.LITE tag shows speed sensor events processed at 1Hz"
 ```
 
 ### When You Find Corroborating Information in an Excluded Source

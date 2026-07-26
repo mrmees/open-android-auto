@@ -15,7 +15,7 @@ syntax="proto2";
 
 package oaa.proto.messages;
 
-// confidence: gold [handler_trace, deep_apk]
+// confidence: bronze [apk_deep_trace]
 message InputBindingRequest
 {
     repeated int32 keycodes = 1 [packed = true];  // supported keycodes echoed from InputChannelConfig

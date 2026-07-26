@@ -95,19 +95,19 @@ def test_live_snapshot() -> None:
     result = scan_audit_tree(repo_root)
 
     # Total counts
-    assert result.total_sidecars == 160, (
-        f"Expected 160 sidecars, got {result.total_sidecars}. "
+    assert result.total_sidecars == 168, (
+        f"Expected 168 sidecars, got {result.total_sidecars}. "
         "Census changed? Update snapshot values after verifying the change is intentional."
     )
-    assert result.total_protos == 245, (
-        f"Expected 245 protos, got {result.total_protos}. "
+    assert result.total_protos == 247, (
+        f"Expected 247 protos, got {result.total_protos}. "
         "Census changed? Update snapshot values after verifying the change is intentional."
     )
 
     # Missing and orphan counts
     total_missing = sum(len(v) for v in result.missing_sidecars.values())
-    assert total_missing == 85, (
-        f"Expected 85 missing sidecars, got {total_missing}. "
+    assert total_missing == 79, (
+        f"Expected 79 missing sidecars, got {total_missing}. "
         "Census changed? Update snapshot values after verifying the change is intentional."
     )
     total_orphan = sum(len(v) for v in result.orphan_sidecars.values())
@@ -124,39 +124,39 @@ def test_live_snapshot() -> None:
     total_retracted = sum(c.retracted for c in result.per_channel.values())
     total_superseded = sum(c.superseded for c in result.per_channel.values())
 
-    assert total_platinum == 3, (
-        f"Expected 3 platinum, got {total_platinum}. "
+    assert total_platinum == 0, (
+        f"Expected 0 platinum, got {total_platinum}. "
         "Census changed? Update snapshot values after verifying the change is intentional."
     )
-    assert total_gold == 29, (
-        f"Expected 29 gold, got {total_gold}. "
+    assert total_gold == 14, (
+        f"Expected 14 gold, got {total_gold}. "
         "Census changed? Update snapshot values after verifying the change is intentional."
     )
-    assert total_silver == 111, (
-        f"Expected 111 silver, got {total_silver}. "
+    assert total_silver == 118, (
+        f"Expected 118 silver, got {total_silver}. "
         "Census changed? Update snapshot values after verifying the change is intentional."
     )
-    assert total_bronze == 10, (
-        f"Expected 10 bronze, got {total_bronze}. "
+    assert total_bronze == 23, (
+        f"Expected 23 bronze, got {total_bronze}. "
         "Census changed? Update snapshot values after verifying the change is intentional."
     )
-    assert total_retracted == 6, (
-        f"Expected 6 retracted, got {total_retracted}. "
+    assert total_retracted == 13, (
+        f"Expected 13 retracted, got {total_retracted}. "
         "Census changed? Update snapshot values after verifying the change is intentional."
     )
-    assert total_superseded == 1, (
-        f"Expected 1 superseded, got {total_superseded}. "
+    assert total_superseded == 0, (
+        f"Expected 0 superseded, got {total_superseded}. "
         "Census changed? Update snapshot values after verifying the change is intentional."
     )
 
     # Directory count
-    assert result.directories_scanned == 19, (
-        f"Expected 19 directories, got {result.directories_scanned}. "
+    assert result.directories_scanned == 20, (
+        f"Expected 20 directories, got {result.directories_scanned}. "
         "Census changed? Update snapshot values after verifying the change is intentional."
     )
 
     # Pending gold count
-    assert result.pending_gold_count == 21, (
-        f"Expected 21 pending_gold, got {result.pending_gold_count}. "
+    assert result.pending_gold_count == 0, (
+        f"Expected 0 pending_gold, got {result.pending_gold_count}. "
         "Census changed? Update snapshot values after verifying the change is intentional."
     )

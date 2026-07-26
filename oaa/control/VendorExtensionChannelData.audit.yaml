@@ -1,7 +1,7 @@
 proto: oaa/control/VendorExtensionChannelData.proto
 message: VendorExtensionChannel
 confidence: silver
-last_updated: '2026-04-08'
+last_updated: '2026-07-16'
 evidence:
 - type: apk_static
   method: proto_access
@@ -22,3 +22,10 @@ evidence:
   description: Structural match confirmed across versions 15.9, 16.1, 16.2, 16.4.
     Field numbers, types, and modifiers are consistent across all 6 pairwise comparisons.
   status: consistent
+- type: apk_static
+  method: raw_message_info
+  source: 17.3 xlv.java field 12 and xmv.java
+  date: '2026-07-16'
+  description: >-
+    Trusted ChannelDescriptor field 12 identifies xmv as VendorExtensionChannel;
+    its RawMessageInfo marks field 1 (vendor name) required in 17.3.

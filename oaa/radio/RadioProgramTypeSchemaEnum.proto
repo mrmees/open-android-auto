@@ -14,10 +14,10 @@ syntax="proto2";
 
 package oaa.proto.enums;
 
-// confidence: gold [apk_deep_trace]
+// confidence: unverified
 message RadioProgramTypeSchema
 {
-    // confidence: gold [apk_deep_trace]
+    // confidence: unverified
     enum Enum
     {
         SCHEMA_UNKNOWN = 0;

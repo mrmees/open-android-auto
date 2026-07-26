@@ -18,10 +18,10 @@ import "oaa/bluetooth/BluetoothPairingMethodEnum.proto";
 
 package oaa.proto.messages;
 
-// confidence: gold [apk_deep_trace]
+// confidence: silver [apk_static, cross_version]
 message BluetoothPairingRequest
 {
-    optional string phone_address = 1;  // confidence: gold [apk_deep_trace]
-    optional enums.BluetoothPairingMethod.Enum pairing_method = 2;  // confidence: gold [apk_deep_trace]
-    optional string phone_name = 3; // Human-readable phone name  // confidence: gold [apk_deep_trace]
+    optional string phone_address = 1;  // confidence: silver [apk_static, cross_version]
+    optional enums.BluetoothPairingMethod.Enum pairing_method = 2;  // confidence: silver [apk_static, cross_version]
+    optional string phone_name = 3; // Human-readable phone name  // confidence: silver [apk_static, cross_version]
 }

@@ -7,10 +7,10 @@ package oaa.proto.enums;
 
 // APK enum verified via vdp.m36490W() — values 1 (FAIL) and 2 (OK) only.
 // Value 0 (NONE) is not validated (returns 0 = invalid), treated as FAIL.
-// confidence: gold [apk_deep_trace, 2026-03-06]
+// confidence: unverified
 message AVChannelSetupStatus
 {
-    // confidence: gold [apk_deep_trace, 2026-03-06]
+    // confidence: unverified
     enum Enum
     {
         NONE = 0;  // Not a valid wire value — treated as FAIL

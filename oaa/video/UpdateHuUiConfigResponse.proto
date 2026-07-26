@@ -11,14 +11,14 @@ package oaa.proto.messages;
 // Response to UiConfigRequest (0x8011). HU reports whether theming tokens were accepted.
 // Handler: ied.java -> huy.java case 10 -> logs "Theming tokens accepted/rejected/Error"
 // Previously misidentified as VideoFocusModeMessage — field 1 is NOT VideoFocusMode.
-// confidence: gold [deep_trace, handler_verified]
+// confidence: unverified
 message UpdateHuUiConfigResponse
 {
-    optional ThemingTokensStatus status = 1;  // wcc.f75121c validator  // confidence: gold [deep_trace]
+    optional ThemingTokensStatus status = 1; // wcc.f75121c validator  // confidence: unverified
 }
 
 // Enum values from C0000a.m124bs() + huy.java case 10 log strings
-// confidence: gold [deep_trace]
+// confidence: unverified
 enum ThemingTokensStatus
 {
     THEMING_TOKENS_ERROR = 0;  // "Error providing theming tokens"

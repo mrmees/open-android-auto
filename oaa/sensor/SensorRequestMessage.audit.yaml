@@ -1,7 +1,7 @@
 proto: oaa/sensor/SensorRequestMessage.proto
 message: SensorRequest
 confidence: silver
-last_updated: '2026-04-08'
+last_updated: '2026-07-25'
 evidence:
 - type: apk_static
   method: bfs_trace
@@ -21,3 +21,11 @@ evidence:
   description: Structural match confirmed across versions 15.9, 16.1, 16.2, 16.4.
     Field numbers, types, and modifiers are consistent across all 6 pairwise comparisons.
   status: consistent
+- type: apk_static
+  method: raw_message_info_and_service_dispatch
+  source: Android Auto 17.3 xlq.java; rjs.java:81
+  date: '2026-07-15'
+  description: >
+    SENSOR_SOURCE message ID 0x8001 dispatches to xlq. RawMessageInfo confirms
+    required SensorType enum field 1 and required int64 refresh interval field 2,
+    matching SensorRequest rather than the retracted SensorStartRequestMessage.

@@ -1,0 +1,21 @@
+proto: oaa/video/IntegratedOverlayStopNotification.proto
+message: IntegratedOverlayStopNotification
+confidence: bronze
+last_updated: '2026-07-25'
+wire_msg_id: 0x800F
+direction: HU->Phone
+channel: video
+evidence:
+- type: apk_deep_trace
+  method: receive_callback_trace
+  source: >-
+    Android Auto 17.3.662804-release; APKM SHA-256
+    1db7ce995aa52b2cde47a01abfb0364220fb57fc60217de3ec714e3034795344;
+    base.apk SHA-256
+    5557827f259898bdab97b489e1a0aef937fd6ec711d87361cf25d51af6f48619;
+    JADX jdc.java:273-276, its.java:148-160
+  date: '2026-07-25'
+  description: >-
+    Raw ID 0x800F queues the phone handler's stopped-notification path without
+    payload parsing and invokes registered stopped callbacks. Static source
+    proves neither overlay-state mutation/dismissal nor runtime traffic.

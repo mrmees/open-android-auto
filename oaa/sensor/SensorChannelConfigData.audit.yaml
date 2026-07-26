@@ -1,7 +1,7 @@
 proto: oaa/sensor/SensorChannelConfigData.proto
 message: SensorChannelConfig
 confidence: silver
-last_updated: '2026-04-08'
+last_updated: '2026-07-25'
 evidence:
 - type: apk_static
   method: string_const
@@ -28,3 +28,9 @@ evidence:
   description: Unmappable in 16.4 (matcher found no candidate meeting structural fingerprint
     + field count match, or candidate was ambiguous).
   status: unmappable_16_4
+- type: apk_static
+  method: raw_message_info
+  source: Android Auto 17.3 xlt.java -> xls.java
+  date: '2026-07-16'
+  description: Confirmed xlt field 1 is repeated xls and xls field 1 is a required
+    SensorType enum using the xlu verifier/domain.

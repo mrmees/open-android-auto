@@ -37,62 +37,62 @@
             "location_characterization": 256,
             "sensors": [
               {
-                "type": "LOCATION"
+                "sensor_type": "LOCATION"
               },
               {
-                "type": "COMPASS"
+                "sensor_type": "COMPASS"
               },
               {
-                "type": "CAR_SPEED"
+                "sensor_type": "CAR_SPEED"
               },
               {
-                "type": "ODOMETER"
+                "sensor_type": "ODOMETER"
               },
               {
-                "type": "FUEL_LEVEL"
+                "sensor_type": "FUEL_LEVEL"
               },
               {
-                "type": "PARKING_BRAKE"
+                "sensor_type": "PARKING_BRAKE"
               },
               {
-                "type": "GEAR"
+                "sensor_type": "GEAR"
               },
               {
-                "type": "NIGHT_DATA"
+                "sensor_type": "NIGHT_DATA"
               },
               {
-                "type": "DRIVING_STATUS"
+                "sensor_type": "DRIVING_STATUS"
               },
               {
-                "type": "ACCEL"
+                "sensor_type": "ACCEL"
               },
               {
-                "type": "GYRO"
+                "sensor_type": "GYRO"
               },
               {
-                "type": "GPS"
+                "sensor_type": "GPS"
               },
               {
-                "type": "TOLL_CARD"
+                "sensor_type": "TOLL_CARD"
               }
             ]
           }
         },
         {
           "av_channel": {
-            "channel_id": 2,
+            "display_id": 2,
             "display_type": "CLUSTER",
             "video_configs": [
               {
                 "additional_config": {
-                  "max_resolution": {},
-                  "min_resolution": {
-                    "density": 200,
-                    "fps": 200,
-                    "height": 40,
-                    "width": 40
+                  "display_insets": {
+                    "bottom": 40,
+                    "left": 200,
+                    "right": 200,
+                    "top": 40
                   },
-                  "preferred_resolution": {},
+                  "field_2_insets": {},
+                  "field_3_insets": {},
                   "ui_theme": "UI_THEME_AUTOMATIC"
                 },
                 "codec": "MEDIA_CODEC_VIDEO_H264_BP",
@@ -122,19 +122,19 @@
         },
         {
           "av_channel": {
-            "channel_id": 1,
+            "display_id": 1,
             "display_type": "AUXILIARY",
             "video_configs": [
               {
                 "additional_config": {
-                  "max_resolution": {},
-                  "min_resolution": {
-                    "density": 221,
-                    "fps": 221,
-                    "height": 0,
-                    "width": 0
+                  "display_insets": {
+                    "bottom": 0,
+                    "left": 221,
+                    "right": 221,
+                    "top": 0
                   },
-                  "preferred_resolution": {},
+                  "field_2_insets": {},
+                  "field_3_insets": {},
                   "ui_theme": "UI_THEME_AUTOMATIC"
                 },
                 "codec": "MEDIA_CODEC_VIDEO_H264_BP",
@@ -160,19 +160,19 @@
         },
         {
           "av_channel": {
-            "channel_id": 0,
+            "display_id": 0,
             "display_type": "MAIN",
             "video_configs": [
               {
                 "additional_config": {
-                  "max_resolution": {},
-                  "min_resolution": {
-                    "density": 0,
-                    "fps": 0,
-                    "height": 0,
-                    "width": 0
+                  "display_insets": {
+                    "bottom": 0,
+                    "left": 0,
+                    "right": 0,
+                    "top": 0
                   },
-                  "preferred_resolution": {},
+                  "field_2_insets": {},
+                  "field_3_insets": {},
                   "ui_theme": "UI_THEME_AUTOMATIC"
                 },
                 "codec": "MEDIA_CODEC_VIDEO_H264_BP",
@@ -300,7 +300,7 @@
               "width": 100
             },
             "minimum_interval_ms": 500,
-            "type": 1
+            "type": "TURN_BY_TURN"
           }
         },
         {
@@ -600,7 +600,7 @@
     "frame_index": 22,
     "message_id": 32769,
     "message_name": "",
-    "message_type": "oaa.proto.messages.SensorStartRequestMessage"
+    "message_type": "oaa.proto.messages.SensorRequest"
   },
   {
     "channel_id": 8,
@@ -696,7 +696,7 @@
   {
     "channel_id": 3,
     "decoded": {
-      "scan_codes": [
+      "keycodes": [
         23,
         65536
       ]
@@ -705,7 +705,7 @@
     "frame_index": 31,
     "message_id": 32770,
     "message_name": "",
-    "message_type": "oaa.proto.messages.BindingRequest"
+    "message_type": "oaa.proto.messages.InputBindingRequest"
   },
   {
     "channel_id": 12,
@@ -743,13 +743,13 @@
   {
     "channel_id": 3,
     "decoded": {
-      "status": "OK"
+      "status": 0
     },
     "direction": "Phone->HU",
     "frame_index": 35,
     "message_id": 32771,
     "message_name": "",
-    "message_type": "oaa.proto.messages.BindingResponse"
+    "message_type": "oaa.proto.messages.InputBindingResponse"
   },
   {
     "channel_id": 4,
@@ -796,7 +796,7 @@
     "frame_index": 39,
     "message_id": 32770,
     "message_name": "",
-    "message_type": "oaa.proto.messages.BindingRequest"
+    "message_type": "oaa.proto.messages.InputBindingRequest"
   },
   {
     "channel_id": 6,
@@ -812,7 +812,7 @@
   {
     "channel_id": 7,
     "decoded": {
-      "scan_codes": [
+      "keycodes": [
         1,
         2,
         3,
@@ -860,7 +860,7 @@
     "frame_index": 41,
     "message_id": 32770,
     "message_name": "",
-    "message_type": "oaa.proto.messages.BindingRequest"
+    "message_type": "oaa.proto.messages.InputBindingRequest"
   },
   {
     "channel_id": 8,
@@ -898,13 +898,13 @@
   {
     "channel_id": 5,
     "decoded": {
-      "status": "OK"
+      "status": 0
     },
     "direction": "Phone->HU",
     "frame_index": 45,
     "message_id": 32771,
     "message_name": "",
-    "message_type": "oaa.proto.messages.BindingResponse"
+    "message_type": "oaa.proto.messages.InputBindingResponse"
   },
   {
     "channel_id": 6,
@@ -924,13 +924,13 @@
   {
     "channel_id": 7,
     "decoded": {
-      "status": "OK"
+      "status": 0
     },
     "direction": "Phone->HU",
     "frame_index": 47,
     "message_id": 32771,
     "message_name": "",
-    "message_type": "oaa.proto.messages.BindingResponse"
+    "message_type": "oaa.proto.messages.InputBindingResponse"
   },
   {
     "channel_id": 6,
@@ -1012,7 +1012,7 @@
     "frame_index": 53,
     "message_id": 32769,
     "message_name": "",
-    "message_type": "oaa.proto.messages.SensorStartRequestMessage"
+    "message_type": "oaa.proto.messages.SensorRequest"
   },
   {
     "channel_id": 1,
@@ -1086,7 +1086,7 @@
     "frame_index": 59,
     "message_id": 32769,
     "message_name": "",
-    "message_type": "oaa.proto.messages.SensorStartRequestMessage"
+    "message_type": "oaa.proto.messages.SensorRequest"
   },
   {
     "channel_id": 0,
@@ -1147,7 +1147,7 @@
     "frame_index": 64,
     "message_id": 32769,
     "message_name": "",
-    "message_type": "oaa.proto.messages.SensorStartRequestMessage"
+    "message_type": "oaa.proto.messages.SensorRequest"
   },
   {
     "channel_id": 1,
@@ -1170,7 +1170,7 @@
     "frame_index": 66,
     "message_id": 32769,
     "message_name": "",
-    "message_type": "oaa.proto.messages.SensorStartRequestMessage"
+    "message_type": "oaa.proto.messages.SensorRequest"
   },
   {
     "channel_id": 1,
@@ -1193,7 +1193,7 @@
     "frame_index": 68,
     "message_id": 32769,
     "message_name": "",
-    "message_type": "oaa.proto.messages.SensorStartRequestMessage"
+    "message_type": "oaa.proto.messages.SensorRequest"
   },
   {
     "channel_id": 1,
@@ -1323,7 +1323,7 @@
     "frame_index": 86,
     "message_id": 32769,
     "message_name": "",
-    "message_type": "oaa.proto.messages.SensorStartRequestMessage"
+    "message_type": "oaa.proto.messages.SensorRequest"
   },
   {
     "channel_id": 1,
@@ -1458,7 +1458,7 @@
     "frame_index": 102,
     "message_id": 32769,
     "message_name": "",
-    "message_type": "oaa.proto.messages.SensorStartRequestMessage"
+    "message_type": "oaa.proto.messages.SensorRequest"
   },
   {
     "channel_id": 1,
@@ -1880,7 +1880,7 @@
     "frame_index": 159,
     "message_id": 32769,
     "message_name": "",
-    "message_type": "oaa.proto.messages.SensorStartRequestMessage"
+    "message_type": "oaa.proto.messages.SensorRequest"
   },
   {
     "channel_id": 1,
@@ -1930,7 +1930,7 @@
     "frame_index": 165,
     "message_id": 32769,
     "message_name": "",
-    "message_type": "oaa.proto.messages.SensorStartRequestMessage"
+    "message_type": "oaa.proto.messages.SensorRequest"
   },
   {
     "channel_id": 1,
@@ -1965,7 +1965,7 @@
     "frame_index": 169,
     "message_id": 32769,
     "message_name": "",
-    "message_type": "oaa.proto.messages.SensorStartRequestMessage"
+    "message_type": "oaa.proto.messages.SensorRequest"
   },
   {
     "channel_id": 1,
@@ -2449,7 +2449,7 @@
   {
     "channel_id": 10,
     "decoded": {
-      "remaining_distance": {
+      "step_distance": {
         "distance": {
           "display_text": "0",
           "distance_unit": "DISTANCE_UNIT_FEET"
@@ -5839,7 +5839,7 @@
   {
     "channel_id": 10,
     "decoded": {
-      "remaining_distance": {
+      "step_distance": {
         "distance": {
           "display_text": "0",
           "distance_unit": "DISTANCE_UNIT_FEET"
@@ -6959,7 +6959,7 @@
   {
     "channel_id": 10,
     "decoded": {
-      "remaining_distance": {
+      "step_distance": {
         "distance": {
           "display_text": "0",
           "distance_unit": "DISTANCE_UNIT_FEET"
@@ -9084,7 +9084,7 @@
   {
     "channel_id": 10,
     "decoded": {
-      "remaining_distance": {
+      "step_distance": {
         "distance": {
           "display_text": "0",
           "distance_unit": "DISTANCE_UNIT_FEET"
@@ -10302,7 +10302,7 @@
   {
     "channel_id": 10,
     "decoded": {
-      "remaining_distance": {
+      "step_distance": {
         "distance": {
           "display_text": "0",
           "distance_unit": "DISTANCE_UNIT_FEET"
@@ -11745,7 +11745,7 @@
   {
     "channel_id": 10,
     "decoded": {
-      "remaining_distance": {
+      "step_distance": {
         "distance": {
           "display_text": "0",
           "distance_unit": "DISTANCE_UNIT_FEET"
@@ -13175,7 +13175,7 @@
   {
     "channel_id": 10,
     "decoded": {
-      "remaining_distance": {
+      "step_distance": {
         "distance": {
           "display_text": "0",
           "distance_unit": "DISTANCE_UNIT_FEET"
@@ -14999,7 +14999,7 @@
   {
     "channel_id": 10,
     "decoded": {
-      "remaining_distance": {
+      "step_distance": {
         "distance": {
           "display_text": "0",
           "distance_unit": "DISTANCE_UNIT_FEET"
@@ -20285,7 +20285,7 @@
   {
     "channel_id": 10,
     "decoded": {
-      "remaining_distance": {
+      "step_distance": {
         "distance": {
           "display_text": "0",
           "distance_unit": "DISTANCE_UNIT_FEET"
@@ -26060,7 +26060,7 @@
   {
     "channel_id": 10,
     "decoded": {
-      "remaining_distance": {
+      "step_distance": {
         "distance": {
           "display_text": "0",
           "distance_unit": "DISTANCE_UNIT_FEET"
@@ -31021,7 +31021,7 @@
   {
     "channel_id": 10,
     "decoded": {
-      "remaining_distance": {
+      "step_distance": {
         "distance": {
           "display_text": "0",
           "distance_unit": "DISTANCE_UNIT_FEET"
@@ -37218,7 +37218,7 @@
   {
     "channel_id": 10,
     "decoded": {
-      "remaining_distance": {
+      "step_distance": {
         "distance": {
           "display_text": "0",
           "distance_unit": "DISTANCE_UNIT_FEET"
@@ -38610,7 +38610,7 @@
   {
     "channel_id": 10,
     "decoded": {
-      "remaining_distance": {
+      "step_distance": {
         "distance": {
           "display_text": "0",
           "distance_unit": "DISTANCE_UNIT_FEET"
@@ -41327,7 +41327,7 @@
   {
     "channel_id": 10,
     "decoded": {
-      "remaining_distance": {
+      "step_distance": {
         "distance": {
           "display_text": "0",
           "distance_unit": "DISTANCE_UNIT_FEET"
@@ -42931,7 +42931,7 @@
   {
     "channel_id": 10,
     "decoded": {
-      "remaining_distance": {
+      "step_distance": {
         "distance": {
           "display_text": "0",
           "distance_unit": "DISTANCE_UNIT_FEET"
@@ -44372,7 +44372,7 @@
   {
     "channel_id": 10,
     "decoded": {
-      "remaining_distance": {
+      "step_distance": {
         "distance": {
           "display_text": "0",
           "distance_unit": "DISTANCE_UNIT_FEET"
@@ -45606,7 +45606,7 @@
   {
     "channel_id": 10,
     "decoded": {
-      "remaining_distance": {
+      "step_distance": {
         "distance": {
           "display_text": "0",
           "distance_unit": "DISTANCE_UNIT_FEET"
@@ -46505,7 +46505,7 @@
   {
     "channel_id": 10,
     "decoded": {
-      "remaining_distance": {
+      "step_distance": {
         "distance": {
           "display_text": "0",
           "distance_unit": "DISTANCE_UNIT_FEET"

@@ -6,10 +6,10 @@ syntax="proto3";
 package oaa.proto.enums;
 
 // APK class: wcs (16.2) — 5 values (0-4)
-// confidence: gold [deep_trace, handler_verified]
+// confidence: unverified
 message VideoFocusReason
 {
-    // confidence: gold [deep_trace]
+    // confidence: unverified
     enum Enum
     {
         UNKNOWN = 0;

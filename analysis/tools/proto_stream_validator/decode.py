@@ -5,15 +5,14 @@ from typing import Any
 try:
     from google.protobuf import json_format
     from google.protobuf import message
-    from google.protobuf import message_factory
 except ModuleNotFoundError as exc:  # pragma: no cover - exercised in dependency-limited envs
     json_format = None  # type: ignore[assignment]
     message = None  # type: ignore[assignment]
-    message_factory = None  # type: ignore[assignment]
     _PROTOBUF_IMPORT_ERROR = exc
 else:
     _PROTOBUF_IMPORT_ERROR = None
 
+from analysis.tools.protobuf_compat import message_class_for_descriptor
 from analysis.tools.proto_stream_validator.descriptors import DescriptorBundle
 
 
@@ -22,15 +21,6 @@ def _require_protobuf_runtime() -> None:
         raise RuntimeError(
             "python protobuf runtime is required (install package: protobuf)"
         ) from _PROTOBUF_IMPORT_ERROR
-
-
-def _message_class_for_descriptor(descriptor: object) -> type[Any]:
-    get_message_class = getattr(message_factory, "GetMessageClass", None)
-    if callable(get_message_class):
-        return get_message_class(descriptor)
-
-    factory = message_factory.MessageFactory()  # type: ignore[union-attr]
-    return factory.GetPrototype(descriptor)
 
 
 def decode_payload(
@@ -45,7 +35,7 @@ def decode_payload(
     except KeyError as exc:
         raise ValueError(f"unknown message type: {message_type}") from exc
 
-    cls = _message_class_for_descriptor(descriptor)
+    cls = message_class_for_descriptor(descriptor)
     msg = cls()
 
     try:

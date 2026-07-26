@@ -16,10 +16,10 @@ import "oaa/video/DisplayTypeEnum.proto";
 
 package oaa.proto.data;
 
-// confidence: gold [handler_trace, deep_apk]
+// confidence: unverified
 message TouchScreenConfig
 {
-    required int32 width = 1;                          // touch area width in pixels
-    required int32 height = 2;                         // touch area height in pixels
-    optional enums.DisplayType.Enum display_type = 3;  // MAIN=1, CLUSTER=2, AUXILIARY=3
+    required int32 width = 1; // touch area width in pixels  // confidence: unverified
+    required int32 height = 2; // touch area height in pixels  // confidence: unverified
+    optional enums.DisplayType.Enum display_type = 3; // MAIN=1, CLUSTER=2, AUXILIARY=3  // confidence: unverified
 }

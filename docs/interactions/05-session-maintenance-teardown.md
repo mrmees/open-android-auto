@@ -144,7 +144,9 @@ message GalPingResponse {
 
 > Confidence: Unverified
 
-Ping timing parameters are delivered during service discovery, embedded in `ConnectionConfiguration` (field 1 of `ConnectionConfiguration`, which is field 16 of `ServiceDiscoveryResponse`).
+No capture-backed service-discovery field for ping timing is currently known.
+The former `ConnectionConfiguration`/field-16 path was retracted in 2026-07
+after its class lineage resolved to GoogleAuth data.
 
 ```protobuf
 // oaa/common/PingConfigurationData.proto
@@ -155,7 +157,9 @@ message PingConfiguration {
 }
 ```
 
-These fields define the expected ping cadence and timeout threshold. The exact values sent by production phones have not been verified. Implementations should read these values from the service discovery response and use them to configure their ping timer and timeout detection.
+These fields remain an unverified historical hypothesis. Implementations should
+not expect them in `ServiceDiscoveryResponse`; use observed ping behavior or
+explicit local policy until a protocol source is verified.
 
 > **Note:** The field names suggest nanosecond precision for the interval and millisecond precision for the timeout. The disparity in units is present in the APK source.
 
@@ -494,7 +498,7 @@ This is the final stage of the connection lifecycle. To establish a new session,
 - [ByeByeResponseMessage.proto](../../oaa/control/ByeByeResponseMessage.proto) + [audit](../../oaa/control/ByeByeResponseMessage.audit.yaml) -- Bronze
 - [DisconnectReasonEnum.proto](../../oaa/common/DisconnectReasonEnum.proto) -- Unverified (phone-internal)
 - [PingConfigurationData.proto](../../oaa/common/PingConfigurationData.proto) -- Unverified
-- [ConnectionConfigurationData.proto](../../oaa/control/ConnectionConfigurationData.proto) -- Silver
+- [ConnectionConfigurationData.proto](../../oaa/control/ConnectionConfigurationData.proto) -- Retracted (GoogleAuth lineage)
 - [ControlMessageIdsEnum.proto](../../oaa/control/ControlMessageIdsEnum.proto) -- Unverified
 - [04-channel-lifecycle](04-channel-lifecycle.md) -- prerequisite document
 - [01-transport-setup](01-transport-setup.md) -- start of lifecycle chain

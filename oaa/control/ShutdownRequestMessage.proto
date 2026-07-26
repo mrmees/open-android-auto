@@ -11,8 +11,8 @@ package oaa.proto.messages;
 // Msg ID: 15 (SHUTDOWN_REQUEST / ByeByeRequest) on control channel
 // Direction: Bidirectional — both HU and phone can send
 // Handler: hzh.java case 15 (receive), mo20031c (send)
-// confidence: gold [apk_deep_trace]
+// confidence: silver [apk_static, cross_version]
 message ShutdownRequest
 {
-    required enums.ShutdownReason.Enum reason = 1;  // confidence: gold [apk_deep_trace]
+    required enums.ShutdownReason.Enum reason = 1;  // confidence: silver [apk_static, cross_version]
 }

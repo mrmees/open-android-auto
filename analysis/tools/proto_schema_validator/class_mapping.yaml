@@ -1929,11 +1929,20 @@ mappings:
   proto_file: oaa/video/AdditionalVideoConfigData.proto
   proto_fqn: oaa.proto.data.VideoInsets
   apk_classes:
+    '15.9': vqj
+    '16.1': vyb
+    '16.2': vxn
+    '16.4': null
+  confidence: proto_comment
+- proto_message: UIElementPosition
+  proto_file: oaa/video/AdditionalVideoConfigData.proto
+  proto_fqn: oaa.proto.data.UIElementPosition
+  apk_classes:
     '15.9': vtq
     '16.1': wbi
     '16.2': way
     '16.4': null
-  confidence: proto_comment
+  confidence: semantic_trace
 - proto_message: VideoMarginConfig
   proto_file: oaa/video/AdditionalVideoConfigData.proto
   proto_fqn: oaa.proto.data.VideoMarginConfig
@@ -1950,15 +1959,6 @@ mappings:
     '15.9': vnt
     '16.1': vvl
     '16.2': vux
-    '16.4': null
-  confidence: proto_comment
-- proto_message: VideoResolutionRange
-  proto_file: oaa/video/AdditionalVideoConfigData.proto
-  proto_fqn: oaa.proto.data.VideoResolutionRange
-  apk_classes:
-    '15.9': vqj
-    '16.1': vyb
-    '16.2': vxn
     '16.4': null
   confidence: proto_comment
 - proto_message: VideoConfig
@@ -2101,10 +2101,10 @@ mappings:
   proto_fqn: oaa.proto.messages.WifiSecurityResponse
   apk_classes:
     '15.9': null
-    '16.1': wan
-    '16.2': waf
-    '16.4': wss
-  confidence: apk_protos_json
+    '16.1': null
+    '16.2': null
+    '16.4': null
+  confidence: wire_capture_only
 - proto_message: WifiNetworkInfo
   proto_file: oaa/wifi/WifiSetupInfoMessage.proto
   proto_fqn: oaa.proto.messages.WifiNetworkInfo

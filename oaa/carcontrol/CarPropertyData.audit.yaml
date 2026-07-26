@@ -1,7 +1,7 @@
 proto: oaa/carcontrol/CarPropertyData.proto
 message: CarPropertyData (all sub-messages)
-confidence: gold
-last_updated: '2026-03-07'
+confidence: silver
+last_updated: '2026-07-25'
 evidence:
 - type: deep_trace
   method: db_schema_verification
@@ -46,7 +46,7 @@ evidence:
   date: '2026-03-03'
   description: Structural match confirmed across versions for most sub-messages.
     CarPropertyConfig fields 4/7 restructured in 16.2.
-changes_applied:
+corrections:
 - CarPropertyId enum values — ALL changed from sequential (1-23) to raw VHAL IDs
 - CarPropertyValue oneof 6-8 — CarPropertyValueMsg → IntValues/LongValues/FloatValues
 - CarPropertyValueMsg message REMOVED (was empty placeholder)

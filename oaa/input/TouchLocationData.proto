@@ -6,10 +6,10 @@ syntax="proto2";
 package oaa.proto.data;
 
 // APK class: wby (16.2), wci (16.1) — touch point with pointer ID
-// confidence: gold [handler_trace, deep_apk]
+// confidence: silver [apk_deep_trace, apk_static]
 message TouchLocation
 {
-    required uint32 x = 1;           // pixel X coordinate
-    required uint32 y = 2;           // pixel Y coordinate
-    required uint32 pointer_id = 3;  // multi-touch pointer ID
+    required uint32 x = 1; // pixel X coordinate  // confidence: silver [apk_deep_trace, apk_static]
+    required uint32 y = 2; // pixel Y coordinate  // confidence: silver [apk_deep_trace, apk_static]
+    required uint32 pointer_id = 3; // multi-touch pointer ID  // confidence: silver [apk_deep_trace, apk_static]
 }

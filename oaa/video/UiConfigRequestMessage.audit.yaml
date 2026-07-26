@@ -1,7 +1,7 @@
 proto: oaa/video/UiConfigRequestMessage.proto
 message: UiConfigRequest
-confidence: gold
-last_updated: '2026-03-06'
+confidence: bronze
+last_updated: '2026-07-25'
 wire_msg_id: 0x8011
 direction: HU->Phone
 channel: video (CAR.GAL.VIDEO)

@@ -1,7 +1,7 @@
 proto: oaa/media/CarLocalMediaPlaybackRequestMessage.proto
 message: CarLocalMediaPlaybackRequest
-confidence: gold
-last_updated: '2026-03-06'
+confidence: silver
+last_updated: '2026-07-25'
 evidence:
 - type: apk_static
   method: string_const

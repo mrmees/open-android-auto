@@ -6,6 +6,8 @@ from __future__ import annotations
 
 from pathlib import Path
 
+import pytest
+
 
 def test_db_16_4_flag(tmp_path: Path) -> None:
     """build_parser() must accept --db-16_4 and store it at args.db_16_4."""
@@ -17,6 +19,25 @@ def test_db_16_4_flag(tmp_path: Path) -> None:
     assert args.db_16_4 == fake
 
 
+def test_find_db_164_prefers_canonical_build(tmp_path: Path, monkeypatch) -> None:
+    """_find_db selects the canonical 16.4 build from a fixture tree."""
+    from analysis.tools.cross_version import run
+
+    canonical = (
+        tmp_path
+        / "android_auto_16.4.661014-release_164661014"
+        / "apk-index"
+        / "sqlite"
+        / "apk_index.db"
+    )
+    canonical.parent.mkdir(parents=True)
+    canonical.touch()
+    monkeypatch.setattr(run, "_ANALYSIS", tmp_path)
+
+    assert run._find_db("16.4") == canonical
+
+
+@pytest.mark.apk_index_integration
 def test_find_db_164() -> None:
     """_find_db must resolve the canonical 661014 build directory.
 
@@ -29,7 +50,8 @@ def test_find_db_164() -> None:
     from analysis.tools.cross_version.run import _find_db
 
     result = _find_db("16.4")
-    assert result is not None, "_find_db('16.4') returned None — canonical 16.4.661014 DB missing?"
+    if result is None:
+        pytest.skip("missing ignored APK-index SQLite snapshot: Android Auto 16.4.661014")
     s = str(result)
     assert "16.4" in s
     # Canonical build is 661014, NOT 661034 — locked by phase decision.

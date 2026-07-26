@@ -18,9 +18,9 @@ import "oaa/sensor/SensorTypeEnum.proto";
 package oaa.proto.messages;
 
 // RETRACTED: Use SensorRequestMessage (SensorRequest) instead
-// confidence: retracted [duplicate of SensorRequestMessage with wrong field modifiers]
+// confidence: retracted [apk_static, cross_version]
 message SensorStartRequestMessage
 {
-    optional enums.SensorType.Enum sensor_type = 1;  // WRONG: should be required
-    optional uint64 refresh_interval = 2;  // WRONG: should be required int64
+    optional enums.SensorType.Enum sensor_type = 1; // WRONG: should be required  // confidence: retracted [apk_static, cross_version]
+    optional uint64 refresh_interval = 2; // WRONG: should be required int64  // confidence: retracted [apk_static, cross_version]
 }

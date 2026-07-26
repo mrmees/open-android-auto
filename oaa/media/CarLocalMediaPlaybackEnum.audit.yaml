@@ -1,7 +1,15 @@
 proto: oaa/media/CarLocalMediaPlaybackEnum.proto
 message: CarLocalMediaPlayback
-confidence: superseded
+confidence: retracted
 last_updated: '2026-03-06'
+retracted: true
+retraction:
+  date: '2026-03-06'
+  reason: >-
+    Superseded by the canonical CarLocalMediaPlaybackAction enum in
+    oaa/media/CarLocalMediaPlaybackStatusMessage.proto; this tombstone had the
+    wrong syntax, package, and an unnecessary message wrapper.
+  replaced_by: oaa/media/CarLocalMediaPlaybackStatusMessage.proto
 evidence:
 - type: apk_static
   method: bfs_trace

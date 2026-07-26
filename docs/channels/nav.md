@@ -55,6 +55,21 @@ This is the deepest channel in the protocol: 14 proto files, 31 cross-version ma
 | 0x8006 | NavigationNotification | Phone -> HU | Rich turn-by-turn with steps, lanes, destinations, ETA |
 | 0x8007 | NavigationNextTurnDistanceEvent | Phone -> HU | Distance to next turn with display text and unit |
 
+In 17.3, the `0x8007` sender builds the payload directly from
+`NavigationCurrentPosition`:
+
+```protobuf
+message NavigationNextTurnDistanceEvent {
+    optional NavigationStepDistance step_distance = 1;
+    repeated DestinationDistance destination_distances = 2;
+    optional NavigationText current_road = 3;
+}
+```
+
+`NavigationStepDistance` contains the localized distance plus
+`time_to_step_seconds`; each destination contains its localized distance, ETA
+text, and `time_to_arrival_seconds`.
+
 **NavigationTurnEvent** is the simplified, flat representation:
 
 ```protobuf
@@ -386,7 +401,7 @@ Track `NavigationState` to know when to show/hide navigation UI:
 
 > **Gotcha:** ManeuverType `UNKNOWN` (0) is the default value. If the phone can't determine the maneuver type, it sends 0. Your icon mapping must handle this case -- don't crash or show a blank on UNKNOWN. A generic "continue" arrow is the standard fallback.
 
-> **Gotcha:** NavigationNextTurnDistanceEvent (0x8007) and NavigationTurnEvent (0x8004) both contain distance information but in different formats. NavigationTurnEvent has a simple `distance_meters` int, while NavigationNextTurnDistanceEvent carries `NavigationRemainingDistance` with display text and a `DistanceDisplayUnit` enum for localized formatting. Use NavigationTurnEvent for basic distance display; use NavigationNextTurnDistanceEvent for pre-formatted distance strings. When rendering units, group `2/3` as kilometers and `4/5` as miles — values `3` and `5` are one-decimal precision variants, not distinct units. **Note:** NavigationDistance (APK class xnb) was previously assigned to 0x8007 but wire capture analysis (2026-03-04) proved this wrong — NavigationDistance's field 1 expects int64, but wire data has a nested submessage matching NavigationNextTurnDistanceEvent. NavigationDistance's actual message ID is unknown; it may not be sent on the nav channel at all.
+> **Gotcha:** NavigationNextTurnDistanceEvent (0x8007) and NavigationTurnEvent (0x8004) both contain distance information but in different formats. NavigationTurnEvent has a simple `distance_meters` int, while NavigationNextTurnDistanceEvent carries a `NavigationStepDistance`, zero or more destination distances, and the current road. The nested distance uses pre-formatted display text and a `DistanceDisplayUnit` enum. When rendering units, group `2/3` as kilometers and `4/5` as miles — values `3` and `5` are one-decimal precision variants, not distinct units. **Note:** NavigationDistance (APK class xnb) was previously assigned to 0x8007 but wire capture analysis (2026-03-04) proved this wrong — NavigationDistance's field 1 expects int64, but wire data has a nested submessage matching NavigationNextTurnDistanceEvent. NavigationDistance's actual message ID is unknown; it may not be sent on the nav channel at all.
 
 ---
 

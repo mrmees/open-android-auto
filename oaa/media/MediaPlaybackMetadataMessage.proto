@@ -28,13 +28,13 @@ syntax="proto2";
 package oaa.proto.messages;
 
 // APK class: vyb
-// confidence: gold [apk_deep_trace, 2026-03-06]
+// confidence: silver [apk_deep_trace, apk_static, cross_version]
 message MediaPlaybackMetadata {
-    optional string title = 1;       // Track title  // confidence: gold [apk_deep_trace]
-    optional string artist = 2;      // Artist name  // confidence: gold [apk_deep_trace]
-    optional string album = 3;       // Album name  // confidence: gold [apk_deep_trace]
-    optional bytes album_art = 4;    // Album art image data  // confidence: gold [apk_deep_trace]
-    optional string unknown_5 = 5;   // String field — always null from GMS proxy. Semantic name unknown.  // confidence: gold [apk_deep_trace]
-    optional uint32 unknown_6 = 6;   // uint32 field — could be duration, track number, etc.  // confidence: gold [apk_deep_trace]
-    optional int32 unknown_7 = 7;    // int32 field — always 0 from GMS proxy. Semantic name unknown.  // confidence: gold [apk_deep_trace]
+    optional string title = 1; // Track title  // confidence: silver [apk_deep_trace, apk_static, cross_version]
+    optional string artist = 2; // Artist name  // confidence: silver [apk_deep_trace, apk_static, cross_version]
+    optional string album = 3; // Album name  // confidence: silver [apk_deep_trace, apk_static, cross_version]
+    optional bytes album_art = 4; // Album art image data  // confidence: silver [apk_deep_trace, apk_static, cross_version]
+    optional string unknown_5 = 5; // String field — always null from GMS proxy. Semantic name unknown.  // confidence: silver [apk_deep_trace, apk_static, cross_version]
+    optional uint32 unknown_6 = 6; // uint32 field — could be duration, track number, etc.  // confidence: silver [apk_deep_trace, apk_static, cross_version]
+    optional int32 unknown_7 = 7; // int32 field — always 0 from GMS proxy. Semantic name unknown.  // confidence: silver [apk_deep_trace, apk_static, cross_version]
 }
