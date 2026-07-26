@@ -34,7 +34,8 @@ the documented contract.
 2. Preserve protobuf tags, cardinality, packages, and enum numeric values.
 3. Add a compiled-descriptor regression test covering both fields.
 4. Record the Android Auto 17.3 validator evidence in both audit sidecars.
-5. Keep the repository verification and confidence-annotation gates green.
+5. Refresh and revalidate tracked decoded baselines whose enum labels change.
+6. Keep the repository verification and confidence-annotation gates green.
 
 ## Non-goals
 
@@ -84,7 +85,8 @@ H264=3 payloads are wire-compatible while generated clients gain symbolic
 access to codecs 2, 4, 5, 6, and 7.
 
 Update the comment in `MediaCodecTypeEnum.proto` so its active uses include
-field 1 of `AVChannel` and `AVInputChannel`.
+field 1 of `AVChannel`, `AVInputChannel`, and `AVChannelSetupRequest`, plus
+field 10 of `VideoConfig`.
 
 ### 2. Descriptor regression test
 
@@ -120,11 +122,30 @@ cross-version structural checks correctly saw an enum varint at field 1, but
 did not prove which enum namespace the field uses. The new deep trace resolves
 that semantic ambiguity.
 
+Keep `AVInputChannel` at Silver confidence. Its existing cross-version evidence
+records structural consistency but does not use the exact version-to-class
+syntax required by the executable Gold policy. The fix must not rewrite that
+evidence solely to obtain a higher tier.
+
 After editing sidecars, run the annotation repair for `oaa/av` if the canonical
 renderer changes the confidence comments, then require `--check` to report no
 drift.
 
-### 4. Repository workflow records
+### 4. Decoded baseline refresh
+
+The field's wire bytes do not change, but normalized JSON renders enum names.
+Re-bless each tracked non-media baseline from its committed capture using the
+documented validator command and an explicit issue #8 reason. Only these label
+changes are expected:
+
+- `VIDEO` -> `MEDIA_CODEC_VIDEO_H264_BP`; and
+- `AUDIO` -> `MEDIA_CODEC_AUDIO_PCM`.
+
+Run each refreshed capture against its baseline again without `--bless` and
+require zero diffs. Any payload, message selection, ordering, or non-enum value
+change is a stop condition.
+
+### 5. Repository workflow records
 
 Update `docs/roadmap-current.md` only to record the immediate issue #8 schema
 correction ahead of further issue #10 investigation; do not reorder unrelated
@@ -140,6 +161,8 @@ Stop and investigate rather than expanding the patch if:
 - the descriptor test fails for a reason other than the current enum target;
 - `protoc` reports an import, package, or duplicate-symbol error;
 - annotation repair changes unrelated AV files; or
+- a refreshed capture baseline changes anything except the expected
+  `stream_type` enum labels; or
 - full verification exposes a failure outside the bounded descriptor change.
 
 ## Verification
@@ -153,9 +176,11 @@ The fix is ready for integration only after fresh evidence shows:
    files;
 4. the audit schema and tier-consistency tests pass;
 5. annotation `--check` reports zero changes;
-6. `make PYTHON=.venv/bin/python verify` exits zero;
-7. `git diff --check` exits zero; and
-8. `docs/session-handoffs.md` records the commands and outcomes.
+6. all five tracked non-media captures validate against their refreshed
+   baselines without `--bless`;
+7. `make PYTHON=.venv/bin/python verify` exits zero;
+8. `git diff --check` exits zero; and
+9. `docs/session-handoffs.md` records the commands and outcomes.
 
 ## Issue #10 Investigation Boundary
 

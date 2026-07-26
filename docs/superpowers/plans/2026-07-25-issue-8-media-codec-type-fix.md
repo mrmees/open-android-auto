@@ -116,7 +116,7 @@ invalid RED result and must be fixed in the test before proceeding.
 
 **Interfaces:**
 - Consumes: the failing field-1 descriptor contract from Task 1 and the 17.3 `xik`/`xil` -> `orw.u` -> `xif.b` validator trace.
-- Produces: both field-1 descriptors targeting `oaa.proto.enums.MediaCodecType.Enum`; AVInputChannel promoted to canonical Gold confidence by direct deep-trace plus cross-version evidence.
+- Produces: both field-1 descriptors targeting `oaa.proto.enums.MediaCodecType.Enum`; AVInputChannel retains Silver confidence while adding the newly proven deep-trace evidence type.
 
 - [ ] **Step 1: Replace the two imports and field types**
 
@@ -147,7 +147,7 @@ Replace the comment at `oaa/av/MediaCodecTypeEnum.proto:9` with:
 
 ```protobuf
 // Media codec types for AVChannel field 1, AVInputChannel field 1,
-// VideoConfig field 10, and AudioCodecConfig field 1.
+// AVChannelSetupRequest field 1, and VideoConfig field 10.
 ```
 
 - [ ] **Step 3: Append the 17.3 semantic validator evidence**
@@ -171,8 +171,8 @@ Append this entry to `oaa/av/AVChannelData.audit.yaml`:
     AVStreamType enum; tag 1 remains an enum varint on the wire.
 ```
 
-Append this entry to `oaa/av/AVInputChannelData.audit.yaml` and change its
-top-level `confidence` from `silver` to `gold`:
+Append this entry to `oaa/av/AVInputChannelData.audit.yaml` and keep its
+top-level `confidence` at `silver`:
 
 ```yaml
 - type: apk_deep_trace
@@ -186,9 +186,9 @@ top-level `confidence` from `silver` to `gold`:
   date: '2026-07-25'
   description: >
     AVInputChannel field 1 uses validator orw.u, which dispatches to xif.b and
-    accepts the codec domain 1-7. Combined with the existing exact
-    cross-version class lineage, this proves MediaCodecType and satisfies the
-    repository's Gold evidence prerequisites.
+    accepts the codec domain 1-7. This proves MediaCodecType while the existing
+    cross-version evidence remains structural and does not independently meet
+    the repository's machine-readable Gold prerequisite.
 ```
 
 - [ ] **Step 4: Synchronize and check AV confidence annotations**
@@ -200,9 +200,10 @@ PYTHONPATH=. .venv/bin/python -m analysis.tools.seed_import.annotate oaa/av
 PYTHONPATH=. .venv/bin/python -m analysis.tools.seed_import.annotate --check oaa/av
 ```
 
-Expected: repair changes only `AVInputChannelData.proto` confidence comments
-from Silver to Gold; the check reports `Changed: 0`. If any unrelated AV file
-changes, stop and inspect the sidecar/renderer boundary.
+Expected: repair changes only `AVInputChannelData.proto` confidence evidence
+labels to `silver [apk_deep_trace, apk_static, cross_version]`; the check
+reports `Changed: 0`. If the tier changes or any unrelated AV file changes,
+stop and inspect the sidecar/renderer boundary.
 
 - [ ] **Step 5: Run the descriptor contract and verify GREEN**
 
@@ -220,15 +221,17 @@ Expected: `2 passed`.
 Run:
 
 ```bash
-rm -rf /tmp/oaa-issue-8-cpp
-mkdir -p /tmp/oaa-issue-8-cpp
-protoc --proto_path=. --cpp_out=/tmp/oaa-issue-8-cpp \
+issue8_cpp_dir="$(mktemp -d)"
+trap 'rm -rf "$issue8_cpp_dir"' EXIT
+protoc --proto_path=. --cpp_out="$issue8_cpp_dir" \
   oaa/av/AVChannelData.proto \
   oaa/av/AVInputChannelData.proto
+test -s "$issue8_cpp_dir/oaa/av/AVChannelData.pb.cc"
+test -s "$issue8_cpp_dir/oaa/av/AVInputChannelData.pb.cc"
 ```
 
 Expected: exit 0 and generated C++ files under
-`/tmp/oaa-issue-8-cpp/oaa/av/`.
+the task-scoped temporary directory.
 
 - [ ] **Step 7: Validate both audit sidecars and canonical tiers**
 
@@ -243,7 +246,40 @@ PYTHONPATH=. .venv/bin/python -m pytest -q \
 
 Expected: all selected tests pass with no confidence drift.
 
-- [ ] **Step 8: Commit the verified schema correction**
+- [ ] **Step 8: Re-bless and revalidate all affected decoded baselines**
+
+Run:
+
+```bash
+issue8_pairs=(
+  "analysis/captures/non_media/2026-02-28-s25-cleanbuild.jsonl|analysis/baselines/non_media/2026-02-28-s25-cleanbuild.normalized.json"
+  "analysis/captures/non_media/active-navigation.converted.jsonl|analysis/baselines/non_media/active-navigation.normalized.json"
+  "analysis/captures/non_media/general.converted.jsonl|analysis/baselines/non_media/general.normalized.json"
+  "analysis/captures/non_media/idle-baseline.converted.jsonl|analysis/baselines/non_media/idle-baseline.normalized.json"
+  "analysis/captures/non_media/music-playback.converted.jsonl|analysis/baselines/non_media/music-playback.normalized.json"
+)
+for issue8_pair in "${issue8_pairs[@]}"; do
+  issue8_capture="${issue8_pair%%|*}"
+  issue8_baseline="${issue8_pair#*|}"
+  PYTHONPATH=. .venv/bin/python analysis/tools/proto_stream_validator/run.py \
+    --capture "$issue8_capture" \
+    --baseline "$issue8_baseline" \
+    --repo-root . \
+    --bless \
+    --reason "issue #8: correct AV stream_type enum identity to MediaCodecType"
+  PYTHONPATH=. .venv/bin/python analysis/tools/proto_stream_validator/run.py \
+    --capture "$issue8_capture" \
+    --baseline "$issue8_baseline" \
+    --repo-root .
+done
+```
+
+Expected: every bless and validation command exits 0. The five baseline diffs
+contain only `stream_type` label replacements: `VIDEO` becomes
+`MEDIA_CODEC_VIDEO_H264_BP`, and `AUDIO` becomes
+`MEDIA_CODEC_AUDIO_PCM`.
+
+- [ ] **Step 9: Commit the verified schema correction**
 
 Run:
 
@@ -255,12 +291,18 @@ git add \
   oaa/av/AVInputChannelData.proto \
   oaa/av/MediaCodecTypeEnum.proto \
   oaa/av/AVChannelData.audit.yaml \
-  oaa/av/AVInputChannelData.audit.yaml
+  oaa/av/AVInputChannelData.audit.yaml \
+  analysis/baselines/non_media/2026-02-28-s25-cleanbuild.normalized.json \
+  analysis/baselines/non_media/active-navigation.normalized.json \
+  analysis/baselines/non_media/general.normalized.json \
+  analysis/baselines/non_media/idle-baseline.normalized.json \
+  analysis/baselines/non_media/music-playback.normalized.json
 git commit -m "fix(proto): use media codec type for AV channels"
 ```
 
 Expected: one commit containing only the focused descriptor contract, the two
-schema corrections, the codec usage comment, and their evidence sidecars.
+schema corrections, the codec usage comment, their evidence sidecars, and the
+five directly affected decoded baselines.
 
 ---
 
@@ -319,8 +361,10 @@ What changed:
   `AVStreamType.Enum` to `MediaCodecType.Enum` without changing tag,
   cardinality, package, or wire encoding
 - Added a compiled-descriptor regression covering both messages
-- Added Android Auto 17.3 semantic validator traces to both audit sidecars and
-  promoted `AVInputChannel` to canonical Gold confidence
+- Added Android Auto 17.3 semantic validator traces to both audit sidecars
+  while retaining `AVInputChannel` at policy-derived Silver confidence
+- Re-blessed and revalidated the five tracked non-media baselines whose
+  `stream_type` enum labels changed
 
 Why:
 - Android Auto uses the MediaCodecType validator for both fields. The old type
@@ -342,9 +386,12 @@ Verification:
 - RED descriptor contract -> 2 failed; both fields resolved to
   `oaa.proto.enums.AVStreamType.Enum`
 - GREEN descriptor contract -> 2 passed
-- `protoc --proto_path=. --cpp_out=/tmp/oaa-issue-8-cpp
-  oaa/av/AVChannelData.proto oaa/av/AVInputChannelData.proto` -> exit 0
+- `protoc --proto_path=. --cpp_out="$issue8_cpp_dir"
+  oaa/av/AVChannelData.proto oaa/av/AVInputChannelData.proto` -> exit 0 using
+  task-scoped temporary output
 - Audit schema, tier, and annotation policy slice -> all selected tests passed
+- All five tracked non-media captures -> refreshed with an explicit issue #8
+  reason, then validated with no baseline diffs
 - `make PYTHON=.venv/bin/python verify` -> exit 0; 1,812 passed, 3 expected
   APK-index integration skips; all 247 protos compiled; annotation check
   reported `Changed: 0`
@@ -400,9 +447,10 @@ git diff --check aa691cd..HEAD
 git status --short --branch
 ```
 
-Expected: the branch contains this implementation plan, the descriptor test,
-two corrected AV schemas, one codec comment, two updated audit sidecars,
-roadmap, and handoff; the worktree is clean.
+Expected: the branch contains the corrected design and implementation plan,
+the descriptor test, two corrected AV schemas, one codec comment, two updated
+audit sidecars, five refreshed decoded baselines, roadmap, and handoff; the
+worktree is clean.
 
 - [ ] **Step 2: Confirm the obsolete enum has no active message consumers**
 
@@ -420,9 +468,10 @@ active message imports or field references remain.
 Run:
 
 ```bash
-git diff --name-only aa691cd..HEAD \
-  | rg '^(docs/channels/display-routing\.md|analysis/reports/multi-display/)' \
-  && exit 1 || true
+if git diff --name-only aa691cd..HEAD \
+  | rg -q '^(docs/channels/display-routing\.md|analysis/reports/multi-display/)'; then
+  exit 1
+fi
 ```
 
 Expected: exit 0 with no matching changed path. GitHub issue comments, labels,
