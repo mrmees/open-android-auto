@@ -1304,8 +1304,6 @@ Verification:
   files present
 - `git diff --check` -> exit 0
 
-
-
 ## 2026-07-24 — Close Android Auto 17.3 car-control direction matrix
 
 Date / Session: 2026-07-24 / android-auto-17.3-update-task-4
@@ -3223,4 +3221,34 @@ Next steps:
 Verification:
 - `rg -n "Run Task 14|Recover the aggregate" docs/roadmap-current.md` -> no
   stale pending-gate references
+- `git diff --check` -> exit 0
+
+## 2026-07-25 — Fix Verify workflow dependency-cache discovery
+
+What changed:
+- Configured `actions/setup-python` with
+  `cache-dependency-path: requirements-test.txt`
+
+Why:
+- PR #11's push and pull-request runs both failed during Python setup because
+  pip caching searched only for the default `requirements.txt` or
+  `pyproject.toml`; this repository intentionally keeps its clean-checkout test
+  dependencies in `requirements-test.txt`
+
+Status:
+- The focused workflow regression and the full local repository gate pass
+- The fix is ready for GitHub's clean-runner verification before merge
+
+Next steps:
+1. Push the focused workflow fix to PR #11
+2. Wait for the replacement GitHub Actions checks to pass
+3. Merge the pull request to `main` and delete the merged head branch
+
+Verification:
+- RED inline workflow contract check -> exit 1 with `missing setup-python cache
+  manifest: cache-dependency-path: requirements-test.txt`
+- GREEN inline workflow contract check -> exit 0
+- `make PYTHON=.venv/bin/python verify` -> exit 0; 1,810 passed, 3 expected
+  APK-index integration skips in 49.28s; all 247 protos compiled; annotation
+  check reported 247 files and `Changed: 0`
 - `git diff --check` -> exit 0
