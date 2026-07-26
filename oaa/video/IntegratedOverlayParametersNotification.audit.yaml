@@ -7,16 +7,16 @@ direction: Phone->HU
 channel: video (CAR.GAL.VIDEO)
 class_mapping:
   wrapper:
-    v16.4.661034: wqe
+    v16.4.661014: wqb
     v17.3.662804: xhv
   parameter:
-    v16.4.661034: wsb
+    v16.4.661014: wry
     v17.3.662804: xjs
   bounds:
-    v16.4.661034: wsa
+    v16.4.661014: wrx
     v17.3.662804: xjr
-  scale:
-    v16.4.661034: wsc
+  corner_radius:
+    v16.4.661014: wrz
     v17.3.662804: xjt
 evidence:
 - type: apk_deep_trace
@@ -26,26 +26,38 @@ evidence:
     1db7ce995aa52b2cde47a01abfb0364220fb57fc60217de3ec714e3034795344;
     base.apk SHA-256
     5557827f259898bdab97b489e1a0aef937fd6ec711d87361cf25d51af6f48619;
-    JADX itt.java:625-642 -> iin.java:67-128 ->
-    xhv.java:7,26; xjs.java:7-10,29; xjr.java:7-11,30; xjt.java:7-8,27
+    JADX OverlayParameters.java:12-21,39-40 -> itt.java:625-642 ->
+    iin.java:67-128 -> xhv.java:7,26; xjs.java:7-10,29;
+    xjr.java:7-11,30; xjt.java:7-8,27
   date: '2026-07-26'
   description: >-
-    The phone converts each GMS OverlayParameters object into an option with
-    int32 type, four signed Rect edges, and a wrapped float scale, appends the
-    options to repeated wrapper field 1, and sends raw wire ID 0x800D to the HU.
-    This static trace does not establish overlay-type values, coordinate space,
-    units, or runtime delivery. The canonical schema retains the historical
-    scale label, while the 17.3 GMS Parcelable labels the source float
-    cornerRadius; that semantic discrepancy remains unresolved.
+    The GMS Parcelable identifies its three values as contentType, bounds, and
+    cornerRadius. The phone copies them unchanged into option fields 1-3,
+    appends the options to repeated wrapper field 1, and sends raw wire ID
+    0x800D to the HU. This static trace does not establish content-type values,
+    coordinate space, radius units, or runtime delivery.
 - type: cross_version
   method: structural_and_builder_comparison
   source: >-
-    v16.4.661034: idy.java:183-201 -> htc.java:65-130
-    (wqe/wsb/wsa/wsc) / v17.3.662804: itt.java:625-642 ->
+    v16.4.661014:wqb / v17.3.662804:xhv;
+    v16.4.661014:wry / v17.3.662804:xjs;
+    v16.4.661014:wrx / v17.3.662804:xjr;
+    v16.4.661014:wrz / v17.3.662804:xjt;
+    Android Auto 16.4.661014-release (164661014), retained at
+    analysis/android_auto_16.4.661014-release_164661014/apk-source;
+    manifest.json SHA-256
+    9142bd4d8d60a45a26764551adc85c70d842e771d9d351a94b902da03e03b2e4;
+    classes2.dex SHA-256
+    0a10ea9b114ef867b22b8d75ac11b7cece7e5598c4b716c0e5c2f6701ecd532c;
+    classes3.dex SHA-256
+    3defacb48b63f8666b6c30a8e3c2a13208d606c243f9f0514f9ad2c19f4a29b8;
+    JADX OverlayParameters.java:12-21,39-40 -> idy.java:183-201 ->
+    htc.java:65-129 (wqb/wry/wrx/wrz) / v17.3.662804:
+    OverlayParameters.java:12-21,39-40 -> itt.java:625-642 ->
     iin.java:67-128 (xhv/xjs/xjr/xjt)
   date: '2026-07-26'
   status: consistent
   description: >-
     Both versions build and send the same nested field graph: repeated option
-    field 1; option int32 field 1 plus message fields 2-3; bounds int32 fields
-    1-4; and scale float field 1.
+    field 1; option content-type int32 field 1 plus message fields 2-3; bounds
+    int32 fields 1-4; and corner-radius float field 1.

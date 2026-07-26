@@ -70,7 +70,7 @@ The video channel is an **AV channel** (handler `ied.java` extends `icv.java` AV
 | 0x800A | UpdateUiConfigRequest (outbound from phone) | Phone -> HU | Runtime UI config update (margins, theme) | **Gold** |
 | 0x800B | AudioUnderflowNotification | HU -> Phone | Audio underflow callback; no payload parsed | Bronze |
 | 0x800C | ActionTakenNotification | Phone -> HU | ActionTaken wrapper with enum field 1; public action enum remains unpublished | Bronze |
-| 0x800D | IntegratedOverlayParametersNotification | Phone -> HU | Repeated overlay type, bounds, and scale options | **Gold** |
+| 0x800D | IntegratedOverlayParametersNotification | Phone -> HU | Repeated content type, bounds, and corner-radius options | **Gold** |
 | 0x800E | IntegratedOverlayStartNotification | HU -> Phone | Overlay projection session started | **Gold** |
 | 0x800F | IntegratedOverlayStopNotification | HU -> Phone | OverlayStop notification; empty payload | Bronze |
 | 0x8010 | Reserved | unknown | Name, payload, and direction unknown; deferred | deferred |
@@ -308,14 +308,14 @@ Integrated overlays are phone-rendered UI layers displayed on top of the HU's na
 |-------|------|-------------|
 | 1 | repeated IntegratedOverlayParameters | Overlay options |
 
-Each option contains an `int32 overlay_type` at field 1, a bounds message at
+Each option contains an `int32 content_type` at field 1, a bounds message at
 field 2 (`left`, `top`, `right`, `bottom` as signed int32 fields 1-4), and a
-scale message at field 3 containing a float at field 1. Android Auto 16.4 and
-17.3 build the same nested graph before sending raw wire ID 0x800D. The static
-trace does not yet establish overlay-type values, coordinate space, units, or
-runtime behavior. The published `scale` label is retained for schema
-compatibility; the 17.3 GMS `OverlayParameters` Parcelable describes its source
-float as `cornerRadius`, so that semantic name remains a follow-up question.
+corner-radius message at field 3 containing a float at field 1. The 16.4 and
+17.3 GMS `OverlayParameters` Parcelable names these values `contentType`,
+`bounds`, and `cornerRadius`; both phone versions copy them unchanged into the
+same nested graph before sending raw wire ID 0x800D. The static trace does not
+yet establish content-type values, coordinate space, radius units, or runtime
+behavior.
 
 **IntegratedOverlayStartNotification (0x800E, HU -> Phone):**
 

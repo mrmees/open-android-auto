@@ -11,13 +11,13 @@ message IntegratedOverlayParametersNotification
     repeated IntegratedOverlayParameters parameters = 1;  // confidence: gold [apk_deep_trace, cross_version]
 }
 
-// One integrated-overlay option: type, rectangular bounds, and scale.
+// One integrated-overlay option: content type, rectangular bounds, and corner radius.
 // confidence: gold [apk_deep_trace, cross_version]
 message IntegratedOverlayParameters
 {
-    optional int32 overlay_type = 1;  // confidence: gold [apk_deep_trace, cross_version]
+    optional int32 content_type = 1;  // confidence: gold [apk_deep_trace, cross_version]
     optional IntegratedOverlayBounds bounds = 2;  // confidence: gold [apk_deep_trace, cross_version]
-    optional IntegratedOverlayScale scale = 3;  // confidence: gold [apk_deep_trace, cross_version]
+    optional IntegratedOverlayCornerRadius corner_radius = 3;  // confidence: gold [apk_deep_trace, cross_version]
 }
 
 // Signed Android Rect edges copied without coordinate conversion.
@@ -30,9 +30,9 @@ message IntegratedOverlayBounds
     optional int32 bottom = 4;  // confidence: gold [apk_deep_trace, cross_version]
 }
 
-// Wrapped floating-point overlay scale value.
+// Wrapped floating-point corner radius. Units remain unresolved.
 // confidence: gold [apk_deep_trace, cross_version]
-message IntegratedOverlayScale
+message IntegratedOverlayCornerRadius
 {
     optional float value = 1;  // confidence: gold [apk_deep_trace, cross_version]
 }
