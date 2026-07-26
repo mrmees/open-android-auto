@@ -123,7 +123,7 @@ priority-based fallback chain:
 3. **Google Maps fallback** → `GmmCarAuxiliaryProjectionService` (hardcoded GMM component)
 4. **Ultimate fallback** → `ClusterTurnCardCarActivityService`
 
-The 17.3 selector is `mnw.e()` (`mnw.java:15-41`). It reads phone-side power
+The 17.3 selector is `mnw.e()` (`mnw.java:15-42`). It reads phone-side power
 settings and navigation-service availability only. It does not receive or
 inspect the CLUSTER `VideoConfig`.
 
@@ -221,7 +221,9 @@ for the complete call chains.
 ## `session_configuration` and Display UI Features
 
 `ServiceDiscoveryResponse.session_configuration` field 13 is a four-bit
-legacy session mask. Android Auto 17.3 reads it as `xlx.n` and consumes only:
+legacy session mask. Android Auto 17.3 reads it as `xlx.n` in both the
+`dsi.java:478-487` and `ryu.java:260-269` `CarInfo` construction paths. Both
+consume only:
 
 | Value | Published name | Phone-side effect |
 |-----:|------|-------------|
@@ -230,11 +232,12 @@ legacy session mask. Android Auto 17.3 reads it as `xlx.n` and consumes only:
 | 4 | `SESSION_UI_CONFIG_HIDE_BATTERY_LEVEL` | `CarInfo` battery capability |
 | 8 | `SESSION_CAN_PLAY_NATIVE_MEDIA_DURING_VR` | Native media during voice recognition |
 
-There is no field-13 value-16 read in the 17.3 consumer.
+There is no field-13 value-16 read in either 17.3 consumer.
 
-The similarly shaped UI-feature flags come from a different wire location:
-`VideoConfig.AdditionalVideoConfig.hidden_ui_elements`. The 17.3 phone maps
-that repeated enum to `CarDisplayUiFeatures` as follows:
+The display-feature source then depends on the negotiated HU protocol. At
+protocol 4.3 or newer, the phone maps
+`VideoConfig.AdditionalVideoConfig.hidden_ui_elements` to
+`CarDisplayUiFeatures` as follows:
 
 | UIElement enum value | CarDisplayUiFeatures flag | Runtime name |
 |---:|---:|---|
@@ -244,7 +247,12 @@ that repeated enum to `CarDisplayUiFeatures` as follows:
 | 4 | 8 | `hasNativeUiAffordance` |
 | 5 | 16 | `hasClusterTurnCard` |
 
-For the CLUSTER controller, flag 16 is inverted into
+Below protocol 4.3, `itt.java:288-299` ignores `hidden_ui_elements`. It instead
+maps `session_configuration` mask 1 to clock flag 1, mask 4 to battery flag 2,
+and mask 2 to phone-signal flag 4. That legacy branch has no flag 16; mask 8
+retains its separate native-media-during-VR meaning.
+
+For a protocol-4.3-or-newer CLUSTER controller, flag 16 is inverted into
 `EXTRA_SHOW_TURN_CARD`: advertising `hasClusterTurnCard` causes the phone to
 pass `false` for the phone-rendered turn-card extra. This can affect turn-card
 presentation after service selection, but the flag is not consulted by

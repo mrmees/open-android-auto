@@ -53,10 +53,12 @@ evidence:
     1db7ce995aa52b2cde47a01abfb0364220fb57fc60217de3ec714e3034795344;
     base.apk SHA-256
     5557827f259898bdab97b489e1a0aef937fd6ec711d87361cf25d51af6f48619;
-    JADX xlx.java:4-73, dsi.java:478-491
+    JADX xlx.java:4-73, dsi.java:478-491, ryu.java:260-269,
+    itt.java:277-299, CarDisplayUiFeatures.java:40-41
   date: '2026-07-25'
   description: >-
-    ServiceDiscoveryResponse field 13 is xlx.n. CarInfo construction consumes
-    only masks 1, 2, 4, and 8. No mask-16 read exists in this 17.3 consumer;
-    the cluster-turn-card flag 16 is derived separately from
-    AdditionalVideoConfig.UIElement value 5.
+    ServiceDiscoveryResponse field 13 is xlx.n. Both 17.3 CarInfo construction
+    paths consume only masks 1, 2, 4, and 8. Below negotiated protocol 4.3,
+    masks 1, 4, and 2 seed clock, battery, and phone-signal display flags. No
+    mask-16 read exists; at 4.3+ the cluster-turn-card flag 16 is derived from
+    AdditionalVideoConfig.UIElement value 5 instead.

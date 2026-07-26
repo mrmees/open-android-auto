@@ -37,7 +37,7 @@ confidence tier.
 | Live AV replacement through `ServiceDiscoveryUpdate` | Not supported by the phone consumer. Updates match an already registered transport channel ID, and the only updatable endpoint implementation is the input endpoint. | Apply resolution, DPI, display type, or AV-channel changes in a fresh SDP after reconnecting the AA protocol session. |
 | HU selection of `BATTERY_OPTIMIZED` | No HU protobuf or capability read was found in the selection path. The values are phone-side car-service settings with phone-side defaults. | Treat map-versus-turn-card selection as phone policy. |
 | Geometry-driven renderer choice | Not present. Cluster service selection checks phone power policy and navigation-app compatibility; geometry is validated and consumed later by display construction. | Do not expect resolution, DPI, margins, or insets to force the turn-card service. |
-| `session_configuration` value 16 | Not consumed. Field 13 still feeds only bits 1, 2, 4, and 8. Value 16 belongs to a different path: `AdditionalVideoConfig.hidden_ui_elements` enum value 5 becomes `CarDisplayUiFeatures.hasClusterTurnCard`. | Do not add value 16 to `SessionConfigurationEnum`. Advertise the UI element inside the CLUSTER video config when appropriate. |
+| `session_configuration` value 16 | Not consumed. Both field-13 consumers read only bits 1, 2, 4, and 8. For negotiated HU protocol >= 4.3, `AdditionalVideoConfig.hidden_ui_elements` enum value 5 instead becomes `CarDisplayUiFeatures.hasClusterTurnCard`; below 4.3 that list is ignored and masks 1/2/4 seed only clock/battery/signal display features. | Do not add value 16 to `SessionConfigurationEnum`. Advertise the CLUSTER UI element only when the negotiated protocol is at least 4.3; no static HU wire path to flag 16 was found below that version. |
 
 ## 1. `ServiceDiscoveryUpdate` cannot replace a live AV descriptor
 
@@ -112,16 +112,18 @@ a CLUSTER descriptor, but no supported HU wire signal was found that assigns
 the phone's `cluster_display_mode` or intentionally selects
 `BATTERY_OPTIMIZED`.
 
-`mnw.e()` uses the phone settings as policy. When multi-display configuration
-is enabled, the master power-saving mode is `ON`, and the cluster mode is
-`BATTERY_OPTIMIZED`, it selects `ClusterTurnCardCarActivityService`
-(`mnw.java:15-22`). Otherwise it tries the default navigation application's
-cluster service, the hard-coded Google Maps cluster service, and finally the
-Gearhead turn-card service (`mnw.java:26-41`).
+`mnw.e()` uses the phone settings as policy. When the car-client
+`POWER_SAVING_CONFIGURATION` feature (`qym.D`) is enabled, the master
+power-saving mode is `ON`, and the cluster mode is `BATTERY_OPTIMIZED`, it
+selects `ClusterTurnCardCarActivityService` (`mnw.java:15-22`). The log text in
+`mkg.f()` calls this "Multi Display Configuration," but `qym.t` is the separate
+`MULTI_DISPLAY` feature. Otherwise the selector tries the default navigation
+application's cluster service, the hard-coded Google Maps cluster service, and
+finally the Gearhead turn-card service (`mnw.java:26-42`).
 
 ## 3. Service selection does not inspect video geometry
 
-The complete cluster selection function is `mnw.e()` at `mnw.java:15-41`. Its
+The complete cluster selection function is `mnw.e()` at `mnw.java:15-42`. Its
 inputs are phone power settings and navigation-service discovery. It does not
 receive a display descriptor and does not inspect resolution, density, legacy
 margins, `AdditionalVideoConfig`, or display bounds.
@@ -143,17 +145,17 @@ them into `mnw.e()` or another cluster service-selection branch was found.
 ### `session_configuration` remains four consumed bits
 
 In 17.3, `ServiceDiscoveryResponse` is class `xlx`; field 13 is `xlx.n`.
-`dsi.W(...)` reads it at `dsi.java:478-487` and constructs `CarInfo` from
-values 1, 2, 4, and 8.
+Both known construction paths read it: `dsi.W(...)` at `dsi.java:478-487` and
+the `CarSetupServiceImpl` path at `ryu.java:260-269`. Each constructs `CarInfo`
+from values 1, 2, 4, and 8 only. Neither consumer checks value 16. The
+published four-value `SessionConfigurationEnum` therefore remains the
+supported static model.
 
-There is no value-16 check in that consumer or another read of `xlx.n` in the
-17.3 Gearhead path. The published four-value `SessionConfigurationEnum`
-therefore remains the supported static model.
-
-### The distinct `AdditionalVideoConfig` path
+### The protocol-version-gated `AdditionalVideoConfig` path
 
 `AdditionalVideoConfig.hidden_ui_elements` is a repeated `UIElement` enum in
-each video configuration. In 17.3 it is `xml.h`. The conversion path is:
+each video configuration. In 17.3 it is `xml.h`. This conversion is reachable
+only when the negotiated HU protocol is at least 4.3:
 
 ```text
 AVChannel.VideoConfig.AdditionalVideoConfig.hidden_ui_elements
@@ -165,6 +167,10 @@ AVChannel.VideoConfig.AdditionalVideoConfig.hidden_ui_elements
 
 Source anchors:
 
+- `iyk.java:232-234` and `dsi.java:478-491` — carry the negotiated protocol
+  major/minor into `CarInfo.e/f`;
+- `jaf.java:36-42` and `itt.java:277-299` — compare the negotiated protocol
+  against 4.3 and select the new or legacy feature source;
 - `ity.java:14` — maps the five UI-element enum values to flags 1, 2, 4, 8,
   and 16;
 - `itv.java:6-12` and `itt.java:280-287` — convert the repeated enum list into
@@ -174,13 +180,23 @@ Source anchors:
 - `ovv.java:23-34` — reapplies that extra when UI features change; and
 - `owa.java:6-27` — binds this behavior to the CLUSTER display controller.
 
-Value 16 therefore does affect cluster turn-card presentation, but it does not
-select the cluster activity service. `mnw.e()` selects the service; `ovw`
-passes the `EXTRA_SHOW_TURN_CARD` state to the selected and fallback intents.
-When `hasClusterTurnCard` is true, the phone passes `false` for
-`EXTRA_SHOW_TURN_CARD`. That behavior is consistent with avoiding a duplicate
-phone-rendered turn card, but the navigation provider's reaction remains
-runtime-unverified.
+Below protocol 4.3, `itt.java:288-299` ignores `xml.h` and derives display UI
+features from `CarInfo`: `session_configuration` mask 1 becomes clock flag 1,
+mask 4 becomes battery flag 2, and mask 2 becomes phone-signal flag 4. That
+legacy branch has no turn-card flag 16. Mask 8 remains the separate
+native-media-during-VR session capability rather than a turn-card bit.
+
+The repository's reference phone-side trace records a negotiated protocol of
+1.7 (`docs/phone-side-debug.md:154-155`). For that observed session,
+`hidden_ui_elements` is a no-op and neither branch supplies turn-card flag 16.
+
+At protocol 4.3 or newer, value 16 therefore can affect cluster turn-card
+presentation, but it does not select the cluster activity service. `mnw.e()`
+selects the service; `ovw` passes the `EXTRA_SHOW_TURN_CARD` state to the
+selected and fallback intents. When `hasClusterTurnCard` is true, the phone
+passes `false` for `EXTRA_SHOW_TURN_CARD`. That behavior is consistent with
+avoiding a duplicate phone-rendered turn card, but the navigation provider's
+reaction remains runtime-unverified.
 
 ## Harness guidance
 
@@ -190,7 +206,9 @@ For deterministic experiments:
 2. Disconnect the AA protocol session and let wireless AA reconnect with a
    fresh SDP.
 3. Use `UpdateUiConfigRequest` only for same-endpoint UI-layout experiments;
-   do not treat it as descriptor replacement.
+   do not treat it as descriptor replacement. Confirm negotiated protocol >=
+   4.3 before expecting `hidden_ui_elements` changes to affect display UI
+   features.
 4. Record message 26 if observed, but expect only an existing input endpoint
    to accept the update in 17.3.
 5. Treat projected map-versus-turn-card service choice as phone policy. Render
