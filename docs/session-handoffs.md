@@ -3252,3 +3252,46 @@ Verification:
   APK-index integration skips in 49.28s; all 247 protos compiled; annotation
   check reported 247 files and `Changed: 0`
 - `git diff --check` -> exit 0
+
+## 2026-07-25 — Fix issue #8 AV codec enum identity
+
+What changed:
+- Changed field 1 of `AVChannel` and `AVInputChannel` from
+  `AVStreamType.Enum` to `MediaCodecType.Enum` without changing tag,
+  cardinality, package, or wire encoding
+- Added a compiled-descriptor regression covering both messages
+- Added Android Auto 17.3 semantic validator traces to both audit sidecars
+  while retaining `AVInputChannel` at policy-derived Silver confidence
+- Re-blessed and revalidated the five tracked non-media baselines whose
+  `stream_type` enum labels changed
+
+Why:
+- Android Auto uses the MediaCodecType validator for both fields. The old type
+  appeared functional only for PCM=1 and H264=3 because those values overlap
+  with AVStreamType, while valid codec values 2 and 4-7 had no symbolic type
+
+Status:
+- The focused regression, changed-proto compilation, audit policy checks, and
+  full repository verification pass
+- Issue #10 remains a separate investigation into vehicle-local selection
+  between projected CLUSTER video and semantic turn guidance
+
+Next steps:
+1. Review and integrate the focused issue #8 branch
+2. Report the verified fix on GitHub issue #8 after integration
+3. Continue issue #10 with the dual-feed hypothesis before Maps APK acquisition
+
+Verification:
+- RED descriptor contract -> 2 failed; both fields resolved to
+  `oaa.proto.enums.AVStreamType.Enum`
+- GREEN descriptor contract -> 2 passed
+- `protoc --proto_path=. --cpp_out="$issue8_cpp_dir"
+  oaa/av/AVChannelData.proto oaa/av/AVInputChannelData.proto` -> exit 0 using
+  task-scoped temporary output
+- Audit schema, tier, and annotation policy slice -> 803 passed
+- All five tracked non-media captures -> refreshed with an explicit issue #8
+  reason, then validated with no baseline diffs
+- `make PYTHON=.venv/bin/python verify` -> exit 0; 1,812 passed, 3 expected
+  APK-index integration skips; all 247 protos compiled; annotation check
+  reported `Changed: 0`
+- `git diff --check` -> exit 0

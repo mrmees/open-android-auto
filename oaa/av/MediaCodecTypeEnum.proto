@@ -6,7 +6,8 @@ syntax="proto3";
 
 package oaa.proto.enums;
 
-// Media codec types for AA AV channels (field 10 on VideoConfig, field 1 on AudioCodecConfig)
+// Media codec types for AVChannel field 1, AVInputChannel field 1,
+// AVChannelSetupRequest field 1, and VideoConfig field 10.
 // Values confirmed via decompiled APK (vyn.java) and firmware analysis
 // confidence: unverified
 message MediaCodecType

@@ -16,6 +16,9 @@
 
 ## Now
 
+- Issue #8's AV codec enum identity is corrected in both `AVChannel` and
+  `AVInputChannel`, with Android Auto 17.3 validator evidence and a compiled-
+  descriptor regression contract.
 - Publish the reviewed Android Auto 17.3 analysis and recovered aggregate
   `analysis/tools` verification contract to `main`. The clean-checkout gate is
   authoritative and green: ignored APK-index assets are isolated behind an
@@ -38,8 +41,9 @@
 
 ## Next
 
-- Triage the repository's open issues against the merged Android Auto 17.3
-  baseline and investigate the highest-value actionable gaps.
+- Investigate issue #10's Chevrolet cluster-view evidence by testing whether
+  CLUSTER video and semantic navigation guidance are simultaneous feeds selected
+  locally by the vehicle before acquiring a matching Google Maps APK.
 - Do not reopen the reconciled Task 13 evidence boundaries without new direct
   message/field evidence.
 - Reconstruct any real protocol-facing capability or connection schemas only from trusted service/channel parents or wire evidence; do not reuse the retracted bundled-library names.
