@@ -1,0 +1,20 @@
+proto: oaa/video/IntegratedOverlayStartNotification.proto
+message: IntegratedOverlayStartNotification
+confidence: gold
+last_updated: '2026-07-25'
+wire_msg_id: 0x800E
+direction: HU->Phone
+channel: video (CAR.GAL.VIDEO)
+handler: inh.a case 32782
+class_mapping:
+  v16.1: vye
+  v16.2: vxq
+  v16.4: wqc
+evidence:
+- type: deep_trace
+  method: handler_verified
+  source: inh.java a(int, ByteBuffer) case 32782
+  date: '2026-07-25'
+  description: >
+    The phone endpoint parses field 1 as a display session ID and dispatches it
+    to the integrated-overlay start callback.

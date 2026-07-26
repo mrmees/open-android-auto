@@ -649,3 +649,47 @@ Verification:
 - `jadx --single-class defpackage.rcn --single-class-output <tmp> analysis/aa_apk_16.4.661034_apkm/jadx-output/resources/classes2.dex` -> completed, but output differed from preserved `manual-jadx/defpackage/rcn.java`
 - `jadx --single-class defpackage.rdt --single-class-output <tmp> analysis/aa_apk_16.4.661034_apkm/jadx-output/resources/classes.dex` -> completed, but output differed from preserved `manual-jadx/defpackage/rdt.java`
 - `jadx --show-bad-code --comments-level debug --decompilation-mode simple --single-class defpackage.red --single-class-output <tmp> analysis/aa_apk_16.4.661034_apkm/jadx-output/resources/classes.dex` -> completed, but output still differed from preserved `manual-jadx/defpackage/red.java`
+
+## 2026-07-25 — Video control and auxiliary-display protocol corrections
+
+Date / Session: 2026-07-25 / correct-video-control-directions
+
+What Changed:
+- Corrected the raw AV/video wire-ID catalog from `0x8007` through `0x8015`,
+  including phone/HU direction for focus, runtime UI config, integrated
+  overlays, Material You config, media stats, and media options
+- Documented that the phone's `wire_id + 1` conversion is internal receive
+  dispatch only; every catalog value remains the raw on-wire ID
+- Added the missing `0x800D` integrated-overlay parameters schema and audit
+  sidecars for the corrected video-control messages
+- Restored `KEYCODE_NAVIGATION = 65538` and documented AV field 8 as the
+  connection-time NAVIGATION / TURN_CARD selector for auxiliary displays
+- Corrected stale media tombstones, confidence labels, protocol cross-references,
+  and the earlier video verification report
+
+Why:
+- The earlier catalog mixed the phone's internal dispatch enum with raw wire
+  IDs and reversed several directions by reading phone-side send/receive paths
+  from the head-unit perspective
+- AA 16.2 and 16.4 both prove the field-8 auxiliary selector, which is directly
+  useful to head units advertising navigation and turn-card secondary displays
+
+Status:
+- The Opus initial review found four high-impact catalog inconsistencies; the
+  remediation review returned PASS with no production blockers
+- The review's final lesser confidence/report inconsistencies were corrected
+  directly; no third review cycle was started
+- Overlay type values, overlay coordinate-space semantics, and a live in-session
+  NAVIGATION / TURN_CARD switch remain unresolved
+
+Next Steps:
+1. Capture a real HU/phone overlay exchange to label overlay types and coordinate units
+2. Test NAVIGATION and TURN_CARD as separate Service Discovery configurations
+3. Trace `0x8010` and `0x8015` direction/semantics before documenting them beyond enum names
+
+Verification:
+- all 246 `oaa/**/*.proto` files compiled with `libprotoc 3.21.12`
+- all 9 changed/new `*.audit.yaml` sidecars passed `docs/verification/audit-schema.json`
+- all 137 local links in the 10 changed Markdown files resolved after correcting one stale relative path
+- focused stale-claim searches found no shifted AV wire-ID guidance, reversed video directions, or live-switch claim
+- `git diff --check` was clean before publication

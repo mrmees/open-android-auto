@@ -1,9 +1,9 @@
 proto: oaa/video/UiConfigRequestMessage.proto
 message: UiConfigRequest
 confidence: gold
-last_updated: '2026-03-06'
+last_updated: '2026-07-25'
 wire_msg_id: 0x8011
-direction: HU->Phone
+direction: Phone->HU
 channel: video (CAR.GAL.VIDEO)
 handler: hum.mo19778c(UiStyle) -> huz.mo19796n(wcj) -> ied.m20106k(32785)
 class_mapping:
@@ -26,5 +26,11 @@ evidence:
   method: handler_verified
   source: hum -> huz -> ied send chain, response at 0x8012 (UpdateHuUiConfigResponse)
   date: '2026-03-06'
-  description: Full call graph traced. UiConfigValue was empty, now has uint32 field 1.
+  description: Full phone-side send call graph traced. UiConfigValue was empty, now has uint32 field 1.
     WARNING - 16.1 class names (wct, wco, wcq) ALL refer to different protos in 16.2.
+- type: deep_trace
+  method: handler_verified
+  source: AA 16.4 idy.java Material You config path -> inh.k(32785)
+  date: '2026-07-25'
+  description: The phone endpoint sends wire 0x8011 and later parses the HU's
+    0x8012 response, confirming both directions.

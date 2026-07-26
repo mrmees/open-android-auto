@@ -25,7 +25,7 @@
  * APK class: wct (16.1) / wcj (16.2) — NOTE: wct in 16.2 = VideoFocusRequest!
  * Sub-messages: wco->wce (UiConfigData), wcq->wcg (UiConfigEntry), wcf (UiConfigValue)
  * Wire msg 0x8011, Phone->HU (video channel)
- * vdp internal name: MEDIA_MESSAGE_INTEGRATED_OVERLAY_SESSION_DATA_UPDATE
+ * vdp internal name: MEDIA_MESSAGE_UPDATE_HU_UI_CONFIG_REQUEST
  * Handler: hum.mo19778c(UiStyle) -> huz.mo19796n(wcj) -> ied.m20106k(32785, wcj)
  */
 syntax="proto2";

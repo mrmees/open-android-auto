@@ -11,8 +11,10 @@ package oaa.proto.messages;
  * Runtime UI configuration update — margins, theme, element visibility.
  *
  * APK class: wci (16.2)
- * Wire msg 0x8009 Phone->HU (inbound), 0x800A HU->Phone (outbound) — bidirectional
- * vdp internal name: MEDIA_MESSAGE_UPDATE_UI_CONFIG
+ * Wire msg 0x8009 HU->Phone (inbound to the phone endpoint),
+ * 0x800A Phone->HU (outbound from the phone endpoint) — bidirectional
+ * Internal names: MEDIA_MESSAGE_UPDATE_UI_CONFIG_REQUEST (0x8009) and
+ * MEDIA_MESSAGE_UPDATE_UI_CONFIG_REPLY (0x800A)
  *
  * Wraps AdditionalVideoConfig (wcb/wcm), which is the same data structure
  * used in VideoConfig field 11 for initial setup. This message is used for
@@ -20,9 +22,9 @@ package oaa.proto.messages;
  *
  * Distinct from UiConfigRequest (wcj, 0x8011) which sends theming tokens.
  *
- * Handler: ied.java
- *   Inbound: mo18864a case 32777 (0x8009) -> deserialize wci -> huz.mo19808w(wci)
- *   Outbound: m20260J(wcb) -> build wci -> m20106k(32778 = 0x800A)
+ * Handler: ied.java (16.2) / inh.java (16.4)
+ *   Inbound: phone endpoint case 32777 (0x8009) -> deserialize and dispatch
+ *   Outbound: phone endpoint send method -> wire 32778 (0x800A)
  * Validation: field 1 must be present or PROTOCOL_WRONG_MESSAGE / INVALID_UI_CONFIG
  *
  * confidence: gold [deep_trace, handler_verified]

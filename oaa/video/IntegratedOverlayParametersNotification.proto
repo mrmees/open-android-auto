@@ -1,0 +1,40 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
+// Copyright (C) 2024-2026 Open Android Auto contributors
+syntax="proto2";
+
+package oaa.proto.messages;
+
+/*
+ * Integrated overlay geometry and scale options.
+ *
+ * Wire msg 0x800D, Phone->HU on the video channel.
+ * 16.4 phone endpoint: idy.l(...) converts OverlayParameters objects and
+ * sends the wrapper with inh.k(32781, ...).
+ *
+ * APK classes (16.4): wqb wrapper, wry option, wrx bounds, wrz scale.
+ * confidence: gold [deep_trace, handler_verified]
+ */
+message IntegratedOverlayParametersNotification
+{
+    repeated IntegratedOverlayParameters parameters = 1;
+}
+
+message IntegratedOverlayParameters
+{
+    optional int32 overlay_type = 1;
+    optional IntegratedOverlayBounds bounds = 2;
+    optional IntegratedOverlayScale scale = 3;
+}
+
+message IntegratedOverlayBounds
+{
+    optional int32 left = 1;
+    optional int32 top = 2;
+    optional int32 right = 3;
+    optional int32 bottom = 4;
+}
+
+message IntegratedOverlayScale
+{
+    optional float value = 1;
+}

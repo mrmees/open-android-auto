@@ -77,10 +77,10 @@ All use `MessageType::Specific`.
 | `AVChannelStartIndication` | Phone -> HU | Begin video stream |
 | `AVChannelStopIndication` | Phone -> HU | Pause/stop video stream |
 | `AVMediaAckIndication` | HU -> Phone | Flow control acknowledgment |
-| `VideoFocusRequest` | HU -> Phone | Request video focus change |
-| `VideoFocusIndication` | Phone -> HU | Grant/revoke video focus |
+| `VideoFocusRequest` | Phone -> HU | Request video focus change |
+| `VideoFocusIndication` | HU -> Phone | Grant/revoke video focus |
 | `UpdateUiConfigRequest` | Bidirectional | Runtime UI config (theming, insets) |
-| `UiConfigRequest` | HU -> Phone | Request UI configuration |
+| `UiConfigRequest` | Phone -> HU | Supply Material You palettes to the HU |
 | (raw video frames) | Phone -> HU | Encoded H.264/H.265/VP9/AV1 data |
 
 ### Channels 4, 5, 6: Audio (GAL types 4, 5, 6)

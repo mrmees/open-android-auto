@@ -2,9 +2,9 @@ proto: oaa/video/VideoFocusRequestMessage.proto
 message: VideoFocusRequest
 confidence: platinum
 platinum_scope: single_oem
-last_updated: '2026-04-09'
+last_updated: '2026-07-25'
 wire_msg_id: 0x8007
-direction: HU->Phone
+direction: Phone->HU
 channel: video (CAR.GAL.VIDEO)
 handler: ied.java (m20258P)
 class_mapping:
@@ -16,8 +16,14 @@ evidence:
   method: handler_verified
   source: ied.java m20258P -> m20106k(32775)
   date: '2026-03-06'
-  description: Traced send path in video handler. Field 2 = wcq (VideoFocusMode),
+  description: Traced the phone endpoint's send path in the video handler. Field 2 = wcq (VideoFocusMode),
     field 3 = wcs (VideoFocusReason). No field 1.
+- type: deep_trace
+  method: handler_verified
+  source: AA 16.4 inh.java focus request path -> k(32775)
+  date: '2026-07-25'
+  description: The phone endpoint sends wire 0x8007, confirming the Phone-to-HU
+    direction.
 - type: apk_static
   method: string_const
   source: class_mapping.yaml (v15.9:vvl, v16.1:wdd, v16.2:wct)

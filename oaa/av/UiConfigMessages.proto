@@ -3,29 +3,20 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 
 /*
- * UI Config messages (AV channels — Video/Audio)
- * Flows on video channel alongside media data.
+ * RETRACTED legacy UI Config model.
  *
- * Controls display margins, content insets, and theme (light/dark/auto)
- * for the projected AA UI. Two pairs exist:
+ * Deep handler tracing disproved the two request/reply pairs previously
+ * documented here. The canonical video-channel messages are:
  *
- * Message IDs (on AV channel):
- *   0x800A = UpdateUiConfigRequest        (HU->Phone)
- *   0x800B = UpdateUiConfigReply          (Phone->HU)
- *   0x8012 = UpdateHuUiConfigRequest      (HU->Phone, HU-initiated push)
- *   0x8013 = UpdateHuUiConfigResponse     (Phone->HU)
+ *   0x8009 = UpdateUiConfigRequest        (HU->Phone)
+ *   0x800A = UpdateUiConfigRequest        (Phone->HU)
+ *   0x8011 = UiConfigRequest              (Phone->HU, Material You tokens)
+ *   0x8012 = UpdateHuUiConfigResponse     (HU->Phone)
  *
- * The regular pair (0x800A/B) may be phone-initiated config negotiation.
- * The HU pair (0x8012/13) is for the head unit to proactively push
- * UI config changes (e.g., day/night mode switch).
- *
- * Related: VideoConfigData.proto field 11 (additional_config) is likely
- * a UiConfig sub-message in the service discovery video config.
- *
- * Source: aa-proxy-rs protos, confirmed against AVChannelMessageIdsEnum.
- * Proto2 per APK class wcs (UpdateUiConfigRequest).
- *
- * APK: AA v16.1
+ * See oaa/video/UpdateUiConfigRequestMessage.proto,
+ * oaa/video/UiConfigRequestMessage.proto, and
+ * oaa/video/UpdateHuUiConfigResponse.proto. The definitions below are kept as
+ * a compatibility tombstone and must not be assigned to wire IDs.
  */
 
 syntax = "proto2";
@@ -58,23 +49,20 @@ message UiConfig {
     optional UiTheme ui_theme = 4;  // confidence: silver [apk_static, cross_version]
 }
 
-// 0x800A: UpdateUiConfigRequest (HU->Phone)
-// Canonical definition moved to oaa/video/UpdateUiConfigRequestMessage.proto (Gold confidence).
-// Field 1 is AdditionalVideoConfig, NOT UiConfig (deep trace verified).
+// RETRACTED: no UpdateUiConfigReply message is used at wire 0x800A.
+// Both directions use the canonical UpdateUiConfigRequest wrapper.
 
-// 0x800B: UpdateUiConfigReply (Phone->HU)
-// confidence: silver [apk_static, cross_version]
+// confidence: retracted [deep_trace]
 message UpdateUiConfigReply {
-    optional UiConfig ui_config = 1;  // confidence: silver [apk_static, cross_version]
+    optional UiConfig ui_config = 1;  // confidence: retracted [deep_trace]
 }
 
-// 0x8012: UpdateHuUiConfigRequest (HU->Phone)
-// HU proactively pushes UI config changes (e.g., day/night switch).
-// confidence: silver [apk_static, cross_version]
+// RETRACTED: the 0x8011 request is UiConfigRequest from Phone->HU and carries
+// Material You token lists, not this legacy UiConfig structure.
+// confidence: retracted [deep_trace]
 message UpdateHuUiConfigRequest {
-    optional UiConfig ui_config = 1;  // confidence: silver [apk_static, cross_version]
+    optional UiConfig ui_config = 1;  // confidence: retracted [deep_trace]
 }
 
-// 0x8013: UpdateHuUiConfigResponse (Phone->HU)
-// Canonical definition moved to oaa/video/UpdateHuUiConfigResponse.proto (Gold confidence).
-// Field 1 is ThemingTokensStatus, NOT UiConfig (deep trace verified).
+// The canonical response is wire 0x8012 HU->Phone and is defined in
+// oaa/video/UpdateHuUiConfigResponse.proto.

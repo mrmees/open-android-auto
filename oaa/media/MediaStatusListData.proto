@@ -23,8 +23,7 @@ syntax = "proto2";
  * the channel handler context. Neither class has anything to do with
  * media status lists.
  *
- * See: IntegratedOverlayParametersNotification should be defined under
- * oaa/video/ when the video channel is verified.
+ * See: oaa/video/IntegratedOverlayParametersNotification.proto.
  *
  * Retracted: 2026-03-06, proto-verification pipeline
  */

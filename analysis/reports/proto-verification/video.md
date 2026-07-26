@@ -3,26 +3,31 @@
 **Channel:** Video (AV sink)
 **GAL Tag:** `CAR.GAL.VIDEO`
 **Handler:** `ied.java` (16.2) extends `icv.java` (AV base) extends `iav.java`
-**Date:** 2026-03-06
+**Date:** 2026-03-06; corrected against AA 16.4 phone-endpoint tracing on 2026-07-25
 
 ## Complete Message ID Table (Ground Truth)
 
-### Video-Specific Messages (ied.java — raw wire IDs, no +1 offset)
+### Video-Specific Messages (raw wire IDs)
 
 | Wire ID | Direction | Proto Class (16.2) | Name | Confidence |
 |---------|-----------|-------------------|------|------------|
-| 0x8007 | HU→Phone | wct | VideoFocusRequest | Gold |
-| 0x8008 | Phone→HU | wcr | VideoFocusIndication | Gold |
-| 0x8009 | Phone→HU | wci | UpdateUiConfigRequest (inbound) | Gold |
-| 0x800A | HU→Phone | wci | UpdateUiConfigRequest (outbound) | Gold |
-| 0x800C | HU→Phone | vuy | AudioUnderflowNotification | Bronze |
-| 0x800D | HU→Phone | vxp | ActionTakenNotification | Bronze |
-| 0x800E | Phone→HU | vxq | IntegratedOverlayStartNotification | Gold |
-| 0x800F | Phone→HU | — | IntegratedOverlayStopNotification (empty) | Gold |
-| 0x8011 | HU→Phone | wcj | UiConfigRequest (theming tokens) | Gold |
-| 0x8012 | Phone→HU | wck | UpdateHuUiConfigResponse | Gold |
+| 0x8007 | Phone→HU | wct | VideoFocusRequest | Platinum / single-OEM |
+| 0x8008 | HU→Phone | wcr | VideoFocusIndication | Gold |
+| 0x8009 | HU→Phone | wci | UpdateUiConfigRequest (phone inbound) | Gold |
+| 0x800A | Phone→HU | wci | UpdateUiConfigRequest (phone outbound) | Gold |
+| 0x800B | HU→Phone | — | AudioUnderflowNotification (empty) | Bronze |
+| 0x800C | Phone→HU | vuy | ActionTakenNotification | Bronze |
+| 0x800D | Phone→HU | wqb (16.4) | IntegratedOverlayParametersNotification | Gold |
+| 0x800E | HU→Phone | vxq | IntegratedOverlayStartNotification | Gold |
+| 0x800F | HU→Phone | — | IntegratedOverlayStopNotification (empty) | Gold |
+| 0x8011 | Phone→HU | wcj | UiConfigRequest (Material You tokens) | Gold |
+| 0x8012 | HU→Phone | wck | UpdateHuUiConfigResponse | Gold |
 
-### Inherited AV Messages (icv.java — +1 offset via vdp.m36513at)
+### Inherited AV Messages (raw wire IDs)
+
+The receive handler converts raw IDs to an internal `wire_id + 1` dispatch
+value through `vdp.m36513at()` (16.2) / `nuw.p()` (16.4). That offset is never
+used on the wire.
 
 | Wire ID | Direction | Proto Class (16.2) | Name | Confidence |
 |---------|-----------|-------------------|------|------------|
@@ -31,7 +36,7 @@
 | 0x8002 | Phone→HU | wbv | AVChannelStopIndication | Gold (media ch) |
 | 0x8003 | HU→Phone | vwn | AVChannelSetupResponse | Gold (media ch) |
 | 0x8004 | HU→Phone | vuw | AVMediaAckIndication | Gold (media ch) |
-| 0x800B | — | — | Signal/heartbeat (no proto) | Gold (media ch) |
+| 0x800B | HU→Phone | — | AudioUnderflowNotification (empty) | Bronze |
 | 0x8013 | HU→Phone | vyg | AVChannelMediaStats | Gold |
 | 0x8014 | Phone→HU | vya | AVChannelMediaOptions | Silver |
 
@@ -240,12 +245,15 @@ New discovery. 13 fields (mostly PhenotypeFlag wrappers). Built by hnc.java from
 
 | Wire ID | Direction | Name | Notes |
 |---------|-----------|------|-------|
-| 0x800C | HU→Phone | AudioUnderflowNotification (vuy) | From huz.java, Bronze |
-| 0x800D | HU→Phone | ActionTakenNotification (vxp) | From huz.java, Bronze |
+| 0x800B | HU→Phone | AudioUnderflowNotification (empty) | Bronze; no payload |
+| 0x800C | Phone→HU | ActionTakenNotification (vuy) | Phone send path confirmed in AA 16.4 |
+| 0x800D | Phone→HU | IntegratedOverlayParametersNotification (wqb in 16.4) | Wrapper and nested geometry schema recovered |
 
 ## Key Discoveries
 
-1. **ied.java uses raw wire IDs** — unlike icv's receive handler which applies +1 via vdp.m36513at(), ied's video-specific message checks use the raw wire value directly. This means video-specific msg IDs in ied.mo18864a ARE the wire values.
+1. **All catalog values are raw wire IDs** — the AV receive handler's +1
+   conversion via `vdp.m36513at()` / `nuw.p()` is an internal dispatch detail,
+   not a second set of on-wire IDs.
 
 2. **AdditionalVideoConfig (wcb) is shared** — used both in VideoConfig field 11 (initial setup) and as the payload of UpdateUiConfigRequest (runtime UI updates). Same data structure, two uses.
 

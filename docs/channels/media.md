@@ -13,7 +13,7 @@
 | ~~MediaPlaybackCommand~~ | **Retracted** | class vuy misidentified — 0x8002 exists as MediaPlaybackStatusEvent (vxo) | [MediaPlaybackCommandMessage.audit.yaml](../../oaa/media/MediaPlaybackCommandMessage.audit.yaml) |
 | MediaPlaybackMetadata | **Gold** | apk_deep_trace (2026-03-06) — CORRECTED fields 5-7 | [MediaPlaybackMetadataMessage.audit.yaml](../../oaa/media/MediaPlaybackMetadataMessage.audit.yaml) |
 | MediaEventIdWrapper | Silver | apk_static + cross_version | [MediaPlaybackStatusMessage.audit.yaml](../../oaa/media/MediaPlaybackStatusMessage.audit.yaml) |
-| MediaStatusList | Silver | apk_static + cross_version | [MediaStatusListData.audit.yaml](../../oaa/media/MediaStatusListData.audit.yaml) |
+| ~~MediaStatusList~~ | **Retracted** | fabricated semantic name; 16.1 class is an overlay payload and 16.2 class is the empty MediaInfo channel | [MediaStatusListData.audit.yaml](../../oaa/media/MediaStatusListData.audit.yaml) |
 | MediaTrackIdentifier | Silver | apk_static + cross_version | [MediaTrackIdentifierData.audit.yaml](../../oaa/media/MediaTrackIdentifierData.audit.yaml) |
 | CarLocalMediaPlaybackStatus | Silver | apk_static + cross_version | [CarLocalMediaPlaybackStatusMessage.audit.yaml](../../oaa/media/CarLocalMediaPlaybackStatusMessage.audit.yaml) |
 | CarLocalMediaPlaybackMetadata | Silver | apk_static + cross_version | [CarLocalMediaPlaybackMetadataMessage.audit.yaml](../../oaa/media/CarLocalMediaPlaybackMetadataMessage.audit.yaml) |
@@ -68,11 +68,13 @@ This is the AV audio pipe, not the media status channel. It handles stream setup
 | Msg ID | Message | Direction | Purpose | Proto Class |
 |--------|---------|-----------|---------|-------------|
 | 0x8000 | AV Setup Request | Phone -> HU | Audio stream setup | wbs |
-| 0x8004 | AV Config Response | HU -> Phone | Configuration / setup response | vwn |
-| 0x8005 | AV ACK | HU -> Phone | Frame acknowledgment (session ID + count) | vuw |
-| 0x800C | AV Signal | HU -> Phone | Signal (no proto, calls qnk.mo29257h()) | (none) |
+| 0x8003 | AV Config Response | HU -> Phone | Configuration / setup response | vwn |
+| 0x8004 | AV ACK | HU -> Phone | Frame acknowledgment (session ID + count) | vuw |
+| 0x800B | AudioUnderflowNotification | HU -> Phone | Playback underflow notification (empty payload) | (none) |
 
 Invalid msg IDs are logged: `"Received message with invalid type header: %d ch:%d"`.
+The handler first converts the raw wire ID to its internal `wire_id + 1`
+dispatch value; the table above always uses raw wire IDs.
 
 ---
 
@@ -140,7 +142,7 @@ Sent by the phone when the track changes. Fields 5-7 exist in the proto schema a
 
 #### ~~MediaPlaybackCommand~~ (RETRACTED)
 
-This message was retracted on 2026-03-06. The APK class `vuy` was misidentified — it is `ActionTakenNotification` on the video channel (0x800D), not a media playback command. See [MediaPlaybackCommandMessage.audit.yaml](../../oaa/media/MediaPlaybackCommandMessage.audit.yaml). The proto file is retained as a tombstone.
+This message was retracted on 2026-03-06. The APK class `vuy` was misidentified — it is `ActionTakenNotification` on the video channel (wire `0x800C`), not a media playback command. See [MediaPlaybackCommandMessage.audit.yaml](../../oaa/media/MediaPlaybackCommandMessage.audit.yaml). The proto file is retained as a tombstone.
 
 Note: msg ID 0x8002 on the media-info channel does exist as `MediaPlaybackStatusEvent` (above), which is a different proto class (`vxo`) serving a different purpose.
 
@@ -152,12 +154,15 @@ Note: msg ID 0x8002 on the media-info channel does exist as `MediaPlaybackStatus
 |---------|---------|:---:|
 | MediaEventIdWrapper | Event ID tracking -- contains a sub-message at field 13 (high field number suggests later addition) | Silver |
 | MediaEventId | Placeholder sub-message for MediaEventIdWrapper | Silver |
-| MediaStatusList | Repeated list of MediaStatusEntry items | Silver |
-| MediaStatusEntry | Placeholder sub-message for list entries | Silver |
+| ~~MediaStatusList~~ | **RETRACTED** -- fabricated semantic identification retained only as a tombstone | Retracted |
+| ~~MediaStatusEntry~~ | **RETRACTED** -- belonged only to the invalid MediaStatusList model | Retracted |
 | MediaTrackIdentifier | Track identification with 3 message-type sub-fields (track_id, track_source, track_metadata) | Silver |
 | MediaInfoChannel | Empty service discovery marker (same pattern as AudioFocusChannel) | Unverified |
 
-MediaEventIdWrapper, MediaStatusList, and MediaTrackIdentifier are structurally verified (field numbers and types confirmed across 3 APK versions) but their sub-message contents are placeholder -- the internal structure of MediaEventId, MediaStatusEntry, and MediaTrackField is not yet decoded.
+MediaEventIdWrapper and MediaTrackIdentifier are structurally verified (field
+numbers and types confirmed across 3 APK versions), but their sub-message
+contents are placeholders. `MediaStatusList` is retracted: cross-version class
+name reuse made the earlier structural match semantically invalid.
 
 ---
 

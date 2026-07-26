@@ -61,7 +61,10 @@ message AndroidKeycode
         KEYCODE_SENTINEL = 65535;
         KEYCODE_ROTARY_CONTROLLER = 65536;
         KEYCODE_MEDIA = 65537;
+        // Selects NAVIGATION as the initial content type for an AUXILIARY display.
+        KEYCODE_NAVIGATION = 65538;
         KEYCODE_TERTIARY_BUTTON = 65543;
+        // Selects TURN_CARD as the initial content type for an AUXILIARY display.
         KEYCODE_TURN_CARD = 65544;
     }
 }

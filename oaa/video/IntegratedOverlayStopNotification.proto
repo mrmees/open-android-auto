@@ -5,10 +5,10 @@ syntax="proto2";
 
 package oaa.proto.messages;
 
-// Wire msg 0x800F, Phone->HU (video channel)
+// Wire msg 0x800F, HU->Phone (video channel)
 // vdp internal name: MEDIA_MESSAGE_INTEGRATED_OVERLAY_STOP_NOTIFICATION
 // Empty message — no deserialization in ied.java.
-// Triggers qdd.mo30157f() display callback (com.google.android.gms.car.display).
+// Triggers the phone-side com.google.android.gms.car.display stop callback.
 // Companion to IntegratedOverlayStartNotification (0x800E).
 // confidence: gold [deep_trace, handler_verified]
 message IntegratedOverlayStopNotification

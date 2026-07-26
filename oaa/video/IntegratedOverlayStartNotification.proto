@@ -6,10 +6,10 @@ syntax="proto2";
 package oaa.proto.messages;
 
 // APK class: vye (16.1) / vxq (16.2)
-// Wire msg 0x800E, Phone->HU (video channel)
+// Wire msg 0x800E, HU->Phone (video channel)
 // vdp internal name: MEDIA_MESSAGE_INTEGRATED_OVERLAY_START_NOTIFICATION
-// Notifies HU that integrated overlay projection has started.
-// Field 1 passed to qdd.mo30156e(int) display callback (com.google.android.gms.car.display).
+// Requests that the phone start the integrated overlay display session.
+// Field 1 is dispatched to the phone-side com.google.android.gms.car.display callback.
 // Previously misidentified as VideoFocusNotification — field 1 is NOT a focus mode.
 // confidence: gold [deep_trace, handler_verified]
 message IntegratedOverlayStartNotification

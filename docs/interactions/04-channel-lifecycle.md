@@ -176,10 +176,10 @@ All AV channels (video ch 3, audio ch 4/5/6, mic ch 7) share the same message ID
 | 0x8004 | AV_MEDIA_ACK_INDICATION | HU -> Phone |
 | 0x8005 | AV_INPUT_OPEN_REQUEST | Phone -> HU |
 | 0x8006 | AV_INPUT_OPEN_RESPONSE | HU -> Phone |
-| 0x8007 | VIDEO_FOCUS_REQUEST | HU -> Phone |
-| 0x8008 | VIDEO_FOCUS_INDICATION | Phone -> HU |
+| 0x8007 | VIDEO_FOCUS_REQUEST | Phone -> HU |
+| 0x8008 | VIDEO_FOCUS_INDICATION | HU -> Phone |
 | 0x800B | AUDIO_UNDERFLOW | HU -> Phone |
-| 0x8013 | MEDIA_STATS | Phone -> HU |
+| 0x8013 | MEDIA_STATS | HU -> Phone |
 
 > **Gotcha:** `MessageType` must be `Specific` (not `Control`) for AV messages on channels 3-7. Using `Control` causes the phone to silently ignore the message with no error response. This applies to ALL messages in the table above -- setup, ACK, focus, everything. Only channel open/close on channel 0 uses `Control`.
 
@@ -404,7 +404,7 @@ message VideoFocusIndication {
 | 3 | VIDEO_FOCUS_NATIVE_TRANSIENT | Temporary native UI (e.g. reverse camera) |
 | 4 | VIDEO_FOCUS_PROJECTED_NO_INPUT_FOCUS | AA visible but input goes to native UI |
 
-The HU sends `VideoFocusRequest` to ask for a display ownership change. The phone answers with `VideoFocusIndication`, reporting the resulting focus state and whether the indication was unsolicited.
+The phone sends `VideoFocusRequest` to ask for a display ownership change. The HU answers with `VideoFocusIndication`, reporting the selected focus state. An indication with `unrequested = true` reports an HU-initiated ownership change without a matching phone request.
 
 ---
 
@@ -471,7 +471,7 @@ A concise verification aid covering every required step from transport through a
 
 11. **Grant audio focus** -- Respond to AudioFocusRequest with appropriate AudioFocusResponse. Phone will not send audio data without focus. See [Audio Focus](#audio-focus-channel-0).
 
-12. **Send VideoFocusIndication** -- Set `VIDEO_FOCUS_PROJECTED` to start receiving video frames. See [Video Focus](#video-focus-channel-3).
+12. **Handle VideoFocusRequest and send VideoFocusIndication** -- Grant `VIDEO_FOCUS_PROJECTED` to start receiving video frames. See [Video Focus](#video-focus-channel-3).
 
 ---
 

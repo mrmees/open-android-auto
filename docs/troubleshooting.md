@@ -193,7 +193,7 @@ This was a **known blocker under the old aasdk stack** (as of 2026-02-23). The p
 - Moto G Play 2024 → YUVJ420P; Samsung S25 Ultra → YUV420P
 
 **No video frames at all:**
-1. Check video focus negotiation happened after `AV_SETUP_RESPONSE` (`VideoFocusRequest(PROJECTED)` followed by `VideoFocusIndication(PROJECTED)`)
+1. Check video focus negotiation happened after `AV_SETUP_RESPONSE` (receive the phone's `VideoFocusRequest(PROJECTED)`, then send `VideoFocusIndication(PROJECTED)`)
 2. Check `max_unacked` in video flow control (should be ≥10)
 3. Check protocol log for `AV_MEDIA_INDICATION` on channel 3 (video)
 4. Verify video resolution config: 720p is default, 1080p works but may need more CPU
@@ -203,7 +203,7 @@ This was a **known blocker under the old aasdk stack** (as of 2026-02-23). The p
 - Check CPU usage: `top -bn1 | head -5`
 
 **Video focus gotcha:**
-- Phone may aggressively reassert projected focus via `VideoFocusIndication(..., unrequested=true)`
+- HU sends `VideoFocusIndication(..., unrequested=true)` only for an HU-initiated ownership change without a matching phone request
 - Forcing native focus immediately back without honoring negotiation is treated as an exit signal
 
 ### Audio Issues

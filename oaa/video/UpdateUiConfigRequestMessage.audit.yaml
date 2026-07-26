@@ -1,0 +1,19 @@
+proto: oaa/video/UpdateUiConfigRequestMessage.proto
+message: UpdateUiConfigRequest
+confidence: gold
+last_updated: '2026-07-25'
+wire_msg_id: 0x8009/0x800A
+direction: bidirectional (0x8009 HU->Phone, 0x800A Phone->HU)
+channel: video (CAR.GAL.VIDEO)
+handler: inh.a case 32777 / inh.J -> k(32778)
+class_mapping:
+  v16.2: wci
+  v16.4: wuu
+evidence:
+- type: deep_trace
+  method: handler_verified
+  source: inh.java a(int, ByteBuffer) case 32777 and J(wuo)
+  date: '2026-07-25'
+  description: >
+    The phone endpoint parses wire 0x8009 as an inbound runtime UI config and
+    sends the same wrapper on wire 0x800A. Both paths require field 1.

@@ -716,6 +716,7 @@ Video streaming config, codec negotiation, focus management, AV setup
 - `KEYCODE_SENTINEL` = 65535
 - `KEYCODE_ROTARY_CONTROLLER` = 65536
 - `KEYCODE_MEDIA` = 65537
+- `KEYCODE_NAVIGATION` = 65538
 - `KEYCODE_TERTIARY_BUTTON` = 65543
 - `KEYCODE_TURN_CARD` = 65544
 
@@ -743,7 +744,7 @@ Video streaming config, codec negotiation, focus management, AV setup
 - `VIDEO_854x480` = 8
 - `VIDEO_1280x720` = 9
 
-> **CORRECTED (2026-03-07):** Values 5-9 were wrong (from aasdk). Full rewrite based on 16.2 APK verification. See [video verification report](analysis/reports/proto-verification/video.md).
+> **CORRECTED (2026-03-07):** Values 5-9 were wrong (from aasdk). Full rewrite based on 16.2 APK verification. See [video verification report](../analysis/reports/proto-verification/video.md).
 
 **`wda`**
 *Used by: `wdb`*

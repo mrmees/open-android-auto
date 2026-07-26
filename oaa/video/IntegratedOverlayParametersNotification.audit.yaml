@@ -1,0 +1,26 @@
+proto: oaa/video/IntegratedOverlayParametersNotification.proto
+message: IntegratedOverlayParametersNotification
+confidence: gold
+last_updated: '2026-07-25'
+wire_msg_id: 0x800D
+direction: Phone->HU
+channel: video (CAR.GAL.VIDEO)
+handler: idy.l(List) -> inh.k(32781)
+class_mapping:
+  wrapper:
+    v16.4: wqb
+  parameter:
+    v16.4: wry
+  bounds:
+    v16.4: wrx
+  scale:
+    v16.4: wrz
+evidence:
+- type: deep_trace
+  method: handler_verified
+  source: idy.java l(List) -> htc.java case 9 -> inh.k(32781)
+  date: '2026-07-25'
+  description: >
+    The phone converts each GMS OverlayParameters object into an option with
+    integer type, four signed rectangle bounds, and a wrapped float scale,
+    appends the options to field 1 of wqb, and sends wire message 0x800D.

@@ -1,0 +1,20 @@
+proto: oaa/video/UpdateHuUiConfigResponse.proto
+message: UpdateHuUiConfigResponse
+confidence: gold
+last_updated: '2026-07-25'
+wire_msg_id: 0x8012
+direction: HU->Phone
+channel: video (CAR.GAL.VIDEO)
+handler: inh.a case 32786
+class_mapping:
+  v16.1: wcu
+  v16.2: wck
+  v16.4: wuw
+evidence:
+- type: deep_trace
+  method: handler_verified
+  source: inh.java a(int, ByteBuffer) case 32786
+  date: '2026-07-25'
+  description: >
+    The phone endpoint parses the HU response to the phone-originated 0x8011
+    theming-token request and dispatches its acceptance status.

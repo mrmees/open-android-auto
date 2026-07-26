@@ -87,22 +87,22 @@ Note: in this document, `NavigationNextTurnEvent` is Sony-symbol terminology. Th
 | Stop | — | 0x8002 | Phone→Car | Stop streaming |
 | Config | `vxb` | 0x8003 | Both | Media configuration (codec, max_unacked) |
 | Ack | `vvk` | 0x8004 | Car→Phone | Flow control ACK (session_id) |
-| MicrophoneRequest | — | 0x8005 | Car→Phone | Open/close microphone |
-| MicrophoneResponse | — | 0x8006 | Phone→Car | Mic ack |
-| VideoFocusRequestNotification | `wdd` | 0x8007 | Car→Phone | focus_type(VideoFocusType), reason(VideoFocusReason) |
-| VideoFocusNotification | `wdb` | 0x8008 | Phone→Car | focus_type(VideoFocusType), bool |
+| MicrophoneRequest | — | 0x8005 | Phone→Car | Open/close microphone |
+| MicrophoneResponse | — | 0x8006 | Car→Phone | Mic ack |
+| VideoFocusRequest | `wdd` | 0x8007 | Phone→Car | focus_type(VideoFocusType), reason(VideoFocusReason) |
+| VideoFocusIndication | `wdb` | 0x8008 | Car→Phone | focus_type(VideoFocusType), unrequested(bool) |
 | — | — | 0x8009 | Car→Phone | UPDATE_UI_CONFIG_REQUEST (newer AA) |
 | — | — | 0x800A | Phone→Car | UPDATE_UI_CONFIG_REPLY (newer AA) |
 | — | — | 0x800B | Car→Phone | AUDIO_UNDERFLOW (newer AA) |
 | — | — | 0x800C | Phone→Car | ACTION_TAKEN (newer AA) |
 | — | — | 0x800D | Phone→Car | OVERLAY_PARAMETERS (newer AA) |
-| — | — | 0x800E | Phone→Car | OVERLAY_START (newer AA) |
-| — | — | 0x800F | Phone→Car | OVERLAY_STOP (newer AA) |
-| — | — | 0x8010 | Phone→Car | OVERLAY_SESSION_DATA (newer AA) |
-| — | — | 0x8011 | Car→Phone | UPDATE_HU_UI_CONFIG_REQ (newer AA) |
-| — | — | 0x8012 | Phone→Car | UPDATE_HU_UI_CONFIG_RESP (newer AA) |
-| — | — | 0x8013 | Both | MEDIA_STATS (newer AA) |
-| — | — | 0x8014 | Both | MEDIA_OPTIONS (newer AA) |
+| — | — | 0x800E | Car→Phone | OVERLAY_START (newer AA) |
+| — | — | 0x800F | Car→Phone | OVERLAY_STOP (newer AA) |
+| — | — | 0x8010 | — | OVERLAY_SESSION_DATA (newer AA; direction unresolved) |
+| — | — | 0x8011 | Phone→Car | UPDATE_HU_UI_CONFIG_REQ / Material You tokens (newer AA) |
+| — | — | 0x8012 | Car→Phone | UPDATE_HU_UI_CONFIG_RESP (newer AA) |
+| — | — | 0x8013 | Car→Phone | MEDIA_STATS (newer AA) |
+| — | — | 0x8014 | Phone→Car | MEDIA_OPTIONS (newer AA) |
 
 Messages 0x8009-0x8014 exist only in the newer APK — the Sony firmware predates these additions.
 
