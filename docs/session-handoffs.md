@@ -3341,3 +3341,40 @@ Verification:
 - Publication branch `make verify PYTHON=/tmp/tmp.MpdHrVDMeU/bin/python` ->
   exit 0; 1,812 passed, 3 expected skips; all 247 protos compiled; annotation
   check reported `Changed: 0`
+
+## 2026-07-26 — Auxiliary display connection-time selector
+
+What changed:
+- Added `KEYCODE_NAVIGATION = 65538` to the Android keycode enum
+- Documented AVChannel field 8 as the connection-time AUXILIARY selector:
+  65538 selects navigation and 65544 selects turn-card content
+- Added the complete Android Auto 17.3 source chain from descriptor parsing
+  through AUXILIARY provider selection
+- Corrected the display-routing guide while preserving the existing GAL 4.3,
+  shared bit-16, runtime-update, and CLUSTER-policy findings
+
+Why:
+- The previous documentation incorrectly called field 8 dead and left the
+  source of AUXILIARY content assignment unresolved
+- A fresh 17.3 trace proves head-unit control of initial AUXILIARY content but
+  does not prove a live content-switch command or CLUSTER service control
+
+Status:
+- UNKNOWN parses but cannot produce a usable AUXILIARY root component
+- Other recognized Android keycodes can fail `CarDisplay` construction for any
+  display type; CLUSTER ignores field 8 when selecting its activity service
+- AUXILIARY is documented as an additional secondary surface, not inherently
+  a passenger display
+
+Next steps:
+1. Capture a runtime AUXILIARY session for each supported selector value
+2. Verify whether reconnecting with a changed descriptor is sufficient for a
+   practical head-unit mode toggle
+
+Verification:
+- Audit schema and tier tests -> 555 passed
+- Focused AVChannel descriptor compilation -> exit 0
+- `make verify PYTHON=/tmp/oaa-salvage-verify-2rikKu/bin/python` -> exit 0;
+  1,812 passed, 3 expected APK-index skips; all 247 protos compiled;
+  annotation check reported `Changed: 0`
+- `git diff --check` -> exit 0

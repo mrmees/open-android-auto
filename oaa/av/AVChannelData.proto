@@ -26,6 +26,8 @@ message AVChannel
     // logical display ID, not ChannelDescriptor.channel_id or a GAL service type.
     optional uint32 display_id = 6; // Logical display identity; referenced by InputChannelConfig.display_id field 5.  // confidence: gold [apk_deep_trace, apk_static, cross_version]
     optional enums.DisplayType.Enum display_type = 7; // MAIN, CLUSTER, AUXILIARY  // confidence: gold [apk_deep_trace, apk_static, cross_version]
-    optional enums.AndroidKeycode.Enum keycode = 8; // Android keycode (APK enum: vyh.java)  // confidence: gold [apk_deep_trace, apk_static, cross_version]
+    // Initial AUXILIARY content selector: KEYCODE_NAVIGATION (65538) or
+    // KEYCODE_TURN_CARD (65544). CLUSTER routing does not consume this field.
+    optional enums.AndroidKeycode.Enum keycode = 8;  // confidence: gold [apk_deep_trace, apk_static, cross_version]
     optional enums.ColorSchemeSupport.Enum color_scheme_support = 9; // Material You palette version — gates theming (0x8011). Set to 2 for Material You v2.  // confidence: gold [apk_deep_trace, apk_static, cross_version]
 }

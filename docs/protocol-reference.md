@@ -731,6 +731,7 @@ Video streaming config, codec negotiation, focus management, AV setup
 - `KEYCODE_SENTINEL` = 65535
 - `KEYCODE_ROTARY_CONTROLLER` = 65536
 - `KEYCODE_MEDIA` = 65537
+- `KEYCODE_NAVIGATION` = 65538
 - `KEYCODE_TERTIARY_BUTTON` = 65543
 - `KEYCODE_TURN_CARD` = 65544
 

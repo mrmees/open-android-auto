@@ -50,3 +50,25 @@ evidence:
     accepts the codec domain 1-7 (PCM, AAC, H264, AAC_ADTS, VP9, AV1, H265).
     This proves MediaCodecType rather than the numerically overlapping
     AVStreamType enum; tag 1 remains an enum varint on the wire.
+- type: apk_deep_trace
+  method: auxiliary_initial_content_selector_trace
+  source: >-
+    Android Auto 17.3.662804-release; APKM SHA-256
+    1db7ce995aa52b2cde47a01abfb0364220fb57fc60217de3ec714e3034795344;
+    base.apk SHA-256
+    5557827f259898bdab97b489e1a0aef937fd6ec711d87361cf25d51af6f48619;
+    JADX itq.java:213-238 -> itc.java:115-135 ->
+    GhLifecycleService.java:334-365 -> mnu.java:17-43 ->
+    mnp.java:160-177 -> ovx.java:27-98; xhz.java:278-287,843-858
+  date: '2026-07-26'
+  description: >
+    AVChannel field 8 is decoded as AndroidKeycode while constructing each
+    CarDisplay. KEYCODE_NAVIGATION (65538) becomes content type NAVIGATION and
+    KEYCODE_TURN_CARD (65544) becomes TURN_CARD. Lifecycle initialization copies
+    that content type into AuxiliaryDisplayConfiguration only for AUXILIARY
+    displays; the AUXILIARY activity factory then selects the corresponding
+    navigation or turn-card provider. CLUSTER takes the independent mnw.d()
+    route and does not consult the field-8 content map. Unknown numeric values
+    decode to KEYCODE_UNKNOWN, which parses but cannot produce an AUXILIARY root
+    component. Recognized Android keycodes other than UNKNOWN, NAVIGATION, and
+    TURN_CARD throw while constructing CarDisplay, regardless of display type.

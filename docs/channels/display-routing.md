@@ -6,7 +6,10 @@
 
 ## Overview
 
-Android Auto supports up to three display types: MAIN, CLUSTER, and AUXILIARY. The phone controls what content is rendered on each — the HU advertises displays via ServiceDiscoveryResponse, but has **no mechanism to request specific content types** on secondary displays.
+Android Auto supports up to three display types: MAIN, CLUSTER, and AUXILIARY.
+The HU advertises displays via `ServiceDiscoveryResponse`. For an AUXILIARY
+descriptor, AVChannel field 8 selects the initial navigation-map or turn-card
+surface. CLUSTER service selection follows a separate phone-side policy.
 
 This document combines the established 16.2 content-policy trace with the 17.3
 logical-display identity trace. Content policy and endpoint identity are separate
@@ -35,7 +38,7 @@ From `qcw.java` (16.2 APK):
 |-------|------|---------|
 | 0 | MAIN | Primary head unit display — full Coolwalk UI |
 | 1 | CLUSTER | Instrument cluster — behind steering wheel |
-| 2 | AUXILIARY | Secondary display — e.g., passenger screen |
+| 2 | AUXILIARY | Additional secondary projected surface |
 | 3 | UNKNOWN | Fallback for invalid values |
 
 The HU advertises displays by including multiple video `ChannelDescriptor` entries in the SDP, each with a different `display_type` field (field 7 of `vye` / AVChannel proto).
@@ -99,17 +102,36 @@ qcx content_type → ComponentName:
 
 Non-prototype variants also exist (`AuxiliaryDisplayNavigationCarActivityService`, `AuxiliaryDisplayTurnCardCarActivityService`) — likely production vs. experimental paths.
 
-### Content Type Assignment (`lpa.java`)
+### Connection-time content assignment (AVChannel field 8)
 
-The `AuxiliaryDisplayConfiguration` class maintains a map of `CarDisplayId → qcx` (content type). This map is populated during initialization — the exact source of the content type decision was not traced to a wire field. It may be:
-- Server-side flag (PhenotypeFlags / GMS config)
-- Hardcoded default per display_type
-- Derived from the display's capabilities
+Android Auto 17.3 traces the initial AUXILIARY content choice to
+`AVChannel.keycode` field 8:
 
-The `vtr.java` prototype activity confirms only two states:
-- `"NAVIGATION AUXILIARY DISPLAY"` for ordinal 1
-- `"TURN CARD AUXILIARY DISPLAY"` for ordinal 2
-- `IllegalStateException` for anything else
+| Raw value | AndroidKeycode | AUXILIARY result |
+|----------:|----------------|------------------|
+| 65538 | `KEYCODE_NAVIGATION` | Navigation-map provider/fallback |
+| 65544 | `KEYCODE_TURN_CARD` | Turn-card provider/fallback |
+| 0 or unknown numeric value | `KEYCODE_UNKNOWN` | Parses, but no usable AUXILIARY root component |
+
+The construction path is:
+
+```text
+itq (AVChannel field 8 -> AndroidKeycode)
+  -> itc (AndroidKeycode -> CarDisplay content ordinal)
+  -> GhLifecycleService (AUXILIARY displays only -> configuration map)
+  -> mnu/mnp (lookup during AUXILIARY activity creation)
+  -> ovx (navigation or turn-card provider/fallback)
+```
+
+This is a connection-time descriptor choice; no live content-switch command
+has been identified. A recognized Android keycode other than `UNKNOWN`,
+`NAVIGATION`, or `TURN_CARD` throws while constructing `CarDisplay`, including
+for MAIN and CLUSTER descriptors. An unrecognized numeric enum value instead
+decodes to `UNKNOWN`, which survives construction but is unusable when the
+AUXILIARY activity factory needs a root component.
+
+`AUXILIARY` names a protocol role: an additional secondary projected surface.
+It does not imply a passenger display or prescribe its physical placement.
 
 ---
 
@@ -283,11 +305,13 @@ The phone sends rich signaling data on dedicated channels that we can render our
 
 A custom HU can build its own media/phone widgets from this channel data rather than relying on phone-projected video surfaces. This is actually more flexible — we control the layout, styling, and update rate.
 
-### widget_type is dead
-The `widget_type` field (AVChannel field 8 / vye field 9) exists in the proto but:
-- Phone validates it as `AndroidKeycode` enum — 65538 ("navigation") fails silently
-- Only "navigation" is defined — `"Unrecognized widget type %s, using navigation"`
-- Phone decides auxiliary content from `display_type` alone
+### Field 8 controls AUXILIARY initial content, not CLUSTER routing
+
+`AVChannel.keycode` field 8 is active for AUXILIARY initialization. Values
+65538 and 65544 select navigation and turn-card content respectively. CLUSTER
+routing ignores the auxiliary configuration map and calls the separate
+phone-policy selector directly, so field 8 cannot force CLUSTER map versus
+turn-card service selection.
 
 ---
 

@@ -156,6 +156,27 @@ This is the part of AA that can reserve native chrome or arrange multiple
 Coolwalk regions on one screen. It should not be conflated with physical
 multi-display routing.
 
+### 7. AV field 8 selects AUXILIARY initial content
+
+`defpackage/itq.java:213-238` decodes `xik.i` (AVChannel field 8) through the
+Android keycode enum and passes it into the display bridge. `itc.java:115-135`
+maps `KEYCODE_UNKNOWN`, `KEYCODE_NAVIGATION` (65538), and `KEYCODE_TURN_CARD`
+(65544) to the three `CarDisplay` content ordinals; any other recognized
+Android keycode throws during construction.
+
+`GhLifecycleService.java:334-365` copies those ordinals into
+`AuxiliaryDisplayConfiguration` only for displays whose type is AUXILIARY.
+`mnp.java:160-177` then looks up that configuration when creating an
+AUXILIARY activity, and `ovx.java:27-98` selects a navigation-map or turn-card
+provider/fallback. The CLUSTER branch instead returns `mnw.d()` without
+consulting field 8.
+
+An unknown numeric field-8 value decodes to `KEYCODE_UNKNOWN`; it therefore
+parses, but the AUXILIARY provider path cannot create a usable root component
+for it. This evidence establishes a connection-time AUXILIARY selector, not a
+live map/turn-card switch. AUXILIARY is an additional secondary projected
+surface and is not inherently a passenger display.
+
 The follow-up [runtime cluster policy report](android-auto-17.3-runtime-cluster-policy.md)
 traces live descriptor-update limits, phone-side power policy, geometry versus
 service selection, and the distinct cluster-turn-card UI-feature flag.
