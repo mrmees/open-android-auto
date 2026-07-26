@@ -20,7 +20,7 @@
       "channels": [
         {
           "av_channel": {
-            "stream_type": "VIDEO",
+            "stream_type": "MEDIA_CODEC_VIDEO_H264_BP",
             "video_configs": [
               {
                 "codec": "MEDIA_CODEC_VIDEO_H264_BP",
@@ -52,7 +52,7 @@
               }
             ],
             "audio_type": "MEDIA",
-            "stream_type": "AUDIO"
+            "stream_type": "MEDIA_CODEC_AUDIO_PCM"
           },
           "channel_id": 4
         },
@@ -66,7 +66,7 @@
               }
             ],
             "audio_type": "SPEECH",
-            "stream_type": "AUDIO"
+            "stream_type": "MEDIA_CODEC_AUDIO_PCM"
           },
           "channel_id": 5
         },
@@ -80,7 +80,7 @@
               }
             ],
             "audio_type": "SYSTEM",
-            "stream_type": "AUDIO"
+            "stream_type": "MEDIA_CODEC_AUDIO_PCM"
           },
           "channel_id": 6
         },
@@ -138,7 +138,7 @@
               "channel_count": 1,
               "sample_rate": 16000
             },
-            "stream_type": "AUDIO"
+            "stream_type": "MEDIA_CODEC_AUDIO_PCM"
           },
           "channel_id": 7
         },

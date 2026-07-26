@@ -36,3 +36,17 @@ evidence:
     display identity. Renaming channel_id to display_id breaks generated APIs
     but preserves protobuf tag 6 and uint32 wire type. This static construction
     path does not prove simultaneous display endpoints or runtime concurrency.
+- type: apk_deep_trace
+  method: semantic_enum_validator_trace
+  source: >-
+    Android Auto 17.3.662804-release; APKM SHA-256
+    1db7ce995aa52b2cde47a01abfb0364220fb57fc60217de3ec714e3034795344;
+    base.apk SHA-256
+    5557827f259898bdab97b489e1a0aef937fd6ec711d87361cf25d51af6f48619;
+    JADX xik.java:38 -> orw.java:6,79-82 -> xif.java:4-37
+  date: '2026-07-25'
+  description: >
+    AVChannel field 1 uses validator orw.u, which dispatches to xif.b and
+    accepts the codec domain 1-7 (PCM, AAC, H264, AAC_ADTS, VP9, AV1, H265).
+    This proves MediaCodecType rather than the numerically overlapping
+    AVStreamType enum; tag 1 remains an enum varint on the wire.

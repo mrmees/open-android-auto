@@ -3,7 +3,7 @@
 // Based on works by: f1x.studio (aasdk), opencardev (crankshaft), aa-proxy (aa-proxy-rs)
 syntax="proto2";
 
-import "oaa/av/AVStreamTypeEnum.proto";
+import "oaa/av/MediaCodecTypeEnum.proto";
 import "oaa/av/AndroidKeycodeEnum.proto";
 import "oaa/audio/AudioTypeEnum.proto";
 import "oaa/audio/AudioConfigData.proto";
@@ -15,7 +15,7 @@ package oaa.proto.data;
 // confidence: gold [apk_deep_trace, apk_static, cross_version]
 message AVChannel
 {
-    optional enums.AVStreamType.Enum stream_type = 1;  // confidence: gold [apk_deep_trace, apk_static, cross_version]
+    optional enums.MediaCodecType.Enum stream_type = 1;  // confidence: gold [apk_deep_trace, apk_static, cross_version]
     optional enums.AudioType.Enum audio_type = 2;  // confidence: gold [apk_deep_trace, apk_static, cross_version]
     repeated AudioConfig audio_configs = 3;  // confidence: gold [apk_deep_trace, apk_static, cross_version]
     repeated VideoConfig video_configs = 4;  // confidence: gold [apk_deep_trace, apk_static, cross_version]

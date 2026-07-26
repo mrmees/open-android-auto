@@ -273,7 +273,7 @@
               }
             ],
             "audio_type": "SPEECH",
-            "stream_type": "AUDIO"
+            "stream_type": "MEDIA_CODEC_AUDIO_PCM"
           },
           "channel_id": 8
         },
@@ -287,7 +287,7 @@
               }
             ],
             "audio_type": "MEDIA",
-            "stream_type": "AUDIO"
+            "stream_type": "MEDIA_CODEC_AUDIO_PCM"
           },
           "channel_id": 9
         },
@@ -327,7 +327,7 @@
               "channel_count": 1,
               "sample_rate": 16000
             },
-            "stream_type": "AUDIO"
+            "stream_type": "MEDIA_CODEC_AUDIO_PCM"
           },
           "channel_id": 14
         }
