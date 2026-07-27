@@ -124,7 +124,7 @@ These shared AV messages are documented in detail in [04-channel-lifecycle.md](.
 | Message | Purpose | Confidence |
 |---------|---------|:---:|
 | VideoConfig | Resolution, FPS, DPI, codec, margins, additional config | Silver |
-| AdditionalVideoConfig | Resolution ranges, UI theme, hidden elements, resize actions, margin configs | **Gold** |
+| AdditionalVideoConfig | Display insets, UI theme, hidden elements, resize actions, margin configs, blended UI | Silver |
 | VideoMargins | Top/bottom/side margin values | Silver |
 
 ---
@@ -422,7 +422,7 @@ Landscape resolutions (values 1-5) have width > height. Portrait resolutions (va
 | 1 | _60 | 60 FPS |
 | 2 | _30 | 30 FPS |
 
-### AdditionalVideoConfig (wcb, 16.2) -- Gold
+### AdditionalVideoConfig (wcb, 16.2) -- Silver
 
 Extended configuration for display insets, theming, HU-provided UI features, and resize behavior. Used both in `VideoConfig` field 11 (initial SDP setup) and as the payload of `UpdateUiConfigRequest` (runtime updates). Phone-side consumers in 17.1 and 17.3 prove that fields 1-3 are Rect-style insets; the older “minimum/maximum/preferred resolution” labels were incorrect. In 17.3, field 5 is consumed only when the HU-requested GAL version is at least 4.3.
 

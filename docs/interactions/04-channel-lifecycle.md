@@ -193,7 +193,7 @@ The phone sends this after channel open to negotiate AV parameters. The payload 
 
 ```protobuf
 message AVChannelSetupResponse {
-    optional AVChannelSetupStatus media_status = 1;  // 0 = OK
+    required AVChannelSetupStatus media_status = 1;  // 0 = OK
     optional uint32 max_unacked = 2;                  // Flow control window
     repeated uint32 configs = 3;                      // Accepted config indices
 }
@@ -212,14 +212,16 @@ message AVChannelSetupResponse {
 
 ```protobuf
 message AVChannelStartIndication {
-    optional int32 session = 1;
-    optional uint32 config = 2;                          // Selected config index
+    required int32 session = 1;
+    required uint32 config = 2;                          // Selected config index
     optional AVChannelSessionType session_type = 3;
     optional AVChannelMediaConfig media_config = 4;
 }
 ```
 
-After this message, AV data frames begin flowing.
+After this message, AV data frames begin flowing. For audio, GAL 5.0+ adds
+`session_type` and `media_config`; for video, GAL 6.0+ can include the same
+13-field media-options envelope in field 4. Fields 1 and 2 remain required.
 
 ### STOP_INDICATION (0x8002) -- Phone -> HU
 

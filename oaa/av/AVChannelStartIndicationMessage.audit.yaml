@@ -1,7 +1,7 @@
 proto: oaa/av/AVChannelStartIndicationMessage.proto
 message: AVChannelStartIndication
 confidence: silver
-last_updated: '2026-07-25'
+last_updated: '2026-07-26'
 evidence:
 - type: apk_static
   method: string_const
@@ -22,3 +22,12 @@ evidence:
   description: Structural match confirmed across versions 15.9, 16.1, 16.2, 16.4.
     Field numbers, types, and modifiers are consistent across all 6 pairwise comparisons.
   status: consistent
+- type: apk_deep_trace
+  method: phone_video_start_send_trace
+  source: Android Auto 17.3.662804-release JADX jca.java:220-241,595-596;
+    iub.java:88-119; xmd.java:7-12,31
+  date: '2026-07-26'
+  description: The phone builds xmd for a video-focus gain, fills the session and
+    optional GAL-6 media-options fields, and sends it at raw ID 0x8001. This
+    confirms Phone->HU direction for the 17.3 video start indication and the
+    four-field descriptor shape; runtime delivery remains unobserved.

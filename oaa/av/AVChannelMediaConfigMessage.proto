@@ -7,10 +7,10 @@
  *
  * APK class: vyo.java (AA v16.1)
  * Channel: AV (video/audio media channels)
- * Message ID: 0x8014 (32788) — sent by phone (outbound)
- * Dispatched by icg.java line 178: k(32788, vyoVar)
  *
  * Nested as field 4 of AVChannelStartIndication (wce.java).
+ * AVChannelMediaOptions is the standalone wire payload for message ID 0x8014;
+ * this structurally identical type is used only inside the start indication.
  * Built by hmq.java from CarInfo and experiment flags (abhj.el()).
  * Contains PingConfiguration sub-messages for timing parameters
  * and boolean feature flags.

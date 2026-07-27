@@ -14,6 +14,17 @@
 - Wire capture TLS decryption pipeline working (Frida-based master secret extraction).
 - Verification framework with confidence tiers and audit trail (`docs/verification/`).
 
+## v1.5 Protocol Distribution (2026-07-26)
+
+- The `v1.5` tag publishes the reviewed Android Auto 17.3 protocol reference
+  through the tag-triggered `dist` workflow.
+- The consumer snapshot is limited to 248 `oaa/**/*.proto` files, `README.md`,
+  and `LICENSE`; research, audit, planning, and analysis material remains on
+  `main` only.
+- The release includes corrected display identities and AV message IDs,
+  multi-display and blended-UI schemas, MediaOptions, modern service markers,
+  and the evidence-bounded integrated-overlay payload.
+
 ## Now
 
 - Issue #8's AV codec enum identity is corrected in both `AVChannel` and
@@ -29,7 +40,6 @@
   bindings remain central-report evidence rather than message promotions, and
   audits, OEM reports, coverage, and video documentation share that boundary.
 - Consolidate remaining session-specific notes into permanent docs.
-- Publish a minimal `dist` branch for downstream proto consumers without the research archive.
 - Android Auto 17.3 static schema-matching baseline operational: 175 mappings resolved without a live session, including 39 dispatch-backed and 73 graph-resolved mappings, plus 13 unique enum-domain mappings. Every graph-resolved row now records its exact parent/field evidence.
 - Six residual conflict families have exact 16.2 → 16.4 → 17.3 class lineages; five unrelated proto files (49 messages and 6 enums) are excluded from the active graph after call sites tied them to Surveys, GoogleAuth, or radio metadata.
 - The capture-backed `WifiSecurityResponse` is reduced to fields 1-5; removing its false radio-metadata extension unlocked `RadioSongMetadata -> xla` as a unique structural mapping.
@@ -41,6 +51,8 @@
 
 ## Next
 
+- Have downstream consumers pin the exact `v1.5` `dist` commit while keeping
+  GAL 4.3, 5.0, 5.1, and 6.0 compatibility rollouts as separate changes.
 - Investigate issue #10's Chevrolet cluster-view evidence by testing whether
   CLUSTER video and semantic navigation guidance are simultaneous feeds selected
   locally by the vehicle before acquiring a matching Google Maps APK.
@@ -68,4 +80,4 @@
 - Prioritize protocol definitions, protocol docs, and analysis tooling only.
 - Defer cross-repo product planning to the primary application repository.
 
-Last Updated: 2026-07-25
+Last Updated: 2026-07-26

@@ -3496,3 +3496,76 @@ Verification:
 - `git diff --check` -> exit 0
 - Standalone untracked-report whitespace check -> exit 0 after removing two
   Markdown hard-break spaces found by the final gate
+
+## 2026-07-26 — Prepare v1.5 protocol distribution
+
+What changed:
+- Audited the complete descriptor delta from `v1.3.1` to current `main` and
+  selected `v1.5` from the repository's recorded minor-release policy
+- Corrected the consumer README inventory to 248 protos in 20 categories and
+  aligned AV start/setup cardinality, direction, GAL 5.0/6.0 start-data notes,
+  and AdditionalVideoConfig confidence/semantics with the canonical schemas
+- Added the direct Android Auto 17.3 video-start send trace to the
+  AVChannelStartIndication audit and refreshed its generated confidence mirrors
+- Removed the stale `0x8014` dispatch claim from the nested
+  `AVChannelMediaConfig`, clarified the audio/video GAL gate, and documented
+  source-API migrations plus confidence/retraction semantics in the README
+- Hardened the tag publisher with an all-proto compile gate and mandatory
+  README/LICENSE checks; converted main-only README links to stable URLs
+- Recorded the minimal tag-generated distribution boundary in the current
+  roadmap: `oaa/**/*.proto`, `README.md`, and `LICENSE` only
+
+Why:
+- Prodigy temporarily consumed a `main` commit to obtain newer audited schemas;
+  the supported boundary is a versioned, minimal `dist` commit
+- The release audit found stale consumer-facing counts and documentation but no
+  retained field-number change that crosses protobuf wire-type groups
+
+Status:
+- The authorized unlimited Opus review found no wire/protocol blocker. Its
+  procedural block (uncommitted release-preparation files would not enter a
+  tag) is resolved by committing this exact reviewed tree before tagging
+- Local release audit and focused release checks are green; the remaining
+  external steps are the annotated `v1.5` tag push, workflow completion, and
+  remote `dist` payload/SHA verification
+- Compatibility is wire-safe for retained tags but not source-API neutral:
+  corrected field/message names, requiredness, and descriptor service identities
+  require consumers upgrading directly from the `v1.3.1` distribution to
+  regenerate bindings and adopt the new generated names
+- No speculative GAL schemas were added; unresolved field semantics and all
+  runtime-unverified higher-version behavior remain explicitly bounded
+
+Next steps:
+1. Commit the reviewed release candidate and push annotated tag `v1.5` at the
+   audited `main` commit
+2. Wait for the
+   publish workflow
+3. Verify the exact remote `dist` SHA and hand that immutable commit to Prodigy
+
+Verification:
+- Descriptor comparison `v1.3.1` -> candidate -> 245/248 proto files; 0
+  retained-tag wire-type incompatibilities, 33 intentional name/type
+  corrections, 17 added fields, 9 removed fields, and 14 requiredness
+  tightenings
+- All-proto C++ generation -> 248/248 protos, 496 generated `.pb.cc`/`.pb.h`
+  files, exit 0
+- Minimal-dist simulation -> exactly 250 files (248 protos plus README/LICENSE),
+  0 forbidden files, and 0 source mismatches
+- Release suite -> 741 passed; focused confidence-mirror regression -> 489
+  passed; proto descriptor build -> exit 0; annotation check -> 248 files and
+  `Changed: 0`
+- Clean-clone `make PYTHON=/tmp/tmp.TpcpfZrjQP/bin/python verify` -> 1,816
+  passed, 3 expected ignored-APK-index skips; all protos compiled and annotation
+  check reported `Changed: 0`
+- Optional primary-checkout `make ... test-integration` -> 2 passed / 1 failed:
+  the ignored local historical databases produce 72 pass-1 message matches
+  against the committed 78-match snapshot; the clean-clone release gate skips
+  this asset-dependent integration exactly as designed
+- Consumer documentation contract -> 248 protos / 20 categories and all
+  cardinality, direction, and AdditionalVideoConfig assertions pass
+- Publication contract -> stale `0x8014` claim absent, proto2/proto3 and
+  migration notes present, dist links valid, GAL comments aligned, audit date
+  current, and publish-time proto/required-file gates present
+- Unlimited Opus adversarial review -> no wire/protocol blocker; supported
+  consumer-documentation and release-workflow findings applied
+- `git diff --check` -> exit 0

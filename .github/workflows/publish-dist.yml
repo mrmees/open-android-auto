@@ -18,6 +18,14 @@ jobs:
         with:
           fetch-depth: 1
 
+      - name: Install protoc
+        run: |
+          sudo apt-get update
+          sudo apt-get install --yes protobuf-compiler
+
+      - name: Verify protocol schemas
+        run: make proto-check
+
       - name: Check out dist
         uses: actions/checkout@v4
         with:
@@ -36,13 +44,10 @@ jobs:
           find "$dist_root" -mindepth 1 -maxdepth 1 ! -name .git -exec rm -rf {} +
           mkdir -p "$dist_root/oaa"
 
-          if [[ -f "$main_root/README.md" ]]; then
-            cp "$main_root/README.md" "$dist_root/README.md"
-          fi
-
-          if [[ -f "$main_root/LICENSE" ]]; then
-            cp "$main_root/LICENSE" "$dist_root/LICENSE"
-          fi
+          test -f "$main_root/README.md"
+          test -f "$main_root/LICENSE"
+          cp "$main_root/README.md" "$dist_root/README.md"
+          cp "$main_root/LICENSE" "$dist_root/LICENSE"
 
           while IFS= read -r proto_file; do
             mkdir -p "$dist_root/$(dirname "$proto_file")"
