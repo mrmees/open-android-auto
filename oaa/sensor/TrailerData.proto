@@ -14,7 +14,7 @@ syntax="proto2";
 
 package oaa.proto.data;
 
-// confidence: gold [deep_trace, 16.2 DB verified — confirmed 0 fields]
+// confidence: bronze [apk_static, cross_version]
 message TrailerData
 {
 }

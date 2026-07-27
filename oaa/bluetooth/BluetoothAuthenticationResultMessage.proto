@@ -21,11 +21,13 @@
 
 syntax = "proto2";
 
+import "oaa/common/StatusEnum.proto";
+
 package oaa.proto.messages;
 
-// confidence: gold [apk_deep_trace]
+// confidence: unverified
 message BluetoothAuthenticationResult
 {
     // Shared AA StatusCode enum (vyh)
-    required int32 status = 1;  // confidence: gold [apk_deep_trace]
+    required enums.Status.Enum status = 1;  // confidence: unverified
 }

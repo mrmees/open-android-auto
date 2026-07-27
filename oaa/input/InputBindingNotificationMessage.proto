@@ -17,8 +17,8 @@ import "oaa/input/HapticFeedbackTypeEnum.proto";
 
 package oaa.proto.messages;
 
-// confidence: gold [handler_trace, deep_apk]
+// confidence: silver [apk_deep_trace, apk_static]
 message InputBindingNotification
 {
-    optional enums.HapticFeedbackType.Enum feedback_type = 1;
+    optional enums.HapticFeedbackType.Enum feedback_type = 1;  // confidence: silver [apk_deep_trace, apk_static]
 }

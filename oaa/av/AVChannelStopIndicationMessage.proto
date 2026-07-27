@@ -17,7 +17,7 @@ package oaa.proto.messages;
  *
  * Verified: 2026-03-06, proto-verification pipeline
  */
-// confidence: gold [apk_deep_trace, 2026-03-06]
+// confidence: unverified
 message AVChannelStopIndication
 {
 }

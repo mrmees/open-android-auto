@@ -10,19 +10,20 @@ import "oaa/av/AVChannelSessionTypeEnum.proto";
 
 /*
  * AV channel start indication (wire msg ID 0x8001 on all AV channels)
- * Bidirectional: phone sends on audio start, HU sends on video start.
+ * Phone -> HU; the 17.3 phone sends audio and video start indications.
  *
  * APK class: wbu (16.2) / wce (16.1)
  * Audio: icv/pjx/hqg build and send. Video: ilm receives.
- * media_config (field 4) only sent when PDK >= 5.0.
+ * Audio includes session_type/media_config at GAL 5.0+; video can include the
+ * media_config envelope at GAL 6.0+.
  *
  * Verified: 2026-03-06, proto-verification pipeline
  */
-// confidence: gold [apk_deep_trace, 2026-03-06]
+// confidence: silver [apk_deep_trace, apk_static, cross_version]
 message AVChannelStartIndication
 {
-    required int32 session = 1;  // Session ID counter  // confidence: gold [apk_deep_trace]
-    required uint32 config = 2;  // Config/codec index  // confidence: gold [apk_deep_trace]
-    optional enums.AVChannelSessionType.Enum session_type = 3; // Values 0-2. Value 2 set when PDK >= 5.0.  // confidence: gold [apk_deep_trace]
-    optional AVChannelMediaConfig media_config = 4; // APK: vya (16.2) / vyo (16.1). 13 fields, only sent PDK >= 5.0.  // confidence: gold [apk_deep_trace]
+    required int32 session = 1; // Session ID counter  // confidence: silver [apk_deep_trace, apk_static, cross_version]
+    required uint32 config = 2; // Config/codec index  // confidence: silver [apk_deep_trace, apk_static, cross_version]
+    optional enums.AVChannelSessionType.Enum session_type = 3; // Values 0-2. Value 2 set when PDK >= 5.0.  // confidence: silver [apk_deep_trace, apk_static, cross_version]
+    optional AVChannelMediaConfig media_config = 4; // APK: vya (16.2) / vyo (16.1). Audio at PDK >= 5.0; video at PDK >= 6.0.  // confidence: silver [apk_deep_trace, apk_static, cross_version]
 }

@@ -17,8 +17,8 @@ syntax="proto2";
 package oaa.proto.messages;
 
 // RETRACTED — see IntegratedOverlayStartNotification.proto
-// confidence: retracted [deep_trace, handler_verified]
+// confidence: unverified
 message VideoFocusNotification
 {
-    optional int32 focus_mode = 1; // RETRACTED — actually display_session_id
+    optional int32 focus_mode = 1; // RETRACTED — actually display_session_id  // confidence: unverified
 }

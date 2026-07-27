@@ -18,8 +18,8 @@ import "oaa/common/StatusEnum.proto";
 
 package oaa.proto.messages;
 
-// confidence: gold [apk_deep_trace]
+// confidence: silver [apk_static, cross_version]
 message ChannelOpenResponse
 {
-    required enums.Status.Enum status = 1;  // confidence: gold [apk_deep_trace]
+    required enums.Status.Enum status = 1;  // confidence: silver [apk_static, cross_version]
 }

@@ -8,21 +8,21 @@ package oaa.proto.enums;
 // APK class: wco (16.2) — 9 values with explicit resolution naming
 // Values 5-9 changed completely from aasdk-era definitions.
 // NONE=0 is proto3 default only — not defined in APK validator.
-// confidence: gold [deep_trace]
+// confidence: unverified
 message VideoResolution
 {
-    // confidence: gold [deep_trace]
+    // confidence: unverified
     enum Enum
     {
         NONE = 0;  // proto3 default only — not in APK
-        VIDEO_800x480 = 1;  // 480p landscape
-        VIDEO_1280x720 = 2;  // 720p landscape
-        VIDEO_1920x1080 = 3;  // 1080p landscape
-        VIDEO_2560x1440 = 4;  // 1440p landscape
-        VIDEO_3840x2160 = 5;  // 4K landscape (was _720p_p in aasdk — WRONG)
-        VIDEO_720x1280 = 6;  // 720p portrait (was _1080pp in aasdk — WRONG)
-        VIDEO_1080x1920 = 7;  // 1080p portrait
-        VIDEO_1440x2560 = 8;  // 1440p portrait (NEW in 16.2)
-        VIDEO_2160x3840 = 9;  // 4K portrait (NEW in 16.2)
+        VIDEO_800x480 = 1; // 480p landscape  // confidence: unverified
+        VIDEO_1280x720 = 2; // 720p landscape  // confidence: unverified
+        VIDEO_1920x1080 = 3; // 1080p landscape  // confidence: unverified
+        VIDEO_2560x1440 = 4; // 1440p landscape  // confidence: unverified
+        VIDEO_3840x2160 = 5; // 4K landscape (was _720p_p in aasdk — WRONG)  // confidence: unverified
+        VIDEO_720x1280 = 6; // 720p portrait (was _1080pp in aasdk — WRONG)  // confidence: unverified
+        VIDEO_1080x1920 = 7; // 1080p portrait  // confidence: unverified
+        VIDEO_1440x2560 = 8; // 1440p portrait (NEW in 16.2)  // confidence: unverified
+        VIDEO_2160x3840 = 9; // 4K portrait (NEW in 16.2)  // confidence: unverified
     }
 }

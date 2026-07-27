@@ -3,39 +3,40 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 
 /*
- * Buffered Media Sink channel (GAL channel type 21, BUFFERED_MEDIA_SINK)
- * Handler: ibh.java, log tag: CAR.MEDIA.BUFFERED
+ * Android Auto 17.3 Buffered Media Sink playback-status payload.
  *
- * STUB CHANNEL — the handler logs "onMessageReceived" and discards all data.
- * No proto deserialization occurs. Feature-gated behind flag abey (834952858)
- * and service discovery bit 0x10000 in the wbw bitmask.
+ * ChannelDescriptor field 17 (presence bit 0x10000) identifies GAL service
+ * type 21. Incoming raw ID 4 is HU -> Phone: the phone parses this proto and
+ * consumes all six fields. IDs 1-3 and every outbound path remain unknown.
  *
- * Despite the stub handler, a rich service discovery config proto exists
- * (vwo, field 18 in ServiceDiscovery) describing audio content configs,
- * video content configs with oneofs, and content metadata. This suggests
- * the protocol design was complete but the phone-side implementation was
- * not wired up in AA v16.1.
- *
- * NOT related to AV1/H265 codec support — those codecs (vyn enum values 6,7)
- * belong to the standard MediaSink/MediaSource service discovery configs
- * (vys/vyt), not this channel.
- *
- * Service discovery config proto: vwo (BufferedMediaSinkConfig)
- *   field 1: repeated AudioContentConfig (vux)
- *   field 2: repeated VideoContentConfig (vwl — uses oneof)
- *   field 3: repeated ContentMetadataConfig (vuo)
- *
- * No wire-level messages to define — this file documents the channel's
- * existence and stub status for protocol completeness.
- *
- * APK: AA v16.1
+ * Construction is separately gated by NeoplanFeature__enabled equaling
+ * 834952858. Descriptor presence, manager registration, endpoint attachment,
+ * and BUFFERED_MEDIA_WORKER start are distinct later steps. Static code does
+ * not prove production enablement, a live endpoint, a response, a completed
+ * transfer, or any downstream media operation.
  */
 
-syntax = "proto3";
+syntax = "proto2";
 
 package oaa.proto.messages;
 
-// Placeholder — no runtime messages defined.
-// BufferedMediaSinkConfig (vwo) for service discovery is noted above.
-// If this channel becomes active in a future APK version, message
-// definitions should be added here.
+// confidence: bronze [apk_deep_trace]
+enum BufferedMediaState {
+    BUFFERED_MEDIA_STATE_UNKNOWN = 0;
+    BUFFERED_MEDIA_STATE_PLAYING = 1;
+    BUFFERED_MEDIA_STATE_PAUSED = 2;
+    BUFFERED_MEDIA_STATE_STOPPED = 3;
+    BUFFERED_MEDIA_STATE_BUFFERING = 4;
+}
+
+// Incoming raw ID 4, HU -> Phone: 17.3 parses and consumes these fields.
+// IDs 1-3 are accepted by a range validator but their meanings are unknown.
+// confidence: bronze [apk_deep_trace]
+message BufferedMediaSinkMessage {
+    optional int32 session_id = 1;  // confidence: bronze [apk_deep_trace]
+    optional uint64 uid = 2;  // confidence: bronze [apk_deep_trace]
+    optional uint64 current_position_ms = 3;  // confidence: bronze [apk_deep_trace]
+    optional BufferedMediaState state = 4;  // confidence: bronze [apk_deep_trace]
+    optional uint64 buffered_position_ms = 5;  // confidence: bronze [apk_deep_trace]
+    optional uint64 content_duration_ms = 6;  // confidence: bronze [apk_deep_trace]
+}

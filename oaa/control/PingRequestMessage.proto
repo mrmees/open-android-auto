@@ -18,10 +18,10 @@ syntax="proto2";
 
 package oaa.proto.messages;
 
-// confidence: gold [apk_deep_trace]
+// confidence: silver [apk_static, cross_version]
 message PingRequest
 {
-    required int64 timestamp = 1;  // confidence: gold [apk_deep_trace]
-    optional bool bugreport_request = 2;  // triggers bugreport via iau.m20103e  // confidence: gold [apk_deep_trace]
-    optional bytes payload = 3;  // confidence: gold [apk_deep_trace]
+    required int64 timestamp = 1;  // confidence: silver [apk_static, cross_version]
+    optional bool bugreport_request = 2; // triggers bugreport via iau.m20103e  // confidence: silver [apk_static, cross_version]
+    optional bytes payload = 3;  // confidence: silver [apk_static, cross_version]
 }

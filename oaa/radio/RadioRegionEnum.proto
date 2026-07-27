@@ -14,13 +14,13 @@ syntax="proto2";
 
 package oaa.proto.enums;
 
-// confidence: silver [apk_static — not confirmed in 16.2 SDP]
+// confidence: unverified
 message RadioRegion
 {
-    // confidence: silver [apk_static]
+    // confidence: unverified
     enum Enum
     {
         REGION_UNKNOWN = 0;
-        REGION_ITU_1 = 1;
+        REGION_ITU_1 = 1;  // confidence: unverified
     }
 }

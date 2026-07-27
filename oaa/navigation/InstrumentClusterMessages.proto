@@ -47,7 +47,7 @@ package oaa.proto.messages;
 // APK class: vze (16.2), vzs (16.1) — empty message, proto2
 // Direction: HU→Phone — HU tells phone the cluster display is available
 // Handler: ian.mo18864a() case 32769 → calls mo29617e() (onStart)
-// confidence: gold [apk_deep_trace]
+// confidence: unverified
 message InstrumentClusterStart {
 }
 
@@ -55,7 +55,7 @@ message InstrumentClusterStart {
 // APK class: vzf (16.2), vzt (16.1) — empty message, proto2
 // Direction: HU→Phone — HU tells phone the cluster display is no longer available
 // Handler: ian.mo18864a() case 32770 → calls mo29618f() (onStop)
-// confidence: gold [apk_deep_trace]
+// confidence: unverified
 message InstrumentClusterStop {
 }
 
@@ -70,16 +70,15 @@ message InstrumentClusterStop {
 // NOTE: Our previous proto had InstrumentClusterInput (vzl) at 0x8005.
 // That was WRONG — vzl is a display overlay parameters proto (OverlayParameters),
 // not a wire message on this channel. The actual 0x8005 is vyx.
-// confidence: gold [apk_deep_trace]
+// confidence: unverified
 message LegacyNavigationTurnEvent {
-    optional int32 maneuver_type = 1;     // APK: f74555c — maneuver type constant  // confidence: gold [apk_deep_trace]
-    optional int32 turn_number = 2;       // APK: f74556d — distance value  // confidence: gold [apk_deep_trace]
-    optional int32 turn_distance = 3;     // APK: f74557e — distance in millis  // confidence: gold [apk_deep_trace]
-    optional DistanceDisplayUnit distance_unit = 4; // APK: f74558f — same 0-7 nav Distance.displayUnit codes as 0x8007, stored via proto-lite value-1  // confidence: gold [apk_deep_trace]
+    optional int32 maneuver_type = 1; // APK: f74555c — maneuver type constant  // confidence: unverified
+    optional int32 turn_number = 2; // APK: f74556d — distance value  // confidence: unverified
+    optional int32 turn_distance = 3; // APK: f74557e — distance in millis  // confidence: unverified
+    optional DistanceDisplayUnit distance_unit = 4; // APK: f74558f — same 0-7 nav Distance.displayUnit codes as 0x8007, stored via proto-lite value-1  // confidence: unverified
 }
 
 // Distance display unit enum (shared with NavigationTurnEventMessage.proto)
 // Validator: C0000a.m128bw (maps 0-7 → 1-8, default 0)
-// confidence: gold [apk_deep_trace]
 // Note: Canonical definition in NavigationTurnEventMessage.proto.
 // Duplicated here for LegacyNavigationTurnEvent reference.

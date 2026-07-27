@@ -6,7 +6,7 @@ syntax="proto2";
 package oaa.proto.messages;
 
 // APK class: wdl — empty message (phone sends this as msgId=2 to request credentials)
-// confidence: bronze [apk_static]
+// confidence: bronze [apk_static, cross_version]
 message WifiInfoRequest
 {
 }

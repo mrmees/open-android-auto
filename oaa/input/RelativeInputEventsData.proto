@@ -8,8 +8,8 @@ import "oaa/input/RelativeInputEventData.proto";
 package oaa.proto.data;
 
 // APK class: wbc (16.2), wbm (16.1) — rotary/scroll events container
-// confidence: gold [handler_trace, deep_apk]
+// confidence: silver [apk_deep_trace, apk_static]
 message RelativeInputEvents
 {
-    repeated RelativeInputEvent relative_input_events = 1;
+    repeated RelativeInputEvent relative_input_events = 1;  // confidence: silver [apk_deep_trace, apk_static]
 }

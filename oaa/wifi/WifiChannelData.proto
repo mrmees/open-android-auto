@@ -12,8 +12,8 @@ package oaa.proto.data;
 // 16.1 class: wdh, 16.2 class: wcx
 // ChannelDescriptor field 14 — WiFi Projection SDP data
 // hmf.java logs: "Car wifi BSSID is %s" (NOT SSID)
-// confidence: gold [deep_trace]
+// confidence: silver [apk_static, deep_trace]
 message WifiChannel
 {
-    optional string bssid = 1;  // HU WiFi AP BSSID  // confidence: gold [deep_trace]
+    optional string bssid = 1; // HU WiFi AP BSSID  // confidence: silver [apk_static, deep_trace]
 }

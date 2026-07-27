@@ -15,14 +15,14 @@
 //
 // Source: opencardev/aasdk (GoogleDiagnosticsVendorExtensionMessageId enum,
 //         GoogleDiagnostics* message definitions)
-// Confidence: silver [cross_referenced, dhu_only]
+// Confidence: unverified
 
 syntax = "proto2";
 
 package oaa.proto.messages;
 
 // Message IDs for the Google Diagnostics vendor extension channel.
-// confidence: silver [cross_referenced, dhu_only]
+// confidence: unverified
 enum GoogleDiagnosticsMessageId {
     DIAGNOSTICS_BUG_REPORT_REQUEST  = 1;
     DIAGNOSTICS_BUG_REPORT_RESPONSE = 2;
@@ -30,15 +30,15 @@ enum GoogleDiagnosticsMessageId {
 
 // Requests a bug report. The token identifies the request for correlation
 // with the response.
-// confidence: silver [cross_referenced, dhu_only]
+// confidence: unverified
 message GoogleDiagnosticsBugReportRequest {
-    optional int32 token = 1;  // confidence: silver [cross_referenced, dhu_only]
+    optional int32 token = 1;  // confidence: unverified
 }
 
 // Bug report response. May contain the bug report text and a list of
 // acknowledged request tokens.
-// confidence: silver [cross_referenced, dhu_only]
+// confidence: unverified
 message GoogleDiagnosticsBugReportResponse {
-    optional string bug_report = 1;  // confidence: silver [cross_referenced, dhu_only]
-    repeated int32  tokens     = 2;  // confidence: silver [cross_referenced, dhu_only]
+    optional string bug_report = 1;  // confidence: unverified
+    repeated int32  tokens     = 2;  // confidence: unverified
 }

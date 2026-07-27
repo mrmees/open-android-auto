@@ -15,8 +15,8 @@ syntax="proto2";
 
 package oaa.proto.data;
 
-// confidence: gold [deep_trace, 16.2 DB verified]
+// confidence: silver [apk_static, cross_version]
 message RawEvTripSettings
 {
-    optional bytes raw_data = 1;  // confidence: gold
+    optional bytes raw_data = 1;  // confidence: silver [apk_static, cross_version]
 }

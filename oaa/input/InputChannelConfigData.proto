@@ -7,7 +7,8 @@
  *
  * APK class: vxm (16.2), vya (16.1)
  * Used in ServiceDiscoveryResponse ChannelDescriptor.
- * display_id (field 5) matches VideoChannelDescriptor display.
+ * display_id (field 5) references AVChannel.display_id (field 6). It is not
+ * ChannelDescriptor.channel_id (the transport channel ID) or GAL service type 8.
  */
 
 syntax="proto2";
@@ -18,12 +19,12 @@ import "oaa/input/HapticFeedbackTypeEnum.proto";
 
 package oaa.proto.data;
 
-// confidence: gold [handler_trace, deep_apk]
+// confidence: gold [apk_deep_trace, apk_static, cross_version]
 message InputChannelConfig
 {
     repeated int32 supported_keycodes = 1 [packed = true];           // Android keycodes the HU can send
-    repeated TouchScreenConfig touch_screen_configs = 2;             // touchscreen resolution per display
-    repeated TouchPadConfig touchpad_configs = 3;                    // touchpad config (at most 1)
-    repeated enums.HapticFeedbackType.Enum supported_haptic_types = 4;  // haptic feedback types HU supports
-    optional uint32 display_id = 5;                                  // matches video channel display ID
+    repeated TouchScreenConfig touch_screen_configs = 2; // touchscreen resolution per display  // confidence: gold [apk_deep_trace, apk_static, cross_version]
+    repeated TouchPadConfig touchpad_configs = 3; // touchpad config (at most 1)  // confidence: gold [apk_deep_trace, apk_static, cross_version]
+    repeated enums.HapticFeedbackType.Enum supported_haptic_types = 4; // haptic feedback types HU supports  // confidence: gold [apk_deep_trace, apk_static, cross_version]
+    optional uint32 display_id = 5; // references AVChannel field 6 logical display ID  // confidence: gold [apk_deep_trace, apk_static, cross_version]
 }

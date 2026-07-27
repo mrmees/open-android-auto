@@ -22,8 +22,8 @@ package oaa.proto.messages;
 
 // Message ID: 14 on Control channel (GAL type 1)
 // Direction: HU→Phone
-// confidence: gold [apk_deep_trace]
+// confidence: silver [apk_static, cross_version]
 message NavigationFocusResponse
 {
-    optional NavigationFocusType type = 1;  // confidence: gold [apk_deep_trace]
+    optional NavigationFocusType type = 1;  // confidence: silver [apk_static, cross_version]
 }

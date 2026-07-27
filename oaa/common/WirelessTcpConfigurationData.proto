@@ -25,7 +25,7 @@
  * Source: opencardev/aasdk (GPLv3)
  * Original: aap_protobuf/service/control/message/WirelessTcpConfiguration.proto
  *
- * confidence: bronze [external_reference, legacy_external_only]
+ * confidence: unverified
  */
 
 syntax = "proto2";
@@ -33,9 +33,9 @@ syntax = "proto2";
 package oaa.proto.data;
 
 // Not present in 16.2 APK — ConnectionConfig reorganized, socket params hardcoded
-// confidence: bronze [external_reference, legacy_external_only]
+// confidence: unverified
 message WirelessTcpConfiguration {
-    optional uint32 socket_receive_buffer_size_kb = 1;  // SO_RCVBUF size in KB
-    optional uint32 socket_send_buffer_size_kb = 2;     // SO_SNDBUF size in KB
-    optional uint32 socket_read_timeout_ms = 3;         // SO_TIMEOUT in milliseconds
+    optional uint32 socket_receive_buffer_size_kb = 1; // SO_RCVBUF size in KB  // confidence: unverified
+    optional uint32 socket_send_buffer_size_kb = 2; // SO_SNDBUF size in KB  // confidence: unverified
+    optional uint32 socket_read_timeout_ms = 3; // SO_TIMEOUT in milliseconds  // confidence: unverified
 }

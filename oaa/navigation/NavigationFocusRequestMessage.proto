@@ -22,7 +22,7 @@ package oaa.proto.messages;
 
 // Navigation focus type
 // APK enum: vyn (16.2), vzb (16.1 — name collision with NavigationState in 16.2!)
-// confidence: gold [apk_deep_trace]
+// confidence: silver [apk_static, cross_version]
 enum NavigationFocusType {
     NAV_FOCUS_NATIVE = 1;
     NAV_FOCUS_PROJECTED = 2;
@@ -30,8 +30,8 @@ enum NavigationFocusType {
 
 // Message ID: 13 on Control channel (GAL type 1)
 // Direction: Phone→HU
-// confidence: gold [apk_deep_trace]
+// confidence: silver [apk_static, cross_version]
 message NavigationFocusRequest
 {
-    optional NavigationFocusType type = 1;  // confidence: gold [apk_deep_trace]
+    optional NavigationFocusType type = 1;  // confidence: silver [apk_static, cross_version]
 }

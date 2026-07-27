@@ -17,18 +17,18 @@ syntax="proto2";
 package oaa.proto.data;
 
 // APK class: wai (16.1) → vzu (16.2) — configuration parameters (4x uint32)
-// confidence: gold [16.2_db_verified]
+// confidence: silver [apk_static, cross_version]
 message ControlChannelParams
 {
-    optional uint32 param_1 = 1;  // confidence: gold
-    optional uint32 param_2 = 2;  // confidence: gold
-    optional uint32 param_3 = 3;  // confidence: gold
-    optional uint32 param_4 = 4;  // confidence: gold
+    optional uint32 param_1 = 1;  // confidence: silver [apk_static, cross_version]
+    optional uint32 param_2 = 2;  // confidence: silver [apk_static, cross_version]
+    optional uint32 param_3 = 3;  // confidence: silver [apk_static, cross_version]
+    optional uint32 param_4 = 4;  // confidence: silver [apk_static, cross_version]
 }
 
 // APK class: vxc (16.1) → vwo (16.2) — config container, wraps params
-// confidence: gold [16.2_db_verified]
+// confidence: silver [apk_static, cross_version]
 message ControlChannelConfig
 {
-    optional ControlChannelParams params = 1; // APK: wai (16.1) → vzu (16.2)  // confidence: gold
+    optional ControlChannelParams params = 1; // APK: wai (16.1) → vzu (16.2)  // confidence: silver [apk_static, cross_version]
 }

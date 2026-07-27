@@ -1,0 +1,38 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
+// Copyright (C) 2024-2026 Open Android Auto contributors
+syntax="proto2";
+
+package oaa.proto.messages;
+
+// Wire message 0x800D, Phone->HU on the video channel.
+// confidence: gold [apk_deep_trace, cross_version]
+message IntegratedOverlayParametersNotification
+{
+    repeated IntegratedOverlayParameters parameters = 1;  // confidence: gold [apk_deep_trace, cross_version]
+}
+
+// One integrated-overlay option: content type, rectangular bounds, and corner radius.
+// confidence: gold [apk_deep_trace, cross_version]
+message IntegratedOverlayParameters
+{
+    optional int32 content_type = 1;  // confidence: gold [apk_deep_trace, cross_version]
+    optional IntegratedOverlayBounds bounds = 2;  // confidence: gold [apk_deep_trace, cross_version]
+    optional IntegratedOverlayCornerRadius corner_radius = 3;  // confidence: gold [apk_deep_trace, cross_version]
+}
+
+// Signed Android Rect edges copied without coordinate conversion.
+// confidence: gold [apk_deep_trace, cross_version]
+message IntegratedOverlayBounds
+{
+    optional int32 left = 1;  // confidence: gold [apk_deep_trace, cross_version]
+    optional int32 top = 2;  // confidence: gold [apk_deep_trace, cross_version]
+    optional int32 right = 3;  // confidence: gold [apk_deep_trace, cross_version]
+    optional int32 bottom = 4;  // confidence: gold [apk_deep_trace, cross_version]
+}
+
+// Wrapped floating-point corner radius. Units remain unresolved.
+// confidence: gold [apk_deep_trace, cross_version]
+message IntegratedOverlayCornerRadius
+{
+    optional float value = 1;  // confidence: gold [apk_deep_trace, cross_version]
+}

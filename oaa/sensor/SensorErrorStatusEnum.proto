@@ -12,10 +12,10 @@ syntax="proto2";
 
 package oaa.proto.enums;
 
-// confidence: gold [deep_trace, 16.2 wbg.java]
+// confidence: bronze [apk_static, cross_version]
 message SensorErrorStatus
 {
-    // confidence: gold
+    // confidence: bronze [apk_static, cross_version]
     enum Enum
     {
         SENSOR_OK = 1;

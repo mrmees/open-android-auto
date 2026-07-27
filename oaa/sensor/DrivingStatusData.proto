@@ -6,8 +6,8 @@ syntax="proto2";
 package oaa.proto.data;
 
 // APK class: vwv (AA v16.2) — bitmask, see DrivingStatusEnum for flags
-// confidence: gold [deep_trace, 16.2 DB verified]
+// confidence: silver [apk_static, cross_version]
 message DrivingStatus
 {
-    required int32 status = 1;  // confidence: gold
+    required int32 status = 1;  // confidence: silver [apk_static, cross_version]
 }

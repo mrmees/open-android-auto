@@ -13,39 +13,44 @@ import "oaa/control/HeadUnitInfoData.proto";
 package oaa.proto.messages;
 
 // APK class: vyd (16.2), vyr (16.1) — feature flag placeholder
-// confidence: gold [deep_trace_verified, 16.2_jadx]
+// confidence: silver [apk_static, cross_version]
 message ServiceDiscoveryFeatureA {}
 
 // APK class: vxy (16.2), vym (16.1) — feature flag placeholder
-// confidence: gold [deep_trace_verified, 16.2_jadx]
+// confidence: silver [apk_static, cross_version]
 message ServiceDiscoveryFeatureB {}
 
 // APK class: vwf (16.2), vwt (16.1) — feature flag placeholder
-// confidence: gold [deep_trace_verified, 16.2_jadx]
+// confidence: silver [apk_static, cross_version]
 message ServiceDiscoveryFeatureC {}
 
 // APK class: vvp (16.2), vwd (16.1) — feature flag placeholder
-// confidence: gold [deep_trace_verified, 16.2_jadx]
+// confidence: silver [apk_static, cross_version]
 message ServiceDiscoveryFeatureD {}
 
-// confidence: gold [deep_trace_verified, 16.2_jadx]
+// confidence: silver [apk_static, cross_version]
 message ServiceDiscoveryResponse
 {
-    repeated data.ChannelDescriptor channels = 1;  // confidence: gold [deep_trace_verified, 16.2_jadx]
-    optional string head_unit_name = 2;  // confidence: gold [deep_trace_verified, 16.2_jadx]
-    optional string car_model = 3;  // confidence: gold [deep_trace_verified, 16.2_jadx]
-    optional string car_year = 4;  // confidence: gold [deep_trace_verified, 16.2_jadx]
-    optional string car_serial = 5;  // confidence: gold [deep_trace_verified, 16.2_jadx]
-    optional enums.DriverPosition.Enum driver_position = 6;  // confidence: gold [deep_trace_verified, 16.2_jadx]
-    optional string headunit_manufacturer = 7;  // confidence: gold [deep_trace_verified, 16.2_jadx]
-    optional string headunit_model = 8;  // confidence: gold [deep_trace_verified, 16.2_jadx]
-    optional string sw_build = 9;  // confidence: gold [deep_trace_verified, 16.2_jadx]
-    optional string sw_version = 10;  // confidence: gold [deep_trace_verified, 16.2_jadx]
-    optional bool can_play_native_media_during_vr = 11;  // confidence: gold [deep_trace_verified, 16.2_jadx]
+    repeated data.ChannelDescriptor channels = 1;  // confidence: silver [apk_static, cross_version]
+    optional string head_unit_name = 2;  // confidence: silver [apk_static, cross_version]
+    optional string car_model = 3;  // confidence: silver [apk_static, cross_version]
+    optional string car_year = 4;  // confidence: silver [apk_static, cross_version]
+    optional string car_serial = 5;  // confidence: silver [apk_static, cross_version]
+    optional enums.DriverPosition.Enum driver_position = 6;  // confidence: silver [apk_static, cross_version]
+    optional string headunit_manufacturer = 7;  // confidence: silver [apk_static, cross_version]
+    optional string headunit_model = 8;  // confidence: silver [apk_static, cross_version]
+    optional string sw_build = 9;  // confidence: silver [apk_static, cross_version]
+    optional string sw_version = 10;  // confidence: silver [apk_static, cross_version]
+    optional bool can_play_native_media_during_vr = 11;  // confidence: silver [apk_static, cross_version]
     // Field 12 not in APK v16.1.
-    optional int32 session_configuration = 13;  // confidence: gold [deep_trace_verified, 16.2_jadx]
-    optional string display_name = 14;  // confidence: gold [deep_trace_verified, 16.2_jadx]
-    optional bool probe_for_support = 15;  // confidence: gold [deep_trace_verified, 16.2_jadx]
+    // 17.3 consumes values 1, 2, 4, and 8. When the HU-requested GAL version
+    // is below 4.3, masks 1/2/4 also seed clock/signal/battery display
+    // features. For a request of 4.3+, those features instead come from
+    // AdditionalVideoConfig; its UIElement value 5 becomes display-UI flag 16,
+    // which is not a field-13 mask.
+    optional int32 session_configuration = 13;  // confidence: silver [apk_static, cross_version]
+    optional string display_name = 14;  // confidence: silver [apk_static, cross_version]
+    optional bool probe_for_support = 15;  // confidence: silver [apk_static, cross_version]
     // Field 16 not in APK v16.1.
-    optional data.HeadUnitInfo headunit_info = 17;  // confidence: gold [deep_trace_verified, 16.2_jadx]
+    optional data.HeadUnitInfo headunit_info = 17;  // confidence: silver [apk_static, cross_version]
 }

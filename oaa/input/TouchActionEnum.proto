@@ -7,9 +7,10 @@ package oaa.proto.enums;
 
 // Maps to Android MotionEvent actions via hlg.java static init (SparseIntArray)
 // Values 3 and 4 are not mapped (default to ACTION_DOWN)
-// confidence: gold [handler_trace, deep_apk]
+// confidence: unverified
 message TouchAction
 {
+    // confidence: unverified
     enum Enum
     {
         PRESS = 0;          // ACTION_DOWN — first pointer down

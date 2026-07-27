@@ -5,9 +5,8 @@
 /*
  * Vehicle energy model data (sensor type 23 = VEHICLE_ENERGY_MODEL).
  *
- * Empty message — structured energy model data. Fields may be added
- * from wire captures. Distinct from RawVehicleEnergyModel (sensor 25)
- * which carries an opaque bytes blob.
+ * Android Auto 17.3 carries a structured vehicle-info payload. Distinct from
+ * RawVehicleEnergyModel (sensor 25), which carries an opaque bytes blob.
  *
  * APK class: vvg (AA v16.1), vus (AA v16.2) — proto3, 0 fields
  */
@@ -15,7 +14,30 @@ syntax="proto3";
 
 package oaa.proto.data;
 
-// confidence: gold [deep_trace, 16.2 DB verified — confirmed 0 fields]
-message VehicleEnergyModelData
-{
+// 17.3 xep — integer watt-hour quantity used for level and capacity.
+// confidence: bronze [apk_static, cross_version]
+message VehicleEnergyValue {
+    int32 value = 1;  // confidence: bronze [apk_static, cross_version]
+}
+
+// confidence: bronze [apk_static, cross_version]
+enum VehicleEnergyHvacStatus {
+    UNKNOWN_HVAC_STATUS = 0;
+    OFF_HVAC_STATUS = 1;
+    ON_HVAC_STATUS = 2;
+}
+
+// 17.3 xer — diagnostic formatter names and prints each of these fields.
+// confidence: bronze [apk_static, cross_version]
+message VehicleEnergyInfo {
+    VehicleEnergyValue battery_level_wh = 3;  // confidence: bronze [apk_static, cross_version]
+    VehicleEnergyValue battery_capacity_wh = 4;  // confidence: bronze [apk_static, cross_version]
+    VehicleEnergyHvacStatus hvac_status = 5;  // confidence: bronze [apk_static, cross_version]
+    float external_temp_celsius = 7;  // confidence: bronze [apk_static, cross_version]
+    float battery_temp_celsius = 8;  // confidence: bronze [apk_static, cross_version]
+}
+
+// confidence: bronze [apk_static, cross_version]
+message VehicleEnergyModelData {
+    VehicleEnergyInfo vehicle_info = 1;  // confidence: bronze [apk_static, cross_version]
 }

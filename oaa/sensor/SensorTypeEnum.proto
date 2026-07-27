@@ -12,10 +12,10 @@ syntax="proto3";
 
 package oaa.proto.enums;
 
-// confidence: gold [deep_trace, 16.2 wbl.java + ibi.java handler]
+// confidence: unverified
 message SensorType
 {
-    // confidence: gold
+    // confidence: unverified
     enum Enum
     {
         NONE = 0;

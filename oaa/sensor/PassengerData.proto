@@ -6,8 +6,8 @@ syntax="proto2";
 package oaa.proto.data;
 
 // APK class: vzo (AA v16.2)
-// confidence: gold [deep_trace, 16.2 DB verified]
+// confidence: silver [apk_static, cross_version]
 message Passenger
 {
-    optional bool passenger_present = 1;  // confidence: gold
+    optional bool passenger_present = 1;  // confidence: silver [apk_static, cross_version]
 }

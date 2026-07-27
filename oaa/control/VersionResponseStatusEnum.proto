@@ -20,13 +20,13 @@ syntax="proto2";
 
 package oaa.proto.enums;
 
-// confidence: gold [apk_deep_trace]
 // NOTE: Proto enums don't support negative values directly. These are
 // int32 field values with symbolic names. HU implementations should
 // use these as constants for the int32 status fields.
+// confidence: unverified
 message ProtocolStatus
 {
-    // confidence: gold [apk_deep_trace]
+    // confidence: unverified
     enum Enum
     {
         STATUS_SUCCESS = 0;

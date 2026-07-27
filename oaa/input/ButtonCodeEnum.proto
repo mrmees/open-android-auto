@@ -9,9 +9,10 @@ package oaa.proto.enums;
 // ButtonEvent.keycode uses raw Android keycode integers directly.
 // This enum is a convenience reference for commonly used keycodes.
 // APK class: vxt (16.2) — enum used in hlg.java for DPAD detection
-// confidence: gold [handler_trace] (AA custom codes verified, standard codes are Android constants)
+// confidence: unverified
 message ButtonCode
 {
+    // confidence: unverified
     enum Enum
     {
         NONE = 0x00;

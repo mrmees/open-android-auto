@@ -6,11 +6,11 @@ syntax="proto2";
 package oaa.proto.data;
 
 // APK class: vxu (16.2), vyi (16.1) — single button/key event
-// confidence: gold [handler_trace, deep_apk]
+// confidence: silver [apk_deep_trace, apk_static]
 message ButtonEvent
 {
-    required uint32 keycode = 1;     // Android keycode value
-    required bool is_pressed = 2;    // true = down, false = up
-    required uint32 meta_state = 3;  // Android meta state flags
-    optional bool long_press = 4;    // fire-and-forget long press
+    required uint32 keycode = 1; // Android keycode value  // confidence: silver [apk_deep_trace, apk_static]
+    required bool is_pressed = 2; // true = down, false = up  // confidence: silver [apk_deep_trace, apk_static]
+    required uint32 meta_state = 3; // Android meta state flags  // confidence: silver [apk_deep_trace, apk_static]
+    optional bool long_press = 4; // fire-and-forget long press  // confidence: silver [apk_deep_trace, apk_static]
 }

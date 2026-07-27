@@ -12,8 +12,8 @@ syntax="proto2";
 package oaa.proto.data;
 
 // APK class: wah (16.2) — notification channel config
-// confidence: gold [deep_trace_verified, 16.2_jadx]
+// confidence: bronze [apk_static, cross_version]
 message NotificationChannel
 {
-    optional bool enabled = 1;  // confidence: gold [deep_trace_verified, 16.2_jadx]
+    optional bool enabled = 1;  // confidence: bronze [apk_static, cross_version]
 }

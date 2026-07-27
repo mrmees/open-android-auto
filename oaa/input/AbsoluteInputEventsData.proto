@@ -9,8 +9,8 @@ package oaa.proto.data;
 
 // APK class: vuu (16.2), vvi (16.1) — absolute input events container
 // Only 1 field — previous fields 2 (display_id) and 3 (action) were from wrong class mapping
-// confidence: gold [handler_trace, deep_apk]
+// confidence: bronze [apk_deep_trace]
 message AbsoluteInputEvents
 {
-    repeated AbsoluteInputEvent absolute_input_events = 1;
+    repeated AbsoluteInputEvent absolute_input_events = 1;  // confidence: bronze [apk_deep_trace]
 }
